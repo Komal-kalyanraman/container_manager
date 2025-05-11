@@ -1,3 +1,4 @@
+import os
 import tkinter as tk
 from tkinter import ttk, scrolledtext, messagebox
 import json
@@ -92,7 +93,16 @@ class ContainerCreatorUI:
             command_str = " ".join(cmd)
         else:
             # docker-api or podman-api
-            host_sock = "/var/run/docker.sock" if runtime == "docker-api" else "/run/podman/podman.sock"
+            if runtime == "docker-api":
+                host_sock = "/var/run/docker.sock"
+            else:
+                # Use rootless podman.sock if available
+                xdg_runtime_dir = os.environ.get("XDG_RUNTIME_DIR")
+                if xdg_runtime_dir:
+                    host_sock = f"{xdg_runtime_dir}/podman/podman.sock"
+                else:
+                    # fallback to rootful path
+                    host_sock = "/run/podman/podman.sock"
             api_url = "http://localhost/v1.41/containers/create"
             headers = "-H 'Content-Type: application/json'"
             payload = {
