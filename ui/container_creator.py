@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, scrolledtext, messagebox
+import json
 
 class ContainerCreatorUI:
     def __init__(self, root):
@@ -9,7 +10,7 @@ class ContainerCreatorUI:
         # Runtime selection
         ttk.Label(root, text="Container Runtime:").grid(row=0, column=0, sticky="w")
         self.runtime_var = tk.StringVar(value="docker")
-        runtime_options = ["docker", "podman"]
+        runtime_options = ["docker", "podman", "docker-api", "podman-api"]
         self.runtime_menu = ttk.Combobox(root, textvariable=self.runtime_var, values=runtime_options, state="readonly")
         self.runtime_menu.grid(row=0, column=1, sticky="ew")
 
@@ -49,7 +50,7 @@ class ContainerCreatorUI:
 
         # Command output area
         ttk.Label(root, text="Generated Command:").grid(row=7, column=0, sticky="nw")
-        self.command_area = scrolledtext.ScrolledText(root, height=4, width=80)
+        self.command_area = scrolledtext.ScrolledText(root, height=6, width=80)
         self.command_area.grid(row=7, column=1, columnspan=2, sticky="ew")
 
         # Create and Copy buttons
@@ -62,31 +63,75 @@ class ContainerCreatorUI:
         root.columnconfigure(1, weight=1)
 
     def generate_command(self):
-        cmd = [self.runtime_var.get(), "run", "-d"]
+        runtime = self.runtime_var.get()
         name = self.name_entry.get().strip()
-        if name:
-            cmd += ["--name", name]
         cpus = self.cpus_entry.get().strip()
-        if cpus:
-            cmd += [f'--cpus="{cpus}"']
         memory = self.memory_entry.get().strip()
-        if memory:
-            runtime = self.runtime_var.get()
-            if runtime == "podman":
-                mem_str = f"{memory}Mi"
-            else:
-                mem_str = f"{memory}M"
-            cmd += [f'--memory="{mem_str}"']
         pids = self.pids_entry.get().strip()
-        if pids:
-            cmd += [f'--pids-limit={pids}']
-        if self.restart_var.get():
-            cmd += [f'--restart={self.restart_var.get()}']
+        restart = self.restart_var.get()
         image = self.image_entry.get().strip()
-        if image:
-            cmd.append(image)
 
-        command_str = " ".join(cmd)
+        if runtime in ["docker", "podman"]:
+            cmd = [runtime, "run", "-d"]
+            if name:
+                cmd += ["--name", name]
+            if cpus:
+                cmd += [f'--cpus="{cpus}"']
+            if memory:
+                if runtime == "podman":
+                    mem_str = f"{memory}Mi"
+                else:
+                    mem_str = f"{memory}M"
+                cmd += [f'--memory="{mem_str}"']
+            if pids:
+                cmd += [f'--pids-limit={pids}']
+            if restart:
+                cmd += [f'--restart={restart}']
+            if image:
+                cmd.append(image)
+            command_str = " ".join(cmd)
+        else:
+            # docker-api or podman-api
+            host_sock = "/var/run/docker.sock" if runtime == "docker-api" else "/run/podman/podman.sock"
+            api_url = "http://localhost/v1.41/containers/create"
+            headers = "-H 'Content-Type: application/json'"
+            payload = {
+                "Image": image,
+                "HostConfig": {}
+            }
+            if name:
+                api_url += f"?name={name}"
+            if cpus:
+                try:
+                    payload["HostConfig"]["NanoCpus"] = int(float(cpus) * 1e9)
+                except:
+                    pass
+            if memory:
+                try:
+                    payload["HostConfig"]["Memory"] = int(float(memory) * 1024 * 1024)
+                except:
+                    pass
+            if pids:
+                try:
+                    payload["HostConfig"]["PidsLimit"] = int(pids)
+                except:
+                    pass
+            if restart and restart != "no":
+                payload["HostConfig"]["RestartPolicy"] = {"Name": restart}
+            json_payload = json.dumps(payload)
+            # Two-step: create, then start
+            create_cmd = (
+                f"curl --unix-socket {host_sock} -X POST {headers} "
+                f"-d '{json_payload}' {api_url}"
+            )
+            # The container name is used for start, fallback to ID if needed
+            start_name = name if name else "<container_id>"
+            start_cmd = (
+                f"curl --unix-socket {host_sock} -X POST "
+                f"http://localhost/v1.41/containers/{start_name}/start"
+            )
+            command_str = f"{create_cmd}\n{start_cmd}"
+
         self.command_area.delete(1.0, tk.END)
         self.command_area.insert(tk.END, command_str)
 
