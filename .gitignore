@@ -1,0 +1,10 @@
+
+# ignore all the content of build folder
+App/build/*
+
+package-lock.json
+
+.vscode/settings.json
+
+# trying to keep only the .keep file in this folder
+!App/build/.keep
