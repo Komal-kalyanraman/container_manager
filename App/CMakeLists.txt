@@ -35,7 +35,7 @@ find_package(nlohmann_json REQUIRED)
 
 include_directories(${CURL_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
-include_directories(${CMAKE_SOURCE_DIR}/httplib)
+include_directories(${CMAKE_SOURCE_DIR}/third_party/httplib)
 include_directories("${PROJECT_SOURCE_DIR}/bl")
 include_directories("${PROJECT_SOURCE_DIR}/common")
 include_directories("${PROJECT_SOURCE_DIR}/runtime")
