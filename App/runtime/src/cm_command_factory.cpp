@@ -1,10 +1,9 @@
-
 #include "inc/cm_command_factory.hpp"
 
 #include <iostream>
-#include <glog/logging.h>
 
 #include "inc/cm_common.hpp"
+#include "inc/cm_logging.hpp"
 #include "inc/cm_podman_commands.hpp"
 #include "inc/cm_docker_commands.hpp"
 #include "inc/cm_podman_api_commands.hpp"
@@ -14,7 +13,6 @@ std::unique_ptr<Command> CommandFactory::CreateCommand(RuntimeType runtime_type,
     if (runtime_type == RuntimeType::Docker) {
         if (command_type == CommandType::RuntimeStatus) {
             return std::make_unique<DockerRuntimeAvailableCommand>();
-            // LOG(INFO) << "Docker runtime available";
         }
     } else if (runtime_type == RuntimeType::DockerApi) {
         if (command_type == CommandType::RuntimeStatus) {
@@ -30,8 +28,7 @@ std::unique_ptr<Command> CommandFactory::CreateCommand(RuntimeType runtime_type,
         }
     } else {
         // Invalid runtime type
-        std::cerr << "Invalid runtime type" << std::endl;
-        LOG(FATAL) << "Invalid runtime type";
+        CM_LOG_FATAL << "Invalid runtime type";
     }
     return nullptr;
 }
@@ -67,9 +64,7 @@ std::unique_ptr<Command> CommandFactory::CreateCommand(RuntimeType runtime_type,
         }
     } else {
         // Invalid runtime type
-        std::cerr << "Invalid runtime type" << std::endl;
-        LOG(FATAL) << "Invalid runtime type";
+        CM_LOG_FATAL << "Invalid runtime type";
     }
     return nullptr;
-
 }

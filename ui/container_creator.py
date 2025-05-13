@@ -13,7 +13,7 @@ class ContainerCreatorUI:
         # Runtime selection
         ttk.Label(root, text="Container Runtime:").grid(row=0, column=0, sticky="w")
         self.runtime_var = tk.StringVar(value="docker")
-        runtime_options = ["docker", "podman", "docker-api", "podman-api"]
+        runtime_options = ["docker", "podman", "docker-api", "podman-api", "bluechi"]
         self.runtime_menu = ttk.Combobox(root, textvariable=self.runtime_var, values=runtime_options, state="readonly")
         self.runtime_menu.grid(row=0, column=1, sticky="ew")
 
@@ -93,7 +93,7 @@ class ContainerCreatorUI:
         }]
 
         data = {
-            "type": runtime,
+            "runtime": runtime,
             "parameters": parameters
         }
         return data
@@ -107,7 +107,7 @@ class ContainerCreatorUI:
         restart = self.restart_var.get()
         image = self.image_entry.get().strip()
 
-        if runtime in ["docker", "podman"]:
+        if runtime in ["docker", "podman", "bluechi"]:
             cmd = [runtime, "run", "-d"]
             if name:
                 cmd += ["--name", name]
@@ -191,7 +191,9 @@ class ContainerCreatorUI:
             return
         port = int(port)
         try:
-            response = requests.post(f"http://localhost:{port}/", json=data)
+            response = requests.post(f"http://localhost:{port}/execute", json=data)
+            print("Server response: ", response.text)
+            print("Server status code: ", response.status_code)
             if response.status_code == 200:
                 messagebox.showinfo("Sent", f"JSON sent to server on port {port}")
             else:
