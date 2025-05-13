@@ -1,0 +1,33 @@
+#pragma once
+
+#include <string>
+#include <memory>
+#include "inc/cm_commands.hpp"
+
+class DockerRuntimeAvailableCommand : public Command {
+public:
+    explicit DockerRuntimeAvailableCommand();
+    ~DockerRuntimeAvailableCommand() = default;
+
+    bool Execute() const override;
+};
+
+class DockerStartContainerCommand : public Command {
+private:
+    std::string app_name_;
+public:
+    explicit DockerStartContainerCommand(const std::string& app_name_);
+    ~DockerStartContainerCommand() = default;
+
+    bool Execute() const override;
+};
+
+class DockerStopContainerCommand : public Command {
+private:
+    std::string app_name_;
+public:
+    explicit DockerStopContainerCommand(const std::string& app_name_);
+    ~DockerStopContainerCommand() = default;
+
+    bool Execute() const override;
+};
