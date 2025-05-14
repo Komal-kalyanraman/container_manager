@@ -1,36 +1,25 @@
 #pragma once
 
 #include <string>
-
-/// @brief Available container runtime types
-enum class RuntimeType { 
-    Docker, 
-    Podman, 
-    DockerApi, 
-    PodmanApi 
-};
-
-/// @brief Available command types
-enum class CommandType {
-    RuntimeStatus,
-    StartContainer,
-    StopContainer,
-    CreateContainer,
-};
+#include <string_view>
 
 const int kMaxThreadPoolSize = 4;
 
 const int kHttpServerPort = 5000;
 const std::string kHttpServerHost = "0.0.0.0";
 
-const std::string kDockerRuntime = "docker";
-const std::string kDockerApiRuntime = "docker-api";
-const std::string kPodmanRuntime = "podman";
-const std::string kPodmanApiRuntime = "podman-api";
+struct RuntimeName {
+    static constexpr std::string_view Docker      = "docker";
+    static constexpr std::string_view Podman      = "podman";
+    static constexpr std::string_view DockerApi   = "docker-api";
+    static constexpr std::string_view PodmanApi   = "podman-api";
+};
 
-const std::string kRuntimeAvailable = "available";
-const std::string kRuntimeStartContainer = "start";
-const std::string kRuntimeStopContainer = "stop";
-const std::string kRuntimeCreateContainer = "create";
-const std::string kRuntimeRestartContainer = "restart";
-const std::string kRuntimeRemoveContainer = "remove";
+struct CommandName {
+    static constexpr std::string_view RuntimeStatus      = "available";
+    static constexpr std::string_view StartContainer     = "start";
+    static constexpr std::string_view StopContainer      = "stop";
+    static constexpr std::string_view CreateContainer    = "create";
+    static constexpr std::string_view RestartContainer   = "restart";
+    static constexpr std::string_view RemoveContainer    = "remove";
+};

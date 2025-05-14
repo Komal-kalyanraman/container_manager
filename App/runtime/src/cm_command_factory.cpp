@@ -10,20 +10,20 @@
 #include "inc/cm_docker_api_commands.hpp"
 
 std::unique_ptr<Command> CommandFactory::CreateCommand(const std::string& runtime_type, const std::string& command_type) {
-    if (runtime_type == kDockerRuntime) {
-        if (command_type == kRuntimeAvailable) {
+    if (runtime_type == RuntimeName::Docker) {
+        if (command_type == CommandName::RuntimeStatus) {
             return std::make_unique<DockerRuntimeAvailableCommand>();
         }
-    } else if (runtime_type == kDockerApiRuntime) {
-        if (command_type == kRuntimeAvailable) {
+    } else if (runtime_type == RuntimeName::DockerApi) {
+        if (command_type == CommandName::RuntimeStatus) {
             return std::make_unique<DockerApiRuntimeAvailableCommand>();
         }
-    } else if (runtime_type == kPodmanRuntime) {
-        if (command_type == kRuntimeAvailable) {
+    } else if (runtime_type == RuntimeName::Podman) {
+        if (command_type == CommandName::RuntimeStatus) {
             return std::make_unique<PodmanRuntimeAvailableCommand>();
         }
-    } else if (runtime_type == kPodmanApiRuntime) {
-        if (command_type == kRuntimeAvailable) {
+    } else if (runtime_type == RuntimeName::PodmanApi) {
+        if (command_type == CommandName::RuntimeStatus) {
             return std::make_unique<PodmanApiRuntimeAvailableCommand>();
         }
     } else {
@@ -34,32 +34,32 @@ std::unique_ptr<Command> CommandFactory::CreateCommand(const std::string& runtim
 }
 
 std::unique_ptr<Command> CommandFactory::CreateCommand(const std::string& runtime_type, const std::string& command_type, const std::string& app_name) {
-    if (runtime_type == kDockerRuntime) {
-        if (command_type == kRuntimeStartContainer) {
+    if (runtime_type == RuntimeName::Docker) {
+        if (command_type == CommandName::StartContainer) {
             return std::make_unique<DockerStartContainerCommand>(app_name);
-        } else if (command_type == kRuntimeStopContainer) {
+        } else if (command_type == CommandName::StopContainer) {
             return std::make_unique<DockerStopContainerCommand>(app_name);
         }
-    } else if (runtime_type == kDockerApiRuntime) {
-        if (command_type == kRuntimeCreateContainer) {
+    } else if (runtime_type == RuntimeName::DockerApi) {
+        if (command_type == CommandName::CreateContainer) {
             return std::make_unique<DockerApiCreateContainerCommand>(app_name);
-        } else if (command_type == kRuntimeStartContainer) {
+        } else if (command_type == CommandName::StartContainer) {
             return std::make_unique<DockerApiStartContainerCommand>(app_name);
-        } else if (command_type == kRuntimeStopContainer) {
+        } else if (command_type == CommandName::StopContainer) {
             return std::make_unique<DockerApiStopContainerCommand>(app_name);
         }
-    } else if (runtime_type == kPodmanRuntime) {
-        if (command_type == kRuntimeStartContainer) {
+    } else if (runtime_type == RuntimeName::Podman) {
+        if (command_type == CommandName::StartContainer) {
             return std::make_unique<PodmanStartContainerCommand>(app_name);
-        } else if (command_type == kRuntimeStopContainer) {
+        } else if (command_type == CommandName::StopContainer) {
             return std::make_unique<PodmanStopContainerCommand>(app_name);
         }
-    } else if (runtime_type == kPodmanApiRuntime) {
-        if (command_type == kRuntimeCreateContainer) {
+    } else if (runtime_type == RuntimeName::PodmanApi) {
+        if (command_type == CommandName::CreateContainer) {
             return std::make_unique<PodmanApiCreateContainerCommand>(app_name);
-        } else if (command_type == kRuntimeStartContainer) {
+        } else if (command_type == CommandName::StartContainer) {
             return std::make_unique<PodmanApiStartContainerCommand>(app_name);
-        } else if (command_type == kRuntimeStopContainer) {
+        } else if (command_type == CommandName::StopContainer) {
             return std::make_unique<PodmanApiStopContainerCommand>(app_name);
         }
     } else {
