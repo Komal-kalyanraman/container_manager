@@ -8,7 +8,7 @@
 #include "inc/cm_command_factory.hpp"
 
 nlohmann::json ContainerServiceHandler::HandleRequest(const ContainerRequest& req) {
-    if(req.operation == "Available") {
+    if(req.operation == kRuntimeAvailable) {
         bool isRuntimeAvailable = ContainerServiceHandler::CheckRuntimeAvailable(req.runtime, req.operation);
         if (!isRuntimeAvailable) {
             return {{"status", "error"}, {"message", "Runtime is not running"}};
@@ -43,5 +43,6 @@ bool ContainerServiceHandler::CheckRuntimeAvailable(const std::string& runtime, 
         if (!invoker.Invoke()) {
             return false;
         }
+    std::cout << "Runtime is available" << std::endl;
     return true;
 }
