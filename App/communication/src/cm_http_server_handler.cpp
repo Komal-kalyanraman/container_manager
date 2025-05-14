@@ -17,5 +17,5 @@ void HttpServerHandler::Start(int port) {
             res.set_content(resp.dump(), "application/json");
         }
     });
-    svr.listen("0.0.0.0", port);
+    svr.listen(kHttpServerHost, port);
 }

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 /// @brief Available container runtime types
 enum class RuntimeType { 
     Docker, 
@@ -15,3 +17,6 @@ enum class CommandType {
     StopContainer,
     CreateContainer,
 };
+
+const int kHttpServerPort = 5000;
+const std::string kHttpServerHost = "0.0.0.0";

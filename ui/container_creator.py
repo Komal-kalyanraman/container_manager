@@ -13,14 +13,14 @@ class ContainerCreatorUI:
         # Runtime selection
         ttk.Label(root, text="Container Runtime:").grid(row=0, column=0, sticky="w")
         self.runtime_var = tk.StringVar(value="docker")
-        runtime_options = ["docker", "podman", "docker-api", "podman-api", "bluechi"]
+        runtime_options = ["Docker", "Podman", "DockerApi", "PodmanApi", "Bluechi"]
         self.runtime_menu = ttk.Combobox(root, textvariable=self.runtime_var, values=runtime_options, state="readonly")
         self.runtime_menu.grid(row=0, column=1, sticky="ew")
 
         # Operation selection
         ttk.Label(root, text="Operation:").grid(row=0, column=2, sticky="w")
         self.operation_var = tk.StringVar(value="create")
-        operation_options = ["create", "start", "stop"]
+        operation_options = ["Create", "Start", "Stop", "Restart", "Remove", "Available"]
         self.operation_menu = ttk.Combobox(root, textvariable=self.operation_var, values=operation_options, state="readonly")
         self.operation_menu.grid(row=0, column=3, sticky="ew")
 
@@ -116,7 +116,7 @@ class ContainerCreatorUI:
         restart = self.restart_var.get()
         image = self.image_entry.get().strip()
 
-        if runtime in ["docker", "podman", "bluechi"]:
+        if runtime in ["Docker", "Podman", "Bluechi"]:
             cmd = [runtime, "run", "-d"]
             if name:
                 cmd += ["--name", name]
@@ -137,7 +137,7 @@ class ContainerCreatorUI:
             command_str = " ".join(cmd)
         else:
             # docker-api or podman-api
-            if runtime == "docker-api":
+            if runtime == "DockerApi":
                 host_sock = "/var/run/docker.sock"
             else:
                 xdg_runtime_dir = os.environ.get("XDG_RUNTIME_DIR")

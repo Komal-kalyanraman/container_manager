@@ -4,4 +4,4 @@ add_library(${APP_NAME} STATIC
     src/cm_container_service_handler.cpp
 )
 
-target_link_libraries(cm_bl PUBLIC glog::glog)
+target_link_libraries(cm_bl PUBLIC glog::glog cm_runtime)
