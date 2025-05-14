@@ -17,6 +17,13 @@ class ContainerCreatorUI:
         self.runtime_menu = ttk.Combobox(root, textvariable=self.runtime_var, values=runtime_options, state="readonly")
         self.runtime_menu.grid(row=0, column=1, sticky="ew")
 
+        # Operation selection
+        ttk.Label(root, text="Operation:").grid(row=0, column=2, sticky="w")
+        self.operation_var = tk.StringVar(value="create")
+        operation_options = ["create", "start", "stop"]
+        self.operation_menu = ttk.Combobox(root, textvariable=self.operation_var, values=operation_options, state="readonly")
+        self.operation_menu.grid(row=0, column=3, sticky="ew")
+
         # Resource limits
         ttk.Label(root, text="CPUs:").grid(row=1, column=0, sticky="w")
         self.cpus_entry = ttk.Entry(root)
@@ -76,6 +83,7 @@ class ContainerCreatorUI:
 
     def build_json(self):
         runtime = self.runtime_var.get()
+        operation = self.operation_var.get()
         container_name = self.name_entry.get().strip()
         cpus = self.cpus_entry.get().strip()
         memory = self.memory_entry.get().strip()
@@ -94,6 +102,7 @@ class ContainerCreatorUI:
 
         data = {
             "runtime": runtime,
+            "operation": operation,
             "parameters": parameters
         }
         return data

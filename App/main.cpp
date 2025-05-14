@@ -1,13 +1,13 @@
-#include "inc/cm_server_handler.hpp"
+#include "inc/cm_http_server_handler.hpp"
+#include "inc/cm_json_requestexecutor_handler.hpp"
+#include <memory>
+#include <glog/logging.h>
 
-#include <iostream>
-#include <thread>
-
-int main() {
-    auto& server = ServerHandler::GetInstance();
-    server.StartCmServer();
-
-    // Keep main alive for demonstration (or run your actual logic)
-    std::cin.get();
+int main(int argc, char* argv[]) {
+    google::InitGoogleLogging(argv[0]);
+    auto executor = std::make_shared<JsonRequestExecutorHandler>();
+    HttpServerHandler server(executor);
+    server.Start(5000);
+    google::ShutdownGoogleLogging();
     return 0;
 }

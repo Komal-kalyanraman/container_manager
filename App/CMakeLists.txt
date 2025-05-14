@@ -39,12 +39,16 @@ include_directories(${CMAKE_SOURCE_DIR}/third_party/httplib)
 include_directories("${PROJECT_SOURCE_DIR}/bl")
 include_directories("${PROJECT_SOURCE_DIR}/common")
 include_directories("${PROJECT_SOURCE_DIR}/runtime")
+include_directories("${PROJECT_SOURCE_DIR}/communication")
+include_directories("${PROJECT_SOURCE_DIR}/dataprocessing")
 include_directories(/usr/local/include)
 include_directories("${HOME_DIR}/cpp_redis/includes")
 
 add_subdirectory(bl)
 add_subdirectory(common)
 add_subdirectory(runtime)
+add_subdirectory(communication)
+add_subdirectory(dataprocessing)
 
 link_directories("${HOME_DIR}/cpp_redis/build")  # Added line for cpp_redis library directory
 
@@ -64,6 +68,8 @@ target_link_libraries(CM
   cm_bl
   cm_common
   cm_runtime
+  cm_communication
+  cm_dataprocessing
   librt.so
   pthread
   cpp_redis
