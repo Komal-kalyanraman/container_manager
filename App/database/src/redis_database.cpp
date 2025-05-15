@@ -25,10 +25,19 @@ void RedisDatabaseHandler::SaveJson(const std::string& key, const nlohmann::json
 }
 
 nlohmann::json RedisDatabaseHandler::GetJson(const std::string& key) {
-    auto reply = redis_.get(key);
-    redis_.sync_commit();
-    auto result = reply.get().as_string();
-    return nlohmann::json::parse(result);
+    try {
+        auto reply = redis_.get(key);
+        redis_.sync_commit();
+        auto result = reply.get().as_string();
+        if (result.empty()) {
+            std::cerr << "[RedisDatabaseHandler] Key not found: " << key << std::endl;
+            return nlohmann::json{}; // Return empty JSON object
+        }
+        return nlohmann::json::parse(result);
+    } catch (const std::exception& e) {
+        std::cerr << "[RedisDatabaseHandler] Error reading key " << key << ": " << e.what() << std::endl;
+        return nlohmann::json{};
+    }
 }
 
 void RedisDatabaseHandler::ClearDatabase() {

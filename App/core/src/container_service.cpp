@@ -14,7 +14,7 @@ nlohmann::json ContainerServiceHandler::HandleRequest(const ContainerRequest& re
             return {{"status", "error"}, {"message", "Runtime is not running"}};
         }
     } else if (req.operation == CommandName::CreateContainer) {
-        bool isContainerCreated = ContainerServiceHandler::CheckCreateContainer(req.runtime, req.operation, req.image_name);
+        bool isContainerCreated = ContainerServiceHandler::CreateContainer(req.runtime, req.operation, req.container_name);
         if (!isContainerCreated) {
             return {{"status", "error"}, {"message", "Failed to create container"}};
         }
@@ -52,10 +52,10 @@ bool ContainerServiceHandler::CheckRuntimeAvailable(const std::string& runtime, 
     return true;
 }
 
-bool ContainerServiceHandler::CheckCreateContainer(const std::string& runtime, const std::string& operation, const std::string& app_name) {
+bool ContainerServiceHandler::CreateContainer(const std::string& runtime, const std::string& operation, const std::string& container_name) {
     Invoker invoker;
 
-    invoker.SetCommand(CommandFactory::CreateCommand(runtime, operation, app_name));
+    invoker.SetCommand(CommandFactory::CreateCommand(runtime, operation, container_name));
     if (!invoker.Invoke()) {
         return false;
     }

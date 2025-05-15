@@ -36,11 +36,6 @@ nlohmann::json JsonRequestExecutorHandler::Execute(const std::string& data) {
     if (!j["parameters"].empty()) {
         const auto& param = j["parameters"][0];
         req.container_name = param.value("container_name", "");
-        req.image_name = param.value("image_name", "");
-        req.cpus = param.value("cpus", "");
-        req.memory = param.value("memory", "");
-        req.pids = param.value("pids", "");
-        req.restart_policy = param.value("restart_policy", "");
     }
     return ContainerServiceHandler::HandleRequest(req);
 }

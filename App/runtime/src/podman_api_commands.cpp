@@ -10,7 +10,7 @@ bool PodmanApiRuntimeAvailableCommand::Execute() const {
     return true;
 }
 
-PodmanApiCreateContainerCommand::PodmanApiCreateContainerCommand(const std::string& app_name) : app_name_(app_name) {
+PodmanApiCreateContainerCommand::PodmanApiCreateContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 
@@ -18,7 +18,7 @@ bool PodmanApiCreateContainerCommand::Execute() const {
     return true;
 }
 
-PodmanApiStartContainerCommand::PodmanApiStartContainerCommand(const std::string& app_name) : app_name_(app_name) {
+PodmanApiStartContainerCommand::PodmanApiStartContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 
@@ -26,7 +26,7 @@ bool PodmanApiStartContainerCommand::Execute() const {
     return true;
 }
 
-PodmanApiStopContainerCommand::PodmanApiStopContainerCommand(const std::string& app_name) : app_name_(app_name) {
+PodmanApiStopContainerCommand::PodmanApiStopContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 

@@ -14,9 +14,9 @@ public:
 
 class DockerCreateContainerCommand : public Command {
 private:
-    std::string app_name_;
+    std::string container_name_;
 public:
-    explicit DockerCreateContainerCommand(const std::string& app_name_);
+    explicit DockerCreateContainerCommand(const std::string& container_name_);
     ~DockerCreateContainerCommand() = default;
 
     bool Execute() const override;
@@ -24,9 +24,9 @@ public:
 
 class DockerStartContainerCommand : public Command {
 private:
-    std::string app_name_;
+    std::string container_name_;
 public:
-    explicit DockerStartContainerCommand(const std::string& app_name_);
+    explicit DockerStartContainerCommand(const std::string& container_name_);
     ~DockerStartContainerCommand() = default;
 
     bool Execute() const override;
@@ -34,9 +34,9 @@ public:
 
 class DockerStopContainerCommand : public Command {
 private:
-    std::string app_name_;
+    std::string container_name_;
 public:
-    explicit DockerStopContainerCommand(const std::string& app_name_);
+    explicit DockerStopContainerCommand(const std::string& container_name_);
     ~DockerStopContainerCommand() = default;
 
     bool Execute() const override;

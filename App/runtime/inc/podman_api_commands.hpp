@@ -14,9 +14,9 @@ public:
 
 class PodmanApiCreateContainerCommand : public Command {
 private:
-    std::string app_name_;
+    std::string container_name_;
 public:
-    explicit PodmanApiCreateContainerCommand(const std::string& app_name_);
+    explicit PodmanApiCreateContainerCommand(const std::string& container_name_);
     ~PodmanApiCreateContainerCommand() = default;
 
     bool Execute() const override;
@@ -24,9 +24,9 @@ public:
 
 class PodmanApiStartContainerCommand : public Command {
 private:
-    std::string app_name_;
+    std::string container_name_;
 public:
-    explicit PodmanApiStartContainerCommand(const std::string& app_name_);
+    explicit PodmanApiStartContainerCommand(const std::string& container_name_);
     ~PodmanApiStartContainerCommand() = default;
 
     bool Execute() const override;
@@ -34,9 +34,9 @@ public:
 
 class PodmanApiStopContainerCommand : public Command {
 private:
-    std::string app_name_;
+    std::string container_name_;
 public:
-    explicit PodmanApiStopContainerCommand(const std::string& app_name_);
+    explicit PodmanApiStopContainerCommand(const std::string& container_name_);
     ~PodmanApiStopContainerCommand() = default;
 
     bool Execute() const override;

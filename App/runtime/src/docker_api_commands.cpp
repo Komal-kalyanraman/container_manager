@@ -10,7 +10,7 @@ bool DockerApiRuntimeAvailableCommand::Execute() const {
     return true;
 }
 
-DockerApiCreateContainerCommand::DockerApiCreateContainerCommand(const std::string& app_name) : app_name_(app_name) {
+DockerApiCreateContainerCommand::DockerApiCreateContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 
@@ -18,7 +18,7 @@ bool DockerApiCreateContainerCommand::Execute() const {
     return true;
 }
 
-DockerApiStartContainerCommand::DockerApiStartContainerCommand(const std::string& app_name) : app_name_(app_name) {
+DockerApiStartContainerCommand::DockerApiStartContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 
@@ -26,7 +26,7 @@ bool DockerApiStartContainerCommand::Execute() const {
     return true;
 }
 
-DockerApiStopContainerCommand::DockerApiStopContainerCommand(const std::string& app_name) : app_name_(app_name) {
+DockerApiStopContainerCommand::DockerApiStopContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 

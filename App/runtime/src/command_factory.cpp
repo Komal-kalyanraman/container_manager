@@ -33,36 +33,36 @@ std::unique_ptr<Command> CommandFactory::CreateCommand(const std::string& runtim
     return nullptr;
 }
 
-std::unique_ptr<Command> CommandFactory::CreateCommand(const std::string& runtime_type, const std::string& command_type, const std::string& app_name) {
+std::unique_ptr<Command> CommandFactory::CreateCommand(const std::string& runtime_type, const std::string& command_type, const std::string& container_name) {
     if (runtime_type == RuntimeName::Docker) {
         if (command_type == CommandName::CreateContainer) {
-            return std::make_unique<DockerCreateContainerCommand>(app_name);
+            return std::make_unique<DockerCreateContainerCommand>(container_name);
         } else if (command_type == CommandName::StartContainer) {
-            return std::make_unique<DockerStartContainerCommand>(app_name);
+            return std::make_unique<DockerStartContainerCommand>(container_name);
         } else if (command_type == CommandName::StopContainer) {
-            return std::make_unique<DockerStopContainerCommand>(app_name);
+            return std::make_unique<DockerStopContainerCommand>(container_name);
         }
     } else if (runtime_type == RuntimeName::DockerApi) {
         if (command_type == CommandName::CreateContainer) {
-            return std::make_unique<DockerApiCreateContainerCommand>(app_name);
+            return std::make_unique<DockerApiCreateContainerCommand>(container_name);
         } else if (command_type == CommandName::StartContainer) {
-            return std::make_unique<DockerApiStartContainerCommand>(app_name);
+            return std::make_unique<DockerApiStartContainerCommand>(container_name);
         } else if (command_type == CommandName::StopContainer) {
-            return std::make_unique<DockerApiStopContainerCommand>(app_name);
+            return std::make_unique<DockerApiStopContainerCommand>(container_name);
         }
     } else if (runtime_type == RuntimeName::Podman) {
         if (command_type == CommandName::StartContainer) {
-            return std::make_unique<PodmanStartContainerCommand>(app_name);
+            return std::make_unique<PodmanStartContainerCommand>(container_name);
         } else if (command_type == CommandName::StopContainer) {
-            return std::make_unique<PodmanStopContainerCommand>(app_name);
+            return std::make_unique<PodmanStopContainerCommand>(container_name);
         }
     } else if (runtime_type == RuntimeName::PodmanApi) {
         if (command_type == CommandName::CreateContainer) {
-            return std::make_unique<PodmanApiCreateContainerCommand>(app_name);
+            return std::make_unique<PodmanApiCreateContainerCommand>(container_name);
         } else if (command_type == CommandName::StartContainer) {
-            return std::make_unique<PodmanApiStartContainerCommand>(app_name);
+            return std::make_unique<PodmanApiStartContainerCommand>(container_name);
         } else if (command_type == CommandName::StopContainer) {
-            return std::make_unique<PodmanApiStopContainerCommand>(app_name);
+            return std::make_unique<PodmanApiStopContainerCommand>(container_name);
         }
     } else {
         // Invalid runtime type

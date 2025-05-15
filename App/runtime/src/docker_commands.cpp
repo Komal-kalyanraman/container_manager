@@ -1,9 +1,12 @@
 #include "inc/docker_commands.hpp"
 
 #include <cstdlib>
+#include <nlohmann/json.hpp>
 
 #include "inc/common.hpp"
 #include "inc/logging.hpp"
+#include "inc/database_interface.hpp"
+#include "inc/redis_database.hpp"
 
 DockerRuntimeAvailableCommand::DockerRuntimeAvailableCommand() {
     // Empty constructor
@@ -21,13 +24,23 @@ bool DockerRuntimeAvailableCommand::Execute() const {
     }
 }
 
-DockerCreateContainerCommand::DockerCreateContainerCommand(const std::string& app_name) : app_name_(app_name) {
+DockerCreateContainerCommand::DockerCreateContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 
 bool DockerCreateContainerCommand::Execute() const {
+
+    IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
+    nlohmann::json config = db.GetJson(container_name_);
+
+    std::string image_name_;
+    if (!config["parameters"].empty() && config["parameters"][0].contains("image_name")) {
+        image_name_ = config["parameters"][0]["image_name"].get<std::string>();
+    } else {
+        image_name_ = "";
+    }
     // Start the Docker container
-    std::string command = "docker create " + app_name_;
+    std::string command = "docker create --name " + container_name_ + " " + image_name_;
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Docker container created successfully";
@@ -38,13 +51,13 @@ bool DockerCreateContainerCommand::Execute() const {
     }
 }
 
-DockerStartContainerCommand::DockerStartContainerCommand(const std::string& app_name) : app_name_(app_name) {
+DockerStartContainerCommand::DockerStartContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 
 bool DockerStartContainerCommand::Execute() const {
     // Start the Docker container
-    std::string command = "docker start " + app_name_;
+    std::string command = "docker start " + container_name_;
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Docker container started successfully";
@@ -55,13 +68,13 @@ bool DockerStartContainerCommand::Execute() const {
     }
 }
 
-DockerStopContainerCommand::DockerStopContainerCommand(const std::string& app_name) : app_name_(app_name) {
+DockerStopContainerCommand::DockerStopContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 
 bool DockerStopContainerCommand::Execute() const {
     // Stop the Docker container
-    std::string command = "docker stop " + app_name_;
+    std::string command = "docker stop " + container_name_;
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Docker container stopped successfully";

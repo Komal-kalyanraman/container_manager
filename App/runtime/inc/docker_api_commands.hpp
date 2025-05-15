@@ -14,9 +14,9 @@ public:
 
 class DockerApiCreateContainerCommand : public Command {
 private:
-    std::string app_name_;
+    std::string container_name_;
 public:
-    explicit DockerApiCreateContainerCommand(const std::string& app_name_);
+    explicit DockerApiCreateContainerCommand(const std::string& container_name_);
     ~DockerApiCreateContainerCommand() = default;
 
     bool Execute() const override;
@@ -24,9 +24,9 @@ public:
 
 class DockerApiStartContainerCommand : public Command {
 private:
-    std::string app_name_;
+    std::string container_name_;
 public:
-    explicit DockerApiStartContainerCommand(const std::string& app_name_);
+    explicit DockerApiStartContainerCommand(const std::string& container_name_);
     ~DockerApiStartContainerCommand() = default;
 
     bool Execute() const override;
@@ -34,9 +34,9 @@ public:
 
 class DockerApiStopContainerCommand : public Command {
 private:
-    std::string app_name_;
+    std::string container_name_;
 public:
-    explicit DockerApiStopContainerCommand(const std::string& app_name_);
+    explicit DockerApiStopContainerCommand(const std::string& container_name_);
     ~DockerApiStopContainerCommand() = default;
 
     bool Execute() const override;

@@ -21,13 +21,13 @@ bool PodmanRuntimeAvailableCommand::Execute() const {
     }
 }
 
-PodmanStartContainerCommand::PodmanStartContainerCommand(const std::string& app_name) : app_name_(app_name) {
+PodmanStartContainerCommand::PodmanStartContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 
 bool PodmanStartContainerCommand::Execute() const {
     // Start the Podman container
-    std::string command = "podman start " + app_name_;
+    std::string command = "podman start " + container_name_;
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Podman container started successfully";
@@ -38,13 +38,13 @@ bool PodmanStartContainerCommand::Execute() const {
     }
 }
 
-PodmanStopContainerCommand::PodmanStopContainerCommand(const std::string& app_name) : app_name_(app_name) {
+PodmanStopContainerCommand::PodmanStopContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 
 bool PodmanStopContainerCommand::Execute() const {
     // Stop the Podman container
-    std::string command = "podman stop " + app_name_;
+    std::string command = "podman stop " + container_name_;
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Podman container stopped successfully";
