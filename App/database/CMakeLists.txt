@@ -1,7 +1,6 @@
 set(APP_NAME cm_database)
 
 add_library(${APP_NAME} STATIC
-    src/threadpool.cpp
     src/redis_database.cpp
 )
 

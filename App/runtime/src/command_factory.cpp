@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "inc/common.hpp"
-#include "inc/cm_logging.hpp"
+#include "inc/logging.hpp"
 #include "inc/podman_commands.hpp"
 #include "inc/docker_commands.hpp"
 #include "inc/podman_api_commands.hpp"

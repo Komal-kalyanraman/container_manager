@@ -3,7 +3,7 @@
 #include <cstdlib>
 
 #include "inc/common.hpp"
-#include "inc/cm_logging.hpp"
+#include "inc/logging.hpp"
 
 DockerRuntimeAvailableCommand::DockerRuntimeAvailableCommand() {
     // Empty constructor

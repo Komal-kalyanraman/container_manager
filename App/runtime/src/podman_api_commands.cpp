@@ -1,7 +1,7 @@
 #include "inc/podman_api_commands.hpp"
 
 #include "inc/common.hpp"
-#include "inc/cm_logging.hpp"
+#include "inc/logging.hpp"
 
 PodmanApiRuntimeAvailableCommand::PodmanApiRuntimeAvailableCommand() {
     // Empty constructor

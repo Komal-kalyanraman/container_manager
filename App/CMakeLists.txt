@@ -38,6 +38,7 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_SOURCE_DIR}/third_party/httplib)
 include_directories("${PROJECT_SOURCE_DIR}/api")
 include_directories("${PROJECT_SOURCE_DIR}/core")
+include_directories("${PROJECT_SOURCE_DIR}/utils")
 include_directories("${PROJECT_SOURCE_DIR}/runtime")
 include_directories("${PROJECT_SOURCE_DIR}/executor")
 include_directories("${PROJECT_SOURCE_DIR}/database")
@@ -46,6 +47,7 @@ include_directories("${HOME_DIR}/cpp_redis/includes")
 
 add_subdirectory(api)
 add_subdirectory(core)
+add_subdirectory(utils)
 add_subdirectory(runtime)
 add_subdirectory(executor)
 add_subdirectory(database)
@@ -66,6 +68,7 @@ target_link_libraries(CM
   ${CMAKE_THREAD_LIBS_INIT}
   glog::glog
   cm_core
+  cm_utils
   cm_database
   cm_runtime
   cm_api
