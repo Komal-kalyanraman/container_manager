@@ -5,4 +5,4 @@ add_library(${APP_NAME} STATIC
     src/cm_threadpool.cpp
 )
 
-target_link_libraries(cm_common PUBLIC glog::glog)
+target_link_libraries(cm_common PUBLIC glog::glog cpp_redis)
