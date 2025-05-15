@@ -2,8 +2,9 @@
 
 #include <nlohmann/json.hpp>
 
+#include "inc/cm_database_interface.hpp"
+#include "inc/cm_redis_database_handler.hpp"
 #include "inc/cm_container_service_handler.hpp"
-#include "inc/cm_database_handler.hpp"
 
 using json = nlohmann::json;
 #include <iostream>
@@ -23,9 +24,8 @@ nlohmann::json JsonRequestExecutorHandler::Execute(const std::string& data) {
         transformed["parameters"][0].erase("container_name");
     }
 
-    // Save to Redis using singleton database handler
-    auto& db = DatabaseHandler::GetInstance();
-    // Use a unique key, e.g., container_name or a UUID
+    // Use the database interface (can be swapped for any backend)
+    IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
     std::string key = j["parameters"][0].value("container_name", "unknown_container");
     db.SaveJson(key, transformed);
 
