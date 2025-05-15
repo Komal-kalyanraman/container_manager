@@ -30,3 +30,8 @@ nlohmann::json RedisDatabaseHandler::GetJson(const std::string& key) {
     auto result = reply.get().as_string();
     return nlohmann::json::parse(result);
 }
+
+void RedisDatabaseHandler::ClearDatabase() {
+    redis_.flushdb();
+    redis_.sync_commit();
+}

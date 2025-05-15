@@ -4,6 +4,8 @@
 #include <string_view>
 
 const int kMaxThreadPoolSize = 4;
+const std::string kContainerManagerLogName = "cm_log";
+
 
 const int kHttpServerPort = 5000;
 const std::string kHttpServerHost = "0.0.0.0";
