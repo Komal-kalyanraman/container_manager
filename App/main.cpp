@@ -1,8 +1,8 @@
 #include <memory>
 #include <glog/logging.h>
 
-#include "inc/cm_http_server_handler.hpp"
-#include "inc/cm_json_requestexecutor_handler.hpp"
+#include "inc/http_server.hpp"
+#include "inc/json_request_executor.hpp"
 
 int main(int argc, char* argv[]) {
     // google::InitGoogleLogging(argv[0]);

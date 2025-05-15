@@ -1,11 +1,11 @@
 set(APP_NAME cm_runtime)
 
 add_library(${APP_NAME} STATIC
-    src/cm_command_factory.cpp
-    src/cm_podman_commands.cpp
-    src/cm_podman_api_commands.cpp
-    src/cm_docker_commands.cpp
-    src/cm_docker_api_commands.cpp
+    src/command_factory.cpp
+    src/podman_commands.cpp
+    src/podman_api_commands.cpp
+    src/docker_commands.cpp
+    src/docker_api_commands.cpp
 )
 
 target_link_libraries(cm_runtime PUBLIC glog::glog)

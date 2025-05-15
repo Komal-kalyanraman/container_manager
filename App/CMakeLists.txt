@@ -36,19 +36,19 @@ find_package(nlohmann_json REQUIRED)
 include_directories(${CURL_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_SOURCE_DIR}/third_party/httplib)
-include_directories("${PROJECT_SOURCE_DIR}/bl")
-include_directories("${PROJECT_SOURCE_DIR}/common")
+include_directories("${PROJECT_SOURCE_DIR}/api")
+include_directories("${PROJECT_SOURCE_DIR}/core")
 include_directories("${PROJECT_SOURCE_DIR}/runtime")
-include_directories("${PROJECT_SOURCE_DIR}/communication")
-include_directories("${PROJECT_SOURCE_DIR}/dataprocessing")
+include_directories("${PROJECT_SOURCE_DIR}/executor")
+include_directories("${PROJECT_SOURCE_DIR}/database")
 include_directories(/usr/local/include)
 include_directories("${HOME_DIR}/cpp_redis/includes")
 
-add_subdirectory(bl)
-add_subdirectory(common)
+add_subdirectory(api)
+add_subdirectory(core)
 add_subdirectory(runtime)
-add_subdirectory(communication)
-add_subdirectory(dataprocessing)
+add_subdirectory(executor)
+add_subdirectory(database)
 
 link_directories("${HOME_DIR}/cpp_redis/build")  # Added line for cpp_redis library directory
 
@@ -65,11 +65,11 @@ add_executable(CM
 target_link_libraries(CM 
   ${CMAKE_THREAD_LIBS_INIT}
   glog::glog
-  cm_bl
-  cm_common
+  cm_core
+  cm_database
   cm_runtime
-  cm_communication
-  cm_dataprocessing
+  cm_api
+  cm_executor
   librt.so
   pthread
   cpp_redis
