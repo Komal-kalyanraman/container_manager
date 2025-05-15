@@ -2,6 +2,8 @@
 # ignore all the content of build folder
 App/build/*
 
+App1/build/*
+
 package-lock.json
 
 .vscode/settings.json
