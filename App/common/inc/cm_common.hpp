@@ -17,9 +17,9 @@ struct RuntimeName {
 
 struct CommandName {
     static constexpr std::string_view RuntimeStatus      = "available";
+    static constexpr std::string_view CreateContainer    = "create";
     static constexpr std::string_view StartContainer     = "start";
     static constexpr std::string_view StopContainer      = "stop";
-    static constexpr std::string_view CreateContainer    = "create";
     static constexpr std::string_view RestartContainer   = "restart";
     static constexpr std::string_view RemoveContainer    = "remove";
 };
