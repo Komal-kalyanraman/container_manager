@@ -21,6 +21,23 @@ bool DockerRuntimeAvailableCommand::Execute() const {
     }
 }
 
+DockerCreateContainerCommand::DockerCreateContainerCommand(const std::string& app_name) : app_name_(app_name) {
+    // Empty constructor
+}
+
+bool DockerCreateContainerCommand::Execute() const {
+    // Start the Docker container
+    std::string command = "docker create " + app_name_;
+    int status = std::system(command.c_str());
+    if (status == 0) {
+        CM_LOG_INFO << "Docker container created successfully";
+        return true;
+    } else {
+        CM_LOG_ERROR << "Failed to create Docker container";
+        return false;
+    }
+}
+
 DockerStartContainerCommand::DockerStartContainerCommand(const std::string& app_name) : app_name_(app_name) {
     // Empty constructor
 }

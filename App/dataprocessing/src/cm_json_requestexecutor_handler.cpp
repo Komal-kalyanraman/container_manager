@@ -6,8 +6,11 @@
 
 using json = nlohmann::json;
 
+#include <iostream>
+
 nlohmann::json JsonRequestExecutorHandler::Execute(const std::string& data) {
     // Parse JSON
+    std::cout << "Received JSON data: " << data << std::endl;
     json j = json::parse(data);
     ContainerRequest req;
     req.operation = j.value("operation", "");

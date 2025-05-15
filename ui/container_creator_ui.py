@@ -49,12 +49,12 @@ class ContainerCreatorUI:
         # Image and container name
         ttk.Label(root, text="Container Image:").grid(row=5, column=0, sticky="w")
         self.image_entry = ttk.Entry(root)
-        self.image_entry.insert(0, "hello-world")
+        self.image_entry.insert(0, "nginx:latest")
         self.image_entry.grid(row=5, column=1, sticky="ew")
 
         ttk.Label(root, text="Container Name:").grid(row=6, column=0, sticky="w")
         self.name_entry = ttk.Entry(root)
-        self.name_entry.insert(0, "my_hello_container")
+        self.name_entry.insert(0, "my_nginx")
         self.name_entry.grid(row=6, column=1, sticky="ew")
 
         # Server port field

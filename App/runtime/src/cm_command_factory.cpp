@@ -35,7 +35,9 @@ std::unique_ptr<Command> CommandFactory::CreateCommand(const std::string& runtim
 
 std::unique_ptr<Command> CommandFactory::CreateCommand(const std::string& runtime_type, const std::string& command_type, const std::string& app_name) {
     if (runtime_type == RuntimeName::Docker) {
-        if (command_type == CommandName::StartContainer) {
+        if (command_type == CommandName::CreateContainer) {
+            return std::make_unique<DockerCreateContainerCommand>(app_name);
+        } else if (command_type == CommandName::StartContainer) {
             return std::make_unique<DockerStartContainerCommand>(app_name);
         } else if (command_type == CommandName::StopContainer) {
             return std::make_unique<DockerStopContainerCommand>(app_name);

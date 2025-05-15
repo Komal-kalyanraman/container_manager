@@ -12,6 +12,16 @@ public:
     bool Execute() const override;
 };
 
+class DockerCreateContainerCommand : public Command {
+private:
+    std::string app_name_;
+public:
+    explicit DockerCreateContainerCommand(const std::string& app_name_);
+    ~DockerCreateContainerCommand() = default;
+
+    bool Execute() const override;
+};
+
 class DockerStartContainerCommand : public Command {
 private:
     std::string app_name_;

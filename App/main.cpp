@@ -5,10 +5,10 @@
 #include "inc/cm_json_requestexecutor_handler.hpp"
 
 int main(int argc, char* argv[]) {
-    google::InitGoogleLogging(argv[0]);
+    // google::InitGoogleLogging(argv[0]);
     auto executor = std::make_shared<JsonRequestExecutorHandler>();
     HttpServerHandler server(executor);
     server.Start(kHttpServerPort);
-    google::ShutdownGoogleLogging();
+    // google::ShutdownGoogleLogging();
     return 0;
 }
