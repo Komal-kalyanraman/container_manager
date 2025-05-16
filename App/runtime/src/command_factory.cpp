@@ -55,10 +55,16 @@ std::unique_ptr<Command> CommandFactory::CreateCommand(const std::string& runtim
             return std::make_unique<DockerApiStopContainerCommand>(container_name);
         }
     } else if (runtime_type == RuntimeName::Podman) {
-        if (command_type == CommandName::StartContainer) {
+        if (command_type == CommandName::CreateContainer) {
+            return std::make_unique<PodmanCreateContainerCommand>(container_name);
+        } else if (command_type == CommandName::StartContainer) {
             return std::make_unique<PodmanStartContainerCommand>(container_name);
         } else if (command_type == CommandName::StopContainer) {
             return std::make_unique<PodmanStopContainerCommand>(container_name);
+        } else if (command_type == CommandName::RemoveContainer) {
+            return std::make_unique<PodmanRemoveContainerCommand>(container_name);
+        } else if (command_type == CommandName::RestartContainer) {
+            return std::make_unique<PodmanRestartContainerCommand>(container_name);
         }
     } else if (runtime_type == RuntimeName::PodmanApi) {
         if (command_type == CommandName::CreateContainer) {
