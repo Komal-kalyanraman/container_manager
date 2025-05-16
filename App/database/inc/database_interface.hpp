@@ -9,4 +9,6 @@ public:
     virtual void SaveJson(const std::string& key, const nlohmann::json& value) = 0;
     virtual nlohmann::json GetJson(const std::string& key) = 0;
     virtual void ClearDatabase() = 0;
+    virtual void UpdateField(const std::string& key, const std::string& field, const std::string& value) = 0;
+    virtual void RemoveKey(const std::string& key) = 0;
 };

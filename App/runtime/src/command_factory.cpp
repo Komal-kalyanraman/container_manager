@@ -41,6 +41,10 @@ std::unique_ptr<Command> CommandFactory::CreateCommand(const std::string& runtim
             return std::make_unique<DockerStartContainerCommand>(container_name);
         } else if (command_type == CommandName::StopContainer) {
             return std::make_unique<DockerStopContainerCommand>(container_name);
+        } else if (command_type == CommandName::RemoveContainer) {
+            return std::make_unique<DockerRemoveContainerCommand>(container_name);
+        } else if (command_type == CommandName::RestartContainer) {
+            return std::make_unique<DockerRestartContainerCommand>(container_name);
         }
     } else if (runtime_type == RuntimeName::DockerApi) {
         if (command_type == CommandName::CreateContainer) {

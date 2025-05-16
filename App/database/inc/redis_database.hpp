@@ -11,6 +11,8 @@ public:
     void SaveJson(const std::string& key, const nlohmann::json& value) override;
     nlohmann::json GetJson(const std::string& key) override;
     void ClearDatabase() override;
+    void UpdateField(const std::string& key, const std::string& field, const std::string& value) override;
+    void RemoveKey(const std::string& key) override;
 
 private:
     RedisDatabaseHandler();

@@ -14,25 +14,35 @@ nlohmann::json ContainerServiceHandler::HandleRequest(const ContainerRequest& re
             return {{"status", "error"}, {"message", "Runtime is not running"}};
         }
     } else if (req.operation == CommandName::CreateContainer) {
-        bool isContainerCreated = ContainerServiceHandler::CreateContainer(req.runtime, req.operation, req.container_name);
+        bool isContainerCreated = ContainerServiceHandler::ContainerOperations(req.runtime, req.operation, req.container_name);
         if (!isContainerCreated) {
             return {{"status", "error"}, {"message", "Failed to create container"}};
         }
-    }
-    // else if (req.operation == CommandType::StartContainer) {
-    //     // Start the container
-    //     auto command = CommandFactory::CreateCommand(req.runtime, CommandType::StartContainer, req.container_name);
-    //     if (!command || !command->Execute()) {
-    //         return {{"status", "error"}, {"message", "Failed to start container"}};
-    //     }
-    // } else if (req.operation == CommandType::StopContainer) {
-    //     // Stop the container
-    //     auto command = CommandFactory::CreateCommand(req.runtime, CommandType::StopContainer, req.container_name);
-    //     if (!command || !command->Execute()) {
-    //         return {{"status", "error"}, {"message", "Failed to stop container"}};
-    //     }
-    // } 
-    else {
+    } else if (req.operation == CommandName::StartContainer) {
+        // Start the container
+        bool isContainerStarted = ContainerServiceHandler::ContainerOperations(req.runtime, req.operation, req.container_name);
+        if (!isContainerStarted) {
+            return {{"status", "error"}, {"message", "Failed to start container"}};
+        }
+    } else if (req.operation == CommandName::StopContainer) {
+        // Stop the container
+        bool isContainerStopped = ContainerServiceHandler::ContainerOperations(req.runtime, req.operation, req.container_name);
+        if (!isContainerStopped) {
+            return {{"status", "error"}, {"message", "Failed to stop container"}};
+        }
+    } else if (req.operation == CommandName::RestartContainer) {
+        // Stop the container
+        bool isContainerRestarted = ContainerServiceHandler::ContainerOperations(req.runtime, req.operation, req.container_name);
+        if (!isContainerRestarted) {
+            return {{"status", "error"}, {"message", "Failed to restart container"}};
+        }
+    } else if (req.operation == CommandName::RemoveContainer) {
+        // Stop the container
+        bool isContainerRemoved = ContainerServiceHandler::ContainerOperations(req.runtime, req.operation, req.container_name);
+        if (!isContainerRemoved) {
+            return {{"status", "error"}, {"message", "Failed to remove container"}};
+        }
+    } else {
         return {{"status", "error"}, {"message", "Invalid operation"}};
     }
     // Example: Just echo the request for now
@@ -52,7 +62,7 @@ bool ContainerServiceHandler::CheckRuntimeAvailable(const std::string& runtime, 
     return true;
 }
 
-bool ContainerServiceHandler::CreateContainer(const std::string& runtime, const std::string& operation, const std::string& container_name) {
+bool ContainerServiceHandler::ContainerOperations(const std::string& runtime, const std::string& operation, const std::string& container_name) {
     Invoker invoker;
 
     invoker.SetCommand(CommandFactory::CreateCommand(runtime, operation, container_name));

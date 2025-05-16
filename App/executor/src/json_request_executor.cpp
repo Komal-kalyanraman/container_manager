@@ -3,8 +3,9 @@
 #include <nlohmann/json.hpp>
 
 #include "inc/database_interface.hpp"
-#include "inc/redis_database.hpp"
 #include "inc/container_service.hpp"
+#include "inc/redis_database.hpp"
+#include "inc/common.hpp"
 
 using json = nlohmann::json;
 #include <iostream>
@@ -17,7 +18,7 @@ nlohmann::json JsonRequestExecutorHandler::Execute(const std::string& data) {
     // Transform JSON as requested
     json transformed;
     transformed["runtime"] = j.value("runtime", "");
-    transformed["status"] = j.value("operation", "");
+    transformed["status"] = kEmptyString;
     transformed["parameters"] = j.value("parameters", json::array());
     if (!transformed["parameters"].empty() && transformed["parameters"][0].is_object()) {
         // Remove "container_name" from parameters[0]

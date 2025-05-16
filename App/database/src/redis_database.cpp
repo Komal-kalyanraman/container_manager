@@ -44,3 +44,19 @@ void RedisDatabaseHandler::ClearDatabase() {
     redis_.flushdb();
     redis_.sync_commit();
 }
+
+void RedisDatabaseHandler::UpdateField(const std::string& key, const std::string& field, const std::string& value) {
+    nlohmann::json obj = GetJson(key);
+    if (obj.is_null()) {
+        std::cerr << "[RedisDatabaseHandler] Cannot update field, key not found: " << key << std::endl;
+        return;
+    }
+    obj[field] = value;
+    SaveJson(key, obj);
+}
+
+void RedisDatabaseHandler::RemoveKey(const std::string& key) {
+    redis_.del({key});
+    redis_.sync_commit();
+    std::cout << "[RedisDatabaseHandler] Removed key from Redis: " << key << std::endl;
+}

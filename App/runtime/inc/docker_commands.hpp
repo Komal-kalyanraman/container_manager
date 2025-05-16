@@ -41,3 +41,23 @@ public:
 
     bool Execute() const override;
 };
+
+class DockerRemoveContainerCommand : public Command {
+private:
+    std::string container_name_;
+public:
+    explicit DockerRemoveContainerCommand(const std::string& container_name_);
+    ~DockerRemoveContainerCommand() = default;
+
+    bool Execute() const override;
+};
+
+class DockerRestartContainerCommand : public Command {
+private:
+    std::string container_name_;
+public:
+    explicit DockerRestartContainerCommand(const std::string& container_name_);
+    ~DockerRestartContainerCommand() = default;
+
+    bool Execute() const override;
+};

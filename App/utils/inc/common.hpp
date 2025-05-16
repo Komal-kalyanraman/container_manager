@@ -10,6 +10,8 @@ const std::string kContainerManagerLogName = "cm_log";
 const int kHttpServerPort = 5000;
 const std::string kHttpServerHost = "0.0.0.0";
 
+const std::string kEmptyString = "";
+
 struct RuntimeName {
     static constexpr std::string_view Docker      = "docker";
     static constexpr std::string_view Podman      = "podman";

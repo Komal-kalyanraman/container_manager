@@ -7,5 +7,5 @@ class ContainerServiceHandler {
 public:
     static nlohmann::json HandleRequest(const ContainerRequest& req);
     static bool CheckRuntimeAvailable(const std::string& runtime, const std::string& operation);
-    static bool CreateContainer(const std::string& runtime, const std::string& operation, const std::string& container_name);
+    static bool ContainerOperations(const std::string& runtime, const std::string& operation, const std::string& container_name);
 };
