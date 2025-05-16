@@ -1,0 +1,5 @@
+<map id="InitProject" name="InitProject">
+<area shape="rect" id="node1" title="Initializes logging and clears the database before server startup." alt="" coords="5,35,93,61"/>
+<area shape="rect" id="node2" href="$classIDatabaseHandler.html#a79f638c8332acdfb054d1f915f77c760" title="Clears all data from the database." alt="" coords="141,5,384,32"/>
+<area shape="rect" id="node3" href="$classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce" title="Retrieves the singleton instance of the RedisDatabaseHandler." alt="" coords="177,57,348,98"/>
+</map>

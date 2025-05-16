@@ -1,0 +1,5 @@
+<map id="RedisDatabaseHandler::UpdateField" name="RedisDatabaseHandler::UpdateField">
+<area shape="rect" id="node1" title="Updates a specific field in the JSON object stored under the given key in Redis." alt="" coords="5,39,176,80"/>
+<area shape="rect" id="node2" href="$classRedisDatabaseHandler.html#a73f9d6bbd76abef36dbdcb4facd2095d" title="Retrieves a JSON object from Redis by key." alt="" coords="224,5,395,47"/>
+<area shape="rect" id="node3" href="$classRedisDatabaseHandler.html#a1e9777d57e661687d5d451db33bdd639" title="Saves a JSON object to Redis with the specified key." alt="" coords="224,71,395,112"/>
+</map>

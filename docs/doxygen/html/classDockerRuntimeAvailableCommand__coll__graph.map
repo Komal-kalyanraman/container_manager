@@ -1,0 +1,4 @@
+<map id="DockerRuntimeAvailableCommand" name="DockerRuntimeAvailableCommand">
+<area shape="rect" id="node1" title="Command to check if Docker runtime is available." alt="" coords="5,145,291,252"/>
+<area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for all commands." alt="" coords="85,5,211,97"/>
+</map>

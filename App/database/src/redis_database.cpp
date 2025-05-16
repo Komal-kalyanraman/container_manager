@@ -1,3 +1,8 @@
+/**
+ * @file redis_database.hpp
+ * @brief Implements RedisDatabaseHandler for Redis-based database operations.
+ */
+
 #include "inc/redis_database.hpp"
 
 #include <iostream>
@@ -21,7 +26,6 @@ void RedisDatabaseHandler::SaveJson(const std::string& key, const nlohmann::json
     std::string json_str = value.dump();
     redis_.set(key, json_str);
     redis_.sync_commit();
-    std::cout << "[RedisDatabaseHandler] Saving to Redis: key=" << key << ", value=" << json_str << std::endl;
 }
 
 nlohmann::json RedisDatabaseHandler::GetJson(const std::string& key) {
@@ -58,5 +62,4 @@ void RedisDatabaseHandler::UpdateField(const std::string& key, const std::string
 void RedisDatabaseHandler::RemoveKey(const std::string& key) {
     redis_.del({key});
     redis_.sync_commit();
-    std::cout << "[RedisDatabaseHandler] Removed key from Redis: " << key << std::endl;
 }

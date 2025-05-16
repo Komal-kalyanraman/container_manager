@@ -1,3 +1,8 @@
+/**
+ * @file container_service.hpp
+ * @brief Declares the ContainerServiceHandler class for business logic related to containers.
+ */
+
 #include "inc/container_service.hpp"
 
 #include <iostream>
@@ -45,8 +50,6 @@ nlohmann::json ContainerServiceHandler::HandleRequest(const ContainerRequest& re
     } else {
         return {{"status", "error"}, {"message", "Invalid operation"}};
     }
-    // Example: Just echo the request for now
-    std::cout << "Handling operation: " << req.operation << " for container: " << req.container_name << std::endl;
     // TODO: Integrate with your command pattern and actual logic
     return {{"status", "success"}, {"operation", req.operation}, {"container", req.container_name}};
 }
@@ -58,7 +61,6 @@ bool ContainerServiceHandler::CheckRuntimeAvailable(const std::string& runtime, 
         if (!invoker.Invoke()) {
             return false;
         }
-    std::cout << "Runtime is available" << std::endl;
     return true;
 }
 
@@ -69,6 +71,5 @@ bool ContainerServiceHandler::ContainerOperations(const std::string& runtime, co
     if (!invoker.Invoke()) {
         return false;
     }
-    std::cout << "Container created successfully" << std::endl;
     return true;
 }

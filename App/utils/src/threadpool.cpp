@@ -1,3 +1,8 @@
+/**
+ * @file threadpool.hpp
+ * @brief Declares the ThreadPool utility class for managing worker threads.
+ */
+
 #include "inc/threadpool.hpp"
 
 ThreadPool::ThreadPool(size_t num_threads) {

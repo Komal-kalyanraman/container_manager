@@ -1,3 +1,8 @@
+/**
+ * @file init_handler.hpp
+ * @brief Declares project-wide initialization functions.
+ */
+
 #include "inc/init_handler.hpp"
 
 #include <glog/logging.h>

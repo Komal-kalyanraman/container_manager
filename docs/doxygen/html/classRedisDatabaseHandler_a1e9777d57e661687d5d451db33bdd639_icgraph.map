@@ -1,0 +1,4 @@
+<map id="RedisDatabaseHandler::SaveJson" name="RedisDatabaseHandler::SaveJson">
+<area shape="rect" id="node1" title="Saves a JSON object to Redis with the specified key." alt="" coords="224,5,395,47"/>
+<area shape="rect" id="node2" href="$classRedisDatabaseHandler.html#a97a1cbf6419a64a45a6e8deb092f7a5c" title="Updates a specific field in the JSON object stored under the given key in Redis." alt="" coords="5,5,176,47"/>
+</map>

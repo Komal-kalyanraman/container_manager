@@ -1,0 +1,5 @@
+<map id="IDatabaseHandler::GetJson" name="IDatabaseHandler::GetJson">
+<area shape="rect" id="node1" title="Retrieves a JSON object from the database by key." alt="" coords="301,46,499,73"/>
+<area shape="rect" id="node2" href="$classDockerCreateContainerCommand.html#a8967ee094698e00a212c67f71870de06" title="Executes the command to create a Docker container." alt="" coords="9,5,249,47"/>
+<area shape="rect" id="node3" href="$classPodmanCreateContainerCommand.html#aca31055904b1fb20736ed5807e215ae6" title="Executes the command to create a Podman container." alt="" coords="5,71,253,112"/>
+</map>

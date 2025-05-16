@@ -1,0 +1,5 @@
+<map id="ContainerServiceHandler::ContainerOperations" name="ContainerServiceHandler::ContainerOperations">
+<area shape="rect" id="node1" title="Performs the specified container operation." alt="" coords="496,5,680,47"/>
+<area shape="rect" id="node2" href="$classContainerServiceHandler.html#a16f0650a9d5719fc441541a2adc5f29a" title="Handles a container request by dispatching to the appropriate operation." alt="" coords="264,5,448,47"/>
+<area shape="rect" id="node3" href="$classJsonRequestExecutorHandler.html#aaf7c1c7c14971ccfda4076e0a4681f43" title="Executes a request represented as a JSON string." alt="" coords="5,5,216,47"/>
+</map>

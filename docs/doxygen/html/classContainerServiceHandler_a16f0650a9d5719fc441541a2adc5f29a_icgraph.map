@@ -1,0 +1,4 @@
+<map id="ContainerServiceHandler::HandleRequest" name="ContainerServiceHandler::HandleRequest">
+<area shape="rect" id="node1" title="Handles a container request by dispatching to the appropriate operation." alt="" coords="264,5,448,47"/>
+<area shape="rect" id="node2" href="$classJsonRequestExecutorHandler.html#aaf7c1c7c14971ccfda4076e0a4681f43" title="Executes a request represented as a JSON string." alt="" coords="5,5,216,47"/>
+</map>

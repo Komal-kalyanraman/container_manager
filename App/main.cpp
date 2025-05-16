@@ -1,3 +1,10 @@
+/**
+ * @file main.cpp
+ * @brief Entry point for the Container Manager application.
+ *
+ * Initializes logging, clears the database, starts the HTTP server, and handles shutdown.
+ */
+
 #include <memory>
 
 #include <glog/logging.h>

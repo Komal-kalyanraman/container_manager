@@ -1,0 +1,7 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title=" " alt="" coords="5,64,60,91"/>
+<area shape="rect" id="node2" href="$init__handler_8hpp.html#ad98029164064eb3e856369697d9cc015" title="Initializes logging and clears the database before server startup." alt="" coords="139,35,227,61"/>
+<area shape="rect" id="node5" href="$classHttpServerHandler.html#aae9b51422a14fe6f1f3a1872da1ff823" title="Starts the HTTP server on the specified port." alt="" coords="108,86,259,127"/>
+<area shape="rect" id="node3" href="$classIDatabaseHandler.html#a79f638c8332acdfb054d1f915f77c760" title="Clears all data from the database." alt="" coords="307,5,549,32"/>
+<area shape="rect" id="node4" href="$classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce" title="Retrieves the singleton instance of the RedisDatabaseHandler." alt="" coords="343,57,513,98"/>
+</map>

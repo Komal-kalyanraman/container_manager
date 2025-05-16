@@ -1,0 +1,4 @@
+<map id="DockerStopContainerCommand" name="DockerStopContainerCommand">
+<area shape="rect" id="node1" title="Command to stop a Docker container." alt="" coords="5,145,268,252"/>
+<area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for all commands." alt="" coords="74,5,199,97"/>
+</map>

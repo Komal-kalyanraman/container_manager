@@ -1,3 +1,8 @@
+/**
+ * @file json_request_executor.hpp
+ * @brief Defines the JsonRequestExecutorHandler class for executing JSON-based requests.
+ */
+
 #include "inc/json_request_executor.hpp"
 
 #include <nlohmann/json.hpp>
@@ -11,8 +16,6 @@ using json = nlohmann::json;
 #include <iostream>
 
 nlohmann::json JsonRequestExecutorHandler::Execute(const std::string& data) {
-    // Parse JSON
-    std::cout << "Received JSON data: " << data << std::endl;
     json j = json::parse(data);
 
     // Transform JSON as requested

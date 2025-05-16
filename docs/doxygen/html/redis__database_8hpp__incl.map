@@ -1,0 +1,7 @@
+<map id="database/inc/redis_database.hpp" name="database/inc/redis_database.hpp">
+<area shape="rect" id="node1" title="Implements RedisDatabaseHandler for Redis&#45;based database operations." alt="" coords="119,5,260,47"/>
+<area shape="rect" id="node2" href="$database__interface_8hpp.html" title="Abstract interface for database operations." alt="" coords="22,95,221,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="27,169,85,196"/>
+<area shape="rect" id="node4" title=" " alt="" coords="113,169,260,196"/>
+<area shape="rect" id="node5" title=" " alt="" coords="295,95,446,121"/>
+</map>

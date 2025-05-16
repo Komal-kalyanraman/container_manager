@@ -1,0 +1,5 @@
+<map id="IDatabaseHandler::RemoveKey" name="IDatabaseHandler::RemoveKey">
+<area shape="rect" id="node1" title="Removes the JSON object associated with the specified key from the database." alt="" coords="312,46,537,73"/>
+<area shape="rect" id="node2" href="$classDockerRemoveContainerCommand.html#a0c15063652bf92deb99a742a4a9f61fd" title="Executes the command to remove a Docker container and clean up database state." alt="" coords="9,5,260,47"/>
+<area shape="rect" id="node3" href="$classPodmanRemoveContainerCommand.html#a3bb0bf30e7f91e87c407980e1adcc398" title="Executes the command to remove a Podman container and clean up database state." alt="" coords="5,71,264,112"/>
+</map>

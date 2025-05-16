@@ -1,0 +1,10 @@
+<map id="utils/inc/threadpool.hpp" name="utils/inc/threadpool.hpp">
+<area shape="rect" id="node1" title="Declares the ThreadPool utility class for managing worker threads." alt="" coords="213,5,388,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,68,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="93,80,157,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="181,80,244,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="269,80,333,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="357,80,500,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="524,80,611,107"/>
+<area shape="rect" id="node8" title=" " alt="" coords="635,80,702,107"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="PodmanRuntimeAvailableCommand" name="PodmanRuntimeAvailableCommand">
+<area shape="rect" id="node1" title="Command to check if Podman runtime is available." alt="" coords="5,145,299,252"/>
+<area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for all commands." alt="" coords="89,5,215,97"/>
+</map>
