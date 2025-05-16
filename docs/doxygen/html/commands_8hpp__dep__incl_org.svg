@@ -101,7 +101,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="container__service_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="container__service_8cpp.html" target="_top" xlink:title="Implements the ContainerServiceHandler class for business logic related to containers.">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-30.5 104,-30.5 104,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">core/src/container</text>
 <text text-anchor="middle" x="52" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_service.cpp</text>
@@ -161,7 +161,7 @@
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="docker__commands_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node8"><a xlink:href="docker__commands_8cpp.html" target="_top" xlink:title="Implements Docker command classes for container operations.">
 <polygon fill="white" stroke="black" points="398.5,-0.5 398.5,-30.5 505.5,-30.5 505.5,-0.5 398.5,-0.5"/>
 <text text-anchor="start" x="406.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">runtime/src/docker</text>
 <text text-anchor="middle" x="452" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_commands.cpp</text>
@@ -205,7 +205,7 @@
 <!-- Node12 -->
 <g id="node12" class="node">
 <title>Node12</title>
-<g id="a_node12"><a xlink:href="podman__commands_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node12"><a xlink:href="podman__commands_8cpp.html" target="_top" xlink:title="Implements Podman command classes for container operations.">
 <polygon fill="white" stroke="black" points="658.5,-0.5 658.5,-30.5 773.5,-30.5 773.5,-0.5 658.5,-0.5"/>
 <text text-anchor="start" x="666.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">runtime/src/podman</text>
 <text text-anchor="middle" x="716" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_commands.cpp</text>

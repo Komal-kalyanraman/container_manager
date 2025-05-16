@@ -1,0 +1,4 @@
+<map id="MosquittoMqttSubscriber::Start" name="MosquittoMqttSubscriber::Start">
+<area shape="rect" id="node1" title="Starts the MQTT client loop." alt="" coords="108,5,293,47"/>
+<area shape="rect" id="node2" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Main function for the Container Manager application." alt="" coords="5,13,60,39"/>
+</map>

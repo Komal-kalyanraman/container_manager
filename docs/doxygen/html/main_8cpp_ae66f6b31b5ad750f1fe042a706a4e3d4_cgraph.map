@@ -1,0 +1,8 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title="Main function for the Container Manager application." alt="" coords="5,93,60,120"/>
+<area shape="rect" id="node2" href="$init__handler_8hpp.html#ad98029164064eb3e856369697d9cc015" title="Initializes logging and clears the database before server startup." alt="" coords="157,35,245,61"/>
+<area shape="rect" id="node5" href="$classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506" title="Starts the HTTP server on the specified port." alt="" coords="125,86,276,127"/>
+<area shape="rect" id="node6" href="$classMosquittoMqttSubscriber.html#a0493b05cfc4676deab471c45a7759425" title="Starts the MQTT client loop." alt="" coords="108,151,293,193"/>
+<area shape="rect" id="node3" href="$classIDatabaseHandler.html#a79f638c8332acdfb054d1f915f77c760" title="Clears all data from the database." alt="" coords="341,5,584,32"/>
+<area shape="rect" id="node4" href="$classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce" title="Retrieves the singleton instance of the RedisDatabaseHandler." alt="" coords="377,57,548,98"/>
+</map>

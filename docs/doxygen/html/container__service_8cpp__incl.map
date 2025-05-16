@@ -1,5 +1,5 @@
 <map id="core/src/container_service.cpp" name="core/src/container_service.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="359,5,497,47"/>
+<area shape="rect" id="node1" title="Implements the ContainerServiceHandler class for business logic related to containers." alt="" coords="359,5,497,47"/>
 <area shape="rect" id="node2" href="$container__service_8hpp.html" title="Declares the ContainerServiceHandler class for business logic related to containers." alt="" coords="178,95,366,121"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,169,152,196"/>
 <area shape="rect" id="node6" title=" " alt="" coords="679,95,759,121"/>

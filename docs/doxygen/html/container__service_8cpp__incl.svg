@@ -58,7 +58,7 @@ var sectionId = 'dynsection-0';
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title=" ">
+<g id="a_node1"><a xlink:title="Implements the ContainerServiceHandler class for business logic related to containers.">
 <polygon fill="#bfbfbf" stroke="black" points="265,-168.5 265,-198.5 369,-198.5 369,-168.5 265,-168.5"/>
 <text text-anchor="start" x="273" y="-186.5" font-family="Helvetica,sans-Serif" font-size="10.00">core/src/container</text>
 <text text-anchor="middle" x="317" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">_service.cpp</text>

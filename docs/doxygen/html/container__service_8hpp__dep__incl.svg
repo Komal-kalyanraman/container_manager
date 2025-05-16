@@ -22,7 +22,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="container__service_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node2"><a xlink:href="container__service_8cpp.html" target="_top" xlink:title="Implements the ContainerServiceHandler class for business logic related to containers.">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-30.5 104,-30.5 104,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">core/src/container</text>
 <text text-anchor="middle" x="52" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_service.cpp</text>
@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="json__request__executor_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="json__request__executor_8cpp.html" target="_top" xlink:title="Implements the JsonRequestExecutorHandler class for executing JSON&#45;based requests.">
 <polygon fill="white" stroke="black" points="122,-0.5 122,-30.5 264,-30.5 264,-0.5 122,-0.5"/>
 <text text-anchor="start" x="130" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">executor/src/json_request</text>
 <text text-anchor="middle" x="193" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_executor.cpp</text>

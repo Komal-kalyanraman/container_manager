@@ -87,32 +87,61 @@ $(document).ready(function(){initNavTree('main_8cpp_source.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <a href="main_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;glog/logging.h&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="http__server_8hpp.html">inc/http_server.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="init__handler_8hpp.html">inc/init_handler.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="json__request__executor_8hpp.html">inc/json_request_executor.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">   16</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>* argv[]) {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="init__handler_8hpp.html#ad98029164064eb3e856369697d9cc015">InitProject</a>();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">auto</span> executor = std::make_shared&lt;JsonRequestExecutorHandler&gt;();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classHttpServerHandler.html">HttpServerHandler</a> server(executor);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    server.<a class="code" href="classHttpServerHandler.html#aae9b51422a14fe6f1f3a1872da1ff823">Start</a>(<a class="code" href="common_8hpp.html#a17e38857ca5d8c7004095faee3f7588a">kHttpServerPort</a>);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    google::ShutdownGoogleLogging();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;glog/logging.h&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="common_8hpp.html">inc/common.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="http__server_8hpp.html">inc/http_server.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="init__handler_8hpp.html">inc/init_handler.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="json__request__executor_8hpp.html">inc/json_request_executor.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mosquitto__mqtt__subscriber_8hpp.html">inc/mosquitto_mqtt_subscriber.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">   27</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="init__handler_8hpp.html#ad98029164064eb3e856369697d9cc015">InitProject</a>();  </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="comment">// Create the shared JSON request executor</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">auto</span> executor = std::make_shared&lt;JsonRequestExecutorHandler&gt;();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">// HTTP server configuration</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="structServerConfig.html">ServerConfig</a> server_cfg;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">// Start HTTP server in a separate thread</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="classHttpServerHandler.html">HttpServerHandler</a> server(executor, server_cfg.<a class="code" href="structServerConfig.html#a60845536be40fb85b24d98018a0d4ee0">ThreadPoolSize</a>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    std::thread http_thread([&amp;server, &amp;server_cfg]() {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        server.<a class="code" href="classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506">Start</a>(server_cfg.<a class="code" href="structServerConfig.html#a376b7b7e0a8804598877088423ce89fb">Host</a>, server_cfg.<a class="code" href="structServerConfig.html#a982c0819ea7ae8e51e549fe71f5b273d">Port</a>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    });</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">// MQTT subscriber configuration</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="structMqttConfig.html">MqttConfig</a> mqtt_cfg;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// Start MQTT subscriber (runs in its own thread internally)</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classMosquittoMqttSubscriber.html">MosquittoMqttSubscriber</a> mqtt_sub(mqtt_cfg.BrokerAddress, mqtt_cfg.BrokerPort, mqtt_cfg.Topic, executor);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    mqtt_sub.<a class="code" href="classMosquittoMqttSubscriber.html#a0493b05cfc4676deab471c45a7759425">Start</a>();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// Wait for HTTP server thread to finish (in production, handle shutdown signals properly)</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    http_thread.join();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    google::ShutdownGoogleLogging();  </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="acommon_8hpp_html_a17e38857ca5d8c7004095faee3f7588a"><div class="ttname"><a href="common_8hpp.html#a17e38857ca5d8c7004095faee3f7588a">kHttpServerPort</a></div><div class="ttdeci">const int kHttpServerPort</div><div class="ttdoc">Default HTTP server port.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00018">common.hpp:18</a></div></div>
+<div class="ttc" id="aclassMosquittoMqttSubscriber_html"><div class="ttname"><a href="classMosquittoMqttSubscriber.html">MosquittoMqttSubscriber</a></div><div class="ttdoc">Subscribes to an MQTT topic and dispatches received messages to a RequestExecutor.</div><div class="ttdef"><b>Definition:</b> <a href="mosquitto__mqtt__subscriber_8hpp_source.html#l00015">mosquitto_mqtt_subscriber.hpp:15</a></div></div>
+<div class="ttc" id="astructServerConfig_html_a982c0819ea7ae8e51e549fe71f5b273d"><div class="ttname"><a href="structServerConfig.html#a982c0819ea7ae8e51e549fe71f5b273d">ServerConfig::Port</a></div><div class="ttdeci">const int Port</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00020">common.hpp:20</a></div></div>
+<div class="ttc" id="astructServerConfig_html_a376b7b7e0a8804598877088423ce89fb"><div class="ttname"><a href="structServerConfig.html#a376b7b7e0a8804598877088423ce89fb">ServerConfig::Host</a></div><div class="ttdeci">const std::string Host</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00021">common.hpp:21</a></div></div>
+<div class="ttc" id="acommon_8hpp_html"><div class="ttname"><a href="common_8hpp.html">common.hpp</a></div><div class="ttdoc">Defines common constants, string views, and utility structures for the application.</div></div>
+<div class="ttc" id="astructServerConfig_html_a60845536be40fb85b24d98018a0d4ee0"><div class="ttname"><a href="structServerConfig.html#a60845536be40fb85b24d98018a0d4ee0">ServerConfig::ThreadPoolSize</a></div><div class="ttdeci">const int ThreadPoolSize</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00022">common.hpp:22</a></div></div>
 <div class="ttc" id="ainit__handler_8hpp_html"><div class="ttname"><a href="init__handler_8hpp.html">init_handler.hpp</a></div><div class="ttdoc">Declares project-wide initialization functions.</div></div>
 <div class="ttc" id="aclassHttpServerHandler_html"><div class="ttname"><a href="classHttpServerHandler.html">HttpServerHandler</a></div><div class="ttdoc">Handles incoming HTTP requests and dispatches them to the appropriate executor.</div><div class="ttdef"><b>Definition:</b> <a href="http__server_8hpp_source.html#l00016">http_server.hpp:16</a></div></div>
 <div class="ttc" id="ainit__handler_8hpp_html_ad98029164064eb3e856369697d9cc015"><div class="ttname"><a href="init__handler_8hpp.html#ad98029164064eb3e856369697d9cc015">InitProject</a></div><div class="ttdeci">void InitProject()</div><div class="ttdoc">Initializes logging and clears the database before server startup.</div><div class="ttdef"><b>Definition:</b> <a href="init__handler_8cpp_source.html#l00013">init_handler.cpp:13</a></div></div>
+<div class="ttc" id="astructMqttConfig_html"><div class="ttname"><a href="structMqttConfig.html">MqttConfig</a></div><div class="ttdoc">Holds constant configuration for the MQTT subscriber.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00027">common.hpp:27</a></div></div>
 <div class="ttc" id="ahttp__server_8hpp_html"><div class="ttname"><a href="http__server_8hpp.html">http_server.hpp</a></div><div class="ttdoc">Defines the HttpServerHandler class for handling HTTP requests.</div></div>
-<div class="ttc" id="aclassHttpServerHandler_html_aae9b51422a14fe6f1f3a1872da1ff823"><div class="ttname"><a href="classHttpServerHandler.html#aae9b51422a14fe6f1f3a1872da1ff823">HttpServerHandler::Start</a></div><div class="ttdeci">void Start(int port)</div><div class="ttdoc">Starts the HTTP server on the specified port.</div><div class="ttdef"><b>Definition:</b> <a href="http__server_8cpp_source.html#l00014">http_server.cpp:14</a></div></div>
+<div class="ttc" id="amain_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Main function for the Container Manager application.</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00027">main.cpp:27</a></div></div>
+<div class="ttc" id="astructServerConfig_html"><div class="ttname"><a href="structServerConfig.html">ServerConfig</a></div><div class="ttdoc">Holds constant configuration for the HTTP server.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00019">common.hpp:19</a></div></div>
+<div class="ttc" id="aclassMosquittoMqttSubscriber_html_a0493b05cfc4676deab471c45a7759425"><div class="ttname"><a href="classMosquittoMqttSubscriber.html#a0493b05cfc4676deab471c45a7759425">MosquittoMqttSubscriber::Start</a></div><div class="ttdeci">void Start()</div><div class="ttdoc">Starts the MQTT client loop.</div><div class="ttdef"><b>Definition:</b> <a href="mosquitto__mqtt__subscriber_8cpp_source.html#l00028">mosquitto_mqtt_subscriber.cpp:28</a></div></div>
 <div class="ttc" id="ajson__request__executor_8hpp_html"><div class="ttname"><a href="json__request__executor_8hpp.html">json_request_executor.hpp</a></div><div class="ttdoc">Defines the JsonRequestExecutorHandler class for executing JSON-based requests.</div></div>
-<div class="ttc" id="amain_8cpp_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00016">main.cpp:16</a></div></div>
+<div class="ttc" id="aclassHttpServerHandler_html_aa6719e2ab219e695c6762836bc9b9506"><div class="ttname"><a href="classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506">HttpServerHandler::Start</a></div><div class="ttdeci">void Start(const std::string &amp;host, int port)</div><div class="ttdoc">Starts the HTTP server on the specified port.</div><div class="ttdef"><b>Definition:</b> <a href="http__server_8cpp_source.html#l00014">http_server.cpp:14</a></div></div>
+<div class="ttc" id="amosquitto__mqtt__subscriber_8hpp_html"><div class="ttname"><a href="mosquitto__mqtt__subscriber_8hpp.html">mosquitto_mqtt_subscriber.hpp</a></div><div class="ttdoc">Declares the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto.</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

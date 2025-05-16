@@ -11,14 +11,17 @@
   Easily add support for new runtimes or operations using the command pattern.
 
 - **Multi-Protocol Support:**  
-  Currently supports REST (HTTP/JSON) for remote management.  
-  **Pluggable protocol architecture**: Easily extend to support Message Queue (MQ), D-Bus, gRPC, MQTT or other IPC/RPC mechanisms.
+  Currently supports REST (HTTP/JSON) for remote management and MQTT for message-based control.  
+  **Pluggable protocol architecture**: Easily extend to support D-Bus, gRPC, or other IPC/RPC mechanisms.
 
 - **Flexible Data Formats:**  
   Incoming data is currently JSON, but the architecture supports adding other formats such as Protocol Buffers (protobuf) for high-performance or strongly-typed APIs.
 
 - **HTTP API Server:**  
   Built-in HTTP server for remote container management via JSON requests.
+
+- **MQTT Subscriber:**  
+  Built-in MQTT subscriber for receiving and processing container management requests via MQTT topics over mosquitto mqtt broker.
 
 - **Thread Pool:**  
   Efficient request handling using a configurable thread pool.
@@ -39,9 +42,8 @@
 ## Architecture Overview
 
 ```
-
 App/
-├── api/            # HTTP server and API handlers (REST, future: MQ, D-Bus, MQTT, etc.)
+├── api/            # HTTP server and MQTT subscriber (and future protocol handlers)
 ├── core/           # Business logic (service layer)
 ├── database/       # Database interface and Redis implementation (pluggable)
 ├── executor/       # Request executors (JSON, future: Protobuf, etc.)
@@ -49,23 +51,23 @@ App/
 ├── utils/          # Common utilities (thread pool, logging, etc.)
 ├── main.cpp        # Application entry point
 └── third_party/    # External dependencies (excluded from docs/build)
-
 ```
 
-- **Command Pattern:**
+- **Command Pattern:**  
   All container operations are encapsulated as command objects, making it easy to extend and maintain.
 
-- **Service Layer:**
+- **Service Layer:**  
   The `ContainerServiceHandler` coordinates requests, runtime checks, and command execution.
 
-- **API Layer:**
-  The `HttpServerHandler` exposes a RESTful API for remote management.
+- **API Layer:**  
+  The `HttpServer` exposes a RESTful API for remote management.  
+  The `MosquittoMqttSubscriber` subscribes to MQTT topics for remote management.  
   The architecture is designed to support additional protocols (MQ, D-Bus, gRPC, MQTT, etc.) by adding new API handlers.
 
-- **Executor Layer:**
+- **Executor Layer:**  
   The `RequestExecutor` abstraction allows for different data formats (currently JSON, future: Protobuf, etc.).
 
-- **Database Layer:**
+- **Database Layer:**  
   The `IDatabaseHandler` interface allows you to swap Redis for any other backend (SQL, NoSQL, in-memory, etc.) with minimal code changes.
 
 ## Quick Start
@@ -77,6 +79,7 @@ App/
 - [glog](https://github.com/google/glog)
 - [cpp_redis](https://github.com/Cylix/cpp_redis)
 - [nlohmann/json](https://github.com/nlohmann/json)
+- [mosquitto](https://github.com/eclipse-mosquitto/mosquitto)
 - Docker and/or Podman installed and running
 
 ### Build Instructions
@@ -92,10 +95,10 @@ make
 ### Running the Server
 
 ```sh
-./App/build/CM
+./CM
 ```
 
-The server will start and listen on the default port `5000`.
+The server will start and listen on the default port `5000` for HTTP and subscribe to the MQTT topic `container/execute` on port `1883`.
 
 ## API Usage
 
@@ -123,14 +126,25 @@ The server will start and listen on the default port `5000`.
 - **POST** `/execute`  
   Send a JSON request as shown above to perform container operations.
 
+### MQTT Usage
+
+- **Topic:** `container/execute`
+- **Publish Example:**
+  ```sh
+  mosquitto_pub -h localhost -p 1883 -t container/execute -m '{ "runtime":"docker", "operation":"create", "parameters":[{"container_name":"my_nginx", "cpus":"0.5", "memory":"128", "pids":"10", "restart_policy":"unless-stopped", "image_name":"nginx:latest"}]}'
+  ```
+
 ## Code Structure
 
 - **main.cpp:**  
-  Initializes logging, clears the database, and starts the HTTP server.
+  Initializes logging, clears the database, and starts the HTTP server (in a thread) and MQTT subscriber.
 
 - **api/inc/http_server.hpp:**  
-  HTTP server handler for processing incoming requests.  
+  HTTP server for processing incoming requests.  
   _Pluggable protocol support: Add new handlers for MQ, D-Bus, MQTT, etc._
+
+- **api/inc/mosquitto_mqtt_subscriber.hpp:**  
+  MQTT subscriber for processing incoming MQTT messages.
 
 - **core/inc/container_service.hpp:**  
   Service layer for business logic and command dispatch.
@@ -195,4 +209,5 @@ This project is licensed under the [MIT License](LICENSE).
 - [glog](https://github.com/google/glog)
 - [cpp_redis](https://github.com/Cylix/cpp_redis)
 - [nlohmann/json](https://github.com/nlohmann/json)
+- [mosquitto](https://mosquitto.org/)
 - [Doxygen](https://www.doxygen.nl/)

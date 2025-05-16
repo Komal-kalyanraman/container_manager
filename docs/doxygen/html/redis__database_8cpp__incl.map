@@ -1,5 +1,5 @@
 <map id="database/src/redis_database.cpp" name="database/src/redis_database.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="194,5,335,47"/>
+<area shape="rect" id="node1" title="Implements RedisDatabaseHandler for Redis&#45;based database operations." alt="" coords="194,5,335,47"/>
 <area shape="rect" id="node2" href="$redis__database_8hpp.html" title="Implements RedisDatabaseHandler for Redis&#45;based database operations." alt="" coords="104,95,276,121"/>
 <area shape="rect" id="node7" title=" " alt="" coords="300,95,380,121"/>
 <area shape="rect" id="node3" href="$database__interface_8hpp.html" title="Abstract interface for database operations." alt="" coords="22,169,221,196"/>

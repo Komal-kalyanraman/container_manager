@@ -19,6 +19,8 @@ var annotated_dup =
     [ "IDatabaseHandler", "classIDatabaseHandler.html", "classIDatabaseHandler" ],
     [ "Invoker", "classInvoker.html", "classInvoker" ],
     [ "JsonRequestExecutorHandler", "classJsonRequestExecutorHandler.html", "classJsonRequestExecutorHandler" ],
+    [ "MosquittoMqttSubscriber", "classMosquittoMqttSubscriber.html", "classMosquittoMqttSubscriber" ],
+    [ "MqttConfig", "structMqttConfig.html", "structMqttConfig" ],
     [ "PodmanApiCreateContainerCommand", "classPodmanApiCreateContainerCommand.html", "classPodmanApiCreateContainerCommand" ],
     [ "PodmanApiRuntimeAvailableCommand", "classPodmanApiRuntimeAvailableCommand.html", "classPodmanApiRuntimeAvailableCommand" ],
     [ "PodmanApiStartContainerCommand", "classPodmanApiStartContainerCommand.html", "classPodmanApiStartContainerCommand" ],
@@ -32,5 +34,6 @@ var annotated_dup =
     [ "RedisDatabaseHandler", "classRedisDatabaseHandler.html", "classRedisDatabaseHandler" ],
     [ "RequestExecutor", "classRequestExecutor.html", "classRequestExecutor" ],
     [ "RuntimeName", "structRuntimeName.html", null ],
+    [ "ServerConfig", "structServerConfig.html", "structServerConfig" ],
     [ "ThreadPool", "classThreadPool.html", "classThreadPool" ]
 ];

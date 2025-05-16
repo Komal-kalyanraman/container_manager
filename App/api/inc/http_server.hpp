@@ -22,6 +22,7 @@ public:
     
 
     /// @brief  Starts the HTTP server on the specified port.
+    /// @param host The host address of the HTTP server.
     /// @param port The port on which the server will listen for incoming requests.
     void Start(const std::string& host, int port);
 

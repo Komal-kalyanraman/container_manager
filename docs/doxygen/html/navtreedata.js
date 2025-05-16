@@ -32,14 +32,15 @@ var NAVTREE =
     ] ],
     [ "API Usage", "index.html#autotoc_md7", [
       [ "Example JSON Request", "index.html#autotoc_md8", null ],
-      [ "HTTP Endpoint", "index.html#autotoc_md9", null ]
+      [ "HTTP Endpoint", "index.html#autotoc_md9", null ],
+      [ "MQTT Usage", "index.html#autotoc_md10", null ]
     ] ],
-    [ "Code Structure", "index.html#autotoc_md10", null ],
-    [ "Documentation", "index.html#autotoc_md11", null ],
-    [ "Extending the Project", "index.html#autotoc_md12", null ],
-    [ "Contributing", "index.html#autotoc_md13", null ],
-    [ "License", "index.html#autotoc_md14", null ],
-    [ "Acknowledgements", "index.html#autotoc_md15", null ],
+    [ "Code Structure", "index.html#autotoc_md11", null ],
+    [ "Documentation", "index.html#autotoc_md12", null ],
+    [ "Extending the Project", "index.html#autotoc_md13", null ],
+    [ "Contributing", "index.html#autotoc_md14", null ],
+    [ "License", "index.html#autotoc_md15", null ],
+    [ "Acknowledgements", "index.html#autotoc_md16", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -66,7 +67,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "CMakeCXXCompilerId_8cpp.html",
-"redis__database_8cpp.html"
+"podman__api__commands_8hpp_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

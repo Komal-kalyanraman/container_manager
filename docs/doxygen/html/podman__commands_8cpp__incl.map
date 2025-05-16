@@ -1,5 +1,5 @@
 <map id="runtime/src/podman_commands.cpp" name="runtime/src/podman_commands.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="673,5,826,47"/>
+<area shape="rect" id="node1" title="Implements Podman command classes for container operations." alt="" coords="673,5,826,47"/>
 <area shape="rect" id="node2" href="$podman__commands_8hpp.html" title="Declares Podman command classes for container operations." alt="" coords="43,95,248,121"/>
 <area shape="rect" id="node6" title=" " alt="" coords="970,95,1035,121"/>
 <area shape="rect" id="node7" title=" " alt="" coords="808,244,955,271"/>

@@ -1,8 +1,10 @@
 <map id="executor/inc/request_executor.hpp" name="executor/inc/request_executor.hpp">
-<area shape="rect" id="node1" title="Declares the abstract RequestExecutor interface for executing requests." alt="" coords="164,5,319,47"/>
-<area shape="rect" id="node2" href="$json__request__executor_8hpp.html" title="Defines the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="147,95,336,136"/>
-<area shape="rect" id="node3" href="$http__server_8hpp.html" title="Defines the HttpServerHandler class for handling HTTP requests." alt="" coords="33,191,204,218"/>
-<area shape="rect" id="node5" href="$main_8cpp.html" title="Entry point for the Container Manager application." alt="" coords="200,273,283,300"/>
-<area shape="rect" id="node6" href="$json__request__executor_8cpp.html" title=" " alt="" coords="279,184,468,225"/>
-<area shape="rect" id="node4" href="$http__server_8cpp.html" title=" " alt="" coords="5,273,176,300"/>
+<area shape="rect" id="node1" title="Declares the abstract RequestExecutor interface for executing requests." alt="" coords="209,5,364,47"/>
+<area shape="rect" id="node2" href="$mosquitto__mqtt__subscriber_8hpp.html" title="Declares the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto." alt="" coords="97,95,271,136"/>
+<area shape="rect" id="node5" href="$json__request__executor_8hpp.html" title="Defines the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="295,95,484,136"/>
+<area shape="rect" id="node3" href="$mosquitto__mqtt__subscriber_8cpp.html" title="Implements the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto." alt="" coords="5,184,179,225"/>
+<area shape="rect" id="node4" href="$main_8cpp.html" title="Entry point for the Container Manager application." alt="" coords="211,273,293,300"/>
+<area shape="rect" id="node6" href="$http__server_8hpp.html" title="Defines the HttpServerHandler class for handling HTTP requests." alt="" coords="304,191,475,218"/>
+<area shape="rect" id="node8" href="$json__request__executor_8cpp.html" title="Implements the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="499,184,688,225"/>
+<area shape="rect" id="node7" href="$http__server_8cpp.html" title="Implements the HttpServerHandler class for handling HTTP requests." alt="" coords="317,273,488,300"/>
 </map>

@@ -12,7 +12,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title=" ">
+<g id="a_node1"><a xlink:title="Implements RedisDatabaseHandler for Redis&#45;based database operations.">
 <polygon fill="#bfbfbf" stroke="black" points="141.2,-168.5 141.2,-198.5 247.2,-198.5 247.2,-168.5 141.2,-168.5"/>
 <text text-anchor="start" x="149.2" y="-186.5" font-family="Helvetica,sans-Serif" font-size="10.00">database/src/redis</text>
 <text text-anchor="middle" x="194.2" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">_database.cpp</text>
