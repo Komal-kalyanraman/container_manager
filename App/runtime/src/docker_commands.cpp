@@ -1,6 +1,6 @@
 /**
- * @file docker_commands.hpp
- * @brief Declares Docker command classes for container operations.
+ * @file docker_commands.cpp
+ * @brief Implements Docker command classes for container operations.
  */
 
 #include "inc/docker_commands.hpp"

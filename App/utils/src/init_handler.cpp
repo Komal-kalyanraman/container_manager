@@ -1,6 +1,6 @@
 /**
- * @file init_handler.hpp
- * @brief Declares project-wide initialization functions.
+ * @file init_handler.cpp
+ * @brief Implements project-wide initialization functions.
  */
 
 #include "inc/init_handler.hpp"

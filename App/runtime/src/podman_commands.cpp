@@ -1,6 +1,6 @@
 /**
- * @file podman_commands.hpp
- * @brief Declares Podman command classes for container operations.
+ * @file podman_commands.cpp
+ * @brief Implements Podman command classes for container operations.
  */
 
 #include "inc/podman_commands.hpp"

@@ -17,11 +17,13 @@ class HttpServerHandler {
 public:
     /// @brief Constructs an HTTP server handler.
     /// @param executor Shared pointer to a RequestExecutor for processing requests.
-    explicit HttpServerHandler(std::shared_ptr<RequestExecutor> executor);
+    /// @param thread_pool_size Number of threads in the thread pool for handling requests.
+    explicit HttpServerHandler(std::shared_ptr<RequestExecutor> executor, int thread_pool_size);
+    
 
     /// @brief  Starts the HTTP server on the specified port.
     /// @param port The port on which the server will listen for incoming requests.
-    void Start(int port);
+    void Start(const std::string& host, int port);
 
 private:
     /// @brief Handles incoming HTTP requests.

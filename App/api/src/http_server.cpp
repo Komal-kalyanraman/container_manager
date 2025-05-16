@@ -1,6 +1,6 @@
 /**
- * @file http_server.hpp
- * @brief Defines the HttpServerHandler class for handling HTTP requests.
+ * @file http_server.cpp
+ * @brief Implements the HttpServerHandler class for handling HTTP requests.
  */
 
 #include "inc/http_server.hpp"
@@ -8,10 +8,10 @@
 #include <httplib.h>
 #include <nlohmann/json.hpp>
 
-HttpServerHandler::HttpServerHandler(std::shared_ptr<RequestExecutor> executor)
-    : executor_(std::move(executor)), pool_(std::make_unique<ThreadPool>(kMaxThreadPoolSize)) {}
+HttpServerHandler::HttpServerHandler(std::shared_ptr<RequestExecutor> executor, int thread_pool_size)
+    : executor_(std::move(executor)), pool_(std::make_unique<ThreadPool>(thread_pool_size)) {}
 
-void HttpServerHandler::Start(int port) {
+void HttpServerHandler::Start(const std::string& host, int port) {
     httplib::Server svr;
     svr.Post("/execute", [this](const httplib::Request& req, httplib::Response& res) {
         try {
@@ -21,6 +21,7 @@ void HttpServerHandler::Start(int port) {
 
             // Process the request asynchronously in the thread pool
             std::string data = req.body;
+            std::cout << "Received request: " << data << std::endl;
             std::shared_ptr<RequestExecutor> exec = executor_; // capture for thread safety
             pool_->Enqueue([exec, data]() {
                 try {
@@ -37,5 +38,5 @@ void HttpServerHandler::Start(int port) {
         }
     });
     // Start listening on the specified host and port
-    svr.listen(kHttpServerHost, port);
+    svr.listen(host, port);
 }

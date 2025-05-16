@@ -1,6 +1,6 @@
 /**
- * @file json_request_executor.hpp
- * @brief Defines the JsonRequestExecutorHandler class for executing JSON-based requests.
+ * @file json_request_executor.cpp
+ * @brief Implements the JsonRequestExecutorHandler class for executing JSON-based requests.
  */
 
 #include "inc/json_request_executor.hpp"

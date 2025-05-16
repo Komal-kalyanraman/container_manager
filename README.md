@@ -83,7 +83,7 @@ App/
 
 ```sh
 git clone https://github.com/yourusername/container_manager.git
-cd container_manager
+cd container_manager/App
 mkdir build && cd build
 cmake ..
 make

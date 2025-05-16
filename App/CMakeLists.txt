@@ -32,6 +32,9 @@ find_package(CURL REQUIRED)
 find_package(Threads REQUIRED)
 find_package(glog 0.4.0 REQUIRED)
 find_package(nlohmann_json REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(MOSQUITTO REQUIRED libmosquitto)
+pkg_check_modules(MOSQUITTOPP REQUIRED libmosquittopp)
 
 include_directories(${CURL_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
@@ -44,6 +47,8 @@ include_directories("${PROJECT_SOURCE_DIR}/executor")
 include_directories("${PROJECT_SOURCE_DIR}/database")
 include_directories(/usr/local/include)
 include_directories("${HOME_DIR}/cpp_redis/includes")
+include_directories(${MOSQUITTO_INCLUDE_DIRS})
+include_directories(${MOSQUITTOPP_INCLUDE_DIRS})
 
 add_subdirectory(api)
 add_subdirectory(core)
@@ -52,7 +57,8 @@ add_subdirectory(runtime)
 add_subdirectory(executor)
 add_subdirectory(database)
 
-link_directories("${HOME_DIR}/cpp_redis/build")  # Added line for cpp_redis library directory
+# link_libraries(mosquitto mosquittopp)
+link_directories("${HOME_DIR}/cpp_redis/build")
 
 ####### GTests ########
 SET(GTEST OFF)     # Set ON for building the tests, OFF for not
@@ -66,6 +72,8 @@ add_executable(CM
 
 target_link_libraries(CM 
   ${CMAKE_THREAD_LIBS_INIT}
+  ${MOSQUITTO_LIBRARIES}
+  ${MOSQUITTOPP_LIBRARIES}
   glog::glog
   cm_core
   cm_utils
@@ -76,4 +84,5 @@ target_link_libraries(CM
   librt.so
   pthread
   cpp_redis
+  # mosquittopp
 )

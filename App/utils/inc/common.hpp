@@ -8,20 +8,28 @@
 #include <string>
 #include <string_view>
 
-/// @brief Maximum number of threads in the thread pool.
-const int kMaxThreadPoolSize = 4;
+/// @brief Represents an empty string constant.
+const std::string kEmptyString = "";
 
 /// @brief Name used for container manager in google logging.
 const std::string kContainerManagerLogName = "cm_log";
 
-/// @brief Default HTTP server port.
-const int kHttpServerPort = 5000;
+/// @struct ServerConfig
+/// @brief Holds constant configuration for the HTTP server.
+struct ServerConfig {
+    const int Port = 5000;
+    const std::string Host = "0.0.0.0";
+    const int ThreadPoolSize = 4;
+};
 
-/// @brief Default HTTP server host address.
-const std::string kHttpServerHost = "0.0.0.0";
-
-/// @brief Represents an empty string constant.
-const std::string kEmptyString = "";
+/// @struct MqttConfig
+/// @brief Holds constant configuration for the MQTT subscriber.
+struct MqttConfig {
+    const std::string BrokerAddress = "localhost";
+    const int BrokerPort = 1883;
+    const std::string Topic = "container/execute";
+    const std::string ClientId = "container_manager_mqtt_subscriber";
+};
 
 /// @struct RuntimeName
 /// @brief Contains string constants for supported container runtimes.

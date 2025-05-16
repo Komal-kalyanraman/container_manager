@@ -1,6 +1,6 @@
 /**
- * @file threadpool.hpp
- * @brief Declares the ThreadPool utility class for managing worker threads.
+ * @file threadpool.cpp
+ * @brief Implements the ThreadPool utility class for managing worker threads.
  */
 
 #include "inc/threadpool.hpp"

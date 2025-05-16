@@ -1,6 +1,6 @@
 /**
- * @file container_service.hpp
- * @brief Declares the ContainerServiceHandler class for business logic related to containers.
+ * @file container_service.cpp
+ * @brief Implements the ContainerServiceHandler class for business logic related to containers.
  */
 
 #include "inc/container_service.hpp"

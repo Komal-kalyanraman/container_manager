@@ -1,5 +1,5 @@
 /**
- * @file redis_database.hpp
+ * @file redis_database.cpp
  * @brief Implements RedisDatabaseHandler for Redis-based database operations.
  */
 
