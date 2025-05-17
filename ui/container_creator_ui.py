@@ -21,6 +21,7 @@ import requests
 import json
 import paho.mqtt.publish as publish
 import posix_ipc
+import dbus
 
 class ContainerCreatorUI:
     def __init__(self, root):
@@ -29,8 +30,8 @@ class ContainerCreatorUI:
 
         # Protocol selection
         ttk.Label(root, text="Protocol:").grid(row=0, column=0, sticky="w")
+        protocol_options = ["REST", "MQTT", "MessageQueue", "DBus"]
         self.protocol_var = tk.StringVar(value="REST")
-        protocol_options = ["REST", "MQTT", "MessageQueue"]
         self.protocol_menu = ttk.Combobox(root, textvariable=self.protocol_var, values=protocol_options, state="readonly")
         self.protocol_menu.grid(row=0, column=1, sticky="ew")
 
@@ -110,9 +111,25 @@ class ContainerCreatorUI:
         self.mq_name_entry.insert(0, "/container_manager_queue")
         self.mq_name_entry.grid(row=12, column=1, sticky="ew")
 
-        # Only Send button
+        # D-Bus info fields
+        ttk.Label(root, text="D-Bus Bus Name:").grid(row=13, column=0, sticky="w")
+        self.dbus_bus_name_entry = ttk.Entry(root)
+        self.dbus_bus_name_entry.insert(0, "org.container.manager")
+        self.dbus_bus_name_entry.grid(row=13, column=1, sticky="ew")
+
+        ttk.Label(root, text="D-Bus Object Path:").grid(row=14, column=0, sticky="w")
+        self.dbus_object_path_entry = ttk.Entry(root)
+        self.dbus_object_path_entry.insert(0, "/org/container/manager")
+        self.dbus_object_path_entry.grid(row=14, column=1, sticky="ew")
+
+        ttk.Label(root, text="D-Bus Interface:").grid(row=15, column=0, sticky="w")
+        self.dbus_interface_entry = ttk.Entry(root)
+        self.dbus_interface_entry.insert(0, "org.container.manager")
+        self.dbus_interface_entry.grid(row=15, column=1, sticky="ew")
+
+        # Send button
         self.send_btn = ttk.Button(root, text="Send", command=self.send_json)
-        self.send_btn.grid(row=13, column=0, pady=10, sticky="w")
+        self.send_btn.grid(row=16, column=0, pady=10, sticky="w")
 
         root.columnconfigure(1, weight=1)
 
@@ -139,8 +156,6 @@ class ContainerCreatorUI:
             port = int(port)
             try:
                 response = requests.post(f"http://localhost:{port}/execute", json=data)
-                print("Server response: ", response.text)
-                print("Server status code: ", response.status_code)
                 if response.status_code == 200:
                     messagebox.showinfo("Sent", f"JSON sent to server on port {port}")
                 else:
@@ -176,3 +191,15 @@ class ContainerCreatorUI:
                 messagebox.showinfo("Sent", f"JSON sent to message queue '{mq_name}'")
             except Exception as e:
                 messagebox.showerror("Error", f"Failed to send message to queue: {e}")
+        elif protocol == "DBus":
+            bus_name = self.dbus_bus_name_entry.get().strip()
+            object_path = self.dbus_object_path_entry.get().strip()
+            interface = self.dbus_interface_entry.get().strip()
+            try:
+                bus = dbus.SessionBus()
+                proxy = bus.get_object(bus_name, object_path)
+                iface = dbus.Interface(proxy, dbus_interface=interface)
+                iface.Execute(json.dumps(data))
+                messagebox.showinfo("Sent", f"JSON sent via D-Bus to {bus_name}")
+            except Exception as e:
+                messagebox.showerror("Error", f"Failed to send D-Bus message: {e}")

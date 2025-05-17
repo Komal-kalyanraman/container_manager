@@ -1,9 +1,9 @@
 /**
- * @file message_queue_consumer.cpp
+ * @file posix_message_queue_consumer.cpp
  * @brief Implements the MessageQueueConsumer class for handling messages from a POSIX message queue.
  */
 
-#include "inc/message_queue_consumer.hpp"
+#include "inc/posix_message_queue_consumer.hpp"
 
 #include <iostream>
 #include <cstring>

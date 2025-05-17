@@ -35,6 +35,7 @@ find_package(nlohmann_json REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(MOSQUITTO REQUIRED libmosquitto)
 pkg_check_modules(MOSQUITTOPP REQUIRED libmosquittopp)
+pkg_check_modules(SDBUSCPP REQUIRED sdbus-c++)
 
 include_directories(${CURL_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
@@ -49,6 +50,7 @@ include_directories(/usr/local/include)
 include_directories("${HOME_DIR}/cpp_redis/includes")
 include_directories(${MOSQUITTO_INCLUDE_DIRS})
 include_directories(${MOSQUITTOPP_INCLUDE_DIRS})
+include_directories(${SDBUSCPP_INCLUDE_DIRS})
 
 add_subdirectory(api)
 add_subdirectory(core)
@@ -83,4 +85,5 @@ target_link_libraries(CM
   librt.so
   pthread
   cpp_redis
+  ${SDBUSCPP_LIBRARIES} 
 )

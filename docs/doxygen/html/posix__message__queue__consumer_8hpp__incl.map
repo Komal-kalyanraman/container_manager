@@ -1,0 +1,11 @@
+<map id="api/inc/posix_message_queue_consumer.hpp" name="api/inc/posix_message_queue_consumer.hpp">
+<area shape="rect" id="node1" title="Declares the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="104,5,275,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,83,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="277,244,336,271"/>
+<area shape="rect" id="node4" title=" " alt="" coords="157,95,221,121"/>
+<area shape="rect" id="node5" href="$common_8hpp.html" title="Defines common constants, string views, and utility structures for the application." alt="" coords="245,95,376,121"/>
+<area shape="rect" id="node7" href="$request__executor_8hpp.html" title="Declares the abstract RequestExecutor interface for executing requests." alt="" coords="407,95,593,121"/>
+<area shape="rect" id="node6" title=" " alt="" coords="258,169,355,196"/>
+<area shape="rect" id="node8" title=" " alt="" coords="431,169,577,196"/>
+<area shape="rect" id="node9" href="$container__request_8hpp.html" title="Data structure for representing a container operation request." alt="" coords="602,169,793,196"/>
+</map>

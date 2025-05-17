@@ -1,0 +1,4 @@
+<map id="DbusConsumer::~DbusConsumer" name="DbusConsumer::~DbusConsumer">
+<area shape="rect" id="node1" title="Destructor. Stops the consumer if running." alt="" coords="5,5,244,32"/>
+<area shape="rect" id="node2" href="$classDbusConsumer.html#a878d54ae44648286289eabe8c330a236" title="Stop listening and join the background thread." alt="" coords="292,5,451,32"/>
+</map>

@@ -11,8 +11,8 @@
   Easily add support for new runtimes or operations using the command pattern.
 
 - **Multi-Protocol Support:**  
-  Supports REST (HTTP/JSON), MQTT and POSIX Message Queue for remote management.  
-  **Pluggable protocol architecture**: Easily extend to support D-Bus, gRPC, or other IPC/RPC mechanisms.
+  Supports REST (HTTP/JSON), MQTT, POSIX Message Queue, and D-Bus (session bus) for remote management.
+  **Pluggable protocol architecture**: Easily extend to support gRPC, or other IPC/RPC mechanisms.
 
 - **Flexible Data Formats:**  
   Incoming data is currently JSON, but the architecture supports adding other formats such as Protocol Buffers (protobuf) for high-performance or strongly-typed APIs.
@@ -25,6 +25,9 @@
 
 - **POSIX Message Queue Consumer:**  
   Built-in consumer for POSIX message queues, allowing integration with other IPC systems.
+
+- **D-Bus Consumer (Session Bus):**  
+  Built-in D-Bus consumer using the **session bus** for user applications, allowing desktop or user-level apps to communicate with the backend without root privileges or system-wide D-Bus policies.
 
 - **Thread Pool:**  
   Efficient request handling using a configurable thread pool.
@@ -46,7 +49,7 @@
 
 ```
 App/
-├── api/          # HTTP server, MQTT subscriber and Message Queue consumer (and future protocol handlers)
+├── api/          # HTTP server, MQTT subscriber, Message Queue, and D-Bus consumer (and future protocol handlers)
 ├── core/         # Business logic (service layer)
 ├── database/     # Database interface and Redis implementation (pluggable)
 ├── executor/     # Request executors (JSON, future: Protobuf, etc.)
@@ -66,7 +69,8 @@ App/
   The `HttpServer` exposes a RESTful API for remote management.  
   The `MosquittoMqttSubscriber` subscribes to MQTT topics for remote management.  
   The `MessageQueueConsumer` listens for requests on a POSIX message queue.  
-  The architecture is designed to support additional protocols (MQ, D-Bus, gRPC, MQTT, etc.) by adding new API handlers.
+  The `DbusConsumer` listens for requests on the D-Bus **session bus** for user-level IPC.  
+  The architecture is designed to support additional protocols (gRPC, etc.) by adding new API handlers.
 
 - **Executor Layer:**  
   The `RequestExecutor` abstraction allows for different data formats (currently JSON, future: Protobuf, etc.).
@@ -84,6 +88,7 @@ App/
 - [cpp_redis](https://github.com/Cylix/cpp_redis)
 - [nlohmann/json](https://github.com/nlohmann/json)
 - [mosquitto](https://github.com/eclipse-mosquitto/mosquitto)
+- [sdbus-c++](https://github.com/Kistler-Group/sdbus-cpp) (for D-Bus support)
 - Docker and/or Podman installed and running
 
 ### Build Instructions
@@ -102,7 +107,7 @@ make
 ./CM
 ```
 
-The server will start and listen on the default port `5000` for HTTP, subscribe to the MQTT topic `container/execute` on port `1883`, and listen on the POSIX message queue `/container_manager_queue`.
+The server will start and listen on the default port `5000` for HTTP, subscribe to the MQTT topic `container/execute` on port `1883`, listen on the POSIX message queue `/container_manager_queue`, and register a D-Bus object on the **session bus** as `org.container.manager` at `/org/container/manager`.
 
 ## API Usage
 
@@ -148,10 +153,32 @@ The server will start and listen on the default port `5000` for HTTP, subscribe 
   mq.send('{"runtime": "podman", "operation": "create", "parameters": [{"container_name": "my_nginx", "cpus": "0.5", "memory": "64", "pids": "10", "restart_policy": "unless-stopped", "image_name": "nginx:latest"}]}')
   ```
 
+### D-Bus (Session Bus) Usage
+
+- **Bus Name:** `org.container.manager`
+- **Object Path:** `/org/container/manager`
+- **Interface:** `org.container.manager`
+- **Method:** `Execute` (accepts a JSON string as the first argument)
+
+**Python Example:**
+
+```python
+import dbus
+bus = dbus.SessionBus()
+proxy = bus.get_object('org.container.manager', '/org/container/manager')
+iface = dbus.Interface(proxy, dbus_interface='org.container.manager')
+iface.Execute('{"runtime": "docker", "operation": "create", "parameters": [{"container_name": "my_nginx", "cpus": "0.5", "memory": "128", "pids": "10", "restart_policy": "unless-stopped", "image_name": "nginx:latest"}]}')
+```
+
+**Note:**
+
+- The D-Bus consumer uses the **session bus** for user applications.
+- No root privileges or system-wide D-Bus policy is required.
+
 ## Code Structure
 
 - **main.cpp:**  
-  Initializes logging, clears the database, and starts the HTTP server (in a thread), MQTT subscriber and Message Queue consumer.
+  Initializes logging, clears the database, and starts the HTTP server (in a thread), MQTT subscriber, Message Queue consumer, and D-Bus consumer (session bus).
 
 - **api/inc/http_server.hpp:**  
   HTTP server for processing incoming requests.  
@@ -160,8 +187,11 @@ The server will start and listen on the default port `5000` for HTTP, subscribe 
 - **api/inc/mosquitto_mqtt_subscriber.hpp:**  
   MQTT subscriber for processing incoming MQTT messages.
 
-- **api/inc/message_queue_consumer.hpp:**  
+- **api/inc/posix_message_queue_consumer.hpp:**  
   POSIX message queue consumer for processing incoming queue messages.
+
+- **api/inc/dbus_consumer.hpp:**  
+  D-Bus consumer for processing incoming requests over the session bus.
 
 - **core/inc/container_service.hpp:**  
   Service layer for business logic and command dispatch.
@@ -192,9 +222,9 @@ A cross-platform Python GUI tool is provided for easily sending container manage
 
 ### Features
 
-- Select protocol: REST (HTTP), MQTT or POSIX Message Queue
+- Select protocol: REST (HTTP), MQTT, POSIX Message Queue, or D-Bus (session bus)
 - Fill in container parameters (runtime, operation, resources, image, etc.)
-- Send JSON requests directly to the backend via REST, MQTT, or Message Queue
+- Send JSON requests directly to the backend via REST, MQTT, Message Queue, or D-Bus
 
 ### Requirements
 
@@ -202,12 +232,13 @@ A cross-platform Python GUI tool is provided for easily sending container manage
 - [requests](https://pypi.org/project/requests/)
 - [paho-mqtt](https://pypi.org/project/paho-mqtt/)
 - [posix_ipc](https://pypi.org/project/posix_ipc/)
+- [dbus-python](https://pypi.org/project/dbus-python/)
 - Tkinter (usually included with Python)
 
 Install dependencies:
 
 ```sh
-pip install requests paho-mqtt posix_ipc
+pip install requests paho-mqtt posix_ipc dbus-python
 ```
 
 ### Usage
@@ -217,12 +248,13 @@ cd ui
 python container_creator_app.py
 ```
 
-1. Select the protocol (REST, MQTT or MessageQueue).
+1. Select the protocol (REST, MQTT, MessageQueue, or DBus).
 2. Fill in the container parameters.
 3. Click **Send** to send the JSON to the backend.
    - For REST, the backend must be running and listening on the specified port.
    - For MQTT, the broker must be running and accessible.
    - For MessageQueue, the backend must be running and listening on the configured POSIX message queue.
+   - For D-Bus, the backend must be running and registered on the session bus.
 
 The UI will show a confirmation or error message after sending the request.
 
@@ -269,4 +301,5 @@ This project is licensed under the [MIT License](LICENSE).
 - [cpp_redis](https://github.com/Cylix/cpp_redis)
 - [nlohmann/json](https://github.com/nlohmann/json)
 - [mosquitto](https://mosquitto.org/)
+- [sdbus-c++](https://github.com/Kistler-Group/sdbus-cpp)
 - [Doxygen](https://www.doxygen.nl/)

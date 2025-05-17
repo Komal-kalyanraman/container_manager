@@ -41,6 +41,15 @@ struct MessageQueueConfig {
     const long SleepTime = 10000;        ///< Sleep time in microseconds
 };
 
+/// @struct DbusConfig
+/// @brief Holds constant configuration for the D-Bus consumer (session bus).
+struct DbusConfig {
+    const std::string BusName = "org.container.manager";         ///< D-Bus service name.
+    const std::string ObjectPath = "/org/container/manager";     ///< D-Bus object path.
+    const std::string Interface = "org.container.manager";       ///< D-Bus interface name.
+    const std::string Method = "Execute";                        ///< D-Bus method name for JSON execution.
+};
+
 /// @struct RuntimeName
 /// @brief Contains string constants for supported container runtimes.
 struct RuntimeName {

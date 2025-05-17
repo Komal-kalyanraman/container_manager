@@ -1,5 +1,5 @@
 /**
- * @file message_queue_consumer.hpp
+ * @file posix_message_queue_consumer.hpp
  * @brief Declares the MessageQueueConsumer class for handling messages from a POSIX message queue.
  */
 

@@ -1,0 +1,12 @@
+<map id="api/inc/dbus_consumer.hpp" name="api/inc/dbus_consumer.hpp">
+<area shape="rect" id="node1" title="Defines the DbusConsumer class for receiving and processing JSON requests over D&#45;Bus." alt="" coords="150,5,349,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,83,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="324,229,383,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="157,80,221,107"/>
+<area shape="rect" id="node5" href="$common_8hpp.html" title="Defines common constants, string views, and utility structures for the application." alt="" coords="245,80,376,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="401,80,583,107"/>
+<area shape="rect" id="node8" href="$request__executor_8hpp.html" title="Declares the abstract RequestExecutor interface for executing requests." alt="" coords="608,80,795,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="305,155,402,181"/>
+<area shape="rect" id="node9" title=" " alt="" coords="477,155,624,181"/>
+<area shape="rect" id="node10" href="$container__request_8hpp.html" title="Data structure for representing a container operation request." alt="" coords="649,155,839,181"/>
+</map>

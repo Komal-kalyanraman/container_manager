@@ -1,0 +1,5 @@
+<map id="DbusConfig" name="DbusConfig">
+<area shape="rect" id="node1" title="Holds constant configuration for the D&#45;Bus consumer (session bus)." alt="" coords="26,331,123,408"/>
+<area shape="rect" id="node2" title="STL class." alt="" coords="31,147,118,224"/>
+<area shape="rect" id="node3" title="STL class." alt="" coords="5,5,144,97"/>
+</map>

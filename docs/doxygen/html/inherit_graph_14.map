@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structServerConfig.html" title="Holds constant configuration for the HTTP server." alt="" coords="5,5,112,32"/>
+<area shape="rect" id="node1" href="$classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats." alt="" coords="5,5,137,32"/>
+<area shape="rect" id="node2" href="$classJsonRequestExecutorHandler.html" title="Parses and executes JSON requests, invoking business logic and database operations." alt="" coords="185,5,396,32"/>
 </map>
