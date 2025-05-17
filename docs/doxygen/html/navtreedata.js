@@ -36,11 +36,16 @@ var NAVTREE =
       [ "MQTT Usage", "index.html#autotoc_md10", null ]
     ] ],
     [ "Code Structure", "index.html#autotoc_md11", null ],
-    [ "Documentation", "index.html#autotoc_md12", null ],
-    [ "Extending the Project", "index.html#autotoc_md13", null ],
-    [ "Contributing", "index.html#autotoc_md14", null ],
-    [ "License", "index.html#autotoc_md15", null ],
-    [ "Acknowledgements", "index.html#autotoc_md16", null ],
+    [ "Python UI: Container Creator", "index.html#autotoc_md12", [
+      [ "Features", "index.html#autotoc_md13", null ],
+      [ "Requirements", "index.html#autotoc_md14", null ],
+      [ "Usage", "index.html#autotoc_md15", null ]
+    ] ],
+    [ "Documentation", "index.html#autotoc_md16", null ],
+    [ "Extending the Project", "index.html#autotoc_md17", null ],
+    [ "Contributing", "index.html#autotoc_md18", null ],
+    [ "License", "index.html#autotoc_md19", null ],
+    [ "Acknowledgements", "index.html#autotoc_md20", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -67,7 +72,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "CMakeCXXCompilerId_8cpp.html",
-"podman__api__commands_8hpp_source.html"
+"pages.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

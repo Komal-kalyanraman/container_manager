@@ -43,31 +43,32 @@
 
 ```
 App/
-├── api/            # HTTP server and MQTT subscriber (and future protocol handlers)
-├── core/           # Business logic (service layer)
-├── database/       # Database interface and Redis implementation (pluggable)
-├── executor/       # Request executors (JSON, future: Protobuf, etc.)
-├── runtime/        # Command pattern implementations for Docker, Podman, etc.
-├── utils/          # Common utilities (thread pool, logging, etc.)
-├── main.cpp        # Application entry point
-└── third_party/    # External dependencies (excluded from docs/build)
+├── api/          # HTTP server and MQTT subscriber (and future protocol handlers)
+├── core/         # Business logic (service layer)
+├── database/     # Database interface and Redis implementation (pluggable)
+├── executor/     # Request executors (JSON, future: Protobuf, etc.)
+├── runtime/      # Command pattern implementations for Docker, Podman, etc.
+├── utils/        # Common utilities (thread pool, logging, etc.)
+├── main.cpp      # Application entry point
+└── third_party/  # External dependencies (excluded from docs/build)
+
 ```
 
-- **Command Pattern:**  
+- **Command Pattern:**
   All container operations are encapsulated as command objects, making it easy to extend and maintain.
 
-- **Service Layer:**  
+- **Service Layer:**
   The `ContainerServiceHandler` coordinates requests, runtime checks, and command execution.
 
-- **API Layer:**  
-  The `HttpServer` exposes a RESTful API for remote management.  
-  The `MosquittoMqttSubscriber` subscribes to MQTT topics for remote management.  
+- **API Layer:**
+  The `HttpServer` exposes a RESTful API for remote management.
+  The `MosquittoMqttSubscriber` subscribes to MQTT topics for remote management.
   The architecture is designed to support additional protocols (MQ, D-Bus, gRPC, MQTT, etc.) by adding new API handlers.
 
-- **Executor Layer:**  
+- **Executor Layer:**
   The `RequestExecutor` abstraction allows for different data formats (currently JSON, future: Protobuf, etc.).
 
-- **Database Layer:**  
+- **Database Layer:**
   The `IDatabaseHandler` interface allows you to swap Redis for any other backend (SQL, NoSQL, in-memory, etc.) with minimal code changes.
 
 ## Quick Start
@@ -168,6 +169,46 @@ The server will start and listen on the default port `5000` for HTTP and subscri
 
 - **utils/inc/logging.hpp:**  
   Logging macros and configuration.
+
+## Python UI: Container Creator
+
+A cross-platform Python GUI tool is provided for easily sending container management requests to the Container Manager backend.
+
+### Features
+
+- Select protocol: REST (HTTP) or MQTT
+- Fill in container parameters (runtime, operation, resources, image, etc.)
+- Send JSON requests directly to the backend via REST or MQTT
+
+### Requirements
+
+- Python 3.7+
+- [requests](https://pypi.org/project/requests/)
+- [paho-mqtt](https://pypi.org/project/paho-mqtt/)
+- Tkinter (usually included with Python)
+
+Install dependencies:
+
+```sh
+pip install requests paho-mqtt
+```
+
+### Usage
+
+```sh
+cd ui
+python container_creator_app.py
+```
+
+1. Select the protocol (REST or MQTT).
+2. Fill in the container parameters.
+3. Click **Send** to send the JSON to the backend.
+   - For REST, the backend must be running and listening on the specified port.
+   - For MQTT, the broker must be running and accessible.
+
+The UI will show a confirmation or error message after sending the request.
+
+**This tool is ideal for testing, demos, and rapid prototyping with the Container Manager backend.**
 
 ## Documentation
 
