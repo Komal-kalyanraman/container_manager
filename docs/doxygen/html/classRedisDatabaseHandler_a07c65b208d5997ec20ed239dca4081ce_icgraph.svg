@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 443;
+var viewWidth = 545;
 var viewHeight = 568;
 var sectionId = 'dynsection-2';
 </script>
@@ -54,14 +54,14 @@ var sectionId = 'dynsection-2';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>RedisDatabaseHandler::GetInstance</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-563.5 439,-563.5 439,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-563.5 541,-563.5 541,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Retrieves the singleton instance of the RedisDatabaseHandler.">
-<polygon fill="#bfbfbf" stroke="black" points="307,-259 307,-289 435,-289 435,-259 307,-259"/>
-<text text-anchor="start" x="315" y="-277" font-family="Helvetica,sans-Serif" font-size="10.00">RedisDatabaseHandler</text>
-<text text-anchor="middle" x="371" y="-266" font-family="Helvetica,sans-Serif" font-size="10.00">::GetInstance</text>
+<polygon fill="#bfbfbf" stroke="black" points="409,-259 409,-289 537,-289 537,-259 409,-259"/>
+<text text-anchor="start" x="417" y="-277" font-family="Helvetica,sans-Serif" font-size="10.00">RedisDatabaseHandler</text>
+<text text-anchor="middle" x="473" y="-266" font-family="Helvetica,sans-Serif" font-size="10.00">::GetInstance</text>
 </a>
 </g>
 </g>
@@ -69,207 +69,222 @@ var sectionId = 'dynsection-2';
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="classJsonRequestExecutorHandler.html#aaf7c1c7c14971ccfda4076e0a4681f43" target="_top" xlink:title="Executes a request represented as a JSON string.">
-<polygon fill="white" stroke="black" points="95,-529 95,-559 253,-559 253,-529 95,-529"/>
-<text text-anchor="start" x="103" y="-547" font-family="Helvetica,sans-Serif" font-size="10.00">JsonRequestExecutorHandler</text>
-<text text-anchor="middle" x="174" y="-536" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
+<polygon fill="white" stroke="black" points="197,-529 197,-559 355,-559 355,-529 197,-529"/>
+<text text-anchor="start" x="205" y="-547" font-family="Helvetica,sans-Serif" font-size="10.00">JsonRequestExecutorHandler</text>
+<text text-anchor="middle" x="276" y="-536" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M367.36,-299.07C360.74,-348.96 338.76,-460.98 271,-520 265.69,-524.63 259.62,-528.39 253.16,-531.44"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="370.84,-299.48 368.59,-289.13 363.89,-298.63 370.84,-299.48"/>
+<path fill="none" stroke="midnightblue" d="M469.36,-299.07C462.74,-348.96 440.76,-460.98 373,-520 367.69,-524.63 361.62,-528.39 355.16,-531.44"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="472.84,-299.48 470.59,-289.13 465.89,-298.63 472.84,-299.48"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:href="classDockerCreateContainerCommand.html#a8967ee094698e00a212c67f71870de06" target="_top" xlink:title="Executes the command to create a Docker container.">
-<polygon fill="white" stroke="black" points="84,-480 84,-510 264,-510 264,-480 84,-480"/>
-<text text-anchor="start" x="92" y="-498" font-family="Helvetica,sans-Serif" font-size="10.00">DockerCreateContainerCommand</text>
-<text text-anchor="middle" x="174" y="-487" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
+<polygon fill="white" stroke="black" points="186,-480 186,-510 366,-510 366,-480 186,-480"/>
+<text text-anchor="start" x="194" y="-498" font-family="Helvetica,sans-Serif" font-size="10.00">DockerCreateContainerCommand</text>
+<text text-anchor="middle" x="276" y="-487" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M364.59,-299.02C354.14,-341.17 327.08,-426.11 271,-471 266.71,-474.44 261.99,-477.39 257.02,-479.92"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="368.06,-299.58 366.95,-289.04 361.24,-297.97 368.06,-299.58"/>
+<path fill="none" stroke="midnightblue" d="M466.59,-299.02C456.14,-341.17 429.08,-426.11 373,-471 368.71,-474.44 363.99,-477.39 359.02,-479.92"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="470.06,-299.58 468.95,-289.04 463.24,-297.97 470.06,-299.58"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
 <g id="a_node4"><a xlink:href="classPodmanCreateContainerCommand.html#aca31055904b1fb20736ed5807e215ae6" target="_top" xlink:title="Executes the command to create a Podman container.">
-<polygon fill="white" stroke="black" points="81,-431 81,-461 267,-461 267,-431 81,-431"/>
-<text text-anchor="start" x="89" y="-449" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanCreateContainerCommand</text>
-<text text-anchor="middle" x="174" y="-438" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
+<polygon fill="white" stroke="black" points="183,-431 183,-461 369,-461 369,-431 183,-431"/>
+<text text-anchor="start" x="191" y="-449" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanCreateContainerCommand</text>
+<text text-anchor="middle" x="276" y="-438" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node4 -->
 <g id="edge3" class="edge">
 <title>Node1&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M360.25,-298.75C345.85,-332 315.68,-390.57 271,-422 266.08,-425.46 260.71,-428.42 255.11,-430.96"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="363.57,-299.87 364.21,-289.3 357.12,-297.17 363.57,-299.87"/>
+<path fill="none" stroke="midnightblue" d="M462.25,-298.75C447.85,-332 417.68,-390.57 373,-422 368.08,-425.46 362.71,-428.42 357.11,-430.96"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="465.57,-299.87 466.21,-289.3 459.12,-297.17 465.57,-299.87"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
 <g id="a_node5"><a xlink:href="classDockerStartContainerCommand.html#ad208f99e4185a7606a0a9903d1346fcc" target="_top" xlink:title="Executes the command to start a Docker container.">
-<polygon fill="white" stroke="black" points="88.5,-382 88.5,-412 259.5,-412 259.5,-382 88.5,-382"/>
-<text text-anchor="start" x="96.5" y="-400" font-family="Helvetica,sans-Serif" font-size="10.00">DockerStartContainerCommand</text>
-<text text-anchor="middle" x="174" y="-389" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
+<polygon fill="white" stroke="black" points="190.5,-382 190.5,-412 361.5,-412 361.5,-382 190.5,-382"/>
+<text text-anchor="start" x="198.5" y="-400" font-family="Helvetica,sans-Serif" font-size="10.00">DockerStartContainerCommand</text>
+<text text-anchor="middle" x="276" y="-389" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
 <title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M352.82,-297.41C334.91,-320.12 304.76,-353.89 271,-373 264.87,-376.47 258.24,-379.44 251.43,-381.99"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="355.74,-299.35 359.07,-289.3 350.2,-295.08 355.74,-299.35"/>
+<path fill="none" stroke="midnightblue" d="M454.82,-297.41C436.91,-320.12 406.76,-353.89 373,-373 366.87,-376.47 360.24,-379.44 353.43,-381.99"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="457.74,-299.35 461.07,-289.3 452.2,-295.08 457.74,-299.35"/>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
 <g id="a_node6"><a xlink:href="classPodmanStartContainerCommand.html#aaf7627e6faf5974ffcd95e8a5f58852f" target="_top" xlink:title="Executes the command to start a Podman container.">
-<polygon fill="white" stroke="black" points="85.5,-333 85.5,-363 262.5,-363 262.5,-333 85.5,-333"/>
-<text text-anchor="start" x="93.5" y="-351" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanStartContainerCommand</text>
-<text text-anchor="middle" x="174" y="-340" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
+<polygon fill="white" stroke="black" points="187.5,-333 187.5,-363 364.5,-363 364.5,-333 187.5,-333"/>
+<text text-anchor="start" x="195.5" y="-351" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanStartContainerCommand</text>
+<text text-anchor="middle" x="276" y="-340" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node6 -->
 <g id="edge5" class="edge">
 <title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M335.27,-293.94C316.66,-304 293.08,-315.78 271,-324 262.14,-327.3 252.66,-330.28 243.23,-332.94"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="337.16,-296.89 344.24,-289.01 333.79,-290.76 337.16,-296.89"/>
+<path fill="none" stroke="midnightblue" d="M437.27,-293.94C418.66,-304 395.08,-315.78 373,-324 364.14,-327.3 354.66,-330.28 345.23,-332.94"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="439.16,-296.89 446.24,-289.01 435.79,-290.76 439.16,-296.89"/>
 </g>
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
 <g id="a_node7"><a xlink:href="classDockerStopContainerCommand.html#a4d6a495edca166958eee65ca601bc5bd" target="_top" xlink:title="Executes the command to stop a Docker container.">
-<polygon fill="white" stroke="black" points="89,-284 89,-314 259,-314 259,-284 89,-284"/>
-<text text-anchor="start" x="97" y="-302" font-family="Helvetica,sans-Serif" font-size="10.00">DockerStopContainerCommand</text>
-<text text-anchor="middle" x="174" y="-291" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
+<polygon fill="white" stroke="black" points="191,-284 191,-314 361,-314 361,-284 191,-284"/>
+<text text-anchor="start" x="199" y="-302" font-family="Helvetica,sans-Serif" font-size="10.00">DockerStopContainerCommand</text>
+<text text-anchor="middle" x="276" y="-291" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node7 -->
 <g id="edge6" class="edge">
 <title>Node1&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M296.79,-283.39C284.5,-284.96 271.67,-286.61 259.14,-288.21"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="297.48,-286.83 306.96,-282.08 296.59,-279.88 297.48,-286.83"/>
+<path fill="none" stroke="midnightblue" d="M398.79,-283.39C386.5,-284.96 373.67,-286.61 361.14,-288.21"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="399.48,-286.83 408.96,-282.08 398.59,-279.88 399.48,-286.83"/>
 </g>
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
 <g id="a_node8"><a xlink:href="classPodmanStopContainerCommand.html#a42d7bf3c2ae604172ae1e1ae29bdc0c6" target="_top" xlink:title="Executes the command to stop a Podman container.">
-<polygon fill="white" stroke="black" points="86,-235 86,-265 262,-265 262,-235 86,-235"/>
-<text text-anchor="start" x="94" y="-253" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanStopContainerCommand</text>
-<text text-anchor="middle" x="174" y="-242" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
+<polygon fill="white" stroke="black" points="188,-235 188,-265 364,-265 364,-235 188,-235"/>
+<text text-anchor="start" x="196" y="-253" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanStopContainerCommand</text>
+<text text-anchor="middle" x="276" y="-242" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node8 -->
 <g id="edge7" class="edge">
 <title>Node1&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M296.78,-264.99C285.53,-263.6 273.82,-262.16 262.3,-260.75"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="296.61,-268.49 306.96,-266.24 297.46,-261.55 296.61,-268.49"/>
+<path fill="none" stroke="midnightblue" d="M398.78,-264.99C387.53,-263.6 375.82,-262.16 364.3,-260.75"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="398.61,-268.49 408.96,-266.24 399.46,-261.55 398.61,-268.49"/>
 </g>
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
 <g id="a_node9"><a xlink:href="classDockerRemoveContainerCommand.html#a0c15063652bf92deb99a742a4a9f61fd" target="_top" xlink:title="Executes the command to remove a Docker container and clean up database state.">
-<polygon fill="white" stroke="black" points="80,-186 80,-216 268,-216 268,-186 80,-186"/>
-<text text-anchor="start" x="88" y="-204" font-family="Helvetica,sans-Serif" font-size="10.00">DockerRemoveContainerCommand</text>
-<text text-anchor="middle" x="174" y="-193" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
+<polygon fill="white" stroke="black" points="182,-186 182,-216 370,-216 370,-186 182,-186"/>
+<text text-anchor="start" x="190" y="-204" font-family="Helvetica,sans-Serif" font-size="10.00">DockerRemoveContainerCommand</text>
+<text text-anchor="middle" x="276" y="-193" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node9 -->
 <g id="edge8" class="edge">
 <title>Node1&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M333.57,-254.21C315.18,-244.77 292.31,-233.85 271,-226 261.06,-222.34 250.36,-218.99 239.83,-216.02"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="331.99,-257.33 342.48,-258.84 335.22,-251.12 331.99,-257.33"/>
+<path fill="none" stroke="midnightblue" d="M435.57,-254.21C417.18,-244.77 394.31,-233.85 373,-226 363.06,-222.34 352.36,-218.99 341.83,-216.02"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="433.99,-257.33 444.48,-258.84 437.22,-251.12 433.99,-257.33"/>
 </g>
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
 <g id="a_node10"><a xlink:href="classPodmanRemoveContainerCommand.html#a3bb0bf30e7f91e87c407980e1adcc398" target="_top" xlink:title="Executes the command to remove a Podman container and clean up database state.">
-<polygon fill="white" stroke="black" points="77,-137 77,-167 271,-167 271,-137 77,-137"/>
-<text text-anchor="start" x="85" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanRemoveContainerCommand</text>
-<text text-anchor="middle" x="174" y="-144" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
+<polygon fill="white" stroke="black" points="179,-137 179,-167 373,-167 373,-137 179,-137"/>
+<text text-anchor="start" x="187" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanRemoveContainerCommand</text>
+<text text-anchor="middle" x="276" y="-144" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node10 -->
 <g id="edge9" class="edge">
 <title>Node1&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M352.38,-250.77C334.32,-228.58 304.24,-195.81 271,-177 264.18,-173.14 256.75,-169.86 249.15,-167.08"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="349.73,-253.06 358.69,-258.71 355.2,-248.71 349.73,-253.06"/>
+<path fill="none" stroke="midnightblue" d="M454.38,-250.77C436.32,-228.58 406.24,-195.81 373,-177 366.18,-173.14 358.75,-169.86 351.15,-167.08"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="451.73,-253.06 460.69,-258.71 457.2,-248.71 451.73,-253.06"/>
 </g>
 <!-- Node11 -->
 <g id="node11" class="node">
 <title>Node11</title>
 <g id="a_node11"><a xlink:href="classDockerRestartContainerCommand.html#a3852a9870150e02cde5e3f3cabf4d5d9" target="_top" xlink:title="Executes the command to restart a Docker container.">
-<polygon fill="white" stroke="black" points="82.5,-88 82.5,-118 265.5,-118 265.5,-88 82.5,-88"/>
-<text text-anchor="start" x="90.5" y="-106" font-family="Helvetica,sans-Serif" font-size="10.00">DockerRestartContainerCommand</text>
-<text text-anchor="middle" x="174" y="-95" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
+<polygon fill="white" stroke="black" points="184.5,-88 184.5,-118 367.5,-118 367.5,-88 184.5,-88"/>
+<text text-anchor="start" x="192.5" y="-106" font-family="Helvetica,sans-Serif" font-size="10.00">DockerRestartContainerCommand</text>
+<text text-anchor="middle" x="276" y="-95" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node11 -->
 <g id="edge10" class="edge">
 <title>Node1&#45;&gt;Node11</title>
-<path fill="none" stroke="midnightblue" d="M360.12,-249.65C345.56,-216.91 315.21,-159.22 271,-128 265.51,-124.13 259.47,-120.85 253.17,-118.08"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="356.95,-251.15 364.12,-258.95 363.38,-248.38 356.95,-251.15"/>
+<path fill="none" stroke="midnightblue" d="M462.12,-249.65C447.56,-216.91 417.21,-159.22 373,-128 367.51,-124.13 361.47,-120.85 355.17,-118.08"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="458.95,-251.15 466.12,-258.95 465.38,-248.38 458.95,-251.15"/>
 </g>
 <!-- Node12 -->
 <g id="node12" class="node">
 <title>Node12</title>
 <g id="a_node12"><a xlink:href="classPodmanRestartContainerCommand.html#ae4a585c345eafa6a97a1f38e4cb485ea" target="_top" xlink:title="Executes the command to restart a Podman container.">
-<polygon fill="white" stroke="black" points="79.5,-39 79.5,-69 268.5,-69 268.5,-39 79.5,-39"/>
-<text text-anchor="start" x="87.5" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanRestartContainerCommand</text>
-<text text-anchor="middle" x="174" y="-46" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
+<polygon fill="white" stroke="black" points="181.5,-39 181.5,-69 370.5,-69 370.5,-39 181.5,-39"/>
+<text text-anchor="start" x="189.5" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanRestartContainerCommand</text>
+<text text-anchor="middle" x="276" y="-46" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node12 -->
 <g id="edge11" class="edge">
 <title>Node1&#45;&gt;Node12</title>
-<path fill="none" stroke="midnightblue" d="M364.39,-248.98C353.7,-207.23 326.36,-123.58 271,-79 266.17,-75.11 260.8,-71.82 255.14,-69.04"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="361.03,-249.99 366.81,-258.87 367.83,-248.33 361.03,-249.99"/>
+<path fill="none" stroke="midnightblue" d="M466.39,-248.98C455.7,-207.23 428.36,-123.58 373,-79 368.17,-75.11 362.8,-71.82 357.14,-69.04"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="463.03,-249.99 468.81,-258.87 469.83,-248.33 463.03,-249.99"/>
 </g>
 <!-- Node13 -->
 <g id="node13" class="node">
 <title>Node13</title>
-<g id="a_node13"><a xlink:href="init__handler_8cpp.html#ad98029164064eb3e856369697d9cc015" target="_top" xlink:title="Initializes logging and clears the database before server startup.">
-<polygon fill="white" stroke="black" points="141,-0.5 141,-19.5 207,-19.5 207,-0.5 141,-0.5"/>
-<text text-anchor="middle" x="174" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">InitProject</text>
+<g id="a_node13"><a xlink:href="init__handler_8cpp.html#a3ca899cad245b508cfb58fd9230fa669" target="_top" xlink:title="Initializes and clears the database.">
+<polygon fill="white" stroke="black" points="236.5,-0.5 236.5,-19.5 315.5,-19.5 315.5,-0.5 236.5,-0.5"/>
+<text text-anchor="middle" x="276" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">InitDatabase</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node13 -->
 <g id="edge12" class="edge">
 <title>Node1&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M367.49,-248.91C361.1,-198.99 339.51,-87.16 271,-30 253.35,-15.28 227.62,-10.52 207.24,-9.31"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="364.02,-249.33 368.67,-258.85 370.97,-248.51 364.02,-249.33"/>
+<path fill="none" stroke="midnightblue" d="M469.49,-248.91C463.1,-198.99 441.51,-87.16 373,-30 357.18,-16.8 334.87,-11.61 315.74,-9.81"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="466.02,-249.33 470.67,-258.85 472.97,-248.51 466.02,-249.33"/>
 </g>
 <!-- Node14 -->
 <g id="node14" class="node">
 <title>Node14</title>
-<g id="a_node14"><a xlink:href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" target="_top" xlink:title="Main function for the Container Manager application.">
-<polygon fill="white" stroke="black" points="0,-0.5 0,-19.5 41,-19.5 41,-0.5 0,-0.5"/>
-<text text-anchor="middle" x="20.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">main</text>
+<g id="a_node14"><a xlink:href="init__handler_8cpp.html#ad98029164064eb3e856369697d9cc015" target="_top" xlink:title="Initializes all enabled project subsystems.">
+<polygon fill="white" stroke="black" points="77,-0.5 77,-19.5 143,-19.5 143,-0.5 77,-0.5"/>
+<text text-anchor="middle" x="110" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">InitProject</text>
 </a>
 </g>
 </g>
 <!-- Node13&#45;&gt;Node14 -->
 <g id="edge13" class="edge">
 <title>Node13&#45;&gt;Node14</title>
-<path fill="none" stroke="midnightblue" d="M130.49,-10C101.18,-10 63.6,-10 41.09,-10"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="130.87,-13.5 140.87,-10 130.87,-6.5 130.87,-13.5"/>
+<path fill="none" stroke="midnightblue" d="M225.82,-10C199.08,-10 166.77,-10 143.25,-10"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="226.13,-13.5 236.13,-10 226.13,-6.5 226.13,-13.5"/>
+</g>
+<!-- Node15 -->
+<g id="node15" class="node">
+<title>Node15</title>
+<g id="a_node15"><a xlink:href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" target="_top" xlink:title="Main function for the Container Manager application.">
+<polygon fill="white" stroke="black" points="0,-0.5 0,-19.5 41,-19.5 41,-0.5 0,-0.5"/>
+<text text-anchor="middle" x="20.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">main</text>
+</a>
+</g>
+</g>
+<!-- Node14&#45;&gt;Node15 -->
+<g id="edge14" class="edge">
+<title>Node14&#45;&gt;Node15</title>
+<path fill="none" stroke="midnightblue" d="M66.87,-10C57.87,-10 48.77,-10 41.11,-10"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="66.92,-13.5 76.92,-10 66.92,-6.5 66.92,-13.5"/>
 </g>
 </g>
 </svg>

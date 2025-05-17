@@ -1,5 +1,5 @@
 <map id="MqttConfig" name="MqttConfig">
-<area shape="rect" id="node1" title="Holds constant configuration for the MQTT subscriber." alt="" coords="22,316,127,393"/>
+<area shape="rect" id="node1" title="Holds constant configuration for the MQTT subscriber." alt="" coords="22,345,127,423"/>
 <area shape="rect" id="node2" title="STL class." alt="" coords="31,147,118,224"/>
 <area shape="rect" id="node3" title="STL class." alt="" coords="5,5,144,97"/>
 </map>

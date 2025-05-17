@@ -1,6 +1,7 @@
 
 # ignore all the content of build folder
 App/build/*
+ui/__pycache__/
 
 package-lock.json
 

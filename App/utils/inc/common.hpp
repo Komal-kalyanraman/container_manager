@@ -29,6 +29,16 @@ struct MqttConfig {
     const int BrokerPort = 1883;
     const std::string Topic = "container/execute";
     const std::string ClientId = "container_manager_mqtt_subscriber";
+    const std::string ClearRetainedClientId = "cm_clear_retained";
+};
+
+/// @struct MessageQueueConfig
+/// @brief Holds constant configuration for the POSIX message queue consumer.
+struct MessageQueueConfig {
+    const std::string QueueName = "/container_manager_queue";
+    const long MaxMsgSize = 8192;      ///< Maximum size of each message (bytes)
+    const long MaxMsgCount = 10;       ///< Maximum number of messages in the queue
+    const long SleepTime = 10000;        ///< Sleep time in microseconds
 };
 
 /// @struct RuntimeName

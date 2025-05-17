@@ -10,5 +10,17 @@
 
 #pragma once
 
-/// @brief Initializes the project (logging and database).
+/// @brief Initializes logging.
+void InitLogging();
+
+/// @brief Initializes and clears the database.
+void InitDatabase();
+
+/// @brief Clears the POSIX message queue.
+void InitMessageQueue();
+
+/// @brief Clears retained MQTT messages.
+void InitMqttRetainedMessages();
+
+/// @brief Initializes all enabled project subsystems.
 void InitProject();

@@ -6,15 +6,42 @@
 #include "inc/init_handler.hpp"
 
 #include <glog/logging.h>
+#include <mqueue.h>
+#include <mosquitto.h>
 
 #include "inc/common.hpp"
 #include "inc/redis_database.hpp"
 
-void InitProject() {
-    // Initialize logging
+void InitLogging() {
     google::InitGoogleLogging(kContainerManagerLogName.c_str());
+}
 
-    // Clear database before starting the server
+void InitDatabase() {
     IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
-    db.ClearDatabase(); // You need to implement this in RedisDatabaseHandler if not present
+    db.ClearDatabase();
+}
+
+void InitMessageQueue() {
+    MessageQueueConfig mq_cfg;
+    mq_unlink(mq_cfg.QueueName.c_str());
+}
+
+void InitMqttRetainedMessages() {
+    MqttConfig mqtt_cfg;
+    mosquitto_lib_init();
+    struct mosquitto *mosq = mosquitto_new(mqtt_cfg.ClearRetainedClientId.c_str(), true, nullptr);
+    if (mosq) {
+        mosquitto_connect(mosq, mqtt_cfg.BrokerAddress.c_str(), mqtt_cfg.BrokerPort, 60);
+        mosquitto_publish(mosq, nullptr, mqtt_cfg.Topic.c_str(), 0, nullptr, 0, true);
+        mosquitto_disconnect(mosq);
+        mosquitto_destroy(mosq);
+    }
+    mosquitto_lib_cleanup();
+}
+
+void InitProject() {
+    InitLogging();
+    InitDatabase();
+    InitMessageQueue();
+    InitMqttRetainedMessages();
 }

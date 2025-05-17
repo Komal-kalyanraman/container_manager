@@ -1,0 +1,3 @@
+<map id="MessageQueueConsumer" name="MessageQueueConsumer">
+<area shape="rect" id="node1" title="Consumes messages from a POSIX message queue and dispatches them to a RequestExecutor." alt="" coords="5,5,229,127"/>
+</map>

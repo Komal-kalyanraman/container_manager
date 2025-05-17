@@ -33,19 +33,20 @@ var NAVTREE =
     [ "API Usage", "index.html#autotoc_md7", [
       [ "Example JSON Request", "index.html#autotoc_md8", null ],
       [ "HTTP Endpoint", "index.html#autotoc_md9", null ],
-      [ "MQTT Usage", "index.html#autotoc_md10", null ]
+      [ "MQTT Usage", "index.html#autotoc_md10", null ],
+      [ "POSIX Message Queue Usage", "index.html#autotoc_md11", null ]
     ] ],
-    [ "Code Structure", "index.html#autotoc_md11", null ],
-    [ "Python UI: Container Creator", "index.html#autotoc_md12", [
-      [ "Features", "index.html#autotoc_md13", null ],
-      [ "Requirements", "index.html#autotoc_md14", null ],
-      [ "Usage", "index.html#autotoc_md15", null ]
+    [ "Code Structure", "index.html#autotoc_md12", null ],
+    [ "Python UI: Container Creator", "index.html#autotoc_md13", [
+      [ "Features", "index.html#autotoc_md14", null ],
+      [ "Requirements", "index.html#autotoc_md15", null ],
+      [ "Usage", "index.html#autotoc_md16", null ]
     ] ],
-    [ "Documentation", "index.html#autotoc_md16", null ],
-    [ "Extending the Project", "index.html#autotoc_md17", null ],
-    [ "Contributing", "index.html#autotoc_md18", null ],
-    [ "License", "index.html#autotoc_md19", null ],
-    [ "Acknowledgements", "index.html#autotoc_md20", null ],
+    [ "Documentation", "index.html#autotoc_md17", null ],
+    [ "Extending the Project", "index.html#autotoc_md18", null ],
+    [ "Contributing", "index.html#autotoc_md19", null ],
+    [ "License", "index.html#autotoc_md20", null ],
+    [ "Acknowledgements", "index.html#autotoc_md21", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -72,7 +73,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "CMakeCXXCompilerId_8cpp.html",
-"pages.html"
+"logging_8hpp.html#a8793ad9b04ae96b2ad54608d1b70e07c"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

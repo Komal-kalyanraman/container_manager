@@ -57,7 +57,6 @@ add_subdirectory(runtime)
 add_subdirectory(executor)
 add_subdirectory(database)
 
-# link_libraries(mosquitto mosquittopp)
 link_directories("${HOME_DIR}/cpp_redis/build")
 
 ####### GTests ########
@@ -84,5 +83,4 @@ target_link_libraries(CM
   librt.so
   pthread
   cpp_redis
-  # mosquittopp
 )

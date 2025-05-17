@@ -82,12 +82,64 @@ $(document).ready(function(){initNavTree('messagequeue__consumer_8cpp.html','');
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">messagequeue_consumer.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
+<p>Implements the <a class="el" href="classMessageQueueConsumer.html" title="Consumes messages from a POSIX message queue and dispatches them to a RequestExecutor.">MessageQueueConsumer</a> class for handling messages from a POSIX message queue.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="messagequeue__consumer_8hpp_source.html">inc/messagequeue_consumer.hpp</a>&quot;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;cstring&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;nlohmann/json.hpp&gt;</code><br />
+<code>#include &lt;mqueue.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for messagequeue_consumer.cpp:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="messagequeue__consumer_8cpp__incl.svg" width="100%" height="563"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+</div>
 <p><a href="messagequeue__consumer_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a6586e6fa135113137b3bcc981cd780a2"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="messagequeue__consumer_8cpp.html#a6586e6fa135113137b3bcc981cd780a2">MQ_MAX_MSG_SIZE</a> = 4096</td></tr>
+<tr class="separator:a6586e6fa135113137b3bcc981cd780a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implements the <a class="el" href="classMessageQueueConsumer.html" title="Consumes messages from a POSIX message queue and dispatches them to a RequestExecutor.">MessageQueueConsumer</a> class for handling messages from a POSIX message queue. </p>
+
+<p class="definition">Definition in file <a class="el" href="messagequeue__consumer_8cpp_source.html">messagequeue_consumer.cpp</a>.</p>
+</div><h2 class="groupheader">Variable Documentation</h2>
+<a id="a6586e6fa135113137b3bcc981cd780a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6586e6fa135113137b3bcc981cd780a2">&#9670;&nbsp;</a></span>MQ_MAX_MSG_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr size_t MQ_MAX_MSG_SIZE = 4096</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="messagequeue__consumer_8cpp_source.html#l00015">15</a> of file <a class="el" href="messagequeue__consumer_8cpp_source.html">messagequeue_consumer.cpp</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

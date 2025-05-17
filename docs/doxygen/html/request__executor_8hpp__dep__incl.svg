@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 520;
+var viewWidth = 708;
 var viewHeight = 229;
 var sectionId = 'dynsection-1';
 </script>
@@ -54,137 +54,175 @@ var sectionId = 'dynsection-1';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>executor/inc/request_executor.hpp</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-225 516,-225 516,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-225 703.5,-225 703.5,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Declares the abstract RequestExecutor interface for executing requests.">
-<polygon fill="#bfbfbf" stroke="black" points="153,-190.5 153,-220.5 269,-220.5 269,-190.5 153,-190.5"/>
-<text text-anchor="start" x="161" y="-208.5" font-family="Helvetica,sans-Serif" font-size="10.00">executor/inc/request</text>
-<text text-anchor="middle" x="211" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">_executor.hpp</text>
+<polygon fill="#bfbfbf" stroke="black" points="232.5,-190.5 232.5,-220.5 348.5,-220.5 348.5,-190.5 232.5,-190.5"/>
+<text text-anchor="start" x="240.5" y="-208.5" font-family="Helvetica,sans-Serif" font-size="10.00">executor/inc/request</text>
+<text text-anchor="middle" x="290.5" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">_executor.hpp</text>
 </a>
 </g>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="mosquitto__mqtt__subscriber_8hpp.html" target="_top" xlink:title="Declares the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto.">
-<polygon fill="white" stroke="black" points="69,-123.5 69,-153.5 199,-153.5 199,-123.5 69,-123.5"/>
-<text text-anchor="start" x="77" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">api/inc/mosquitto_mqtt</text>
-<text text-anchor="middle" x="134" y="-130.5" font-family="Helvetica,sans-Serif" font-size="10.00">_subscriber.hpp</text>
+<g id="a_node2"><a xlink:href="message__queue__consumer_8hpp.html" target="_top" xlink:title="Declares the MessageQueueConsumer class for handling messages from a POSIX message queue.">
+<polygon fill="white" stroke="black" points="76,-123.5 76,-153.5 207,-153.5 207,-123.5 76,-123.5"/>
+<text text-anchor="start" x="84" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">api/inc/message_queue</text>
+<text text-anchor="middle" x="141.5" y="-130.5" font-family="Helvetica,sans-Serif" font-size="10.00">_consumer.hpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M186.58,-183.88C174.88,-174.01 161.16,-162.43 150.68,-153.58"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="184.39,-186.62 194.29,-190.4 188.91,-181.27 184.39,-186.62"/>
+<path fill="none" stroke="midnightblue" d="M248.71,-186.27C224.98,-175.92 195.72,-163.15 173.77,-153.58"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="247.6,-189.61 258.17,-190.4 250.4,-183.19 247.6,-189.61"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="json__request__executor_8hpp.html" target="_top" xlink:title="Defines the JsonRequestExecutorHandler class for executing JSON&#45;based requests.">
-<polygon fill="white" stroke="black" points="217,-123.5 217,-153.5 359,-153.5 359,-123.5 217,-123.5"/>
-<text text-anchor="start" x="225" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">executor/inc/json_request</text>
-<text text-anchor="middle" x="288" y="-130.5" font-family="Helvetica,sans-Serif" font-size="10.00">_executor.hpp</text>
+<g id="a_node5"><a xlink:href="mosquitto__mqtt__subscriber_8hpp.html" target="_top" xlink:title="Declares the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto.">
+<polygon fill="white" stroke="black" points="225.5,-123.5 225.5,-153.5 355.5,-153.5 355.5,-123.5 225.5,-123.5"/>
+<text text-anchor="start" x="233.5" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">api/inc/mosquitto_mqtt</text>
+<text text-anchor="middle" x="290.5" y="-130.5" font-family="Helvetica,sans-Serif" font-size="10.00">_subscriber.hpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
 <title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M235.42,-183.88C247.12,-174.01 260.84,-162.43 271.32,-153.58"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="233.09,-181.27 227.71,-190.4 237.61,-186.62 233.09,-181.27"/>
+<path fill="none" stroke="midnightblue" d="M290.5,-180.11C290.5,-171.15 290.5,-161.32 290.5,-153.58"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="287,-180.4 290.5,-190.4 294,-180.4 287,-180.4"/>
+</g>
+<!-- Node7 -->
+<g id="node7" class="node">
+<title>Node7</title>
+<g id="a_node7"><a xlink:href="json__request__executor_8hpp.html" target="_top" xlink:title="Defines the JsonRequestExecutorHandler class for executing JSON&#45;based requests.">
+<polygon fill="white" stroke="black" points="388.5,-123.5 388.5,-153.5 530.5,-153.5 530.5,-123.5 388.5,-123.5"/>
+<text text-anchor="start" x="396.5" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">executor/inc/json_request</text>
+<text text-anchor="middle" x="459.5" y="-130.5" font-family="Helvetica,sans-Serif" font-size="10.00">_executor.hpp</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node7 -->
+<g id="edge7" class="edge">
+<title>Node1&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M336.83,-186.68C363.93,-176.26 397.67,-163.28 422.9,-153.58"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="335.25,-183.54 327.17,-190.4 337.76,-190.07 335.25,-183.54"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="mosquitto__mqtt__subscriber_8cpp.html" target="_top" xlink:title="Implements the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto.">
-<polygon fill="white" stroke="black" points="0,-56.5 0,-86.5 130,-86.5 130,-56.5 0,-56.5"/>
-<text text-anchor="start" x="8" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">api/src/mosquitto_mqtt</text>
-<text text-anchor="middle" x="65" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">_subscriber.cpp</text>
+<g id="a_node3"><a xlink:href="message__queue__consumer_8cpp.html" target="_top" xlink:title="Implements the MessageQueueConsumer class for handling messages from a POSIX message queue.">
+<polygon fill="white" stroke="black" points="0,-56.5 0,-86.5 131,-86.5 131,-56.5 0,-56.5"/>
+<text text-anchor="start" x="8" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">api/src/message_queue</text>
+<text text-anchor="middle" x="65.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">_consumer.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node2&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M111.51,-116.31C101.16,-106.56 89.16,-95.26 79.94,-86.58"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="109.35,-119.09 119.03,-123.4 114.15,-113.99 109.35,-119.09"/>
+<path fill="none" stroke="midnightblue" d="M117.39,-116.88C105.84,-107.01 92.31,-95.43 81.96,-86.58"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="115.13,-119.56 125.01,-123.4 119.68,-114.24 115.13,-119.56"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
 <g id="a_node4"><a xlink:href="main_8cpp.html" target="_top" xlink:title="Entry point for the Container Manager application.">
-<polygon fill="white" stroke="black" points="154,-0.5 154,-19.5 216,-19.5 216,-0.5 154,-0.5"/>
-<text text-anchor="middle" x="185" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">main.cpp</text>
+<polygon fill="white" stroke="black" points="249.5,-0.5 249.5,-19.5 311.5,-19.5 311.5,-0.5 249.5,-0.5"/>
+<text text-anchor="middle" x="280.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">main.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node4 -->
 <g id="edge3" class="edge">
 <title>Node2&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M143.52,-113.89C154.99,-85.43 173.7,-39.03 181.46,-19.79"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="140.15,-112.9 139.65,-123.48 146.64,-115.51 140.15,-112.9"/>
+<path fill="none" stroke="midnightblue" d="M156.95,-114.93C169.54,-97.55 188.46,-73.6 208.5,-56 225.56,-41.02 248.15,-27.78 263.44,-19.6"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="153.91,-113.17 150.97,-123.35 159.61,-117.22 153.91,-113.17"/>
 </g>
 <!-- Node5&#45;&gt;Node4 -->
-<g id="edge9" class="edge">
+<g id="edge6" class="edge">
 <title>Node5&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M251.28,-118.12C238.44,-109.91 224.81,-99.36 215,-87 198.42,-66.11 190.01,-34.91 186.72,-19.82"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="249.62,-121.21 259.98,-123.43 253.27,-115.23 249.62,-121.21"/>
+<path fill="none" stroke="midnightblue" d="M247.68,-118.19C235.36,-110.38 223.4,-100.06 216.5,-87 210.06,-74.82 210.15,-68.23 216.5,-56 225.39,-38.88 244.11,-26.91 259.02,-19.64"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="246.25,-121.41 256.65,-123.44 249.79,-115.37 246.25,-121.41"/>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="http__server_8hpp.html" target="_top" xlink:title="Defines the HttpServerHandler class for handling HTTP requests.">
-<polygon fill="white" stroke="black" points="224,-62 224,-81 352,-81 352,-62 224,-62"/>
-<text text-anchor="middle" x="288" y="-69" font-family="Helvetica,sans-Serif" font-size="10.00">api/inc/http_server.hpp</text>
+<g id="a_node6"><a xlink:href="mosquitto__mqtt__subscriber_8cpp.html" target="_top" xlink:title="Implements the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto.">
+<polygon fill="white" stroke="black" points="225.5,-56.5 225.5,-86.5 355.5,-86.5 355.5,-56.5 225.5,-56.5"/>
+<text text-anchor="start" x="233.5" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">api/src/mosquitto_mqtt</text>
+<text text-anchor="middle" x="290.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">_subscriber.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node5&#45;&gt;Node6 -->
 <g id="edge5" class="edge">
 <title>Node5&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M288,-113.25C288,-102.02 288,-89.38 288,-81.19"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="284.5,-113.4 288,-123.4 291.5,-113.4 284.5,-113.4"/>
+<path fill="none" stroke="midnightblue" d="M290.5,-113.11C290.5,-104.15 290.5,-94.32 290.5,-86.58"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="287,-113.4 290.5,-123.4 294,-113.4 287,-113.4"/>
+</g>
+<!-- Node7&#45;&gt;Node4 -->
+<g id="edge12" class="edge">
+<title>Node7&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M435.72,-116.63C410.1,-94.22 371.98,-61.12 364.5,-56 343.21,-41.42 316.67,-27.9 299.19,-19.56"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="433.72,-119.53 443.54,-123.48 438.33,-114.26 433.72,-119.53"/>
 </g>
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="json__request__executor_8cpp.html" target="_top" xlink:title="Implements the JsonRequestExecutorHandler class for executing JSON&#45;based requests.">
-<polygon fill="white" stroke="black" points="370,-56.5 370,-86.5 512,-86.5 512,-56.5 370,-56.5"/>
-<text text-anchor="start" x="378" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">executor/src/json_request</text>
-<text text-anchor="middle" x="441" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">_executor.cpp</text>
+<g id="a_node8"><a xlink:href="http__server_8hpp.html" target="_top" xlink:title="Defines the HttpServerHandler class for handling HTTP requests.">
+<polygon fill="white" stroke="black" points="411.5,-62 411.5,-81 539.5,-81 539.5,-62 411.5,-62"/>
+<text text-anchor="middle" x="475.5" y="-69" font-family="Helvetica,sans-Serif" font-size="10.00">api/inc/http_server.hpp</text>
 </a>
 </g>
 </g>
-<!-- Node5&#45;&gt;Node8 -->
+<!-- Node7&#45;&gt;Node8 -->
 <g id="edge8" class="edge">
-<title>Node5&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M330.59,-119.41C355.02,-109.03 385.22,-96.2 407.87,-86.58"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="329.03,-116.26 321.2,-123.4 331.77,-122.71 329.03,-116.26"/>
+<title>Node7&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M465.38,-113.6C468.17,-102.28 471.32,-89.46 473.36,-81.19"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="461.96,-112.85 462.97,-123.4 468.76,-114.52 461.96,-112.85"/>
 </g>
-<!-- Node6&#45;&gt;Node4 -->
-<g id="edge7" class="edge">
-<title>Node6&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M264.46,-56.9C244.54,-45.4 216.62,-29.27 199.73,-19.51"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="262.83,-60 273.24,-61.98 266.33,-53.94 262.83,-60"/>
-</g>
-<!-- Node7 -->
-<g id="node7" class="node">
-<title>Node7</title>
-<g id="a_node7"><a xlink:href="http__server_8cpp.html" target="_top" xlink:title="Implements the HttpServerHandler class for handling HTTP requests.">
-<polygon fill="white" stroke="black" points="234,-0.5 234,-19.5 362,-19.5 362,-0.5 234,-0.5"/>
-<text text-anchor="middle" x="298" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">api/src/http_server.cpp</text>
+<!-- Node10 -->
+<g id="node10" class="node">
+<title>Node10</title>
+<g id="a_node10"><a xlink:href="json__request__executor_8cpp.html" target="_top" xlink:title="Implements the JsonRequestExecutorHandler class for executing JSON&#45;based requests.">
+<polygon fill="white" stroke="black" points="557.5,-56.5 557.5,-86.5 699.5,-86.5 699.5,-56.5 557.5,-56.5"/>
+<text text-anchor="start" x="565.5" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">executor/src/json_request</text>
+<text text-anchor="middle" x="628.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">_executor.cpp</text>
 </a>
 </g>
 </g>
-<!-- Node6&#45;&gt;Node7 -->
-<g id="edge6" class="edge">
-<title>Node6&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M291.14,-51.82C292.96,-41 295.16,-27.9 296.57,-19.51"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="287.64,-51.53 289.43,-61.98 294.54,-52.69 287.64,-51.53"/>
+<!-- Node7&#45;&gt;Node10 -->
+<g id="edge11" class="edge">
+<title>Node7&#45;&gt;Node10</title>
+<path fill="none" stroke="midnightblue" d="M505.83,-119.68C532.93,-109.26 566.67,-96.28 591.9,-86.58"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="504.25,-116.54 496.17,-123.4 506.76,-123.07 504.25,-116.54"/>
+</g>
+<!-- Node8&#45;&gt;Node4 -->
+<g id="edge10" class="edge">
+<title>Node8&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M437.9,-59.03C400.01,-47.46 342.39,-29.88 308.39,-19.51"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="436.98,-62.4 447.56,-61.98 439.02,-55.71 436.98,-62.4"/>
+</g>
+<!-- Node9 -->
+<g id="node9" class="node">
+<title>Node9</title>
+<g id="a_node9"><a xlink:href="http__server_8cpp.html" target="_top" xlink:title="Implements the HttpServerHandler class for handling HTTP requests.">
+<polygon fill="white" stroke="black" points="411.5,-0.5 411.5,-19.5 539.5,-19.5 539.5,-0.5 411.5,-0.5"/>
+<text text-anchor="middle" x="475.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">api/src/http_server.cpp</text>
+</a>
+</g>
+</g>
+<!-- Node8&#45;&gt;Node9 -->
+<g id="edge9" class="edge">
+<title>Node8&#45;&gt;Node9</title>
+<path fill="none" stroke="midnightblue" d="M475.5,-51.82C475.5,-41 475.5,-27.9 475.5,-19.51"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="472,-51.98 475.5,-61.98 479,-51.98 472,-51.98"/>
 </g>
 </g>
 </svg>

@@ -2,7 +2,7 @@ set(APP_NAME cm_api)
 
 add_library(${APP_NAME} STATIC
     src/http_server.cpp
-    # src/messagequeue_consumer.cpp
+    src/message_queue_consumer.cpp
     src/mosquitto_mqtt_subscriber.cpp
 )
 

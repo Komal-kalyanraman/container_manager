@@ -1,5 +1,9 @@
 <map id="InitProject" name="InitProject">
-<area shape="rect" id="node1" title="Initializes logging and clears the database before server startup." alt="" coords="5,35,93,61"/>
-<area shape="rect" id="node2" href="$classIDatabaseHandler.html#a79f638c8332acdfb054d1f915f77c760" title="Clears all data from the database." alt="" coords="141,5,384,32"/>
-<area shape="rect" id="node3" href="$classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce" title="Retrieves the singleton instance of the RedisDatabaseHandler." alt="" coords="177,57,348,98"/>
+<area shape="rect" id="node1" title="Initializes all enabled project subsystems." alt="" coords="5,111,93,137"/>
+<area shape="rect" id="node2" href="$init__handler_8cpp.html#a3ca899cad245b508cfb58fd9230fa669" title="Initializes and clears the database." alt="" coords="187,35,292,61"/>
+<area shape="rect" id="node5" href="$init__handler_8cpp.html#a9c6fd2b1fc6d60ab2f80b2799b0fa81e" title="Initializes logging and clears the database before server startup." alt="" coords="192,85,287,112"/>
+<area shape="rect" id="node6" href="$init__handler_8cpp.html#ac622dccafc9db8b54a3d5ef6d98eed8e" title="Clears the POSIX message queue." alt="" coords="168,136,311,163"/>
+<area shape="rect" id="node7" href="$init__handler_8cpp.html#a57b18ca1632517db21aa1491c585762a" title="Clears retained MQTT messages." alt="" coords="141,187,337,213"/>
+<area shape="rect" id="node3" href="$classIDatabaseHandler.html#a79f638c8332acdfb054d1f915f77c760" title="Clears all data from the database." alt="" coords="385,5,628,32"/>
+<area shape="rect" id="node4" href="$classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce" title="Retrieves the singleton instance of the RedisDatabaseHandler." alt="" coords="421,57,592,98"/>
 </map>

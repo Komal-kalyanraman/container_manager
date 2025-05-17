@@ -19,6 +19,8 @@ var annotated_dup =
     [ "IDatabaseHandler", "classIDatabaseHandler.html", "classIDatabaseHandler" ],
     [ "Invoker", "classInvoker.html", "classInvoker" ],
     [ "JsonRequestExecutorHandler", "classJsonRequestExecutorHandler.html", "classJsonRequestExecutorHandler" ],
+    [ "MessageQueueConfig", "structMessageQueueConfig.html", "structMessageQueueConfig" ],
+    [ "MessageQueueConsumer", "classMessageQueueConsumer.html", "classMessageQueueConsumer" ],
     [ "MosquittoMqttSubscriber", "classMosquittoMqttSubscriber.html", "classMosquittoMqttSubscriber" ],
     [ "MqttConfig", "structMqttConfig.html", "structMqttConfig" ],
     [ "PodmanApiCreateContainerCommand", "classPodmanApiCreateContainerCommand.html", "classPodmanApiCreateContainerCommand" ],

@@ -86,8 +86,40 @@ $(document).ready(function(){initNavTree('messagequeue__consumer_8hpp_source.htm
 <div class="title">messagequeue_consumer.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="messagequeue__consumer_8hpp.html">Go to the documentation of this file.</a><div class="fragment"></div><!-- fragment --></div><!-- contents -->
+<a href="messagequeue__consumer_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="request__executor_8hpp.html">inc/request_executor.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classMessageQueueConsumer.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMessageQueueConsumer.html">MessageQueueConsumer</a> {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classMessageQueueConsumer.html#a32e2bf26baff17cdb5aaecbb74b0b033">MessageQueueConsumer</a>(<span class="keyword">const</span> std::string&amp; queue_name, std::shared_ptr&lt;RequestExecutor&gt; executor);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classMessageQueueConsumer.html#adc45cd278c63f22c40a33b7ff1a567ac">~MessageQueueConsumer</a>();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMessageQueueConsumer.html#a040e15d2f1ec97bdc4af3aa46cb11f45">Start</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMessageQueueConsumer.html#abd022ef156cddc716da988beec4c174e">Stop</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> ConsumeLoop();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    std::string queue_name_;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::shared_ptr&lt;RequestExecutor&gt; executor_;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">bool</span> running_;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    std::thread consumer_thread_;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
+</div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="aclassMessageQueueConsumer_html_adc45cd278c63f22c40a33b7ff1a567ac"><div class="ttname"><a href="classMessageQueueConsumer.html#adc45cd278c63f22c40a33b7ff1a567ac">MessageQueueConsumer::~MessageQueueConsumer</a></div><div class="ttdeci">~MessageQueueConsumer()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition:</b> <a href="messagequeue__consumer_8cpp_source.html#l00020">messagequeue_consumer.cpp:20</a></div></div>
+<div class="ttc" id="aclassMessageQueueConsumer_html_abd022ef156cddc716da988beec4c174e"><div class="ttname"><a href="classMessageQueueConsumer.html#abd022ef156cddc716da988beec4c174e">MessageQueueConsumer::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">Stops the message queue consumer loop.</div><div class="ttdef"><b>Definition:</b> <a href="messagequeue__consumer_8cpp_source.html#l00029">messagequeue_consumer.cpp:29</a></div></div>
+<div class="ttc" id="aclassMessageQueueConsumer_html_a32e2bf26baff17cdb5aaecbb74b0b033"><div class="ttname"><a href="classMessageQueueConsumer.html#a32e2bf26baff17cdb5aaecbb74b0b033">MessageQueueConsumer::MessageQueueConsumer</a></div><div class="ttdeci">MessageQueueConsumer(const std::string &amp;queue_name, std::shared_ptr&lt; RequestExecutor &gt; executor)</div><div class="ttdoc">Constructs a MessageQueueConsumer.</div><div class="ttdef"><b>Definition:</b> <a href="messagequeue__consumer_8cpp_source.html#l00017">messagequeue_consumer.cpp:17</a></div></div>
+<div class="ttc" id="aclassMessageQueueConsumer_html"><div class="ttname"><a href="classMessageQueueConsumer.html">MessageQueueConsumer</a></div><div class="ttdoc">Consumes messages from a POSIX message queue and dispatches them to a RequestExecutor.</div><div class="ttdef"><b>Definition:</b> <a href="messagequeue__consumer_8hpp_source.html#l00015">messagequeue_consumer.hpp:15</a></div></div>
+<div class="ttc" id="arequest__executor_8hpp_html"><div class="ttname"><a href="request__executor_8hpp.html">request_executor.hpp</a></div><div class="ttdoc">Declares the abstract RequestExecutor interface for executing requests.</div></div>
+<div class="ttc" id="aclassMessageQueueConsumer_html_a040e15d2f1ec97bdc4af3aa46cb11f45"><div class="ttname"><a href="classMessageQueueConsumer.html#a040e15d2f1ec97bdc4af3aa46cb11f45">MessageQueueConsumer::Start</a></div><div class="ttdeci">void Start()</div><div class="ttdoc">Starts the message queue consumer loop in a separate thread.</div><div class="ttdef"><b>Definition:</b> <a href="messagequeue__consumer_8cpp_source.html#l00024">messagequeue_consumer.cpp:24</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

@@ -2,9 +2,9 @@
  * @file main.cpp
  * @brief Entry point for the Container Manager application.
  *
- * This file initializes logging, clears the database, starts the HTTP server and MQTT subscriber,
+ * This file initializes logging, clears the database, starts the HTTP server, MQTT subscriber, Message Queue consumer
  * and handles application shutdown. The HTTP server listens for REST requests, while the MQTT subscriber
- * listens for messages on a configured topic. Both use a shared request executor for processing incoming data.
+ * listens for messages on a configured topic, Message Queue consumer checks the queue. All protocols use a shared request executor for processing incoming data.
  */
 
 #include <memory>
@@ -13,19 +13,20 @@
 #include "inc/common.hpp"
 #include "inc/http_server.hpp"
 #include "inc/init_handler.hpp"
+#include "inc/message_queue_consumer.hpp"
 #include "inc/json_request_executor.hpp"
 #include "inc/mosquitto_mqtt_subscriber.hpp"
 
 /**
  * @brief Main function for the Container Manager application.
  * 
- * Initializes the project, creates the shared request executor, starts the HTTP server and MQTT subscriber,
- * and waits for the HTTP server thread to finish. Cleans up logging resources on shutdown.
+ * Initializes the project, creates the shared request executor, starts the HTTP server, MQTT subscriber,
+ * Message Queueu Consumer and waits for the HTTP server thread to finish. Cleans up logging resources on shutdown.
  * 
  * @return int Exit status code.
  */
 int main() {
-    InitProject();  ///< Initialize logging and clear the database.
+    InitProject();  ///< Initialize and clear the database, protocols.
 
     // Create the shared JSON request executor
     auto executor = std::make_shared<JsonRequestExecutorHandler>();
@@ -46,9 +47,15 @@ int main() {
     MosquittoMqttSubscriber mqtt_sub(mqtt_cfg.BrokerAddress, mqtt_cfg.BrokerPort, mqtt_cfg.Topic, executor);
     mqtt_sub.Start();
 
+    // Message Queue consumer configuration
+    MessageQueueConfig mq_cfg;
+    MessageQueueConsumer mq_consumer(mq_cfg, executor);
+    mq_consumer.Start();
+
     // Wait for HTTP server thread to finish (in production, handle shutdown signals properly)
     http_thread.join();
 
-    google::ShutdownGoogleLogging();  ///< Cleanly shutdown Google logging.
+    mq_consumer.Stop();                 ///< Stop the message queue consumer.
+    google::ShutdownGoogleLogging();    ///< Cleanly shutdown Google logging.
     return 0;
 }

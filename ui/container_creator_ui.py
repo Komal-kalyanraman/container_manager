@@ -2,12 +2,12 @@
 container_creator_ui.py
 
 A Tkinter-based GUI for generating and sending container management requests to the Container Manager C++ backend.
-Users can select between REST and MQTT protocols, fill in container parameters, and send requests directly to the backend.
+Users can select between REST, MQTT, and Message Queue protocols, fill in container parameters, and send requests directly to the backend.
 
 Features:
-- Select protocol (REST or MQTT)
+- Select protocol (REST, MQTT, or Message Queue)
 - Fill in container parameters (runtime, operation, resources, etc.)
-- Send JSON requests via REST or MQTT
+- Send JSON requests via REST, MQTT, or POSIX Message Queue
 
 Usage:
     This class is instantiated and run from container_creator_app.py.
@@ -15,11 +15,12 @@ Usage:
 
 import os
 import tkinter as tk
-from tkinter import ttk, scrolledtext, messagebox
+from tkinter import ttk, messagebox
 from container_creator_logic import build_json
 import requests
 import json
 import paho.mqtt.publish as publish
+import posix_ipc
 
 class ContainerCreatorUI:
     def __init__(self, root):
@@ -29,7 +30,7 @@ class ContainerCreatorUI:
         # Protocol selection
         ttk.Label(root, text="Protocol:").grid(row=0, column=0, sticky="w")
         self.protocol_var = tk.StringVar(value="REST")
-        protocol_options = ["REST", "MQTT"]
+        protocol_options = ["REST", "MQTT", "MessageQueue"]
         self.protocol_menu = ttk.Combobox(root, textvariable=self.protocol_var, values=protocol_options, state="readonly")
         self.protocol_menu.grid(row=0, column=1, sticky="ew")
 
@@ -103,10 +104,11 @@ class ContainerCreatorUI:
         self.mqtt_topic_entry.insert(0, "container/execute")
         self.mqtt_topic_entry.grid(row=11, column=1, sticky="ew")
 
-        # Command output area (optional, can be removed if not needed)
-        # ttk.Label(root, text="Generated Command:").grid(row=12, column=0, sticky="nw")
-        # self.command_area = scrolledtext.ScrolledText(root, height=6, width=80)
-        # self.command_area.grid(row=12, column=1, columnspan=2, sticky="ew")
+        # Message Queue name field (for MessageQueue)
+        ttk.Label(root, text="Message Queue Name:").grid(row=12, column=0, sticky="w")
+        self.mq_name_entry = ttk.Entry(root)
+        self.mq_name_entry.insert(0, "/container_manager_queue")
+        self.mq_name_entry.grid(row=12, column=1, sticky="ew")
 
         # Only Send button
         self.send_btn = ttk.Button(root, text="Send", command=self.send_json)
@@ -163,3 +165,14 @@ class ContainerCreatorUI:
                 messagebox.showinfo("Sent", f"JSON sent to MQTT broker {broker}:{mqtt_port} on topic '{topic}'")
             except Exception as e:
                 messagebox.showerror("Error", f"Failed to send MQTT message: {e}")
+        elif protocol == "MessageQueue":
+            mq_name = self.mq_name_entry.get().strip()
+            if not mq_name:
+                messagebox.showerror("Error", "Please enter a valid message queue name.")
+                return
+            try:
+                mq = posix_ipc.MessageQueue(mq_name, posix_ipc.O_CREAT)
+                mq.send(json.dumps(data))
+                messagebox.showinfo("Sent", f"JSON sent to message queue '{mq_name}'")
+            except Exception as e:
+                messagebox.showerror("Error", f"Failed to send message to queue: {e}")

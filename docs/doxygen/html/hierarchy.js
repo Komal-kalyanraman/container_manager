@@ -31,6 +31,8 @@ var hierarchy =
       [ "RedisDatabaseHandler", "classRedisDatabaseHandler.html", null ]
     ] ],
     [ "Invoker", "classInvoker.html", null ],
+    [ "MessageQueueConfig", "structMessageQueueConfig.html", null ],
+    [ "MessageQueueConsumer", "classMessageQueueConsumer.html", null ],
     [ "mosquittopp", null, [
       [ "MosquittoMqttSubscriber", "classMosquittoMqttSubscriber.html", null ]
     ] ],
