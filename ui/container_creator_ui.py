@@ -2,12 +2,14 @@
 container_creator_ui.py
 
 A Tkinter-based GUI for generating and sending container management requests to the Container Manager C++ backend.
-Users can select between REST, MQTT, and Message Queue protocols, fill in container parameters, and send requests directly to the backend.
+Users can select between REST, MQTT, Message Queue, and D-Bus protocols, fill in container parameters, and send requests directly to the backend.
+Supports sending data as JSON or Protobuf.
 
 Features:
-- Select protocol (REST, MQTT, or Message Queue)
+- Select protocol (REST, MQTT, MessageQueue, DBus)
+- Select data format (JSON, Proto)
 - Fill in container parameters (runtime, operation, resources, etc.)
-- Send JSON requests via REST, MQTT, or POSIX Message Queue
+- Send requests via REST, MQTT, POSIX Message Queue, or D-Bus
 
 Usage:
     This class is instantiated and run from container_creator_app.py.
@@ -16,7 +18,7 @@ Usage:
 import os
 import tkinter as tk
 from tkinter import ttk, messagebox
-from container_creator_logic import build_json
+from container_creator_logic import build_json, build_proto
 import requests
 import json
 import paho.mqtt.publish as publish
@@ -34,6 +36,13 @@ class ContainerCreatorUI:
         self.protocol_var = tk.StringVar(value="REST")
         self.protocol_menu = ttk.Combobox(root, textvariable=self.protocol_var, values=protocol_options, state="readonly")
         self.protocol_menu.grid(row=0, column=1, sticky="ew")
+
+        # Data format selection
+        ttk.Label(root, text="Data Format:").grid(row=0, column=2, sticky="w")
+        format_options = ["JSON", "Proto"]
+        self.format_var = tk.StringVar(value="JSON")
+        self.format_menu = ttk.Combobox(root, textvariable=self.format_var, values=format_options, state="readonly")
+        self.format_menu.grid(row=0, column=3, sticky="ew")
 
         # Runtime selection
         ttk.Label(root, text="Container Runtime:").grid(row=1, column=0, sticky="w")
@@ -128,13 +137,13 @@ class ContainerCreatorUI:
         self.dbus_interface_entry.grid(row=15, column=1, sticky="ew")
 
         # Send button
-        self.send_btn = ttk.Button(root, text="Send", command=self.send_json)
+        self.send_btn = ttk.Button(root, text="Send", command=self.send_request)
         self.send_btn.grid(row=16, column=0, pady=10, sticky="w")
 
         root.columnconfigure(1, weight=1)
 
-    def build_json(self):
-        return build_json(
+    def build_payload(self):
+        args = dict(
             runtime=self.runtime_var.get(),
             operation=self.operation_var.get(),
             container_name=self.name_entry.get().strip(),
@@ -144,10 +153,16 @@ class ContainerCreatorUI:
             restart_policy=self.restart_var.get(),
             image_name=self.image_entry.get().strip()
         )
+        if self.format_var.get() == "Proto":
+            return build_proto(**args)
+        else:
+            return build_json(**args)
 
-    def send_json(self):
-        data = self.build_json()
+    def send_request(self):
         protocol = self.protocol_var.get()
+        data_format = self.format_var.get()
+        payload = self.build_payload()
+
         if protocol == "REST":
             port = self.port_entry.get().strip()
             if not port.isdigit():
@@ -155,13 +170,18 @@ class ContainerCreatorUI:
                 return
             port = int(port)
             try:
-                response = requests.post(f"http://localhost:{port}/execute", json=data)
+                if data_format == "Proto":
+                    headers = {"Content-Type": "application/octet-stream"}
+                    response = requests.post(f"http://localhost:{port}/execute", data=payload, headers=headers)
+                else:
+                    response = requests.post(f"http://localhost:{port}/execute", json=payload)
                 if response.status_code == 200:
-                    messagebox.showinfo("Sent", f"JSON sent to server on port {port}")
+                    messagebox.showinfo("Sent", f"{data_format} sent to server on port {port}")
                 else:
                     messagebox.showerror("Error", f"Server error: {response.text}")
             except Exception as e:
-                messagebox.showerror("Error", f"Failed to send JSON: {e}")
+                messagebox.showerror("Error", f"Failed to send: {e}")
+
         elif protocol == "MQTT":
             broker = self.mqtt_broker_entry.get().strip()
             mqtt_port = self.mqtt_port_entry.get().strip()
@@ -171,15 +191,24 @@ class ContainerCreatorUI:
                 return
             mqtt_port = int(mqtt_port)
             try:
-                publish.single(
-                    topic,
-                    payload=json.dumps(data),
-                    hostname=broker,
-                    port=mqtt_port
-                )
-                messagebox.showinfo("Sent", f"JSON sent to MQTT broker {broker}:{mqtt_port} on topic '{topic}'")
+                if data_format == "Proto":
+                    publish.single(
+                        topic,
+                        payload=payload,
+                        hostname=broker,
+                        port=mqtt_port
+                    )
+                else:
+                    publish.single(
+                        topic,
+                        payload=json.dumps(payload),
+                        hostname=broker,
+                        port=mqtt_port
+                    )
+                messagebox.showinfo("Sent", f"{data_format} sent to MQTT broker {broker}:{mqtt_port} on topic '{topic}'")
             except Exception as e:
                 messagebox.showerror("Error", f"Failed to send MQTT message: {e}")
+
         elif protocol == "MessageQueue":
             mq_name = self.mq_name_entry.get().strip()
             if not mq_name:
@@ -187,10 +216,14 @@ class ContainerCreatorUI:
                 return
             try:
                 mq = posix_ipc.MessageQueue(mq_name, posix_ipc.O_CREAT)
-                mq.send(json.dumps(data))
-                messagebox.showinfo("Sent", f"JSON sent to message queue '{mq_name}'")
+                if data_format == "Proto":
+                    mq.send(payload)
+                else:
+                    mq.send(json.dumps(payload))
+                messagebox.showinfo("Sent", f"{data_format} sent to message queue '{mq_name}'")
             except Exception as e:
                 messagebox.showerror("Error", f"Failed to send message to queue: {e}")
+
         elif protocol == "DBus":
             bus_name = self.dbus_bus_name_entry.get().strip()
             object_path = self.dbus_object_path_entry.get().strip()
@@ -199,7 +232,10 @@ class ContainerCreatorUI:
                 bus = dbus.SessionBus()
                 proxy = bus.get_object(bus_name, object_path)
                 iface = dbus.Interface(proxy, dbus_interface=interface)
-                iface.Execute(json.dumps(data))
-                messagebox.showinfo("Sent", f"JSON sent via D-Bus to {bus_name}")
+                if data_format == "Proto":
+                    iface.Execute(payload)
+                else:
+                    iface.Execute(json.dumps(payload))
+                messagebox.showinfo("Sent", f"{data_format} sent via D-Bus to {bus_name}")
             except Exception as e:
                 messagebox.showerror("Error", f"Failed to send D-Bus message: {e}")

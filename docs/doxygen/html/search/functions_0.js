@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['checkruntimeavailable_260',['CheckRuntimeAvailable',['../classContainerServiceHandler.html#af17a1c94a543aa45bdcdba2b0674ab8a',1,'ContainerServiceHandler']]],
-  ['cleardatabase_261',['ClearDatabase',['../classIDatabaseHandler.html#a79f638c8332acdfb054d1f915f77c760',1,'IDatabaseHandler::ClearDatabase()'],['../classRedisDatabaseHandler.html#a6afaf7f4141c676d6b68eb8efd5ed96a',1,'RedisDatabaseHandler::ClearDatabase()']]],
-  ['containeroperations_262',['ContainerOperations',['../classContainerServiceHandler.html#a92b3d49dc72dfdf47661c33431aa9db9',1,'ContainerServiceHandler']]],
-  ['createcommand_263',['CreateCommand',['../classCommandFactory.html#a1ce3fdcfe96e7dc24e40c05b4387442f',1,'CommandFactory::CreateCommand(const std::string &amp;runtime_type, const std::string &amp;command_type)'],['../classCommandFactory.html#a6825f8560c806e75b0aae177024eadf6',1,'CommandFactory::CreateCommand(const std::string &amp;runtime_type, const std::string &amp;command_type, const std::string &amp;container_name)']]]
+  ['add_5fparameters_377',['add_parameters',['../classcontainermanager_1_1ContainerRequest.html#a255c7ec015015ed979f0fcaa577c04d8',1,'containermanager::ContainerRequest']]],
+  ['adddescriptors_378',['AddDescriptors',['../namespaceprotobuf__container__5fmanager__2eproto.html#aa46eb85aa98c9a7df47e2ae1eb3c4730',1,'protobuf_container_5fmanager_2eproto']]],
+  ['createmaybemessage_3c_3a_3acontainermanager_3a_3acontainerparameters_20_3e_379',['CreateMaybeMessage&lt;::containermanager::ContainerParameters &gt;',['../namespacegoogle_1_1protobuf.html#a6531fc6101ce9645e317c85b349faaa7',1,'google::protobuf']]],
+  ['createmaybemessage_3c_3a_3acontainermanager_3a_3acontainerrequest_20_3e_380',['CreateMaybeMessage&lt;::containermanager::ContainerRequest &gt;',['../namespacegoogle_1_1protobuf.html#a456329e77d919504652252a19ab9bc90',1,'google::protobuf']]]
 ];

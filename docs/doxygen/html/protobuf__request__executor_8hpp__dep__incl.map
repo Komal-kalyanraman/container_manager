@@ -1,0 +1,5 @@
+<map id="executor/inc/protobuf_request_executor.hpp" name="executor/inc/protobuf_request_executor.hpp">
+<area shape="rect" id="node1" title="Defines the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests." alt="" coords="79,5,250,47"/>
+<area shape="rect" id="node2" href="$protobuf__request__executor_8cpp.html" title="Implements the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests." alt="" coords="5,95,175,136"/>
+<area shape="rect" id="node3" href="$main_8cpp.html" title="Entry point for the Container Manager application." alt="" coords="199,102,282,129"/>
+</map>

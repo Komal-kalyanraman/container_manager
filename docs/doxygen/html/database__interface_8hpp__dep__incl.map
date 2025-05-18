@@ -1,9 +1,10 @@
 <map id="database/inc/database_interface.hpp" name="database/inc/database_interface.hpp">
-<area shape="rect" id="node1" title="Abstract interface for database operations." alt="" coords="478,5,647,47"/>
-<area shape="rect" id="node2" href="$redis__database_8hpp.html" title="Implements RedisDatabaseHandler for Redis&#45;based database operations." alt="" coords="439,95,580,136"/>
+<area shape="rect" id="node1" title="Abstract interface for database operations." alt="" coords="462,5,631,47"/>
+<area shape="rect" id="node2" href="$redis__database_8hpp.html" title="Implements RedisDatabaseHandler for Redis&#45;based database operations." alt="" coords="476,95,617,136"/>
 <area shape="rect" id="node4" href="$json__request__executor_8cpp.html" title="Implements the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="5,184,195,225"/>
-<area shape="rect" id="node5" href="$docker__commands_8cpp.html" title="Implements Docker command classes for container operations." alt="" coords="590,184,733,225"/>
-<area shape="rect" id="node6" href="$podman__commands_8cpp.html" title="Implements Podman command classes for container operations." alt="" coords="757,184,910,225"/>
-<area shape="rect" id="node3" href="$redis__database_8cpp.html" title="Implements RedisDatabaseHandler for Redis&#45;based database operations." alt="" coords="424,184,565,225"/>
-<area shape="rect" id="node7" href="$init__handler_8cpp.html" title="Implements project&#45;wide initialization functions." alt="" coords="219,191,400,218"/>
+<area shape="rect" id="node5" href="$protobuf__request__executor_8cpp.html" title="Implements the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests." alt="" coords="219,184,389,225"/>
+<area shape="rect" id="node6" href="$docker__commands_8cpp.html" title="Implements Docker command classes for container operations." alt="" coords="785,184,927,225"/>
+<area shape="rect" id="node7" href="$podman__commands_8cpp.html" title="Implements Podman command classes for container operations." alt="" coords="951,184,1105,225"/>
+<area shape="rect" id="node3" href="$redis__database_8cpp.html" title="Implements RedisDatabaseHandler for Redis&#45;based database operations." alt="" coords="413,184,555,225"/>
+<area shape="rect" id="node8" href="$init__handler_8cpp.html" title="Implements project&#45;wide initialization functions." alt="" coords="579,191,760,218"/>
 </map>

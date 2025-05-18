@@ -5,7 +5,7 @@ Entry point for launching the Container Creator UI.
 
 This script initializes the Tkinter main window and starts the ContainerCreatorUI,
 which allows users to generate and send container management requests to the C++ backend
-via REST or MQTT.
+via REST, MQTT, POSIX Message Queue, or D-Bus, supporting both JSON and Protobuf formats.
 
 Usage:
     python container_creator_app.py

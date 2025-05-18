@@ -3,6 +3,7 @@ var dir_d218fd71c02742082feaad64e43c1ecd =
     [ "dbus_consumer.hpp", "dbus__consumer_8hpp.html", [
       [ "DbusConsumer", "classDbusConsumer.html", "classDbusConsumer" ]
     ] ],
+    [ "grpc_server.hpp", "grpc__server_8hpp.html", null ],
     [ "http_server.hpp", "http__server_8hpp.html", [
       [ "HttpServerHandler", "classHttpServerHandler.html", "classHttpServerHandler" ]
     ] ],

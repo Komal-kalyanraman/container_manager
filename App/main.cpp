@@ -8,8 +8,13 @@
  * - POSIX Message Queue consumer
  * - D-Bus consumer (session bus, for user applications)
  *
- * All protocols use a shared request executor for processing incoming JSON requests.
+ * All protocols use a shared request executor for processing incoming requests (JSON or Protobuf).
  * The application waits for the HTTP server thread to finish and then performs a clean shutdown.
+ *
+ * Usage:
+ *   - Initializes the project and all protocol consumers.
+ *   - Handles incoming requests via REST, MQTT, Message Queue, and D-Bus.
+ *   - Ensures proper shutdown and resource cleanup.
  */
 
 #include <memory>
@@ -20,13 +25,14 @@
 #include "inc/init_handler.hpp"
 #include "inc/dbus_consumer.hpp"
 #include "inc/json_request_executor.hpp"
+#include "inc/protobuf_request_executor.hpp"
 #include "inc/mosquitto_mqtt_subscriber.hpp"
 #include "inc/posix_message_queue_consumer.hpp"
 
 /**
  * @brief Main function for the Container Manager application.
  * 
- * Initializes the project, creates the shared request executor, starts the HTTP server, MQTT subscriber,
+ * Initializes the project, creates the shared request executor (JSON or Protobuf), starts the HTTP server, MQTT subscriber,
  * POSIX Message Queue consumer, and D-Bus consumer (on the session bus for user applications).
  * Waits for the HTTP server thread to finish. Cleans up logging resources on shutdown.
  * 
@@ -36,7 +42,10 @@ int main() {
     InitProject();  ///< Initialize and clear the database, protocols.
 
     // Create the shared JSON request executor
-    auto executor = std::make_shared<JsonRequestExecutorHandler>();
+    // auto executor = std::make_shared<JsonRequestExecutorHandler>();
+
+    // Create the shared Protobuf request executor
+    auto executor = std::make_shared<ProtoRequestExecutorHandler>();
 
     // HTTP server configuration and startup (runs in a separate thread)
     ServerConfig server_cfg;

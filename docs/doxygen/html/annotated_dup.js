@@ -1,5 +1,8 @@
 var annotated_dup =
 [
+    [ "containermanager", "namespacecontainermanager.html", "namespacecontainermanager" ],
+    [ "google", "namespacegoogle.html", null ],
+    [ "protobuf_container_5fmanager_2eproto", "namespaceprotobuf__container__5fmanager__2eproto.html", "namespaceprotobuf__container__5fmanager__2eproto" ],
     [ "Command", "classCommand.html", "classCommand" ],
     [ "CommandFactory", "classCommandFactory.html", null ],
     [ "CommandName", "structCommandName.html", null ],
@@ -35,6 +38,7 @@ var annotated_dup =
     [ "PodmanRuntimeAvailableCommand", "classPodmanRuntimeAvailableCommand.html", "classPodmanRuntimeAvailableCommand" ],
     [ "PodmanStartContainerCommand", "classPodmanStartContainerCommand.html", "classPodmanStartContainerCommand" ],
     [ "PodmanStopContainerCommand", "classPodmanStopContainerCommand.html", "classPodmanStopContainerCommand" ],
+    [ "ProtoRequestExecutorHandler", "classProtoRequestExecutorHandler.html", "classProtoRequestExecutorHandler" ],
     [ "RedisDatabaseHandler", "classRedisDatabaseHandler.html", "classRedisDatabaseHandler" ],
     [ "RequestExecutor", "classRequestExecutor.html", "classRequestExecutor" ],
     [ "RuntimeName", "structRuntimeName.html", null ],

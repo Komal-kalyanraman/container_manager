@@ -1,0 +1,30 @@
+// -----------------------------------------------------------------------------
+// container_manager.proto
+// Protobuf schema for Container Manager requests.
+//
+// Defines messages for container creation and management, including resource
+// parameters and operation type. Used for serialization/deserialization of
+// requests between Python UI, C++ backend, and all supported protocols
+// (REST, MQTT, Message Queue, D-Bus).
+// -----------------------------------------------------------------------------
+
+syntax = "proto3";
+
+package containermanager;
+
+// Message for container parameters
+message ContainerParameters {
+  string container_name = 1;   // Name of the container
+  string cpus = 2;             // CPU allocation (e.g., "0.5")
+  string memory = 3;           // Memory allocation (e.g., "128")
+  string pids = 4;             // PID limit
+  string restart_policy = 5;   // Restart policy (e.g., "unless-stopped")
+  string image_name = 6;       // Container image name (e.g., "nginx:latest")
+}
+
+// Main request message
+message ContainerRequest {
+  string runtime = 1;                           // Container runtime (e.g., "docker")
+  string operation = 2;                         // Operation type (e.g., "create")
+  repeated ContainerParameters parameters = 3;  // List of container parameters
+}

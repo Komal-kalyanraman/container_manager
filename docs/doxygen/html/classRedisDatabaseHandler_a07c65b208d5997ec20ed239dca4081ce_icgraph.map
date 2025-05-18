@@ -1,17 +1,18 @@
 <map id="RedisDatabaseHandler::GetInstance" name="RedisDatabaseHandler::GetInstance">
-<area shape="rect" id="node1" title="Retrieves the singleton instance of the RedisDatabaseHandler." alt="" coords="551,365,721,407"/>
+<area shape="rect" id="node1" title="Retrieves the singleton instance of the RedisDatabaseHandler." alt="" coords="551,397,721,439"/>
 <area shape="rect" id="node2" href="$classJsonRequestExecutorHandler.html#aaf7c1c7c14971ccfda4076e0a4681f43" title="Executes a request represented as a JSON string." alt="" coords="268,5,479,47"/>
-<area shape="rect" id="node3" href="$classDockerCreateContainerCommand.html#a8967ee094698e00a212c67f71870de06" title="Executes the command to create a Docker container." alt="" coords="253,71,493,112"/>
-<area shape="rect" id="node4" href="$classPodmanCreateContainerCommand.html#aca31055904b1fb20736ed5807e215ae6" title="Executes the command to create a Podman container." alt="" coords="249,136,497,177"/>
-<area shape="rect" id="node5" href="$classDockerStartContainerCommand.html#ad208f99e4185a7606a0a9903d1346fcc" title="Executes the command to start a Docker container." alt="" coords="259,201,487,243"/>
-<area shape="rect" id="node6" href="$classPodmanStartContainerCommand.html#aaf7627e6faf5974ffcd95e8a5f58852f" title="Executes the command to start a Podman container." alt="" coords="255,267,491,308"/>
-<area shape="rect" id="node7" href="$classDockerStopContainerCommand.html#a4d6a495edca166958eee65ca601bc5bd" title="Executes the command to stop a Docker container." alt="" coords="260,332,487,373"/>
-<area shape="rect" id="node8" href="$classPodmanStopContainerCommand.html#a42d7bf3c2ae604172ae1e1ae29bdc0c6" title="Executes the command to stop a Podman container." alt="" coords="256,397,491,439"/>
-<area shape="rect" id="node9" href="$classDockerRemoveContainerCommand.html#a0c15063652bf92deb99a742a4a9f61fd" title="Executes the command to remove a Docker container and clean up database state." alt="" coords="248,463,499,504"/>
-<area shape="rect" id="node10" href="$classPodmanRemoveContainerCommand.html#a3bb0bf30e7f91e87c407980e1adcc398" title="Executes the command to remove a Podman container and clean up database state." alt="" coords="244,528,503,569"/>
-<area shape="rect" id="node11" href="$classDockerRestartContainerCommand.html#a3852a9870150e02cde5e3f3cabf4d5d9" title="Executes the command to restart a Docker container." alt="" coords="251,593,495,635"/>
-<area shape="rect" id="node12" href="$classPodmanRestartContainerCommand.html#ae4a585c345eafa6a97a1f38e4cb485ea" title="Executes the command to restart a Podman container." alt="" coords="247,659,499,700"/>
-<area shape="rect" id="node13" href="$init__handler_8cpp.html#a3ca899cad245b508cfb58fd9230fa669" title="Initializes and clears the database." alt="" coords="321,725,426,751"/>
-<area shape="rect" id="node14" href="$init__handler_8cpp.html#ad98029164064eb3e856369697d9cc015" title="Initializes all enabled project subsystems." alt="" coords="108,725,196,751"/>
-<area shape="rect" id="node15" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Main function for the Container Manager application." alt="" coords="5,725,60,751"/>
+<area shape="rect" id="node3" href="$classProtoRequestExecutorHandler.html#a7255c2daf8946f8c73b0327cd4ad9156" title="Executes a request and returns a JSON response." alt="" coords="265,71,482,112"/>
+<area shape="rect" id="node4" href="$classDockerCreateContainerCommand.html#a8967ee094698e00a212c67f71870de06" title="Executes the command to create a Docker container." alt="" coords="253,136,493,177"/>
+<area shape="rect" id="node5" href="$classPodmanCreateContainerCommand.html#aca31055904b1fb20736ed5807e215ae6" title="Executes the command to create a Podman container." alt="" coords="249,201,497,243"/>
+<area shape="rect" id="node6" href="$classDockerStartContainerCommand.html#ad208f99e4185a7606a0a9903d1346fcc" title="Executes the command to start a Docker container." alt="" coords="259,267,487,308"/>
+<area shape="rect" id="node7" href="$classPodmanStartContainerCommand.html#aaf7627e6faf5974ffcd95e8a5f58852f" title="Executes the command to start a Podman container." alt="" coords="255,332,491,373"/>
+<area shape="rect" id="node8" href="$classDockerStopContainerCommand.html#a4d6a495edca166958eee65ca601bc5bd" title="Executes the command to stop a Docker container." alt="" coords="260,397,487,439"/>
+<area shape="rect" id="node9" href="$classPodmanStopContainerCommand.html#a42d7bf3c2ae604172ae1e1ae29bdc0c6" title="Executes the command to stop a Podman container." alt="" coords="256,463,491,504"/>
+<area shape="rect" id="node10" href="$classDockerRemoveContainerCommand.html#a0c15063652bf92deb99a742a4a9f61fd" title="Executes the command to remove a Docker container and clean up database state." alt="" coords="248,528,499,569"/>
+<area shape="rect" id="node11" href="$classPodmanRemoveContainerCommand.html#a3bb0bf30e7f91e87c407980e1adcc398" title="Executes the command to remove a Podman container and clean up database state." alt="" coords="244,593,503,635"/>
+<area shape="rect" id="node12" href="$classDockerRestartContainerCommand.html#a3852a9870150e02cde5e3f3cabf4d5d9" title="Executes the command to restart a Docker container." alt="" coords="251,659,495,700"/>
+<area shape="rect" id="node13" href="$classPodmanRestartContainerCommand.html#ae4a585c345eafa6a97a1f38e4cb485ea" title="Executes the command to restart a Podman container." alt="" coords="247,724,499,765"/>
+<area shape="rect" id="node14" href="$init__handler_8cpp.html#a3ca899cad245b508cfb58fd9230fa669" title="Initializes and clears the database." alt="" coords="321,790,426,817"/>
+<area shape="rect" id="node15" href="$init__handler_8cpp.html#ad98029164064eb3e856369697d9cc015" title="Initializes all enabled project subsystems." alt="" coords="108,790,196,817"/>
+<area shape="rect" id="node16" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Main function for the Container Manager application." alt="" coords="5,790,60,817"/>
 </map>

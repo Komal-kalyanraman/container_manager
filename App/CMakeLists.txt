@@ -53,10 +53,11 @@ add_subdirectory(database)
 link_directories("${HOME_DIR}/cpp_redis/build")
 
 # --------- Protobuf/gRPC code generation ---------
-set(PROTO_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/api/proto")
+set(PROTO_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/executor/proto")
 set(PROTO_FILES "${PROTO_SRC_DIR}/container_manager.proto")
 
-set(GENERATED_PROTO_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
+# Place generated files inside the proto folder for better organization
+set(GENERATED_PROTO_DIR "${PROTO_SRC_DIR}/generated")
 file(MAKE_DIRECTORY ${GENERATED_PROTO_DIR})
 
 add_custom_command(
@@ -76,11 +77,9 @@ add_custom_command(
 
 set(PROTO_SRCS
   ${GENERATED_PROTO_DIR}/container_manager.pb.cc
-  ${GENERATED_PROTO_DIR}/container_manager.grpc.pb.cc
 )
 set(PROTO_HDRS
   ${GENERATED_PROTO_DIR}/container_manager.pb.h
-  ${GENERATED_PROTO_DIR}/container_manager.grpc.pb.h
 )
 
 include_directories(${GENERATED_PROTO_DIR})

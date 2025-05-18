@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 687;
+var viewWidth = 833;
 var viewHeight = 173;
 var sectionId = 'dynsection-1';
 </script>
@@ -54,14 +54,14 @@ var sectionId = 'dynsection-1';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>database/inc/database_interface.hpp</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-169 682.5,-169 682.5,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-169 828.5,-169 828.5,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Abstract interface for database operations.">
-<polygon fill="#bfbfbf" stroke="black" points="354.5,-134.5 354.5,-164.5 481.5,-164.5 481.5,-134.5 354.5,-134.5"/>
-<text text-anchor="start" x="362.5" y="-152.5" font-family="Helvetica,sans-Serif" font-size="10.00">database/inc/database</text>
-<text text-anchor="middle" x="418" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">_interface.hpp</text>
+<polygon fill="#bfbfbf" stroke="black" points="342.5,-134.5 342.5,-164.5 469.5,-164.5 469.5,-134.5 342.5,-134.5"/>
+<text text-anchor="start" x="350.5" y="-152.5" font-family="Helvetica,sans-Serif" font-size="10.00">database/inc/database</text>
+<text text-anchor="middle" x="406" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">_interface.hpp</text>
 </a>
 </g>
 </g>
@@ -69,17 +69,17 @@ var sectionId = 'dynsection-1';
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="redis__database_8hpp.html" target="_top" xlink:title="Implements RedisDatabaseHandler for Redis&#45;based database operations.">
-<polygon fill="white" stroke="black" points="325,-67.5 325,-97.5 431,-97.5 431,-67.5 325,-67.5"/>
-<text text-anchor="start" x="333" y="-85.5" font-family="Helvetica,sans-Serif" font-size="10.00">database/inc/redis</text>
-<text text-anchor="middle" x="378" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">_database.hpp</text>
+<polygon fill="white" stroke="black" points="353,-67.5 353,-97.5 459,-97.5 459,-67.5 353,-67.5"/>
+<text text-anchor="start" x="361" y="-85.5" font-family="Helvetica,sans-Serif" font-size="10.00">database/inc/redis</text>
+<text text-anchor="middle" x="406" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">_database.hpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M404.07,-125.87C398.28,-116.46 391.74,-105.83 386.66,-97.58"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="401.1,-127.71 409.32,-134.4 407.06,-124.05 401.1,-127.71"/>
+<path fill="none" stroke="midnightblue" d="M406,-124.11C406,-115.15 406,-105.32 406,-97.58"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="402.5,-124.4 406,-134.4 409.5,-124.4 402.5,-124.4"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
@@ -92,91 +92,113 @@ var sectionId = 'dynsection-1';
 </g>
 </g>
 <!-- Node1&#45;&gt;Node4 -->
-<g id="edge7" class="edge">
+<g id="edge8" class="edge">
 <title>Node1&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M371.78,-130.92C302.14,-104.43 171.69,-54.8 107.95,-30.56"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="370.6,-134.21 381.19,-134.5 373.09,-127.67 370.6,-134.21"/>
+<path fill="none" stroke="midnightblue" d="M360.97,-130.76C293.64,-104.23 168.08,-54.75 106.67,-30.56"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="359.88,-134.09 370.47,-134.5 362.45,-127.58 359.88,-134.09"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="docker__commands_8cpp.html" target="_top" xlink:title="Implements Docker command classes for container operations.">
-<polygon fill="white" stroke="black" points="438.5,-0.5 438.5,-30.5 545.5,-30.5 545.5,-0.5 438.5,-0.5"/>
-<text text-anchor="start" x="446.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">runtime/src/docker</text>
-<text text-anchor="middle" x="492" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_commands.cpp</text>
+<g id="a_node5"><a xlink:href="protobuf__request__executor_8cpp.html" target="_top" xlink:title="Implements the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests.">
+<polygon fill="white" stroke="black" points="160.5,-0.5 160.5,-30.5 287.5,-30.5 287.5,-0.5 160.5,-0.5"/>
+<text text-anchor="start" x="168.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">executor/src/protobuf</text>
+<text text-anchor="middle" x="224" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_request_executor.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node5 -->
-<g id="edge8" class="edge">
+<g id="edge9" class="edge">
 <title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M430.91,-125.48C446.27,-98.07 471.43,-53.19 484.14,-30.52"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="427.76,-123.94 425.92,-134.37 433.86,-127.36 427.76,-123.94"/>
+<path fill="none" stroke="midnightblue" d="M378.12,-128.28C340.83,-101.24 275.67,-53.98 243.34,-30.52"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="376.37,-131.34 386.52,-134.37 380.48,-125.67 376.37,-131.34"/>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="podman__commands_8cpp.html" target="_top" xlink:title="Implements Podman command classes for container operations.">
-<polygon fill="white" stroke="black" points="563.5,-0.5 563.5,-30.5 678.5,-30.5 678.5,-0.5 563.5,-0.5"/>
-<text text-anchor="start" x="571.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">runtime/src/podman</text>
-<text text-anchor="middle" x="621" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_commands.cpp</text>
+<g id="a_node6"><a xlink:href="docker__commands_8cpp.html" target="_top" xlink:title="Implements Docker command classes for container operations.">
+<polygon fill="white" stroke="black" points="584.5,-0.5 584.5,-30.5 691.5,-30.5 691.5,-0.5 584.5,-0.5"/>
+<text text-anchor="start" x="592.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">runtime/src/docker</text>
+<text text-anchor="middle" x="638" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_commands.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node6 -->
-<g id="edge9" class="edge">
+<g id="edge10" class="edge">
 <title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M448.31,-128.79C489.76,-101.84 563.14,-54.13 599.43,-30.52"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="446.2,-125.99 439.72,-134.37 450.02,-131.86 446.2,-125.99"/>
+<path fill="none" stroke="midnightblue" d="M439.75,-129.3C486.96,-102.44 571.61,-54.27 613.35,-30.52"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="437.79,-126.39 430.83,-134.37 441.25,-132.47 437.79,-126.39"/>
+</g>
+<!-- Node7 -->
+<g id="node7" class="node">
+<title>Node7</title>
+<g id="a_node7"><a xlink:href="podman__commands_8cpp.html" target="_top" xlink:title="Implements Podman command classes for container operations.">
+<polygon fill="white" stroke="black" points="709.5,-0.5 709.5,-30.5 824.5,-30.5 824.5,-0.5 709.5,-0.5"/>
+<text text-anchor="start" x="717.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">runtime/src/podman</text>
+<text text-anchor="middle" x="767" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_commands.cpp</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node7 -->
+<g id="edge11" class="edge">
+<title>Node1&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M454.08,-130.92C526.53,-104.43 662.25,-54.8 728.56,-30.56"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="452.48,-127.78 444.29,-134.5 454.89,-134.35 452.48,-127.78"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:href="redis__database_8cpp.html" target="_top" xlink:title="Implements RedisDatabaseHandler for Redis&#45;based database operations.">
-<polygon fill="white" stroke="black" points="314,-0.5 314,-30.5 420,-30.5 420,-0.5 314,-0.5"/>
-<text text-anchor="start" x="322" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">database/src/redis</text>
-<text text-anchor="middle" x="367" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_database.cpp</text>
+<polygon fill="white" stroke="black" points="306,-0.5 306,-30.5 412,-30.5 412,-0.5 306,-0.5"/>
+<text text-anchor="start" x="314" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">database/src/redis</text>
+<text text-anchor="middle" x="359" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_database.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node2&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M373.92,-57.4C372.39,-48.37 370.71,-38.41 369.38,-30.58"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="370.49,-58.12 375.61,-67.4 377.4,-56.95 370.49,-58.12"/>
+<path fill="none" stroke="midnightblue" d="M389.84,-59.16C382.99,-49.68 375.21,-38.92 369.18,-30.58"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="387.11,-61.34 395.8,-67.4 392.78,-57.24 387.11,-61.34"/>
 </g>
 <!-- Node2&#45;&gt;Node4 -->
 <g id="edge3" class="edge">
 <title>Node2&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M314.82,-68.12C263.05,-57.16 190,-41.7 137.38,-30.55"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="314.37,-71.6 324.88,-70.25 315.82,-64.76 314.37,-71.6"/>
+<path fill="none" stroke="midnightblue" d="M342.93,-69.26C285.82,-58.18 201.75,-41.87 142.23,-30.32"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="342.43,-72.73 352.92,-71.2 343.77,-65.86 342.43,-72.73"/>
 </g>
 <!-- Node2&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
 <title>Node2&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M411.68,-62.3C429.52,-52.12 451.04,-39.85 467.31,-30.58"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="409.69,-59.4 402.74,-67.4 413.16,-65.48 409.69,-59.4"/>
+<path fill="none" stroke="midnightblue" d="M356.87,-63.96C327.56,-53.48 290.82,-40.37 263.41,-30.58"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="355.91,-67.33 366.51,-67.4 358.27,-60.74 355.91,-67.33"/>
 </g>
 <!-- Node2&#45;&gt;Node6 -->
 <g id="edge5" class="edge">
 <title>Node2&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M440.25,-64.85C479.86,-54.25 530.61,-40.68 568.25,-30.61"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="439.18,-61.51 430.43,-67.48 440.99,-68.27 439.18,-61.51"/>
-</g>
-<!-- Node7 -->
-<g id="node7" class="node">
-<title>Node7</title>
-<g id="a_node7"><a xlink:href="init__handler_8cpp.html" target="_top" xlink:title="Implements project&#45;wide initialization functions.">
-<polygon fill="white" stroke="black" points="160,-6 160,-25 296,-25 296,-6 160,-6"/>
-<text text-anchor="middle" x="228" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">utils/src/init_handler.cpp</text>
-</a>
-</g>
+<path fill="none" stroke="midnightblue" d="M465.91,-64.71C503.66,-54.14 551.86,-40.63 587.63,-30.61"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="464.74,-61.41 456.05,-67.48 466.63,-68.15 464.74,-61.41"/>
 </g>
 <!-- Node2&#45;&gt;Node7 -->
 <g id="edge6" class="edge">
 <title>Node2&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M335.99,-63.3C307.06,-50.76 269.96,-34.68 247.63,-25.01"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="334.89,-66.63 345.45,-67.4 337.67,-60.21 334.89,-66.63"/>
+<path fill="none" stroke="midnightblue" d="M469.26,-71.44C528.89,-61.77 620.7,-46.38 700,-31 703.04,-30.41 706.15,-29.79 709.29,-29.15"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="468.55,-68.01 459.24,-73.06 469.67,-74.92 468.55,-68.01"/>
+</g>
+<!-- Node8 -->
+<g id="node8" class="node">
+<title>Node8</title>
+<g id="a_node8"><a xlink:href="init__handler_8cpp.html" target="_top" xlink:title="Implements project&#45;wide initialization functions.">
+<polygon fill="white" stroke="black" points="430,-6 430,-25 566,-25 566,-6 430,-6"/>
+<text text-anchor="middle" x="498" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">utils/src/init_handler.cpp</text>
+</a>
+</g>
+</g>
+<!-- Node2&#45;&gt;Node8 -->
+<g id="edge7" class="edge">
+<title>Node2&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M434.58,-61.31C451.86,-49.1 472.98,-34.18 485.96,-25.01"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="432.11,-58.77 425.96,-67.4 436.15,-64.48 432.11,-58.77"/>
 </g>
 </g>
 </svg>

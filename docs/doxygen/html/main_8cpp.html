@@ -98,6 +98,7 @@ $(document).ready(function(){initNavTree('main_8cpp.html',''); initResizable(); 
 <code>#include &quot;<a class="el" href="init__handler_8hpp_source.html">inc/init_handler.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="dbus__consumer_8hpp_source.html">inc/dbus_consumer.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="json__request__executor_8hpp_source.html">inc/json_request_executor.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="protobuf__request__executor_8hpp_source.html">inc/protobuf_request_executor.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="mosquitto__mqtt__subscriber_8hpp_source.html">inc/mosquitto_mqtt_subscriber.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="posix__message__queue__consumer_8hpp_source.html">inc/posix_message_queue_consumer.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -123,7 +124,12 @@ Functions</h2></td></tr>
 <li>POSIX Message Queue consumer</li>
 <li>D-Bus consumer (session bus, for user applications)</li>
 </ul>
-<p>All protocols use a shared request executor for processing incoming JSON requests. The application waits for the HTTP server thread to finish and then performs a clean shutdown. </p>
+<p>All protocols use a shared request executor for processing incoming requests (JSON or Protobuf). The application waits for the HTTP server thread to finish and then performs a clean shutdown.</p>
+<p>Usage:</p><ul>
+<li>Initializes the project and all protocol consumers.</li>
+<li>Handles incoming requests via REST, MQTT, Message Queue, and D-Bus.</li>
+<li>Ensures proper shutdown and resource cleanup. </li>
+</ul>
 
 <p class="definition">Definition in file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -143,58 +149,60 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Main function for the Container Manager application. </p>
-<p>Initializes the project, creates the shared request executor, starts the HTTP server, MQTT subscriber, POSIX Message Queue consumer, and D-Bus consumer (on the session bus for user applications). Waits for the HTTP server thread to finish. Cleans up logging resources on shutdown.</p>
+<p>Initializes the project, creates the shared request executor (JSON or Protobuf), starts the HTTP server, MQTT subscriber, POSIX Message Queue consumer, and D-Bus consumer (on the session bus for user applications). Waits for the HTTP server thread to finish. Cleans up logging resources on shutdown.</p>
 <dl class="section return"><dt>Returns</dt><dd>int Exit status code. </dd></dl>
 <p>&lt; Initialize and clear the database, protocols.</p>
 <p>&lt; Stop the message queue consumer.</p>
 <p>&lt; Stop the dbus consumer.</p>
 <p>&lt; Cleanly shutdown Google logging.</p>
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00035">35</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;           {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="init__handler_8hpp.html#ad98029164064eb3e856369697d9cc015">InitProject</a>();  </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">// Create the shared JSON request executor</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">auto</span> executor = std::make_shared&lt;JsonRequestExecutorHandler&gt;();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// HTTP server configuration and startup (runs in a separate thread)</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="structServerConfig.html">ServerConfig</a> server_cfg;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classHttpServerHandler.html">HttpServerHandler</a> server(executor, server_cfg.<a class="code" href="structServerConfig.html#a60845536be40fb85b24d98018a0d4ee0">ThreadPoolSize</a>);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    std::thread http_thread([&amp;server, &amp;server_cfg]() {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        server.Start(server_cfg.<a class="code" href="structServerConfig.html#a376b7b7e0a8804598877088423ce89fb">Host</a>, server_cfg.<a class="code" href="structServerConfig.html#a982c0819ea7ae8e51e549fe71f5b273d">Port</a>);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    });</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">// MQTT subscriber configuration and startup (runs in its own thread)</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="structMqttConfig.html">MqttConfig</a> mqtt_cfg;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="classMosquittoMqttSubscriber.html">MosquittoMqttSubscriber</a> mqtt_sub(mqtt_cfg.BrokerAddress, mqtt_cfg.BrokerPort, mqtt_cfg.Topic, executor);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    mqtt_sub.Start();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">// POSIX Message Queue consumer configuration and startup</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="structMessageQueueConfig.html">MessageQueueConfig</a> mq_cfg;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="classMessageQueueConsumer.html">MessageQueueConsumer</a> mq_consumer(mq_cfg, executor);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    mq_consumer.Start();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">// D-Bus consumer configuration and startup (session bus for user applications)</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="structDbusConfig.html">DbusConfig</a> dbus_cfg;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="classDbusConsumer.html">DbusConsumer</a> dbus_consumer(dbus_cfg, executor);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    dbus_consumer.Start();</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// Wait for HTTP server thread to finish (in production, handle shutdown signals properly)</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    http_thread.join();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">// Clean shutdown of all protocol consumers and logging</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    mq_consumer.Stop();                 </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    dbus_consumer.Stop();               </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    google::ShutdownGoogleLogging();    </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00041">41</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;           {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="init__handler_8hpp.html#ad98029164064eb3e856369697d9cc015">InitProject</a>();  </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">// Create the shared JSON request executor</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// auto executor = std::make_shared&lt;JsonRequestExecutorHandler&gt;();</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">// Create the shared Protobuf request executor</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">auto</span> executor = std::make_shared&lt;ProtoRequestExecutorHandler&gt;();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// HTTP server configuration and startup (runs in a separate thread)</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="structServerConfig.html">ServerConfig</a> server_cfg;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="classHttpServerHandler.html">HttpServerHandler</a> server(executor, server_cfg.<a class="code" href="structServerConfig.html#a60845536be40fb85b24d98018a0d4ee0">ThreadPoolSize</a>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    std::thread http_thread([&amp;server, &amp;server_cfg]() {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        server.Start(server_cfg.<a class="code" href="structServerConfig.html#a376b7b7e0a8804598877088423ce89fb">Host</a>, server_cfg.<a class="code" href="structServerConfig.html#a982c0819ea7ae8e51e549fe71f5b273d">Port</a>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    });</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">// MQTT subscriber configuration and startup (runs in its own thread)</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="structMqttConfig.html">MqttConfig</a> mqtt_cfg;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="classMosquittoMqttSubscriber.html">MosquittoMqttSubscriber</a> mqtt_sub(mqtt_cfg.BrokerAddress, mqtt_cfg.BrokerPort, mqtt_cfg.Topic, executor);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    mqtt_sub.Start();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">// POSIX Message Queue consumer configuration and startup</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="structMessageQueueConfig.html">MessageQueueConfig</a> mq_cfg;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="classMessageQueueConsumer.html">MessageQueueConsumer</a> mq_consumer(mq_cfg, executor);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    mq_consumer.Start();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">// D-Bus consumer configuration and startup (session bus for user applications)</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="structDbusConfig.html">DbusConfig</a> dbus_cfg;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="classDbusConsumer.html">DbusConsumer</a> dbus_consumer(dbus_cfg, executor);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    dbus_consumer.Start();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">// Wait for HTTP server thread to finish (in production, handle shutdown signals properly)</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    http_thread.join();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">// Clean shutdown of all protocol consumers and logging</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    mq_consumer.Stop();                 </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    dbus_consumer.Stop();               </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    google::ShutdownGoogleLogging();    </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="common_8hpp_source.html#l00021">ServerConfig::Host</a>, <a class="el" href="init__handler_8cpp_source.html#l00042">InitProject()</a>, <a class="el" href="common_8hpp_source.html#l00020">ServerConfig::Port</a>, <a class="el" href="http__server_8cpp_source.html#l00014">HttpServerHandler::Start()</a>, <a class="el" href="posix__message__queue__consumer_8cpp_source.html#l00024">MessageQueueConsumer::Start()</a>, <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html#l00028">MosquittoMqttSubscriber::Start()</a>, <a class="el" href="dbus__consumer_8cpp_source.html#l00016">DbusConsumer::Start()</a>, <a class="el" href="posix__message__queue__consumer_8cpp_source.html#l00029">MessageQueueConsumer::Stop()</a>, <a class="el" href="dbus__consumer_8cpp_source.html#l00021">DbusConsumer::Stop()</a>, and <a class="el" href="common_8hpp_source.html#l00022">ServerConfig::ThreadPoolSize</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>

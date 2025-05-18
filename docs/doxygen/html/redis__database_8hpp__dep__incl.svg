@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 687;
+var viewWidth = 832;
 var viewHeight = 106;
 var sectionId = 'dynsection-1';
 </script>
@@ -54,14 +54,14 @@ var sectionId = 'dynsection-1';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>database/inc/redis_database.hpp</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-102 683,-102 683,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-102 828,-102 828,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Implements RedisDatabaseHandler for Redis&#45;based database operations.">
-<polygon fill="#bfbfbf" stroke="black" points="285,-67.5 285,-97.5 391,-97.5 391,-67.5 285,-67.5"/>
-<text text-anchor="start" x="293" y="-85.5" font-family="Helvetica,sans-Serif" font-size="10.00">database/inc/redis</text>
-<text text-anchor="middle" x="338" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">_database.hpp</text>
+<polygon fill="#bfbfbf" stroke="black" points="362,-67.5 362,-97.5 468,-97.5 468,-67.5 362,-67.5"/>
+<text text-anchor="start" x="370" y="-85.5" font-family="Helvetica,sans-Serif" font-size="10.00">database/inc/redis</text>
+<text text-anchor="middle" x="415" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">_database.hpp</text>
 </a>
 </g>
 </g>
@@ -78,8 +78,8 @@ var sectionId = 'dynsection-1';
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M274.97,-67.35C230.29,-57.29 168.95,-43.42 115,-31 112.09,-30.33 109.11,-29.64 106.09,-28.94"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="274.28,-70.78 284.81,-69.56 275.82,-63.95 274.28,-70.78"/>
+<path fill="none" stroke="midnightblue" d="M351.76,-72.04C290.9,-62.66 196.38,-47.35 115,-31 112.07,-30.41 109.08,-29.79 106.05,-29.14"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="351.56,-75.55 361.98,-73.61 352.62,-68.63 351.56,-75.55"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
@@ -94,55 +94,71 @@ var sectionId = 'dynsection-1';
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M297.59,-63.13C274.87,-52.8 246.94,-40.11 225.97,-30.58"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="296.42,-66.44 306.97,-67.4 299.32,-60.07 296.42,-66.44"/>
+<path fill="none" stroke="midnightblue" d="M357.73,-64.58C322,-54.02 276.54,-40.59 242.76,-30.61"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="356.95,-68 367.53,-67.48 358.94,-61.29 356.95,-68"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="docker__commands_8cpp.html" target="_top" xlink:title="Implements Docker command classes for container operations.">
-<polygon fill="white" stroke="black" points="284.5,-0.5 284.5,-30.5 391.5,-30.5 391.5,-0.5 284.5,-0.5"/>
-<text text-anchor="start" x="292.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">runtime/src/docker</text>
-<text text-anchor="middle" x="338" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_commands.cpp</text>
+<g id="a_node4"><a xlink:href="protobuf__request__executor_8cpp.html" target="_top" xlink:title="Implements the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests.">
+<polygon fill="white" stroke="black" points="284.5,-0.5 284.5,-30.5 411.5,-30.5 411.5,-0.5 284.5,-0.5"/>
+<text text-anchor="start" x="292.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">executor/src/protobuf</text>
+<text text-anchor="middle" x="348" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_request_executor.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node4 -->
 <g id="edge3" class="edge">
 <title>Node1&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M338,-57.11C338,-48.15 338,-38.32 338,-30.58"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="334.5,-57.4 338,-67.4 341.5,-57.4 334.5,-57.4"/>
+<path fill="none" stroke="midnightblue" d="M393.16,-60.31C383.11,-50.56 371.46,-39.26 362.51,-30.58"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="390.85,-62.94 400.46,-67.4 395.72,-57.92 390.85,-62.94"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="podman__commands_8cpp.html" target="_top" xlink:title="Implements Podman command classes for container operations.">
-<polygon fill="white" stroke="black" points="409.5,-0.5 409.5,-30.5 524.5,-30.5 524.5,-0.5 409.5,-0.5"/>
-<text text-anchor="start" x="417.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">runtime/src/podman</text>
-<text text-anchor="middle" x="467" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_commands.cpp</text>
+<g id="a_node5"><a xlink:href="docker__commands_8cpp.html" target="_top" xlink:title="Implements Docker command classes for container operations.">
+<polygon fill="white" stroke="black" points="429.5,-0.5 429.5,-30.5 536.5,-30.5 536.5,-0.5 429.5,-0.5"/>
+<text text-anchor="start" x="437.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">runtime/src/docker</text>
+<text text-anchor="middle" x="483" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_commands.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
 <title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M375.01,-62.85C395.4,-52.58 420.31,-40.03 439.06,-30.58"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="373.35,-59.77 365.99,-67.4 376.5,-66.02 373.35,-59.77"/>
+<path fill="none" stroke="midnightblue" d="M437.17,-60.31C447.37,-50.56 459.19,-39.26 468.27,-30.58"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="434.57,-57.96 429.75,-67.4 439.4,-63.02 434.57,-57.96"/>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="init__handler_8cpp.html" target="_top" xlink:title="Implements project&#45;wide initialization functions.">
-<polygon fill="white" stroke="black" points="543,-6 543,-25 679,-25 679,-6 543,-6"/>
-<text text-anchor="middle" x="611" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">utils/src/init_handler.cpp</text>
+<g id="a_node6"><a xlink:href="podman__commands_8cpp.html" target="_top" xlink:title="Implements Podman command classes for container operations.">
+<polygon fill="white" stroke="black" points="554.5,-0.5 554.5,-30.5 669.5,-30.5 669.5,-0.5 554.5,-0.5"/>
+<text text-anchor="start" x="562.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">runtime/src/podman</text>
+<text text-anchor="middle" x="612" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_commands.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node6 -->
 <g id="edge5" class="edge">
 <title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M401.11,-66.47C455.17,-53.6 531.08,-35.53 575.24,-25.01"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="400.2,-63.09 391.29,-68.81 401.82,-69.9 400.2,-63.09"/>
+<path fill="none" stroke="midnightblue" d="M467.35,-64.23C499.22,-53.71 539.41,-40.45 569.34,-30.58"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="466.15,-60.94 457.75,-67.4 468.34,-67.59 466.15,-60.94"/>
+</g>
+<!-- Node7 -->
+<g id="node7" class="node">
+<title>Node7</title>
+<g id="a_node7"><a xlink:href="init__handler_8cpp.html" target="_top" xlink:title="Implements project&#45;wide initialization functions.">
+<polygon fill="white" stroke="black" points="688,-6 688,-25 824,-25 824,-6 688,-6"/>
+<text text-anchor="middle" x="756" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">utils/src/init_handler.cpp</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node7 -->
+<g id="edge6" class="edge">
+<title>Node1&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M478.4,-69.42C546.12,-56.51 651.71,-36.38 711.25,-25.03"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="477.45,-66.03 468.28,-71.34 478.76,-72.91 477.45,-66.03"/>
 </g>
 </g>
 </svg>
