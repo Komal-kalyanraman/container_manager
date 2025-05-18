@@ -1,29 +1,19 @@
 cmake_minimum_required(VERSION 3.10)
-project(mco VERSION 1.0 LANGUAGES CXX)
+project(cm VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_EXTENSIONS ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Warning flags
-SET(WARNING_FLAG OFF)     # ON for showing the warning
-if(WARNING_FLAG)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wformat-security")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wconversion")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wsign-conversion")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wduplicated-cond")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wfloat-equal")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wshadow")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wlogical-not-parentheses")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wnull-dereference")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wdouble-promotion")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wextra")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pie")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIE")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_FORTIFY_SOURCE=2")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--exclude-libs,ALL")
-endif()
+add_compile_options(-Wno-deprecated-declarations)
+
+# find_program(CLANG_TIDY_EXE NAMES "clang-tidy")
+# if(CLANG_TIDY_EXE)
+#   set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_EXE};-checks=*")
+#   message(STATUS "clang-tidy found: ${CLANG_TIDY_EXE}")
+# else()
+#   message(WARNING "clang-tidy not found! Static analysis will be skipped.")
+# endif()
 
 set(HOME_DIR $ENV{HOME})
 message(STATUS "Home Directory : ${HOME_DIR}")
@@ -32,6 +22,7 @@ find_package(CURL REQUIRED)
 find_package(Threads REQUIRED)
 find_package(glog 0.4.0 REQUIRED)
 find_package(nlohmann_json REQUIRED)
+find_package(Protobuf REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(MOSQUITTO REQUIRED libmosquitto)
 pkg_check_modules(MOSQUITTOPP REQUIRED libmosquittopp)
@@ -61,6 +52,44 @@ add_subdirectory(database)
 
 link_directories("${HOME_DIR}/cpp_redis/build")
 
+# --------- Protobuf/gRPC code generation ---------
+set(PROTO_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/api/proto")
+set(PROTO_FILES "${PROTO_SRC_DIR}/container_manager.proto")
+
+set(GENERATED_PROTO_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
+file(MAKE_DIRECTORY ${GENERATED_PROTO_DIR})
+
+add_custom_command(
+  OUTPUT
+    ${GENERATED_PROTO_DIR}/container_manager.pb.cc
+    ${GENERATED_PROTO_DIR}/container_manager.pb.h
+    ${GENERATED_PROTO_DIR}/container_manager.grpc.pb.cc
+    ${GENERATED_PROTO_DIR}/container_manager.grpc.pb.h
+  COMMAND protoc
+    --proto_path=${PROTO_SRC_DIR}
+    --cpp_out=${GENERATED_PROTO_DIR}
+    --grpc_out=${GENERATED_PROTO_DIR}
+    --plugin=protoc-gen-grpc=`which grpc_cpp_plugin`
+    ${PROTO_FILES}
+  DEPENDS ${PROTO_FILES}
+)
+
+set(PROTO_SRCS
+  ${GENERATED_PROTO_DIR}/container_manager.pb.cc
+  ${GENERATED_PROTO_DIR}/container_manager.grpc.pb.cc
+)
+set(PROTO_HDRS
+  ${GENERATED_PROTO_DIR}/container_manager.pb.h
+  ${GENERATED_PROTO_DIR}/container_manager.grpc.pb.h
+)
+
+include_directories(${GENERATED_PROTO_DIR})
+
+add_library(container_manager_proto
+  ${PROTO_SRCS}
+  ${PROTO_HDRS}
+)
+
 ####### GTests ########
 SET(GTEST OFF)     # Set ON for building the tests, OFF for not
 if(GTEST)
@@ -86,4 +115,8 @@ target_link_libraries(CM
   pthread
   cpp_redis
   ${SDBUSCPP_LIBRARIES} 
+  grpc++
+  grpc
+  protobuf
+  container_manager_proto
 )
