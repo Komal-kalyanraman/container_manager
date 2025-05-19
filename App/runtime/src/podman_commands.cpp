@@ -45,7 +45,10 @@ bool PodmanCreateContainerCommand::Execute() const {
         image_name_ = "";
     }
     // Start the Podman container
-    std::string command = "podman create --name " + container_name_ + " " + image_name_;
+    std::string command = FormatCommand(
+        CommandTemplate::Create,
+        {{"runtime", "podman"}, {"name", container_name_}, {"image", image_name_}}
+    );
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Podman container created successfully";
@@ -65,7 +68,10 @@ PodmanStartContainerCommand::PodmanStartContainerCommand(const std::string& cont
 bool PodmanStartContainerCommand::Execute() const {
     // Start the Podman container
     IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
-    std::string command = "podman start " + container_name_;
+    std::string command = FormatCommand(
+        CommandTemplate::Start,
+        {{"runtime", "podman"}, {"name", container_name_}}
+    );
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Podman container started successfully";
@@ -85,7 +91,10 @@ PodmanStopContainerCommand::PodmanStopContainerCommand(const std::string& contai
 bool PodmanStopContainerCommand::Execute() const {
     // Stop the Podman container
     IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
-    std::string command = "podman stop " + container_name_;
+    std::string command = FormatCommand(
+        CommandTemplate::Stop,
+        {{"runtime", "podman"}, {"name", container_name_}}
+    );
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Podman container stopped successfully";
@@ -105,7 +114,10 @@ PodmanRemoveContainerCommand::PodmanRemoveContainerCommand(const std::string& co
 bool PodmanRemoveContainerCommand::Execute() const {
     // Stop the Podman container
     IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
-    std::string command = "podman rm -f " + container_name_;
+    std::string command = FormatCommand(
+        CommandTemplate::Remove,
+        {{"runtime", "podman"}, {"name", container_name_}}
+    );
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Podman container removed successfully";
@@ -125,7 +137,10 @@ PodmanRestartContainerCommand::PodmanRestartContainerCommand(const std::string& 
 bool PodmanRestartContainerCommand::Execute() const {
     // Stop the Podman container
     IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
-    std::string command = "podman restart " + container_name_;
+    std::string command = FormatCommand(
+        CommandTemplate::Restart,
+        {{"runtime", "podman"}, {"name", container_name_}}
+    );
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Podman container restarted successfully";

@@ -7,6 +7,7 @@
 
 #include <string>
 #include <string_view>
+#include <unordered_map>
 
 /// @brief Represents an empty string constant.
 const std::string kEmptyString = "";
@@ -69,3 +70,30 @@ struct CommandName {
     static constexpr std::string_view RestartContainer   = "restart";   ///< Command to restart a container.
     static constexpr std::string_view RemoveContainer    = "remove";    ///< Command to remove a container.
 };
+
+/// @namespace CommandTemplate
+/// @brief Contains command templates for supported container operations.
+///        Placeholders (e.g., {runtime}, {name}, {image}) are replaced at runtime.
+namespace CommandTemplate {
+    inline constexpr std::string_view Create   = "{runtime} create --name {name} {image}";
+    inline constexpr std::string_view Start    = "{runtime} start {name}";
+    inline constexpr std::string_view Stop     = "{runtime} stop {name}";
+    inline constexpr std::string_view Remove   = "{runtime} rm -f {name}";
+    inline constexpr std::string_view Restart  = "{runtime} restart {name}";
+}
+
+/// @brief Utility function to format command templates by replacing placeholders with actual values.
+/// @param tmpl The command template string with placeholders.
+/// @param values A map of placeholder names to their replacement values.
+inline std::string FormatCommand(std::string_view tmpl, const std::unordered_map<std::string, std::string>& values) {
+    std::string result(tmpl);
+    for (const auto& [key, val] : values) {
+        std::string placeholder = "{" + key + "}";
+        size_t pos = 0;
+        while ((pos = result.find(placeholder, pos)) != std::string::npos) {
+            result.replace(pos, placeholder.length(), val);
+            pos += val.length();
+        }
+    }
+    return result;
+}

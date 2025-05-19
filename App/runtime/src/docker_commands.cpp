@@ -45,7 +45,10 @@ bool DockerCreateContainerCommand::Execute() const {
         image_name_ = "";
     }
     // Start the Docker container
-    std::string command = "docker create --name " + container_name_ + " " + image_name_;
+    std::string command = FormatCommand(
+        CommandTemplate::Create,
+        {{"runtime", "docker"}, {"name", container_name_}, {"image", image_name_}}
+    );
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Docker container created successfully";
@@ -65,7 +68,10 @@ DockerStartContainerCommand::DockerStartContainerCommand(const std::string& cont
 bool DockerStartContainerCommand::Execute() const {
     // Start the Docker container
     IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
-    std::string command = "docker start " + container_name_;
+    std::string command = FormatCommand(
+        CommandTemplate::Start,
+        {{"runtime", "docker"}, {"name", container_name_}}
+    );
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Docker container started successfully";
@@ -85,7 +91,10 @@ DockerStopContainerCommand::DockerStopContainerCommand(const std::string& contai
 bool DockerStopContainerCommand::Execute() const {
     // Stop the Docker container
     IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
-    std::string command = "docker stop " + container_name_;
+    std::string command = FormatCommand(
+        CommandTemplate::Stop,
+        {{"runtime", "docker"}, {"name", container_name_}}
+    );
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Docker container stopped successfully";
@@ -105,7 +114,10 @@ DockerRemoveContainerCommand::DockerRemoveContainerCommand(const std::string& co
 bool DockerRemoveContainerCommand::Execute() const {
     // Stop the Docker container
     IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
-    std::string command = "docker rm -f " + container_name_;
+    std::string command = FormatCommand(
+        CommandTemplate::Remove,
+        {{"runtime", "docker"}, {"name", container_name_}}
+    );
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Docker container removed successfully";
@@ -125,7 +137,10 @@ DockerRestartContainerCommand::DockerRestartContainerCommand(const std::string& 
 bool DockerRestartContainerCommand::Execute() const {
     // Stop the Docker container
     IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
-    std::string command = "docker restart " + container_name_;
+    std::string command = FormatCommand(
+        CommandTemplate::Restart,
+        {{"runtime", "docker"}, {"name", container_name_}}
+    );
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Docker container restarted successfully";
