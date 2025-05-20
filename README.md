@@ -163,12 +163,21 @@ mkdir build && cd build
   make
   ```
 
-#### If you want all protocols and both data formats (full build):
+#### If you want all protocols with JSON format (full build):
 
 - Install all dependencies listed in the prerequisites.
 - CMake (default):
   ```sh
   cmake ..
+  make
+  ```
+
+#### If you want all protocols with Protobuf only (no JSON):
+
+- Install all protocol dependencies plus Protobuf.
+- CMake:
+  ```sh
+  cmake .. -DENABLE_REST=ON -DENABLE_MQTT=ON -DENABLE_MSGQUEUE=ON -DENABLE_DBUS=ON -DENABLE_GRPC=ON -DENABLE_PROTOBUF=ON
   make
   ```
 
@@ -205,7 +214,12 @@ make -j$(nproc)
   cmake .. -DENABLE_REST=ON -DENABLE_MQTT=ON -DENABLE_MSGQUEUE=OFF -DENABLE_DBUS=OFF -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=ON
   make
   ```
-- **Full build (all protocols and formats):**
+- **Enable all protocols with Protobuf only:**
+  ```sh
+  cmake .. -DENABLE_REST=ON -DENABLE_MQTT=ON -DENABLE_MSGQUEUE=ON -DENABLE_DBUS=ON -DENABLE_GRPC=ON -DENABLE_PROTOBUF=ON
+  make
+  ```
+- **Full build (all protocols with JSON format):**
   ```sh
   cmake ..
   make
