@@ -1,5 +1,4 @@
 <map id="api/inc/mosquitto_mqtt_subscriber.hpp" name="api/inc/mosquitto_mqtt_subscriber.hpp">
-<area shape="rect" id="node1" title="Declares the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto." alt="" coords="81,5,255,47"/>
+<area shape="rect" id="node1" title="Declares the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto." alt="" coords="5,5,179,47"/>
 <area shape="rect" id="node2" href="$mosquitto__mqtt__subscriber_8cpp.html" title="Implements the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto." alt="" coords="5,95,179,136"/>
-<area shape="rect" id="node3" href="$main_8cpp.html" title="Entry point for the Container Manager application." alt="" coords="203,102,285,129"/>
 </map>

@@ -122,6 +122,7 @@ Features</h1>
 </ul>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Architecture Overview</h1>
+<p>See the <a class="el" href="md__home_komal_workspace_personal_container_manager_docs_architecture.html">Architecture Documentation</a> for detailed diagrams and explanations.</p>
 <div class="fragment"><div class="line">App/</div>
 <div class="line">├── api/        # HTTP server, MQTT subscriber, Message Queue and D-Bus consumer (and future protocol handlers)</div>
 <div class="line">├── core/       # Business logic (service layer)</div>
@@ -148,64 +149,159 @@ Architecture Overview</h1>
  The <code><a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a></code> interface allows you to swap Redis for any other backend (SQL, NoSQL, in-memory, etc.) with minimal code changes.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md3"></a>
-Quick Start</h1>
+Modularity &amp; Build System</h1>
+<p><b>Container Manager is fully modular.</b> <br  />
+ You only need to install the dependencies for the protocols and data formats you want to use. <br  />
+ <b>You do NOT need to install all protocol and data format libraries unless you want a full-featured build.</b></p>
 <h2><a class="anchor" id="autotoc_md4"></a>
-Prerequisites</h2>
+Protocols and Data Formats</h2>
 <ul>
-<li>C++17 compiler</li>
-<li>CMake 3.10+</li>
-<li><a href="https://github.com/google/glog">glog</a></li>
-<li><a href="https://github.com/Cylix/cpp_redis">cpp_redis</a></li>
-<li><a href="https://github.com/nlohmann/json">nlohmann/json</a></li>
-<li><a href="https://github.com/eclipse-mosquitto/mosquitto">mosquitto</a></li>
-<li><a href="https://github.com/Kistler-Group/sdbus-cpp">sdbus-c++</a> (for D-Bus support)</li>
-<li>Docker and/or Podman installed and running</li>
-</ul>
-<h3><a class="anchor" id="autotoc_md5"></a>
-Protobuf Support</h3>
-<ul>
-<li><b>Protobuf:</b><ul>
-<li>Library: <code>libprotobuf-dev</code> (version 3.6.1 recommended for Ubuntu 20.04)</li>
-<li>Compiler: <code>protobuf-compiler</code> (ensure the version matches the library, e.g., 3.6.1)</li>
+<li><b>Protocols:</b><ul>
+<li>REST (HTTP/JSON or Protobuf)</li>
+<li>MQTT</li>
+<li>POSIX Message Queue</li>
+<li>D-Bus (session bus)</li>
+<li>gRPC (planned)</li>
 </ul>
 </li>
-<li><b>Install on Ubuntu:</b></li>
-</ul>
-<div class="fragment"><div class="line">sudo apt update</div>
-<div class="line">sudo apt install libprotobuf-dev protobuf-compiler</div>
-</div><!-- fragment --><ul>
-<li><b>Version Check:</b> <div class="fragment"><div class="line">protoc --version</div>
-<div class="line"># Should match: libprotoc 3.6.1</div>
-</div><!-- fragment --></li>
-</ul>
-<h3><a class="anchor" id="autotoc_md6"></a>
-(Planned) gRPC Support</h3>
-<blockquote class="doxtable">
-<p><b>Note:</b> gRPC protocol support is planned and will be documented once implemented. The build system is ready for gRPC/Protobuf integration. </p>
-</blockquote>
-<ul>
-<li><b>gRPC:</b><ul>
-<li>Library: <code>libgrpc++-dev</code> (version 1.16.1 recommended for Ubuntu 20.04)</li>
-<li>Plugin: <code>protobuf-compiler-grpc</code></li>
+<li><b>Data Formats:</b><ul>
+<li>JSON (default)</li>
+<li>Protobuf (optional, for binary serialization)</li>
 </ul>
 </li>
-<li><b>Install on Ubuntu:</b></li>
 </ul>
-<div class="fragment"><div class="line">sudo apt install libgrpc++-dev protobuf-compiler-grpc</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md5"></a>
+CMake Feature Flags</h2>
+<p>You can enable or disable each protocol and data format using CMake flags:</p>
+<ul>
+<li><code>ENABLE_REST</code> (REST/HTTP server)</li>
+<li><code>ENABLE_MQTT</code> (MQTT subscriber)</li>
+<li><code>ENABLE_MSGQUEUE</code> (POSIX Message Queue)</li>
+<li><code>ENABLE_DBUS</code> (D-Bus consumer)</li>
+<li><code>ENABLE_GRPC</code> (gRPC, planned)</li>
+<li><code>ENABLE_PROTOBUF</code> (Protobuf support; if OFF, only JSON is used)</li>
+</ul>
+<p><b>All options are ON by default.</b> <br  />
+ To build only what you need, set the flags before running CMake.</p>
+<h1><a class="anchor" id="autotoc_md6"></a>
 Build Instructions</h1>
+<h2><a class="anchor" id="autotoc_md7"></a>
+1. Clone and Prepare</h2>
 <div class="fragment"><div class="line">git clone https://github.com/yourusername/container_manager.git</div>
 <div class="line">cd container_manager/App</div>
 <div class="line">mkdir build &amp;&amp; cd build</div>
-<div class="line">cmake ..</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md8"></a>
+2. Install Only What You Need</h2>
+<h3><a class="anchor" id="autotoc_md9"></a>
+If you want only JSON over D-Bus:</h3>
+<ul>
+<li>Install only:<ul>
+<li><a href="https://github.com/Kistler-Group/sdbus-cpp">sdbus-c++</a></li>
+<li><a href="https://github.com/nlohmann/json">nlohmann/json</a></li>
+<li><a href="https://github.com/google/glog">glog</a></li>
+<li><a href="https://github.com/Cylix/cpp_redis">cpp_redis</a></li>
+</ul>
+</li>
+<li>CMake: <div class="fragment"><div class="line">cmake .. -DENABLE_REST=OFF -DENABLE_MQTT=OFF -DENABLE_MSGQUEUE=OFF -DENABLE_DBUS=ON -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=OFF</div>
 <div class="line">make</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
+</div><!-- fragment --></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md10"></a>
+If you want only Protobuf over Message Queue:</h3>
+<ul>
+<li>Install only:<ul>
+<li><a href="https://github.com/nlohmann/json">nlohmann/json</a> (for config)</li>
+<li><a href="https://github.com/google/glog">glog</a></li>
+<li><a href="https://github.com/Cylix/cpp_redis">cpp_redis</a></li>
+<li>Protobuf (<code>libprotobuf-dev</code>, <code>protobuf-compiler</code>)</li>
+</ul>
+</li>
+<li>CMake: <div class="fragment"><div class="line">cmake .. -DENABLE_REST=OFF -DENABLE_MQTT=OFF -DENABLE_MSGQUEUE=ON -DENABLE_DBUS=OFF -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=ON</div>
+<div class="line">make</div>
+</div><!-- fragment --></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md11"></a>
+If you want REST and MQTT with JSON only:</h3>
+<ul>
+<li>Install:<ul>
+<li><a href="https://github.com/nlohmann/json">nlohmann/json</a></li>
+<li><a href="https://github.com/google/glog">glog</a></li>
+<li><a href="https://github.com/Cylix/cpp_redis">cpp_redis</a></li>
+<li><a href="https://github.com/eclipse-mosquitto/mosquitto">mosquitto</a></li>
+<li><a href="https://github.com/yhirose/cpp-httplib">httplib (included as third_party)</a></li>
+</ul>
+</li>
+<li>CMake: <div class="fragment"><div class="line">cmake .. -DENABLE_REST=ON -DENABLE_MQTT=ON -DENABLE_MSGQUEUE=OFF -DENABLE_DBUS=OFF -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=OFF</div>
+<div class="line">make</div>
+</div><!-- fragment --></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md12"></a>
+If you want all protocols with JSON format (full build):</h3>
+<ul>
+<li>Install all dependencies listed in the prerequisites.</li>
+<li>CMake (default): <div class="fragment"><div class="line">cmake ..</div>
+<div class="line">make</div>
+</div><!-- fragment --></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md13"></a>
+If you want all protocols with Protobuf only (no JSON):</h3>
+<ul>
+<li>Install all protocol dependencies plus Protobuf.</li>
+<li>CMake: <div class="fragment"><div class="line">cmake .. -DENABLE_REST=ON -DENABLE_MQTT=ON -DENABLE_MSGQUEUE=ON -DENABLE_DBUS=ON -DENABLE_GRPC=ON -DENABLE_PROTOBUF=ON</div>
+<div class="line">make</div>
+</div><!-- fragment --></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md14"></a>
+3. Summary Table</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Protocol/Data Format </th><th class="markdownTableHeadNone">CMake Flag </th><th class="markdownTableHeadNone">Required Packages  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">REST (HTTP/JSON) </td><td class="markdownTableBodyNone">ENABLE_REST=ON </td><td class="markdownTableBodyNone">nlohmann_json, glog, cpp_redis, httplib  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">MQTT </td><td class="markdownTableBodyNone">ENABLE_MQTT=ON </td><td class="markdownTableBodyNone">mosquitto, nlohmann_json, glog, cpp_redis  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Message Queue </td><td class="markdownTableBodyNone">ENABLE_MSGQUEUE=ON </td><td class="markdownTableBodyNone">nlohmann_json, glog, cpp_redis  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">D-Bus </td><td class="markdownTableBodyNone">ENABLE_DBUS=ON </td><td class="markdownTableBodyNone">sdbus-c++, nlohmann_json, glog, cpp_redis  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">gRPC (planned) </td><td class="markdownTableBodyNone">ENABLE_GRPC=ON </td><td class="markdownTableBodyNone">grpc++, protobuf, nlohmann_json, glog, cpp_redis  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Protobuf </td><td class="markdownTableBodyNone">ENABLE_PROTOBUF=ON </td><td class="markdownTableBodyNone">protobuf  </td></tr>
+</table>
+<ul>
+<li><b>JSON</b> is always available (unless you only enable Protobuf).</li>
+<li><b>Protobuf</b> is optional and only needed if you want binary serialization.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md15"></a>
+4. General Build Steps</h2>
+<div class="fragment"><div class="line">cmake .. &lt;your-flags&gt;</div>
+<div class="line">make -j$(nproc)</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md16"></a>
+5. Examples</h2>
+<ul>
+<li><b>Enable only D-Bus with JSON:</b> <div class="fragment"><div class="line">cmake .. -DENABLE_REST=OFF -DENABLE_MQTT=OFF -DENABLE_MSGQUEUE=OFF -DENABLE_DBUS=ON -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=OFF</div>
+<div class="line">make</div>
+</div><!-- fragment --></li>
+<li><b>Enable REST, MQTT, and Protobuf:</b> <div class="fragment"><div class="line">cmake .. -DENABLE_REST=ON -DENABLE_MQTT=ON -DENABLE_MSGQUEUE=OFF -DENABLE_DBUS=OFF -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=ON</div>
+<div class="line">make</div>
+</div><!-- fragment --></li>
+<li><b>Enable all protocols with Protobuf only:</b> <div class="fragment"><div class="line">cmake .. -DENABLE_REST=ON -DENABLE_MQTT=ON -DENABLE_MSGQUEUE=ON -DENABLE_DBUS=ON -DENABLE_GRPC=ON -DENABLE_PROTOBUF=ON</div>
+<div class="line">make</div>
+</div><!-- fragment --></li>
+<li><b>Full build (all protocols with JSON format):</b> <div class="fragment"><div class="line">cmake ..</div>
+<div class="line">make</div>
+</div><!-- fragment --></li>
+</ul>
+<p><b>This modular build system ensures you only install and build what you need for your use case.</b> <br  />
+ <b>Check the CMake output for any missing dependencies based on your selected flags.</b></p>
+<h1><a class="anchor" id="autotoc_md17"></a>
 Running the Server</h1>
 <div class="fragment"><div class="line">./CM</div>
-</div><!-- fragment --><p>The server will start and listen on the default port <code>5000</code> for HTTP, subscribe to the MQTT topic <code>container/execute</code> on port <code>1883</code>, listen on the POSIX message queue <code>/container_manager_queue</code>, and register a D-Bus object on the <b>session bus</b> as <code>org.container.manager</code> at <code>/org/container/manager</code>.</p>
-<h1><a class="anchor" id="autotoc_md9"></a>
+</div><!-- fragment --><p>The server will start and listen on the enabled protocols and data formats as per your build configuration.</p>
+<h1><a class="anchor" id="autotoc_md18"></a>
 API Usage</h1>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md19"></a>
 Example JSON Request</h2>
 <div class="fragment"><div class="line">{</div>
 <div class="line">  &quot;runtime&quot;: &quot;docker&quot;,</div>
@@ -221,7 +317,7 @@ Example JSON Request</h2>
 <div class="line">    }</div>
 <div class="line">  ]</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md11"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md20"></a>
 Example Protobuf Request</h2>
 <ul>
 <li>See <code>executor/proto/container_manager.proto</code> for the schema.</li>
@@ -245,7 +341,7 @@ Example Protobuf Request</h2>
 <div class="line">payload = req.SerializeToString()</div>
 <div class="line">mq = posix_ipc.MessageQueue(&#39;/container_manager_queue&#39;, posix_ipc.O_CREAT)</div>
 <div class="line">mq.send(payload)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md21"></a>
 HTTP Endpoint</h2>
 <ul>
 <li><b>POST</b> <code>/execute</code><ul>
@@ -254,7 +350,7 @@ HTTP Endpoint</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md13"></a>
+<h2><a class="anchor" id="autotoc_md22"></a>
 MQTT Usage</h2>
 <ul>
 <li><b>Topic:</b> <code>container/execute</code></li>
@@ -262,7 +358,7 @@ MQTT Usage</h2>
 </div><!-- fragment --></li>
 <li><b>Publish Example (Protobuf):</b> Use the generated Protobuf class to serialize and send the message as binary.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md14"></a>
+<h2><a class="anchor" id="autotoc_md23"></a>
 POSIX Message Queue Usage</h2>
 <ul>
 <li><b>Queue Name:</b> <code>/container_manager_queue</code></li>
@@ -272,7 +368,7 @@ POSIX Message Queue Usage</h2>
 </div><!-- fragment --></li>
 <li><b>Send Example (Python, Protobuf):</b> See the Protobuf example above.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md15"></a>
+<h2><a class="anchor" id="autotoc_md24"></a>
 D-Bus (Session Bus) Usage</h2>
 <ul>
 <li><b>Bus Name:</b> <code>org.container.manager</code></li>
@@ -293,7 +389,7 @@ D-Bus (Session Bus) Usage</h2>
 <li>The D-Bus consumer uses the <b>session bus</b> for user applications.</li>
 <li>No root privileges or system-wide D-Bus policy is required.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md16"></a>
+<h1><a class="anchor" id="autotoc_md25"></a>
 Code Structure</h1>
 <ul>
 <li><b><a class="el" href="main_8cpp.html" title="Entry point for the Container Manager application.">main.cpp</a>:</b> <br  />
@@ -325,10 +421,10 @@ Code Structure</h1>
 <li><b><a class="el" href="logging_8hpp.html" title="Logging macros and configuration for the Container Manager.">utils/inc/logging.hpp</a>:</b> <br  />
  Logging macros and configuration.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md17"></a>
+<h1><a class="anchor" id="autotoc_md26"></a>
 Python UI: Container Creator</h1>
 <p>A cross-platform Python GUI tool is provided for easily sending container management requests to the Container Manager backend.</p>
-<h2><a class="anchor" id="autotoc_md18"></a>
+<h2><a class="anchor" id="autotoc_md27"></a>
 Features</h2>
 <ul>
 <li>Select protocol: REST (HTTP), MQTT, POSIX Message Queue, or D-Bus (session bus)</li>
@@ -336,7 +432,7 @@ Features</h2>
 <li>Fill in container parameters (runtime, operation, resources, image, etc.)</li>
 <li>Send requests directly to the backend via REST, MQTT, Message Queue, or D-Bus</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md19"></a>
+<h2><a class="anchor" id="autotoc_md28"></a>
 Requirements</h2>
 <ul>
 <li>Python 3.7+</li>
@@ -349,7 +445,7 @@ Requirements</h2>
 </ul>
 <p>Install dependencies:</p>
 <div class="fragment"><div class="line">pip install requests paho-mqtt posix_ipc dbus-python protobuf</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md20"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md29"></a>
 Usage</h2>
 <div class="fragment"><div class="line">cd ui</div>
 <div class="line">python container_creator_app.py</div>
@@ -367,7 +463,7 @@ Usage</h2>
 </ol>
 <p>The UI will show a confirmation or error message after sending the request.</p>
 <p><b>This tool is ideal for testing, demos, and rapid prototyping with the Container Manager backend.</b></p>
-<h1><a class="anchor" id="autotoc_md21"></a>
+<h1><a class="anchor" id="autotoc_md30"></a>
 Documentation</h1>
 <ul>
 <li><b>Doxygen HTML Docs:</b> <br  />
@@ -375,7 +471,7 @@ Documentation</h1>
 <li><b>Generating Docs:</b> <div class="fragment"><div class="line">doxygen Doxyfile</div>
 </div><!-- fragment --></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md22"></a>
+<h1><a class="anchor" id="autotoc_md31"></a>
 Extending the Project</h1>
 <ul>
 <li><b>Add a new runtime:</b> <br  />
@@ -392,13 +488,13 @@ Extending the Project</h1>
 <li><b>Change database backend:</b> <br  />
  Implement the <code><a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a></code> interface for your preferred database (SQL, NoSQL, etc.) and update the service to use it.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md23"></a>
+<h1><a class="anchor" id="autotoc_md32"></a>
 Contributing</h1>
 <p>Contributions are welcome! Please open issues or pull requests for bug fixes, new features, or documentation improvements.</p>
-<h1><a class="anchor" id="autotoc_md24"></a>
+<h1><a class="anchor" id="autotoc_md33"></a>
 License</h1>
 <p>This project is licensed under the [MIT License](LICENSE).</p>
-<h1><a class="anchor" id="autotoc_md25"></a>
+<h1><a class="anchor" id="autotoc_md34"></a>
 Acknowledgements</h1>
 <ul>
 <li><a href="https://github.com/google/glog">glog</a></li>

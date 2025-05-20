@@ -1,5 +1,6 @@
 var namespaces_dup =
 [
+    [ "CommandTemplate", "namespaceCommandTemplate.html", null ],
     [ "containermanager", "namespacecontainermanager.html", null ],
     [ "google", "namespacegoogle.html", "namespacegoogle" ],
     [ "grpc", "namespacegrpc.html", null ],

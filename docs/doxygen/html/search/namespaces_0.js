@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['containermanager_329',['containermanager',['../namespacecontainermanager.html',1,'']]]
+  ['commandtemplate_336',['CommandTemplate',['../namespaceCommandTemplate.html',1,'']]],
+  ['containermanager_337',['containermanager',['../namespacecontainermanager.html',1,'']]]
 ];

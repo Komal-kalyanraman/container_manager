@@ -97,12 +97,14 @@ $(document).ready(function(){initNavTree('classPodmanStartContainerCommand.html'
 <div class="dynheader">
 Inheritance diagram for PodmanStartContainerCommand:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPodmanStartContainerCommand__inherit__graph.svg" width="283" height="258"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPodmanStartContainerCommand__inherit__graph.svg" width="283" height="258"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div class="dynheader">
 Collaboration diagram for PodmanStartContainerCommand:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPodmanStartContainerCommand__coll__graph.svg" width="283" height="258"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPodmanStartContainerCommand__coll__graph.svg" width="283" height="258"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -158,10 +160,10 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="podman__commands_8cpp_source.html#l00061">61</a> of file <a class="el" href="podman__commands_8cpp_source.html">podman_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                                                                                        : container_name_(container_name) {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">// Empty constructor</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="podman__commands_8cpp_source.html#l00064">64</a> of file <a class="el" href="podman__commands_8cpp_source.html">podman_commands.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                                                                                        : container_name_(container_name) {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// Empty constructor</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -221,28 +223,32 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">Command</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="podman__commands_8cpp_source.html#l00065">65</a> of file <a class="el" href="podman__commands_8cpp_source.html">podman_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                                                {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">// Start the Podman container</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="classIDatabaseHandler.html">IDatabaseHandler</a>&amp; db = <a class="code" href="classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce">RedisDatabaseHandler::GetInstance</a>();</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    std::string command = <span class="stringliteral">&quot;podman start &quot;</span> + container_name_;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">int</span> status = std::system(command.c_str());</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">if</span> (status == 0) {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <a class="code" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a> &lt;&lt; <span class="stringliteral">&quot;Podman container started successfully&quot;</span>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        db.<a class="code" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">UpdateField</a>(container_name_, <span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;running&quot;</span>);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <a class="code" href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a> &lt;&lt; <span class="stringliteral">&quot;Failed to start Podman container&quot;</span>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        db.<a class="code" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">UpdateField</a>(container_name_, <span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;Error running container&quot;</span>);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="podman__commands_8cpp_source.html#l00068">68</a> of file <a class="el" href="podman__commands_8cpp_source.html">podman_commands.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                                                {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">// Start the Podman container</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="classIDatabaseHandler.html">IDatabaseHandler</a>&amp; db = <a class="code" href="classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce">RedisDatabaseHandler::GetInstance</a>();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    std::string command = <a class="code" href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a>(</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="namespaceCommandTemplate.html#a0e1ab1f9a49c7fe35aa817e9ce451129">CommandTemplate::Start</a>,</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {{<span class="stringliteral">&quot;runtime&quot;</span>, <span class="stringliteral">&quot;podman&quot;</span>}, {<span class="stringliteral">&quot;name&quot;</span>, container_name_}}</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    );</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">int</span> status = std::system(command.c_str());</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">if</span> (status == 0) {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <a class="code" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a> &lt;&lt; <span class="stringliteral">&quot;Podman container started successfully&quot;</span>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        db.<a class="code" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">UpdateField</a>(container_name_, <span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;running&quot;</span>);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <a class="code" href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a> &lt;&lt; <span class="stringliteral">&quot;Failed to start Podman container&quot;</span>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        db.<a class="code" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">UpdateField</a>(container_name_, <span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;Error running container&quot;</span>);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="logging_8hpp_source.html#l00026">CM_LOG_ERROR</a>, <a class="el" href="logging_8hpp_source.html#l00020">CM_LOG_INFO</a>, <a class="el" href="redis__database_8cpp_source.html#l00019">RedisDatabaseHandler::GetInstance()</a>, and <a class="el" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">IDatabaseHandler::UpdateField()</a>.</p>
+<p class="reference">References <a class="el" href="logging_8hpp_source.html#l00026">CM_LOG_ERROR</a>, <a class="el" href="logging_8hpp_source.html#l00020">CM_LOG_INFO</a>, <a class="el" href="common_8hpp_source.html#l00088">FormatCommand()</a>, <a class="el" href="redis__database_8cpp_source.html#l00019">RedisDatabaseHandler::GetInstance()</a>, <a class="el" href="common_8hpp_source.html#l00079">CommandTemplate::Start</a>, and <a class="el" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">IDatabaseHandler::UpdateField()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPodmanStartContainerCommand_aaf7627e6faf5974ffcd95e8a5f58852f_cgraph.svg" width="490" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPodmanStartContainerCommand_aaf7627e6faf5974ffcd95e8a5f58852f_cgraph.svg" width="490" height="170"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -258,6 +264,8 @@ Here is the call graph for this function:</div>
 <div class="ttc" id="alogging_8hpp_html_a3251db9e68b527ad826d18502cbcbe7a"><div class="ttname"><a href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a></div><div class="ttdeci">#define CM_LOG_ERROR</div><div class="ttdoc">Macro for logging error messages.</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00026">logging.hpp:26</a></div></div>
 <div class="ttc" id="alogging_8hpp_html_a13620e8436f16badd4e01d4fd57467e2"><div class="ttname"><a href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a></div><div class="ttdeci">#define CM_LOG_INFO</div><div class="ttdoc">Macro for logging informational messages.</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00020">logging.hpp:20</a></div></div>
 <div class="ttc" id="aclassIDatabaseHandler_html_a10972030d1577974e9f86820e251c7d6"><div class="ttname"><a href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">IDatabaseHandler::UpdateField</a></div><div class="ttdeci">virtual void UpdateField(const std::string &amp;key, const std::string &amp;field, const std::string &amp;value)=0</div><div class="ttdoc">Updates a specific field in the JSON object stored under the given key.</div></div>
+<div class="ttc" id="acommon_8hpp_html_a2f80aeff93aed5c1cc3d4c356d458b99"><div class="ttname"><a href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a></div><div class="ttdeci">std::string FormatCommand(std::string_view tmpl, const std::unordered_map&lt; std::string, std::string &gt; &amp;values)</div><div class="ttdoc">Utility function to format command templates by replacing placeholders with actual values.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00088">common.hpp:88</a></div></div>
+<div class="ttc" id="anamespaceCommandTemplate_html_a0e1ab1f9a49c7fe35aa817e9ce451129"><div class="ttname"><a href="namespaceCommandTemplate.html#a0e1ab1f9a49c7fe35aa817e9ce451129">CommandTemplate::Start</a></div><div class="ttdeci">constexpr std::string_view Start</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00079">common.hpp:79</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

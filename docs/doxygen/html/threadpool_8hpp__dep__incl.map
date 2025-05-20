@@ -1,7 +1,6 @@
 <map id="utils/inc/threadpool.hpp" name="utils/inc/threadpool.hpp">
-<area shape="rect" id="node1" title="Declares the ThreadPool utility class for managing worker threads." alt="" coords="177,5,351,32"/>
-<area shape="rect" id="node2" href="$http__server_8hpp.html" title="Defines the HttpServerHandler class for handling HTTP requests." alt="" coords="80,80,251,107"/>
-<area shape="rect" id="node5" href="$threadpool_8cpp.html" title="Implements the ThreadPool utility class for managing worker threads." alt="" coords="275,80,450,107"/>
+<area shape="rect" id="node1" title="Declares the ThreadPool utility class for managing worker threads." alt="" coords="102,5,277,32"/>
+<area shape="rect" id="node2" href="$http__server_8hpp.html" title="Defines the HttpServerHandler class for handling HTTP requests." alt="" coords="5,80,176,107"/>
+<area shape="rect" id="node4" href="$threadpool_8cpp.html" title="Implements the ThreadPool utility class for managing worker threads." alt="" coords="201,80,375,107"/>
 <area shape="rect" id="node3" href="$http__server_8cpp.html" title="Implements the HttpServerHandler class for handling HTTP requests." alt="" coords="5,155,176,181"/>
-<area shape="rect" id="node4" href="$main_8cpp.html" title="Entry point for the Container Manager application." alt="" coords="200,155,283,181"/>
 </map>

@@ -25,33 +25,67 @@ var NAVTREE =
   [ "Container Manager", "index.html", [
     [ "Features", "index.html#autotoc_md1", null ],
     [ "Architecture Overview", "index.html#autotoc_md2", null ],
-    [ "Quick Start", "index.html#autotoc_md3", [
-      [ "Prerequisites", "index.html#autotoc_md4", [
-        [ "Protobuf Support", "index.html#autotoc_md5", null ],
-        [ "(Planned) gRPC Support", "index.html#autotoc_md6", null ]
-      ] ]
+    [ "Modularity & Build System", "index.html#autotoc_md3", [
+      [ "Protocols and Data Formats", "index.html#autotoc_md4", null ],
+      [ "CMake Feature Flags", "index.html#autotoc_md5", null ]
     ] ],
-    [ "Build Instructions", "index.html#autotoc_md7", null ],
-    [ "Running the Server", "index.html#autotoc_md8", null ],
-    [ "API Usage", "index.html#autotoc_md9", [
-      [ "Example JSON Request", "index.html#autotoc_md10", null ],
-      [ "Example Protobuf Request", "index.html#autotoc_md11", null ],
-      [ "HTTP Endpoint", "index.html#autotoc_md12", null ],
-      [ "MQTT Usage", "index.html#autotoc_md13", null ],
-      [ "POSIX Message Queue Usage", "index.html#autotoc_md14", null ],
-      [ "D-Bus (Session Bus) Usage", "index.html#autotoc_md15", null ]
+    [ "Build Instructions", "index.html#autotoc_md6", [
+      [ "1. Clone and Prepare", "index.html#autotoc_md7", null ],
+      [ "2. Install Only What You Need", "index.html#autotoc_md8", [
+        [ "If you want only JSON over D-Bus:", "index.html#autotoc_md9", null ],
+        [ "If you want only Protobuf over Message Queue:", "index.html#autotoc_md10", null ],
+        [ "If you want REST and MQTT with JSON only:", "index.html#autotoc_md11", null ],
+        [ "If you want all protocols with JSON format (full build):", "index.html#autotoc_md12", null ],
+        [ "If you want all protocols with Protobuf only (no JSON):", "index.html#autotoc_md13", null ]
+      ] ],
+      [ "3. Summary Table", "index.html#autotoc_md14", null ],
+      [ "4. General Build Steps", "index.html#autotoc_md15", null ],
+      [ "5. Examples", "index.html#autotoc_md16", null ]
     ] ],
-    [ "Code Structure", "index.html#autotoc_md16", null ],
-    [ "Python UI: Container Creator", "index.html#autotoc_md17", [
-      [ "Features", "index.html#autotoc_md18", null ],
-      [ "Requirements", "index.html#autotoc_md19", null ],
-      [ "Usage", "index.html#autotoc_md20", null ]
+    [ "Running the Server", "index.html#autotoc_md17", null ],
+    [ "API Usage", "index.html#autotoc_md18", [
+      [ "Example JSON Request", "index.html#autotoc_md19", null ],
+      [ "Example Protobuf Request", "index.html#autotoc_md20", null ],
+      [ "HTTP Endpoint", "index.html#autotoc_md21", null ],
+      [ "MQTT Usage", "index.html#autotoc_md22", null ],
+      [ "POSIX Message Queue Usage", "index.html#autotoc_md23", null ],
+      [ "D-Bus (Session Bus) Usage", "index.html#autotoc_md24", null ]
     ] ],
-    [ "Documentation", "index.html#autotoc_md21", null ],
-    [ "Extending the Project", "index.html#autotoc_md22", null ],
-    [ "Contributing", "index.html#autotoc_md23", null ],
-    [ "License", "index.html#autotoc_md24", null ],
-    [ "Acknowledgements", "index.html#autotoc_md25", null ],
+    [ "Code Structure", "index.html#autotoc_md25", null ],
+    [ "Python UI: Container Creator", "index.html#autotoc_md26", [
+      [ "Features", "index.html#autotoc_md27", null ],
+      [ "Requirements", "index.html#autotoc_md28", null ],
+      [ "Usage", "index.html#autotoc_md29", null ]
+    ] ],
+    [ "Documentation", "index.html#autotoc_md30", null ],
+    [ "Extending the Project", "index.html#autotoc_md31", null ],
+    [ "Contributing", "index.html#autotoc_md32", null ],
+    [ "License", "index.html#autotoc_md33", null ],
+    [ "Acknowledgements", "index.html#autotoc_md34", null ],
+    [ "Container Manager Architecture", "md__home_komal_workspace_personal_container_manager_docs_architecture.html", [
+      [ "Overview", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md36", null ],
+      [ "High-Level Architecture Diagram", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md37", [
+        [ "API & Executor Layers", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md38", null ],
+        [ "Executor, Core, and Runtime Layers", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md39", null ],
+        [ "Runtime & Database Layers", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md40", null ]
+      ] ],
+      [ "Folder Structure", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md41", null ],
+      [ "Component Descriptions", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md42", [
+        [ "1. <strong>API Layer (Protocol Handlers)</strong>", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md43", null ],
+        [ "2. <strong>Executor Layer (Request Executors)</strong>", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md44", null ],
+        [ "3. <strong>Core Layer (Service & Command Pattern)</strong>", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md45", null ],
+        [ "4. <strong>Runtime Layer</strong>", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md46", null ],
+        [ "5. <strong>Database Layer</strong>", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md47", null ],
+        [ "6. <strong>Utilities</strong>", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md48", null ]
+      ] ],
+      [ "Data Flow", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md49", null ],
+      [ "Extensibility", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md50", null ],
+      [ "Production-Readiness", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md51", null ],
+      [ "Example Sequence Diagram", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md52", null ],
+      [ "Deployment Diagram", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md53", null ],
+      [ "Recommendations for Contributors", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md54", null ],
+      [ "References", "md__home_komal_workspace_personal_container_manager_docs_architecture.html#autotoc_md55", null ]
+    ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -88,7 +122,7 @@ var NAVTREEINDEX =
 [
 "CMakeCXXCompilerId_8cpp.html",
 "classcontainermanager_1_1ContainerRequest.html#a9cd8d5cff94e72249a84e86da9b61516",
-"structMqttConfig.html#a4ddff58cccf90d75d218803189536a38"
+"podman__api__commands_8hpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

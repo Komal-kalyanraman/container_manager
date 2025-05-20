@@ -1,5 +1,0 @@
-<map id="api/inc/message_queue_consumer.hpp" name="api/inc/message_queue_consumer.hpp">
-<area shape="rect" id="node1" title="Declares the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="81,5,256,47"/>
-<area shape="rect" id="node2" href="$message__queue__consumer_8cpp.html" title="Implements the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="5,95,180,136"/>
-<area shape="rect" id="node3" href="$main_8cpp.html" title="Entry point for the Container Manager application." alt="" coords="205,102,287,129"/>
-</map>

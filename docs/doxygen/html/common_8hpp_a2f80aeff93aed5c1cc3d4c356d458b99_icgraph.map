@@ -1,0 +1,13 @@
+<map id="FormatCommand" name="FormatCommand">
+<area shape="rect" id="node1" title="Utility function to format command templates by replacing placeholders with actual values." alt="" coords="312,307,447,334"/>
+<area shape="rect" id="node2" href="$classDockerCreateContainerCommand.html#a8967ee094698e00a212c67f71870de06" title="Executes the command to create a Docker container." alt="" coords="15,5,255,47"/>
+<area shape="rect" id="node3" href="$classPodmanCreateContainerCommand.html#aca31055904b1fb20736ed5807e215ae6" title="Executes the command to create a Podman container." alt="" coords="11,71,259,112"/>
+<area shape="rect" id="node4" href="$classDockerStartContainerCommand.html#ad208f99e4185a7606a0a9903d1346fcc" title="Executes the command to start a Docker container." alt="" coords="21,136,249,177"/>
+<area shape="rect" id="node5" href="$classPodmanStartContainerCommand.html#aaf7627e6faf5974ffcd95e8a5f58852f" title="Executes the command to start a Podman container." alt="" coords="17,201,253,243"/>
+<area shape="rect" id="node6" href="$classDockerStopContainerCommand.html#a4d6a495edca166958eee65ca601bc5bd" title="Executes the command to stop a Docker container." alt="" coords="21,267,248,308"/>
+<area shape="rect" id="node7" href="$classPodmanStopContainerCommand.html#a42d7bf3c2ae604172ae1e1ae29bdc0c6" title="Executes the command to stop a Podman container." alt="" coords="17,332,252,373"/>
+<area shape="rect" id="node8" href="$classDockerRemoveContainerCommand.html#a0c15063652bf92deb99a742a4a9f61fd" title="Executes the command to remove a Docker container and clean up database state." alt="" coords="9,397,260,439"/>
+<area shape="rect" id="node9" href="$classPodmanRemoveContainerCommand.html#a3bb0bf30e7f91e87c407980e1adcc398" title="Executes the command to remove a Podman container and clean up database state." alt="" coords="5,463,264,504"/>
+<area shape="rect" id="node10" href="$classDockerRestartContainerCommand.html#a3852a9870150e02cde5e3f3cabf4d5d9" title="Executes the command to restart a Docker container." alt="" coords="13,528,257,569"/>
+<area shape="rect" id="node11" href="$classPodmanRestartContainerCommand.html#ae4a585c345eafa6a97a1f38e4cb485ea" title="Executes the command to restart a Podman container." alt="" coords="9,593,261,635"/>
+</map>

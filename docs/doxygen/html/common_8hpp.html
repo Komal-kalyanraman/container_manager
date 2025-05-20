@@ -84,6 +84,8 @@ $(document).ready(function(){initNavTree('common_8hpp.html',''); initResizable()
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">common.hpp File Reference</div>  </div>
@@ -94,10 +96,12 @@ $(document).ready(function(){initNavTree('common_8hpp.html',''); initResizable()
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;string&gt;</code><br />
 <code>#include &lt;string_view&gt;</code><br />
+<code>#include &lt;unordered_map&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for common.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="common_8hpp__incl.svg" width="194" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="common_8hpp__incl.svg" width="340" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -129,6 +133,18 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains string constants for supported container operations.  <a href="structCommandName.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceCommandTemplate"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommandTemplate.html">CommandTemplate</a></td></tr>
+<tr class="memdesc:namespaceCommandTemplate"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains command templates for supported container operations. Placeholders (e.g., {runtime}, {name}, {image}) are replaced at runtime. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a2f80aeff93aed5c1cc3d4c356d458b99"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a> (std::string_view tmpl, const std::unordered_map&lt; std::string, std::string &gt; &amp;values)</td></tr>
+<tr class="memdesc:a2f80aeff93aed5c1cc3d4c356d458b99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utility function to format command templates by replacing placeholders with actual values.  <a href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">More...</a><br /></td></tr>
+<tr class="separator:a2f80aeff93aed5c1cc3d4c356d458b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a48f593827063b6c569fbcdbf440f564e"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a48f593827063b6c569fbcdbf440f564e">kEmptyString</a> = &quot;&quot;</td></tr>
@@ -137,12 +153,90 @@ Variables</h2></td></tr>
 <tr class="memitem:af0a5c19c0d441fb37ef118d1714dc2aa"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#af0a5c19c0d441fb37ef118d1714dc2aa">kContainerManagerLogName</a> = &quot;cm_log&quot;</td></tr>
 <tr class="memdesc:af0a5c19c0d441fb37ef118d1714dc2aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name used for container manager in google logging.  <a href="common_8hpp.html#af0a5c19c0d441fb37ef118d1714dc2aa">More...</a><br /></td></tr>
 <tr class="separator:af0a5c19c0d441fb37ef118d1714dc2aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a641acb6b2c850ccb8dbce6f3a08315df"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommandTemplate.html#a641acb6b2c850ccb8dbce6f3a08315df">CommandTemplate::Create</a> = &quot;{runtime} create --name {name} {image}&quot;</td></tr>
+<tr class="separator:a641acb6b2c850ccb8dbce6f3a08315df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e1ab1f9a49c7fe35aa817e9ce451129"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommandTemplate.html#a0e1ab1f9a49c7fe35aa817e9ce451129">CommandTemplate::Start</a> = &quot;{runtime} start {name}&quot;</td></tr>
+<tr class="separator:a0e1ab1f9a49c7fe35aa817e9ce451129"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a360167789598bf328488e90755b12035"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommandTemplate.html#a360167789598bf328488e90755b12035">CommandTemplate::Stop</a> = &quot;{runtime} stop {name}&quot;</td></tr>
+<tr class="separator:a360167789598bf328488e90755b12035"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a763bd52213a9dfc193f395e308b6fa4d"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommandTemplate.html#a763bd52213a9dfc193f395e308b6fa4d">CommandTemplate::Remove</a> = &quot;{runtime} rm -f {name}&quot;</td></tr>
+<tr class="separator:a763bd52213a9dfc193f395e308b6fa4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af11de9f3bc8eaf1f345141ea51514578"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommandTemplate.html#af11de9f3bc8eaf1f345141ea51514578">CommandTemplate::Restart</a> = &quot;{runtime} restart {name}&quot;</td></tr>
+<tr class="separator:af11de9f3bc8eaf1f345141ea51514578"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines common constants, string views, and utility structures for the application. </p>
 
 <p class="definition">Definition in file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
-</div><h2 class="groupheader">Variable Documentation</h2>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a2f80aeff93aed5c1cc3d4c356d458b99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f80aeff93aed5c1cc3d4c356d458b99">&#9670;&nbsp;</a></span>FormatCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string FormatCommand </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>tmpl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::unordered_map&lt; std::string, std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>values</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Utility function to format command templates by replacing placeholders with actual values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tmpl</td><td>The command template string with placeholders. </td></tr>
+    <tr><td class="paramname">values</td><td>A map of placeholder names to their replacement values. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00088">88</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                                                                                                          {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    std::string result(tmpl);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, val] : values) {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        std::string placeholder = <span class="stringliteral">&quot;{&quot;</span> + key + <span class="stringliteral">&quot;}&quot;</span>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordtype">size_t</span> pos = 0;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">while</span> ((pos = result.find(placeholder, pos)) != std::string::npos) {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            result.replace(pos, placeholder.length(), val);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            pos += val.length();</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00036">DockerCreateContainerCommand::Execute()</a>, <a class="el" href="podman__commands_8cpp_source.html#l00036">PodmanCreateContainerCommand::Execute()</a>, <a class="el" href="docker__commands_8cpp_source.html#l00068">DockerStartContainerCommand::Execute()</a>, <a class="el" href="podman__commands_8cpp_source.html#l00068">PodmanStartContainerCommand::Execute()</a>, <a class="el" href="docker__commands_8cpp_source.html#l00091">DockerStopContainerCommand::Execute()</a>, <a class="el" href="podman__commands_8cpp_source.html#l00091">PodmanStopContainerCommand::Execute()</a>, <a class="el" href="docker__commands_8cpp_source.html#l00114">DockerRemoveContainerCommand::Execute()</a>, <a class="el" href="podman__commands_8cpp_source.html#l00114">PodmanRemoveContainerCommand::Execute()</a>, <a class="el" href="docker__commands_8cpp_source.html#l00137">DockerRestartContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00137">PodmanRestartContainerCommand::Execute()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="common_8hpp_a2f80aeff93aed5c1cc3d4c356d458b99_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
 <a id="af0a5c19c0d441fb37ef118d1714dc2aa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af0a5c19c0d441fb37ef118d1714dc2aa">&#9670;&nbsp;</a></span>kContainerManagerLogName</h2>
 
@@ -157,9 +251,9 @@ Variables</h2></td></tr>
 
 <p>Name used for container manager in google logging. </p>
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00015">15</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00016">16</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="init__handler_8cpp_source.html#l00015">InitLogging()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="init__handler_8cpp_source.html#l00017">InitLogging()</a>.</p>
 
 </div>
 </div>
@@ -177,7 +271,7 @@ Variables</h2></td></tr>
 
 <p>Represents an empty string constant. </p>
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00012">12</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00013">13</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="json__request__executor_8cpp_source.html#l00018">JsonRequestExecutorHandler::Execute()</a>, and <a class="el" href="protobuf__request__executor_8cpp_source.html#l00022">ProtoRequestExecutorHandler::Execute()</a>.</p>
 
@@ -188,7 +282,7 @@ Variables</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_cbdb8362360e11eafe2fa3bc74cf0ffd.html">utils</a></li><li class="navelem"><a class="el" href="dir_f185c12169b0584861403140dc49fe3d.html">inc</a></li><li class="navelem"><a class="el" href="common_8hpp.html">common.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_f08c1ffadff6e9e08f49766ff6ac3753.html">utils</a></li><li class="navelem"><a class="el" href="dir_8e032a88fd97b977b14fa9c66aef0e48.html">inc</a></li><li class="navelem"><a class="el" href="common_8hpp.html">common.hpp</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

@@ -1,5 +1,4 @@
 <map id="api/inc/dbus_consumer.hpp" name="api/inc/dbus_consumer.hpp">
-<area shape="rect" id="node1" title="Defines the DbusConsumer class for receiving and processing JSON requests over D&#45;Bus." alt="" coords="87,5,285,32"/>
+<area shape="rect" id="node1" title="Defines the DbusConsumer class for receiving and processing JSON requests over D&#45;Bus." alt="" coords="5,5,204,32"/>
 <area shape="rect" id="node2" href="$dbus__consumer_8cpp.html" title="Implements the DbusConsumer class for receiving and processing JSON requests over D&#45;Bus." alt="" coords="5,80,204,107"/>
-<area shape="rect" id="node3" href="$main_8cpp.html" title="Entry point for the Container Manager application." alt="" coords="227,80,310,107"/>
 </map>

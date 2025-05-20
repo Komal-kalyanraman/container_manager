@@ -48,6 +48,8 @@
 
 ## Architecture Overview
 
+See the [Architecture Documentation](docs/architecture.md) for detailed diagrams and explanations.
+
 ```
 App/
 ├── api/        # HTTP server, MQTT subscriber, Message Queue and D-Bus consumer (and future protocol handlers)

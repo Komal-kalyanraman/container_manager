@@ -1,7 +1,7 @@
 <map id="executor/inc/json_request_executor.hpp" name="executor/inc/json_request_executor.hpp">
-<area shape="rect" id="node1" title="Defines the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="147,5,336,47"/>
-<area shape="rect" id="node2" href="$http__server_8hpp.html" title="Defines the HttpServerHandler class for handling HTTP requests." alt="" coords="33,102,204,129"/>
-<area shape="rect" id="node4" href="$main_8cpp.html" title="Entry point for the Container Manager application." alt="" coords="200,184,283,211"/>
-<area shape="rect" id="node5" href="$json__request__executor_8cpp.html" title="Implements the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="279,95,468,136"/>
+<area shape="rect" id="node1" title="Defines the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="200,5,389,47"/>
+<area shape="rect" id="node2" href="$http__server_8hpp.html" title="Defines the HttpServerHandler class for handling HTTP requests." alt="" coords="5,102,176,129"/>
+<area shape="rect" id="node4" href="$json__request__executor_8cpp.html" title="Implements the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="200,95,389,136"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="Entry point for the Container Manager application." alt="" coords="413,102,496,129"/>
 <area shape="rect" id="node3" href="$http__server_8cpp.html" title="Implements the HttpServerHandler class for handling HTTP requests." alt="" coords="5,184,176,211"/>
 </map>
