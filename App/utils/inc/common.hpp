@@ -20,7 +20,7 @@ const std::string kContainerManagerLogName = "cm_log";
 struct ServerConfig {
     const int Port = 5000;
     const std::string Host = "0.0.0.0";
-    const int ThreadPoolSize = 4;
+    const int ThreadPoolSize = 10;
 };
 
 /// @struct MqttConfig

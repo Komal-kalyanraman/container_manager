@@ -79,61 +79,140 @@ App/
 - **Database Layer:**  
   The `IDatabaseHandler` interface allows you to swap Redis for any other backend (SQL, NoSQL, in-memory, etc.) with minimal code changes.
 
-## Quick Start
+## Modularity & Build System
 
-### Prerequisites
+**Container Manager is fully modular.**  
+You only need to install the dependencies for the protocols and data formats you want to use.  
+**You do NOT need to install all protocol and data format libraries unless you want a full-featured build.**
 
-- C++17 compiler
-- CMake 3.10+
-- [glog](https://github.com/google/glog)
-- [cpp_redis](https://github.com/Cylix/cpp_redis)
-- [nlohmann/json](https://github.com/nlohmann/json)
-- [mosquitto](https://github.com/eclipse-mosquitto/mosquitto)
-- [sdbus-c++](https://github.com/Kistler-Group/sdbus-cpp) (for D-Bus support)
-- Docker and/or Podman installed and running
+### Protocols and Data Formats
 
-#### Protobuf Support
+- **Protocols:**
+  - REST (HTTP/JSON or Protobuf)
+  - MQTT
+  - POSIX Message Queue
+  - D-Bus (session bus)
+  - gRPC (planned)
+- **Data Formats:**
+  - JSON (default)
+  - Protobuf (optional, for binary serialization)
 
-- **Protobuf:**
-  - Library: `libprotobuf-dev` (version 3.6.1 recommended for Ubuntu 20.04)
-  - Compiler: `protobuf-compiler` (ensure the version matches the library, e.g., 3.6.1)
-- **Install on Ubuntu:**
+### CMake Feature Flags
 
-  ```sh
-  sudo apt update
-  sudo apt install libprotobuf-dev protobuf-compiler
-  ```
+You can enable or disable each protocol and data format using CMake flags:
 
-- **Version Check:**
-  ```sh
-  protoc --version
-  # Should match: libprotoc 3.6.1
-  ```
+- `ENABLE_REST` (REST/HTTP server)
+- `ENABLE_MQTT` (MQTT subscriber)
+- `ENABLE_MSGQUEUE` (POSIX Message Queue)
+- `ENABLE_DBUS` (D-Bus consumer)
+- `ENABLE_GRPC` (gRPC, planned)
+- `ENABLE_PROTOBUF` (Protobuf support; if OFF, only JSON is used)
 
-#### (Planned) gRPC Support
-
-> **Note:**
-> gRPC protocol support is planned and will be documented once implemented.
-> The build system is ready for gRPC/Protobuf integration.
-
-- **gRPC:**
-  - Library: `libgrpc++-dev` (version 1.16.1 recommended for Ubuntu 20.04)
-  - Plugin: `protobuf-compiler-grpc`
-- **Install on Ubuntu:**
-
-  ```sh
-  sudo apt install libgrpc++-dev protobuf-compiler-grpc
-  ```
+**All options are ON by default.**  
+To build only what you need, set the flags before running CMake.
 
 ## Build Instructions
+
+### 1. Clone and Prepare
 
 ```sh
 git clone https://github.com/yourusername/container_manager.git
 cd container_manager/App
 mkdir build && cd build
-cmake ..
-make
 ```
+
+### 2. Install Only What You Need
+
+#### If you want only JSON over D-Bus:
+
+- Install only:
+  - [sdbus-c++](https://github.com/Kistler-Group/sdbus-cpp)
+  - [nlohmann/json](https://github.com/nlohmann/json)
+  - [glog](https://github.com/google/glog)
+  - [cpp_redis](https://github.com/Cylix/cpp_redis)
+- CMake:
+  ```sh
+  cmake .. -DENABLE_REST=OFF -DENABLE_MQTT=OFF -DENABLE_MSGQUEUE=OFF -DENABLE_DBUS=ON -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=OFF
+  make
+  ```
+
+#### If you want only Protobuf over Message Queue:
+
+- Install only:
+  - [nlohmann/json](https://github.com/nlohmann/json) (for config)
+  - [glog](https://github.com/google/glog)
+  - [cpp_redis](https://github.com/Cylix/cpp_redis)
+  - Protobuf (`libprotobuf-dev`, `protobuf-compiler`)
+- CMake:
+  ```sh
+  cmake .. -DENABLE_REST=OFF -DENABLE_MQTT=OFF -DENABLE_MSGQUEUE=ON -DENABLE_DBUS=OFF -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=ON
+  make
+  ```
+
+#### If you want REST and MQTT with JSON only:
+
+- Install:
+  - [nlohmann/json](https://github.com/nlohmann/json)
+  - [glog](https://github.com/google/glog)
+  - [cpp_redis](https://github.com/Cylix/cpp_redis)
+  - [mosquitto](https://github.com/eclipse-mosquitto/mosquitto)
+  - [httplib (included as third_party)](https://github.com/yhirose/cpp-httplib)
+- CMake:
+  ```sh
+  cmake .. -DENABLE_REST=ON -DENABLE_MQTT=ON -DENABLE_MSGQUEUE=OFF -DENABLE_DBUS=OFF -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=OFF
+  make
+  ```
+
+#### If you want all protocols and both data formats (full build):
+
+- Install all dependencies listed in the prerequisites.
+- CMake (default):
+  ```sh
+  cmake ..
+  make
+  ```
+
+### 3. Summary Table
+
+| Protocol/Data Format | CMake Flag         | Required Packages                                |
+| -------------------- | ------------------ | ------------------------------------------------ |
+| REST (HTTP/JSON)     | ENABLE_REST=ON     | nlohmann_json, glog, cpp_redis, httplib          |
+| MQTT                 | ENABLE_MQTT=ON     | mosquitto, nlohmann_json, glog, cpp_redis        |
+| Message Queue        | ENABLE_MSGQUEUE=ON | nlohmann_json, glog, cpp_redis                   |
+| D-Bus                | ENABLE_DBUS=ON     | sdbus-c++, nlohmann_json, glog, cpp_redis        |
+| gRPC (planned)       | ENABLE_GRPC=ON     | grpc++, protobuf, nlohmann_json, glog, cpp_redis |
+| Protobuf             | ENABLE_PROTOBUF=ON | protobuf                                         |
+
+- **JSON** is always available (unless you only enable Protobuf).
+- **Protobuf** is optional and only needed if you want binary serialization.
+
+### 4. General Build Steps
+
+```sh
+cmake .. <your-flags>
+make -j$(nproc)
+```
+
+### 5. Examples
+
+- **Enable only D-Bus with JSON:**
+  ```sh
+  cmake .. -DENABLE_REST=OFF -DENABLE_MQTT=OFF -DENABLE_MSGQUEUE=OFF -DENABLE_DBUS=ON -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=OFF
+  make
+  ```
+- **Enable REST, MQTT, and Protobuf:**
+  ```sh
+  cmake .. -DENABLE_REST=ON -DENABLE_MQTT=ON -DENABLE_MSGQUEUE=OFF -DENABLE_DBUS=OFF -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=ON
+  make
+  ```
+- **Full build (all protocols and formats):**
+  ```sh
+  cmake ..
+  make
+  ```
+
+**This modular build system ensures you only install and build what you need for your use case.**  
+**Check the CMake output for any missing dependencies based on your selected flags.**
 
 ## Running the Server
 
@@ -141,7 +220,7 @@ make
 ./CM
 ```
 
-The server will start and listen on the default port `5000` for HTTP, subscribe to the MQTT topic `container/execute` on port `1883`, listen on the POSIX message queue `/container_manager_queue`, and register a D-Bus object on the **session bus** as `org.container.manager` at `/org/container/manager`.
+The server will start and listen on the enabled protocols and data formats as per your build configuration.
 
 ## API Usage
 

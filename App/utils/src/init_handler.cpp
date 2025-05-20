@@ -7,7 +7,9 @@
 
 #include <glog/logging.h>
 #include <mqueue.h>
+#if ENABLE_MQTT
 #include <mosquitto.h>
+#endif
 
 #include "inc/common.hpp"
 #include "inc/redis_database.hpp"
@@ -26,6 +28,7 @@ void InitMessageQueue() {
     mq_unlink(mq_cfg.QueueName.c_str());
 }
 
+#if ENABLE_MQTT
 void InitMqttRetainedMessages() {
     MqttConfig mqtt_cfg;
     mosquitto_lib_init();
@@ -38,6 +41,9 @@ void InitMqttRetainedMessages() {
     }
     mosquitto_lib_cleanup();
 }
+#else
+void InitMqttRetainedMessages() {}
+#endif
 
 void InitProject() {
     InitLogging();
