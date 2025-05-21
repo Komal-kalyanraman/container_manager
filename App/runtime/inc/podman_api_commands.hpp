@@ -15,8 +15,9 @@ public:
 class PodmanApiCreateContainerCommand : public Command {
 private:
     std::string container_name_;
+    std::string image_name_;
 public:
-    explicit PodmanApiCreateContainerCommand(const std::string& container_name_);
+    PodmanApiCreateContainerCommand(const std::string& container_name, const std::string& image_name);
     ~PodmanApiCreateContainerCommand() = default;
 
     bool Execute() const override;

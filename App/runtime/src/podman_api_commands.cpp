@@ -10,7 +10,8 @@ bool PodmanApiRuntimeAvailableCommand::Execute() const {
     return true;
 }
 
-PodmanApiCreateContainerCommand::PodmanApiCreateContainerCommand(const std::string& container_name) : container_name_(container_name) {
+PodmanApiCreateContainerCommand::PodmanApiCreateContainerCommand(const std::string& container_name, const std::string& image_name)
+    : container_name_(container_name), image_name_(image_name) {
     // Empty constructor
 }
 

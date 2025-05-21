@@ -124,7 +124,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to remove a Docker container and clean up database state. </p>
 
-<p class="definition">Definition at line <a class="el" href="docker__commands_8hpp_source.html#l00107">107</a> of file <a class="el" href="docker__commands_8hpp_source.html">docker_commands.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="docker__commands_8hpp_source.html#l00109">109</a> of file <a class="el" href="docker__commands_8hpp_source.html">docker_commands.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2f6290a38cbeeed23689153bc640c514"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2f6290a38cbeeed23689153bc640c514">&#9670;&nbsp;</a></span>DockerRemoveContainerCommand()</h2>
@@ -158,10 +158,10 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="docker__commands_8cpp_source.html#l00110">110</a> of file <a class="el" href="docker__commands_8cpp_source.html">docker_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                                                                                          : container_name_(container_name) {</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="comment">// Empty constructor</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="docker__commands_8cpp_source.html#l00097">97</a> of file <a class="el" href="docker__commands_8cpp_source.html">docker_commands.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                                                                                          : container_name_(container_name) {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="comment">// Empty constructor</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -221,25 +221,25 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">Command</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="docker__commands_8cpp_source.html#l00114">114</a> of file <a class="el" href="docker__commands_8cpp_source.html">docker_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                                                 {</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="comment">// Stop the Docker container</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <a class="code" href="classIDatabaseHandler.html">IDatabaseHandler</a>&amp; db = <a class="code" href="classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce">RedisDatabaseHandler::GetInstance</a>();</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    std::string command = <a class="code" href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a>(</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <a class="code" href="namespaceCommandTemplate.html#a763bd52213a9dfc193f395e308b6fa4d">CommandTemplate::Remove</a>,</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        {{<span class="stringliteral">&quot;runtime&quot;</span>, <span class="stringliteral">&quot;docker&quot;</span>}, {<span class="stringliteral">&quot;name&quot;</span>, container_name_}}</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    );</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">int</span> status = std::system(command.c_str());</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">if</span> (status == 0) {</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <a class="code" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a> &lt;&lt; <span class="stringliteral">&quot;Docker container removed successfully&quot;</span>;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        db.<a class="code" href="classIDatabaseHandler.html#a32aef1bd17b79529d93fadc2d72441e5">RemoveKey</a>(container_name_);</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <a class="code" href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a> &lt;&lt; <span class="stringliteral">&quot;Failed to remove Docker container&quot;</span>;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        db.<a class="code" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">UpdateField</a>(container_name_, <span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;Error removing container&quot;</span>);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    }</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="docker__commands_8cpp_source.html#l00101">101</a> of file <a class="el" href="docker__commands_8cpp_source.html">docker_commands.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                                                 {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="comment">// Stop the Docker container</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <a class="code" href="classIDatabaseHandler.html">IDatabaseHandler</a>&amp; db = <a class="code" href="classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce">RedisDatabaseHandler::GetInstance</a>();</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    std::string command = <a class="code" href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a>(</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <a class="code" href="namespaceCommandTemplate.html#a763bd52213a9dfc193f395e308b6fa4d">CommandTemplate::Remove</a>,</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        {{<span class="stringliteral">&quot;runtime&quot;</span>, <span class="stringliteral">&quot;docker&quot;</span>}, {<span class="stringliteral">&quot;name&quot;</span>, container_name_}}</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    );</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">int</span> status = std::system(command.c_str());</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordflow">if</span> (status == 0) {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <a class="code" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a> &lt;&lt; <span class="stringliteral">&quot;Docker container removed successfully&quot;</span>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        db.<a class="code" href="classIDatabaseHandler.html#a32aef1bd17b79529d93fadc2d72441e5">RemoveKey</a>(container_name_);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <a class="code" href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a> &lt;&lt; <span class="stringliteral">&quot;Failed to remove Docker container&quot;</span>;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        db.<a class="code" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">UpdateField</a>(container_name_, <span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;Error removing container&quot;</span>);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="logging_8hpp_source.html#l00026">CM_LOG_ERROR</a>, <a class="el" href="logging_8hpp_source.html#l00020">CM_LOG_INFO</a>, <a class="el" href="common_8hpp_source.html#l00088">FormatCommand()</a>, <a class="el" href="redis__database_8cpp_source.html#l00019">RedisDatabaseHandler::GetInstance()</a>, <a class="el" href="common_8hpp_source.html#l00081">CommandTemplate::Remove</a>, <a class="el" href="classIDatabaseHandler.html#a32aef1bd17b79529d93fadc2d72441e5">IDatabaseHandler::RemoveKey()</a>, and <a class="el" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">IDatabaseHandler::UpdateField()</a>.</p>
 <div class="dynheader">

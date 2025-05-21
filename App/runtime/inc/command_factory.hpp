@@ -3,20 +3,13 @@
 #include <string>
 #include "inc/commands.hpp"
 #include "inc/common.hpp"
+#include "inc/container_request.hpp"
 
-/// @brief CommandFactory class to create command objects based on runtime type and command type with optional paarameter
+/// @brief CommandFactory class to create command objects based on the request structure
 class CommandFactory {
 public:
-    /// @brief Factory method to create a command based on the runtime type and command type
-    /// @param runtime_type Container runtime type
-    /// @param command_type Requested command type
+    /// @brief Factory method to create a command based on the container request structure
+    /// @param req The container request containing all necessary details
     /// @return Command object
-    static std::unique_ptr<Command> CreateCommand(const std::string& runtime_type, const std::string& command_type);
-
-    /// @brief Factory method to create a command based on the runtime type, command type, and app name
-    /// @param runtime_type Container runtime type
-    /// @param command_type Requested command type
-    /// @param container_name Container name
-    /// @return Command object
-    static std::unique_ptr<Command> CreateCommand(const std::string& runtime_type, const std::string& command_type, const std::string& container_name);
+    static std::unique_ptr<Command> CreateCommand(const ContainerRequest& req);
 };

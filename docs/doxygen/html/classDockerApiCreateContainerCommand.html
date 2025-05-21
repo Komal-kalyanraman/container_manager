@@ -104,8 +104,8 @@ Collaboration diagram for DockerApiCreateContainerCommand:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4b66b1f1a19b1d22a2d13d65d4e19c91"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerApiCreateContainerCommand.html#a4b66b1f1a19b1d22a2d13d65d4e19c91">DockerApiCreateContainerCommand</a> (const std::string &amp;container_name_)</td></tr>
-<tr class="separator:a4b66b1f1a19b1d22a2d13d65d4e19c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ae7e7f6d4b8b77e3fbff7643b78d299"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerApiCreateContainerCommand.html#a9ae7e7f6d4b8b77e3fbff7643b78d299">DockerApiCreateContainerCommand</a> (const std::string &amp;container_name, const std::string &amp;image_name)</td></tr>
+<tr class="separator:a9ae7e7f6d4b8b77e3fbff7643b78d299"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae960d81bcbb0ccae124916f3d609b0a8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerApiCreateContainerCommand.html#ae960d81bcbb0ccae124916f3d609b0a8">~DockerApiCreateContainerCommand</a> ()=default</td></tr>
 <tr class="separator:ae960d81bcbb0ccae124916f3d609b0a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac45b2bf53a52657537c46de70cdd489b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerApiCreateContainerCommand.html#ac45b2bf53a52657537c46de70cdd489b">Execute</a> () const override</td></tr>
@@ -120,34 +120,36 @@ Public Member Functions</h2></td></tr>
 <div class="textblock">
 <p class="definition">Definition at line <a class="el" href="docker__api__commands_8hpp_source.html#l00015">15</a> of file <a class="el" href="docker__api__commands_8hpp_source.html">docker_api_commands.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a4b66b1f1a19b1d22a2d13d65d4e19c91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b66b1f1a19b1d22a2d13d65d4e19c91">&#9670;&nbsp;</a></span>DockerApiCreateContainerCommand()</h2>
+<a id="a9ae7e7f6d4b8b77e3fbff7643b78d299"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ae7e7f6d4b8b77e3fbff7643b78d299">&#9670;&nbsp;</a></span>DockerApiCreateContainerCommand()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">DockerApiCreateContainerCommand::DockerApiCreateContainerCommand </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>container_name_</em></td><td>)</td>
+          <td class="paramname"><em>container_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>image_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="docker__api__commands_8cpp_source.html#l00013">13</a> of file <a class="el" href="docker__api__commands_8cpp_source.html">docker_api_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                                                                                                : container_name_(container_name) {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="comment">// Empty constructor</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    : container_name_(container_name), image_name_(image_name) {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="comment">// Empty constructor</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -205,10 +207,10 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">Command</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="docker__api__commands_8cpp_source.html#l00017">17</a> of file <a class="el" href="docker__api__commands_8cpp_source.html">docker_api_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                                                    {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="docker__api__commands_8cpp_source.html#l00018">18</a> of file <a class="el" href="docker__api__commands_8cpp_source.html">docker_api_commands.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                                                    {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>

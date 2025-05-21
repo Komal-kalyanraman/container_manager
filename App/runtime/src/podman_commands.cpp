@@ -29,22 +29,10 @@ bool PodmanRuntimeAvailableCommand::Execute() const {
     }
 }
 
-PodmanCreateContainerCommand::PodmanCreateContainerCommand(const std::string& container_name) : container_name_(container_name) {
-    // Empty constructor
-}
+PodmanCreateContainerCommand::PodmanCreateContainerCommand(const std::string& container_name, const std::string& image_name)
+    : container_name_(container_name), image_name_(image_name) {}
 
 bool PodmanCreateContainerCommand::Execute() const {
-
-    IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
-    nlohmann::json config = db.GetJson(container_name_);
-
-    std::string image_name_;
-    if (!config["parameters"].empty() && config["parameters"][0].contains("image_name")) {
-        image_name_ = config["parameters"][0]["image_name"].get<std::string>();
-    } else {
-        image_name_ = "";
-    }
-    // Start the Podman container
     std::string command = FormatCommand(
         CommandTemplate::Create,
         {{"runtime", "podman"}, {"name", container_name_}, {"image", image_name_}}
@@ -52,11 +40,9 @@ bool PodmanCreateContainerCommand::Execute() const {
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Podman container created successfully";
-        db.UpdateField(container_name_, "status", "created");
         return true;
     } else {
         CM_LOG_ERROR << "Failed to create Podman container";
-        db.UpdateField(container_name_, "status", "Error creating container");
         return false;
     }
 }

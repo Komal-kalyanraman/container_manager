@@ -29,21 +29,10 @@ bool DockerRuntimeAvailableCommand::Execute() const {
     }
 }
 
-DockerCreateContainerCommand::DockerCreateContainerCommand(const std::string& container_name) : container_name_(container_name) {
-    // Empty constructor
-}
+DockerCreateContainerCommand::DockerCreateContainerCommand(const std::string& container_name, const std::string& image_name)
+    : container_name_(container_name), image_name_(image_name) {}
 
 bool DockerCreateContainerCommand::Execute() const {
-
-    IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
-    nlohmann::json config = db.GetJson(container_name_);
-
-    std::string image_name_;
-    if (!config["parameters"].empty() && config["parameters"][0].contains("image_name")) {
-        image_name_ = config["parameters"][0]["image_name"].get<std::string>();
-    } else {
-        image_name_ = "";
-    }
     // Start the Docker container
     std::string command = FormatCommand(
         CommandTemplate::Create,
@@ -52,11 +41,9 @@ bool DockerCreateContainerCommand::Execute() const {
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Docker container created successfully";
-        db.UpdateField(container_name_, "status", "created");
         return true;
     } else {
         CM_LOG_ERROR << "Failed to create Docker container";
-        db.UpdateField(container_name_, "status", "Error creating container");
         return false;
     }
 }

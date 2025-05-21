@@ -1,9 +1,11 @@
 <map id="ContainerServiceHandler::HandleRequest" name="ContainerServiceHandler::HandleRequest">
-<area shape="rect" id="node1" title="Handles a container request by dispatching to the appropriate operation." alt="" coords="5,50,189,91"/>
-<area shape="rect" id="node2" href="$classContainerServiceHandler.html#af17a1c94a543aa45bdcdba2b0674ab8a" title="Checks if the specified container runtime is available for the given operation." alt="" coords="237,17,423,58"/>
-<area shape="rect" id="node7" href="$classContainerServiceHandler.html#a92b3d49dc72dfdf47661c33431aa9db9" title="Performs the specified container operation." alt="" coords="238,82,422,123"/>
-<area shape="rect" id="node3" href="$classCommandFactory.html#a1ce3fdcfe96e7dc24e40c05b4387442f" title="Factory method to create a command based on the runtime type and command type." alt="" coords="471,5,725,32"/>
-<area shape="rect" id="node4" href="$classInvoker.html#a1459c66263ad54b3568e6b3d33d9256f" title="Execute the command." alt="" coords="537,56,659,83"/>
-<area shape="rect" id="node6" href="$classInvoker.html#ae9f10a2487afd153bf0da69ae410a0e9" title="Set the command to be executed." alt="" coords="515,107,681,133"/>
-<area shape="rect" id="node5" href="$classCommand.html#ab04996232fade41af481e1a94c15f5e5" title="Execute the command." alt="" coords="773,56,923,83"/>
+<area shape="rect" id="node1" title="Handles a container request by dispatching to the appropriate operation." alt="" coords="5,143,189,185"/>
+<area shape="rect" id="node2" href="$classContainerServiceHandler.html#ae4a38bbbb711ab34dbd3fc50ea0814f7" title="Performs the specified container operation using the request structure." alt="" coords="258,49,442,90"/>
+<area shape="rect" id="node7" href="$classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce" title="Retrieves the singleton instance of the RedisDatabaseHandler." alt="" coords="265,114,435,155"/>
+<area shape="rect" id="node8" href="$classIDatabaseHandler.html#a32aef1bd17b79529d93fadc2d72441e5" title="Removes the JSON object associated with the specified key from the database." alt="" coords="237,180,463,207"/>
+<area shape="rect" id="node9" href="$classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6" title="Updates a specific field in the JSON object stored under the given key." alt="" coords="253,231,447,273"/>
+<area shape="rect" id="node3" href="$classCommandFactory.html#adf4da2f0dbcf9e4018f9afe8bd4a38e9" title="Factory method to create a command based on the container request structure." alt="" coords="511,5,765,32"/>
+<area shape="rect" id="node4" href="$classInvoker.html#a1459c66263ad54b3568e6b3d33d9256f" title="Execute the command." alt="" coords="577,56,699,83"/>
+<area shape="rect" id="node6" href="$classInvoker.html#ae9f10a2487afd153bf0da69ae410a0e9" title="Set the command to be executed." alt="" coords="555,107,721,133"/>
+<area shape="rect" id="node5" href="$classCommand.html#ab04996232fade41af481e1a94c15f5e5" title="Execute the command." alt="" coords="813,56,963,83"/>
 </map>

@@ -38,12 +38,14 @@ public:
 class PodmanCreateContainerCommand : public Command {
 private:
     std::string container_name_; ///< Name of the container to create.
+    std::string image_name_;     ///< Image name for the container.
 public:
     /**
      * @brief Constructs a PodmanCreateContainerCommand.
      * @param container_name_ Name of the container to create.
+     * @param image_name Name of the image to use for the container.
      */
-    explicit PodmanCreateContainerCommand(const std::string& container_name_);
+    PodmanCreateContainerCommand(const std::string& container_name, const std::string& image_name);
 
     /**
      * @brief Destructor.

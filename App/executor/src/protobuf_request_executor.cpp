@@ -60,6 +60,8 @@ nlohmann::json ProtoRequestExecutorHandler::Execute(const std::string& proto_dat
     if (!proto_req.parameters().empty()) {
         const auto& param = proto_req.parameters(0);
         req.container_name = param.container_name();
+        req.image_name = param.image_name();
+        // Add more fields here if needed in the future
     }
 
     // Call business logic and return result

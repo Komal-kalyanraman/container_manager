@@ -124,7 +124,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to start a Docker container. </p>
 
-<p class="definition">Definition at line <a class="el" href="docker__commands_8hpp_source.html#l00059">59</a> of file <a class="el" href="docker__commands_8hpp_source.html">docker_commands.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="docker__commands_8hpp_source.html#l00061">61</a> of file <a class="el" href="docker__commands_8hpp_source.html">docker_commands.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4c89f26148801402b9953b5cdcd3e801"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4c89f26148801402b9953b5cdcd3e801">&#9670;&nbsp;</a></span>DockerStartContainerCommand()</h2>
@@ -158,10 +158,10 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="docker__commands_8cpp_source.html#l00064">64</a> of file <a class="el" href="docker__commands_8cpp_source.html">docker_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                                                                                        : container_name_(container_name) {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// Empty constructor</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="docker__commands_8cpp_source.html#l00051">51</a> of file <a class="el" href="docker__commands_8cpp_source.html">docker_commands.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                                                                                        : container_name_(container_name) {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// Empty constructor</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -221,25 +221,25 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">Command</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="docker__commands_8cpp_source.html#l00068">68</a> of file <a class="el" href="docker__commands_8cpp_source.html">docker_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                                                {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">// Start the Docker container</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="classIDatabaseHandler.html">IDatabaseHandler</a>&amp; db = <a class="code" href="classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce">RedisDatabaseHandler::GetInstance</a>();</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    std::string command = <a class="code" href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a>(</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="namespaceCommandTemplate.html#a0e1ab1f9a49c7fe35aa817e9ce451129">CommandTemplate::Start</a>,</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {{<span class="stringliteral">&quot;runtime&quot;</span>, <span class="stringliteral">&quot;docker&quot;</span>}, {<span class="stringliteral">&quot;name&quot;</span>, container_name_}}</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    );</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">int</span> status = std::system(command.c_str());</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">if</span> (status == 0) {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <a class="code" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a> &lt;&lt; <span class="stringliteral">&quot;Docker container started successfully&quot;</span>;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        db.<a class="code" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">UpdateField</a>(container_name_, <span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;running&quot;</span>);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <a class="code" href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a> &lt;&lt; <span class="stringliteral">&quot;Failed to start Docker container&quot;</span>;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        db.<a class="code" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">UpdateField</a>(container_name_, <span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;Error running container&quot;</span>);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="docker__commands_8cpp_source.html#l00055">55</a> of file <a class="el" href="docker__commands_8cpp_source.html">docker_commands.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                                                {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// Start the Docker container</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="classIDatabaseHandler.html">IDatabaseHandler</a>&amp; db = <a class="code" href="classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce">RedisDatabaseHandler::GetInstance</a>();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    std::string command = <a class="code" href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a>(</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="namespaceCommandTemplate.html#a0e1ab1f9a49c7fe35aa817e9ce451129">CommandTemplate::Start</a>,</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        {{<span class="stringliteral">&quot;runtime&quot;</span>, <span class="stringliteral">&quot;docker&quot;</span>}, {<span class="stringliteral">&quot;name&quot;</span>, container_name_}}</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    );</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">int</span> status = std::system(command.c_str());</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">if</span> (status == 0) {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <a class="code" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a> &lt;&lt; <span class="stringliteral">&quot;Docker container started successfully&quot;</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        db.<a class="code" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">UpdateField</a>(container_name_, <span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;running&quot;</span>);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <a class="code" href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a> &lt;&lt; <span class="stringliteral">&quot;Failed to start Docker container&quot;</span>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        db.<a class="code" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">UpdateField</a>(container_name_, <span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;Error running container&quot;</span>);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="logging_8hpp_source.html#l00026">CM_LOG_ERROR</a>, <a class="el" href="logging_8hpp_source.html#l00020">CM_LOG_INFO</a>, <a class="el" href="common_8hpp_source.html#l00088">FormatCommand()</a>, <a class="el" href="redis__database_8cpp_source.html#l00019">RedisDatabaseHandler::GetInstance()</a>, <a class="el" href="common_8hpp_source.html#l00079">CommandTemplate::Start</a>, and <a class="el" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">IDatabaseHandler::UpdateField()</a>.</p>
 <div class="dynheader">

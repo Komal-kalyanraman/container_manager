@@ -6,70 +6,42 @@
 #include "inc/container_service.hpp"
 
 #include <iostream>
-
 #include <nlohmann/json.hpp>
-
 #include "inc/common.hpp"
 #include "inc/command_factory.hpp"
+#include "inc/container_request.hpp"
+#include "inc/database_interface.hpp"
+#include "inc/redis_database.hpp"
 
 nlohmann::json ContainerServiceHandler::HandleRequest(const ContainerRequest& req) {
-    if(req.operation == CommandName::RuntimeStatus) {
-        bool isRuntimeAvailable = ContainerServiceHandler::CheckRuntimeAvailable(req.runtime, req.operation);
-        if (!isRuntimeAvailable) {
-            return {{"status", "error"}, {"message", "Runtime is not running"}};
-        }
-    } else if (req.operation == CommandName::CreateContainer) {
-        bool isContainerCreated = ContainerServiceHandler::ContainerOperations(req.runtime, req.operation, req.container_name);
-        if (!isContainerCreated) {
-            return {{"status", "error"}, {"message", "Failed to create container"}};
-        }
+    bool op_result = ContainerServiceHandler::ContainerOperations(req);
+
+    IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
+    if (req.operation == CommandName::CreateContainer) {
+        if (op_result) db.UpdateField(req.container_name, "status", "created");
+        else db.UpdateField(req.container_name, "status", "Error creating container");
     } else if (req.operation == CommandName::StartContainer) {
-        // Start the container
-        bool isContainerStarted = ContainerServiceHandler::ContainerOperations(req.runtime, req.operation, req.container_name);
-        if (!isContainerStarted) {
-            return {{"status", "error"}, {"message", "Failed to start container"}};
-        }
+        if (op_result) db.UpdateField(req.container_name, "status", "running");
+        else db.UpdateField(req.container_name, "status", "Error running container");
     } else if (req.operation == CommandName::StopContainer) {
-        // Stop the container
-        bool isContainerStopped = ContainerServiceHandler::ContainerOperations(req.runtime, req.operation, req.container_name);
-        if (!isContainerStopped) {
-            return {{"status", "error"}, {"message", "Failed to stop container"}};
-        }
+        if (op_result) db.UpdateField(req.container_name, "status", "stopped");
+        else db.UpdateField(req.container_name, "status", "Error stopping container");
     } else if (req.operation == CommandName::RestartContainer) {
-        // Stop the container
-        bool isContainerRestarted = ContainerServiceHandler::ContainerOperations(req.runtime, req.operation, req.container_name);
-        if (!isContainerRestarted) {
-            return {{"status", "error"}, {"message", "Failed to restart container"}};
-        }
+        if (op_result) db.UpdateField(req.container_name, "status", "running");
+        else db.UpdateField(req.container_name, "status", "Error restarting container");
     } else if (req.operation == CommandName::RemoveContainer) {
-        // Stop the container
-        bool isContainerRemoved = ContainerServiceHandler::ContainerOperations(req.runtime, req.operation, req.container_name);
-        if (!isContainerRemoved) {
-            return {{"status", "error"}, {"message", "Failed to remove container"}};
-        }
-    } else {
-        return {{"status", "error"}, {"message", "Invalid operation"}};
+        if (op_result) db.RemoveKey(req.container_name);
+        else db.UpdateField(req.container_name, "status", "Error removing container");
     }
-    // TODO: Integrate with your command pattern and actual logic
+
+    if (!op_result) {
+        return {{"status", "error"}, {"message", "Operation failed"}, {"operation", req.operation}, {"container", req.container_name}};
+    }
     return {{"status", "success"}, {"operation", req.operation}, {"container", req.container_name}};
 }
 
-bool ContainerServiceHandler::CheckRuntimeAvailable(const std::string& runtime, const std::string& operation) {
+bool ContainerServiceHandler::ContainerOperations(const ContainerRequest& req) {
     Invoker invoker;
-
-    invoker.SetCommand(CommandFactory::CreateCommand(runtime, operation));
-        if (!invoker.Invoke()) {
-            return false;
-        }
-    return true;
-}
-
-bool ContainerServiceHandler::ContainerOperations(const std::string& runtime, const std::string& operation, const std::string& container_name) {
-    Invoker invoker;
-
-    invoker.SetCommand(CommandFactory::CreateCommand(runtime, operation, container_name));
-    if (!invoker.Invoke()) {
-        return false;
-    }
-    return true;
+    invoker.SetCommand(CommandFactory::CreateCommand(req));
+    return invoker.Invoke();
 }

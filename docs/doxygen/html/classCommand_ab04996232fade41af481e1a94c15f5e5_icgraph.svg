@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 795;
+var viewWidth = 794;
 var viewHeight = 88;
 var sectionId = 'dynsection-2';
 </script>
@@ -54,13 +54,13 @@ var sectionId = 'dynsection-2';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Command::Execute</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-84 791,-84 791,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-84 790,-84 790,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Execute the command.">
-<polygon fill="#bfbfbf" stroke="black" points="675,-30 675,-49 787,-49 787,-30 675,-30"/>
-<text text-anchor="middle" x="731" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00">Command::Execute</text>
+<polygon fill="#bfbfbf" stroke="black" points="674,-30 674,-49 786,-49 786,-30 674,-30"/>
+<text text-anchor="middle" x="730" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00">Command::Execute</text>
 </a>
 </g>
 </g>
@@ -68,48 +68,32 @@ var sectionId = 'dynsection-2';
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="classInvoker.html#a1459c66263ad54b3568e6b3d33d9256f" target="_top" xlink:title="Execute the command.">
-<polygon fill="white" stroke="black" points="548,-30 548,-49 639,-49 639,-30 548,-30"/>
-<text text-anchor="middle" x="593.5" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00">Invoker::Invoke</text>
+<polygon fill="white" stroke="black" points="547,-30 547,-49 638,-49 638,-30 547,-30"/>
+<text text-anchor="middle" x="592.5" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00">Invoker::Invoke</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M664.78,-39.5C656.12,-39.5 647.4,-39.5 639.2,-39.5"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="664.89,-43 674.89,-39.5 664.89,-36 664.89,-43"/>
+<path fill="none" stroke="midnightblue" d="M663.78,-39.5C655.12,-39.5 646.4,-39.5 638.2,-39.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="663.89,-43 673.89,-39.5 663.89,-36 663.89,-43"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="classContainerServiceHandler.html#af17a1c94a543aa45bdcdba2b0674ab8a" target="_top" xlink:title="Checks if the specified container runtime is available for the given operation.">
-<polygon fill="white" stroke="black" points="373,-49.5 373,-79.5 512,-79.5 512,-49.5 373,-49.5"/>
-<text text-anchor="start" x="381" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">ContainerServiceHandler</text>
-<text text-anchor="middle" x="442.5" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CheckRuntimeAvailable</text>
+<g id="a_node3"><a xlink:href="classContainerServiceHandler.html#ae4a38bbbb711ab34dbd3fc50ea0814f7" target="_top" xlink:title="Performs the specified container operation using the request structure.">
+<polygon fill="white" stroke="black" points="373,-24.5 373,-54.5 511,-54.5 511,-24.5 373,-24.5"/>
+<text text-anchor="start" x="381" y="-42.5" font-family="Helvetica,sans-Serif" font-size="10.00">ContainerServiceHandler</text>
+<text text-anchor="middle" x="442" y="-31.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ContainerOperations</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node2&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M537.82,-48.67C529.47,-50.08 520.76,-51.54 512.15,-52.98"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="538.51,-52.11 547.8,-47 537.35,-45.2 538.51,-52.11"/>
-</g>
-<!-- Node7 -->
-<g id="node7" class="node">
-<title>Node7</title>
-<g id="a_node7"><a xlink:href="classContainerServiceHandler.html#a92b3d49dc72dfdf47661c33431aa9db9" target="_top" xlink:title="Performs the specified container operation.">
-<polygon fill="white" stroke="black" points="373.5,-0.5 373.5,-30.5 511.5,-30.5 511.5,-0.5 373.5,-0.5"/>
-<text text-anchor="start" x="381.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">ContainerServiceHandler</text>
-<text text-anchor="middle" x="442.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ContainerOperations</text>
-</a>
-</g>
-</g>
-<!-- Node2&#45;&gt;Node7 -->
-<g id="edge6" class="edge">
-<title>Node2&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M537.66,-30.67C529.18,-29.3 520.33,-27.88 511.6,-26.47"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="537.37,-34.16 547.8,-32.3 538.48,-27.25 537.37,-34.16"/>
+<path fill="none" stroke="midnightblue" d="M536.92,-39.5C528.53,-39.5 519.78,-39.5 511.14,-39.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="536.95,-43 546.95,-39.5 536.95,-36 536.95,-43"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
@@ -124,8 +108,8 @@ var sectionId = 'dynsection-2';
 <!-- Node3&#45;&gt;Node4 -->
 <g id="edge3" class="edge">
 <title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M362.83,-53.1C354.26,-51.86 345.59,-50.6 337.15,-49.38"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="362.43,-56.58 372.83,-54.55 363.43,-49.65 362.43,-56.58"/>
+<path fill="none" stroke="midnightblue" d="M362.36,-39.5C353.97,-39.5 345.49,-39.5 337.24,-39.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="362.53,-43 372.53,-39.5 362.53,-36 362.53,-43"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
@@ -158,12 +142,6 @@ var sectionId = 'dynsection-2';
 <title>Node4&#45;&gt;Node6</title>
 <path fill="none" stroke="midnightblue" d="M188.65,-29.31C180.22,-28.21 171.64,-27.1 163.19,-26"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="188.46,-32.81 198.82,-30.63 189.36,-25.87 188.46,-32.81"/>
-</g>
-<!-- Node7&#45;&gt;Node4 -->
-<g id="edge7" class="edge">
-<title>Node7&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M363.22,-26.39C354.55,-27.6 345.78,-28.82 337.25,-30"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="363.9,-29.83 373.32,-24.99 362.94,-22.9 363.9,-29.83"/>
 </g>
 </g>
 </svg>

@@ -13,5 +13,6 @@ struct ContainerRequest {
     std::string operation; // "start", "stop", "create", etc.
     std::string runtime;   // "docker", "podman", etc.
     std::string container_name;
+    std::string image_name;      // Image name (used for create)
     // Add more fields as needed
 };

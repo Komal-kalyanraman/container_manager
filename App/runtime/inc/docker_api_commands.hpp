@@ -15,8 +15,9 @@ public:
 class DockerApiCreateContainerCommand : public Command {
 private:
     std::string container_name_;
+    std::string image_name_;
 public:
-    explicit DockerApiCreateContainerCommand(const std::string& container_name_);
+    DockerApiCreateContainerCommand(const std::string& container_name, const std::string& image_name);
     ~DockerApiCreateContainerCommand() = default;
 
     bool Execute() const override;

@@ -124,7 +124,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to stop a Podman container. </p>
 
-<p class="definition">Definition at line <a class="el" href="podman__commands_8hpp_source.html#l00086">86</a> of file <a class="el" href="podman__commands_8hpp_source.html">podman_commands.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="podman__commands_8hpp_source.html#l00088">88</a> of file <a class="el" href="podman__commands_8hpp_source.html">podman_commands.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af09517f640803e144fa213b4242f47f2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af09517f640803e144fa213b4242f47f2">&#9670;&nbsp;</a></span>PodmanStopContainerCommand()</h2>
@@ -158,10 +158,10 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="podman__commands_8cpp_source.html#l00087">87</a> of file <a class="el" href="podman__commands_8cpp_source.html">podman_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                                                                                      : container_name_(container_name) {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">// Empty constructor</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="podman__commands_8cpp_source.html#l00073">73</a> of file <a class="el" href="podman__commands_8cpp_source.html">podman_commands.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                                                                                      : container_name_(container_name) {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment">// Empty constructor</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -221,25 +221,25 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">Command</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="podman__commands_8cpp_source.html#l00091">91</a> of file <a class="el" href="podman__commands_8cpp_source.html">podman_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                                               {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="comment">// Stop the Podman container</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="classIDatabaseHandler.html">IDatabaseHandler</a>&amp; db = <a class="code" href="classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce">RedisDatabaseHandler::GetInstance</a>();</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    std::string command = <a class="code" href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a>(</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="namespaceCommandTemplate.html#a360167789598bf328488e90755b12035">CommandTemplate::Stop</a>,</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        {{<span class="stringliteral">&quot;runtime&quot;</span>, <span class="stringliteral">&quot;podman&quot;</span>}, {<span class="stringliteral">&quot;name&quot;</span>, container_name_}}</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    );</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">int</span> status = std::system(command.c_str());</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">if</span> (status == 0) {</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <a class="code" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a> &lt;&lt; <span class="stringliteral">&quot;Podman container stopped successfully&quot;</span>;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        db.<a class="code" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">UpdateField</a>(container_name_, <span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;stopped&quot;</span>);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <a class="code" href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a> &lt;&lt; <span class="stringliteral">&quot;Failed to stop Podman container&quot;</span>;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        db.<a class="code" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">UpdateField</a>(container_name_, <span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;Error stopping container&quot;</span>);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    }</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="podman__commands_8cpp_source.html#l00077">77</a> of file <a class="el" href="podman__commands_8cpp_source.html">podman_commands.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                                               {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">// Stop the Podman container</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="classIDatabaseHandler.html">IDatabaseHandler</a>&amp; db = <a class="code" href="classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce">RedisDatabaseHandler::GetInstance</a>();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    std::string command = <a class="code" href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a>(</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <a class="code" href="namespaceCommandTemplate.html#a360167789598bf328488e90755b12035">CommandTemplate::Stop</a>,</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        {{<span class="stringliteral">&quot;runtime&quot;</span>, <span class="stringliteral">&quot;podman&quot;</span>}, {<span class="stringliteral">&quot;name&quot;</span>, container_name_}}</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    );</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">int</span> status = std::system(command.c_str());</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordflow">if</span> (status == 0) {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <a class="code" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a> &lt;&lt; <span class="stringliteral">&quot;Podman container stopped successfully&quot;</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        db.<a class="code" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">UpdateField</a>(container_name_, <span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;stopped&quot;</span>);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <a class="code" href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a> &lt;&lt; <span class="stringliteral">&quot;Failed to stop Podman container&quot;</span>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        db.<a class="code" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">UpdateField</a>(container_name_, <span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;Error stopping container&quot;</span>);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="logging_8hpp_source.html#l00026">CM_LOG_ERROR</a>, <a class="el" href="logging_8hpp_source.html#l00020">CM_LOG_INFO</a>, <a class="el" href="common_8hpp_source.html#l00088">FormatCommand()</a>, <a class="el" href="redis__database_8cpp_source.html#l00019">RedisDatabaseHandler::GetInstance()</a>, <a class="el" href="common_8hpp_source.html#l00080">CommandTemplate::Stop</a>, and <a class="el" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">IDatabaseHandler::UpdateField()</a>.</p>
 <div class="dynheader">

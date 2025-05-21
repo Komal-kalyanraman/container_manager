@@ -40,6 +40,8 @@ nlohmann::json JsonRequestExecutorHandler::Execute(const std::string& data) {
     if (!j["parameters"].empty()) {
         const auto& param = j["parameters"][0];
         req.container_name = param.value("container_name", "");
+        req.image_name = param.value("image_name", "");
+        // Add more fields here if needed in the future
     }
     return ContainerServiceHandler::HandleRequest(req);
 }

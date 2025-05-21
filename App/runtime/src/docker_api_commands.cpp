@@ -10,7 +10,8 @@ bool DockerApiRuntimeAvailableCommand::Execute() const {
     return true;
 }
 
-DockerApiCreateContainerCommand::DockerApiCreateContainerCommand(const std::string& container_name) : container_name_(container_name) {
+DockerApiCreateContainerCommand::DockerApiCreateContainerCommand(const std::string& container_name, const std::string& image_name)
+    : container_name_(container_name), image_name_(image_name) {
     // Empty constructor
 }
 
