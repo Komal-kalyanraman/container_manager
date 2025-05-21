@@ -10,8 +10,6 @@
 
 #include "inc/common.hpp"
 #include "inc/logging.hpp"
-#include "inc/database_interface.hpp"
-#include "inc/redis_database.hpp"
 
 PodmanRuntimeAvailableCommand::PodmanRuntimeAvailableCommand() {
     // Empty constructor
@@ -53,7 +51,6 @@ PodmanStartContainerCommand::PodmanStartContainerCommand(const std::string& cont
 
 bool PodmanStartContainerCommand::Execute() const {
     // Start the Podman container
-    IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
     std::string command = FormatCommand(
         CommandTemplate::Start,
         {{"runtime", "podman"}, {"name", container_name_}}
@@ -61,11 +58,9 @@ bool PodmanStartContainerCommand::Execute() const {
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Podman container started successfully";
-        db.UpdateField(container_name_, "status", "running");
         return true;
     } else {
         CM_LOG_ERROR << "Failed to start Podman container";
-        db.UpdateField(container_name_, "status", "Error running container");
         return false;
     }
 }
@@ -76,7 +71,6 @@ PodmanStopContainerCommand::PodmanStopContainerCommand(const std::string& contai
 
 bool PodmanStopContainerCommand::Execute() const {
     // Stop the Podman container
-    IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
     std::string command = FormatCommand(
         CommandTemplate::Stop,
         {{"runtime", "podman"}, {"name", container_name_}}
@@ -84,11 +78,9 @@ bool PodmanStopContainerCommand::Execute() const {
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Podman container stopped successfully";
-        db.UpdateField(container_name_, "status", "stopped");
         return true;
     } else {
         CM_LOG_ERROR << "Failed to stop Podman container";
-        db.UpdateField(container_name_, "status", "Error stopping container");
         return false;
     }
 }
@@ -99,7 +91,6 @@ PodmanRemoveContainerCommand::PodmanRemoveContainerCommand(const std::string& co
 
 bool PodmanRemoveContainerCommand::Execute() const {
     // Stop the Podman container
-    IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
     std::string command = FormatCommand(
         CommandTemplate::Remove,
         {{"runtime", "podman"}, {"name", container_name_}}
@@ -107,11 +98,9 @@ bool PodmanRemoveContainerCommand::Execute() const {
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Podman container removed successfully";
-        db.RemoveKey(container_name_);
         return true;
     } else {
         CM_LOG_ERROR << "Failed to remove Podman container";
-        db.UpdateField(container_name_, "status", "Error removing container");
         return false;
     }
 }
@@ -122,7 +111,6 @@ PodmanRestartContainerCommand::PodmanRestartContainerCommand(const std::string& 
 
 bool PodmanRestartContainerCommand::Execute() const {
     // Stop the Podman container
-    IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
     std::string command = FormatCommand(
         CommandTemplate::Restart,
         {{"runtime", "podman"}, {"name", container_name_}}
@@ -130,11 +118,9 @@ bool PodmanRestartContainerCommand::Execute() const {
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Podman container restarted successfully";
-        db.UpdateField(container_name_, "status", "running");
         return true;
     } else {
         CM_LOG_ERROR << "Failed to restart Podman container";
-        db.UpdateField(container_name_, "status", "Error restarting container");
         return false;
     }
 }
