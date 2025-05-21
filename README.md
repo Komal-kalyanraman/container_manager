@@ -48,7 +48,7 @@
 
 ## Architecture Overview
 
-See the [Architecture Documentation](docs/architecture.md) for detailed diagrams and explanations.
+See the [Architecture Documentation](docs/architecture/architecture.md) for detailed diagrams and explanations.
 
 ```
 App/
