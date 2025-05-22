@@ -1,4 +1,4 @@
 <map id="MessageQueueConsumer::~MessageQueueConsumer" name="MessageQueueConsumer::~MessageQueueConsumer">
-<area shape="rect" id="node1" title="Destructor." alt="" coords="5,5,212,47"/>
+<area shape="rect" id="node1" title="Destructor. Ensures the consumer is stopped and resources are cleaned up." alt="" coords="5,5,212,47"/>
 <area shape="rect" id="node2" href="$classMessageQueueConsumer.html#abd022ef156cddc716da988beec4c174e" title="Stops the message queue consumer loop." alt="" coords="260,5,448,47"/>
 </map>

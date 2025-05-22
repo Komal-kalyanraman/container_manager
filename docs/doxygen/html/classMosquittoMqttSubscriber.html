@@ -112,13 +112,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a68e13a08dc9d907009c6735db5970476"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classMosquittoMqttSubscriber.html" title="Subscribes to an MQTT topic and dispatches received messages to a RequestExecutor.">MosquittoMqttSubscriber</a>.  <a href="classMosquittoMqttSubscriber.html#a68e13a08dc9d907009c6735db5970476">More...</a><br /></td></tr>
 <tr class="separator:a68e13a08dc9d907009c6735db5970476"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2673845c295a9bafad314d04e3415f59"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMosquittoMqttSubscriber.html#a2673845c295a9bafad314d04e3415f59">~MosquittoMqttSubscriber</a> ()</td></tr>
-<tr class="memdesc:a2673845c295a9bafad314d04e3415f59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="classMosquittoMqttSubscriber.html#a2673845c295a9bafad314d04e3415f59">More...</a><br /></td></tr>
+<tr class="memdesc:a2673845c295a9bafad314d04e3415f59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. Stops the MQTT client loop and cleans up resources.  <a href="classMosquittoMqttSubscriber.html#a2673845c295a9bafad314d04e3415f59">More...</a><br /></td></tr>
 <tr class="separator:a2673845c295a9bafad314d04e3415f59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0493b05cfc4676deab471c45a7759425"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMosquittoMqttSubscriber.html#a0493b05cfc4676deab471c45a7759425">Start</a> ()</td></tr>
-<tr class="memdesc:a0493b05cfc4676deab471c45a7759425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the MQTT client loop.  <a href="classMosquittoMqttSubscriber.html#a0493b05cfc4676deab471c45a7759425">More...</a><br /></td></tr>
+<tr class="memdesc:a0493b05cfc4676deab471c45a7759425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the MQTT client loop in a background thread.  <a href="classMosquittoMqttSubscriber.html#a0493b05cfc4676deab471c45a7759425">More...</a><br /></td></tr>
 <tr class="separator:a0493b05cfc4676deab471c45a7759425"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a735f9821c69fa0643462fa9da6529c7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMosquittoMqttSubscriber.html#a735f9821c69fa0643462fa9da6529c7c">Stop</a> ()</td></tr>
-<tr class="memdesc:a735f9821c69fa0643462fa9da6529c7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the MQTT client loop.  <a href="classMosquittoMqttSubscriber.html#a735f9821c69fa0643462fa9da6529c7c">More...</a><br /></td></tr>
+<tr class="memdesc:a735f9821c69fa0643462fa9da6529c7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the MQTT client loop and disconnects from the broker.  <a href="classMosquittoMqttSubscriber.html#a735f9821c69fa0643462fa9da6529c7c">More...</a><br /></td></tr>
 <tr class="separator:a735f9821c69fa0643462fa9da6529c7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
@@ -132,8 +132,9 @@ Protected Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Subscribes to an MQTT topic and dispatches received messages to a <a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g....">RequestExecutor</a>. </p>
+<p>This class manages the connection to an MQTT broker, subscribes to a specified topic, and forwards received messages to the provided <a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g....">RequestExecutor</a> for processing. It supports starting and stopping the MQTT client loop and handles graceful shutdown. </p>
 
-<p class="definition">Definition at line <a class="el" href="mosquitto__mqtt__subscriber_8hpp_source.html#l00017">17</a> of file <a class="el" href="mosquitto__mqtt__subscriber_8hpp_source.html">mosquitto_mqtt_subscriber.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mosquitto__mqtt__subscriber_8hpp_source.html#l00022">22</a> of file <a class="el" href="mosquitto__mqtt__subscriber_8hpp_source.html">mosquitto_mqtt_subscriber.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a68e13a08dc9d907009c6735db5970476"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a68e13a08dc9d907009c6735db5970476">&#9670;&nbsp;</a></span>MosquittoMqttSubscriber()</h2>
@@ -174,7 +175,7 @@ Protected Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructs a <a class="el" href="classMosquittoMqttSubscriber.html" title="Subscribes to an MQTT topic and dispatches received messages to a RequestExecutor.">MosquittoMqttSubscriber</a>. </p>
-<p>Constructs a <a class="el" href="classMosquittoMqttSubscriber.html" title="Subscribes to an MQTT topic and dispatches received messages to a RequestExecutor.">MosquittoMqttSubscriber</a> and connects to the MQTT broker.</p>
+<p>Constructs a <a class="el" href="classMosquittoMqttSubscriber.html" title="Subscribes to an MQTT topic and dispatches received messages to a RequestExecutor.">MosquittoMqttSubscriber</a>, initializes the Mosquitto library, and connects to the broker.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">broker_address</td><td>The MQTT broker address. </td></tr>
@@ -212,7 +213,7 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Destructor. </p>
+<p>Destructor. Stops the MQTT client loop and cleans up resources. </p>
 <p>Destructor. Stops the subscriber and cleans up the Mosquitto library. </p>
 
 <p class="definition">Definition at line <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html#l00033">33</a> of file <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html">mosquitto_mqtt_subscriber.cpp</a>.</p>
@@ -221,7 +222,7 @@ Protected Member Functions</h2></td></tr>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    mosqpp::lib_cleanup();</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html#l00049">Stop()</a>.</p>
+<p class="reference">References <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html#l00053">Stop()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -258,20 +259,22 @@ Here is the call graph for this function:</div>
 <p>Callback for successful connection to the MQTT broker. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">rc</td><td>The result code of the connection attempt. </td></tr>
+    <tr><td class="paramname">rc</td><td>The result code of the connection attempt.</td></tr>
+    <tr><td class="paramname">rc</td><td>The result code of the connection attempt.</td></tr>
   </table>
   </dd>
 </dl>
+<p>Subscribes to the configured topic if the connection is successful. </p>
 
-<p class="definition">Definition at line <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html#l00060">60</a> of file <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html">mosquitto_mqtt_subscriber.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                                               {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">if</span> (rc == 0) {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;[MQTT] Connected to broker, subscribing to topic: &quot;</span> &lt;&lt; topic_ &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        subscribe(<span class="keyword">nullptr</span>, topic_.c_str());</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        std::cerr &lt;&lt; <span class="stringliteral">&quot;[MQTT] Failed to connect, return code: &quot;</span> &lt;&lt; rc &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html#l00067">67</a> of file <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html">mosquitto_mqtt_subscriber.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                                               {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">if</span> (rc == 0) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;[MQTT] Connected to broker, subscribing to topic: &quot;</span> &lt;&lt; topic_ &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        subscribe(<span class="keyword">nullptr</span>, topic_.c_str());</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        std::cerr &lt;&lt; <span class="stringliteral">&quot;[MQTT] Failed to connect, return code: &quot;</span> &lt;&lt; rc &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -302,23 +305,25 @@ Here is the call graph for this function:</div>
 <p>Callback for receiving a message from the subscribed topic. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">message</td><td>The received MQTT message. </td></tr>
+    <tr><td class="paramname">message</td><td>The received MQTT message.</td></tr>
+    <tr><td class="paramname">message</td><td>The received MQTT message.</td></tr>
   </table>
   </dd>
 </dl>
+<p>Forwards the received message payload to the <a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g....">RequestExecutor</a> for processing. </p>
 
-<p class="definition">Definition at line <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html#l00073">73</a> of file <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html">mosquitto_mqtt_subscriber.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                                                                                {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">if</span> (message &amp;&amp; message-&gt;payload &amp;&amp; message-&gt;payloadlen &gt; 0) {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        std::string payload(<span class="keyword">static_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(message-&gt;payload), message-&gt;payloadlen);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;[MQTT] Received message on topic &quot;</span> &lt;&lt; message-&gt;topic &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; payload &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            executor_-&gt;Execute(payload);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            std::cerr &lt;&lt; <span class="stringliteral">&quot;[MQTT] Error executing request: &quot;</span> &lt;&lt; e.what() &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html#l00082">82</a> of file <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html">mosquitto_mqtt_subscriber.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                                                                                {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">if</span> (message &amp;&amp; message-&gt;payload &amp;&amp; message-&gt;payloadlen &gt; 0 &amp;&amp; running_) {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        std::string payload(<span class="keyword">static_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(message-&gt;payload), message-&gt;payloadlen);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;[MQTT] Received message on topic &quot;</span> &lt;&lt; message-&gt;topic &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; payload &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            executor_-&gt;Execute(payload);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            std::cerr &lt;&lt; <span class="stringliteral">&quot;[MQTT] Error executing request: &quot;</span> &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -337,13 +342,15 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Starts the MQTT client loop. </p>
+<p>Starts the MQTT client loop in a background thread. </p>
+<p>Connects to the broker and begins processing incoming messages.</p>
+<p>Sets the running flag to true and starts the Mosquitto network loop. </p>
 
-<p class="definition">Definition at line <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html#l00041">41</a> of file <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html">mosquitto_mqtt_subscriber.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                                    {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    running_ = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    loop_start();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html#l00043">43</a> of file <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html">mosquitto_mqtt_subscriber.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                                    {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    running_ = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    loop_start();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -362,15 +369,18 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Stops the MQTT client loop. </p>
+<p>Stops the MQTT client loop and disconnects from the broker. </p>
+<p>Signals the client to stop processing messages and performs a clean disconnect.</p>
+<p>Sets the running flag to false, disconnects from the broker, and stops the Mosquitto network loop. </p>
 
-<p class="definition">Definition at line <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html#l00049">49</a> of file <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html">mosquitto_mqtt_subscriber.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                                   {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">if</span> (running_) {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        loop_stop();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        running_ = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html#l00053">53</a> of file <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html">mosquitto_mqtt_subscriber.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                                   {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">if</span> (running_) {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        running_ = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        disconnect();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        loop_stop();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">Referenced by <a class="el" href="mosquitto__mqtt__subscriber_8cpp_source.html#l00033">~MosquittoMqttSubscriber()</a>.</p>
 <div class="dynheader">
@@ -387,7 +397,7 @@ Here is the caller graph for this function:</div>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassMosquittoMqttSubscriber_html_a735f9821c69fa0643462fa9da6529c7c"><div class="ttname"><a href="classMosquittoMqttSubscriber.html#a735f9821c69fa0643462fa9da6529c7c">MosquittoMqttSubscriber::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">Stops the MQTT client loop.</div><div class="ttdef"><b>Definition:</b> <a href="mosquitto__mqtt__subscriber_8cpp_source.html#l00049">mosquitto_mqtt_subscriber.cpp:49</a></div></div>
+<div class="ttc" id="aclassMosquittoMqttSubscriber_html_a735f9821c69fa0643462fa9da6529c7c"><div class="ttname"><a href="classMosquittoMqttSubscriber.html#a735f9821c69fa0643462fa9da6529c7c">MosquittoMqttSubscriber::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">Stops the MQTT client loop and disconnects from the broker.</div><div class="ttdef"><b>Definition:</b> <a href="mosquitto__mqtt__subscriber_8cpp_source.html#l00053">mosquitto_mqtt_subscriber.cpp:53</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

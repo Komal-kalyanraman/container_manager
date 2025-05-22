@@ -1,11 +1,13 @@
 <map id="main" name="main">
-<area shape="rect" id="node1" title="Main entry point for the Container Manager application." alt="" coords="5,140,60,167"/>
-<area shape="rect" id="node2" href="$init__handler_8hpp.html#ad98029164064eb3e856369697d9cc015" title="Initializes all enabled project subsystems." alt="" coords="139,111,227,137"/>
-<area shape="rect" id="node9" href="$classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506" title="Starts the HTTP server on the specified host and port." alt="" coords="108,162,259,203"/>
-<area shape="rect" id="node3" href="$init__handler_8cpp.html#a3ca899cad245b508cfb58fd9230fa669" title="Initializes and clears the database." alt="" coords="352,35,457,61"/>
-<area shape="rect" id="node6" href="$init__handler_8cpp.html#a9c6fd2b1fc6d60ab2f80b2799b0fa81e" title="Initializes logging using Google glog." alt="" coords="357,85,452,112"/>
-<area shape="rect" id="node7" href="$init__handler_8cpp.html#ac622dccafc9db8b54a3d5ef6d98eed8e" title="Clears the POSIX message queue at startup." alt="" coords="333,136,476,163"/>
-<area shape="rect" id="node8" href="$init__handler_8cpp.html#a57b18ca1632517db21aa1491c585762a" title="Stub for clearing retained MQTT messages when MQTT is disabled." alt="" coords="307,187,503,213"/>
-<area shape="rect" id="node4" href="$classIDatabaseHandler.html#a79f638c8332acdfb054d1f915f77c760" title="Clears all data from the database." alt="" coords="551,5,793,32"/>
-<area shape="rect" id="node5" href="$classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce" title="Retrieves the singleton instance of the RedisDatabaseHandler." alt="" coords="587,57,757,98"/>
+<area shape="rect" id="node1" title="Main entry point for the Container Manager application." alt="" coords="5,191,60,217"/>
+<area shape="rect" id="node2" href="$init__handler_8hpp.html#ad98029164064eb3e856369697d9cc015" title="Initializes all enabled project subsystems." alt="" coords="154,111,242,137"/>
+<area shape="rect" id="node9" href="$main_8cpp.html#a7972e8125628180f0e4d04a8f805ced6" title="Signal handler for graceful shutdown." alt="" coords="141,161,255,188"/>
+<area shape="rect" id="node10" href="$classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506" title="Starts the HTTP server on the specified host and port." alt="" coords="123,213,273,254"/>
+<area shape="rect" id="node11" href="$classHttpServerHandler.html#af722b87666008983f00f817bbb367f26" title="Stops the HTTP server if it is running." alt="" coords="108,279,288,305"/>
+<area shape="rect" id="node3" href="$init__handler_8cpp.html#a3ca899cad245b508cfb58fd9230fa669" title="Initializes and clears the database." alt="" coords="381,35,487,61"/>
+<area shape="rect" id="node6" href="$init__handler_8cpp.html#a9c6fd2b1fc6d60ab2f80b2799b0fa81e" title="Initializes logging using Google glog." alt="" coords="387,85,481,112"/>
+<area shape="rect" id="node7" href="$init__handler_8cpp.html#ac622dccafc9db8b54a3d5ef6d98eed8e" title="Clears the POSIX message queue at startup." alt="" coords="363,136,505,163"/>
+<area shape="rect" id="node8" href="$init__handler_8cpp.html#a57b18ca1632517db21aa1491c585762a" title="Stub for clearing retained MQTT messages when MQTT is disabled." alt="" coords="336,187,532,213"/>
+<area shape="rect" id="node4" href="$classIDatabaseHandler.html#a79f638c8332acdfb054d1f915f77c760" title="Clears all data from the database." alt="" coords="580,5,823,32"/>
+<area shape="rect" id="node5" href="$classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce" title="Retrieves the singleton instance of the RedisDatabaseHandler." alt="" coords="616,57,787,98"/>
 </map>

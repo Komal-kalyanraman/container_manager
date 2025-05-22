@@ -151,6 +151,9 @@ Variables</h2></td></tr>
 <tr class="memitem:af0a5c19c0d441fb37ef118d1714dc2aa"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#af0a5c19c0d441fb37ef118d1714dc2aa">kContainerManagerLogName</a> = &quot;cm_log&quot;</td></tr>
 <tr class="memdesc:af0a5c19c0d441fb37ef118d1714dc2aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name used for container manager in google logging.  <a href="common_8hpp.html#af0a5c19c0d441fb37ef118d1714dc2aa">More...</a><br /></td></tr>
 <tr class="separator:af0a5c19c0d441fb37ef118d1714dc2aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a219640b5cfb7d108d5a1f48ef0190e67"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a219640b5cfb7d108d5a1f48ef0190e67">kMainShutdownPollMs</a> = 200</td></tr>
+<tr class="memdesc:a219640b5cfb7d108d5a1f48ef0190e67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sleep interval (in milliseconds) for main thread shutdown polling.  <a href="common_8hpp.html#a219640b5cfb7d108d5a1f48ef0190e67">More...</a><br /></td></tr>
+<tr class="separator:a219640b5cfb7d108d5a1f48ef0190e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a641acb6b2c850ccb8dbce6f3a08315df"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommandTemplate.html#a641acb6b2c850ccb8dbce6f3a08315df">CommandTemplate::Create</a> = &quot;{runtime} create --name {name} {image}&quot;</td></tr>
 <tr class="separator:a641acb6b2c850ccb8dbce6f3a08315df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e1ab1f9a49c7fe35aa817e9ce451129"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommandTemplate.html#a0e1ab1f9a49c7fe35aa817e9ce451129">CommandTemplate::Start</a> = &quot;{runtime} start {name}&quot;</td></tr>
@@ -211,19 +214,19 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The formatted command string. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00089">89</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                                                                                                          {</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    std::string result(tmpl);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, val] : values) {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        std::string placeholder = <span class="stringliteral">&quot;{&quot;</span> + key + <span class="stringliteral">&quot;}&quot;</span>;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordtype">size_t</span> pos = 0;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">while</span> ((pos = result.find(placeholder, pos)) != std::string::npos) {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            result.replace(pos, placeholder.length(), val);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            pos += val.length();</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00093">93</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                                                                                                          {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    std::string result(tmpl);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, val] : values) {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        std::string placeholder = <span class="stringliteral">&quot;{&quot;</span> + key + <span class="stringliteral">&quot;}&quot;</span>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordtype">size_t</span> pos = 0;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">while</span> ((pos = result.find(placeholder, pos)) != std::string::npos) {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            result.replace(pos, placeholder.length(), val);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            pos += val.length();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00047">DockerCreateContainerCommand::Execute()</a>, <a class="el" href="podman__commands_8cpp_source.html#l00047">PodmanCreateContainerCommand::Execute()</a>, <a class="el" href="docker__commands_8cpp_source.html#l00074">DockerStartContainerCommand::Execute()</a>, <a class="el" href="podman__commands_8cpp_source.html#l00074">PodmanStartContainerCommand::Execute()</a>, <a class="el" href="docker__commands_8cpp_source.html#l00101">DockerStopContainerCommand::Execute()</a>, <a class="el" href="podman__commands_8cpp_source.html#l00101">PodmanStopContainerCommand::Execute()</a>, <a class="el" href="docker__commands_8cpp_source.html#l00128">DockerRemoveContainerCommand::Execute()</a>, <a class="el" href="podman__commands_8cpp_source.html#l00128">PodmanRemoveContainerCommand::Execute()</a>, <a class="el" href="docker__commands_8cpp_source.html#l00155">DockerRestartContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00155">PodmanRestartContainerCommand::Execute()</a>.</p>
 <div class="dynheader">
@@ -272,6 +275,34 @@ Here is the caller graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00013">13</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="json__request__executor_8cpp_source.html#l00023">JsonRequestExecutorHandler::Execute()</a>, and <a class="el" href="protobuf__request__executor_8cpp_source.html#l00031">ProtoRequestExecutorHandler::Execute()</a>.</p>
+
+</div>
+</div>
+<a id="a219640b5cfb7d108d5a1f48ef0190e67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a219640b5cfb7d108d5a1f48ef0190e67">&#9670;&nbsp;</a></span>kMainShutdownPollMs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int kMainShutdownPollMs = 200</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sleep interval (in milliseconds) for main thread shutdown polling. </p>
+
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00019">19</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00062">main()</a>.</p>
 
 </div>
 </div>

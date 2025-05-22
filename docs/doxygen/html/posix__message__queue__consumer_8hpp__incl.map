@@ -1,12 +1,13 @@
 <map id="api/inc/posix_message_queue_consumer.hpp" name="api/inc/posix_message_queue_consumer.hpp">
-<area shape="rect" id="node1" title="Declares the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="104,5,275,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,95,83,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="301,244,360,271"/>
-<area shape="rect" id="node4" title=" " alt="" coords="157,95,221,121"/>
-<area shape="rect" id="node5" href="$common_8hpp.html" title="Defines common constants, string views, and utility structures for the application." alt="" coords="245,95,376,121"/>
-<area shape="rect" id="node8" href="$request__executor_8hpp.html" title="Declares the abstract RequestExecutor interface for executing requests." alt="" coords="455,95,641,121"/>
-<area shape="rect" id="node6" title=" " alt="" coords="209,169,306,196"/>
-<area shape="rect" id="node7" title=" " alt="" coords="330,169,454,196"/>
-<area shape="rect" id="node9" title=" " alt="" coords="529,169,676,196"/>
-<area shape="rect" id="node10" href="$container__request_8hpp.html" title="Data structure for representing a container operation request." alt="" coords="701,169,891,196"/>
+<area shape="rect" id="node1" title="Declares the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="160,5,331,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,72,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="96,95,173,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="392,244,451,271"/>
+<area shape="rect" id="node5" title=" " alt="" coords="248,95,312,121"/>
+<area shape="rect" id="node6" href="$common_8hpp.html" title="Defines common constants, string views, and utility structures for the application." alt="" coords="336,95,467,121"/>
+<area shape="rect" id="node9" href="$request__executor_8hpp.html" title="Declares the abstract RequestExecutor interface for executing requests." alt="" coords="545,95,732,121"/>
+<area shape="rect" id="node7" title=" " alt="" coords="299,169,397,196"/>
+<area shape="rect" id="node8" title=" " alt="" coords="421,169,545,196"/>
+<area shape="rect" id="node10" title=" " alt="" coords="620,169,767,196"/>
+<area shape="rect" id="node11" href="$container__request_8hpp.html" title="Data structure for representing a container operation request." alt="" coords="791,169,982,196"/>
 </map>

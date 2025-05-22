@@ -90,30 +90,34 @@ $(document).ready(function(){initNavTree('http__server_8hpp_source.html',''); in
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="common_8hpp.html">inc/common.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="threadpool_8hpp.html">inc/threadpool.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="request__executor_8hpp.html">inc/request_executor.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classHttpServerHandler.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classHttpServerHandler.html">HttpServerHandler</a> {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classHttpServerHandler.html#a44366b46b30352163ed6ef49516dd404">HttpServerHandler</a>(std::shared_ptr&lt;RequestExecutor&gt; executor, <span class="keywordtype">int</span> thread_pool_size);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506">Start</a>(<span class="keyword">const</span> std::string&amp; host, <span class="keywordtype">int</span> port);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    std::shared_ptr&lt;RequestExecutor&gt; executor_;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;httplib.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="common_8hpp.html">inc/common.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="threadpool_8hpp.html">inc/threadpool.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="request__executor_8hpp.html">inc/request_executor.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classHttpServerHandler.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="classHttpServerHandler.html">HttpServerHandler</a> {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classHttpServerHandler.html#a44366b46b30352163ed6ef49516dd404">HttpServerHandler</a>(std::shared_ptr&lt;RequestExecutor&gt; executor, <span class="keywordtype">int</span> thread_pool_size);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506">Start</a>(<span class="keyword">const</span> std::string&amp; host, <span class="keywordtype">int</span> port);</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    std::unique_ptr&lt;ThreadPool&gt; pool_;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;};</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHttpServerHandler.html#af722b87666008983f00f817bbb367f26">Stop</a>();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    std::shared_ptr&lt;RequestExecutor&gt; executor_;      </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::unique_ptr&lt;ThreadPool&gt; pool_;               </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::unique_ptr&lt;httplib::Server&gt; svr_;           </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="acommon_8hpp_html"><div class="ttname"><a href="common_8hpp.html">common.hpp</a></div><div class="ttdoc">Defines common constants, string views, and utility structures for the application.</div></div>
-<div class="ttc" id="aclassHttpServerHandler_html_a44366b46b30352163ed6ef49516dd404"><div class="ttname"><a href="classHttpServerHandler.html#a44366b46b30352163ed6ef49516dd404">HttpServerHandler::HttpServerHandler</a></div><div class="ttdeci">HttpServerHandler(std::shared_ptr&lt; RequestExecutor &gt; executor, int thread_pool_size)</div><div class="ttdoc">Constructs an HTTP server handler.</div><div class="ttdef"><b>Definition:</b> <a href="http__server_8cpp_source.html#l00016">http_server.cpp:16</a></div></div>
-<div class="ttc" id="aclassHttpServerHandler_html"><div class="ttname"><a href="classHttpServerHandler.html">HttpServerHandler</a></div><div class="ttdoc">Handles incoming HTTP requests and dispatches them to the appropriate JSON/Protobuf executor.</div><div class="ttdef"><b>Definition:</b> <a href="http__server_8hpp_source.html#l00019">http_server.hpp:19</a></div></div>
+<div class="ttc" id="aclassHttpServerHandler_html_a44366b46b30352163ed6ef49516dd404"><div class="ttname"><a href="classHttpServerHandler.html#a44366b46b30352163ed6ef49516dd404">HttpServerHandler::HttpServerHandler</a></div><div class="ttdeci">HttpServerHandler(std::shared_ptr&lt; RequestExecutor &gt; executor, int thread_pool_size)</div><div class="ttdoc">Constructs an HTTP server handler.</div><div class="ttdef"><b>Definition:</b> <a href="http__server_8cpp_source.html#l00014">http_server.cpp:14</a></div></div>
+<div class="ttc" id="aclassHttpServerHandler_html"><div class="ttname"><a href="classHttpServerHandler.html">HttpServerHandler</a></div><div class="ttdoc">Handles incoming HTTP requests and dispatches them to the appropriate JSON/Protobuf executor.</div><div class="ttdef"><b>Definition:</b> <a href="http__server_8hpp_source.html#l00023">http_server.hpp:23</a></div></div>
+<div class="ttc" id="aclassHttpServerHandler_html_af722b87666008983f00f817bbb367f26"><div class="ttname"><a href="classHttpServerHandler.html#af722b87666008983f00f817bbb367f26">HttpServerHandler::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">Stops the HTTP server if it is running.</div><div class="ttdef"><b>Definition:</b> <a href="http__server_8cpp_source.html#l00062">http_server.cpp:62</a></div></div>
 <div class="ttc" id="arequest__executor_8hpp_html"><div class="ttname"><a href="request__executor_8hpp.html">request_executor.hpp</a></div><div class="ttdoc">Declares the abstract RequestExecutor interface for executing requests.</div></div>
 <div class="ttc" id="athreadpool_8hpp_html"><div class="ttname"><a href="threadpool_8hpp.html">threadpool.hpp</a></div><div class="ttdoc">Declares the ThreadPool utility class for managing worker threads.</div></div>
-<div class="ttc" id="aclassHttpServerHandler_html_aa6719e2ab219e695c6762836bc9b9506"><div class="ttname"><a href="classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506">HttpServerHandler::Start</a></div><div class="ttdeci">void Start(const std::string &amp;host, int port)</div><div class="ttdoc">Starts the HTTP server on the specified host and port.</div><div class="ttdef"><b>Definition:</b> <a href="http__server_8cpp_source.html#l00025">http_server.cpp:25</a></div></div>
+<div class="ttc" id="aclassHttpServerHandler_html_aa6719e2ab219e695c6762836bc9b9506"><div class="ttname"><a href="classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506">HttpServerHandler::Start</a></div><div class="ttdeci">void Start(const std::string &amp;host, int port)</div><div class="ttdoc">Starts the HTTP server on the specified host and port.</div><div class="ttdef"><b>Definition:</b> <a href="http__server_8cpp_source.html#l00027">http_server.cpp:27</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

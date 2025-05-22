@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('structMessageQueueConfig.html',''); in
 <div class="dynheader">
 Collaboration diagram for MessageQueueConfig:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structMessageQueueConfig__coll__graph.svg" width="191" height="399"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structMessageQueueConfig__coll__graph.svg" width="191" height="414"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -114,11 +114,14 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a22f6f849c0bcf719f29949896d47ad6c"><td class="memItemLeft" align="right" valign="top">const long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMessageQueueConfig.html#a22f6f849c0bcf719f29949896d47ad6c">SleepTime</a> = 10000</td></tr>
 <tr class="memdesc:a22f6f849c0bcf719f29949896d47ad6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sleep time in microseconds.  <a href="structMessageQueueConfig.html#a22f6f849c0bcf719f29949896d47ad6c">More...</a><br /></td></tr>
 <tr class="separator:a22f6f849c0bcf719f29949896d47ad6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a719d6001984c16f462d7080b76023c05"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMessageQueueConfig.html#a719d6001984c16f462d7080b76023c05">ReceiveTimeoutSec</a> = 1</td></tr>
+<tr class="memdesc:a719d6001984c16f462d7080b76023c05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timeout for mq_timedreceive in seconds.  <a href="structMessageQueueConfig.html#a719d6001984c16f462d7080b76023c05">More...</a><br /></td></tr>
+<tr class="separator:a719d6001984c16f462d7080b76023c05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Holds constant configuration for the POSIX message queue consumer. </p>
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00038">38</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00041">41</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a45d3263a143fcd7925c838705935f011"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a45d3263a143fcd7925c838705935f011">&#9670;&nbsp;</a></span>MaxMsgCount</h2>
@@ -134,7 +137,7 @@ Public Attributes</h2></td></tr>
 
 <p>Maximum number of messages in the queue. </p>
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00041">41</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00044">44</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
 </div>
 </div>
@@ -152,7 +155,7 @@ Public Attributes</h2></td></tr>
 
 <p>Maximum size of each message (bytes). </p>
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00040">40</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00043">43</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
 </div>
 </div>
@@ -170,9 +173,27 @@ Public Attributes</h2></td></tr>
 
 <p>Name of the POSIX message queue. </p>
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00039">39</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00042">42</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="init__handler_8cpp_source.html#l00035">InitMessageQueue()</a>.</p>
+
+</div>
+</div>
+<a id="a719d6001984c16f462d7080b76023c05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a719d6001984c16f462d7080b76023c05">&#9670;&nbsp;</a></span>ReceiveTimeoutSec</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int MessageQueueConfig::ReceiveTimeoutSec = 1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Timeout for mq_timedreceive in seconds. </p>
+
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00046">46</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
 </div>
 </div>
@@ -190,7 +211,7 @@ Public Attributes</h2></td></tr>
 
 <p>Sleep time in microseconds. </p>
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00042">42</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00045">45</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
 </div>
 </div>

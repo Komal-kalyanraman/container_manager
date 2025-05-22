@@ -1,3 +1,78 @@
+### Complete Architecture diagram
+
+```mermaid
+flowchart TD
+    %% Clients
+    ClientREST[REST Client]
+    ClientMQTT[MQTT Client]
+    ClientDBus[D-Bus Client]
+    ClientMQ[POSIX MQ Client]
+
+    %% API Layer
+    REST[REST API Server]
+    MQTT[MQTT Subscriber]
+    MQ[POSIX Message Queue Consumer]
+    DBUS[D-Bus Consumer]
+
+    %% Executor Layer
+    JSON[JSON Request Executor]
+    PROTO[Protobuf Request Executor]
+
+    %% Core Layer
+    SERVICE[Container Service Handler]
+    COMMANDS[Command Pattern]
+
+    %% Runtime Layer
+    DOCKER[Docker Commands]
+    PODMAN[Podman Commands]
+
+    %% Database Layer
+    DBIF[IDatabaseHandler]
+    REDIS[RedisDatabaseHandler]
+
+    %% Infrastructure
+    MQTTB[MQTT Broker]
+    DockerD[(Docker Daemon)]
+    PodmanD[(Podman Daemon)]
+
+    %% Client to API
+    ClientREST -- HTTP --> REST
+    ClientMQTT -- MQTT --> MQTTB
+    MQTTB -- MQTT --> MQTT
+    ClientDBus -- D-Bus --> DBUS
+    ClientMQ -- POSIX MQ --> MQ
+
+    %% API to Executor
+    REST -- JSON --> JSON
+    REST -- Proto --> PROTO
+    MQTT -- JSON --> JSON
+    MQTT -- Proto --> PROTO
+    MQ -- JSON --> JSON
+    MQ -- Proto --> PROTO
+    DBUS -- JSON --> JSON
+    DBUS -- Proto --> PROTO
+
+    %% Executor to Core
+    JSON -- Validated Request --> SERVICE
+    PROTO -- Validated Request --> SERVICE
+
+    %% Core to Command
+    SERVICE -- Command Dispatch --> COMMANDS
+
+    %% Command to Runtime
+    COMMANDS -- Docker Ops --> DOCKER
+    COMMANDS -- Podman Ops --> PODMAN
+
+    %% Runtime to Database
+    DOCKER -- DB Access --> DBIF
+    PODMAN -- DB Access --> DBIF
+    DBIF -- Redis API --> REDIS
+
+    %% Runtime to Daemon
+    DOCKER -- Docker API --> DockerD
+    PODMAN -- Podman API --> PodmanD
+```
+
 ### API & Executor Layers
 
 ```mermaid

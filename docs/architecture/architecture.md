@@ -5,22 +5,9 @@
 **Container Manager** is a modular, extensible, and production-ready C++ service for unified container management across Docker, Podman, and other runtimes.  
 It is designed to support multiple communication protocols (REST, MQTT, POSIX Message Queue, D-Bus, gRPC) and data formats (JSON, Protobuf), making it suitable for diverse deployment scenarios and integration needs.
 
-## High-Level Architecture Diagram
+### System Architecture
 
-> **Note:** Due to Mermaid/VS Code plugin limitations, only two subgraphs are shown per diagram.
-> For a full view, see the [Mermaid Live Editor](https://mermaid.live/) or combine these diagrams.
-
-### API & Executor Layers
-
-<img src="architecture_api_executor_layers.png" alt="API & Executor Layers" width="900"/>
-
-### Executor, Core, and Runtime Layers
-
-<img src="architecture_executor_core_runtime.png" alt="Executor, Core, and Runtime Layers" width="400"/>
-
-### Runtime & Database Layers
-
-<img src="architecture_runtime_database.png" alt="Runtime & Database Layers" width="400"/>
+<img src="system_architecture.png" alt="System Architecture" width="750"/>
 
 ## Folder Structure
 

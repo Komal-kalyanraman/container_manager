@@ -1,11 +1,12 @@
 <map id="api/src/mosquitto_mqtt_subscriber.cpp" name="api/src/mosquitto_mqtt_subscriber.cpp">
-<area shape="rect" id="node1" title="Implements the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto." alt="" coords="506,5,679,47"/>
-<area shape="rect" id="node2" href="$mosquitto__mqtt__subscriber_8hpp.html" title="Declares the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto." alt="" coords="186,95,335,136"/>
-<area shape="rect" id="node7" title=" " alt="" coords="565,259,711,285"/>
-<area shape="rect" id="node9" title=" " alt="" coords="630,102,710,129"/>
+<area shape="rect" id="node1" title="Implements the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto." alt="" coords="538,5,711,47"/>
+<area shape="rect" id="node2" href="$mosquitto__mqtt__subscriber_8hpp.html" title="Declares the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto." alt="" coords="222,95,371,136"/>
+<area shape="rect" id="node8" title=" " alt="" coords="565,259,711,285"/>
+<area shape="rect" id="node10" title=" " alt="" coords="662,102,742,129"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,184,121,211"/>
 <area shape="rect" id="node4" title=" " alt="" coords="146,184,223,211"/>
 <area shape="rect" id="node5" title=" " alt="" coords="282,333,341,360"/>
-<area shape="rect" id="node6" href="$request__executor_8hpp.html" title="Declares the abstract RequestExecutor interface for executing requests." alt="" coords="325,184,511,211"/>
-<area shape="rect" id="node8" href="$container__request_8hpp.html" title="Data structure for representing a container operation request." alt="" coords="349,259,540,285"/>
+<area shape="rect" id="node6" title=" " alt="" coords="298,184,365,211"/>
+<area shape="rect" id="node7" href="$request__executor_8hpp.html" title="Declares the abstract RequestExecutor interface for executing requests." alt="" coords="389,184,575,211"/>
+<area shape="rect" id="node9" href="$container__request_8hpp.html" title="Data structure for representing a container operation request." alt="" coords="349,259,540,285"/>
 </map>

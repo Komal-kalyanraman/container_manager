@@ -1,4 +1,4 @@
 <map id="MosquittoMqttSubscriber::Stop" name="MosquittoMqttSubscriber::Stop">
-<area shape="rect" id="node1" title="Stops the MQTT client loop." alt="" coords="257,5,443,47"/>
-<area shape="rect" id="node2" href="$classMosquittoMqttSubscriber.html#a2673845c295a9bafad314d04e3415f59" title="Destructor." alt="" coords="5,5,209,47"/>
+<area shape="rect" id="node1" title="Stops the MQTT client loop and disconnects from the broker." alt="" coords="257,5,443,47"/>
+<area shape="rect" id="node2" href="$classMosquittoMqttSubscriber.html#a2673845c295a9bafad314d04e3415f59" title="Destructor. Stops the MQTT client loop and cleans up resources." alt="" coords="5,5,209,47"/>
 </map>

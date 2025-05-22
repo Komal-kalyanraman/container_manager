@@ -90,21 +90,10 @@ $(document).ready(function(){initNavTree('md__home_komal_workspace_personal_cont
 Overview</h1>
 <p><b>Container Manager</b> is a modular, extensible, and production-ready C++ service for unified container management across Docker, Podman, and other runtimes. <br  />
  It is designed to support multiple communication protocols (REST, MQTT, POSIX Message Queue, D-Bus, gRPC) and data formats (JSON, Protobuf), making it suitable for diverse deployment scenarios and integration needs.</p>
-<h1><a class="anchor" id="autotoc_md37"></a>
-High-Level Architecture Diagram</h1>
-<blockquote class="doxtable">
-<p><b>Note:</b> Due to Mermaid/VS Code plugin limitations, only two subgraphs are shown per diagram. For a full view, see the <a href="https://mermaid.live/">Mermaid Live Editor</a> or combine these diagrams. </p>
-</blockquote>
-<h2><a class="anchor" id="autotoc_md38"></a>
-API &amp; Executor Layers</h2>
-<p><img src="architecture_api_executor_layers.png" alt="API & Executor Layers" width="900" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md39"></a>
-Executor, Core, and Runtime Layers</h2>
-<p><img src="architecture_executor_core_runtime.png" alt="Executor, Core, and Runtime Layers" width="400" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md40"></a>
-Runtime &amp; Database Layers</h2>
-<p><img src="architecture_runtime_database.png" alt="Runtime & Database Layers" width="400" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md41"></a>
+<h2><a class="anchor" id="autotoc_md37"></a>
+System Architecture</h2>
+<p><img src="system_architecture.png" alt="System Architecture" width="750" class="inline"/></p>
+<h1><a class="anchor" id="autotoc_md38"></a>
 Folder Structure</h1>
 <div class="fragment"><div class="line">App/</div>
 <div class="line">├── api/        # Protocol handlers (REST, MQTT, MQ, D-Bus, gRPC)</div>
@@ -115,9 +104,9 @@ Folder Structure</h1>
 <div class="line">├── utils/      # Utilities (thread pool, logging, config)</div>
 <div class="line">├── main.cpp    # Application entry point</div>
 <div class="line">└── third_party/# External dependencies</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md42"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md39"></a>
 Component Descriptions</h1>
-<h2><a class="anchor" id="autotoc_md43"></a>
+<h2><a class="anchor" id="autotoc_md40"></a>
 1. &lt;strong&gt;API Layer (Protocol Handlers)&lt;/strong&gt;</h2>
 <ul>
 <li><b>REST API Server:</b> <br  />
@@ -132,7 +121,7 @@ Component Descriptions</h1>
  Will provide a strongly-typed, high-performance RPC interface using Protobuf.</li>
 </ul>
 <p><b>All protocol handlers are modular and can be enabled/disabled at build time via CMake flags.</b></p>
-<h2><a class="anchor" id="autotoc_md44"></a>
+<h2><a class="anchor" id="autotoc_md41"></a>
 2. &lt;strong&gt;Executor Layer (Request Executors)&lt;/strong&gt;</h2>
 <ul>
 <li><b>JSON Request Executor:</b> <br  />
@@ -141,7 +130,7 @@ Component Descriptions</h1>
  Validates and parses incoming Protobuf requests, converting them to internal command objects.</li>
 </ul>
 <p><b>The executor layer abstracts data format handling, allowing protocol handlers to remain agnostic of the underlying serialization.</b></p>
-<h2><a class="anchor" id="autotoc_md45"></a>
+<h2><a class="anchor" id="autotoc_md42"></a>
 3. &lt;strong&gt;Core Layer (Service &amp; Command Pattern)&lt;/strong&gt;</h2>
 <ul>
 <li><b>Container Service Handler:</b> <br  />
@@ -150,7 +139,7 @@ Component Descriptions</h1>
  Each container operation (create, start, stop, etc.) is encapsulated as a command object. <br  />
  Supports multiple runtimes (Docker, Podman, etc.) and is easily extensible.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md46"></a>
+<h2><a class="anchor" id="autotoc_md43"></a>
 4. &lt;strong&gt;Runtime Layer&lt;/strong&gt;</h2>
 <ul>
 <li><b>Docker Commands:</b> <br  />
@@ -159,7 +148,7 @@ Component Descriptions</h1>
  Implements container operations for Podman.</li>
 </ul>
 <p><b>The runtime layer can be extended to support additional container engines.</b></p>
-<h2><a class="anchor" id="autotoc_md47"></a>
+<h2><a class="anchor" id="autotoc_md44"></a>
 5. &lt;strong&gt;Database Layer&lt;/strong&gt;</h2>
 <ul>
 <li><b><a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a>:</b> <br  />
@@ -168,7 +157,7 @@ Component Descriptions</h1>
  Production-ready Redis implementation of the database interface.</li>
 </ul>
 <p><b>The database layer is pluggable—swap Redis for any other backend by implementing the interface.</b></p>
-<h2><a class="anchor" id="autotoc_md48"></a>
+<h2><a class="anchor" id="autotoc_md45"></a>
 6. &lt;strong&gt;Utilities&lt;/strong&gt;</h2>
 <ul>
 <li><b>Thread Pool:</b> <br  />
@@ -178,7 +167,7 @@ Component Descriptions</h1>
 <li><b>Config:</b> <br  />
  Centralized configuration structs for all protocols and system settings.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md49"></a>
+<h1><a class="anchor" id="autotoc_md46"></a>
 Data Flow</h1>
 <ol type="1">
 <li><b>Request Reception:</b> <br  />
@@ -196,7 +185,7 @@ Data Flow</h1>
 <li><b>Response:</b> <br  />
  The result is sent back via the originating protocol (if applicable).</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md50"></a>
+<h1><a class="anchor" id="autotoc_md47"></a>
 Extensibility</h1>
 <ul>
 <li><b>Add a Protocol:</b> <br  />
@@ -208,7 +197,7 @@ Extensibility</h1>
 <li><b>Change Database:</b> <br  />
  Implement <code><a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a></code> for your preferred backend.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md51"></a>
+<h1><a class="anchor" id="autotoc_md48"></a>
 Production-Readiness</h1>
 <ul>
 <li><b>Graceful Shutdown:</b> <br  />
@@ -222,13 +211,13 @@ Production-Readiness</h1>
 <li><b>Testing:</b> <br  />
  Unit and integration tests are present; expand coverage as needed.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md52"></a>
+<h1><a class="anchor" id="autotoc_md49"></a>
 Example Sequence Diagram</h1>
 <p><img src="architecture_example_sequence_diagram.png" alt="Example Sequence Diagram" width="900" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md53"></a>
+<h1><a class="anchor" id="autotoc_md50"></a>
 Deployment Diagram</h1>
 <p><img src="architecture_deployment_diagram.png" alt="Deployment Diagram" width="500" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md54"></a>
+<h1><a class="anchor" id="autotoc_md51"></a>
 Recommendations for Contributors</h1>
 <ul>
 <li><b>Follow the modular architecture:</b> <br  />
@@ -237,7 +226,7 @@ Recommendations for Contributors</h1>
 <li><b>Write tests for new features and bug fixes.</b></li>
 <li><b>Update diagrams and documentation as the architecture evolves.</b></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md55"></a>
+<h1><a class="anchor" id="autotoc_md52"></a>
 References</h1>
 <ul>
 <li><a href="../docs/doxygen/html/index.html">Doxygen Documentation</a></li>

@@ -88,49 +88,54 @@ $(document).ready(function(){initNavTree('http__server_8cpp_source.html',''); in
 <div class="contents">
 <a href="http__server_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="http__server_8hpp.html">inc/http_server.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;httplib.h&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;nlohmann/json.hpp&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classHttpServerHandler.html#a44366b46b30352163ed6ef49516dd404">   16</a></span>&#160;<a class="code" href="classHttpServerHandler.html#a44366b46b30352163ed6ef49516dd404">HttpServerHandler::HttpServerHandler</a>(std::shared_ptr&lt;RequestExecutor&gt; executor, <span class="keywordtype">int</span> thread_pool_size)</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    : executor_(std::move(executor)), pool_(std::make_unique&lt;<a class="code" href="classThreadPool.html">ThreadPool</a>&gt;(thread_pool_size)) {}</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506">   25</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506">HttpServerHandler::Start</a>(<span class="keyword">const</span> std::string&amp; host, <span class="keywordtype">int</span> port) {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    httplib::Server svr;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    svr.Post(<span class="stringliteral">&quot;/execute&quot;</span>, [<span class="keyword">this</span>](<span class="keyword">const</span> httplib::Request&amp; req, httplib::Response&amp; res) {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="comment">// Send immediate acknowledgment to the client</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <a class="code" href="json__request__executor_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d">nlohmann::json</a> ack = {{<span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;success&quot;</span>}, {<span class="stringliteral">&quot;message&quot;</span>, <span class="stringliteral">&quot;Request received and will be processed.&quot;</span>}};</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            res.set_content(ack.dump(), <span class="stringliteral">&quot;application/json&quot;</span>);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="comment">// Process the request asynchronously in the thread pool</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            std::string data = req.body;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;Received request: &quot;</span> &lt;&lt; data &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            std::shared_ptr&lt;RequestExecutor&gt; exec = executor_; <span class="comment">// capture for thread safety</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            pool_-&gt;Enqueue([exec, data]() {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                try {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                    exec-&gt;Execute(data);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                } catch (<span class="keyword">const</span> std::exception&amp; e) {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                    <span class="comment">// Optionally log error</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                }</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            });</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="comment">// Handle errors and send error response to client</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <a class="code" href="json__request__executor_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d">nlohmann::json</a> resp = {{<span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;error&quot;</span>}, {<span class="stringliteral">&quot;message&quot;</span>, e.what()}};</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            res.status = 400;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            res.set_content(resp.dump(), <span class="stringliteral">&quot;application/json&quot;</span>);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    });</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// Start listening on the specified host and port</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    svr.listen(host, port);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;nlohmann/json.hpp&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classHttpServerHandler.html#a44366b46b30352163ed6ef49516dd404">   14</a></span>&#160;<a class="code" href="classHttpServerHandler.html#a44366b46b30352163ed6ef49516dd404">HttpServerHandler::HttpServerHandler</a>(std::shared_ptr&lt;RequestExecutor&gt; executor, <span class="keywordtype">int</span> thread_pool_size)</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    : executor_(std::move(executor)), pool_(std::make_unique&lt;<a class="code" href="classThreadPool.html">ThreadPool</a>&gt;(thread_pool_size)) {}</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506">   27</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506">HttpServerHandler::Start</a>(<span class="keyword">const</span> std::string&amp; host, <span class="keywordtype">int</span> port) {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    svr_ = std::make_unique&lt;httplib::Server&gt;();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    svr_-&gt;Post(<span class="stringliteral">&quot;/execute&quot;</span>, [<span class="keyword">this</span>](<span class="keyword">const</span> httplib::Request&amp; req, httplib::Response&amp; res) {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="comment">// Send immediate acknowledgment to the client</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <a class="code" href="json__request__executor_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d">nlohmann::json</a> ack = {{<span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;success&quot;</span>}, {<span class="stringliteral">&quot;message&quot;</span>, <span class="stringliteral">&quot;Request received and will be processed.&quot;</span>}};</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            res.set_content(ack.dump(), <span class="stringliteral">&quot;application/json&quot;</span>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="comment">// Process the request asynchronously in the thread pool</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            std::string data = req.body;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;Received request: &quot;</span> &lt;&lt; data &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            std::shared_ptr&lt;RequestExecutor&gt; exec = executor_; <span class="comment">// capture for thread safety</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            pool_-&gt;Enqueue([exec, data]() {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                try {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                    exec-&gt;Execute(data);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                } catch (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                    <span class="comment">// Optionally log error</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            });</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="comment">// Handle errors and send error response to client</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <a class="code" href="json__request__executor_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d">nlohmann::json</a> resp = {{<span class="stringliteral">&quot;status&quot;</span>, <span class="stringliteral">&quot;error&quot;</span>}, {<span class="stringliteral">&quot;message&quot;</span>, e.what()}};</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            res.status = 400;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            res.set_content(resp.dump(), <span class="stringliteral">&quot;application/json&quot;</span>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    });</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">// Start listening on the specified host and port (blocking call)</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    svr_-&gt;listen(host, port);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classHttpServerHandler.html#af722b87666008983f00f817bbb367f26">   62</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classHttpServerHandler.html#af722b87666008983f00f817bbb367f26">HttpServerHandler::Stop</a>() {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">if</span> (svr_) {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        svr_-&gt;stop();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="ajson__request__executor_8cpp_html_ab701e3ac61a85b337ec5c1abaad6742d"><div class="ttname"><a href="json__request__executor_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d">json</a></div><div class="ttdeci">nlohmann::json json</div><div class="ttdef"><b>Definition:</b> <a href="json__request__executor_8cpp_source.html#l00014">json_request_executor.cpp:14</a></div></div>
 <div class="ttc" id="aclassThreadPool_html"><div class="ttname"><a href="classThreadPool.html">ThreadPool</a></div><div class="ttdoc">Provides a fixed-size pool of threads for executing background tasks.</div><div class="ttdef"><b>Definition:</b> <a href="threadpool_8hpp_source.html#l00019">threadpool.hpp:19</a></div></div>
-<div class="ttc" id="aclassHttpServerHandler_html_a44366b46b30352163ed6ef49516dd404"><div class="ttname"><a href="classHttpServerHandler.html#a44366b46b30352163ed6ef49516dd404">HttpServerHandler::HttpServerHandler</a></div><div class="ttdeci">HttpServerHandler(std::shared_ptr&lt; RequestExecutor &gt; executor, int thread_pool_size)</div><div class="ttdoc">Constructs an HTTP server handler.</div><div class="ttdef"><b>Definition:</b> <a href="http__server_8cpp_source.html#l00016">http_server.cpp:16</a></div></div>
+<div class="ttc" id="aclassHttpServerHandler_html_a44366b46b30352163ed6ef49516dd404"><div class="ttname"><a href="classHttpServerHandler.html#a44366b46b30352163ed6ef49516dd404">HttpServerHandler::HttpServerHandler</a></div><div class="ttdeci">HttpServerHandler(std::shared_ptr&lt; RequestExecutor &gt; executor, int thread_pool_size)</div><div class="ttdoc">Constructs an HTTP server handler.</div><div class="ttdef"><b>Definition:</b> <a href="http__server_8cpp_source.html#l00014">http_server.cpp:14</a></div></div>
+<div class="ttc" id="aclassHttpServerHandler_html_af722b87666008983f00f817bbb367f26"><div class="ttname"><a href="classHttpServerHandler.html#af722b87666008983f00f817bbb367f26">HttpServerHandler::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">Stops the HTTP server if it is running.</div><div class="ttdef"><b>Definition:</b> <a href="http__server_8cpp_source.html#l00062">http_server.cpp:62</a></div></div>
 <div class="ttc" id="ahttp__server_8hpp_html"><div class="ttname"><a href="http__server_8hpp.html">http_server.hpp</a></div><div class="ttdoc">Defines the HttpServerHandler class for handling HTTP requests.</div></div>
-<div class="ttc" id="aclassHttpServerHandler_html_aa6719e2ab219e695c6762836bc9b9506"><div class="ttname"><a href="classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506">HttpServerHandler::Start</a></div><div class="ttdeci">void Start(const std::string &amp;host, int port)</div><div class="ttdoc">Starts the HTTP server on the specified host and port.</div><div class="ttdef"><b>Definition:</b> <a href="http__server_8cpp_source.html#l00025">http_server.cpp:25</a></div></div>
+<div class="ttc" id="aclassHttpServerHandler_html_aa6719e2ab219e695c6762836bc9b9506"><div class="ttname"><a href="classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506">HttpServerHandler::Start</a></div><div class="ttdeci">void Start(const std::string &amp;host, int port)</div><div class="ttdoc">Starts the HTTP server on the specified host and port.</div><div class="ttdef"><b>Definition:</b> <a href="http__server_8cpp_source.html#l00027">http_server.cpp:27</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

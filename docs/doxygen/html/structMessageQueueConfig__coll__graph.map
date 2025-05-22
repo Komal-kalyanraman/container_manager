@@ -1,5 +1,5 @@
 <map id="MessageQueueConfig" name="MessageQueueConfig">
-<area shape="rect" id="node1" title="Holds constant configuration for the POSIX message queue consumer." alt="" coords="5,287,169,393"/>
-<area shape="rect" id="node2" title="STL class." alt="" coords="44,147,131,224"/>
-<area shape="rect" id="node3" title="STL class." alt="" coords="18,5,157,97"/>
+<area shape="rect" id="node1" title="Holds constant configuration for the POSIX message queue consumer." alt="" coords="5,287,171,408"/>
+<area shape="rect" id="node2" title="STL class." alt="" coords="45,147,131,224"/>
+<area shape="rect" id="node3" title="STL class." alt="" coords="19,5,157,97"/>
 </map>
