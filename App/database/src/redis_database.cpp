@@ -4,23 +4,37 @@
  */
 
 #include "inc/redis_database.hpp"
-
 #include <iostream>
 
+/**
+ * @brief Constructs a RedisDatabaseHandler and connects to the Redis server.
+ */
 RedisDatabaseHandler::RedisDatabaseHandler() {
     // Connect to Redis server (adjust host/port as needed)
     redis_.connect();
 }
 
+/**
+ * @brief Destructor for RedisDatabaseHandler. Disconnects from the Redis server.
+ */
 RedisDatabaseHandler::~RedisDatabaseHandler() {
     redis_.disconnect();
 }
 
+/**
+ * @brief Retrieves the singleton instance of the RedisDatabaseHandler.
+ * @return Reference to the singleton RedisDatabaseHandler.
+ */
 RedisDatabaseHandler& RedisDatabaseHandler::GetInstance() {
     static RedisDatabaseHandler instance;
     return instance;
 }
 
+/**
+ * @brief Saves a JSON object to Redis with the specified key.
+ * @param key The key under which the JSON object will be stored.
+ * @param value The JSON object to store.
+ */
 void RedisDatabaseHandler::SaveJson(const std::string& key, const nlohmann::json& value) {
     // Save JSON as string
     std::string json_str = value.dump();
@@ -28,6 +42,11 @@ void RedisDatabaseHandler::SaveJson(const std::string& key, const nlohmann::json
     redis_.sync_commit();
 }
 
+/**
+ * @brief Retrieves a JSON object from Redis by key.
+ * @param key The key of the JSON object to retrieve.
+ * @return The JSON object associated with the key, or an empty object if not found.
+ */
 nlohmann::json RedisDatabaseHandler::GetJson(const std::string& key) {
     try {
         auto reply = redis_.get(key);
@@ -44,11 +63,20 @@ nlohmann::json RedisDatabaseHandler::GetJson(const std::string& key) {
     }
 }
 
+/**
+ * @brief Clears all data from the Redis database.
+ */
 void RedisDatabaseHandler::ClearDatabase() {
     redis_.flushdb();
     redis_.sync_commit();
 }
 
+/**
+ * @brief Updates a specific field in the JSON object stored under the given key in Redis.
+ * @param key The key of the JSON object to update.
+ * @param field The field within the JSON object to update.
+ * @param value The new value for the specified field.
+ */
 void RedisDatabaseHandler::UpdateField(const std::string& key, const std::string& field, const std::string& value) {
     nlohmann::json obj = GetJson(key);
     if (obj.is_null()) {
@@ -59,6 +87,10 @@ void RedisDatabaseHandler::UpdateField(const std::string& key, const std::string
     SaveJson(key, obj);
 }
 
+/**
+ * @brief Removes the JSON object associated with the specified key from Redis.
+ * @param key The key of the JSON object to remove.
+ */
 void RedisDatabaseHandler::RemoveKey(const std::string& key) {
     redis_.del({key});
     redis_.sync_commit();

@@ -16,22 +16,22 @@
 
 #ifdef ENABLE_GLOG_LOGGING
 #include <glog/logging.h>
-/// @brief Macro for logging informational messages.
+/// @brief Macro for logging informational messages using glog.
 #define CM_LOG_INFO LOG(INFO)
-/// @brief Macro for logging warning messages.
+/// @brief Macro for logging warning messages using glog.
 #define CM_LOG_WARN LOG(WARNING)
-/// @brief Macro for logging fatal error messages.
+/// @brief Macro for logging fatal error messages using glog.
 #define CM_LOG_FATAL LOG(FATAL)
-/// @brief Macro for logging error messages.
+/// @brief Macro for logging error messages using glog.
 #define CM_LOG_ERROR LOG(ERROR)
 #else
 #include <iostream>
-/// @brief Macro for logging informational messages (disabled if glog is enabled).
+/// @brief Macro for logging informational messages (no-op if glog is not enabled).
 #define CM_LOG_INFO if (false) std::cout
-/// @brief Macro for logging warning messages (disabled if glog is enabled).
+/// @brief Macro for logging warning messages (no-op if glog is not enabled).
 #define CM_LOG_WARN if (false) std::cout
-/// @brief Macro for logging fatal error messages (disabled if glog is enabled).
+/// @brief Macro for logging fatal error messages (no-op if glog is not enabled).
 #define CM_LOG_FATAL if (false) std::cout
-/// @brief Macro for logging error messages (disabled if glog is enabled).
+/// @brief Macro for logging error messages (no-op if glog is not enabled).
 #define CM_LOG_ERROR if (false) std::cout
 #endif

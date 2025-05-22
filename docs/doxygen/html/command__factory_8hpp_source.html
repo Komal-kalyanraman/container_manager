@@ -86,24 +86,25 @@ $(document).ready(function(){initNavTree('command__factory_8hpp_source.html','')
 <div class="title">command_factory.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="command__factory_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="commands_8hpp.html">inc/commands.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="common_8hpp.html">inc/common.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="container__request_8hpp.html">inc/container_request.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classCommandFactory.html">    9</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCommandFactory.html">CommandFactory</a> {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">static</span> std::unique_ptr&lt;Command&gt; <a class="code" href="classCommandFactory.html#adf4da2f0dbcf9e4018f9afe8bd4a38e9">CreateCommand</a>(<span class="keyword">const</span> <a class="code" href="structContainerRequest.html">ContainerRequest</a>&amp; req);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;};</div>
+<a href="command__factory_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="commands_8hpp.html">inc/commands.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="common_8hpp.html">inc/common.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="container__request_8hpp.html">inc/container_request.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classCommandFactory.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCommandFactory.html">CommandFactory</a> {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">static</span> std::unique_ptr&lt;Command&gt; <a class="code" href="classCommandFactory.html#adf4da2f0dbcf9e4018f9afe8bd4a38e9">CreateCommand</a>(<span class="keyword">const</span> <a class="code" href="structContainerRequest.html">ContainerRequest</a>&amp; req);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="astructContainerRequest_html"><div class="ttname"><a href="structContainerRequest.html">ContainerRequest</a></div><div class="ttdoc">Represents a request to perform an operation on a container.</div><div class="ttdef"><b>Definition:</b> <a href="container__request_8hpp_source.html#l00012">container_request.hpp:12</a></div></div>
-<div class="ttc" id="aclassCommandFactory_html"><div class="ttname"><a href="classCommandFactory.html">CommandFactory</a></div><div class="ttdoc">CommandFactory class to create command objects based on the request structure.</div><div class="ttdef"><b>Definition:</b> <a href="command__factory_8hpp_source.html#l00009">command_factory.hpp:9</a></div></div>
+<div class="ttc" id="aclassCommandFactory_html"><div class="ttname"><a href="classCommandFactory.html">CommandFactory</a></div><div class="ttdoc">Factory class to create command objects based on the request structure.</div><div class="ttdef"><b>Definition:</b> <a href="command__factory_8hpp_source.html#l00017">command_factory.hpp:17</a></div></div>
 <div class="ttc" id="acontainer__request_8hpp_html"><div class="ttname"><a href="container__request_8hpp.html">container_request.hpp</a></div><div class="ttdoc">Data structure for representing a container operation request.</div></div>
 <div class="ttc" id="acommon_8hpp_html"><div class="ttname"><a href="common_8hpp.html">common.hpp</a></div><div class="ttdoc">Defines common constants, string views, and utility structures for the application.</div></div>
-<div class="ttc" id="aclassCommandFactory_html_adf4da2f0dbcf9e4018f9afe8bd4a38e9"><div class="ttname"><a href="classCommandFactory.html#adf4da2f0dbcf9e4018f9afe8bd4a38e9">CommandFactory::CreateCommand</a></div><div class="ttdeci">static std::unique_ptr&lt; Command &gt; CreateCommand(const ContainerRequest &amp;req)</div><div class="ttdoc">Factory method to create a command based on the container request structure.</div><div class="ttdef"><b>Definition:</b> <a href="command__factory_8cpp_source.html#l00012">command_factory.cpp:12</a></div></div>
+<div class="ttc" id="aclassCommandFactory_html_adf4da2f0dbcf9e4018f9afe8bd4a38e9"><div class="ttname"><a href="classCommandFactory.html#adf4da2f0dbcf9e4018f9afe8bd4a38e9">CommandFactory::CreateCommand</a></div><div class="ttdeci">static std::unique_ptr&lt; Command &gt; CreateCommand(const ContainerRequest &amp;req)</div><div class="ttdoc">Factory method to create a command based on the container request structure.</div><div class="ttdef"><b>Definition:</b> <a href="command__factory_8cpp_source.html#l00022">command_factory.cpp:22</a></div></div>
 <div class="ttc" id="acommands_8hpp_html"><div class="ttname"><a href="commands_8hpp.html">commands.hpp</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

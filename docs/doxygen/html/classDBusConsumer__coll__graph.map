@@ -1,0 +1,3 @@
+<map id="DBusConsumer" name="DBusConsumer">
+<area shape="rect" id="node1" title="Handles receiving and processing JSON/Protobuf requests over D&#45;Bus." alt="" coords="5,5,164,127"/>
+</map>

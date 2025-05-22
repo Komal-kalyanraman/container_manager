@@ -141,10 +141,10 @@ Architecture Overview</h1>
  The <code>HttpServer</code> exposes a RESTful API for remote management (now supports both JSON and Protobuf). <br  />
  The <code><a class="el" href="classMosquittoMqttSubscriber.html" title="Subscribes to an MQTT topic and dispatches received messages to a RequestExecutor.">MosquittoMqttSubscriber</a></code> subscribes to MQTT topics for remote management. <br  />
  The <code><a class="el" href="classMessageQueueConsumer.html" title="Consumes messages from a POSIX message queue and dispatches them to a RequestExecutor.">MessageQueueConsumer</a></code> listens for requests on a POSIX message queue. <br  />
- The <code><a class="el" href="classDbusConsumer.html" title="Handles receiving and processing JSON requests over D-Bus.">DbusConsumer</a></code> listens for requests on the D-Bus <b>session bus</b> for user-level IPC. <br  />
+ The <code>DbusConsumer</code> listens for requests on the D-Bus <b>session bus</b> for user-level IPC. <br  />
  The architecture is designed to support additional protocols (gRPC, etc.) by adding new API handlers.</li>
 <li><b>Executor Layer:</b> <br  />
- The <code><a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats.">RequestExecutor</a></code> abstraction allows for different data formats (JSON, Protobuf, etc.).</li>
+ The <code><a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g....">RequestExecutor</a></code> abstraction allows for different data formats (JSON, Protobuf, etc.).</li>
 <li><b>Database Layer:</b> <br  />
  The <code><a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a></code> interface allows you to swap Redis for any other backend (SQL, NoSQL, in-memory, etc.) with minimal code changes.</li>
 </ul>
@@ -401,14 +401,14 @@ Code Structure</h1>
  MQTT subscriber for processing incoming MQTT messages.</li>
 <li><b><a class="el" href="posix__message__queue__consumer_8hpp.html" title="Declares the MessageQueueConsumer class for handling messages from a POSIX message queue.">api/inc/posix_message_queue_consumer.hpp</a>:</b> <br  />
  POSIX message queue consumer for processing incoming queue messages.</li>
-<li><b><a class="el" href="dbus__consumer_8hpp.html" title="Defines the DbusConsumer class for receiving and processing JSON requests over D-Bus.">api/inc/dbus_consumer.hpp</a>:</b> <br  />
+<li><b><a class="el" href="dbus__consumer_8hpp.html" title="Defines the DBusConsumer class for receiving and processing JSON/Protobuf requests over D-Bus.">api/inc/dbus_consumer.hpp</a>:</b> <br  />
  D-Bus consumer for processing incoming requests over the session bus.</li>
 <li><b><a class="el" href="container__service_8hpp.html" title="Declares the ContainerServiceHandler class for business logic related to containers.">core/inc/container_service.hpp</a>:</b> <br  />
  Service layer for business logic and command dispatch.</li>
 <li><b><a class="el" href="database__interface_8hpp.html" title="Abstract interface for database operations.">database/inc/database_interface.hpp</a>:</b> <br  />
  Abstract interface for database operations. <br  />
  <em>Pluggable backend: Implement this interface to use a different database.</em></li>
-<li><b><a class="el" href="redis__database_8hpp.html" title="Implements RedisDatabaseHandler for Redis-based database operations.">database/inc/redis_database.hpp</a>:</b> <br  />
+<li><b><a class="el" href="redis__database_8hpp.html" title="Declares the RedisDatabaseHandler class for Redis-based database operations.">database/inc/redis_database.hpp</a>:</b> <br  />
  Redis-based implementation of the database interface.</li>
 <li><b><a class="el" href="json__request__executor_8hpp.html" title="Defines the JsonRequestExecutorHandler class for executing JSON-based requests.">executor/inc/json_request_executor.hpp</a>:</b> <br  />
  Handles JSON requests.</li>
@@ -475,7 +475,7 @@ Documentation</h1>
 Extending the Project</h1>
 <ul>
 <li><b>Add a new runtime:</b> <br  />
- Implement new command classes in <code>App/runtime/</code> and register them in <code><a class="el" href="classCommandFactory.html" title="CommandFactory class to create command objects based on the request structure.">CommandFactory</a></code>.</li>
+ Implement new command classes in <code>App/runtime/</code> and register them in <code><a class="el" href="classCommandFactory.html" title="Factory class to create command objects based on the request structure.">CommandFactory</a></code>.</li>
 <li><b>Add a new operation:</b> <br  />
  Extend the command pattern and update the service layer.</li>
 <li><b>Add a new protocol:</b> <br  />
@@ -484,7 +484,7 @@ Extending the Project</h1>
 </ul>
 </li>
 <li><b>Add a new data format:</b> <br  />
- Implement a new <code><a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats.">RequestExecutor</a></code> (e.g., for Protobuf) in <code>App/executor/</code> and update the API handler to use it.</li>
+ Implement a new <code><a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g....">RequestExecutor</a></code> (e.g., for Protobuf) in <code>App/executor/</code> and update the API handler to use it.</li>
 <li><b>Change database backend:</b> <br  />
  Implement the <code><a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a></code> interface for your preferred database (SQL, NoSQL, etc.) and update the service to use it.</li>
 </ul>

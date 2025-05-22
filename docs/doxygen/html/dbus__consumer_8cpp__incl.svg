@@ -58,7 +58,7 @@ var sectionId = 'dynsection-0';
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title="Implements the DbusConsumer class for receiving and processing JSON requests over D&#45;Bus.">
+<g id="a_node1"><a xlink:title="Implements the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus.">
 <polygon fill="#bfbfbf" stroke="black" points="165.5,-224.5 165.5,-243.5 314.5,-243.5 314.5,-224.5 165.5,-224.5"/>
 <text text-anchor="middle" x="240" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">api/src/dbus_consumer.cpp</text>
 </a>
@@ -67,7 +67,7 @@ var sectionId = 'dynsection-0';
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="dbus__consumer_8hpp.html" target="_top" xlink:title="Defines the DbusConsumer class for receiving and processing JSON requests over D&#45;Bus.">
+<g id="a_node2"><a xlink:href="dbus__consumer_8hpp.html" target="_top" xlink:title="Defines the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus.">
 <polygon fill="white" stroke="black" points="117.5,-168.5 117.5,-187.5 248.5,-187.5 248.5,-168.5 117.5,-168.5"/>
 <text text-anchor="middle" x="183" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">inc/dbus_consumer.hpp</text>
 </a>

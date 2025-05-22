@@ -12,7 +12,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title="Abstract base class for request executors supporting different input formats.">
+<g id="a_node1"><a xlink:title="Abstract base class for request executors supporting different input formats (e.g....">
 <polygon fill="#bfbfbf" stroke="black" points="112,-116.5 112,-184.5 238,-184.5 238,-116.5 112,-116.5"/>
 <text text-anchor="middle" x="175" y="-172.5" font-family="Helvetica,sans-Serif" font-size="10.00">RequestExecutor</text>
 <polyline fill="none" stroke="black" points="112,-165.5 238,-165.5 "/>
@@ -45,7 +45,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="classProtoRequestExecutorHandler.html" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="classProtoRequestExecutorHandler.html" target="_top" xlink:title="Executes requests received as serialized Protobuf data.">
 <polygon fill="white" stroke="black" points="176,-0.5 176,-79.5 366,-79.5 366,-0.5 176,-0.5"/>
 <text text-anchor="middle" x="271" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">ProtoRequestExecutorHandler</text>
 <polyline fill="none" stroke="black" points="176,-60.5 366,-60.5 "/>

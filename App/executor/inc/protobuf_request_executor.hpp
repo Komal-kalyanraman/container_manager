@@ -13,11 +13,19 @@
 #include <string>
 #include <nlohmann/json.hpp>
 
+/**
+ * @class ProtoRequestExecutorHandler
+ * @brief Executes requests received as serialized Protobuf data.
+ */
 class ProtoRequestExecutorHandler : public RequestExecutor {
 public:
     ProtoRequestExecutorHandler();
     ~ProtoRequestExecutorHandler() override = default;
 
-    // Receives a serialized protobuf string, deserializes, saves to DB, and returns result as JSON
+    /**
+     * @brief Receives a serialized protobuf string, deserializes, saves to DB, and returns result as JSON.
+     * @param proto_data The input data as a serialized Protobuf string.
+     * @return A JSON object containing the result of the execution.
+     */
     nlohmann::json Execute(const std::string& proto_data) override;
 };

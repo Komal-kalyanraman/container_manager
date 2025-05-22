@@ -64,9 +64,9 @@ private:
 public:
     /**
      * @brief Constructs a DockerStartContainerCommand.
-     * @param container_name_ Name of the container to start.
+     * @param container_name Name of the container to start.
      */
-    explicit DockerStartContainerCommand(const std::string& container_name_);
+    explicit DockerStartContainerCommand(const std::string& container_name);
 
     /**
      * @brief Destructor.
@@ -88,9 +88,9 @@ private:
 public:
     /**
      * @brief Constructs a DockerStopContainerCommand.
-     * @param container_name_ Name of the container to stop.
+     * @param container_name Name of the container to stop.
      */
-    explicit DockerStopContainerCommand(const std::string& container_name_);
+    explicit DockerStopContainerCommand(const std::string& container_name);
 
     /**
      * @brief Destructor.
@@ -112,9 +112,9 @@ private:
 public:
     /**
      * @brief Constructs a DockerRemoveContainerCommand.
-     * @param container_name_ Name of the container to remove.
+     * @param container_name Name of the container to remove.
      */
-    explicit DockerRemoveContainerCommand(const std::string& container_name_);
+    explicit DockerRemoveContainerCommand(const std::string& container_name);
 
     /**
      * @brief Destructor.
@@ -136,9 +136,9 @@ private:
 public:
     /**
      * @brief Constructs a DockerRestartContainerCommand.
-     * @param container_name_ Name of the container to restart.
+     * @param container_name Name of the container to restart.
      */
-    explicit DockerRestartContainerCommand(const std::string& container_name_);
+    explicit DockerRestartContainerCommand(const std::string& container_name);
 
     /**
      * @brief Destructor.

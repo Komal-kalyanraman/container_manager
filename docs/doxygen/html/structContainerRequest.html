@@ -97,19 +97,22 @@ $(document).ready(function(){initNavTree('structContainerRequest.html',''); init
 <div class="dynheader">
 Collaboration diagram for ContainerRequest:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structContainerRequest__coll__graph.svg" width="202" height="414"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structContainerRequest__coll__graph.svg" width="202" height="414"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aa28f73b0d39450b0adc492375b9897af"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structContainerRequest.html#aa28f73b0d39450b0adc492375b9897af">operation</a></td></tr>
+<tr class="memdesc:aa28f73b0d39450b0adc492375b9897af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operation type: "start", "stop", "create", etc.  <a href="structContainerRequest.html#aa28f73b0d39450b0adc492375b9897af">More...</a><br /></td></tr>
 <tr class="separator:aa28f73b0d39450b0adc492375b9897af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebd346b6ab7d46776b60377325868529"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structContainerRequest.html#aebd346b6ab7d46776b60377325868529">runtime</a></td></tr>
+<tr class="memdesc:aebd346b6ab7d46776b60377325868529"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container runtime: "docker", "podman", etc.  <a href="structContainerRequest.html#aebd346b6ab7d46776b60377325868529">More...</a><br /></td></tr>
 <tr class="separator:aebd346b6ab7d46776b60377325868529"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a167e6c521808ed6ed9ec6c07583591a0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structContainerRequest.html#a167e6c521808ed6ed9ec6c07583591a0">container_name</a></td></tr>
+<tr class="memdesc:a167e6c521808ed6ed9ec6c07583591a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the container to operate on.  <a href="structContainerRequest.html#a167e6c521808ed6ed9ec6c07583591a0">More...</a><br /></td></tr>
 <tr class="separator:a167e6c521808ed6ed9ec6c07583591a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d7ceae61aa44c8a72cf299244d1fb84"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structContainerRequest.html#a4d7ceae61aa44c8a72cf299244d1fb84">image_name</a></td></tr>
+<tr class="memdesc:a4d7ceae61aa44c8a72cf299244d1fb84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Image name (used for create).  <a href="structContainerRequest.html#a4d7ceae61aa44c8a72cf299244d1fb84">More...</a><br /></td></tr>
 <tr class="separator:a4d7ceae61aa44c8a72cf299244d1fb84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -130,9 +133,11 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Name of the container to operate on. </p>
+
 <p class="definition">Definition at line <a class="el" href="container__request_8hpp_source.html#l00015">15</a> of file <a class="el" href="container__request_8hpp_source.html">container_request.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="command__factory_8cpp_source.html#l00012">CommandFactory::CreateCommand()</a>, <a class="el" href="json__request__executor_8cpp_source.html#l00018">JsonRequestExecutorHandler::Execute()</a>, <a class="el" href="protobuf__request__executor_8cpp_source.html#l00022">ProtoRequestExecutorHandler::Execute()</a>, and <a class="el" href="container__service_8cpp_source.html#l00016">ContainerServiceHandler::HandleRequest()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="command__factory_8cpp_source.html#l00022">CommandFactory::CreateCommand()</a>, <a class="el" href="json__request__executor_8cpp_source.html#l00023">JsonRequestExecutorHandler::Execute()</a>, <a class="el" href="protobuf__request__executor_8cpp_source.html#l00031">ProtoRequestExecutorHandler::Execute()</a>, and <a class="el" href="container__service_8cpp_source.html#l00021">ContainerServiceHandler::HandleRequest()</a>.</p>
 
 </div>
 </div>
@@ -148,9 +153,11 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Image name (used for create). </p>
+
 <p class="definition">Definition at line <a class="el" href="container__request_8hpp_source.html#l00016">16</a> of file <a class="el" href="container__request_8hpp_source.html">container_request.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="command__factory_8cpp_source.html#l00012">CommandFactory::CreateCommand()</a>, <a class="el" href="json__request__executor_8cpp_source.html#l00018">JsonRequestExecutorHandler::Execute()</a>, and <a class="el" href="protobuf__request__executor_8cpp_source.html#l00022">ProtoRequestExecutorHandler::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="command__factory_8cpp_source.html#l00022">CommandFactory::CreateCommand()</a>, <a class="el" href="json__request__executor_8cpp_source.html#l00023">JsonRequestExecutorHandler::Execute()</a>, and <a class="el" href="protobuf__request__executor_8cpp_source.html#l00031">ProtoRequestExecutorHandler::Execute()</a>.</p>
 
 </div>
 </div>
@@ -166,9 +173,11 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Operation type: "start", "stop", "create", etc. </p>
+
 <p class="definition">Definition at line <a class="el" href="container__request_8hpp_source.html#l00013">13</a> of file <a class="el" href="container__request_8hpp_source.html">container_request.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="command__factory_8cpp_source.html#l00012">CommandFactory::CreateCommand()</a>, <a class="el" href="json__request__executor_8cpp_source.html#l00018">JsonRequestExecutorHandler::Execute()</a>, <a class="el" href="protobuf__request__executor_8cpp_source.html#l00022">ProtoRequestExecutorHandler::Execute()</a>, and <a class="el" href="container__service_8cpp_source.html#l00016">ContainerServiceHandler::HandleRequest()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="command__factory_8cpp_source.html#l00022">CommandFactory::CreateCommand()</a>, <a class="el" href="json__request__executor_8cpp_source.html#l00023">JsonRequestExecutorHandler::Execute()</a>, <a class="el" href="protobuf__request__executor_8cpp_source.html#l00031">ProtoRequestExecutorHandler::Execute()</a>, and <a class="el" href="container__service_8cpp_source.html#l00021">ContainerServiceHandler::HandleRequest()</a>.</p>
 
 </div>
 </div>
@@ -184,9 +193,11 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Container runtime: "docker", "podman", etc. </p>
+
 <p class="definition">Definition at line <a class="el" href="container__request_8hpp_source.html#l00014">14</a> of file <a class="el" href="container__request_8hpp_source.html">container_request.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="command__factory_8cpp_source.html#l00012">CommandFactory::CreateCommand()</a>, <a class="el" href="json__request__executor_8cpp_source.html#l00018">JsonRequestExecutorHandler::Execute()</a>, and <a class="el" href="protobuf__request__executor_8cpp_source.html#l00022">ProtoRequestExecutorHandler::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="command__factory_8cpp_source.html#l00022">CommandFactory::CreateCommand()</a>, <a class="el" href="json__request__executor_8cpp_source.html#l00023">JsonRequestExecutorHandler::Execute()</a>, and <a class="el" href="protobuf__request__executor_8cpp_source.html#l00031">ProtoRequestExecutorHandler::Execute()</a>.</p>
 
 </div>
 </div>

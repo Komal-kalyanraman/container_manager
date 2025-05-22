@@ -1,3 +1,8 @@
+/**
+ * @file command_factory.cpp
+ * @brief Implements the CommandFactory class for creating command objects based on container requests.
+ */
+
 #include "inc/command_factory.hpp"
 
 #include <iostream>
@@ -9,6 +14,11 @@
 #include "inc/docker_api_commands.hpp"
 #include "inc/container_request.hpp"
 
+/**
+ * @brief Factory method to create a command object based on the container request.
+ * @param req The container request containing runtime, operation, and other details.
+ * @return A unique pointer to the appropriate Command object, or nullptr if invalid.
+ */
 std::unique_ptr<Command> CommandFactory::CreateCommand(const ContainerRequest& req) {
     if (req.runtime == RuntimeName::Docker) {
         if (req.operation == CommandName::RuntimeStatus) {

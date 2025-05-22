@@ -3,24 +3,34 @@
  * @brief Declares project-wide initialization functions.
  */
 
-/**
- * @brief Initializes logging and clears the database before server startup.
- * @details This function should be called at application startup to set up logging and ensure the database is in a clean state.
- */
-
 #pragma once
 
-/// @brief Initializes logging.
+/**
+ * @brief Initializes logging.
+ * @details Sets up the logging system for the application.
+ */
 void InitLogging();
 
-/// @brief Initializes and clears the database.
+/**
+ * @brief Initializes and clears the database.
+ * @details Prepares the database for use and ensures it is in a clean state.
+ */
 void InitDatabase();
 
-/// @brief Clears the POSIX message queue.
+/**
+ * @brief Clears the POSIX message queue.
+ * @details Removes all messages from the POSIX message queue at startup.
+ */
 void InitMessageQueue();
 
-/// @brief Clears retained MQTT messages.
+/**
+ * @brief Clears retained MQTT messages.
+ * @details Removes all retained messages from the MQTT broker at startup.
+ */
 void InitMqttRetainedMessages();
 
-/// @brief Initializes all enabled project subsystems.
+/**
+ * @brief Initializes all enabled project subsystems.
+ * @details Calls all necessary initialization routines for logging, database, message queue, and MQTT.
+ */
 void InitProject();

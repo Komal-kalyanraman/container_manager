@@ -12,7 +12,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title=" ">
+<g id="a_node1"><a xlink:title="Implements the CommandFactory class for creating command objects based on container requests.">
 <polygon fill="#bfbfbf" stroke="black" points="723,-168.5 723,-198.5 847,-198.5 847,-168.5 723,-168.5"/>
 <text text-anchor="start" x="731" y="-186.5" font-family="Helvetica,sans-Serif" font-size="10.00">runtime/src/command</text>
 <text text-anchor="middle" x="785" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">_factory.cpp</text>
@@ -22,7 +22,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="command__factory_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_node2"><a xlink:href="command__factory_8hpp.html" target="_top" xlink:title="Declares the CommandFactory class for creating command objects based on container requests.">
 <polygon fill="white" stroke="black" points="714,-112.5 714,-131.5 856,-131.5 856,-112.5 714,-112.5"/>
 <text text-anchor="middle" x="785" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">inc/command_factory.hpp</text>
 </a>

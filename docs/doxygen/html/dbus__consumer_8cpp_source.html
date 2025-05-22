@@ -90,64 +90,66 @@ $(document).ready(function(){initNavTree('dbus__consumer_8cpp_source.html',''); 
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="dbus__consumer_8hpp.html">inc/dbus_consumer.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classDbusConsumer.html#af1e1f1dad36c395c375dfba5720b3263">    9</a></span>&#160;<a class="code" href="classDbusConsumer.html#af1e1f1dad36c395c375dfba5720b3263">DbusConsumer::DbusConsumer</a>(<span class="keyword">const</span> <a class="code" href="structDbusConfig.html">DbusConfig</a>&amp; config, std::shared_ptr&lt;RequestExecutor&gt; executor)</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    : config_(config), executor_(std::move(executor)), running_(false) {}</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classDbusConsumer.html#a74532170cbc078d04d6fe81527d2d6b6">   12</a></span>&#160;<a class="code" href="classDbusConsumer.html#a74532170cbc078d04d6fe81527d2d6b6">DbusConsumer::~DbusConsumer</a>() {</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="classDbusConsumer.html#a878d54ae44648286289eabe8c330a236">Stop</a>();</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;}</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classDBusConsumer.html#a220599920a77e2f6e54025fcbfb6bc47">    9</a></span>&#160;<a class="code" href="classDBusConsumer.html#a220599920a77e2f6e54025fcbfb6bc47">DBusConsumer::DBusConsumer</a>(<span class="keyword">const</span> <a class="code" href="structDbusConfig.html">DbusConfig</a>&amp; config, std::shared_ptr&lt;RequestExecutor&gt; executor)</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    : config_(config),</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;      bus_name_(config.BusName),</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;      object_path_(config.ObjectPath),</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;      executor_(std::move(executor)),</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;      running_(false) {}</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classDbusConsumer.html#a2b611a5947db4cb4be76aff40156d69a">   16</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classDbusConsumer.html#a2b611a5947db4cb4be76aff40156d69a">DbusConsumer::Start</a>() {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    running_ = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    listenThread_ = std::thread(&amp;DbusConsumer::ListenLoop, <span class="keyword">this</span>);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classDbusConsumer.html#a878d54ae44648286289eabe8c330a236">   21</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classDbusConsumer.html#a878d54ae44648286289eabe8c330a236">DbusConsumer::Stop</a>() {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    running_ = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">if</span> (listenThread_.joinable())</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        listenThread_.join();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span> DbusConsumer::ListenLoop() {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">// Connect to the session bus and request the name</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    connection_ = sdbus::createSessionBusConnection();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    connection_-&gt;requestName(config_.<a class="code" href="structDbusConfig.html#a33e8572bce182377210defa058ae74cb">BusName</a>);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">// Create an object to listen for method calls</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    object_ = sdbus::createObject(*connection_, config_.<a class="code" href="structDbusConfig.html#a8a662a7768b1eb753b65a68e57a77b28">ObjectPath</a>);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">// Register a method handler for &quot;Execute&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    object_-&gt;registerMethod(config_.<a class="code" href="structDbusConfig.html#a8da8bdf1b5f85d3f99a2225620a3dfad">Method</a>)</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        .onInterface(config_.<a class="code" href="structDbusConfig.html#ae2b2b53768f08be41205bc999d776935">Interface</a>)</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        .implementedAs([<span class="keyword">this</span>](<span class="keyword">const</span> std::string&amp; jsonPayload) {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;[DBus] Received: &quot;</span> &lt;&lt; jsonPayload &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                executor_-&gt;Execute(jsonPayload);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                std::cerr &lt;&lt; <span class="stringliteral">&quot;[DBus] Error executing request: &quot;</span> &lt;&lt; e.what() &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        });</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    object_-&gt;finishRegistration();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// Enter the event loop</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">while</span> (running_) {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        connection_-&gt;processPendingRequest();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        std::this_thread::sleep_for(std::chrono::milliseconds(50));</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classDBusConsumer.html#a0b314f4446d980bce84cacd6bb06de75">   16</a></span>&#160;<a class="code" href="classDBusConsumer.html#a0b314f4446d980bce84cacd6bb06de75">DBusConsumer::~DBusConsumer</a>() {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classDBusConsumer.html#a0dbd21d40cbdcd311c5e4b9aaf8b07ec">Stop</a>();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classDBusConsumer.html#aa56dc7eaa77a121cff20dbbeb9069bbe">   20</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classDBusConsumer.html#aa56dc7eaa77a121cff20dbbeb9069bbe">DBusConsumer::Start</a>() {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    running_ = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    listen_thread_ = std::thread(&amp;DBusConsumer::ListenLoop, <span class="keyword">this</span>);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classDBusConsumer.html#a0dbd21d40cbdcd311c5e4b9aaf8b07ec">   25</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classDBusConsumer.html#a0dbd21d40cbdcd311c5e4b9aaf8b07ec">DBusConsumer::Stop</a>() {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    running_ = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">if</span> (listen_thread_.joinable())</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        listen_thread_.join();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">void</span> DBusConsumer::ListenLoop() {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">// Connect to the session bus and request the name</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    connection_ = sdbus::createSessionBusConnection();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    connection_-&gt;requestName(bus_name_);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">// Create an object to listen for method calls</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    object_ = sdbus::createObject(*connection_, object_path_);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">// Register a method handler for &quot;Execute&quot;</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    object_-&gt;registerMethod(config_.<a class="code" href="structDbusConfig.html#a8da8bdf1b5f85d3f99a2225620a3dfad">Method</a>)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        .onInterface(config_.<a class="code" href="structDbusConfig.html#ae2b2b53768f08be41205bc999d776935">Interface</a>)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        .implementedAs([<span class="keyword">this</span>](<span class="keyword">const</span> std::string&amp; jsonPayload) {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;[DBus] Received: &quot;</span> &lt;&lt; jsonPayload &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                executor_-&gt;Execute(jsonPayload);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                std::cerr &lt;&lt; <span class="stringliteral">&quot;[DBus] Error executing request: &quot;</span> &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        });</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    object_-&gt;finishRegistration();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">// Enter the event loop</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">while</span> (running_) {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        connection_-&gt;processPendingRequest();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        std::this_thread::sleep_for(std::chrono::milliseconds(50));</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="astructDbusConfig_html"><div class="ttname"><a href="structDbusConfig.html">DbusConfig</a></div><div class="ttdoc">Holds constant configuration for the D-Bus consumer (session bus).</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00047">common.hpp:47</a></div></div>
-<div class="ttc" id="aclassDbusConsumer_html_a2b611a5947db4cb4be76aff40156d69a"><div class="ttname"><a href="classDbusConsumer.html#a2b611a5947db4cb4be76aff40156d69a">DbusConsumer::Start</a></div><div class="ttdeci">void Start()</div><div class="ttdoc">Start listening for D-Bus method calls in a background thread.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8cpp_source.html#l00016">dbus_consumer.cpp:16</a></div></div>
 <div class="ttc" id="astructDbusConfig_html_a8da8bdf1b5f85d3f99a2225620a3dfad"><div class="ttname"><a href="structDbusConfig.html#a8da8bdf1b5f85d3f99a2225620a3dfad">DbusConfig::Method</a></div><div class="ttdeci">const std::string Method</div><div class="ttdoc">D-Bus method name for JSON execution.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00051">common.hpp:51</a></div></div>
-<div class="ttc" id="aclassDbusConsumer_html_af1e1f1dad36c395c375dfba5720b3263"><div class="ttname"><a href="classDbusConsumer.html#af1e1f1dad36c395c375dfba5720b3263">DbusConsumer::DbusConsumer</a></div><div class="ttdeci">DbusConsumer(const DbusConfig &amp;config, std::shared_ptr&lt; RequestExecutor &gt; executor)</div><div class="ttdoc">Construct a DbusConsumer.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8cpp_source.html#l00009">dbus_consumer.cpp:9</a></div></div>
-<div class="ttc" id="aclassDbusConsumer_html_a74532170cbc078d04d6fe81527d2d6b6"><div class="ttname"><a href="classDbusConsumer.html#a74532170cbc078d04d6fe81527d2d6b6">DbusConsumer::~DbusConsumer</a></div><div class="ttdeci">~DbusConsumer()</div><div class="ttdoc">Destructor. Stops the consumer if running.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8cpp_source.html#l00012">dbus_consumer.cpp:12</a></div></div>
-<div class="ttc" id="aclassDbusConsumer_html_a878d54ae44648286289eabe8c330a236"><div class="ttname"><a href="classDbusConsumer.html#a878d54ae44648286289eabe8c330a236">DbusConsumer::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">Stop listening and join the background thread.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8cpp_source.html#l00021">dbus_consumer.cpp:21</a></div></div>
+<div class="ttc" id="aclassDBusConsumer_html_aa56dc7eaa77a121cff20dbbeb9069bbe"><div class="ttname"><a href="classDBusConsumer.html#aa56dc7eaa77a121cff20dbbeb9069bbe">DBusConsumer::Start</a></div><div class="ttdeci">void Start()</div><div class="ttdoc">Start listening for D-Bus method calls in a background thread.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8cpp_source.html#l00020">dbus_consumer.cpp:20</a></div></div>
+<div class="ttc" id="aclassDBusConsumer_html_a0dbd21d40cbdcd311c5e4b9aaf8b07ec"><div class="ttname"><a href="classDBusConsumer.html#a0dbd21d40cbdcd311c5e4b9aaf8b07ec">DBusConsumer::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">Stop listening and join the background thread.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8cpp_source.html#l00025">dbus_consumer.cpp:25</a></div></div>
 <div class="ttc" id="astructDbusConfig_html_ae2b2b53768f08be41205bc999d776935"><div class="ttname"><a href="structDbusConfig.html#ae2b2b53768f08be41205bc999d776935">DbusConfig::Interface</a></div><div class="ttdeci">const std::string Interface</div><div class="ttdoc">D-Bus interface name.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00050">common.hpp:50</a></div></div>
-<div class="ttc" id="astructDbusConfig_html_a33e8572bce182377210defa058ae74cb"><div class="ttname"><a href="structDbusConfig.html#a33e8572bce182377210defa058ae74cb">DbusConfig::BusName</a></div><div class="ttdeci">const std::string BusName</div><div class="ttdoc">D-Bus service name.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00048">common.hpp:48</a></div></div>
-<div class="ttc" id="astructDbusConfig_html_a8a662a7768b1eb753b65a68e57a77b28"><div class="ttname"><a href="structDbusConfig.html#a8a662a7768b1eb753b65a68e57a77b28">DbusConfig::ObjectPath</a></div><div class="ttdeci">const std::string ObjectPath</div><div class="ttdoc">D-Bus object path.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00049">common.hpp:49</a></div></div>
-<div class="ttc" id="adbus__consumer_8hpp_html"><div class="ttname"><a href="dbus__consumer_8hpp.html">dbus_consumer.hpp</a></div><div class="ttdoc">Defines the DbusConsumer class for receiving and processing JSON requests over D-Bus.</div></div>
+<div class="ttc" id="aclassDBusConsumer_html_a220599920a77e2f6e54025fcbfb6bc47"><div class="ttname"><a href="classDBusConsumer.html#a220599920a77e2f6e54025fcbfb6bc47">DBusConsumer::DBusConsumer</a></div><div class="ttdeci">DBusConsumer(const DbusConfig &amp;config, std::shared_ptr&lt; RequestExecutor &gt; executor)</div><div class="ttdoc">Construct a DBusConsumer.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8cpp_source.html#l00009">dbus_consumer.cpp:9</a></div></div>
+<div class="ttc" id="adbus__consumer_8hpp_html"><div class="ttname"><a href="dbus__consumer_8hpp.html">dbus_consumer.hpp</a></div><div class="ttdoc">Defines the DBusConsumer class for receiving and processing JSON/Protobuf requests over D-Bus.</div></div>
+<div class="ttc" id="aclassDBusConsumer_html_a0b314f4446d980bce84cacd6bb06de75"><div class="ttname"><a href="classDBusConsumer.html#a0b314f4446d980bce84cacd6bb06de75">DBusConsumer::~DBusConsumer</a></div><div class="ttdeci">~DBusConsumer()</div><div class="ttdoc">Destructor. Stops the consumer if running.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8cpp_source.html#l00016">dbus_consumer.cpp:16</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

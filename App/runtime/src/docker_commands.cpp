@@ -7,16 +7,21 @@
 
 #include <cstdlib>
 #include <nlohmann/json.hpp>
-
 #include "inc/common.hpp"
 #include "inc/logging.hpp"
 
+/**
+ * @brief Constructs a DockerRuntimeAvailableCommand.
+ */
 DockerRuntimeAvailableCommand::DockerRuntimeAvailableCommand() {
     // Empty constructor
 }
 
+/**
+ * @brief Executes the command to check Docker runtime availability.
+ * @return True if Docker is available, false otherwise.
+ */
 bool DockerRuntimeAvailableCommand::Execute() const {
-    // Check if Docker is available
     int status = std::system("docker info > /dev/null 2>&1");
     if (status == 0) {
         CM_LOG_INFO << "Docker is running ";
@@ -27,11 +32,19 @@ bool DockerRuntimeAvailableCommand::Execute() const {
     }
 }
 
+/**
+ * @brief Constructs a DockerCreateContainerCommand.
+ * @param container_name Name of the container to create.
+ * @param image_name Name of the image to use for the container.
+ */
 DockerCreateContainerCommand::DockerCreateContainerCommand(const std::string& container_name, const std::string& image_name)
     : container_name_(container_name), image_name_(image_name) {}
 
+/**
+ * @brief Executes the command to create a Docker container.
+ * @return True if the container was created successfully, false otherwise.
+ */
 bool DockerCreateContainerCommand::Execute() const {
-    // Start the Docker container
     std::string command = FormatCommand(
         CommandTemplate::Create,
         {{"runtime", "docker"}, {"name", container_name_}, {"image", image_name_}}
@@ -46,12 +59,19 @@ bool DockerCreateContainerCommand::Execute() const {
     }
 }
 
+/**
+ * @brief Constructs a DockerStartContainerCommand.
+ * @param container_name Name of the container to start.
+ */
 DockerStartContainerCommand::DockerStartContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 
+/**
+ * @brief Executes the command to start a Docker container.
+ * @return True if the container was started successfully, false otherwise.
+ */
 bool DockerStartContainerCommand::Execute() const {
-    // Start the Docker container
     std::string command = FormatCommand(
         CommandTemplate::Start,
         {{"runtime", "docker"}, {"name", container_name_}}
@@ -66,12 +86,19 @@ bool DockerStartContainerCommand::Execute() const {
     }
 }
 
+/**
+ * @brief Constructs a DockerStopContainerCommand.
+ * @param container_name Name of the container to stop.
+ */
 DockerStopContainerCommand::DockerStopContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 
+/**
+ * @brief Executes the command to stop a Docker container.
+ * @return True if the container was stopped successfully, false otherwise.
+ */
 bool DockerStopContainerCommand::Execute() const {
-    // Stop the Docker container
     std::string command = FormatCommand(
         CommandTemplate::Stop,
         {{"runtime", "docker"}, {"name", container_name_}}
@@ -86,12 +113,19 @@ bool DockerStopContainerCommand::Execute() const {
     }
 }
 
+/**
+ * @brief Constructs a DockerRemoveContainerCommand.
+ * @param container_name Name of the container to remove.
+ */
 DockerRemoveContainerCommand::DockerRemoveContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 
+/**
+ * @brief Executes the command to remove a Docker container.
+ * @return True if the container was removed successfully, false otherwise.
+ */
 bool DockerRemoveContainerCommand::Execute() const {
-    // Stop the Docker container
     std::string command = FormatCommand(
         CommandTemplate::Remove,
         {{"runtime", "docker"}, {"name", container_name_}}
@@ -106,12 +140,19 @@ bool DockerRemoveContainerCommand::Execute() const {
     }
 }
 
+/**
+ * @brief Constructs a DockerRestartContainerCommand.
+ * @param container_name Name of the container to restart.
+ */
 DockerRestartContainerCommand::DockerRestartContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 
+/**
+ * @brief Executes the command to restart a Docker container.
+ * @return True if the container was restarted successfully, false otherwise.
+ */
 bool DockerRestartContainerCommand::Execute() const {
-    // Stop the Docker container
     std::string command = FormatCommand(
         CommandTemplate::Restart,
         {{"runtime", "docker"}, {"name", container_name_}}

@@ -1,7 +1,7 @@
 var searchData=
 [
   ['dbusconfig_298',['DbusConfig',['../structDbusConfig.html',1,'']]],
-  ['dbusconsumer_299',['DbusConsumer',['../classDbusConsumer.html',1,'']]],
+  ['dbusconsumer_299',['DBusConsumer',['../classDBusConsumer.html',1,'']]],
   ['dockerapicreatecontainercommand_300',['DockerApiCreateContainerCommand',['../classDockerApiCreateContainerCommand.html',1,'']]],
   ['dockerapiruntimeavailablecommand_301',['DockerApiRuntimeAvailableCommand',['../classDockerApiRuntimeAvailableCommand.html',1,'']]],
   ['dockerapistartcontainercommand_302',['DockerApiStartContainerCommand',['../classDockerApiStartContainerCommand.html',1,'']]],

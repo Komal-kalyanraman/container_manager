@@ -1,6 +1,4 @@
 <map id="DockerRestartContainerCommand::Execute" name="DockerRestartContainerCommand::Execute">
-<area shape="rect" id="node1" title="Executes the command to restart a Docker container." alt="" coords="5,57,249,98"/>
-<area shape="rect" id="node2" href="$common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99" title="Utility function to format command templates by replacing placeholders with actual values." alt="" coords="327,5,462,32"/>
-<area shape="rect" id="node3" href="$classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce" title="Retrieves the singleton instance of the RedisDatabaseHandler." alt="" coords="309,57,480,98"/>
-<area shape="rect" id="node4" href="$classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6" title="Updates a specific field in the JSON object stored under the given key." alt="" coords="297,122,492,163"/>
+<area shape="rect" id="node1" title="Executes the command to restart a Docker container." alt="" coords="5,5,249,47"/>
+<area shape="rect" id="node2" href="$common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99" title="Utility function to format command templates by replacing placeholders with actual values." alt="" coords="297,13,432,39"/>
 </map>

@@ -1,21 +1,21 @@
 <map id="executor/inc/container_request.hpp" name="executor/inc/container_request.hpp">
-<area shape="rect" id="node1" title="Data structure for representing a container operation request." alt="" coords="206,5,373,47"/>
-<area shape="rect" id="node2" href="$container__service_8hpp.html" title="Declares the ContainerServiceHandler class for business logic related to containers." alt="" coords="327,95,465,136"/>
-<area shape="rect" id="node3" href="$container__service_8cpp.html" title="Implements the ContainerServiceHandler class for business logic related to containers." alt="" coords="5,184,144,225"/>
-<area shape="rect" id="node6" href="$request__executor_8hpp.html" title="Declares the abstract RequestExecutor interface for executing requests." alt="" coords="780,95,935,136"/>
-<area shape="rect" id="node18" href="$command__factory_8hpp.html" title=" " alt="" coords="87,95,252,136"/>
-<area shape="rect" id="node19" href="$command__factory_8cpp.html" title=" " alt="" coords="168,184,333,225"/>
-<area shape="rect" id="node4" href="$json__request__executor_8cpp.html" title="Implements the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="352,273,541,315"/>
-<area shape="rect" id="node5" href="$protobuf__request__executor_8cpp.html" title="Implements the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests." alt="" coords="158,273,327,315"/>
-<area shape="rect" id="node7" href="$dbus__consumer_8hpp.html" title="Defines the DbusConsumer class for receiving and processing JSON requests over D&#45;Bus." alt="" coords="867,191,1066,218"/>
-<area shape="rect" id="node9" href="$mosquitto__mqtt__subscriber_8hpp.html" title="Declares the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto." alt="" coords="1091,184,1264,225"/>
-<area shape="rect" id="node11" href="$posix__message__queue__consumer_8hpp.html" title="Declares the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="1288,184,1459,225"/>
-<area shape="rect" id="node13" href="$json__request__executor_8hpp.html" title="Defines the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="653,184,843,225"/>
-<area shape="rect" id="node17" href="$protobuf__request__executor_8hpp.html" title="Defines the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests." alt="" coords="459,184,629,225"/>
-<area shape="rect" id="node8" href="$dbus__consumer_8cpp.html" title="Implements the DbusConsumer class for receiving and processing JSON requests over D&#45;Bus." alt="" coords="867,281,1066,307"/>
-<area shape="rect" id="node10" href="$mosquitto__mqtt__subscriber_8cpp.html" title="Implements the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto." alt="" coords="1091,273,1264,315"/>
-<area shape="rect" id="node12" href="$posix__message__queue__consumer_8cpp.html" title="Implements the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="1288,273,1459,315"/>
-<area shape="rect" id="node14" href="$http__server_8hpp.html" title="Defines the HttpServerHandler class for handling HTTP requests." alt="" coords="672,281,843,307"/>
-<area shape="rect" id="node16" href="$main_8cpp.html" title="Entry point for the Container Manager application." alt="" coords="565,281,648,307"/>
-<area shape="rect" id="node15" href="$http__server_8cpp.html" title="Implements the HttpServerHandler class for handling HTTP requests." alt="" coords="672,363,843,389"/>
+<area shape="rect" id="node1" title="Data structure for representing a container operation request." alt="" coords="218,5,385,47"/>
+<area shape="rect" id="node2" href="$container__service_8hpp.html" title="Declares the ContainerServiceHandler class for business logic related to containers." alt="" coords="5,95,144,136"/>
+<area shape="rect" id="node3" href="$container__service_8cpp.html" title="Implements the ContainerServiceHandler class for business logic related to containers." alt="" coords="112,184,251,225"/>
+<area shape="rect" id="node6" href="$request__executor_8hpp.html" title="Declares the abstract RequestExecutor interface for executing requests." alt="" coords="895,95,1049,136"/>
+<area shape="rect" id="node18" href="$command__factory_8hpp.html" title="Declares the CommandFactory class for creating command objects based on container requests." alt="" coords="219,95,384,136"/>
+<area shape="rect" id="node19" href="$command__factory_8cpp.html" title="Implements the CommandFactory class for creating command objects based on container requests." alt="" coords="275,184,440,225"/>
+<area shape="rect" id="node4" href="$json__request__executor_8cpp.html" title="Implements the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="408,273,597,315"/>
+<area shape="rect" id="node5" href="$protobuf__request__executor_8cpp.html" title="Implements the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests." alt="" coords="31,273,201,315"/>
+<area shape="rect" id="node7" href="$dbus__consumer_8hpp.html" title="Defines the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus." alt="" coords="873,191,1071,218"/>
+<area shape="rect" id="node9" href="$http__server_8hpp.html" title="Defines the HttpServerHandler class for handling HTTP requests." alt="" coords="1096,191,1267,218"/>
+<area shape="rect" id="node11" href="$mosquitto__mqtt__subscriber_8hpp.html" title="Declares the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto." alt="" coords="1291,184,1464,225"/>
+<area shape="rect" id="node13" href="$posix__message__queue__consumer_8hpp.html" title="Declares the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="1488,184,1659,225"/>
+<area shape="rect" id="node15" href="$json__request__executor_8hpp.html" title="Defines the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="659,184,848,225"/>
+<area shape="rect" id="node17" href="$protobuf__request__executor_8hpp.html" title="Defines the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests." alt="" coords="464,184,635,225"/>
+<area shape="rect" id="node8" href="$dbus__consumer_8cpp.html" title="Implements the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus." alt="" coords="873,281,1071,307"/>
+<area shape="rect" id="node10" href="$http__server_8cpp.html" title="Implements the HttpServerHandler class for handling HTTP requests." alt="" coords="1096,281,1267,307"/>
+<area shape="rect" id="node12" href="$mosquitto__mqtt__subscriber_8cpp.html" title="Implements the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto." alt="" coords="1291,273,1464,315"/>
+<area shape="rect" id="node14" href="$posix__message__queue__consumer_8cpp.html" title="Implements the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="1488,273,1659,315"/>
+<area shape="rect" id="node16" href="$main_8cpp.html" title="Entry point for the Container Manager application." alt="" coords="712,281,795,307"/>
 </map>

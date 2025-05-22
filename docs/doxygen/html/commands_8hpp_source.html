@@ -91,35 +91,36 @@ $(document).ready(function(){initNavTree('commands_8hpp_source.html',''); initRe
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classCommand.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCommand.html">Command</a> {</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">Execute</a>() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;};</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classInvoker.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="classInvoker.html">Invoker</a> {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    std::unique_ptr&lt;Command&gt; command_;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classInvoker.html#ae9f10a2487afd153bf0da69ae410a0e9">   28</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classInvoker.html#ae9f10a2487afd153bf0da69ae410a0e9">SetCommand</a>(std::unique_ptr&lt;Command&gt; cmd) {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        command_ = std::move(cmd);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classInvoker.html#a1459c66263ad54b3568e6b3d33d9256f">   32</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classInvoker.html#a1459c66263ad54b3568e6b3d33d9256f">Invoke</a>() {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">if</span> (command_) {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keywordflow">return</span> command_-&gt;<a class="code" href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">Execute</a>();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        }</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;};</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classCommand.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCommand.html">Command</a> {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">Execute</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classInvoker.html">   32</a></span>&#160;<span class="keyword">class </span><a class="code" href="classInvoker.html">Invoker</a> {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    std::unique_ptr&lt;Command&gt; command_; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classInvoker.html#ae9f10a2487afd153bf0da69ae410a0e9">   40</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classInvoker.html#ae9f10a2487afd153bf0da69ae410a0e9">SetCommand</a>(std::unique_ptr&lt;Command&gt; cmd) {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        command_ = std::move(cmd);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classInvoker.html#a1459c66263ad54b3568e6b3d33d9256f">   48</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classInvoker.html#a1459c66263ad54b3568e6b3d33d9256f">Invoke</a>() {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">if</span> (command_) {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="keywordflow">return</span> command_-&gt;<a class="code" href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">Execute</a>();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclassCommand_html_ab04996232fade41af481e1a94c15f5e5"><div class="ttname"><a href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">Command::Execute</a></div><div class="ttdeci">virtual bool Execute() const =0</div><div class="ttdoc">Execute the command.</div></div>
-<div class="ttc" id="aclassCommand_html"><div class="ttname"><a href="classCommand.html">Command</a></div><div class="ttdoc">Abstract base class for all commands.</div><div class="ttdef"><b>Definition:</b> <a href="commands_8hpp_source.html#l00010">commands.hpp:10</a></div></div>
-<div class="ttc" id="aclassInvoker_html_ae9f10a2487afd153bf0da69ae410a0e9"><div class="ttname"><a href="classInvoker.html#ae9f10a2487afd153bf0da69ae410a0e9">Invoker::SetCommand</a></div><div class="ttdeci">void SetCommand(std::unique_ptr&lt; Command &gt; cmd)</div><div class="ttdoc">Set the command to be executed.</div><div class="ttdef"><b>Definition:</b> <a href="commands_8hpp_source.html#l00028">commands.hpp:28</a></div></div>
-<div class="ttc" id="aclassInvoker_html"><div class="ttname"><a href="classInvoker.html">Invoker</a></div><div class="ttdoc">Invoker class to invoke the command.</div><div class="ttdef"><b>Definition:</b> <a href="commands_8hpp_source.html#l00022">commands.hpp:22</a></div></div>
-<div class="ttc" id="aclassCommand_html_aa545a53d35818f9efb936daf3fa16c61"><div class="ttname"><a href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">Command::~Command</a></div><div class="ttdeci">virtual ~Command()=default</div><div class="ttdoc">Destructor.</div></div>
-<div class="ttc" id="aclassInvoker_html_a1459c66263ad54b3568e6b3d33d9256f"><div class="ttname"><a href="classInvoker.html#a1459c66263ad54b3568e6b3d33d9256f">Invoker::Invoke</a></div><div class="ttdeci">bool Invoke()</div><div class="ttdoc">Execute the command.</div><div class="ttdef"><b>Definition:</b> <a href="commands_8hpp_source.html#l00032">commands.hpp:32</a></div></div>
+<div class="ttc" id="aclassCommand_html"><div class="ttname"><a href="classCommand.html">Command</a></div><div class="ttdoc">Abstract base class for all commands.</div><div class="ttdef"><b>Definition:</b> <a href="commands_8hpp_source.html#l00013">commands.hpp:13</a></div></div>
+<div class="ttc" id="aclassInvoker_html_ae9f10a2487afd153bf0da69ae410a0e9"><div class="ttname"><a href="classInvoker.html#ae9f10a2487afd153bf0da69ae410a0e9">Invoker::SetCommand</a></div><div class="ttdeci">void SetCommand(std::unique_ptr&lt; Command &gt; cmd)</div><div class="ttdoc">Set the command to be executed.</div><div class="ttdef"><b>Definition:</b> <a href="commands_8hpp_source.html#l00040">commands.hpp:40</a></div></div>
+<div class="ttc" id="aclassInvoker_html"><div class="ttname"><a href="classInvoker.html">Invoker</a></div><div class="ttdoc">Invoker class to invoke the command.</div><div class="ttdef"><b>Definition:</b> <a href="commands_8hpp_source.html#l00032">commands.hpp:32</a></div></div>
+<div class="ttc" id="aclassCommand_html_aa545a53d35818f9efb936daf3fa16c61"><div class="ttname"><a href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">Command::~Command</a></div><div class="ttdeci">virtual ~Command()=default</div><div class="ttdoc">Virtual destructor.</div></div>
+<div class="ttc" id="aclassInvoker_html_a1459c66263ad54b3568e6b3d33d9256f"><div class="ttname"><a href="classInvoker.html#a1459c66263ad54b3568e6b3d33d9256f">Invoker::Invoke</a></div><div class="ttdeci">bool Invoke()</div><div class="ttdoc">Execute the command.</div><div class="ttdef"><b>Definition:</b> <a href="commands_8hpp_source.html#l00048">commands.hpp:48</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

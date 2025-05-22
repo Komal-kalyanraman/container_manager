@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('classMessageQueueConsumer.html',''); i
 </div><!--header-->
 <div class="contents">
 
-<p>Consumes messages from a POSIX message queue and dispatches them to a <a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats.">RequestExecutor</a>.  
+<p>Consumes messages from a POSIX message queue and dispatches them to a <a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g....">RequestExecutor</a>.  
  <a href="classMessageQueueConsumer.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="posix__message__queue__consumer_8hpp_source.html">posix_message_queue_consumer.hpp</a>&gt;</code></p>
@@ -116,9 +116,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abd022ef156cddc716da988beec4c174e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Consumes messages from a POSIX message queue and dispatches them to a <a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats.">RequestExecutor</a>. </p>
+<div class="textblock"><p>Consumes messages from a POSIX message queue and dispatches them to a <a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g....">RequestExecutor</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="posix__message__queue__consumer_8hpp_source.html#l00017">17</a> of file <a class="el" href="posix__message__queue__consumer_8hpp_source.html">posix_message_queue_consumer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="posix__message__queue__consumer_8hpp_source.html#l00019">19</a> of file <a class="el" href="posix__message__queue__consumer_8hpp_source.html">posix_message_queue_consumer.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a99c02b4c93b07edc74fd60b853049d22"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a99c02b4c93b07edc74fd60b853049d22">&#9670;&nbsp;</a></span>MessageQueueConsumer()</h2>
@@ -147,16 +147,17 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructs a <a class="el" href="classMessageQueueConsumer.html" title="Consumes messages from a POSIX message queue and dispatches them to a RequestExecutor.">MessageQueueConsumer</a>. </p>
+<p>Constructs a <a class="el" href="classMessageQueueConsumer.html" title="Consumes messages from a POSIX message queue and dispatches them to a RequestExecutor.">MessageQueueConsumer</a> with the given configuration and executor.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">config</td><td>Configuration for the message queue consumer. </td></tr>
-    <tr><td class="paramname">executor</td><td>Shared pointer to a <a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats.">RequestExecutor</a> for processing messages. </td></tr>
+    <tr><td class="paramname">executor</td><td>Shared pointer to a <a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g....">RequestExecutor</a> for processing messages. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="posix__message__queue__consumer_8cpp_source.html#l00017">17</a> of file <a class="el" href="posix__message__queue__consumer_8cpp_source.html">posix_message_queue_consumer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    : config_(config), executor_(std::move(executor)), running_(<span class="keyword">false</span>) {}</div>
+<p class="definition">Definition at line <a class="el" href="posix__message__queue__consumer_8cpp_source.html#l00020">20</a> of file <a class="el" href="posix__message__queue__consumer_8cpp_source.html">posix_message_queue_consumer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    : config_(config), executor_(std::move(executor)), running_(<span class="keyword">false</span>) {}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -176,13 +177,14 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Destructor. </p>
+<p>Destructor. Stops the consumer if running. </p>
 
-<p class="definition">Definition at line <a class="el" href="posix__message__queue__consumer_8cpp_source.html#l00020">20</a> of file <a class="el" href="posix__message__queue__consumer_8cpp_source.html">posix_message_queue_consumer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                                            {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classMessageQueueConsumer.html#abd022ef156cddc716da988beec4c174e">Stop</a>();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="posix__message__queue__consumer_8cpp_source.html#l00026">26</a> of file <a class="el" href="posix__message__queue__consumer_8cpp_source.html">posix_message_queue_consumer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                                            {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classMessageQueueConsumer.html#abd022ef156cddc716da988beec4c174e">Stop</a>();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="posix__message__queue__consumer_8cpp_source.html#l00029">Stop()</a>.</p>
+<p class="reference">References <a class="el" href="posix__message__queue__consumer_8cpp_source.html#l00041">Stop()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -209,11 +211,11 @@ Here is the call graph for this function:</div>
 
 <p>Starts the message queue consumer loop in a separate thread. </p>
 
-<p class="definition">Definition at line <a class="el" href="posix__message__queue__consumer_8cpp_source.html#l00024">24</a> of file <a class="el" href="posix__message__queue__consumer_8cpp_source.html">posix_message_queue_consumer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                                 {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    running_ = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    consumer_thread_ = std::thread(&amp;MessageQueueConsumer::ConsumeLoop, <span class="keyword">this</span>);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="posix__message__queue__consumer_8cpp_source.html#l00033">33</a> of file <a class="el" href="posix__message__queue__consumer_8cpp_source.html">posix_message_queue_consumer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                                 {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    running_ = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    consumer_thread_ = std::thread(&amp;MessageQueueConsumer::ConsumeLoop, <span class="keyword">this</span>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -233,16 +235,17 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Stops the message queue consumer loop. </p>
+<p>Stops the message queue consumer loop and joins the thread. </p>
 
-<p class="definition">Definition at line <a class="el" href="posix__message__queue__consumer_8cpp_source.html#l00029">29</a> of file <a class="el" href="posix__message__queue__consumer_8cpp_source.html">posix_message_queue_consumer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                                {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    running_ = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">if</span> (consumer_thread_.joinable()) {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        consumer_thread_.join();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="posix__message__queue__consumer_8cpp_source.html#l00041">41</a> of file <a class="el" href="posix__message__queue__consumer_8cpp_source.html">posix_message_queue_consumer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                                {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    running_ = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">if</span> (consumer_thread_.joinable()) {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        consumer_thread_.join();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="posix__message__queue__consumer_8cpp_source.html#l00020">~MessageQueueConsumer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="posix__message__queue__consumer_8cpp_source.html#l00026">~MessageQueueConsumer()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -257,7 +260,7 @@ Here is the caller graph for this function:</div>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassMessageQueueConsumer_html_abd022ef156cddc716da988beec4c174e"><div class="ttname"><a href="classMessageQueueConsumer.html#abd022ef156cddc716da988beec4c174e">MessageQueueConsumer::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">Stops the message queue consumer loop.</div><div class="ttdef"><b>Definition:</b> <a href="posix__message__queue__consumer_8cpp_source.html#l00029">posix_message_queue_consumer.cpp:29</a></div></div>
+<div class="ttc" id="aclassMessageQueueConsumer_html_abd022ef156cddc716da988beec4c174e"><div class="ttname"><a href="classMessageQueueConsumer.html#abd022ef156cddc716da988beec4c174e">MessageQueueConsumer::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">Stops the message queue consumer loop.</div><div class="ttdef"><b>Definition:</b> <a href="posix__message__queue__consumer_8cpp_source.html#l00041">posix_message_queue_consumer.cpp:41</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

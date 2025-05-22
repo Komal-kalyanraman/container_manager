@@ -27,7 +27,7 @@ var hierarchy =
     [ "ContainerRequest", "structContainerRequest.html", null ],
     [ "ContainerServiceHandler", "classContainerServiceHandler.html", null ],
     [ "DbusConfig", "structDbusConfig.html", null ],
-    [ "DbusConsumer", "classDbusConsumer.html", null ],
+    [ "DBusConsumer", "classDBusConsumer.html", null ],
     [ "HttpServerHandler", "classHttpServerHandler.html", null ],
     [ "IDatabaseHandler", "classIDatabaseHandler.html", [
       [ "RedisDatabaseHandler", "classRedisDatabaseHandler.html", null ]

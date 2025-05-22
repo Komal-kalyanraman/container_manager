@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="classProtoRequestExecutorHandler.html#a7255c2daf8946f8c73b0327cd4ad9156" target="_top" xlink:title="Executes a request and returns a JSON response.">
+<g id="a_node3"><a xlink:href="classProtoRequestExecutorHandler.html#a7255c2daf8946f8c73b0327cd4ad9156" target="_top" xlink:title="Receives a serialized protobuf string, deserializes, saves to DB, and returns result as JSON.">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-30.5 163,-30.5 163,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">ProtoRequestExecutorHandler</text>
 <text text-anchor="middle" x="81.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Execute</text>

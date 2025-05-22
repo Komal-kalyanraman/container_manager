@@ -1,0 +1,4 @@
+<map id="DBusConsumer::~DBusConsumer" name="DBusConsumer::~DBusConsumer">
+<area shape="rect" id="node1" title="Destructor. Stops the consumer if running." alt="" coords="5,5,247,32"/>
+<area shape="rect" id="node2" href="$classDBusConsumer.html#a0dbd21d40cbdcd311c5e4b9aaf8b07ec" title="Stop listening and join the background thread." alt="" coords="295,5,453,32"/>
+</map>

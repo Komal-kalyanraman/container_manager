@@ -13,6 +13,11 @@
 #include "inc/database_interface.hpp"
 #include "inc/redis_database.hpp"
 
+/**
+ * @brief Handles a container request by dispatching to the appropriate operation and updating the database.
+ * @param req The container request containing operation, runtime, and container details.
+ * @return A JSON object with the result of the operation.
+ */
 nlohmann::json ContainerServiceHandler::HandleRequest(const ContainerRequest& req) {
     bool op_result = ContainerServiceHandler::ContainerOperations(req);
 
@@ -40,6 +45,11 @@ nlohmann::json ContainerServiceHandler::HandleRequest(const ContainerRequest& re
     return {{"status", "success"}, {"operation", req.operation}, {"container", req.container_name}};
 }
 
+/**
+ * @brief Performs the specified container operation using the request structure.
+ * @param req The container request containing all necessary container details.
+ * @return True if the operation succeeded, false otherwise.
+ */
 bool ContainerServiceHandler::ContainerOperations(const ContainerRequest& req) {
     Invoker invoker;
     invoker.SetCommand(CommandFactory::CreateCommand(req));

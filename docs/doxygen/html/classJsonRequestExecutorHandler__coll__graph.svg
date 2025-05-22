@@ -25,7 +25,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="classRequestExecutor.html" target="_top" xlink:title="Abstract base class for request executors supporting different input formats.">
+<g id="a_node2"><a xlink:href="classRequestExecutor.html" target="_top" xlink:title="Abstract base class for request executors supporting different input formats (e.g....">
 <polygon fill="white" stroke="black" points="16,-94.5 16,-162.5 142,-162.5 142,-94.5 16,-94.5"/>
 <text text-anchor="middle" x="79" y="-150.5" font-family="Helvetica,sans-Serif" font-size="10.00">RequestExecutor</text>
 <polyline fill="none" stroke="black" points="16,-143.5 142,-143.5 "/>

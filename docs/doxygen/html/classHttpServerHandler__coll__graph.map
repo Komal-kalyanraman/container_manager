@@ -1,3 +1,3 @@
 <map id="HttpServerHandler" name="HttpServerHandler">
-<area shape="rect" id="node1" title="Handles incoming HTTP requests and dispatches them to the appropriate executor." alt="" coords="5,5,173,97"/>
+<area shape="rect" id="node1" title="Handles incoming HTTP requests and dispatches them to the appropriate JSON/Protobuf executor." alt="" coords="5,5,173,97"/>
 </map>

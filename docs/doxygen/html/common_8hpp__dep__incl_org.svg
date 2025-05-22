@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="dbus__consumer_8hpp.html" target="_top" xlink:title="Defines the DbusConsumer class for receiving and processing JSON requests over D&#45;Bus.">
+<g id="a_node2"><a xlink:href="dbus__consumer_8hpp.html" target="_top" xlink:title="Defines the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus.">
 <polygon fill="white" stroke="black" points="0,-73 0,-92 149,-92 149,-73 0,-73"/>
 <text text-anchor="middle" x="74.5" y="-80" font-family="Helvetica,sans-Serif" font-size="10.00">api/inc/dbus_consumer.hpp</text>
 </a>
@@ -146,7 +146,7 @@
 <!-- Node12 -->
 <g id="node12" class="node">
 <title>Node12</title>
-<g id="a_node12"><a xlink:href="command__factory_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_node12"><a xlink:href="command__factory_8hpp.html" target="_top" xlink:title="Declares the CommandFactory class for creating command objects based on container requests.">
 <polygon fill="white" stroke="black" points="921.5,-67.5 921.5,-97.5 1045.5,-97.5 1045.5,-67.5 921.5,-67.5"/>
 <text text-anchor="start" x="929.5" y="-85.5" font-family="Helvetica,sans-Serif" font-size="10.00">runtime/inc/command</text>
 <text text-anchor="middle" x="983.5" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">_factory.hpp</text>
@@ -162,7 +162,7 @@
 <!-- Node13 -->
 <g id="node13" class="node">
 <title>Node13</title>
-<g id="a_node13"><a xlink:href="command__factory_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node13"><a xlink:href="command__factory_8cpp.html" target="_top" xlink:title="Implements the CommandFactory class for creating command objects based on container requests.">
 <polygon fill="white" stroke="black" points="966.5,-0.5 966.5,-30.5 1090.5,-30.5 1090.5,-0.5 966.5,-0.5"/>
 <text text-anchor="start" x="974.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">runtime/src/command</text>
 <text text-anchor="middle" x="1028.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_factory.cpp</text>
@@ -257,7 +257,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="dbus__consumer_8cpp.html" target="_top" xlink:title="Implements the DbusConsumer class for receiving and processing JSON requests over D&#45;Bus.">
+<g id="a_node3"><a xlink:href="dbus__consumer_8cpp.html" target="_top" xlink:title="Implements the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus.">
 <polygon fill="white" stroke="black" points="0,-6 0,-25 149,-25 149,-6 0,-6"/>
 <text text-anchor="middle" x="74.5" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">api/src/dbus_consumer.cpp</text>
 </a>

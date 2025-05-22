@@ -1,7 +1,7 @@
 var dir_d5e05acfa0d2b58af2a638006d267ba2 =
 [
     [ "dbus_consumer.hpp", "dbus__consumer_8hpp.html", [
-      [ "DbusConsumer", "classDbusConsumer.html", "classDbusConsumer" ]
+      [ "DBusConsumer", "classDBusConsumer.html", "classDBusConsumer" ]
     ] ],
     [ "grpc_server.hpp", "grpc__server_8hpp.html", null ],
     [ "http_server.hpp", "http__server_8hpp.html", [

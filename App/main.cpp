@@ -38,7 +38,12 @@
 #include "inc/dbus_consumer.hpp"
 #endif
 
+/**
+ * @brief Main entry point for the Container Manager application.
+ * @return Exit code.
+ */
 int main() {
+    // Initialize all subsystems (logging, database, message queue, MQTT, etc.)
     InitProject();
 
 #if ENABLE_PROTOBUF
@@ -74,7 +79,7 @@ int main() {
 
 #if ENABLE_DBUS
     DbusConfig dbus_cfg;
-    auto dbus_consumer = std::make_shared<DbusConsumer>(dbus_cfg, executor);
+    auto dbus_consumer = std::make_shared<DBusConsumer>(dbus_cfg, executor);
     dbus_consumer->Start();
 #endif
 

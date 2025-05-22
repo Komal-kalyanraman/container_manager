@@ -36,7 +36,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="init__handler_8cpp.html#a9c6fd2b1fc6d60ab2f80b2799b0fa81e" target="_top" xlink:title="Initializes logging and clears the database before server startup.">
+<g id="a_node5"><a xlink:href="init__handler_8cpp.html#a9c6fd2b1fc6d60ab2f80b2799b0fa81e" target="_top" xlink:title="Initializes logging using Google glog.">
 <polygon fill="white" stroke="black" points="140,-76.5 140,-95.5 211,-95.5 211,-76.5 140,-76.5"/>
 <text text-anchor="middle" x="175.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">InitLogging</text>
 </a>
@@ -51,7 +51,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="init__handler_8cpp.html#ac622dccafc9db8b54a3d5ef6d98eed8e" target="_top" xlink:title="Clears the POSIX message queue.">
+<g id="a_node6"><a xlink:href="init__handler_8cpp.html#ac622dccafc9db8b54a3d5ef6d98eed8e" target="_top" xlink:title="Clears the POSIX message queue at startup.">
 <polygon fill="white" stroke="black" points="122,-38.5 122,-57.5 229,-57.5 229,-38.5 122,-38.5"/>
 <text text-anchor="middle" x="175.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">InitMessageQueue</text>
 </a>
@@ -66,7 +66,7 @@
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<g id="a_node7"><a xlink:href="init__handler_8cpp.html#a57b18ca1632517db21aa1491c585762a" target="_top" xlink:title="Clears retained MQTT messages.">
+<g id="a_node7"><a xlink:href="init__handler_8cpp.html#a57b18ca1632517db21aa1491c585762a" target="_top" xlink:title="Stub for clearing retained MQTT messages when MQTT is disabled.">
 <polygon fill="white" stroke="black" points="102,-0.5 102,-19.5 249,-19.5 249,-0.5 102,-0.5"/>
 <text text-anchor="middle" x="175.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">InitMqttRetainedMessages</text>
 </a>

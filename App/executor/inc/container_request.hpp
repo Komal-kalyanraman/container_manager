@@ -10,9 +10,9 @@
 /// @brief Represents a request to perform an operation on a container.
 /// @details Contains the operation type, runtime, and container name. Extend with additional fields as needed.
 struct ContainerRequest {
-    std::string operation; // "start", "stop", "create", etc.
-    std::string runtime;   // "docker", "podman", etc.
-    std::string container_name;
-    std::string image_name;      // Image name (used for create)
+    std::string operation;      ///< Operation type: "start", "stop", "create", etc.
+    std::string runtime;        ///< Container runtime: "docker", "podman", etc.
+    std::string container_name; ///< Name of the container to operate on.
+    std::string image_name;     ///< Image name (used for create).
     // Add more fields as needed
 };

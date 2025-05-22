@@ -18,28 +18,28 @@ const std::string kContainerManagerLogName = "cm_log";
 /// @struct ServerConfig
 /// @brief Holds constant configuration for the HTTP server.
 struct ServerConfig {
-    const int Port = 5000;
-    const std::string Host = "0.0.0.0";
-    const int ThreadPoolSize = 10;
+    const int Port = 5000;                ///< HTTP server port.
+    const std::string Host = "0.0.0.0";   ///< HTTP server host address.
+    const int ThreadPoolSize = 10;        ///< Number of threads in the thread pool.
 };
 
 /// @struct MqttConfig
 /// @brief Holds constant configuration for the MQTT subscriber.
 struct MqttConfig {
-    const std::string BrokerAddress = "localhost";
-    const int BrokerPort = 1883;
-    const std::string Topic = "container/execute";
-    const std::string ClientId = "container_manager_mqtt_subscriber";
-    const std::string ClearRetainedClientId = "cm_clear_retained";
+    const std::string BrokerAddress = "localhost";                ///< MQTT broker address.
+    const int BrokerPort = 1883;                                  ///< MQTT broker port.
+    const std::string Topic = "container/execute";                ///< MQTT topic to subscribe to.
+    const std::string ClientId = "container_manager_mqtt_subscriber"; ///< MQTT client ID.
+    const std::string ClearRetainedClientId = "cm_clear_retained";    ///< MQTT client ID for clearing retained messages.
 };
 
 /// @struct MessageQueueConfig
 /// @brief Holds constant configuration for the POSIX message queue consumer.
 struct MessageQueueConfig {
-    const std::string QueueName = "/container_manager_queue";
-    const long MaxMsgSize = 8192;      ///< Maximum size of each message (bytes)
-    const long MaxMsgCount = 10;       ///< Maximum number of messages in the queue
-    const long SleepTime = 10000;        ///< Sleep time in microseconds
+    const std::string QueueName = "/container_manager_queue"; ///< Name of the POSIX message queue.
+    const long MaxMsgSize = 8192;      ///< Maximum size of each message (bytes).
+    const long MaxMsgCount = 10;       ///< Maximum number of messages in the queue.
+    const long SleepTime = 10000;      ///< Sleep time in microseconds.
 };
 
 /// @struct DbusConfig
@@ -85,6 +85,7 @@ namespace CommandTemplate {
 /// @brief Utility function to format command templates by replacing placeholders with actual values.
 /// @param tmpl The command template string with placeholders.
 /// @param values A map of placeholder names to their replacement values.
+/// @return The formatted command string.
 inline std::string FormatCommand(std::string_view tmpl, const std::unordered_map<std::string, std::string>& values) {
     std::string result(tmpl);
     for (const auto& [key, val] : values) {

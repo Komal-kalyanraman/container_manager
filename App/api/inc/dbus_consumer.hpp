@@ -1,6 +1,6 @@
 /**
  * @file dbus_consumer.hpp
- * @brief Defines the DbusConsumer class for receiving and processing JSON requests over D-Bus.
+ * @brief Defines the DBusConsumer class for receiving and processing JSON/Protobuf requests over D-Bus.
  */
 
 #pragma once
@@ -14,26 +14,26 @@
 #include "inc/request_executor.hpp"
 
 /**
- * @class DbusConsumer
- * @brief Handles receiving and processing JSON requests over D-Bus.
+ * @class DBusConsumer
+ * @brief Handles receiving and processing JSON/Protobuf requests over D-Bus.
  *
  * This class connects to the D-Bus session bus, registers an object and interface,
  * and listens for incoming method calls (e.g., "Execute") from other applications.
- * Incoming JSON payloads are forwarded to the shared RequestExecutor for processing.
+ * Incoming JSON/Protobuf payloads are forwarded to the shared RequestExecutor for processing.
  */
-class DbusConsumer {
+class DBusConsumer {
 public:
     /**
-     * @brief Construct a DbusConsumer.
+     * @brief Construct a DBusConsumer.
      * @param config The DbusConfig struct containing bus name, object path, and interface.
      * @param executor Shared pointer to the request executor for processing incoming requests.
      */
-    DbusConsumer(const DbusConfig& config, std::shared_ptr<RequestExecutor> executor);
+    DBusConsumer(const DbusConfig& config, std::shared_ptr<RequestExecutor> executor);
 
     /**
      * @brief Destructor. Stops the consumer if running.
      */
-    ~DbusConsumer();
+    ~DBusConsumer();
 
     /**
      * @brief Start listening for D-Bus method calls in a background thread.
@@ -51,12 +51,12 @@ private:
      */
     void ListenLoop();
 
-    DbusConfig config_;                             ///< D-Bus configuration struct.
-    std::string busName_;                           ///< The D-Bus service name to acquire.
-    std::string objectPath_;                        ///< The D-Bus object path to register.
-    std::shared_ptr<RequestExecutor> executor_;     ///< Shared request executor.
-    std::unique_ptr<sdbus::IConnection> connection_;///< D-Bus connection.
-    std::unique_ptr<sdbus::IObject> object_;        ///< D-Bus object.
-    bool running_;                                  ///< Indicates if the consumer is running.
-    std::thread listenThread_;                      ///< Background thread for listening.
+    DbusConfig config_;                                  ///< D-Bus configuration struct.
+    std::string bus_name_;                               ///< The D-Bus service name to acquire.
+    std::string object_path_;                            ///< The D-Bus object path to register.
+    std::shared_ptr<RequestExecutor> executor_;          ///< Shared request executor.
+    std::unique_ptr<sdbus::IConnection> connection_;     ///< D-Bus connection.
+    std::unique_ptr<sdbus::IObject> object_;             ///< D-Bus object.
+    bool running_;                                       ///< Indicates if the consumer is running.
+    std::thread listen_thread_;                          ///< Background thread for listening.
 };

@@ -1,5 +1,5 @@
 <map id="containermanager::ContainerRequest::operation" name="containermanager::ContainerRequest::operation">
 <area shape="rect" id="node1" title=" " alt="" coords="292,39,504,80"/>
-<area shape="rect" id="node2" href="$classProtoRequestExecutorHandler.html#a7255c2daf8946f8c73b0327cd4ad9156" title="Executes a request and returns a JSON response." alt="" coords="16,5,233,47"/>
+<area shape="rect" id="node2" href="$classProtoRequestExecutorHandler.html#a7255c2daf8946f8c73b0327cd4ad9156" title="Receives a serialized protobuf string, deserializes, saves to DB, and returns result as JSON." alt="" coords="16,5,233,47"/>
 <area shape="rect" id="node3" href="$classcontainermanager_1_1ContainerRequest.html#a4bbe8a0072aa243957f128766854283d" title=" " alt="" coords="5,71,244,112"/>
 </map>

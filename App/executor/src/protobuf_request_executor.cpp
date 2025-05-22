@@ -17,8 +17,17 @@
 #include "inc/common.hpp"
 #include <nlohmann/json.hpp>
 
+/**
+ * @brief Default constructor for ProtoRequestExecutorHandler.
+ */
 ProtoRequestExecutorHandler::ProtoRequestExecutorHandler() = default;
 
+/**
+ * @brief Executes a request represented as a serialized Protobuf string.
+ *        Deserializes the input, transforms and saves it to the database, and dispatches to the service handler.
+ * @param proto_data The input data as a serialized Protobuf string.
+ * @return A JSON object containing the result of the execution.
+ */
 nlohmann::json ProtoRequestExecutorHandler::Execute(const std::string& proto_data) {
     containermanager::ContainerRequest proto_req;
     if (!proto_req.ParseFromString(proto_data)) {

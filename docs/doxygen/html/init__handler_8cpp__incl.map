@@ -4,7 +4,7 @@
 <area shape="rect" id="node3" title=" " alt="" coords="181,80,295,107"/>
 <area shape="rect" id="node4" title=" " alt="" coords="320,80,407,107"/>
 <area shape="rect" id="node5" href="$common_8hpp.html" title="Defines common constants, string views, and utility structures for the application." alt="" coords="431,80,562,107"/>
-<area shape="rect" id="node9" href="$redis__database_8hpp.html" title="Implements RedisDatabaseHandler for Redis&#45;based database operations." alt="" coords="715,80,887,107"/>
+<area shape="rect" id="node9" href="$redis__database_8hpp.html" title="Declares the RedisDatabaseHandler class for Redis&#45;based database operations." alt="" coords="715,80,887,107"/>
 <area shape="rect" id="node6" title=" " alt="" coords="635,229,694,256"/>
 <area shape="rect" id="node7" title=" " alt="" coords="381,155,479,181"/>
 <area shape="rect" id="node8" title=" " alt="" coords="503,155,627,181"/>

@@ -8,9 +8,20 @@
 #include <httplib.h>
 #include <nlohmann/json.hpp>
 
+/**
+ * @brief Constructs an HttpServerHandler with the given executor and thread pool size.
+ * @param executor Shared pointer to a RequestExecutor for processing requests.
+ * @param thread_pool_size Number of threads in the thread pool for handling requests.
+ */
 HttpServerHandler::HttpServerHandler(std::shared_ptr<RequestExecutor> executor, int thread_pool_size)
     : executor_(std::move(executor)), pool_(std::make_unique<ThreadPool>(thread_pool_size)) {}
 
+/**
+ * @brief Starts the HTTP server on the specified host and port.
+ *        Handles POST requests to "/execute" by dispatching them to the thread pool.
+ * @param host The host address of the HTTP server.
+ * @param port The port on which the server will listen for incoming requests.
+ */
 void HttpServerHandler::Start(const std::string& host, int port) {
     httplib::Server svr;
     svr.Post("/execute", [this](const httplib::Request& req, httplib::Response& res) {

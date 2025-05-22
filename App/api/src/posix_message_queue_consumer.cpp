@@ -8,24 +8,36 @@
 #include <iostream>
 #include <cstring>
 #include <unistd.h>
-
 #include <nlohmann/json.hpp>
 #include <mqueue.h>
-
 #include "inc/common.hpp"
 
+/**
+ * @brief Constructs a MessageQueueConsumer with the given configuration and executor.
+ * @param config Configuration for the message queue consumer.
+ * @param executor Shared pointer to a RequestExecutor for processing messages.
+ */
 MessageQueueConsumer::MessageQueueConsumer(const MessageQueueConfig& config, std::shared_ptr<RequestExecutor> executor)
     : config_(config), executor_(std::move(executor)), running_(false) {}
 
+/**
+ * @brief Destructor. Stops the consumer if running.
+ */
 MessageQueueConsumer::~MessageQueueConsumer() {
     Stop();
 }
 
+/**
+ * @brief Starts the message queue consumer loop in a separate thread.
+ */
 void MessageQueueConsumer::Start() {
     running_ = true;
     consumer_thread_ = std::thread(&MessageQueueConsumer::ConsumeLoop, this);
 }
 
+/**
+ * @brief Stops the message queue consumer loop and joins the thread.
+ */
 void MessageQueueConsumer::Stop() {
     running_ = false;
     if (consumer_thread_.joinable()) {
@@ -33,6 +45,10 @@ void MessageQueueConsumer::Stop() {
     }
 }
 
+/**
+ * @brief Main loop for consuming messages from the POSIX message queue.
+ *        Receives messages and dispatches them to the executor.
+ */
 void MessageQueueConsumer::ConsumeLoop() {
     // Set message queue attributes to ensure correct message size and capacity
     struct mq_attr attr;

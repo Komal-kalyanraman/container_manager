@@ -9,7 +9,7 @@ var annotated_dup =
     [ "ContainerRequest", "structContainerRequest.html", "structContainerRequest" ],
     [ "ContainerServiceHandler", "classContainerServiceHandler.html", null ],
     [ "DbusConfig", "structDbusConfig.html", "structDbusConfig" ],
-    [ "DbusConsumer", "classDbusConsumer.html", "classDbusConsumer" ],
+    [ "DBusConsumer", "classDBusConsumer.html", "classDBusConsumer" ],
     [ "DockerApiCreateContainerCommand", "classDockerApiCreateContainerCommand.html", "classDockerApiCreateContainerCommand" ],
     [ "DockerApiRuntimeAvailableCommand", "classDockerApiRuntimeAvailableCommand.html", "classDockerApiRuntimeAvailableCommand" ],
     [ "DockerApiStartContainerCommand", "classDockerApiStartContainerCommand.html", "classDockerApiStartContainerCommand" ],

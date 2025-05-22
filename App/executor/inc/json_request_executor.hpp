@@ -11,7 +11,6 @@
 /// @brief Parses and executes JSON requests, invoking business logic and database operations.
 class JsonRequestExecutorHandler : public RequestExecutor {
 public:
-
     /**
      * @brief Executes a request represented as a JSON string.
      * @param data The input data as a JSON string.

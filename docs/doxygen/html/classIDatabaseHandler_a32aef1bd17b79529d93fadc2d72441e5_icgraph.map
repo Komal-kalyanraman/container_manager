@@ -1,8 +1,6 @@
 <map id="IDatabaseHandler::RemoveKey" name="IDatabaseHandler::RemoveKey">
-<area shape="rect" id="node1" title="Removes the JSON object associated with the specified key from the database." alt="" coords="577,78,803,105"/>
-<area shape="rect" id="node2" href="$classDockerRemoveContainerCommand.html#a0c15063652bf92deb99a742a4a9f61fd" title="Executes the command to remove a Docker container and clean up database state." alt="" coords="275,5,525,47"/>
-<area shape="rect" id="node3" href="$classPodmanRemoveContainerCommand.html#a3bb0bf30e7f91e87c407980e1adcc398" title="Executes the command to remove a Podman container and clean up database state." alt="" coords="271,71,529,112"/>
-<area shape="rect" id="node4" href="$classContainerServiceHandler.html#a16f0650a9d5719fc441541a2adc5f29a" title="Handles a container request by dispatching to the appropriate operation." alt="" coords="308,136,492,177"/>
-<area shape="rect" id="node5" href="$classJsonRequestExecutorHandler.html#aaf7c1c7c14971ccfda4076e0a4681f43" title="Executes a request represented as a JSON string." alt="" coords="9,103,219,144"/>
-<area shape="rect" id="node6" href="$classProtoRequestExecutorHandler.html#a7255c2daf8946f8c73b0327cd4ad9156" title="Executes a request and returns a JSON response." alt="" coords="5,168,223,209"/>
+<area shape="rect" id="node1" title="Removes the JSON object associated with the specified key from the database." alt="" coords="503,46,728,73"/>
+<area shape="rect" id="node2" href="$classContainerServiceHandler.html#a16f0650a9d5719fc441541a2adc5f29a" title="Handles a container request by dispatching to the appropriate operation." alt="" coords="271,39,455,80"/>
+<area shape="rect" id="node3" href="$classJsonRequestExecutorHandler.html#aaf7c1c7c14971ccfda4076e0a4681f43" title="Executes a request represented as a JSON string." alt="" coords="9,5,219,47"/>
+<area shape="rect" id="node4" href="$classProtoRequestExecutorHandler.html#a7255c2daf8946f8c73b0327cd4ad9156" title="Receives a serialized protobuf string, deserializes, saves to DB, and returns result as JSON." alt="" coords="5,71,223,112"/>
 </map>

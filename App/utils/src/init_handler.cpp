@@ -14,21 +14,33 @@
 #include "inc/common.hpp"
 #include "inc/redis_database.hpp"
 
+/**
+ * @brief Initializes logging using Google glog.
+ */
 void InitLogging() {
     google::InitGoogleLogging(kContainerManagerLogName.c_str());
 }
 
+/**
+ * @brief Initializes and clears the database.
+ */
 void InitDatabase() {
     IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
     db.ClearDatabase();
 }
 
+/**
+ * @brief Clears the POSIX message queue at startup.
+ */
 void InitMessageQueue() {
     MessageQueueConfig mq_cfg;
     mq_unlink(mq_cfg.QueueName.c_str());
 }
 
 #if ENABLE_MQTT
+/**
+ * @brief Clears retained MQTT messages at startup.
+ */
 void InitMqttRetainedMessages() {
     MqttConfig mqtt_cfg;
     mosquitto_lib_init();
@@ -42,9 +54,15 @@ void InitMqttRetainedMessages() {
     mosquitto_lib_cleanup();
 }
 #else
+/**
+ * @brief Stub for clearing retained MQTT messages when MQTT is disabled.
+ */
 void InitMqttRetainedMessages() {}
 #endif
 
+/**
+ * @brief Initializes all enabled project subsystems.
+ */
 void InitProject() {
     InitLogging();
     InitDatabase();

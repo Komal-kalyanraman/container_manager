@@ -7,16 +7,21 @@
 
 #include <cstdlib>
 #include <nlohmann/json.hpp>
-
 #include "inc/common.hpp"
 #include "inc/logging.hpp"
 
+/**
+ * @brief Constructs a PodmanRuntimeAvailableCommand.
+ */
 PodmanRuntimeAvailableCommand::PodmanRuntimeAvailableCommand() {
     // Empty constructor
 }
 
+/**
+ * @brief Executes the command to check Podman runtime availability.
+ * @return True if Podman is available, false otherwise.
+ */
 bool PodmanRuntimeAvailableCommand::Execute() const {
-    // Check if Podman is available
     int status = std::system("podman info > /dev/null 2>&1");
     if (status == 0) {
         CM_LOG_INFO << "Podman is running ";
@@ -27,9 +32,18 @@ bool PodmanRuntimeAvailableCommand::Execute() const {
     }
 }
 
+/**
+ * @brief Constructs a PodmanCreateContainerCommand.
+ * @param container_name Name of the container to create.
+ * @param image_name Name of the image to use for the container.
+ */
 PodmanCreateContainerCommand::PodmanCreateContainerCommand(const std::string& container_name, const std::string& image_name)
     : container_name_(container_name), image_name_(image_name) {}
 
+/**
+ * @brief Executes the command to create a Podman container.
+ * @return True if the container was created successfully, false otherwise.
+ */
 bool PodmanCreateContainerCommand::Execute() const {
     std::string command = FormatCommand(
         CommandTemplate::Create,
@@ -45,12 +59,19 @@ bool PodmanCreateContainerCommand::Execute() const {
     }
 }
 
+/**
+ * @brief Constructs a PodmanStartContainerCommand.
+ * @param container_name Name of the container to start.
+ */
 PodmanStartContainerCommand::PodmanStartContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 
+/**
+ * @brief Executes the command to start a Podman container.
+ * @return True if the container was started successfully, false otherwise.
+ */
 bool PodmanStartContainerCommand::Execute() const {
-    // Start the Podman container
     std::string command = FormatCommand(
         CommandTemplate::Start,
         {{"runtime", "podman"}, {"name", container_name_}}
@@ -65,12 +86,19 @@ bool PodmanStartContainerCommand::Execute() const {
     }
 }
 
+/**
+ * @brief Constructs a PodmanStopContainerCommand.
+ * @param container_name Name of the container to stop.
+ */
 PodmanStopContainerCommand::PodmanStopContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 
+/**
+ * @brief Executes the command to stop a Podman container.
+ * @return True if the container was stopped successfully, false otherwise.
+ */
 bool PodmanStopContainerCommand::Execute() const {
-    // Stop the Podman container
     std::string command = FormatCommand(
         CommandTemplate::Stop,
         {{"runtime", "podman"}, {"name", container_name_}}
@@ -85,12 +113,19 @@ bool PodmanStopContainerCommand::Execute() const {
     }
 }
 
+/**
+ * @brief Constructs a PodmanRemoveContainerCommand.
+ * @param container_name Name of the container to remove.
+ */
 PodmanRemoveContainerCommand::PodmanRemoveContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 
+/**
+ * @brief Executes the command to remove a Podman container.
+ * @return True if the container was removed successfully, false otherwise.
+ */
 bool PodmanRemoveContainerCommand::Execute() const {
-    // Stop the Podman container
     std::string command = FormatCommand(
         CommandTemplate::Remove,
         {{"runtime", "podman"}, {"name", container_name_}}
@@ -105,12 +140,19 @@ bool PodmanRemoveContainerCommand::Execute() const {
     }
 }
 
+/**
+ * @brief Constructs a PodmanRestartContainerCommand.
+ * @param container_name Name of the container to restart.
+ */
 PodmanRestartContainerCommand::PodmanRestartContainerCommand(const std::string& container_name) : container_name_(container_name) {
     // Empty constructor
 }
 
+/**
+ * @brief Executes the command to restart a Podman container.
+ * @return True if the container was restarted successfully, false otherwise.
+ */
 bool PodmanRestartContainerCommand::Execute() const {
-    // Stop the Podman container
     std::string command = FormatCommand(
         CommandTemplate::Restart,
         {{"runtime", "podman"}, {"name", container_name_}}

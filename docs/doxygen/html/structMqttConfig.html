@@ -103,14 +103,19 @@ Collaboration diagram for MqttConfig:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a292527c91db9f90c20361bfb7044b4c5"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMqttConfig.html#a292527c91db9f90c20361bfb7044b4c5">BrokerAddress</a> = &quot;localhost&quot;</td></tr>
+<tr class="memdesc:a292527c91db9f90c20361bfb7044b4c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT broker address.  <a href="structMqttConfig.html#a292527c91db9f90c20361bfb7044b4c5">More...</a><br /></td></tr>
 <tr class="separator:a292527c91db9f90c20361bfb7044b4c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ddff58cccf90d75d218803189536a38"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMqttConfig.html#a4ddff58cccf90d75d218803189536a38">BrokerPort</a> = 1883</td></tr>
+<tr class="memdesc:a4ddff58cccf90d75d218803189536a38"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT broker port.  <a href="structMqttConfig.html#a4ddff58cccf90d75d218803189536a38">More...</a><br /></td></tr>
 <tr class="separator:a4ddff58cccf90d75d218803189536a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d7a9dc761d13018df7f34c65f2a66cb"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMqttConfig.html#a2d7a9dc761d13018df7f34c65f2a66cb">Topic</a> = &quot;container/execute&quot;</td></tr>
+<tr class="memdesc:a2d7a9dc761d13018df7f34c65f2a66cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT topic to subscribe to.  <a href="structMqttConfig.html#a2d7a9dc761d13018df7f34c65f2a66cb">More...</a><br /></td></tr>
 <tr class="separator:a2d7a9dc761d13018df7f34c65f2a66cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ccb02d7d7545449b57fd9bc59cb5da7"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMqttConfig.html#a9ccb02d7d7545449b57fd9bc59cb5da7">ClientId</a> = &quot;container_manager_mqtt_subscriber&quot;</td></tr>
+<tr class="memdesc:a9ccb02d7d7545449b57fd9bc59cb5da7"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT client ID.  <a href="structMqttConfig.html#a9ccb02d7d7545449b57fd9bc59cb5da7">More...</a><br /></td></tr>
 <tr class="separator:a9ccb02d7d7545449b57fd9bc59cb5da7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64b686fe1c07a4284511e22088f0cdcf"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMqttConfig.html#a64b686fe1c07a4284511e22088f0cdcf">ClearRetainedClientId</a> = &quot;cm_clear_retained&quot;</td></tr>
+<tr class="memdesc:a64b686fe1c07a4284511e22088f0cdcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">MQTT client ID for clearing retained messages.  <a href="structMqttConfig.html#a64b686fe1c07a4284511e22088f0cdcf">More...</a><br /></td></tr>
 <tr class="separator:a64b686fe1c07a4284511e22088f0cdcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -130,9 +135,11 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>MQTT broker address. </p>
+
 <p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00029">29</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00041">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00045">main()</a>.</p>
 
 </div>
 </div>
@@ -148,9 +155,11 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>MQTT broker port. </p>
+
 <p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00030">30</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00041">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00045">main()</a>.</p>
 
 </div>
 </div>
@@ -165,6 +174,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>MQTT client ID for clearing retained messages. </p>
 
 <p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00033">33</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
@@ -182,6 +193,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>MQTT client ID. </p>
+
 <p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00032">32</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
 </div>
@@ -198,9 +211,11 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>MQTT topic to subscribe to. </p>
+
 <p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00031">31</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00041">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00045">main()</a>.</p>
 
 </div>
 </div>

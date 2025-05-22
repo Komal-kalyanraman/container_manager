@@ -8,10 +8,12 @@
 #include <string>
 #include <nlohmann/json.hpp>
 
-/// @class IDatabaseHandler
-/// @brief Interface for database handlers supporting JSON storage and retrieval.
-/// @details This interface defines the contract for database operations such as saving, retrieving,
-/// updating, and removing JSON objects by key. Implementations can support different backend databases.
+/**
+ * @class IDatabaseHandler
+ * @brief Interface for database handlers supporting JSON storage and retrieval.
+ * @details This interface defines the contract for database operations such as saving, retrieving,
+ * updating, and removing JSON objects by key. Implementations can support different backend databases.
+ */
 class IDatabaseHandler {
 public:
     /**

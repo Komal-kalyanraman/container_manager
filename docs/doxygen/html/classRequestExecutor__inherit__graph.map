@@ -1,5 +1,5 @@
 <map id="RequestExecutor" name="RequestExecutor">
-<area shape="rect" id="node1" title="Abstract base class for request executors supporting different input formats." alt="" coords="155,5,323,97"/>
+<area shape="rect" id="node1" title="Abstract base class for request executors supporting different input formats (e.g...." alt="" coords="155,5,323,97"/>
 <area shape="rect" id="node2" href="$classJsonRequestExecutorHandler.html" title="Parses and executes JSON requests, invoking business logic and database operations." alt="" coords="5,160,216,237"/>
-<area shape="rect" id="node3" href="$classProtoRequestExecutorHandler.html" title=" " alt="" coords="240,145,493,252"/>
+<area shape="rect" id="node3" href="$classProtoRequestExecutorHandler.html" title="Executes requests received as serialized Protobuf data." alt="" coords="240,145,493,252"/>
 </map>

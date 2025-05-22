@@ -98,7 +98,7 @@
 <!-- Node22 -->
 <g id="node22" class="node">
 <title>Node22</title>
-<g id="a_node22"><a xlink:href="redis__database_8hpp.html" target="_top" xlink:title="Implements RedisDatabaseHandler for Redis&#45;based database operations.">
+<g id="a_node22"><a xlink:href="redis__database_8hpp.html" target="_top" xlink:title="Declares the RedisDatabaseHandler class for Redis&#45;based database operations.">
 <polygon fill="white" stroke="black" points="227,-185 227,-204 356,-204 356,-185 227,-185"/>
 <text text-anchor="middle" x="291.5" y="-192" font-family="Helvetica,sans-Serif" font-size="10.00">inc/redis_database.hpp</text>
 </a>

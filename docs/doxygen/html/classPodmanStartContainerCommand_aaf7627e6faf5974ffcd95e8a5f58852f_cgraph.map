@@ -1,6 +1,4 @@
 <map id="PodmanStartContainerCommand::Execute" name="PodmanStartContainerCommand::Execute">
-<area shape="rect" id="node1" title="Executes the command to start a Podman container." alt="" coords="5,57,241,98"/>
-<area shape="rect" id="node2" href="$common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99" title="Utility function to format command templates by replacing placeholders with actual values." alt="" coords="319,5,454,32"/>
-<area shape="rect" id="node3" href="$classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce" title="Retrieves the singleton instance of the RedisDatabaseHandler." alt="" coords="301,57,472,98"/>
-<area shape="rect" id="node4" href="$classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6" title="Updates a specific field in the JSON object stored under the given key." alt="" coords="289,122,484,163"/>
+<area shape="rect" id="node1" title="Executes the command to start a Podman container." alt="" coords="5,5,241,47"/>
+<area shape="rect" id="node2" href="$common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99" title="Utility function to format command templates by replacing placeholders with actual values." alt="" coords="289,13,424,39"/>
 </map>

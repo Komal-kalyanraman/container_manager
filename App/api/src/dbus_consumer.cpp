@@ -1,36 +1,40 @@
 /**
  * @file dbus_consumer.cpp
- * @brief Implements the DbusConsumer class for receiving and processing JSON requests over D-Bus.
+ * @brief Implements the DBusConsumer class for receiving and processing JSON/Protobuf requests over D-Bus.
  */
 
 #include "inc/dbus_consumer.hpp"
 #include <iostream>
 
-DbusConsumer::DbusConsumer(const DbusConfig& config, std::shared_ptr<RequestExecutor> executor)
-    : config_(config), executor_(std::move(executor)), running_(false) {}
+DBusConsumer::DBusConsumer(const DbusConfig& config, std::shared_ptr<RequestExecutor> executor)
+    : config_(config),
+      bus_name_(config.BusName),
+      object_path_(config.ObjectPath),
+      executor_(std::move(executor)),
+      running_(false) {}
 
-DbusConsumer::~DbusConsumer() {
+DBusConsumer::~DBusConsumer() {
     Stop();
 }
 
-void DbusConsumer::Start() {
+void DBusConsumer::Start() {
     running_ = true;
-    listenThread_ = std::thread(&DbusConsumer::ListenLoop, this);
+    listen_thread_ = std::thread(&DBusConsumer::ListenLoop, this);
 }
 
-void DbusConsumer::Stop() {
+void DBusConsumer::Stop() {
     running_ = false;
-    if (listenThread_.joinable())
-        listenThread_.join();
+    if (listen_thread_.joinable())
+        listen_thread_.join();
 }
 
-void DbusConsumer::ListenLoop() {
+void DBusConsumer::ListenLoop() {
     // Connect to the session bus and request the name
     connection_ = sdbus::createSessionBusConnection();
-    connection_->requestName(config_.BusName);
+    connection_->requestName(bus_name_);
 
     // Create an object to listen for method calls
-    object_ = sdbus::createObject(*connection_, config_.ObjectPath);
+    object_ = sdbus::createObject(*connection_, object_path_);
 
     // Register a method handler for "Execute"
     object_->registerMethod(config_.Method)

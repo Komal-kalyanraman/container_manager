@@ -1,6 +1,6 @@
 /**
  * @file redis_database.hpp
- * @brief Implements RedisDatabaseHandler for Redis-based database operations.
+ * @brief Declares the RedisDatabaseHandler class for Redis-based database operations.
  */
 
 #pragma once
@@ -9,10 +9,12 @@
 #include <string>
 #include <nlohmann/json.hpp>
 
-/// @class RedisDatabaseHandler
-/// @brief Singleton class for interacting with a Redis database backend.
-/// @details Provides methods to save, retrieve, update, remove, etc JSON objects in Redis.
-/// Implements the IDatabaseHandler interface for backend-agnostic database operations.
+/**
+ * @class RedisDatabaseHandler
+ * @brief Singleton class for interacting with a Redis database backend.
+ * @details Provides methods to save, retrieve, update, and remove JSON objects in Redis.
+ * Implements the IDatabaseHandler interface for backend-agnostic database operations.
+ */
 class RedisDatabaseHandler : public IDatabaseHandler {
 public:
     /**
@@ -27,7 +29,7 @@ public:
      * @param value The JSON object to store.
      */
     void SaveJson(const std::string& key, const nlohmann::json& value) override;
-    
+
     /**
      * @brief Retrieves a JSON object from Redis by key.
      * @param key The key of the JSON object to retrieve.
@@ -47,7 +49,7 @@ public:
      * @param value The new value for the specified field.
      */
     void UpdateField(const std::string& key, const std::string& field, const std::string& value) override;
-    
+
     /**
      * @brief Removes the JSON object associated with the specified key from Redis.
      * @param key The key of the JSON object to remove.
@@ -55,18 +57,28 @@ public:
     void RemoveKey(const std::string& key) override;
 
 private:
-    /// @brief Constructs a RedisDatabaseHandler and connects to the Redis server.
+    /**
+     * @brief Constructs a RedisDatabaseHandler and connects to the Redis server.
+     */
     RedisDatabaseHandler();
-    
-    /// @brief Destructor for RedisDatabaseHandler. Disconnects from the Redis server.
+
+    /**
+     * @brief Destructor for RedisDatabaseHandler. Disconnects from the Redis server.
+     */
     ~RedisDatabaseHandler();
 
-    /// @brief Deleted copy constructor to prevent copying.
+    /**
+     * @brief Deleted copy constructor to prevent copying.
+     */
     RedisDatabaseHandler(const RedisDatabaseHandler&) = delete;
 
-    /// @brief Deleted copy assignment operator to prevent assignment.
+    /**
+     * @brief Deleted copy assignment operator to prevent assignment.
+     */
     RedisDatabaseHandler& operator=(const RedisDatabaseHandler&) = delete;
 
-    /// @brief Redis client instance for database operations.
+    /**
+     * @brief Redis client instance for database operations.
+     */
     cpp_redis::client redis_;
 };

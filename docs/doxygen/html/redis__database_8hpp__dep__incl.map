@@ -1,10 +1,8 @@
 <map id="database/inc/redis_database.hpp" name="database/inc/redis_database.hpp">
-<area shape="rect" id="node1" title="Implements RedisDatabaseHandler for Redis&#45;based database operations." alt="" coords="561,5,703,47"/>
+<area shape="rect" id="node1" title="Declares the RedisDatabaseHandler class for Redis&#45;based database operations." alt="" coords="357,5,499,47"/>
 <area shape="rect" id="node2" href="$container__service_8cpp.html" title="Implements the ContainerServiceHandler class for business logic related to containers." alt="" coords="5,95,144,136"/>
 <area shape="rect" id="node3" href="$redis__database_8cpp.html" title="Implements RedisDatabaseHandler for Redis&#45;based database operations." alt="" coords="168,95,309,136"/>
 <area shape="rect" id="node4" href="$json__request__executor_8cpp.html" title="Implements the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="333,95,523,136"/>
 <area shape="rect" id="node5" href="$protobuf__request__executor_8cpp.html" title="Implements the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests." alt="" coords="547,95,717,136"/>
-<area shape="rect" id="node6" href="$docker__commands_8cpp.html" title="Implements Docker command classes for container operations." alt="" coords="741,95,883,136"/>
-<area shape="rect" id="node7" href="$podman__commands_8cpp.html" title="Implements Podman command classes for container operations." alt="" coords="907,95,1061,136"/>
-<area shape="rect" id="node8" href="$init__handler_8cpp.html" title="Implements project&#45;wide initialization functions." alt="" coords="1085,102,1267,129"/>
+<area shape="rect" id="node6" href="$init__handler_8cpp.html" title="Implements project&#45;wide initialization functions." alt="" coords="741,102,923,129"/>
 </map>

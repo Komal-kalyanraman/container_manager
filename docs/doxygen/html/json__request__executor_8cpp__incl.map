@@ -4,7 +4,7 @@
 <area shape="rect" id="node5" title=" " alt="" coords="454,244,601,271"/>
 <area shape="rect" id="node7" href="$database__interface_8hpp.html" title="Abstract interface for database operations." alt="" coords="5,169,204,196"/>
 <area shape="rect" id="node8" href="$container__service_8hpp.html" title="Declares the ContainerServiceHandler class for business logic related to containers." alt="" coords="556,169,744,196"/>
-<area shape="rect" id="node9" href="$redis__database_8hpp.html" title="Implements RedisDatabaseHandler for Redis&#45;based database operations." alt="" coords="308,95,480,121"/>
+<area shape="rect" id="node9" href="$redis__database_8hpp.html" title="Declares the RedisDatabaseHandler class for Redis&#45;based database operations." alt="" coords="308,95,480,121"/>
 <area shape="rect" id="node11" href="$common_8hpp.html" title="Defines common constants, string views, and utility structures for the application." alt="" coords="930,95,1061,121"/>
 <area shape="rect" id="node14" title=" " alt="" coords="1085,95,1165,121"/>
 <area shape="rect" id="node3" href="$request__executor_8hpp.html" title="Declares the abstract RequestExecutor interface for executing requests." alt="" coords="769,169,955,196"/>

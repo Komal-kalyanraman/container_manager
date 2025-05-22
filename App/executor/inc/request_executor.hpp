@@ -7,11 +7,12 @@
 
 #include <string>
 #include <nlohmann/json.hpp>
-
 #include "inc/container_request.hpp"
 
-/// @class RequestExecutor
-/// @brief Abstract base class for request executors supporting different input formats.
+/**
+ * @class RequestExecutor
+ * @brief Abstract base class for request executors supporting different input formats (e.g., JSON, Protobuf).
+ */
 class RequestExecutor {
 public:
     /**

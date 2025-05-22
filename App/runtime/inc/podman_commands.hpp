@@ -42,7 +42,7 @@ private:
 public:
     /**
      * @brief Constructs a PodmanCreateContainerCommand.
-     * @param container_name_ Name of the container to create.
+     * @param container_name Name of the container to create.
      * @param image_name Name of the image to use for the container.
      */
     PodmanCreateContainerCommand(const std::string& container_name, const std::string& image_name);
@@ -67,9 +67,9 @@ private:
 public:
     /**
      * @brief Constructs a PodmanStartContainerCommand.
-     * @param container_name_ Name of the container to start.
+     * @param container_name Name of the container to start.
      */
-    explicit PodmanStartContainerCommand(const std::string& container_name_);
+    explicit PodmanStartContainerCommand(const std::string& container_name);
 
     /**
      * @brief Destructor.
@@ -91,9 +91,9 @@ private:
 public:
     /**
      * @brief Constructs a PodmanStopContainerCommand.
-     * @param container_name_ Name of the container to stop.
+     * @param container_name Name of the container to stop.
      */
-    explicit PodmanStopContainerCommand(const std::string& container_name_);
+    explicit PodmanStopContainerCommand(const std::string& container_name);
 
     /**
      * @brief Destructor.
@@ -115,9 +115,9 @@ private:
 public:
     /**
      * @brief Constructs a PodmanRemoveContainerCommand.
-     * @param container_name_ Name of the container to remove.
+     * @param container_name Name of the container to remove.
      */
-    explicit PodmanRemoveContainerCommand(const std::string& container_name_);
+    explicit PodmanRemoveContainerCommand(const std::string& container_name);
 
     /**
      * @brief Destructor.
@@ -139,9 +139,9 @@ private:
 public:
     /**
      * @brief Constructs a PodmanRestartContainerCommand.
-     * @param container_name_ Name of the container to restart.
+     * @param container_name Name of the container to restart.
      */
-    explicit PodmanRestartContainerCommand(const std::string& container_name_);
+    explicit PodmanRestartContainerCommand(const std::string& container_name);
 
     /**
      * @brief Destructor.

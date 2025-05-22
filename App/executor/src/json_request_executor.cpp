@@ -6,7 +6,6 @@
 #include "inc/json_request_executor.hpp"
 
 #include <nlohmann/json.hpp>
-
 #include "inc/database_interface.hpp"
 #include "inc/container_service.hpp"
 #include "inc/redis_database.hpp"
@@ -15,6 +14,12 @@
 using json = nlohmann::json;
 #include <iostream>
 
+/**
+ * @brief Executes a request represented as a JSON string.
+ *        Transforms the input, saves it to the database, and dispatches to the service handler.
+ * @param data The input data as a JSON string.
+ * @return A JSON object containing the result of the execution.
+ */
 nlohmann::json JsonRequestExecutorHandler::Execute(const std::string& data) {
     json j = json::parse(data);
 
@@ -33,7 +38,7 @@ nlohmann::json JsonRequestExecutorHandler::Execute(const std::string& data) {
     std::string key = j["parameters"][0].value("container_name", "unknown_container");
     db.SaveJson(key, transformed);
 
-    // Continue with your business logic if needed
+    // Prepare the container request for business logic
     ContainerRequest req;
     req.operation = j.value("operation", "");
     req.runtime = j.value("runtime", "");
