@@ -4,8 +4,6 @@
  */
 
 #include "inc/http_server.hpp"
-
-#include <httplib.h>
 #include <nlohmann/json.hpp>
 
 /**
@@ -18,13 +16,17 @@ HttpServerHandler::HttpServerHandler(std::shared_ptr<RequestExecutor> executor, 
 
 /**
  * @brief Starts the HTTP server on the specified host and port.
- *        Handles POST requests to "/execute" by dispatching them to the thread pool.
+ *
+ * Registers a POST handler for "/execute" that immediately acknowledges the request
+ * and asynchronously dispatches it to the thread pool for processing.
+ * This method blocks until the server is stopped (e.g., by calling Stop()).
+ *
  * @param host The host address of the HTTP server.
  * @param port The port on which the server will listen for incoming requests.
  */
 void HttpServerHandler::Start(const std::string& host, int port) {
-    httplib::Server svr;
-    svr.Post("/execute", [this](const httplib::Request& req, httplib::Response& res) {
+    svr_ = std::make_unique<httplib::Server>();
+    svr_->Post("/execute", [this](const httplib::Request& req, httplib::Response& res) {
         try {
             // Send immediate acknowledgment to the client
             nlohmann::json ack = {{"status", "success"}, {"message", "Request received and will be processed."}};
@@ -48,6 +50,17 @@ void HttpServerHandler::Start(const std::string& host, int port) {
             res.set_content(resp.dump(), "application/json");
         }
     });
-    // Start listening on the specified host and port
-    svr.listen(host, port);
+    // Start listening on the specified host and port (blocking call)
+    svr_->listen(host, port);
+}
+
+/**
+ * @brief Stops the HTTP server if it is running.
+ *
+ * This method can be called from another thread to break out of the blocking Start() call.
+ */
+void HttpServerHandler::Stop() {
+    if (svr_) {
+        svr_->stop();
+    }
 }

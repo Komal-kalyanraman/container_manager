@@ -14,6 +14,10 @@
 #include <memory>
 #include <thread>
 #include <vector>
+#include <atomic>
+#include <csignal>
+#include <iostream>
+
 #include <glog/logging.h>
 
 #include "inc/common.hpp"
@@ -38,6 +42,19 @@
 #include "inc/dbus_consumer.hpp"
 #endif
 
+std::atomic<bool> shutdown_requested{false};
+
+/**
+ * @brief Signal handler for graceful shutdown.
+ *
+ * Sets the shutdown flag and prints a shutdown message.
+ * Called when SIGINT or SIGTERM is received.
+ */
+void SignalHandler(int) {
+    shutdown_requested = true;
+    std::cout << "Shutdown signal received. Stopping protocol consumers..." << std::endl;
+}
+
 /**
  * @brief Main entry point for the Container Manager application.
  * @return Exit code.
@@ -51,6 +68,10 @@ int main() {
 #else
     auto executor = std::make_shared<JsonRequestExecutorHandler>();
 #endif
+
+    // Register signal handler for graceful shutdown
+    std::signal(SIGINT, SignalHandler);
+    std::signal(SIGTERM, SignalHandler);
 
     std::vector<std::thread> protocol_threads;
 
@@ -74,28 +95,31 @@ int main() {
 #if ENABLE_MSGQUEUE
     MessageQueueConfig mq_cfg;
     auto mq_consumer = std::make_shared<MessageQueueConsumer>(mq_cfg, executor);
-    mq_consumer->Start();
+    protocol_threads.emplace_back([mq_consumer]() {
+        mq_consumer->Start();
+    });
 #endif
 
 #if ENABLE_DBUS
     DbusConfig dbus_cfg;
     auto dbus_consumer = std::make_shared<DBusConsumer>(dbus_cfg, executor);
-    dbus_consumer->Start();
+    protocol_threads.emplace_back([dbus_consumer]() {
+        dbus_consumer->Start();
+    });
 #endif
 
-    // Dummy thread to keep main alive (remove when all protocols are managed elegantly)
-    protocol_threads.emplace_back([]() {
-        while (true) {
-            std::this_thread::sleep_for(std::chrono::seconds(60));
-        }
-    });
-
-    // Wait for all protocol threads to finish
-    for (auto& t : protocol_threads) {
-        if (t.joinable()) t.join();
+    /**
+     * Main thread waits for shutdown signal.
+     * When shutdown is requested, Stop() is called on all protocol consumers.
+     */
+    while (!shutdown_requested) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(kMainShutdownPollMs));
     }
 
-    // Stop protocol consumers (if needed)
+    // Stop protocol consumers gracefully
+#if ENABLE_REST
+    server.Stop();
+#endif
 #if ENABLE_MQTT
     mqtt_consumer->Stop();
 #endif
@@ -105,6 +129,11 @@ int main() {
 #if ENABLE_DBUS
     dbus_consumer->Stop();
 #endif
+
+    // Wait for all protocol threads to finish
+    for (auto& t : protocol_threads) {
+        if (t.joinable()) t.join();
+    }
 
     google::ShutdownGoogleLogging();
     return 0;

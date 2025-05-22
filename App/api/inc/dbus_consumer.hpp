@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include <atomic>
 #include <memory>
 #include <string>
 #include <thread>
@@ -57,6 +58,6 @@ private:
     std::shared_ptr<RequestExecutor> executor_;          ///< Shared request executor.
     std::unique_ptr<sdbus::IConnection> connection_;     ///< D-Bus connection.
     std::unique_ptr<sdbus::IObject> object_;             ///< D-Bus object.
-    bool running_;                                       ///< Indicates if the consumer is running.
+    std::atomic<bool> running_{false};                   ///< Indicates if the consumer is running.
     std::thread listen_thread_;                          ///< Background thread for listening.
 };

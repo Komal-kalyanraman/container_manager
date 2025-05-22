@@ -8,7 +8,7 @@
 #include <nlohmann/json.hpp>
 
 /**
- * @brief Constructs a MosquittoMqttSubscriber and connects to the MQTT broker.
+ * @brief Constructs a MosquittoMqttSubscriber, initializes the Mosquitto library, and connects to the broker.
  * @param broker_address The MQTT broker address.
  * @param broker_port The MQTT broker port.
  * @param topic The topic to subscribe to.
@@ -36,7 +36,9 @@ MosquittoMqttSubscriber::~MosquittoMqttSubscriber() {
 }
 
 /**
- * @brief Starts the MQTT client loop.
+ * @brief Starts the MQTT client loop in a background thread.
+ *
+ * Sets the running flag to true and starts the Mosquitto network loop.
  */
 void MosquittoMqttSubscriber::Start() {
     running_ = true;
@@ -44,18 +46,23 @@ void MosquittoMqttSubscriber::Start() {
 }
 
 /**
- * @brief Stops the MQTT client loop.
+ * @brief Stops the MQTT client loop and disconnects from the broker.
+ *
+ * Sets the running flag to false, disconnects from the broker, and stops the Mosquitto network loop.
  */
 void MosquittoMqttSubscriber::Stop() {
     if (running_) {
-        loop_stop();
         running_ = false;
+        disconnect();
+        loop_stop();
     }
 }
 
 /**
  * @brief Callback for successful connection to the MQTT broker.
  * @param rc The result code of the connection attempt.
+ *
+ * Subscribes to the configured topic if the connection is successful.
  */
 void MosquittoMqttSubscriber::on_connect(int rc) {
     if (rc == 0) {
@@ -69,9 +76,11 @@ void MosquittoMqttSubscriber::on_connect(int rc) {
 /**
  * @brief Callback for receiving a message from the subscribed topic.
  * @param message The received MQTT message.
+ *
+ * Forwards the received message payload to the RequestExecutor for processing.
  */
 void MosquittoMqttSubscriber::on_message(const struct mosquitto_message* message) {
-    if (message && message->payload && message->payloadlen > 0) {
+    if (message && message->payload && message->payloadlen > 0 && running_) {
         std::string payload(static_cast<char*>(message->payload), message->payloadlen);
         std::cout << "[MQTT] Received message on topic " << message->topic << ": " << payload << std::endl;
         try {

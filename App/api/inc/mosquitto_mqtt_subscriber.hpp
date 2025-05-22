@@ -8,11 +8,16 @@
 #include <mosquittopp.h>
 #include <memory>
 #include <string>
+#include <atomic>
 #include "inc/request_executor.hpp"
 
 /**
  * @class MosquittoMqttSubscriber
  * @brief Subscribes to an MQTT topic and dispatches received messages to a RequestExecutor.
+ *
+ * This class manages the connection to an MQTT broker, subscribes to a specified topic,
+ * and forwards received messages to the provided RequestExecutor for processing.
+ * It supports starting and stopping the MQTT client loop and handles graceful shutdown.
  */
 class MosquittoMqttSubscriber : public mosqpp::mosquittopp {
 public:
@@ -29,17 +34,21 @@ public:
                             std::shared_ptr<RequestExecutor> executor);
 
     /**
-     * @brief Destructor.
+     * @brief Destructor. Stops the MQTT client loop and cleans up resources.
      */
     ~MosquittoMqttSubscriber();
 
     /**
-     * @brief Starts the MQTT client loop.
+     * @brief Starts the MQTT client loop in a background thread.
+     *
+     * Connects to the broker and begins processing incoming messages.
      */
     void Start();
 
     /**
-     * @brief Stops the MQTT client loop.
+     * @brief Stops the MQTT client loop and disconnects from the broker.
+     *
+     * Signals the client to stop processing messages and performs a clean disconnect.
      */
     void Stop();
 
@@ -59,5 +68,5 @@ protected:
 private:
     std::string topic_;                             ///< The MQTT topic to subscribe to.
     std::shared_ptr<RequestExecutor> executor_;     ///< Shared pointer to the request executor.
-    bool running_;                                  ///< Indicates if the subscriber is running.
+    std::atomic<bool> running_{false};              ///< Indicates if the subscriber is running.
 };

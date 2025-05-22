@@ -6,6 +6,7 @@
 #pragma once
 #include <memory>
 #include <string>
+#include <httplib.h>
 
 #include "inc/common.hpp"
 #include "inc/threadpool.hpp"
@@ -14,7 +15,10 @@
 /**
  * @class HttpServerHandler
  * @brief Handles incoming HTTP requests and dispatches them to the appropriate JSON/Protobuf executor.
- * @details This class manages the HTTP server lifecycle and uses a thread pool to process requests concurrently.
+ *
+ * This class manages the HTTP server lifecycle using cpp-httplib and processes requests
+ * concurrently using a thread pool. It supports starting and stopping the server for
+ * graceful shutdown.
  */
 class HttpServerHandler {
 public:
@@ -29,17 +33,20 @@ public:
      * @brief Starts the HTTP server on the specified host and port.
      * @param host The host address of the HTTP server.
      * @param port The port on which the server will listen for incoming requests.
+     *
+     * This method blocks until the server is stopped.
      */
     void Start(const std::string& host, int port);
 
-private:
     /**
-     * @brief Shared pointer to the request executor used for processing HTTP requests.
+     * @brief Stops the HTTP server if it is running.
+     *
+     * This method can be called from another thread to break out of the blocking Start() call.
      */
-    std::shared_ptr<RequestExecutor> executor_;
+    void Stop();
 
-    /**
-     * @brief Unique pointer to the thread pool for handling requests concurrently.
-     */
-    std::unique_ptr<ThreadPool> pool_;
+private:
+    std::shared_ptr<RequestExecutor> executor_;      ///< Shared pointer to the request executor.
+    std::unique_ptr<ThreadPool> pool_;               ///< Unique pointer to the thread pool for handling requests.
+    std::unique_ptr<httplib::Server> svr_;           ///< Unique pointer to the HTTP server instance.
 };

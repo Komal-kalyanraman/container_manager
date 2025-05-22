@@ -15,6 +15,9 @@ const std::string kEmptyString = "";
 /// @brief Name used for container manager in google logging.
 const std::string kContainerManagerLogName = "cm_log";
 
+/// @brief Sleep interval (in milliseconds) for main thread shutdown polling.
+constexpr int kMainShutdownPollMs = 200;
+
 /// @struct ServerConfig
 /// @brief Holds constant configuration for the HTTP server.
 struct ServerConfig {
@@ -40,6 +43,7 @@ struct MessageQueueConfig {
     const long MaxMsgSize = 8192;      ///< Maximum size of each message (bytes).
     const long MaxMsgCount = 10;       ///< Maximum number of messages in the queue.
     const long SleepTime = 10000;      ///< Sleep time in microseconds.
+    const int ReceiveTimeoutSec = 1;   ///< Timeout for mq_timedreceive in seconds.
 };
 
 /// @struct DbusConfig
