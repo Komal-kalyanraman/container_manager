@@ -18,6 +18,9 @@ const std::string kContainerManagerLogName = "cm_log";
 /// @brief Sleep interval (in milliseconds) for main thread shutdown polling.
 constexpr int kMainShutdownPollMs = 200;
 
+inline constexpr char kDockerUnixSocketPath[] = "/var/run/docker.sock";
+inline constexpr char kDockerApiBaseUrl[] = "http://localhost/v1.49/";
+
 /// @struct ServerConfig
 /// @brief Holds constant configuration for the HTTP server.
 struct ServerConfig {

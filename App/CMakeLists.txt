@@ -164,6 +164,7 @@ target_link_libraries(CM
   librt.so
   pthread
   cpp_redis
+  CURL::libcurl
 )
 
 if(ENABLE_MQTT)

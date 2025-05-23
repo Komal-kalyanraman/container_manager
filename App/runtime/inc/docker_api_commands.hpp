@@ -4,12 +4,13 @@
 #include <memory>
 #include "inc/commands.hpp"
 
+// Checks if Docker daemon is available via HTTP API
 class DockerApiRuntimeAvailableCommand : public Command {
 public:
-    explicit DockerApiRuntimeAvailableCommand();
-    ~DockerApiRuntimeAvailableCommand() = default;
-
+    DockerApiRuntimeAvailableCommand();
     bool Execute() const override;
+private:
+    std::string docker_api_url_ = "http://localhost:2375";
 };
 
 class DockerApiCreateContainerCommand : public Command {

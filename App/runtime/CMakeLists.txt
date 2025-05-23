@@ -8,4 +8,4 @@ add_library(${APP_NAME} STATIC
     src/docker_api_commands.cpp
 )
 
-target_link_libraries(cm_runtime PUBLIC glog::glog)
+target_link_libraries(cm_runtime PUBLIC glog::glog cm_utils)
