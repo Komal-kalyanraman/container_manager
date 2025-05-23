@@ -18,8 +18,13 @@ const std::string kContainerManagerLogName = "cm_log";
 /// @brief Sleep interval (in milliseconds) for main thread shutdown polling.
 constexpr int kMainShutdownPollMs = 200;
 
+/// @brief Docker Unix socket path and API base URL for HTTP API communication.
 inline constexpr char kDockerUnixSocketPath[] = "/var/run/docker.sock";
 inline constexpr char kDockerApiBaseUrl[] = "http://localhost/v1.49/";
+
+/// @brief Podman Unix socket path and API base URL for HTTP API communication.
+inline constexpr char kPodmanUnixSocketPath[] = "/run/user/1000/podman/podman.sock";
+inline constexpr char kPodmanApiBaseUrl[] = "http://d/v3.0.0/";
 
 /// @struct ServerConfig
 /// @brief Holds constant configuration for the HTTP server.

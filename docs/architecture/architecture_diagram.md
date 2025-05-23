@@ -25,6 +25,8 @@ flowchart TD
     %% Runtime Layer
     DOCKER[Docker Commands]
     PODMAN[Podman Commands]
+    DOCKERAPI[Docker API Commands]
+    PODMANAPI[Podman API Commands]
 
     %% Database Layer
     DBIF[IDatabaseHandler]
@@ -62,15 +64,21 @@ flowchart TD
     %% Command to Runtime
     COMMANDS -- Docker Ops --> DOCKER
     COMMANDS -- Podman Ops --> PODMAN
+    COMMANDS -- Docker API Ops --> DOCKERAPI
+    COMMANDS -- Podman API Ops --> PODMANAPI
 
     %% Runtime to Database
     DOCKER -- DB Access --> DBIF
     PODMAN -- DB Access --> DBIF
+    DOCKERAPI -- DB Access --> DBIF
+    PODMANAPI -- DB Access --> DBIF
     DBIF -- Redis API --> REDIS
 
     %% Runtime to Daemon
-    DOCKER -- Docker API --> DockerD
-    PODMAN -- Podman API --> PodmanD
+    DOCKER -- Docker CLI --> DockerD
+    PODMAN -- Podman CLI --> PodmanD
+    DOCKERAPI -- Docker REST API --> DockerD
+    PODMANAPI -- Podman REST API --> PodmanD
 ```
 
 ### API & Executor Layers
@@ -183,12 +191,26 @@ graph TD
     Client2[MQTT Client]
     Client3[DBus Client]
     Client4[POSIX MQ Client]
+    DockerAPI[Docker API]
+    DockerCLI[Docker CLI]
+    PodmanAPI[Podman API]
+    PodmanCLI[Podman CLI]
 
     Client1-->|HTTP|CM
     Client2-->|MQTT|MQTTB-->|MQTT|CM
     Client3-->|D-Bus|CM
     Client4-->|POSIX MQ|CM
     CM-->|Redis API|Redis
-    CM-->|Docker API|Docker
-    CM-->|Podman API|Podman
+
+    %% Docker connections
+    CM-->|Docker API|DockerAPI
+    CM-->|Docker CLI|DockerCLI
+    DockerAPI-->|Unix Socket/API|Docker
+    DockerCLI-->|CLI|Docker
+
+    %% Podman connections
+    CM-->|Podman API|PodmanAPI
+    CM-->|Podman CLI|PodmanCLI
+    PodmanAPI-->|Unix Socket/API|Podman
+    PodmanCLI-->|CLI|Podman
 ```

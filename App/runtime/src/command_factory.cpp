@@ -57,8 +57,11 @@ std::unique_ptr<Command> CommandFactory::CreateCommand(const ContainerRequest& r
             return std::make_unique<DockerApiStartContainerCommand>(req.container_name);
         } else if (req.operation == CommandName::StopContainer) {
             return std::make_unique<DockerApiStopContainerCommand>(req.container_name);
+        } else if (req.operation == CommandName::RemoveContainer) {
+            return std::make_unique<DockerApiRemoveContainerCommand>(req.container_name);
+        } else if (req.operation == CommandName::RestartContainer) {
+            return std::make_unique<DockerApiRestartContainerCommand>(req.container_name);
         }
-        // Add Remove/Restart if implemented for DockerApi
     } else if (req.runtime == RuntimeName::PodmanApi) {
         if (req.operation == CommandName::RuntimeStatus) {
             return std::make_unique<PodmanApiRuntimeAvailableCommand>();

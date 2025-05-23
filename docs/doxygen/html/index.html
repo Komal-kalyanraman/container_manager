@@ -94,6 +94,9 @@ Features</h1>
  Manage Docker and Podman containers through a single interface.</li>
 <li><b>Extensible <a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> Pattern:</b> <br  />
  Easily add support for new runtimes or operations using the command pattern.</li>
+<li><b>Docker API &amp; Podman API Support:</b> <br  />
+ Manage containers not only via CLI but also through the Docker and Podman REST APIs over Unix sockets. <br  />
+ This enables rootless, user-level, and remote container management using HTTP requests, making integration with other tools and languages seamless.</li>
 <li><b>Multi-Protocol Support:</b> <br  />
  Supports REST (HTTP/JSON or Protobuf), MQTT, POSIX Message Queue, and D-Bus (session bus) for remote management. <br  />
  <b>Pluggable protocol architecture:</b> Easily extend to support gRPC (planned), or other IPC/RPC mechanisms.</li>
@@ -128,7 +131,7 @@ Architecture Overview</h1>
 <div class="line">├── core/       # Business logic (service layer)</div>
 <div class="line">├── database/   # Database interface and Redis implementation (pluggable)</div>
 <div class="line">├── executor/   # Request executors (JSON, Protobuf, etc.)</div>
-<div class="line">├── runtime/    # Command pattern implementations for Docker, Podman, etc.</div>
+<div class="line">├── runtime/    # Command pattern implementations for Docker, Podman, Docker API, Podman API, etc.</div>
 <div class="line">├── utils/      # Common utilities (thread pool, logging, etc.)</div>
 <div class="line">├── main.cpp    # Application entry point</div>
 <div class="line">└── third_party/# External dependencies (excluded from docs/build)</div>
@@ -147,6 +150,9 @@ Architecture Overview</h1>
  The <code><a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g....">RequestExecutor</a></code> abstraction allows for different data formats (JSON, Protobuf, etc.).</li>
 <li><b>Database Layer:</b> <br  />
  The <code><a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a></code> interface allows you to swap Redis for any other backend (SQL, NoSQL, in-memory, etc.) with minimal code changes.</li>
+<li><b>Docker API &amp; Podman API Layer:</b> <br  />
+ The <code>docker-api</code> and <code>podman-api</code> runtimes enable direct management of containers via their respective REST APIs over Unix sockets. <br  />
+ This allows for rootless and remote container operations, and is ideal for environments where CLI access is restricted or HTTP-based integration is preferred.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Modularity &amp; Build System</h1>
@@ -171,6 +177,18 @@ Protocols and Data Formats</h2>
 </li>
 </ul>
 <h2><a class="anchor" id="autotoc_md5"></a>
+Supported Runtimes</h2>
+<ul>
+<li><b>docker:</b> Manage containers using the Docker CLI.</li>
+<li><b>podman:</b> Manage containers using the Podman CLI.</li>
+<li><b>docker-api:</b> Manage containers using the Docker REST API over Unix socket.</li>
+<li><b>podman-api:</b> Manage containers using the Podman REST API over Unix socket.</li>
+</ul>
+<blockquote class="doxtable">
+<p><b>Disclaimer:</b> <br  />
+ The <code>podman-api</code> runtime is not extensively tested. Use with caution and report any issues you encounter. </p>
+</blockquote>
+<h2><a class="anchor" id="autotoc_md6"></a>
 CMake Feature Flags</h2>
 <p>You can enable or disable each protocol and data format using CMake flags:</p>
 <ul>
@@ -183,16 +201,16 @@ CMake Feature Flags</h2>
 </ul>
 <p><b>All options are ON by default.</b> <br  />
  To build only what you need, set the flags before running CMake.</p>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md7"></a>
 Build Instructions</h1>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 1. Clone and Prepare</h2>
 <div class="fragment"><div class="line">git clone https://github.com/yourusername/container_manager.git</div>
 <div class="line">cd container_manager/App</div>
 <div class="line">mkdir build &amp;&amp; cd build</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md8"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md9"></a>
 2. Install Only What You Need</h2>
-<h3><a class="anchor" id="autotoc_md9"></a>
+<h3><a class="anchor" id="autotoc_md10"></a>
 If you want only JSON over D-Bus:</h3>
 <ul>
 <li>Install only:<ul>
@@ -206,7 +224,7 @@ If you want only JSON over D-Bus:</h3>
 <div class="line">make</div>
 </div><!-- fragment --></li>
 </ul>
-<h3><a class="anchor" id="autotoc_md10"></a>
+<h3><a class="anchor" id="autotoc_md11"></a>
 If you want only Protobuf over Message Queue:</h3>
 <ul>
 <li>Install only:<ul>
@@ -220,7 +238,7 @@ If you want only Protobuf over Message Queue:</h3>
 <div class="line">make</div>
 </div><!-- fragment --></li>
 </ul>
-<h3><a class="anchor" id="autotoc_md11"></a>
+<h3><a class="anchor" id="autotoc_md12"></a>
 If you want REST and MQTT with JSON only:</h3>
 <ul>
 <li>Install:<ul>
@@ -235,7 +253,7 @@ If you want REST and MQTT with JSON only:</h3>
 <div class="line">make</div>
 </div><!-- fragment --></li>
 </ul>
-<h3><a class="anchor" id="autotoc_md12"></a>
+<h3><a class="anchor" id="autotoc_md13"></a>
 If you want all protocols with JSON format (full build):</h3>
 <ul>
 <li>Install all dependencies listed in the prerequisites.</li>
@@ -243,7 +261,7 @@ If you want all protocols with JSON format (full build):</h3>
 <div class="line">make</div>
 </div><!-- fragment --></li>
 </ul>
-<h3><a class="anchor" id="autotoc_md13"></a>
+<h3><a class="anchor" id="autotoc_md14"></a>
 If you want all protocols with Protobuf only (no JSON):</h3>
 <ul>
 <li>Install all protocol dependencies plus Protobuf.</li>
@@ -251,7 +269,7 @@ If you want all protocols with Protobuf only (no JSON):</h3>
 <div class="line">make</div>
 </div><!-- fragment --></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md14"></a>
+<h2><a class="anchor" id="autotoc_md15"></a>
 3. Summary Table</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -273,11 +291,11 @@ If you want all protocols with Protobuf only (no JSON):</h3>
 <li><b>JSON</b> is always available (unless you only enable Protobuf).</li>
 <li><b>Protobuf</b> is optional and only needed if you want binary serialization.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md15"></a>
+<h2><a class="anchor" id="autotoc_md16"></a>
 4. General Build Steps</h2>
 <div class="fragment"><div class="line">cmake .. &lt;your-flags&gt;</div>
 <div class="line">make -j$(nproc)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md16"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md17"></a>
 5. Examples</h2>
 <ul>
 <li><b>Enable only D-Bus with JSON:</b> <div class="fragment"><div class="line">cmake .. -DENABLE_REST=OFF -DENABLE_MQTT=OFF -DENABLE_MSGQUEUE=OFF -DENABLE_DBUS=ON -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=OFF</div>
@@ -295,16 +313,16 @@ If you want all protocols with Protobuf only (no JSON):</h3>
 </ul>
 <p><b>This modular build system ensures you only install and build what you need for your use case.</b> <br  />
  <b>Check the CMake output for any missing dependencies based on your selected flags.</b></p>
-<h1><a class="anchor" id="autotoc_md17"></a>
+<h1><a class="anchor" id="autotoc_md18"></a>
 Running the Server</h1>
 <div class="fragment"><div class="line">./CM</div>
 </div><!-- fragment --><p>The server will start and listen on the enabled protocols and data formats as per your build configuration.</p>
-<h1><a class="anchor" id="autotoc_md18"></a>
+<h1><a class="anchor" id="autotoc_md19"></a>
 API Usage</h1>
-<h2><a class="anchor" id="autotoc_md19"></a>
+<h2><a class="anchor" id="autotoc_md20"></a>
 Example JSON Request</h2>
 <div class="fragment"><div class="line">{</div>
-<div class="line">  &quot;runtime&quot;: &quot;docker&quot;,</div>
+<div class="line">  &quot;runtime&quot;: &quot;docker-api&quot;,</div>
 <div class="line">  &quot;operation&quot;: &quot;create&quot;,</div>
 <div class="line">  &quot;parameters&quot;: [</div>
 <div class="line">    {</div>
@@ -317,7 +335,11 @@ Example JSON Request</h2>
 <div class="line">    }</div>
 <div class="line">  ]</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md20"></a>
+</div><!-- fragment --><ul>
+<li>Use <code>"runtime": "docker"</code> or <code>"podman"</code> for CLI-based management.</li>
+<li>Use <code>"runtime": "docker-api"</code> or <code>"podman-api"</code> for REST API-based management.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md21"></a>
 Example Protobuf Request</h2>
 <ul>
 <li>See <code>executor/proto/container_manager.proto</code> for the schema.</li>
@@ -328,7 +350,7 @@ Example Protobuf Request</h2>
 <div class="line">import container_manager_pb2  # Generated by protoc</div>
 <div class="line"> </div>
 <div class="line">req = container_manager_pb2.ContainerRequest()</div>
-<div class="line">req.runtime = &quot;docker&quot;</div>
+<div class="line">req.runtime = &quot;docker-api&quot;</div>
 <div class="line">req.operation = &quot;create&quot;</div>
 <div class="line">param = req.parameters.add()</div>
 <div class="line">param.container_name = &quot;my_nginx&quot;</div>
@@ -341,7 +363,7 @@ Example Protobuf Request</h2>
 <div class="line">payload = req.SerializeToString()</div>
 <div class="line">mq = posix_ipc.MessageQueue(&#39;/container_manager_queue&#39;, posix_ipc.O_CREAT)</div>
 <div class="line">mq.send(payload)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md21"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md22"></a>
 HTTP Endpoint</h2>
 <ul>
 <li><b>POST</b> <code>/execute</code><ul>
@@ -350,15 +372,15 @@ HTTP Endpoint</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md22"></a>
+<h2><a class="anchor" id="autotoc_md23"></a>
 MQTT Usage</h2>
 <ul>
 <li><b>Topic:</b> <code>container/execute</code></li>
-<li><b>Publish Example (JSON):</b> <div class="fragment"><div class="line">mosquitto_pub -h localhost -p 1883 -t container/execute -m &#39;{ &quot;runtime&quot;:&quot;docker&quot;, &quot;operation&quot;:&quot;create&quot;, &quot;parameters&quot;:[{&quot;container_name&quot;:&quot;my_nginx&quot;, &quot;cpus&quot;:&quot;0.5&quot;, &quot;memory&quot;:&quot;128&quot;, &quot;pids&quot;:&quot;10&quot;, &quot;restart_policy&quot;:&quot;unless-stopped&quot;, &quot;image_name&quot;:&quot;nginx:latest&quot;}]}&#39;</div>
+<li><b>Publish Example (JSON):</b> <div class="fragment"><div class="line">mosquitto_pub -h localhost -p 1883 -t container/execute -m &#39;{ &quot;runtime&quot;:&quot;docker-api&quot;, &quot;operation&quot;:&quot;create&quot;, &quot;parameters&quot;:[{&quot;container_name&quot;:&quot;my_nginx&quot;, &quot;cpus&quot;:&quot;0.5&quot;, &quot;memory&quot;:&quot;128&quot;, &quot;pids&quot;:&quot;10&quot;, &quot;restart_policy&quot;:&quot;unless-stopped&quot;, &quot;image_name&quot;:&quot;nginx:latest&quot;}]}&#39;</div>
 </div><!-- fragment --></li>
 <li><b>Publish Example (Protobuf):</b> Use the generated Protobuf class to serialize and send the message as binary.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md23"></a>
+<h2><a class="anchor" id="autotoc_md24"></a>
 POSIX Message Queue Usage</h2>
 <ul>
 <li><b>Queue Name:</b> <code>/container_manager_queue</code></li>
@@ -368,7 +390,7 @@ POSIX Message Queue Usage</h2>
 </div><!-- fragment --></li>
 <li><b>Send Example (Python, Protobuf):</b> See the Protobuf example above.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md24"></a>
+<h2><a class="anchor" id="autotoc_md25"></a>
 D-Bus (Session Bus) Usage</h2>
 <ul>
 <li><b>Bus Name:</b> <code>org.container.manager</code></li>
@@ -381,7 +403,7 @@ D-Bus (Session Bus) Usage</h2>
 <div class="line">bus = dbus.SessionBus()</div>
 <div class="line">proxy = bus.get_object(&#39;org.container.manager&#39;, &#39;/org/container/manager&#39;)</div>
 <div class="line">iface = dbus.Interface(proxy, dbus_interface=&#39;org.container.manager&#39;)</div>
-<div class="line">iface.Execute(&#39;{&quot;runtime&quot;: &quot;docker&quot;, &quot;operation&quot;: &quot;create&quot;, &quot;parameters&quot;: [{&quot;container_name&quot;: &quot;my_nginx&quot;, &quot;cpus&quot;: &quot;0.5&quot;, &quot;memory&quot;: &quot;128&quot;, &quot;pids&quot;: &quot;10&quot;, &quot;restart_policy&quot;: &quot;unless-stopped&quot;, &quot;image_name&quot;: &quot;nginx:latest&quot;}]}&#39;)</div>
+<div class="line">iface.Execute(&#39;{&quot;runtime&quot;: &quot;docker-api&quot;, &quot;operation&quot;: &quot;create&quot;, &quot;parameters&quot;: [{&quot;container_name&quot;: &quot;my_nginx&quot;, &quot;cpus&quot;: &quot;0.5&quot;, &quot;memory&quot;: &quot;128&quot;, &quot;pids&quot;: &quot;10&quot;, &quot;restart_policy&quot;: &quot;unless-stopped&quot;, &quot;image_name&quot;: &quot;nginx:latest&quot;}]}&#39;)</div>
 </div><!-- fragment --><p><b>Python Example (Protobuf):</b></p>
 <div class="fragment"><div class="line">iface.Execute(req.SerializeToString())</div>
 </div><!-- fragment --><p><b>Note:</b></p>
@@ -389,7 +411,7 @@ D-Bus (Session Bus) Usage</h2>
 <li>The D-Bus consumer uses the <b>session bus</b> for user applications.</li>
 <li>No root privileges or system-wide D-Bus policy is required.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md25"></a>
+<h1><a class="anchor" id="autotoc_md26"></a>
 Code Structure</h1>
 <ul>
 <li><b><a class="el" href="main_8cpp.html" title="Entry point for the Container Manager application.">main.cpp</a>:</b> <br  />
@@ -414,25 +436,26 @@ Code Structure</h1>
  Handles JSON requests.</li>
 <li><b>executor/inc/proto_request_executor.hpp:</b> <br  />
  Handles Protobuf requests.</li>
-<li><b><a class="el" href="docker__commands_8hpp.html" title="Declares Docker command classes for container operations.">runtime/inc/docker_commands.hpp</a>, <a class="el" href="podman__commands_8hpp.html" title="Declares Podman command classes for container operations.">podman_commands.hpp</a>:</b> <br  />
- <a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> classes for Docker and Podman operations.</li>
+<li><b><a class="el" href="docker__commands_8hpp.html" title="Declares Docker command classes for container operations.">runtime/inc/docker_commands.hpp</a>, <a class="el" href="podman__commands_8hpp.html" title="Declares Podman command classes for container operations.">podman_commands.hpp</a>, <a class="el" href="docker__api__commands_8hpp.html" title="Declares command classes for managing containers via the Docker HTTP API over a Unix socket.">docker_api_commands.hpp</a>, <a class="el" href="podman__api__commands_8hpp.html" title="Declares command classes for managing containers via the Podman HTTP API over a Unix socket.">podman_api_commands.hpp</a>:</b> <br  />
+ <a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> classes for Docker, Podman, Docker API, and Podman API operations.</li>
 <li><b><a class="el" href="threadpool_8hpp.html" title="Declares the ThreadPool utility class for managing worker threads.">utils/inc/threadpool.hpp</a>:</b> <br  />
  Thread pool utility for concurrent request handling.</li>
 <li><b><a class="el" href="logging_8hpp.html" title="Logging macros and configuration for the Container Manager.">utils/inc/logging.hpp</a>:</b> <br  />
  Logging macros and configuration.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md26"></a>
+<h1><a class="anchor" id="autotoc_md27"></a>
 Python UI: Container Creator</h1>
 <p>A cross-platform Python GUI tool is provided for easily sending container management requests to the Container Manager backend.</p>
-<h2><a class="anchor" id="autotoc_md27"></a>
+<h2><a class="anchor" id="autotoc_md28"></a>
 Features</h2>
 <ul>
 <li>Select protocol: REST (HTTP), MQTT, POSIX Message Queue, or D-Bus (session bus)</li>
 <li>Select data format: JSON or Protobuf</li>
+<li>Select runtime: Docker, Podman, Docker API, or Podman API</li>
 <li>Fill in container parameters (runtime, operation, resources, image, etc.)</li>
 <li>Send requests directly to the backend via REST, MQTT, Message Queue, or D-Bus</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md28"></a>
+<h2><a class="anchor" id="autotoc_md29"></a>
 Requirements</h2>
 <ul>
 <li>Python 3.7+</li>
@@ -445,13 +468,14 @@ Requirements</h2>
 </ul>
 <p>Install dependencies:</p>
 <div class="fragment"><div class="line">pip install requests paho-mqtt posix_ipc dbus-python protobuf</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md29"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md30"></a>
 Usage</h2>
 <div class="fragment"><div class="line">cd ui</div>
 <div class="line">python container_creator_app.py</div>
 </div><!-- fragment --><ol type="1">
 <li>Select the protocol (REST, MQTT, MessageQueue, or DBus).</li>
 <li>Select the data format (JSON or Proto).</li>
+<li>Select the runtime (docker, podman, docker-api, podman-api).</li>
 <li>Fill in the container parameters.</li>
 <li>Click <b>Send</b> to send the request to the backend.<ul>
 <li>For REST, the backend must be running and listening on the specified port.</li>
@@ -463,7 +487,7 @@ Usage</h2>
 </ol>
 <p>The UI will show a confirmation or error message after sending the request.</p>
 <p><b>This tool is ideal for testing, demos, and rapid prototyping with the Container Manager backend.</b></p>
-<h1><a class="anchor" id="autotoc_md30"></a>
+<h1><a class="anchor" id="autotoc_md31"></a>
 Documentation</h1>
 <ul>
 <li><b>Doxygen HTML Docs:</b> <br  />
@@ -471,7 +495,7 @@ Documentation</h1>
 <li><b>Generating Docs:</b> <div class="fragment"><div class="line">doxygen Doxyfile</div>
 </div><!-- fragment --></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md31"></a>
+<h1><a class="anchor" id="autotoc_md32"></a>
 Extending the Project</h1>
 <ul>
 <li><b>Add a new runtime:</b> <br  />
@@ -488,13 +512,13 @@ Extending the Project</h1>
 <li><b>Change database backend:</b> <br  />
  Implement the <code><a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a></code> interface for your preferred database (SQL, NoSQL, etc.) and update the service to use it.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md32"></a>
+<h1><a class="anchor" id="autotoc_md33"></a>
 Contributing</h1>
 <p>Contributions are welcome! Please open issues or pull requests for bug fixes, new features, or documentation improvements.</p>
-<h1><a class="anchor" id="autotoc_md33"></a>
+<h1><a class="anchor" id="autotoc_md34"></a>
 License</h1>
 <p>This project is licensed under the [MIT License](LICENSE).</p>
-<h1><a class="anchor" id="autotoc_md34"></a>
+<h1><a class="anchor" id="autotoc_md35"></a>
 Acknowledgements</h1>
 <ul>
 <li><a href="https://github.com/google/glog">glog</a></li>

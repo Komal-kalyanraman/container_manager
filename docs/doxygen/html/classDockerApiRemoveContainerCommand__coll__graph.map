@@ -1,0 +1,4 @@
+<map id="DockerApiRemoveContainerCommand" name="DockerApiRemoveContainerCommand">
+<area shape="rect" id="node1" title="Command to remove a Docker container by name, using force removal." alt="" coords="5,145,236,296"/>
+<area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for all commands." alt="" coords="58,5,183,97"/>
+</map>

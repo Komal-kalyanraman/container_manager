@@ -173,7 +173,7 @@ var sectionId = 'dynsection-0';
 <!-- Node15 -->
 <g id="node15" class="node">
 <title>Node15</title>
-<g id="a_node15"><a xlink:href="podman__api__commands_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_node15"><a xlink:href="podman__api__commands_8hpp.html" target="_top" xlink:title="Declares command classes for managing containers via the Podman HTTP API over a Unix socket.">
 <polygon fill="white" stroke="black" points="0,-112.5 0,-131.5 174,-131.5 174,-112.5 0,-112.5"/>
 <text text-anchor="middle" x="87" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">inc/podman_api_commands.hpp</text>
 </a>
@@ -188,7 +188,7 @@ var sectionId = 'dynsection-0';
 <!-- Node16 -->
 <g id="node16" class="node">
 <title>Node16</title>
-<g id="a_node16"><a xlink:href="docker__api__commands_8hpp.html" target="_top" xlink:title=" ">
+<g id="a_node16"><a xlink:href="docker__api__commands_8hpp.html" target="_top" xlink:title="Declares command classes for managing containers via the Docker HTTP API over a Unix socket.">
 <polygon fill="white" stroke="black" points="356.5,-112.5 356.5,-131.5 523.5,-131.5 523.5,-112.5 356.5,-112.5"/>
 <text text-anchor="middle" x="440" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">inc/docker_api_commands.hpp</text>
 </a>

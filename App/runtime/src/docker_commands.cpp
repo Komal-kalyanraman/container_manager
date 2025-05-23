@@ -13,9 +13,7 @@
 /**
  * @brief Constructs a DockerRuntimeAvailableCommand.
  */
-DockerRuntimeAvailableCommand::DockerRuntimeAvailableCommand() {
-    // Empty constructor
-}
+DockerRuntimeAvailableCommand::DockerRuntimeAvailableCommand() {}
 
 /**
  * @brief Executes the command to check Docker runtime availability.
@@ -63,9 +61,7 @@ bool DockerCreateContainerCommand::Execute() const {
  * @brief Constructs a DockerStartContainerCommand.
  * @param container_name Name of the container to start.
  */
-DockerStartContainerCommand::DockerStartContainerCommand(const std::string& container_name) : container_name_(container_name) {
-    // Empty constructor
-}
+DockerStartContainerCommand::DockerStartContainerCommand(const std::string& container_name) : container_name_(container_name) {}
 
 /**
  * @brief Executes the command to start a Docker container.
@@ -90,9 +86,7 @@ bool DockerStartContainerCommand::Execute() const {
  * @brief Constructs a DockerStopContainerCommand.
  * @param container_name Name of the container to stop.
  */
-DockerStopContainerCommand::DockerStopContainerCommand(const std::string& container_name) : container_name_(container_name) {
-    // Empty constructor
-}
+DockerStopContainerCommand::DockerStopContainerCommand(const std::string& container_name) : container_name_(container_name) {}
 
 /**
  * @brief Executes the command to stop a Docker container.
@@ -117,9 +111,7 @@ bool DockerStopContainerCommand::Execute() const {
  * @brief Constructs a DockerRemoveContainerCommand.
  * @param container_name Name of the container to remove.
  */
-DockerRemoveContainerCommand::DockerRemoveContainerCommand(const std::string& container_name) : container_name_(container_name) {
-    // Empty constructor
-}
+DockerRemoveContainerCommand::DockerRemoveContainerCommand(const std::string& container_name) : container_name_(container_name) {}
 
 /**
  * @brief Executes the command to remove a Docker container.
@@ -144,9 +136,7 @@ bool DockerRemoveContainerCommand::Execute() const {
  * @brief Constructs a DockerRestartContainerCommand.
  * @param container_name Name of the container to restart.
  */
-DockerRestartContainerCommand::DockerRestartContainerCommand(const std::string& container_name) : container_name_(container_name) {
-    // Empty constructor
-}
+DockerRestartContainerCommand::DockerRestartContainerCommand(const std::string& container_name) : container_name_(container_name) {}
 
 /**
  * @brief Executes the command to restart a Docker container.

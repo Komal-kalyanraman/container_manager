@@ -158,10 +158,8 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="docker__commands_8cpp_source.html#l00147">147</a> of file <a class="el" href="docker__commands_8cpp_source.html">docker_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                                                                                            : container_name_(container_name) {</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="comment">// Empty constructor</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="docker__commands_8cpp_source.html#l00139">139</a> of file <a class="el" href="docker__commands_8cpp_source.html">docker_commands.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;: container_name_(container_name) {}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -221,23 +219,23 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">Command</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="docker__commands_8cpp_source.html#l00155">155</a> of file <a class="el" href="docker__commands_8cpp_source.html">docker_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                                                  {</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    std::string command = <a class="code" href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a>(</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <a class="code" href="namespaceCommandTemplate.html#af11de9f3bc8eaf1f345141ea51514578">CommandTemplate::Restart</a>,</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        {{<span class="stringliteral">&quot;runtime&quot;</span>, <span class="stringliteral">&quot;docker&quot;</span>}, {<span class="stringliteral">&quot;name&quot;</span>, container_name_}}</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    );</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="keywordtype">int</span> status = std::system(command.c_str());</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordflow">if</span> (status == 0) {</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <a class="code" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a> &lt;&lt; <span class="stringliteral">&quot;Docker container restarted successfully&quot;</span>;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <a class="code" href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a> &lt;&lt; <span class="stringliteral">&quot;Failed to restart Docker container&quot;</span>;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    }</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="docker__commands_8cpp_source.html#l00145">145</a> of file <a class="el" href="docker__commands_8cpp_source.html">docker_commands.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                                                  {</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    std::string command = <a class="code" href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a>(</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <a class="code" href="namespaceCommandTemplate.html#af11de9f3bc8eaf1f345141ea51514578">CommandTemplate::Restart</a>,</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        {{<span class="stringliteral">&quot;runtime&quot;</span>, <span class="stringliteral">&quot;docker&quot;</span>}, {<span class="stringliteral">&quot;name&quot;</span>, container_name_}}</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    );</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordtype">int</span> status = std::system(command.c_str());</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keywordflow">if</span> (status == 0) {</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <a class="code" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a> &lt;&lt; <span class="stringliteral">&quot;Docker container restarted successfully&quot;</span>;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <a class="code" href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a> &lt;&lt; <span class="stringliteral">&quot;Failed to restart Docker container&quot;</span>;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    }</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="logging_8hpp_source.html#l00026">CM_LOG_ERROR</a>, <a class="el" href="logging_8hpp_source.html#l00020">CM_LOG_INFO</a>, <a class="el" href="common_8hpp_source.html#l00093">FormatCommand()</a>, and <a class="el" href="common_8hpp_source.html#l00086">CommandTemplate::Restart</a>.</p>
+<p class="reference">References <a class="el" href="logging_8hpp_source.html#l00026">CM_LOG_ERROR</a>, <a class="el" href="logging_8hpp_source.html#l00020">CM_LOG_INFO</a>, <a class="el" href="common_8hpp_source.html#l00101">FormatCommand()</a>, and <a class="el" href="common_8hpp_source.html#l00094">CommandTemplate::Restart</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -253,9 +251,9 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="alogging_8hpp_html_a3251db9e68b527ad826d18502cbcbe7a"><div class="ttname"><a href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a></div><div class="ttdeci">#define CM_LOG_ERROR</div><div class="ttdoc">Macro for logging error messages using glog.</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00026">logging.hpp:26</a></div></div>
-<div class="ttc" id="anamespaceCommandTemplate_html_af11de9f3bc8eaf1f345141ea51514578"><div class="ttname"><a href="namespaceCommandTemplate.html#af11de9f3bc8eaf1f345141ea51514578">CommandTemplate::Restart</a></div><div class="ttdeci">constexpr std::string_view Restart</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00086">common.hpp:86</a></div></div>
+<div class="ttc" id="anamespaceCommandTemplate_html_af11de9f3bc8eaf1f345141ea51514578"><div class="ttname"><a href="namespaceCommandTemplate.html#af11de9f3bc8eaf1f345141ea51514578">CommandTemplate::Restart</a></div><div class="ttdeci">constexpr std::string_view Restart</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00094">common.hpp:94</a></div></div>
 <div class="ttc" id="alogging_8hpp_html_a13620e8436f16badd4e01d4fd57467e2"><div class="ttname"><a href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a></div><div class="ttdeci">#define CM_LOG_INFO</div><div class="ttdoc">Macro for logging informational messages using glog.</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00020">logging.hpp:20</a></div></div>
-<div class="ttc" id="acommon_8hpp_html_a2f80aeff93aed5c1cc3d4c356d458b99"><div class="ttname"><a href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a></div><div class="ttdeci">std::string FormatCommand(std::string_view tmpl, const std::unordered_map&lt; std::string, std::string &gt; &amp;values)</div><div class="ttdoc">Utility function to format command templates by replacing placeholders with actual values.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00093">common.hpp:93</a></div></div>
+<div class="ttc" id="acommon_8hpp_html_a2f80aeff93aed5c1cc3d4c356d458b99"><div class="ttname"><a href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a></div><div class="ttdeci">std::string FormatCommand(std::string_view tmpl, const std::unordered_map&lt; std::string, std::string &gt; &amp;values)</div><div class="ttdoc">Utility function to format command templates by replacing placeholders with actual values.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00101">common.hpp:101</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

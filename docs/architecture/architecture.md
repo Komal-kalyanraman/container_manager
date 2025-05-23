@@ -17,7 +17,7 @@ App/
 ├── core/       # Business logic (service layer, command pattern)
 ├── database/   # Database interface and Redis implementation
 ├── executor/   # Request executors (JSON, Protobuf)
-├── runtime/    # Command implementations for Docker, Podman, etc.
+├── runtime/    # Command implementations for Docker, Podman, Docker API, Podman API, etc.
 ├── utils/      # Utilities (thread pool, logging, config)
 ├── main.cpp    # Application entry point
 └── third_party/# External dependencies
@@ -25,7 +25,7 @@ App/
 
 ## Component Descriptions
 
-### 1. **API Layer (Protocol Handlers)**
+### 1. API Layer (Protocol Handlers)
 
 - **REST API Server:**  
   Handles HTTP requests, parses JSON/Protobuf payloads, and forwards them to the executor layer.
@@ -44,7 +44,7 @@ App/
 
 **All protocol handlers are modular and can be enabled/disabled at build time via CMake flags.**
 
-### 2. **Executor Layer (Request Executors)**
+### 2. Executor Layer (Request Executors)
 
 - **JSON Request Executor:**  
   Validates and parses incoming JSON requests, converting them to internal command objects.
@@ -54,26 +54,35 @@ App/
 
 **The executor layer abstracts data format handling, allowing protocol handlers to remain agnostic of the underlying serialization.**
 
-### 3. **Core Layer (Service & Command Pattern)**
+### 3. Core Layer (Service & Command Pattern)
 
 - **Container Service Handler:**  
   Central business logic. Receives validated requests from executors, performs runtime checks, and dispatches commands.
 
 - **Command Pattern:**  
   Each container operation (create, start, stop, etc.) is encapsulated as a command object.  
-  Supports multiple runtimes (Docker, Podman, etc.) and is easily extensible.
+  Supports multiple runtimes (Docker, Podman, Docker API, Podman API, etc.) and is easily extensible.
 
-### 4. **Runtime Layer**
+### 4. Runtime Layer
 
 - **Docker Commands:**  
-  Implements container operations for Docker.
+  Implements container operations for Docker using the Docker CLI.
 
 - **Podman Commands:**  
-  Implements container operations for Podman.
+  Implements container operations for Podman using the Podman CLI.
 
-**The runtime layer can be extended to support additional container engines.**
+- **Docker API Commands:**  
+  Implements container operations using the Docker REST API over a Unix socket.
 
-### 5. **Database Layer**
+- **Podman API Commands:**  
+  Implements container operations using the Podman REST API over a Unix socket.
+
+> **Disclaimer:**  
+> The `podman-api` runtime is not extensively tested. Use with caution and report any issues you encounter.
+
+**The runtime layer can be extended to support additional container engines and APIs.**
+
+### 5. Database Layer
 
 - **IDatabaseHandler:**  
   Abstract interface for database operations (CRUD, state, metadata).
@@ -83,7 +92,7 @@ App/
 
 **The database layer is pluggable—swap Redis for any other backend by implementing the interface.**
 
-### 6. **Utilities**
+### 6. Utilities
 
 - **Thread Pool:**  
   Efficiently handles concurrent requests.
@@ -109,7 +118,7 @@ App/
    The service handler checks runtime constraints, permissions, and dispatches the command.
 
 5. **Command Execution:**  
-   The command object performs the requested operation (e.g., create/start/stop container) using the appropriate runtime (Docker, Podman).
+   The command object performs the requested operation (e.g., create/start/stop container) using the appropriate runtime (Docker, Podman, Docker API, Podman API).
 
 6. **Database Interaction:**  
    State and metadata are persisted/retrieved via the database interface.
@@ -154,7 +163,7 @@ App/
 
 ## Deployment Diagram
 
-<img src="architecture_deployment_diagram.png" alt="Deployment Diagram" width="500"/>
+<img src="architecture_deployment_diagram.png" alt="Deployment Diagram" width="700"/>
 
 ## Recommendations for Contributors
 

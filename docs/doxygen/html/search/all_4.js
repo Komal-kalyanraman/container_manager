@@ -43,7 +43,10 @@ var searchData=
   ['create_55',['Create',['../namespaceCommandTemplate.html#a641acb6b2c850ccb8dbce6f3a08315df',1,'CommandTemplate']]],
   ['createcommand_56',['CreateCommand',['../classCommandFactory.html#adf4da2f0dbcf9e4018f9afe8bd4a38e9',1,'CommandFactory']]],
   ['createcontainer_57',['CreateContainer',['../structCommandName.html#ae97e1673d64de2834efe3e04569e94f4',1,'CommandName']]],
-  ['cxx_5fstd_58',['CXX_STD',['../CMakeCXXCompilerId_8cpp.html#a34cc889e576a1ae6c84ae9e0a851ba21',1,'CMakeCXXCompilerId.cpp']]],
-  ['container_20manager_59',['Container Manager',['../index.html',1,'']]],
-  ['container_20manager_20architecture_60',['Container Manager Architecture',['../md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html',1,'']]]
+  ['curl_5fhandler_2ecpp_58',['curl_handler.cpp',['../curl__handler_8cpp.html',1,'']]],
+  ['curl_5fhandler_2ehpp_59',['curl_handler.hpp',['../curl__handler_8hpp.html',1,'']]],
+  ['curlhandler_60',['CurlHandler',['../classCurlHandler.html',1,'CurlHandler'],['../classCurlHandler.html#a30f42d4c1c38d6f9b4a52da1c0894b0b',1,'CurlHandler::CurlHandler()']]],
+  ['cxx_5fstd_61',['CXX_STD',['../CMakeCXXCompilerId_8cpp.html#a34cc889e576a1ae6c84ae9e0a851ba21',1,'CMakeCXXCompilerId.cpp']]],
+  ['container_20manager_62',['Container Manager',['../index.html',1,'']]],
+  ['container_20manager_20architecture_63',['Container Manager Architecture',['../md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html',1,'']]]
 ];

@@ -7,8 +7,8 @@
 <area shape="rect" id="node11" href="$logging_8hpp.html" title="Logging macros and configuration for the Container Manager." alt="" coords="1377,95,1498,121"/>
 <area shape="rect" id="node13" href="$podman__commands_8hpp.html" title="Declares Podman command classes for container operations." alt="" coords="728,95,933,121"/>
 <area shape="rect" id="node14" href="$docker__commands_8hpp.html" title="Declares Docker command classes for container operations." alt="" coords="261,95,456,121"/>
-<area shape="rect" id="node15" href="$podman__api__commands_8hpp.html" title=" " alt="" coords="5,95,237,121"/>
-<area shape="rect" id="node16" href="$docker__api__commands_8hpp.html" title=" " alt="" coords="481,95,703,121"/>
+<area shape="rect" id="node15" href="$podman__api__commands_8hpp.html" title="Declares command classes for managing containers via the Podman HTTP API over a Unix socket." alt="" coords="5,95,237,121"/>
+<area shape="rect" id="node16" href="$docker__api__commands_8hpp.html" title="Declares command classes for managing containers via the Docker HTTP API over a Unix socket." alt="" coords="481,95,703,121"/>
 <area shape="rect" id="node3" title=" " alt="" coords="512,244,589,271"/>
 <area shape="rect" id="node4" title=" " alt="" coords="763,244,821,271"/>
 <area shape="rect" id="node5" href="$commands_8hpp.html" title=" " alt="" coords="533,169,678,196"/>

@@ -1,5 +1,5 @@
 <map id="runtime/inc/docker_api_commands.hpp" name="runtime/inc/docker_api_commands.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="16,5,172,47"/>
+<area shape="rect" id="node1" title="Declares command classes for managing containers via the Docker HTTP API over a Unix socket." alt="" coords="16,5,172,47"/>
 <area shape="rect" id="node2" title=" " alt="" coords="14,169,73,196"/>
 <area shape="rect" id="node3" title=" " alt="" coords="106,169,184,196"/>
 <area shape="rect" id="node4" href="$commands_8hpp.html" title=" " alt="" coords="22,95,167,121"/>

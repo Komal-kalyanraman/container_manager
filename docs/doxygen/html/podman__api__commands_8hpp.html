@@ -88,6 +88,9 @@ $(document).ready(function(){initNavTree('podman__api__commands_8hpp.html',''); 
 <div class="title">podman_api_commands.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Declares command classes for managing containers via the Podman HTTP API over a Unix socket.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;string&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &quot;<a class="el" href="commands_8hpp_source.html">inc/commands.hpp</a>&quot;</code><br />
@@ -107,15 +110,28 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPodmanApiRuntimeAvailableCommand.html">PodmanApiRuntimeAvailableCommand</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to check if the Podman daemon is available via the /_ping endpoint.  <a href="classPodmanApiRuntimeAvailableCommand.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPodmanApiCreateContainerCommand.html">PodmanApiCreateContainerCommand</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to create a new Podman container using the specified image and name.  <a href="classPodmanApiCreateContainerCommand.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPodmanApiStartContainerCommand.html">PodmanApiStartContainerCommand</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to start a Podman container by name.  <a href="classPodmanApiStartContainerCommand.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPodmanApiStopContainerCommand.html">PodmanApiStopContainerCommand</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to stop a Podman container by name.  <a href="classPodmanApiStopContainerCommand.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Declares command classes for managing containers via the Podman HTTP API over a Unix socket. </p>
+<p>Each command class encapsulates a specific Podman API operation (e.g., check runtime, create, start, stop container). These classes use <a class="el" href="classCurlHandler.html" title="CurlHandler provides simple HTTP methods over Unix domain sockets using libcurl.">CurlHandler</a> to send HTTP requests to the Podman REST API.</p>
+<p>Usage:</p><ul>
+<li>Instantiate the desired command class with required parameters.</li>
+<li>Call Execute() to perform the operation via the Podman API. </li>
+</ul>
+
+<p class="definition">Definition in file <a class="el" href="podman__api__commands_8hpp_source.html">podman_api_commands.hpp</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

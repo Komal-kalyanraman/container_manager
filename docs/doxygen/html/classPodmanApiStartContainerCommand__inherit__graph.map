@@ -1,4 +1,4 @@
 <map id="PodmanApiStartContainerCommand" name="PodmanApiStartContainerCommand">
-<area shape="rect" id="node1" title=" " alt="" coords="5,145,288,267"/>
+<area shape="rect" id="node1" title="Command to start a Podman container by name." alt="" coords="5,145,288,267"/>
 <area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for all commands." alt="" coords="84,5,209,97"/>
 </map>

@@ -1,4 +1,4 @@
 <map id="PodmanApiRuntimeAvailableCommand" name="PodmanApiRuntimeAvailableCommand">
-<area shape="rect" id="node1" title=" " alt="" coords="5,145,243,296"/>
+<area shape="rect" id="node1" title="Command to check if the Podman daemon is available via the /_ping endpoint." alt="" coords="5,145,243,296"/>
 <area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for all commands." alt="" coords="61,5,187,97"/>
 </map>

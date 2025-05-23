@@ -11,7 +11,9 @@ var dir_c2d23aafdf04533449ab55d5abc8d9ae =
       [ "DockerApiRuntimeAvailableCommand", "classDockerApiRuntimeAvailableCommand.html", "classDockerApiRuntimeAvailableCommand" ],
       [ "DockerApiCreateContainerCommand", "classDockerApiCreateContainerCommand.html", "classDockerApiCreateContainerCommand" ],
       [ "DockerApiStartContainerCommand", "classDockerApiStartContainerCommand.html", "classDockerApiStartContainerCommand" ],
-      [ "DockerApiStopContainerCommand", "classDockerApiStopContainerCommand.html", "classDockerApiStopContainerCommand" ]
+      [ "DockerApiStopContainerCommand", "classDockerApiStopContainerCommand.html", "classDockerApiStopContainerCommand" ],
+      [ "DockerApiRestartContainerCommand", "classDockerApiRestartContainerCommand.html", "classDockerApiRestartContainerCommand" ],
+      [ "DockerApiRemoveContainerCommand", "classDockerApiRemoveContainerCommand.html", "classDockerApiRemoveContainerCommand" ]
     ] ],
     [ "docker_commands.hpp", "docker__commands_8hpp.html", [
       [ "DockerRuntimeAvailableCommand", "classDockerRuntimeAvailableCommand.html", "classDockerRuntimeAvailableCommand" ],

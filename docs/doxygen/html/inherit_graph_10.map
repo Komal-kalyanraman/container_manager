@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classInvoker.html" title="Invoker class to invoke the command." alt="" coords="5,5,76,32"/>
+<area shape="rect" id="node1" href="$classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval." alt="" coords="5,5,144,32"/>
+<area shape="rect" id="node2" href="$classRedisDatabaseHandler.html" title="Singleton class for interacting with a Redis database backend." alt="" coords="192,5,363,32"/>
 </map>

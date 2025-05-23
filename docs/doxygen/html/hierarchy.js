@@ -2,6 +2,8 @@ var hierarchy =
 [
     [ "Command", "classCommand.html", [
       [ "DockerApiCreateContainerCommand", "classDockerApiCreateContainerCommand.html", null ],
+      [ "DockerApiRemoveContainerCommand", "classDockerApiRemoveContainerCommand.html", null ],
+      [ "DockerApiRestartContainerCommand", "classDockerApiRestartContainerCommand.html", null ],
       [ "DockerApiRuntimeAvailableCommand", "classDockerApiRuntimeAvailableCommand.html", null ],
       [ "DockerApiStartContainerCommand", "classDockerApiStartContainerCommand.html", null ],
       [ "DockerApiStopContainerCommand", "classDockerApiStopContainerCommand.html", null ],
@@ -26,6 +28,7 @@ var hierarchy =
     [ "CommandName", "structCommandName.html", null ],
     [ "ContainerRequest", "structContainerRequest.html", null ],
     [ "ContainerServiceHandler", "classContainerServiceHandler.html", null ],
+    [ "CurlHandler", "classCurlHandler.html", null ],
     [ "DbusConfig", "structDbusConfig.html", null ],
     [ "DBusConsumer", "classDBusConsumer.html", null ],
     [ "HttpServerHandler", "classHttpServerHandler.html", null ],
