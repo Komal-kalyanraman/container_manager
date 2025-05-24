@@ -131,7 +131,7 @@ Architecture Overview</h1>
 <div class="line">├── core/       # Business logic (service layer)</div>
 <div class="line">├── database/   # Database interface and Redis implementation (pluggable)</div>
 <div class="line">├── executor/   # Request executors (JSON, Protobuf, etc.)</div>
-<div class="line">├── runtime/    # Command pattern implementations for Docker, Podman, Docker API, Podman API, etc.</div>
+<div class="line">├── runtime/    # Command pattern implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.</div>
 <div class="line">├── utils/      # Common utilities (thread pool, logging, etc.)</div>
 <div class="line">├── main.cpp    # Application entry point</div>
 <div class="line">└── third_party/# External dependencies (excluded from docs/build)</div>
@@ -437,7 +437,7 @@ Code Structure</h1>
 <li><b>executor/inc/proto_request_executor.hpp:</b> <br  />
  Handles Protobuf requests.</li>
 <li><b><a class="el" href="docker__commands_8hpp.html" title="Declares Docker command classes for container operations.">runtime/inc/docker_commands.hpp</a>, <a class="el" href="podman__commands_8hpp.html" title="Declares Podman command classes for container operations.">podman_commands.hpp</a>, <a class="el" href="docker__api__commands_8hpp.html" title="Declares command classes for managing containers via the Docker HTTP API over a Unix socket.">docker_api_commands.hpp</a>, <a class="el" href="podman__api__commands_8hpp.html" title="Declares command classes for managing containers via the Podman HTTP API over a Unix socket.">podman_api_commands.hpp</a>:</b> <br  />
- <a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> classes for Docker, Podman, Docker API, and Podman API operations.</li>
+ <a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> classes for Docker CLI, Podman CLI, Docker API, and Podman API operations.</li>
 <li><b><a class="el" href="threadpool_8hpp.html" title="Declares the ThreadPool utility class for managing worker threads.">utils/inc/threadpool.hpp</a>:</b> <br  />
  Thread pool utility for concurrent request handling.</li>
 <li><b><a class="el" href="logging_8hpp.html" title="Logging macros and configuration for the Container Manager.">utils/inc/logging.hpp</a>:</b> <br  />

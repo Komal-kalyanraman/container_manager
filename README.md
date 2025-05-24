@@ -60,7 +60,7 @@ App/
 ├── core/       # Business logic (service layer)
 ├── database/   # Database interface and Redis implementation (pluggable)
 ├── executor/   # Request executors (JSON, Protobuf, etc.)
-├── runtime/    # Command pattern implementations for Docker, Podman, Docker API, Podman API, etc.
+├── runtime/    # Command pattern implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.
 ├── utils/      # Common utilities (thread pool, logging, etc.)
 ├── main.cpp    # Application entry point
 └── third_party/# External dependencies (excluded from docs/build)
@@ -397,7 +397,7 @@ iface.Execute(req.SerializeToString())
   Handles Protobuf requests.
 
 - **runtime/inc/docker_commands.hpp, podman_commands.hpp, docker_api_commands.hpp, podman_api_commands.hpp:**  
-  Command classes for Docker, Podman, Docker API, and Podman API operations.
+  Command classes for Docker CLI, Podman CLI, Docker API, and Podman API operations.
 
 - **utils/inc/threadpool.hpp:**  
   Thread pool utility for concurrent request handling.

@@ -7,7 +7,7 @@ It is designed to support multiple communication protocols (REST, MQTT, POSIX Me
 
 ### System Architecture
 
-<img src="system_architecture.png" alt="System Architecture" width="750"/>
+<img src="system_architecture.png" alt="System Architecture" width="850"/>
 
 ## Folder Structure
 
@@ -17,7 +17,7 @@ App/
 ├── core/       # Business logic (service layer, command pattern)
 ├── database/   # Database interface and Redis implementation
 ├── executor/   # Request executors (JSON, Protobuf)
-├── runtime/    # Command implementations for Docker, Podman, Docker API, Podman API, etc.
+├── runtime/    # Command implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.
 ├── utils/      # Utilities (thread pool, logging, config)
 ├── main.cpp    # Application entry point
 └── third_party/# External dependencies
@@ -61,7 +61,7 @@ App/
 
 - **Command Pattern:**  
   Each container operation (create, start, stop, etc.) is encapsulated as a command object.  
-  Supports multiple runtimes (Docker, Podman, Docker API, Podman API, etc.) and is easily extensible.
+  Supports multiple runtimes (Docker CLI, Podman CLI, Docker API, Podman API, etc.) and is easily extensible.
 
 ### 4. Runtime Layer
 
@@ -118,7 +118,7 @@ App/
    The service handler checks runtime constraints, permissions, and dispatches the command.
 
 5. **Command Execution:**  
-   The command object performs the requested operation (e.g., create/start/stop container) using the appropriate runtime (Docker, Podman, Docker API, Podman API).
+   The command object performs the requested operation (e.g., create/start/stop container) using the appropriate runtime (Docker CLI, Podman CLI, Docker API, Podman API).
 
 6. **Database Interaction:**  
    State and metadata are persisted/retrieved via the database interface.

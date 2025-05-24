@@ -92,7 +92,7 @@ Overview</h1>
  It is designed to support multiple communication protocols (REST, MQTT, POSIX Message Queue, D-Bus, gRPC) and data formats (JSON, Protobuf), making it suitable for diverse deployment scenarios and integration needs.</p>
 <h2><a class="anchor" id="autotoc_md38"></a>
 System Architecture</h2>
-<p><img src="system_architecture.png" alt="System Architecture" width="750" class="inline"/></p>
+<p><img src="system_architecture.png" alt="System Architecture" width="850" class="inline"/></p>
 <h1><a class="anchor" id="autotoc_md39"></a>
 Folder Structure</h1>
 <div class="fragment"><div class="line">App/</div>
@@ -100,7 +100,7 @@ Folder Structure</h1>
 <div class="line">├── core/       # Business logic (service layer, command pattern)</div>
 <div class="line">├── database/   # Database interface and Redis implementation</div>
 <div class="line">├── executor/   # Request executors (JSON, Protobuf)</div>
-<div class="line">├── runtime/    # Command implementations for Docker, Podman, Docker API, Podman API, etc.</div>
+<div class="line">├── runtime/    # Command implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.</div>
 <div class="line">├── utils/      # Utilities (thread pool, logging, config)</div>
 <div class="line">├── main.cpp    # Application entry point</div>
 <div class="line">└── third_party/# External dependencies</div>
@@ -137,7 +137,7 @@ Component Descriptions</h1>
  Central business logic. Receives validated requests from executors, performs runtime checks, and dispatches commands.</li>
 <li><b><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> Pattern:</b> <br  />
  Each container operation (create, start, stop, etc.) is encapsulated as a command object. <br  />
- Supports multiple runtimes (Docker, Podman, Docker API, Podman API, etc.) and is easily extensible.</li>
+ Supports multiple runtimes (Docker CLI, Podman CLI, Docker API, Podman API, etc.) and is easily extensible.</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md44"></a>
 4. Runtime Layer</h2>
@@ -187,7 +187,7 @@ Data Flow</h1>
 <li><b>Business Logic:</b> <br  />
  The service handler checks runtime constraints, permissions, and dispatches the command.</li>
 <li><b><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> Execution:</b> <br  />
- The command object performs the requested operation (e.g., create/start/stop container) using the appropriate runtime (Docker, Podman, Docker API, Podman API).</li>
+ The command object performs the requested operation (e.g., create/start/stop container) using the appropriate runtime (Docker CLI, Podman CLI, Docker API, Podman API).</li>
 <li><b>Database Interaction:</b> <br  />
  State and metadata are persisted/retrieved via the database interface.</li>
 <li><b>Response:</b> <br  />
