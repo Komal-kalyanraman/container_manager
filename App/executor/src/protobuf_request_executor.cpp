@@ -70,6 +70,10 @@ nlohmann::json ProtoRequestExecutorHandler::Execute(const std::string& proto_dat
         const auto& param = proto_req.parameters(0);
         req.container_name = param.container_name();
         req.image_name = param.image_name();
+        req.cpus = param.cpus();
+        req.memory = param.memory();
+        req.pids = param.pids();
+        req.restart_policy = param.restart_policy();
         // Add more fields here if needed in the future
     }
 

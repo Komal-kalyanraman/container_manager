@@ -143,12 +143,25 @@ class ContainerCreatorUI:
         root.columnconfigure(1, weight=1)
 
     def build_payload(self):
+        runtime = self.runtime_var.get()
+        memory = self.memory_entry.get().strip()
+
+        # Handle memory units based on runtime
+        if runtime in ("docker", "docker-api"):
+            # Append 'm' if only digits are provided
+            if memory.isdigit():
+                memory += "m"
+        elif runtime in ("podman", "podman-api"):
+            # Remove 'm' if present
+            if memory.lower().endswith("m"):
+                memory = memory[:-1]
+
         args = dict(
-            runtime=self.runtime_var.get(),
+            runtime=runtime,
             operation=self.operation_var.get(),
             container_name=self.name_entry.get().strip(),
             cpus=self.cpus_entry.get().strip(),
-            memory=self.memory_entry.get().strip(),
+            memory=memory,
             pids=self.pids_entry.get().strip(),
             restart_policy=self.restart_var.get(),
             image_name=self.image_entry.get().strip()

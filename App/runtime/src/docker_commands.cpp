@@ -1,24 +1,11 @@
-/**
- * @file docker_commands.cpp
- * @brief Implements Docker command classes for container operations.
- */
-
 #include "inc/docker_commands.hpp"
-
 #include <cstdlib>
 #include <nlohmann/json.hpp>
 #include "inc/common.hpp"
 #include "inc/logging.hpp"
 
-/**
- * @brief Constructs a DockerRuntimeAvailableCommand.
- */
 DockerRuntimeAvailableCommand::DockerRuntimeAvailableCommand() {}
 
-/**
- * @brief Executes the command to check Docker runtime availability.
- * @return True if Docker is available, false otherwise.
- */
 bool DockerRuntimeAvailableCommand::Execute() const {
     int status = std::system("docker info > /dev/null 2>&1");
     if (status == 0) {
@@ -30,22 +17,20 @@ bool DockerRuntimeAvailableCommand::Execute() const {
     }
 }
 
-/**
- * @brief Constructs a DockerCreateContainerCommand.
- * @param container_name Name of the container to create.
- * @param image_name Name of the image to use for the container.
- */
-DockerCreateContainerCommand::DockerCreateContainerCommand(const std::string& container_name, const std::string& image_name)
-    : container_name_(container_name), image_name_(image_name) {}
+DockerCreateContainerCommand::DockerCreateContainerCommand(const ContainerRequest& req) : req_(req) {}
 
-/**
- * @brief Executes the command to create a Docker container.
- * @return True if the container was created successfully, false otherwise.
- */
 bool DockerCreateContainerCommand::Execute() const {
     std::string command = FormatCommand(
         CommandTemplate::Create,
-        {{"runtime", "docker"}, {"name", container_name_}, {"image", image_name_}}
+        {
+            {"runtime", "docker"},
+            {"name", req_.container_name},
+            {"image", req_.image_name},
+            {"cpus", req_.cpus},
+            {"memory", req_.memory},
+            {"pids", req_.pids},
+            {"restart_policy", req_.restart_policy}
+        }
     );
     int status = std::system(command.c_str());
     if (status == 0) {
@@ -57,20 +42,12 @@ bool DockerCreateContainerCommand::Execute() const {
     }
 }
 
-/**
- * @brief Constructs a DockerStartContainerCommand.
- * @param container_name Name of the container to start.
- */
-DockerStartContainerCommand::DockerStartContainerCommand(const std::string& container_name) : container_name_(container_name) {}
+DockerStartContainerCommand::DockerStartContainerCommand(const ContainerRequest& req) : req_(req) {}
 
-/**
- * @brief Executes the command to start a Docker container.
- * @return True if the container was started successfully, false otherwise.
- */
 bool DockerStartContainerCommand::Execute() const {
     std::string command = FormatCommand(
         CommandTemplate::Start,
-        {{"runtime", "docker"}, {"name", container_name_}}
+        {{"runtime", "docker"}, {"name", req_.container_name}}
     );
     int status = std::system(command.c_str());
     if (status == 0) {
@@ -82,20 +59,12 @@ bool DockerStartContainerCommand::Execute() const {
     }
 }
 
-/**
- * @brief Constructs a DockerStopContainerCommand.
- * @param container_name Name of the container to stop.
- */
-DockerStopContainerCommand::DockerStopContainerCommand(const std::string& container_name) : container_name_(container_name) {}
+DockerStopContainerCommand::DockerStopContainerCommand(const ContainerRequest& req) : req_(req) {}
 
-/**
- * @brief Executes the command to stop a Docker container.
- * @return True if the container was stopped successfully, false otherwise.
- */
 bool DockerStopContainerCommand::Execute() const {
     std::string command = FormatCommand(
         CommandTemplate::Stop,
-        {{"runtime", "docker"}, {"name", container_name_}}
+        {{"runtime", "docker"}, {"name", req_.container_name}}
     );
     int status = std::system(command.c_str());
     if (status == 0) {
@@ -107,20 +76,12 @@ bool DockerStopContainerCommand::Execute() const {
     }
 }
 
-/**
- * @brief Constructs a DockerRemoveContainerCommand.
- * @param container_name Name of the container to remove.
- */
-DockerRemoveContainerCommand::DockerRemoveContainerCommand(const std::string& container_name) : container_name_(container_name) {}
+DockerRemoveContainerCommand::DockerRemoveContainerCommand(const ContainerRequest& req) : req_(req) {}
 
-/**
- * @brief Executes the command to remove a Docker container.
- * @return True if the container was removed successfully, false otherwise.
- */
 bool DockerRemoveContainerCommand::Execute() const {
     std::string command = FormatCommand(
         CommandTemplate::Remove,
-        {{"runtime", "docker"}, {"name", container_name_}}
+        {{"runtime", "docker"}, {"name", req_.container_name}}
     );
     int status = std::system(command.c_str());
     if (status == 0) {
@@ -132,20 +93,12 @@ bool DockerRemoveContainerCommand::Execute() const {
     }
 }
 
-/**
- * @brief Constructs a DockerRestartContainerCommand.
- * @param container_name Name of the container to restart.
- */
-DockerRestartContainerCommand::DockerRestartContainerCommand(const std::string& container_name) : container_name_(container_name) {}
+DockerRestartContainerCommand::DockerRestartContainerCommand(const ContainerRequest& req) : req_(req) {}
 
-/**
- * @brief Executes the command to restart a Docker container.
- * @return True if the container was restarted successfully, false otherwise.
- */
 bool DockerRestartContainerCommand::Execute() const {
     std::string command = FormatCommand(
         CommandTemplate::Restart,
-        {{"runtime", "docker"}, {"name", container_name_}}
+        {{"runtime", "docker"}, {"name", req_.container_name}}
     );
     int status = std::system(command.c_str());
     if (status == 0) {

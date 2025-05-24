@@ -87,7 +87,10 @@ struct CommandName {
 /// @brief Contains command templates for supported container operations.
 ///        Placeholders (e.g., {runtime}, {name}, {image}) are replaced at runtime.
 namespace CommandTemplate {
-    inline constexpr std::string_view Create   = "{runtime} create --name {name} {image}";
+    inline constexpr std::string_view Create =
+        "{runtime} create --name {name} "
+        "--cpus {cpus} --memory {memory} --pids-limit {pids} "
+        "--restart {restart_policy} {image}";
     inline constexpr std::string_view Start    = "{runtime} start {name}";
     inline constexpr std::string_view Stop     = "{runtime} stop {name}";
     inline constexpr std::string_view Remove   = "{runtime} rm -f {name}";
