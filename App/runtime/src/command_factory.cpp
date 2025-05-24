@@ -52,15 +52,15 @@ std::unique_ptr<Command> CommandFactory::CreateCommand(const ContainerRequest& r
         if (req.operation == CommandName::RuntimeStatus) {
             return std::make_unique<DockerApiRuntimeAvailableCommand>();
         } else if (req.operation == CommandName::CreateContainer) {
-            return std::make_unique<DockerApiCreateContainerCommand>(req.container_name, req.image_name);
+            return std::make_unique<DockerApiCreateContainerCommand>(req);
         } else if (req.operation == CommandName::StartContainer) {
-            return std::make_unique<DockerApiStartContainerCommand>(req.container_name);
+            return std::make_unique<DockerApiStartContainerCommand>(req);
         } else if (req.operation == CommandName::StopContainer) {
-            return std::make_unique<DockerApiStopContainerCommand>(req.container_name);
+            return std::make_unique<DockerApiStopContainerCommand>(req);
         } else if (req.operation == CommandName::RemoveContainer) {
-            return std::make_unique<DockerApiRemoveContainerCommand>(req.container_name);
+            return std::make_unique<DockerApiRemoveContainerCommand>(req);
         } else if (req.operation == CommandName::RestartContainer) {
-            return std::make_unique<DockerApiRestartContainerCommand>(req.container_name);
+            return std::make_unique<DockerApiRestartContainerCommand>(req);
         }
     } else if (req.runtime == RuntimeName::PodmanApi) {
         if (req.operation == CommandName::RuntimeStatus) {

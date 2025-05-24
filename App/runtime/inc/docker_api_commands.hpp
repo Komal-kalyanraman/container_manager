@@ -1,100 +1,167 @@
-#pragma once
-
-#include <string>
-#include <memory>
-#include "inc/commands.hpp"
-
 /**
  * @file docker_api_commands.hpp
  * @brief Declares command classes for managing containers via the Docker HTTP API over a Unix socket.
  *
  * Each command class encapsulates a specific Docker API operation (e.g., check runtime, create, start, stop, restart, remove container).
- * These classes use CurlHandler to send HTTP requests to the Docker REST API.
- *
- * Usage:
- *   - Instantiate the desired command class with required parameters.
- *   - Call Execute() to perform the operation via the Docker API.
+ * These classes use CurlHandler to send HTTP requests to the Docker REST API, using parameters from the ContainerRequest structure.
  */
+
+#pragma once
+
+#include <string>
+#include <memory>
+#include "inc/commands.hpp"
+#include "inc/container_request.hpp"
 
 /**
  * @class DockerApiRuntimeAvailableCommand
- * @brief Command to check if the Docker daemon is available via the /_ping endpoint.
+ * @brief Command to check if Docker daemon is available via the API.
  */
 class DockerApiRuntimeAvailableCommand : public Command {
 public:
+    /**
+     * @brief Constructs a DockerApiRuntimeAvailableCommand.
+     */
     explicit DockerApiRuntimeAvailableCommand();
+
+    /**
+     * @brief Destructor.
+     */
     ~DockerApiRuntimeAvailableCommand() = default;
 
+    /**
+     * @brief Executes the command to check Docker API runtime availability.
+     * @return True if Docker is running, false otherwise.
+     */
     bool Execute() const override;
 };
 
 /**
  * @class DockerApiCreateContainerCommand
- * @brief Command to create a new Docker container using the specified image and name.
+ * @brief Command to create a Docker container via the Docker API.
  */
 class DockerApiCreateContainerCommand : public Command {
 private:
-    std::string container_name_;
-    std::string image_name_;
+    ContainerRequest req_; ///< Container creation parameters.
 public:
-    explicit DockerApiCreateContainerCommand(const std::string& container_name, const std::string& image_name);
+    /**
+     * @brief Constructs a DockerApiCreateContainerCommand.
+     * @param req The container request containing all parameters for creation.
+     */
+    explicit DockerApiCreateContainerCommand(const ContainerRequest& req);
+
+    /**
+     * @brief Destructor.
+     */
     ~DockerApiCreateContainerCommand() = default;
 
+    /**
+     * @brief Executes the command to create a Docker container via the API.
+     * @return True if the container was created successfully, false otherwise.
+     */
     bool Execute() const override;
 };
 
 /**
  * @class DockerApiStartContainerCommand
- * @brief Command to start a Docker container by name.
+ * @brief Command to start a Docker container via the Docker API.
  */
 class DockerApiStartContainerCommand : public Command {
 private:
-    std::string container_name_;
+    ContainerRequest req_; ///< Container start parameters.
 public:
-    explicit DockerApiStartContainerCommand(const std::string& container_name_);
+    /**
+     * @brief Constructs a DockerApiStartContainerCommand.
+     * @param req The container request containing the container name.
+     */
+    explicit DockerApiStartContainerCommand(const ContainerRequest& req);
+
+    /**
+     * @brief Destructor.
+     */
     ~DockerApiStartContainerCommand() = default;
 
+    /**
+     * @brief Executes the command to start a Docker container via the API.
+     * @return True if the container was started successfully, false otherwise.
+     */
     bool Execute() const override;
 };
 
 /**
  * @class DockerApiStopContainerCommand
- * @brief Command to stop a Docker container by name.
+ * @brief Command to stop a Docker container via the Docker API.
  */
 class DockerApiStopContainerCommand : public Command {
 private:
-    std::string container_name_;
+    ContainerRequest req_; ///< Container stop parameters.
 public:
-    explicit DockerApiStopContainerCommand(const std::string& container_name_);
+    /**
+     * @brief Constructs a DockerApiStopContainerCommand.
+     * @param req The container request containing the container name.
+     */
+    explicit DockerApiStopContainerCommand(const ContainerRequest& req);
+
+    /**
+     * @brief Destructor.
+     */
     ~DockerApiStopContainerCommand() = default;
 
+    /**
+     * @brief Executes the command to stop a Docker container via the API.
+     * @return True if the container was stopped successfully, false otherwise.
+     */
     bool Execute() const override;
 };
 
 /**
  * @class DockerApiRestartContainerCommand
- * @brief Command to restart a Docker container by name.
+ * @brief Command to restart a Docker container via the Docker API.
  */
 class DockerApiRestartContainerCommand : public Command {
 private:
-    std::string container_name_;
+    ContainerRequest req_; ///< Container restart parameters.
 public:
-    explicit DockerApiRestartContainerCommand(const std::string& container_name_);
+    /**
+     * @brief Constructs a DockerApiRestartContainerCommand.
+     * @param req The container request containing the container name.
+     */
+    explicit DockerApiRestartContainerCommand(const ContainerRequest& req);
+
+    /**
+     * @brief Destructor.
+     */
     ~DockerApiRestartContainerCommand() = default;
 
+    /**
+     * @brief Executes the command to restart a Docker container via the API.
+     * @return True if the container was restarted successfully, false otherwise.
+     */
     bool Execute() const override;
 };
 
 /**
  * @class DockerApiRemoveContainerCommand
- * @brief Command to remove a Docker container by name, using force removal.
+ * @brief Command to remove a Docker container via the Docker API.
  */
 class DockerApiRemoveContainerCommand : public Command {
 private:
-    std::string container_name_;
+    ContainerRequest req_; ///< Container remove parameters.
 public:
-    explicit DockerApiRemoveContainerCommand(const std::string& container_name_);
+    /**
+     * @brief Constructs a DockerApiRemoveContainerCommand.
+     * @param req The container request containing the container name.
+     */
+    explicit DockerApiRemoveContainerCommand(const ContainerRequest& req);
+
+    /**
+     * @brief Destructor.
+     */
     ~DockerApiRemoveContainerCommand() = default;
 
+    /**
+     * @brief Executes the command to remove a Docker container via the API.
+     * @return True if the container was removed successfully, false otherwise.
+     */
     bool Execute() const override;
 };
