@@ -2,8 +2,8 @@
  * @file podman_commands.hpp
  * @brief Declares Podman command classes for container operations.
  *
- * @details This file contains the declarations of command classes for Podman container operations,
- * including creation, removal, starting, stopping, restarting, and runtime availability checks.
+ * These classes encapsulate Podman CLI operations such as create, start, stop, remove, and restart,
+ * using parameters provided in the ContainerRequest structure.
  */
 
 #pragma once
@@ -11,9 +11,12 @@
 #include <string>
 #include <memory>
 #include "inc/commands.hpp"
+#include "inc/container_request.hpp"
 
-/// @class PodmanRuntimeAvailableCommand
-/// @brief Command to check if Podman runtime is available.
+/**
+ * @class PodmanRuntimeAvailableCommand
+ * @brief Command to check if Podman runtime is available.
+ */
 class PodmanRuntimeAvailableCommand : public Command {
 public:
     /**
@@ -28,24 +31,24 @@ public:
 
     /**
      * @brief Executes the command to check Podman runtime availability.
-     * @return True if Podman is available, false otherwise.
+     * @return True if Podman is running, false otherwise.
      */
     bool Execute() const override;
 };
 
-/// @class PodmanCreateContainerCommand
-/// @brief Command to create a Podman container with specified parameters.
+/**
+ * @class PodmanCreateContainerCommand
+ * @brief Command to create a Podman container with user-defined parameters.
+ */
 class PodmanCreateContainerCommand : public Command {
 private:
-    std::string container_name_; ///< Name of the container to create.
-    std::string image_name_;     ///< Image name for the container.
+    ContainerRequest req_; ///< Container creation parameters.
 public:
     /**
      * @brief Constructs a PodmanCreateContainerCommand.
-     * @param container_name Name of the container to create.
-     * @param image_name Name of the image to use for the container.
+     * @param req The container request containing all parameters for creation.
      */
-    PodmanCreateContainerCommand(const std::string& container_name, const std::string& image_name);
+    explicit PodmanCreateContainerCommand(const ContainerRequest& req);
 
     /**
      * @brief Destructor.
@@ -59,17 +62,19 @@ public:
     bool Execute() const override;
 };
 
-/// @class PodmanStartContainerCommand
-/// @brief Command to start a Podman container.
+/**
+ * @class PodmanStartContainerCommand
+ * @brief Command to start a Podman container.
+ */
 class PodmanStartContainerCommand : public Command {
 private:
-    std::string container_name_; ///< Name of the container to start.
+    ContainerRequest req_; ///< Container start parameters.
 public:
     /**
      * @brief Constructs a PodmanStartContainerCommand.
-     * @param container_name Name of the container to start.
+     * @param req The container request containing the container name.
      */
-    explicit PodmanStartContainerCommand(const std::string& container_name);
+    explicit PodmanStartContainerCommand(const ContainerRequest& req);
 
     /**
      * @brief Destructor.
@@ -83,17 +88,19 @@ public:
     bool Execute() const override;
 };
 
-/// @class PodmanStopContainerCommand
-/// @brief Command to stop a Podman container.
+/**
+ * @class PodmanStopContainerCommand
+ * @brief Command to stop a Podman container.
+ */
 class PodmanStopContainerCommand : public Command {
 private:
-    std::string container_name_; ///< Name of the container to stop.
+    ContainerRequest req_; ///< Container stop parameters.
 public:
     /**
      * @brief Constructs a PodmanStopContainerCommand.
-     * @param container_name Name of the container to stop.
+     * @param req The container request containing the container name.
      */
-    explicit PodmanStopContainerCommand(const std::string& container_name);
+    explicit PodmanStopContainerCommand(const ContainerRequest& req);
 
     /**
      * @brief Destructor.
@@ -107,17 +114,19 @@ public:
     bool Execute() const override;
 };
 
-/// @class PodmanRemoveContainerCommand
-/// @brief Command to remove a Podman container and clean up database state.
+/**
+ * @class PodmanRemoveContainerCommand
+ * @brief Command to remove a Podman container.
+ */
 class PodmanRemoveContainerCommand : public Command {
 private:
-    std::string container_name_; ///< Name of the container to remove.
+    ContainerRequest req_; ///< Container remove parameters.
 public:
     /**
      * @brief Constructs a PodmanRemoveContainerCommand.
-     * @param container_name Name of the container to remove.
+     * @param req The container request containing the container name.
      */
-    explicit PodmanRemoveContainerCommand(const std::string& container_name);
+    explicit PodmanRemoveContainerCommand(const ContainerRequest& req);
 
     /**
      * @brief Destructor.
@@ -125,23 +134,25 @@ public:
     ~PodmanRemoveContainerCommand() = default;
 
     /**
-     * @brief Executes the command to remove a Podman container and clean up database state.
+     * @brief Executes the command to remove a Podman container.
      * @return True if the container was removed successfully, false otherwise.
      */
     bool Execute() const override;
 };
 
-/// @class PodmanRestartContainerCommand
-/// @brief Command to restart a Podman container.
+/**
+ * @class PodmanRestartContainerCommand
+ * @brief Command to restart a Podman container.
+ */
 class PodmanRestartContainerCommand : public Command {
 private:
-    std::string container_name_; ///< Name of the container to restart.
+    ContainerRequest req_; ///< Container restart parameters.
 public:
     /**
      * @brief Constructs a PodmanRestartContainerCommand.
-     * @param container_name Name of the container to restart.
+     * @param req The container request containing the container name.
      */
-    explicit PodmanRestartContainerCommand(const std::string& container_name);
+    explicit PodmanRestartContainerCommand(const ContainerRequest& req);
 
     /**
      * @brief Destructor.

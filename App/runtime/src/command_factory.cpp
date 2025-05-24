@@ -38,15 +38,15 @@ std::unique_ptr<Command> CommandFactory::CreateCommand(const ContainerRequest& r
         if (req.operation == CommandName::RuntimeStatus) {
             return std::make_unique<PodmanRuntimeAvailableCommand>();
         } else if (req.operation == CommandName::CreateContainer) {
-            return std::make_unique<PodmanCreateContainerCommand>(req.container_name, req.image_name);
+            return std::make_unique<PodmanCreateContainerCommand>(req);
         } else if (req.operation == CommandName::StartContainer) {
-            return std::make_unique<PodmanStartContainerCommand>(req.container_name);
+            return std::make_unique<PodmanStartContainerCommand>(req);
         } else if (req.operation == CommandName::StopContainer) {
-            return std::make_unique<PodmanStopContainerCommand>(req.container_name);
+            return std::make_unique<PodmanStopContainerCommand>(req);
         } else if (req.operation == CommandName::RemoveContainer) {
-            return std::make_unique<PodmanRemoveContainerCommand>(req.container_name);
+            return std::make_unique<PodmanRemoveContainerCommand>(req);
         } else if (req.operation == CommandName::RestartContainer) {
-            return std::make_unique<PodmanRestartContainerCommand>(req.container_name);
+            return std::make_unique<PodmanRestartContainerCommand>(req);
         }
     } else if (req.runtime == RuntimeName::DockerApi) {
         if (req.operation == CommandName::RuntimeStatus) {

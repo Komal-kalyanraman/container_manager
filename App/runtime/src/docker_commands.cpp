@@ -1,11 +1,27 @@
+/**
+ * @file docker_commands.cpp
+ * @brief Implements Docker command classes for container operations.
+ *
+ * This file defines the logic for DockerRuntimeAvailableCommand, DockerCreateContainerCommand,
+ * DockerStartContainerCommand, DockerStopContainerCommand, DockerRemoveContainerCommand,
+ * and DockerRestartContainerCommand. Each command executes the corresponding Docker CLI operation
+ * using parameters from the ContainerRequest structure.
+ */
+
 #include "inc/docker_commands.hpp"
 #include <cstdlib>
 #include <nlohmann/json.hpp>
 #include "inc/common.hpp"
 #include "inc/logging.hpp"
 
+/**
+ * @class DockerRuntimeAvailableCommand
+ * @brief Command to check if Docker runtime is available.
+ */
 DockerRuntimeAvailableCommand::DockerRuntimeAvailableCommand() {}
 
+/// Executes the command to check Docker runtime availability.
+/// @return True if Docker is running, false otherwise.
 bool DockerRuntimeAvailableCommand::Execute() const {
     int status = std::system("docker info > /dev/null 2>&1");
     if (status == 0) {
@@ -17,8 +33,15 @@ bool DockerRuntimeAvailableCommand::Execute() const {
     }
 }
 
+/**
+ * @class DockerCreateContainerCommand
+ * @brief Command to create a Docker container with user-defined parameters.
+ * @param req The container request containing all parameters for creation.
+ */
 DockerCreateContainerCommand::DockerCreateContainerCommand(const ContainerRequest& req) : req_(req) {}
 
+/// Executes the command to create a Docker container.
+/// @return True if the container was created successfully, false otherwise.
 bool DockerCreateContainerCommand::Execute() const {
     std::string command = FormatCommand(
         CommandTemplate::Create,
@@ -42,8 +65,15 @@ bool DockerCreateContainerCommand::Execute() const {
     }
 }
 
+/**
+ * @class DockerStartContainerCommand
+ * @brief Command to start a Docker container.
+ * @param req The container request containing the container name.
+ */
 DockerStartContainerCommand::DockerStartContainerCommand(const ContainerRequest& req) : req_(req) {}
 
+/// Executes the command to start a Docker container.
+/// @return True if the container was started successfully, false otherwise.
 bool DockerStartContainerCommand::Execute() const {
     std::string command = FormatCommand(
         CommandTemplate::Start,
@@ -59,8 +89,15 @@ bool DockerStartContainerCommand::Execute() const {
     }
 }
 
+/**
+ * @class DockerStopContainerCommand
+ * @brief Command to stop a Docker container.
+ * @param req The container request containing the container name.
+ */
 DockerStopContainerCommand::DockerStopContainerCommand(const ContainerRequest& req) : req_(req) {}
 
+/// Executes the command to stop a Docker container.
+/// @return True if the container was stopped successfully, false otherwise.
 bool DockerStopContainerCommand::Execute() const {
     std::string command = FormatCommand(
         CommandTemplate::Stop,
@@ -76,8 +113,15 @@ bool DockerStopContainerCommand::Execute() const {
     }
 }
 
+/**
+ * @class DockerRemoveContainerCommand
+ * @brief Command to remove a Docker container.
+ * @param req The container request containing the container name.
+ */
 DockerRemoveContainerCommand::DockerRemoveContainerCommand(const ContainerRequest& req) : req_(req) {}
 
+/// Executes the command to remove a Docker container.
+/// @return True if the container was removed successfully, false otherwise.
 bool DockerRemoveContainerCommand::Execute() const {
     std::string command = FormatCommand(
         CommandTemplate::Remove,
@@ -93,8 +137,15 @@ bool DockerRemoveContainerCommand::Execute() const {
     }
 }
 
+/**
+ * @class DockerRestartContainerCommand
+ * @brief Command to restart a Docker container.
+ * @param req The container request containing the container name.
+ */
 DockerRestartContainerCommand::DockerRestartContainerCommand(const ContainerRequest& req) : req_(req) {}
 
+/// Executes the command to restart a Docker container.
+/// @return True if the container was restarted successfully, false otherwise.
 bool DockerRestartContainerCommand::Execute() const {
     std::string command = FormatCommand(
         CommandTemplate::Restart,
