@@ -1,4 +1,4 @@
 <map id="DockerApiStartContainerCommand" name="DockerApiStartContainerCommand">
-<area shape="rect" id="node1" title="Command to start a Docker container by name." alt="" coords="5,145,280,267"/>
+<area shape="rect" id="node1" title="Command to start a Docker container via the Docker API." alt="" coords="5,145,280,267"/>
 <area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for all commands." alt="" coords="80,5,205,97"/>
 </map>

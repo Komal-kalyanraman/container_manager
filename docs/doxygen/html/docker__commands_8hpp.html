@@ -94,10 +94,12 @@ $(document).ready(function(){initNavTree('docker__commands_8hpp.html',''); initR
 <div class="textblock"><code>#include &lt;string&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &quot;<a class="el" href="commands_8hpp_source.html">inc/commands.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="container__request_8hpp_source.html">inc/container_request.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for docker_commands.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="docker__commands_8hpp__incl.svg" width="190" height="202"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="docker__commands_8hpp__incl.svg" width="411" height="202"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -113,7 +115,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to check if Docker runtime is available.  <a href="classDockerRuntimeAvailableCommand.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerCreateContainerCommand.html">DockerCreateContainerCommand</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to create a Docker container with specified parameters.  <a href="classDockerCreateContainerCommand.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to create a Docker container with user-defined parameters.  <a href="classDockerCreateContainerCommand.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerStartContainerCommand.html">DockerStartContainerCommand</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to start a Docker container.  <a href="classDockerStartContainerCommand.html#details">More...</a><br /></td></tr>
@@ -122,7 +124,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to stop a Docker container.  <a href="classDockerStopContainerCommand.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerRemoveContainerCommand.html">DockerRemoveContainerCommand</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to remove a Docker container and clean up database state.  <a href="classDockerRemoveContainerCommand.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to remove a Docker container.  <a href="classDockerRemoveContainerCommand.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerRestartContainerCommand.html">DockerRestartContainerCommand</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to restart a Docker container.  <a href="classDockerRestartContainerCommand.html#details">More...</a><br /></td></tr>
@@ -130,6 +132,7 @@ Classes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Declares Docker command classes for container operations. </p>
+<p>These classes encapsulate Docker CLI operations such as create, start, stop, remove, and restart, using parameters provided in the <a class="el" href="structContainerRequest.html" title="Represents a request to perform an operation on a container.">ContainerRequest</a> structure. </p>
 
 <p class="definition">Definition in file <a class="el" href="docker__commands_8hpp_source.html">docker_commands.hpp</a>.</p>
 </div></div><!-- contents -->

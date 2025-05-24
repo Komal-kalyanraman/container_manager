@@ -1,4 +1,4 @@
 <map id="DockerApiCreateContainerCommand::Execute" name="DockerApiCreateContainerCommand::Execute">
-<area shape="rect" id="node1" title="Execute the command." alt="" coords="5,5,200,47"/>
+<area shape="rect" id="node1" title="Executes the command to create a Docker container via the API." alt="" coords="5,5,200,47"/>
 <area shape="rect" id="node2" href="$classCurlHandler.html#a35359e5d7f3412aef304d81dbe02a7bc" title="Perform a HTTP POST request over a Unix domain socket." alt="" coords="248,13,413,39"/>
 </map>

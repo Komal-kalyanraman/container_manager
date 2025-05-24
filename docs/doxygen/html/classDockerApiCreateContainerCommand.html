@@ -90,30 +90,33 @@ $(document).ready(function(){initNavTree('classDockerApiCreateContainerCommand.h
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to create a new Docker container using the specified image and name.  
+<p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to create a Docker container via the Docker API.  
  <a href="classDockerApiCreateContainerCommand.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="docker__api__commands_8hpp_source.html">docker_api_commands.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for DockerApiCreateContainerCommand:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classDockerApiCreateContainerCommand__inherit__graph.svg" width="231" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classDockerApiCreateContainerCommand__inherit__graph.svg" width="231" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div class="dynheader">
 Collaboration diagram for DockerApiCreateContainerCommand:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classDockerApiCreateContainerCommand__coll__graph.svg" width="231" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classDockerApiCreateContainerCommand__coll__graph.svg" width="231" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9ae7e7f6d4b8b77e3fbff7643b78d299"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerApiCreateContainerCommand.html#a9ae7e7f6d4b8b77e3fbff7643b78d299">DockerApiCreateContainerCommand</a> (const std::string &amp;container_name, const std::string &amp;image_name)</td></tr>
-<tr class="memdesc:a9ae7e7f6d4b8b77e3fbff7643b78d299"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to create a new Docker container using the specified image and name.  <a href="classDockerApiCreateContainerCommand.html#a9ae7e7f6d4b8b77e3fbff7643b78d299">More...</a><br /></td></tr>
-<tr class="separator:a9ae7e7f6d4b8b77e3fbff7643b78d299"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60ab44f516491340bbdd3f739b5eef26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerApiCreateContainerCommand.html#a60ab44f516491340bbdd3f739b5eef26">DockerApiCreateContainerCommand</a> (const <a class="el" href="structContainerRequest.html">ContainerRequest</a> &amp;req)</td></tr>
+<tr class="memdesc:a60ab44f516491340bbdd3f739b5eef26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classDockerApiCreateContainerCommand.html" title="Command to create a Docker container via the Docker API.">DockerApiCreateContainerCommand</a>.  <a href="classDockerApiCreateContainerCommand.html#a60ab44f516491340bbdd3f739b5eef26">More...</a><br /></td></tr>
+<tr class="separator:a60ab44f516491340bbdd3f739b5eef26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae960d81bcbb0ccae124916f3d609b0a8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerApiCreateContainerCommand.html#ae960d81bcbb0ccae124916f3d609b0a8">~DockerApiCreateContainerCommand</a> ()=default</td></tr>
+<tr class="memdesc:ae960d81bcbb0ccae124916f3d609b0a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="classDockerApiCreateContainerCommand.html#ae960d81bcbb0ccae124916f3d609b0a8">More...</a><br /></td></tr>
 <tr class="separator:ae960d81bcbb0ccae124916f3d609b0a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac45b2bf53a52657537c46de70cdd489b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerApiCreateContainerCommand.html#ac45b2bf53a52657537c46de70cdd489b">Execute</a> () const override</td></tr>
-<tr class="memdesc:ac45b2bf53a52657537c46de70cdd489b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the command.  <a href="classDockerApiCreateContainerCommand.html#ac45b2bf53a52657537c46de70cdd489b">More...</a><br /></td></tr>
+<tr class="memdesc:ac45b2bf53a52657537c46de70cdd489b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the command to create a Docker container via the API.  <a href="classDockerApiCreateContainerCommand.html#ac45b2bf53a52657537c46de70cdd489b">More...</a><br /></td></tr>
 <tr class="separator:ac45b2bf53a52657537c46de70cdd489b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCommand"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCommand')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCommand.html">Command</a></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
@@ -121,12 +124,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to create a new Docker container using the specified image and name. </p>
+<div class="textblock"><p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to create a Docker container via the Docker API. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">req</td><td>The container request containing all parameters for creation. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="docker__api__commands_8hpp_source.html#l00035">35</a> of file <a class="el" href="docker__api__commands_8hpp_source.html">docker_api_commands.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="docker__api__commands_8hpp_source.html#l00043">43</a> of file <a class="el" href="docker__api__commands_8hpp_source.html">docker_api_commands.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a9ae7e7f6d4b8b77e3fbff7643b78d299"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ae7e7f6d4b8b77e3fbff7643b78d299">&#9670;&nbsp;</a></span>DockerApiCreateContainerCommand()</h2>
+<a id="a60ab44f516491340bbdd3f739b5eef26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60ab44f516491340bbdd3f739b5eef26">&#9670;&nbsp;</a></span>DockerApiCreateContainerCommand()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -137,19 +146,9 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">DockerApiCreateContainerCommand::DockerApiCreateContainerCommand </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>container_name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const <a class="el" href="structContainerRequest.html">ContainerRequest</a> &amp;&#160;</td>
+          <td class="paramname"><em>req</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>image_name</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -159,17 +158,16 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to create a new Docker container using the specified image and name. </p>
+<p>Constructs a <a class="el" href="classDockerApiCreateContainerCommand.html" title="Command to create a Docker container via the Docker API.">DockerApiCreateContainerCommand</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">container_name</td><td>Name for the new container. </td></tr>
-    <tr><td class="paramname">image_name</td><td>Name of the image to use for the container. </td></tr>
+    <tr><td class="paramname">req</td><td>The container request containing all parameters for creation. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="docker__api__commands_8cpp_source.html#l00049">49</a> of file <a class="el" href="docker__api__commands_8cpp_source.html">docker_api_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    : container_name_(container_name), image_name_(image_name) {}</div>
+<p class="definition">Definition at line <a class="el" href="docker__api__commands_8cpp_source.html#l00048">48</a> of file <a class="el" href="docker__api__commands_8cpp_source.html">docker_api_commands.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;: req_(req) {}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -195,6 +193,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Destructor. </p>
 
 </div>
 </div>
@@ -222,8 +222,9 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Execute the command. </p>
-<dl class="section return"><dt>Returns</dt><dd>true if the command was executed successfully, false otherwise. </dd></dl>
+<p>Executes the command to create a Docker container via the API. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if the container was created successfully, false otherwise.</dd></dl>
+<p>Executes the command to create a Docker container via the API. </p><dl class="section return"><dt>Returns</dt><dd>True if the container was created successfully, false otherwise. </dd></dl>
 
 <p>Implements <a class="el" href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">Command</a>.</p>
 
@@ -231,24 +232,55 @@ Public Member Functions</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                                                    {</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classCurlHandler.html">CurlHandler</a> curl;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    std::string response;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::string url = std::string(<a class="code" href="common_8hpp.html#a44f20b581877e93f5270fbe6281553c6">kDockerApiBaseUrl</a>) + <span class="stringliteral">&quot;containers/create?name=&quot;</span> + container_name_;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    std::string body = <span class="stringliteral">&quot;{\&quot;Image\&quot;: \&quot;&quot;</span> + image_name_ + <span class="stringliteral">&quot;\&quot;}&quot;</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">bool</span> success = curl.<a class="code" href="classCurlHandler.html#a35359e5d7f3412aef304d81dbe02a7bc">PostUnix</a>(url, <a class="code" href="common_8hpp.html#a0ce8df3b35a0ea16a014b05672323070">kDockerUnixSocketPath</a>, body, response);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">if</span> (success) {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;[Docker API] Create container response: &quot;</span> &lt;&lt; response &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        std::cerr &lt;&lt; <span class="stringliteral">&quot;[Docker API] Failed to create container. Response: &quot;</span> &lt;&lt; response &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::string url = std::string(<a class="code" href="common_8hpp.html#a44f20b581877e93f5270fbe6281553c6">kDockerApiBaseUrl</a>) +</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                      std::string(<a class="code" href="namespaceApiEndpoint.html#a74aea95b300e7e356c74baf66adf8fb9">ApiEndpoint::Create</a>) +</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                      req_.<a class="code" href="structContainerRequest.html#a167e6c521808ed6ed9ec6c07583591a0">container_name</a>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// Build JSON body with all relevant fields</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    std::string body = <span class="stringliteral">&quot;{&quot;</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    body += <span class="stringliteral">&quot;\&quot;Image\&quot;: \&quot;&quot;</span> + req_.<a class="code" href="structContainerRequest.html#a4d7ceae61aa44c8a72cf299244d1fb84">image_name</a> + <span class="stringliteral">&quot;\&quot;&quot;</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">if</span> (!req_.<a class="code" href="structContainerRequest.html#abf70c210e0c24a931924af261a5ccba3">cpus</a>.empty()) body += <span class="stringliteral">&quot;, \&quot;HostConfig\&quot;: {\&quot;NanoCpus\&quot;: &quot;</span> + std::to_string(<span class="keyword">static_cast&lt;</span><span class="keywordtype">long</span> <span class="keywordtype">long</span><span class="keyword">&gt;</span>(std::stod(req_.<a class="code" href="structContainerRequest.html#abf70c210e0c24a931924af261a5ccba3">cpus</a>) * 1e9));</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">if</span> (!req_.<a class="code" href="structContainerRequest.html#a1ad4578490b2bfedb180b2259e9d1202">memory</a>.empty()) {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">if</span> (body.find(<span class="stringliteral">&quot;HostConfig&quot;</span>) == std::string::npos)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            body += <span class="stringliteral">&quot;, \&quot;HostConfig\&quot;: {&quot;</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            body += <span class="stringliteral">&quot;, &quot;</span>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        body += <span class="stringliteral">&quot;\&quot;Memory\&quot;: &quot;</span> + std::to_string(std::stoll(req_.<a class="code" href="structContainerRequest.html#a1ad4578490b2bfedb180b2259e9d1202">memory</a>) * 1024 * 1024);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">if</span> (!req_.<a class="code" href="structContainerRequest.html#a8dcfb854964b8d1ee03acbacf6212017">pids</a>.empty()) {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">if</span> (body.find(<span class="stringliteral">&quot;HostConfig&quot;</span>) == std::string::npos)</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            body += <span class="stringliteral">&quot;, \&quot;HostConfig\&quot;: {&quot;</span>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            body += <span class="stringliteral">&quot;, &quot;</span>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        body += <span class="stringliteral">&quot;\&quot;PidsLimit\&quot;: &quot;</span> + req_.<a class="code" href="structContainerRequest.html#a8dcfb854964b8d1ee03acbacf6212017">pids</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">if</span> (!req_.<a class="code" href="structContainerRequest.html#af488a918c33fb3395d372c1c681b8453">restart_policy</a>.empty()) {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">if</span> (body.find(<span class="stringliteral">&quot;HostConfig&quot;</span>) == std::string::npos)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            body += <span class="stringliteral">&quot;, \&quot;HostConfig\&quot;: {&quot;</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            body += <span class="stringliteral">&quot;, &quot;</span>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        body += <span class="stringliteral">&quot;\&quot;RestartPolicy\&quot;: {\&quot;Name\&quot;: \&quot;&quot;</span> + req_.<a class="code" href="structContainerRequest.html#af488a918c33fb3395d372c1c681b8453">restart_policy</a> + <span class="stringliteral">&quot;\&quot;}&quot;</span>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">if</span> (body.find(<span class="stringliteral">&quot;HostConfig&quot;</span>) != std::string::npos)</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        body += <span class="stringliteral">&quot;}&quot;</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    body += <span class="stringliteral">&quot;}&quot;</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">bool</span> success = curl.<a class="code" href="classCurlHandler.html#a35359e5d7f3412aef304d81dbe02a7bc">PostUnix</a>(url, <a class="code" href="common_8hpp.html#a0ce8df3b35a0ea16a014b05672323070">kDockerUnixSocketPath</a>, body, response);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">if</span> (success) {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;[Docker API] Create container response: &quot;</span> &lt;&lt; response &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        std::cerr &lt;&lt; <span class="stringliteral">&quot;[Docker API] Failed to create container. Response: &quot;</span> &lt;&lt; response &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="common_8hpp_source.html#l00023">kDockerApiBaseUrl</a>, <a class="el" href="common_8hpp_source.html#l00022">kDockerUnixSocketPath</a>, and <a class="el" href="curl__handler_8cpp_source.html#l00063">CurlHandler::PostUnix()</a>.</p>
+<p class="reference">References <a class="el" href="container__request_8hpp_source.html#l00015">ContainerRequest::container_name</a>, <a class="el" href="container__request_8hpp_source.html#l00017">ContainerRequest::cpus</a>, <a class="el" href="common_8hpp_source.html#l00119">ApiEndpoint::Create</a>, <a class="el" href="container__request_8hpp_source.html#l00016">ContainerRequest::image_name</a>, <a class="el" href="common_8hpp_source.html#l00023">kDockerApiBaseUrl</a>, <a class="el" href="common_8hpp_source.html#l00022">kDockerUnixSocketPath</a>, <a class="el" href="container__request_8hpp_source.html#l00018">ContainerRequest::memory</a>, <a class="el" href="container__request_8hpp_source.html#l00019">ContainerRequest::pids</a>, <a class="el" href="curl__handler_8cpp_source.html#l00063">CurlHandler::PostUnix()</a>, and <a class="el" href="container__request_8hpp_source.html#l00020">ContainerRequest::restart_policy</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classDockerApiCreateContainerCommand_ac45b2bf53a52657537c46de70cdd489b_cgraph.svg" width="419" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classDockerApiCreateContainerCommand_ac45b2bf53a52657537c46de70cdd489b_cgraph.svg" width="419" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -259,10 +291,17 @@ Here is the call graph for this function:</div>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="anamespaceApiEndpoint_html_a74aea95b300e7e356c74baf66adf8fb9"><div class="ttname"><a href="namespaceApiEndpoint.html#a74aea95b300e7e356c74baf66adf8fb9">ApiEndpoint::Create</a></div><div class="ttdeci">constexpr std::string_view Create</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00119">common.hpp:119</a></div></div>
 <div class="ttc" id="acommon_8hpp_html_a0ce8df3b35a0ea16a014b05672323070"><div class="ttname"><a href="common_8hpp.html#a0ce8df3b35a0ea16a014b05672323070">kDockerUnixSocketPath</a></div><div class="ttdeci">constexpr char kDockerUnixSocketPath[]</div><div class="ttdoc">Docker Unix socket path and API base URL for HTTP API communication.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00022">common.hpp:22</a></div></div>
 <div class="ttc" id="aclassCurlHandler_html"><div class="ttname"><a href="classCurlHandler.html">CurlHandler</a></div><div class="ttdoc">CurlHandler provides simple HTTP methods over Unix domain sockets using libcurl.</div><div class="ttdef"><b>Definition:</b> <a href="curl__handler_8hpp_source.html#l00010">curl_handler.hpp:10</a></div></div>
+<div class="ttc" id="astructContainerRequest_html_a167e6c521808ed6ed9ec6c07583591a0"><div class="ttname"><a href="structContainerRequest.html#a167e6c521808ed6ed9ec6c07583591a0">ContainerRequest::container_name</a></div><div class="ttdeci">std::string container_name</div><div class="ttdoc">Name of the container to operate on.</div><div class="ttdef"><b>Definition:</b> <a href="container__request_8hpp_source.html#l00015">container_request.hpp:15</a></div></div>
+<div class="ttc" id="astructContainerRequest_html_a4d7ceae61aa44c8a72cf299244d1fb84"><div class="ttname"><a href="structContainerRequest.html#a4d7ceae61aa44c8a72cf299244d1fb84">ContainerRequest::image_name</a></div><div class="ttdeci">std::string image_name</div><div class="ttdoc">Image name (used for create).</div><div class="ttdef"><b>Definition:</b> <a href="container__request_8hpp_source.html#l00016">container_request.hpp:16</a></div></div>
 <div class="ttc" id="acommon_8hpp_html_a44f20b581877e93f5270fbe6281553c6"><div class="ttname"><a href="common_8hpp.html#a44f20b581877e93f5270fbe6281553c6">kDockerApiBaseUrl</a></div><div class="ttdeci">constexpr char kDockerApiBaseUrl[]</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00023">common.hpp:23</a></div></div>
+<div class="ttc" id="astructContainerRequest_html_a1ad4578490b2bfedb180b2259e9d1202"><div class="ttname"><a href="structContainerRequest.html#a1ad4578490b2bfedb180b2259e9d1202">ContainerRequest::memory</a></div><div class="ttdeci">std::string memory</div><div class="ttdoc">Memory limit (e.g., &quot;64&quot;).</div><div class="ttdef"><b>Definition:</b> <a href="container__request_8hpp_source.html#l00018">container_request.hpp:18</a></div></div>
+<div class="ttc" id="astructContainerRequest_html_abf70c210e0c24a931924af261a5ccba3"><div class="ttname"><a href="structContainerRequest.html#abf70c210e0c24a931924af261a5ccba3">ContainerRequest::cpus</a></div><div class="ttdeci">std::string cpus</div><div class="ttdoc">CPU limit (e.g., &quot;0.5&quot;).</div><div class="ttdef"><b>Definition:</b> <a href="container__request_8hpp_source.html#l00017">container_request.hpp:17</a></div></div>
 <div class="ttc" id="aclassCurlHandler_html_a35359e5d7f3412aef304d81dbe02a7bc"><div class="ttname"><a href="classCurlHandler.html#a35359e5d7f3412aef304d81dbe02a7bc">CurlHandler::PostUnix</a></div><div class="ttdeci">bool PostUnix(const std::string &amp;url, const std::string &amp;unix_socket, const std::string &amp;body, std::string &amp;response, const std::string &amp;content_type=&quot;application/json&quot;)</div><div class="ttdoc">Perform a HTTP POST request over a Unix domain socket.</div><div class="ttdef"><b>Definition:</b> <a href="curl__handler_8cpp_source.html#l00063">curl_handler.cpp:63</a></div></div>
+<div class="ttc" id="astructContainerRequest_html_af488a918c33fb3395d372c1c681b8453"><div class="ttname"><a href="structContainerRequest.html#af488a918c33fb3395d372c1c681b8453">ContainerRequest::restart_policy</a></div><div class="ttdeci">std::string restart_policy</div><div class="ttdoc">Restart policy (e.g., &quot;unless-stopped&quot;)</div><div class="ttdef"><b>Definition:</b> <a href="container__request_8hpp_source.html#l00020">container_request.hpp:20</a></div></div>
+<div class="ttc" id="astructContainerRequest_html_a8dcfb854964b8d1ee03acbacf6212017"><div class="ttname"><a href="structContainerRequest.html#a8dcfb854964b8d1ee03acbacf6212017">ContainerRequest::pids</a></div><div class="ttdeci">std::string pids</div><div class="ttdoc">PIDs limit (e.g., &quot;10&quot;).</div><div class="ttdef"><b>Definition:</b> <a href="container__request_8hpp_source.html#l00019">container_request.hpp:19</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

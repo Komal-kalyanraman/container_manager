@@ -5,11 +5,6 @@
  * This file provides implementations for commands such as checking Podman daemon availability,
  * creating, starting, and stopping containers using the Podman REST API.
  * All HTTP requests are performed over the Unix socket using the CurlHandler utility.
- *
- * Usage:
- *   - Each command class encapsulates a specific Podman API operation.
- *   - The CurlHandler class is used to send HTTP requests over the Podman Unix socket.
- *   - Constants for the Podman socket path and API base URL should be defined in common.hpp or locally.
  */
 
 #include "inc/podman_api_commands.hpp"
@@ -20,14 +15,17 @@
 #include <curl/curl.h>
 
 /**
- * @brief Command to check if the Podman daemon is available via the /_ping endpoint.
+ * @class PodmanApiRuntimeAvailableCommand
+ * @brief Command to check if Podman daemon is available via the API.
  */
 PodmanApiRuntimeAvailableCommand::PodmanApiRuntimeAvailableCommand() {}
 
+/// Executes the command to check Podman API runtime availability.
+/// @return True if Podman is running, false otherwise.
 bool PodmanApiRuntimeAvailableCommand::Execute() const {
     CurlHandler curl;
     std::string response;
-    std::string url = std::string(kPodmanApiBaseUrl) + "_ping";
+    std::string url = std::string(kPodmanApiBaseUrl) + std::string(ApiEndpoint::Ping);
     bool success = curl.GetUnix(url, kPodmanUnixSocketPath, response);
     if (success && response == "OK") {
         std::cout << "[Podman API] Podman daemon is running (/_ping returned OK)." << std::endl;
@@ -42,18 +40,51 @@ bool PodmanApiRuntimeAvailableCommand::Execute() const {
 }
 
 /**
- * @brief Command to create a new Podman container using the specified image and name.
- * @param container_name Name for the new container.
- * @param image_name Name of the image to use for the container.
+ * @class PodmanApiCreateContainerCommand
+ * @brief Command to create a Podman container via the Podman API.
+ * @param req The container request containing all parameters for creation.
  */
-PodmanApiCreateContainerCommand::PodmanApiCreateContainerCommand(const std::string& container_name, const std::string& image_name)
-    : container_name_(container_name), image_name_(image_name) {}
+PodmanApiCreateContainerCommand::PodmanApiCreateContainerCommand(const ContainerRequest& req) : req_(req) {}
 
+/// Executes the command to create a Podman container via the API.
+/// @return True if the container was created successfully, false otherwise.
 bool PodmanApiCreateContainerCommand::Execute() const {
     CurlHandler curl;
     std::string response;
-    std::string url = std::string(kPodmanApiBaseUrl) + "containers/create?name=" + container_name_;
-    std::string body = "{\"Image\": \"" + image_name_ + "\"}";
+    std::string url = std::string(kPodmanApiBaseUrl) +
+                      std::string(ApiEndpoint::Create) +
+                      req_.container_name;
+
+    // Build JSON body with all relevant fields from the request
+    std::string body = "{";
+    body += "\"Image\": \"" + req_.image_name + "\"";
+    // Add more HostConfig fields as needed, similar to Docker API
+    if (!req_.cpus.empty()) body += ", \"HostConfig\": {\"NanoCpus\": " + std::to_string(static_cast<long long>(std::stod(req_.cpus) * 1e9));
+    if (!req_.memory.empty()) {
+        if (body.find("HostConfig") == std::string::npos)
+            body += ", \"HostConfig\": {";
+        else
+            body += ", ";
+        body += "\"Memory\": " + std::to_string(std::stoll(req_.memory) * 1024 * 1024);
+    }
+    if (!req_.pids.empty()) {
+        if (body.find("HostConfig") == std::string::npos)
+            body += ", \"HostConfig\": {";
+        else
+            body += ", ";
+        body += "\"PidsLimit\": " + req_.pids;
+    }
+    if (!req_.restart_policy.empty()) {
+        if (body.find("HostConfig") == std::string::npos)
+            body += ", \"HostConfig\": {";
+        else
+            body += ", ";
+        body += "\"RestartPolicy\": {\"Name\": \"" + req_.restart_policy + "\"}";
+    }
+    if (body.find("HostConfig") != std::string::npos)
+        body += "}";
+    body += "}";
+
     bool success = curl.PostUnix(url, kPodmanUnixSocketPath, body, response);
     if (success) {
         std::cout << "[Podman API] Create container response: " << response << std::endl;
@@ -65,16 +96,20 @@ bool PodmanApiCreateContainerCommand::Execute() const {
 }
 
 /**
- * @brief Command to start a Podman container by name.
- * @param container_name Name of the container to start.
+ * @class PodmanApiStartContainerCommand
+ * @brief Command to start a Podman container via the Podman API.
+ * @param req The container request containing the container name.
  */
-PodmanApiStartContainerCommand::PodmanApiStartContainerCommand(const std::string& container_name)
- : container_name_(container_name) {}
+PodmanApiStartContainerCommand::PodmanApiStartContainerCommand(const ContainerRequest& req) : req_(req) {}
 
+/// Executes the command to start a Podman container via the API.
+/// @return True if the container was started successfully, false otherwise.
 bool PodmanApiStartContainerCommand::Execute() const {
     CurlHandler curl;
     std::string response;
-    std::string url = std::string(kPodmanApiBaseUrl) + "containers/" + container_name_ + "/start";
+    std::string url = ComposeContainerApiEndpoint(
+        kPodmanApiBaseUrl, req_.container_name, ApiEndpoint::Start
+    );
     bool success = curl.PostUnix(url, kPodmanUnixSocketPath, "", response, "application/json");
     if (success) {
         std::cout << "[Podman API] Start container response: " << response << std::endl;
@@ -86,16 +121,20 @@ bool PodmanApiStartContainerCommand::Execute() const {
 }
 
 /**
- * @brief Command to stop a Podman container by name.
- * @param container_name Name of the container to stop.
+ * @class PodmanApiStopContainerCommand
+ * @brief Command to stop a Podman container via the Podman API.
+ * @param req The container request containing the container name.
  */
-PodmanApiStopContainerCommand::PodmanApiStopContainerCommand(const std::string& container_name) 
-: container_name_(container_name) {}
+PodmanApiStopContainerCommand::PodmanApiStopContainerCommand(const ContainerRequest& req) : req_(req) {}
 
+/// Executes the command to stop a Podman container via the API.
+/// @return True if the container was stopped successfully, false otherwise.
 bool PodmanApiStopContainerCommand::Execute() const {
     CurlHandler curl;
     std::string response;
-    std::string url = std::string(kPodmanApiBaseUrl) + "containers/" + container_name_ + "/stop";
+    std::string url = ComposeContainerApiEndpoint(
+        kPodmanApiBaseUrl, req_.container_name, ApiEndpoint::Stop
+    );
     bool success = curl.PostUnix(url, kPodmanUnixSocketPath, "", response, "application/json");
     if (success) {
         std::cout << "[Podman API] Stop container response: " << response << std::endl;

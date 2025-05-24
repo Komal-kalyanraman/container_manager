@@ -107,9 +107,9 @@ Collaboration diagram for DockerRestartContainerCommand:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5c2e3bf4c6dc23958832645eb9120dc6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerRestartContainerCommand.html#a5c2e3bf4c6dc23958832645eb9120dc6">DockerRestartContainerCommand</a> (const std::string &amp;container_name)</td></tr>
-<tr class="memdesc:a5c2e3bf4c6dc23958832645eb9120dc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classDockerRestartContainerCommand.html" title="Command to restart a Docker container.">DockerRestartContainerCommand</a>.  <a href="classDockerRestartContainerCommand.html#a5c2e3bf4c6dc23958832645eb9120dc6">More...</a><br /></td></tr>
-<tr class="separator:a5c2e3bf4c6dc23958832645eb9120dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99cf7211c3f32adac4dad7fcdf6f3cd2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerRestartContainerCommand.html#a99cf7211c3f32adac4dad7fcdf6f3cd2">DockerRestartContainerCommand</a> (const <a class="el" href="structContainerRequest.html">ContainerRequest</a> &amp;req)</td></tr>
+<tr class="memdesc:a99cf7211c3f32adac4dad7fcdf6f3cd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classDockerRestartContainerCommand.html" title="Command to restart a Docker container.">DockerRestartContainerCommand</a>.  <a href="classDockerRestartContainerCommand.html#a99cf7211c3f32adac4dad7fcdf6f3cd2">More...</a><br /></td></tr>
+<tr class="separator:a99cf7211c3f32adac4dad7fcdf6f3cd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a690af91277bddf8749cf17bc716ea181"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerRestartContainerCommand.html#a690af91277bddf8749cf17bc716ea181">~DockerRestartContainerCommand</a> ()=default</td></tr>
 <tr class="memdesc:a690af91277bddf8749cf17bc716ea181"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="classDockerRestartContainerCommand.html#a690af91277bddf8749cf17bc716ea181">More...</a><br /></td></tr>
 <tr class="separator:a690af91277bddf8749cf17bc716ea181"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,11 +123,17 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to restart a Docker container. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">req</td><td>The container request containing the container name. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="docker__commands_8hpp_source.html#l00133">133</a> of file <a class="el" href="docker__commands_8hpp_source.html">docker_commands.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="docker__commands_8hpp_source.html#l00147">147</a> of file <a class="el" href="docker__commands_8hpp_source.html">docker_commands.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a5c2e3bf4c6dc23958832645eb9120dc6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c2e3bf4c6dc23958832645eb9120dc6">&#9670;&nbsp;</a></span>DockerRestartContainerCommand()</h2>
+<a id="a99cf7211c3f32adac4dad7fcdf6f3cd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99cf7211c3f32adac4dad7fcdf6f3cd2">&#9670;&nbsp;</a></span>DockerRestartContainerCommand()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -138,8 +144,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">DockerRestartContainerCommand::DockerRestartContainerCommand </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>container_name</em></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="structContainerRequest.html">ContainerRequest</a> &amp;&#160;</td>
+          <td class="paramname"><em>req</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -153,13 +159,13 @@ Public Member Functions</h2></td></tr>
 <p>Constructs a <a class="el" href="classDockerRestartContainerCommand.html" title="Command to restart a Docker container.">DockerRestartContainerCommand</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">container_name</td><td>Name of the container to restart. </td></tr>
+    <tr><td class="paramname">req</td><td>The container request containing the container name. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="docker__commands_8cpp_source.html#l00139">139</a> of file <a class="el" href="docker__commands_8cpp_source.html">docker_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;: container_name_(container_name) {}</div>
+<p class="definition">Definition at line <a class="el" href="docker__commands_8cpp_source.html#l00145">145</a> of file <a class="el" href="docker__commands_8cpp_source.html">docker_commands.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;: req_(req) {}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -215,27 +221,28 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Executes the command to restart a Docker container. </p>
-<dl class="section return"><dt>Returns</dt><dd>True if the container was restarted successfully, false otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the container was restarted successfully, false otherwise.</dd></dl>
+<p>Executes the command to restart a Docker container. </p><dl class="section return"><dt>Returns</dt><dd>True if the container was restarted successfully, false otherwise. </dd></dl>
 
 <p>Implements <a class="el" href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">Command</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="docker__commands_8cpp_source.html#l00145">145</a> of file <a class="el" href="docker__commands_8cpp_source.html">docker_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                                                  {</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    std::string command = <a class="code" href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a>(</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <a class="code" href="namespaceCommandTemplate.html#af11de9f3bc8eaf1f345141ea51514578">CommandTemplate::Restart</a>,</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        {{<span class="stringliteral">&quot;runtime&quot;</span>, <span class="stringliteral">&quot;docker&quot;</span>}, {<span class="stringliteral">&quot;name&quot;</span>, container_name_}}</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    );</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordtype">int</span> status = std::system(command.c_str());</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keywordflow">if</span> (status == 0) {</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <a class="code" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a> &lt;&lt; <span class="stringliteral">&quot;Docker container restarted successfully&quot;</span>;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <a class="code" href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a> &lt;&lt; <span class="stringliteral">&quot;Failed to restart Docker container&quot;</span>;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    }</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="docker__commands_8cpp_source.html#l00149">149</a> of file <a class="el" href="docker__commands_8cpp_source.html">docker_commands.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                                                  {</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    std::string command = <a class="code" href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a>(</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <a class="code" href="namespaceCommandTemplate.html#af11de9f3bc8eaf1f345141ea51514578">CommandTemplate::Restart</a>,</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        {{<span class="stringliteral">&quot;runtime&quot;</span>, <span class="stringliteral">&quot;docker&quot;</span>}, {<span class="stringliteral">&quot;name&quot;</span>, req_.<a class="code" href="structContainerRequest.html#a167e6c521808ed6ed9ec6c07583591a0">container_name</a>}}</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    );</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="keywordtype">int</span> status = std::system(command.c_str());</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordflow">if</span> (status == 0) {</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <a class="code" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a> &lt;&lt; <span class="stringliteral">&quot;Docker container restarted successfully&quot;</span>;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <a class="code" href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a> &lt;&lt; <span class="stringliteral">&quot;Failed to restart Docker container&quot;</span>;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    }</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="logging_8hpp_source.html#l00026">CM_LOG_ERROR</a>, <a class="el" href="logging_8hpp_source.html#l00020">CM_LOG_INFO</a>, <a class="el" href="common_8hpp_source.html#l00101">FormatCommand()</a>, and <a class="el" href="common_8hpp_source.html#l00094">CommandTemplate::Restart</a>.</p>
+<p class="reference">References <a class="el" href="logging_8hpp_source.html#l00026">CM_LOG_ERROR</a>, <a class="el" href="logging_8hpp_source.html#l00020">CM_LOG_INFO</a>, <a class="el" href="container__request_8hpp_source.html#l00015">ContainerRequest::container_name</a>, <a class="el" href="common_8hpp_source.html#l00104">FormatCommand()</a>, and <a class="el" href="common_8hpp_source.html#l00097">CommandTemplate::Restart</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -250,10 +257,11 @@ Here is the call graph for this function:</div>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="astructContainerRequest_html_a167e6c521808ed6ed9ec6c07583591a0"><div class="ttname"><a href="structContainerRequest.html#a167e6c521808ed6ed9ec6c07583591a0">ContainerRequest::container_name</a></div><div class="ttdeci">std::string container_name</div><div class="ttdoc">Name of the container to operate on.</div><div class="ttdef"><b>Definition:</b> <a href="container__request_8hpp_source.html#l00015">container_request.hpp:15</a></div></div>
 <div class="ttc" id="alogging_8hpp_html_a3251db9e68b527ad826d18502cbcbe7a"><div class="ttname"><a href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a></div><div class="ttdeci">#define CM_LOG_ERROR</div><div class="ttdoc">Macro for logging error messages using glog.</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00026">logging.hpp:26</a></div></div>
-<div class="ttc" id="anamespaceCommandTemplate_html_af11de9f3bc8eaf1f345141ea51514578"><div class="ttname"><a href="namespaceCommandTemplate.html#af11de9f3bc8eaf1f345141ea51514578">CommandTemplate::Restart</a></div><div class="ttdeci">constexpr std::string_view Restart</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00094">common.hpp:94</a></div></div>
+<div class="ttc" id="anamespaceCommandTemplate_html_af11de9f3bc8eaf1f345141ea51514578"><div class="ttname"><a href="namespaceCommandTemplate.html#af11de9f3bc8eaf1f345141ea51514578">CommandTemplate::Restart</a></div><div class="ttdeci">constexpr std::string_view Restart</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00097">common.hpp:97</a></div></div>
 <div class="ttc" id="alogging_8hpp_html_a13620e8436f16badd4e01d4fd57467e2"><div class="ttname"><a href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a></div><div class="ttdeci">#define CM_LOG_INFO</div><div class="ttdoc">Macro for logging informational messages using glog.</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00020">logging.hpp:20</a></div></div>
-<div class="ttc" id="acommon_8hpp_html_a2f80aeff93aed5c1cc3d4c356d458b99"><div class="ttname"><a href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a></div><div class="ttdeci">std::string FormatCommand(std::string_view tmpl, const std::unordered_map&lt; std::string, std::string &gt; &amp;values)</div><div class="ttdoc">Utility function to format command templates by replacing placeholders with actual values.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00101">common.hpp:101</a></div></div>
+<div class="ttc" id="acommon_8hpp_html_a2f80aeff93aed5c1cc3d4c356d458b99"><div class="ttname"><a href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a></div><div class="ttdeci">std::string FormatCommand(std::string_view tmpl, const std::unordered_map&lt; std::string, std::string &gt; &amp;values)</div><div class="ttdoc">Utility function to format command templates by replacing placeholders with actual values.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00104">common.hpp:104</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

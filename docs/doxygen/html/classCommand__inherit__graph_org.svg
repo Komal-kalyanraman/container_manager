@@ -26,7 +26,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="classDockerApiCreateContainerCommand.html" target="_top" xlink:title="Command to create a new Docker container using the specified image and name.">
+<g id="a_node2"><a xlink:href="classDockerApiCreateContainerCommand.html" target="_top" xlink:title="Command to create a Docker container via the Docker API.">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-112.5 165,-112.5 165,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-100.5" font-family="Helvetica,sans-Serif" font-size="10.00">DockerApiCreateContainer</text>
 <text text-anchor="middle" x="82.5" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">Command</text>
@@ -50,7 +50,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="classDockerApiRemoveContainerCommand.html" target="_top" xlink:title="Command to remove a Docker container by name, using force removal.">
+<g id="a_node3"><a xlink:href="classDockerApiRemoveContainerCommand.html" target="_top" xlink:title="Command to remove a Docker container via the Docker API.">
 <polygon fill="white" stroke="black" points="183,-0.5 183,-112.5 356,-112.5 356,-0.5 183,-0.5"/>
 <text text-anchor="start" x="191" y="-100.5" font-family="Helvetica,sans-Serif" font-size="10.00">DockerApiRemoveContainer</text>
 <text text-anchor="middle" x="269.5" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">Command</text>
@@ -74,7 +74,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="classDockerApiRestartContainerCommand.html" target="_top" xlink:title="Command to restart a Docker container by name.">
+<g id="a_node4"><a xlink:href="classDockerApiRestartContainerCommand.html" target="_top" xlink:title="Command to restart a Docker container via the Docker API.">
 <polygon fill="white" stroke="black" points="374.5,-0.5 374.5,-112.5 542.5,-112.5 542.5,-0.5 374.5,-0.5"/>
 <text text-anchor="start" x="382.5" y="-100.5" font-family="Helvetica,sans-Serif" font-size="10.00">DockerApiRestartContainer</text>
 <text text-anchor="middle" x="458.5" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">Command</text>
@@ -98,7 +98,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="classDockerApiRuntimeAvailableCommand.html" target="_top" xlink:title="Command to check if the Docker daemon is available via the /_ping endpoint.">
+<g id="a_node5"><a xlink:href="classDockerApiRuntimeAvailableCommand.html" target="_top" xlink:title="Command to check if Docker daemon is available via the API.">
 <polygon fill="white" stroke="black" points="560.5,-0.5 560.5,-112.5 732.5,-112.5 732.5,-0.5 560.5,-0.5"/>
 <text text-anchor="start" x="568.5" y="-100.5" font-family="Helvetica,sans-Serif" font-size="10.00">DockerApiRuntimeAvailable</text>
 <text text-anchor="middle" x="646.5" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">Command</text>
@@ -122,7 +122,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="classDockerApiStartContainerCommand.html" target="_top" xlink:title="Command to start a Docker container by name.">
+<g id="a_node6"><a xlink:href="classDockerApiStartContainerCommand.html" target="_top" xlink:title="Command to start a Docker container via the Docker API.">
 <polygon fill="white" stroke="black" points="750.5,-11.5 750.5,-101.5 956.5,-101.5 956.5,-11.5 750.5,-11.5"/>
 <text text-anchor="middle" x="853.5" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">DockerApiStartContainerCommand</text>
 <polyline fill="none" stroke="black" points="750.5,-82.5 956.5,-82.5 "/>
@@ -144,7 +144,7 @@
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<g id="a_node7"><a xlink:href="classDockerApiStopContainerCommand.html" target="_top" xlink:title="Command to stop a Docker container by name.">
+<g id="a_node7"><a xlink:href="classDockerApiStopContainerCommand.html" target="_top" xlink:title="Command to stop a Docker container via the Docker API.">
 <polygon fill="white" stroke="black" points="974.5,-17 974.5,-96 1186.5,-96 1186.5,-17 974.5,-17"/>
 <text text-anchor="middle" x="1080.5" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">DockerApiStopContainerCommand</text>
 <polyline fill="none" stroke="black" points="974.5,-77 1186.5,-77 "/>
@@ -165,7 +165,7 @@
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="classDockerCreateContainerCommand.html" target="_top" xlink:title="Command to create a Docker container with specified parameters.">
+<g id="a_node8"><a xlink:href="classDockerCreateContainerCommand.html" target="_top" xlink:title="Command to create a Docker container with user&#45;defined parameters.">
 <polygon fill="white" stroke="black" points="1205,-17 1205,-96 1412,-96 1412,-17 1205,-17"/>
 <text text-anchor="middle" x="1308.5" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">DockerCreateContainerCommand</text>
 <polyline fill="none" stroke="black" points="1205,-77 1412,-77 "/>
@@ -186,7 +186,7 @@
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
-<g id="a_node9"><a xlink:href="classDockerRemoveContainerCommand.html" target="_top" xlink:title="Command to remove a Docker container and clean up database state.">
+<g id="a_node9"><a xlink:href="classDockerRemoveContainerCommand.html" target="_top" xlink:title="Command to remove a Docker container.">
 <polygon fill="white" stroke="black" points="1430,-17 1430,-96 1645,-96 1645,-17 1430,-17"/>
 <text text-anchor="middle" x="1537.5" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">DockerRemoveContainerCommand</text>
 <polyline fill="none" stroke="black" points="1430,-77 1645,-77 "/>
@@ -291,7 +291,7 @@
 <!-- Node14 -->
 <g id="node14" class="node">
 <title>Node14</title>
-<g id="a_node14"><a xlink:href="classPodmanApiCreateContainerCommand.html" target="_top" xlink:title="Command to create a new Podman container using the specified image and name.">
+<g id="a_node14"><a xlink:href="classPodmanApiCreateContainerCommand.html" target="_top" xlink:title="Command to create a Podman container via the Podman API.">
 <polygon fill="white" stroke="black" points="2555,-0.5 2555,-112.5 2726,-112.5 2726,-0.5 2555,-0.5"/>
 <text text-anchor="start" x="2563" y="-100.5" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanApiCreateContainer</text>
 <text text-anchor="middle" x="2640.5" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">Command</text>
@@ -315,7 +315,7 @@
 <!-- Node15 -->
 <g id="node15" class="node">
 <title>Node15</title>
-<g id="a_node15"><a xlink:href="classPodmanApiRuntimeAvailableCommand.html" target="_top" xlink:title="Command to check if the Podman daemon is available via the /_ping endpoint.">
+<g id="a_node15"><a xlink:href="classPodmanApiRuntimeAvailableCommand.html" target="_top" xlink:title="Command to check if Podman daemon is available via the API.">
 <polygon fill="white" stroke="black" points="2744.5,-0.5 2744.5,-112.5 2922.5,-112.5 2922.5,-0.5 2744.5,-0.5"/>
 <text text-anchor="start" x="2752.5" y="-100.5" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanApiRuntimeAvailable</text>
 <text text-anchor="middle" x="2833.5" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">Command</text>
@@ -339,7 +339,7 @@
 <!-- Node16 -->
 <g id="node16" class="node">
 <title>Node16</title>
-<g id="a_node16"><a xlink:href="classPodmanApiStartContainerCommand.html" target="_top" xlink:title="Command to start a Podman container by name.">
+<g id="a_node16"><a xlink:href="classPodmanApiStartContainerCommand.html" target="_top" xlink:title="Command to start a Podman container via the Podman API.">
 <polygon fill="white" stroke="black" points="2940.5,-11.5 2940.5,-101.5 3152.5,-101.5 3152.5,-11.5 2940.5,-11.5"/>
 <text text-anchor="middle" x="3046.5" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanApiStartContainerCommand</text>
 <polyline fill="none" stroke="black" points="2940.5,-82.5 3152.5,-82.5 "/>
@@ -361,7 +361,7 @@
 <!-- Node17 -->
 <g id="node17" class="node">
 <title>Node17</title>
-<g id="a_node17"><a xlink:href="classPodmanApiStopContainerCommand.html" target="_top" xlink:title="Command to stop a Podman container by name.">
+<g id="a_node17"><a xlink:href="classPodmanApiStopContainerCommand.html" target="_top" xlink:title="Command to stop a Podman container via the Podman API.">
 <polygon fill="white" stroke="black" points="3170.5,-17 3170.5,-96 3388.5,-96 3388.5,-17 3170.5,-17"/>
 <text text-anchor="middle" x="3279.5" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanApiStopContainerCommand</text>
 <polyline fill="none" stroke="black" points="3170.5,-77 3388.5,-77 "/>
@@ -382,7 +382,7 @@
 <!-- Node18 -->
 <g id="node18" class="node">
 <title>Node18</title>
-<g id="a_node18"><a xlink:href="classPodmanCreateContainerCommand.html" target="_top" xlink:title="Command to create a Podman container with specified parameters.">
+<g id="a_node18"><a xlink:href="classPodmanCreateContainerCommand.html" target="_top" xlink:title="Command to create a Podman container with user&#45;defined parameters.">
 <polygon fill="white" stroke="black" points="3407,-17 3407,-96 3620,-96 3620,-17 3407,-17"/>
 <text text-anchor="middle" x="3513.5" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanCreateContainerCommand</text>
 <polyline fill="none" stroke="black" points="3407,-77 3620,-77 "/>
@@ -403,7 +403,7 @@
 <!-- Node19 -->
 <g id="node19" class="node">
 <title>Node19</title>
-<g id="a_node19"><a xlink:href="classPodmanRemoveContainerCommand.html" target="_top" xlink:title="Command to remove a Podman container and clean up database state.">
+<g id="a_node19"><a xlink:href="classPodmanRemoveContainerCommand.html" target="_top" xlink:title="Command to remove a Podman container.">
 <polygon fill="white" stroke="black" points="3638,-17 3638,-96 3859,-96 3859,-17 3638,-17"/>
 <text text-anchor="middle" x="3748.5" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanRemoveContainerCommand</text>
 <polyline fill="none" stroke="black" points="3638,-77 3859,-77 "/>

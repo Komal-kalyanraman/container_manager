@@ -1,23 +1,23 @@
 <map id="Command" name="Command">
 <area shape="rect" id="node1" title="Abstract base class for all commands." alt="" coords="3050,5,3175,97"/>
-<area shape="rect" id="node2" href="$classDockerApiCreateContainerCommand.html" title="Command to create a new Docker container using the specified image and name." alt="" coords="5,145,225,296"/>
-<area shape="rect" id="node3" href="$classDockerApiRemoveContainerCommand.html" title="Command to remove a Docker container by name, using force removal." alt="" coords="249,145,480,296"/>
-<area shape="rect" id="node4" href="$classDockerApiRestartContainerCommand.html" title="Command to restart a Docker container by name." alt="" coords="505,145,729,296"/>
-<area shape="rect" id="node5" href="$classDockerApiRuntimeAvailableCommand.html" title="Command to check if the Docker daemon is available via the /_ping endpoint." alt="" coords="753,145,982,296"/>
-<area shape="rect" id="node6" href="$classDockerApiStartContainerCommand.html" title="Command to start a Docker container by name." alt="" coords="1006,160,1281,281"/>
-<area shape="rect" id="node7" href="$classDockerApiStopContainerCommand.html" title="Command to stop a Docker container by name." alt="" coords="1305,167,1587,274"/>
-<area shape="rect" id="node8" href="$classDockerCreateContainerCommand.html" title="Command to create a Docker container with specified parameters." alt="" coords="1612,167,1888,274"/>
-<area shape="rect" id="node9" href="$classDockerRemoveContainerCommand.html" title="Command to remove a Docker container and clean up database state." alt="" coords="1912,167,2199,274"/>
+<area shape="rect" id="node2" href="$classDockerApiCreateContainerCommand.html" title="Command to create a Docker container via the Docker API." alt="" coords="5,145,225,296"/>
+<area shape="rect" id="node3" href="$classDockerApiRemoveContainerCommand.html" title="Command to remove a Docker container via the Docker API." alt="" coords="249,145,480,296"/>
+<area shape="rect" id="node4" href="$classDockerApiRestartContainerCommand.html" title="Command to restart a Docker container via the Docker API." alt="" coords="505,145,729,296"/>
+<area shape="rect" id="node5" href="$classDockerApiRuntimeAvailableCommand.html" title="Command to check if Docker daemon is available via the API." alt="" coords="753,145,982,296"/>
+<area shape="rect" id="node6" href="$classDockerApiStartContainerCommand.html" title="Command to start a Docker container via the Docker API." alt="" coords="1006,160,1281,281"/>
+<area shape="rect" id="node7" href="$classDockerApiStopContainerCommand.html" title="Command to stop a Docker container via the Docker API." alt="" coords="1305,167,1587,274"/>
+<area shape="rect" id="node8" href="$classDockerCreateContainerCommand.html" title="Command to create a Docker container with user&#45;defined parameters." alt="" coords="1612,167,1888,274"/>
+<area shape="rect" id="node9" href="$classDockerRemoveContainerCommand.html" title="Command to remove a Docker container." alt="" coords="1912,167,2199,274"/>
 <area shape="rect" id="node10" href="$classDockerRestartContainerCommand.html" title="Command to restart a Docker container." alt="" coords="2223,167,2503,274"/>
 <area shape="rect" id="node11" href="$classDockerRuntimeAvailableCommand.html" title="Command to check if Docker runtime is available." alt="" coords="2527,167,2813,274"/>
 <area shape="rect" id="node12" href="$classDockerStartContainerCommand.html" title="Command to start a Docker container." alt="" coords="2837,167,3101,274"/>
 <area shape="rect" id="node13" href="$classDockerStopContainerCommand.html" title="Command to stop a Docker container." alt="" coords="3125,167,3388,274"/>
-<area shape="rect" id="node14" href="$classPodmanApiCreateContainerCommand.html" title="Command to create a new Podman container using the specified image and name." alt="" coords="3412,145,3640,296"/>
-<area shape="rect" id="node15" href="$classPodmanApiRuntimeAvailableCommand.html" title="Command to check if the Podman daemon is available via the /_ping endpoint." alt="" coords="3665,145,3902,296"/>
-<area shape="rect" id="node16" href="$classPodmanApiStartContainerCommand.html" title="Command to start a Podman container by name." alt="" coords="3926,160,4209,281"/>
-<area shape="rect" id="node17" href="$classPodmanApiStopContainerCommand.html" title="Command to stop a Podman container by name." alt="" coords="4233,167,4523,274"/>
-<area shape="rect" id="node18" href="$classPodmanCreateContainerCommand.html" title="Command to create a Podman container with specified parameters." alt="" coords="4548,167,4832,274"/>
-<area shape="rect" id="node19" href="$classPodmanRemoveContainerCommand.html" title="Command to remove a Podman container and clean up database state." alt="" coords="4856,167,5151,274"/>
+<area shape="rect" id="node14" href="$classPodmanApiCreateContainerCommand.html" title="Command to create a Podman container via the Podman API." alt="" coords="3412,145,3640,296"/>
+<area shape="rect" id="node15" href="$classPodmanApiRuntimeAvailableCommand.html" title="Command to check if Podman daemon is available via the API." alt="" coords="3665,145,3902,296"/>
+<area shape="rect" id="node16" href="$classPodmanApiStartContainerCommand.html" title="Command to start a Podman container via the Podman API." alt="" coords="3926,160,4209,281"/>
+<area shape="rect" id="node17" href="$classPodmanApiStopContainerCommand.html" title="Command to stop a Podman container via the Podman API." alt="" coords="4233,167,4523,274"/>
+<area shape="rect" id="node18" href="$classPodmanCreateContainerCommand.html" title="Command to create a Podman container with user&#45;defined parameters." alt="" coords="4548,167,4832,274"/>
+<area shape="rect" id="node19" href="$classPodmanRemoveContainerCommand.html" title="Command to remove a Podman container." alt="" coords="4856,167,5151,274"/>
 <area shape="rect" id="node20" href="$classPodmanRestartContainerCommand.html" title="Command to restart a Podman container." alt="" coords="5175,167,5463,274"/>
 <area shape="rect" id="node21" href="$classPodmanRuntimeAvailableCommand.html" title="Command to check if Podman runtime is available." alt="" coords="5487,167,5781,274"/>
 <area shape="rect" id="node22" href="$classPodmanStartContainerCommand.html" title="Command to start a Podman container." alt="" coords="5805,167,6077,274"/>

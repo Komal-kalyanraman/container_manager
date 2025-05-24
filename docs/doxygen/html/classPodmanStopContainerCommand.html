@@ -107,9 +107,9 @@ Collaboration diagram for PodmanStopContainerCommand:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a244bfcd3a014ea6de269791cfa00150f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPodmanStopContainerCommand.html#a244bfcd3a014ea6de269791cfa00150f">PodmanStopContainerCommand</a> (const std::string &amp;container_name)</td></tr>
-<tr class="memdesc:a244bfcd3a014ea6de269791cfa00150f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classPodmanStopContainerCommand.html" title="Command to stop a Podman container.">PodmanStopContainerCommand</a>.  <a href="classPodmanStopContainerCommand.html#a244bfcd3a014ea6de269791cfa00150f">More...</a><br /></td></tr>
-<tr class="separator:a244bfcd3a014ea6de269791cfa00150f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a884090acfe4f470471a87c8a46e5b8ca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPodmanStopContainerCommand.html#a884090acfe4f470471a87c8a46e5b8ca">PodmanStopContainerCommand</a> (const <a class="el" href="structContainerRequest.html">ContainerRequest</a> &amp;req)</td></tr>
+<tr class="memdesc:a884090acfe4f470471a87c8a46e5b8ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classPodmanStopContainerCommand.html" title="Command to stop a Podman container.">PodmanStopContainerCommand</a>.  <a href="classPodmanStopContainerCommand.html#a884090acfe4f470471a87c8a46e5b8ca">More...</a><br /></td></tr>
+<tr class="separator:a884090acfe4f470471a87c8a46e5b8ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39a206c891cffd0646bade9f23ac6b83"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPodmanStopContainerCommand.html#a39a206c891cffd0646bade9f23ac6b83">~PodmanStopContainerCommand</a> ()=default</td></tr>
 <tr class="memdesc:a39a206c891cffd0646bade9f23ac6b83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="classPodmanStopContainerCommand.html#a39a206c891cffd0646bade9f23ac6b83">More...</a><br /></td></tr>
 <tr class="separator:a39a206c891cffd0646bade9f23ac6b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,11 +123,17 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to stop a Podman container. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">req</td><td>The container request containing the container name. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="podman__commands_8hpp_source.html#l00088">88</a> of file <a class="el" href="podman__commands_8hpp_source.html">podman_commands.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="podman__commands_8hpp_source.html#l00095">95</a> of file <a class="el" href="podman__commands_8hpp_source.html">podman_commands.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a244bfcd3a014ea6de269791cfa00150f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a244bfcd3a014ea6de269791cfa00150f">&#9670;&nbsp;</a></span>PodmanStopContainerCommand()</h2>
+<a id="a884090acfe4f470471a87c8a46e5b8ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a884090acfe4f470471a87c8a46e5b8ca">&#9670;&nbsp;</a></span>PodmanStopContainerCommand()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -138,8 +144,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">PodmanStopContainerCommand::PodmanStopContainerCommand </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>container_name</em></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="structContainerRequest.html">ContainerRequest</a> &amp;&#160;</td>
+          <td class="paramname"><em>req</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -153,15 +159,13 @@ Public Member Functions</h2></td></tr>
 <p>Constructs a <a class="el" href="classPodmanStopContainerCommand.html" title="Command to stop a Podman container.">PodmanStopContainerCommand</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">container_name</td><td>Name of the container to stop. </td></tr>
+    <tr><td class="paramname">req</td><td>The container request containing the container name. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="podman__commands_8cpp_source.html#l00093">93</a> of file <a class="el" href="podman__commands_8cpp_source.html">podman_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                                                                                      : container_name_(container_name) {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="comment">// Empty constructor</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="podman__commands_8cpp_source.html#l00097">97</a> of file <a class="el" href="podman__commands_8cpp_source.html">podman_commands.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;: req_(req) {}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -217,7 +221,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Executes the command to stop a Podman container. </p>
-<dl class="section return"><dt>Returns</dt><dd>True if the container was stopped successfully, false otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the container was stopped successfully, false otherwise.</dd></dl>
+<p>Executes the command to stop a Podman container. </p><dl class="section return"><dt>Returns</dt><dd>True if the container was stopped successfully, false otherwise. </dd></dl>
 
 <p>Implements <a class="el" href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">Command</a>.</p>
 
@@ -225,7 +230,7 @@ Public Member Functions</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                                               {</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    std::string command = <a class="code" href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a>(</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <a class="code" href="namespaceCommandTemplate.html#a360167789598bf328488e90755b12035">CommandTemplate::Stop</a>,</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        {{<span class="stringliteral">&quot;runtime&quot;</span>, <span class="stringliteral">&quot;podman&quot;</span>}, {<span class="stringliteral">&quot;name&quot;</span>, container_name_}}</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        {{<span class="stringliteral">&quot;runtime&quot;</span>, <span class="stringliteral">&quot;podman&quot;</span>}, {<span class="stringliteral">&quot;name&quot;</span>, req_.<a class="code" href="structContainerRequest.html#a167e6c521808ed6ed9ec6c07583591a0">container_name</a>}}</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    );</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">int</span> status = std::system(command.c_str());</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">if</span> (status == 0) {</div>
@@ -237,7 +242,7 @@ Public Member Functions</h2></td></tr>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    }</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="logging_8hpp_source.html#l00026">CM_LOG_ERROR</a>, <a class="el" href="logging_8hpp_source.html#l00020">CM_LOG_INFO</a>, <a class="el" href="common_8hpp_source.html#l00101">FormatCommand()</a>, and <a class="el" href="common_8hpp_source.html#l00092">CommandTemplate::Stop</a>.</p>
+<p class="reference">References <a class="el" href="logging_8hpp_source.html#l00026">CM_LOG_ERROR</a>, <a class="el" href="logging_8hpp_source.html#l00020">CM_LOG_INFO</a>, <a class="el" href="container__request_8hpp_source.html#l00015">ContainerRequest::container_name</a>, <a class="el" href="common_8hpp_source.html#l00104">FormatCommand()</a>, and <a class="el" href="common_8hpp_source.html#l00095">CommandTemplate::Stop</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -252,10 +257,11 @@ Here is the call graph for this function:</div>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="anamespaceCommandTemplate_html_a360167789598bf328488e90755b12035"><div class="ttname"><a href="namespaceCommandTemplate.html#a360167789598bf328488e90755b12035">CommandTemplate::Stop</a></div><div class="ttdeci">constexpr std::string_view Stop</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00092">common.hpp:92</a></div></div>
+<div class="ttc" id="astructContainerRequest_html_a167e6c521808ed6ed9ec6c07583591a0"><div class="ttname"><a href="structContainerRequest.html#a167e6c521808ed6ed9ec6c07583591a0">ContainerRequest::container_name</a></div><div class="ttdeci">std::string container_name</div><div class="ttdoc">Name of the container to operate on.</div><div class="ttdef"><b>Definition:</b> <a href="container__request_8hpp_source.html#l00015">container_request.hpp:15</a></div></div>
+<div class="ttc" id="anamespaceCommandTemplate_html_a360167789598bf328488e90755b12035"><div class="ttname"><a href="namespaceCommandTemplate.html#a360167789598bf328488e90755b12035">CommandTemplate::Stop</a></div><div class="ttdeci">constexpr std::string_view Stop</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00095">common.hpp:95</a></div></div>
 <div class="ttc" id="alogging_8hpp_html_a3251db9e68b527ad826d18502cbcbe7a"><div class="ttname"><a href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a></div><div class="ttdeci">#define CM_LOG_ERROR</div><div class="ttdoc">Macro for logging error messages using glog.</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00026">logging.hpp:26</a></div></div>
 <div class="ttc" id="alogging_8hpp_html_a13620e8436f16badd4e01d4fd57467e2"><div class="ttname"><a href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a></div><div class="ttdeci">#define CM_LOG_INFO</div><div class="ttdoc">Macro for logging informational messages using glog.</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00020">logging.hpp:20</a></div></div>
-<div class="ttc" id="acommon_8hpp_html_a2f80aeff93aed5c1cc3d4c356d458b99"><div class="ttname"><a href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a></div><div class="ttdeci">std::string FormatCommand(std::string_view tmpl, const std::unordered_map&lt; std::string, std::string &gt; &amp;values)</div><div class="ttdoc">Utility function to format command templates by replacing placeholders with actual values.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00101">common.hpp:101</a></div></div>
+<div class="ttc" id="acommon_8hpp_html_a2f80aeff93aed5c1cc3d4c356d458b99"><div class="ttname"><a href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a></div><div class="ttdeci">std::string FormatCommand(std::string_view tmpl, const std::unordered_map&lt; std::string, std::string &gt; &amp;values)</div><div class="ttdoc">Utility function to format command templates by replacing placeholders with actual values.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00104">common.hpp:104</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

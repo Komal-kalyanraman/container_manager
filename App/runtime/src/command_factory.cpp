@@ -66,11 +66,11 @@ std::unique_ptr<Command> CommandFactory::CreateCommand(const ContainerRequest& r
         if (req.operation == CommandName::RuntimeStatus) {
             return std::make_unique<PodmanApiRuntimeAvailableCommand>();
         } else if (req.operation == CommandName::CreateContainer) {
-            return std::make_unique<PodmanApiCreateContainerCommand>(req.container_name, req.image_name);
+            return std::make_unique<PodmanApiCreateContainerCommand>(req);
         } else if (req.operation == CommandName::StartContainer) {
-            return std::make_unique<PodmanApiStartContainerCommand>(req.container_name);
+            return std::make_unique<PodmanApiStartContainerCommand>(req);
         } else if (req.operation == CommandName::StopContainer) {
-            return std::make_unique<PodmanApiStopContainerCommand>(req.container_name);
+            return std::make_unique<PodmanApiStopContainerCommand>(req);
         }
         // Add Remove/Restart if implemented for PodmanApi
     } else {

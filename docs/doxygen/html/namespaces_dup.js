@@ -1,5 +1,6 @@
 var namespaces_dup =
 [
+    [ "ApiEndpoint", "namespaceApiEndpoint.html", null ],
     [ "CommandTemplate", "namespaceCommandTemplate.html", null ],
     [ "containermanager", "namespacecontainermanager.html", null ],
     [ "google", "namespacegoogle.html", "namespacegoogle" ],

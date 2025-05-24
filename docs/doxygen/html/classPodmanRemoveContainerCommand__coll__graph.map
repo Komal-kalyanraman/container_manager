@@ -1,4 +1,4 @@
 <map id="PodmanRemoveContainerCommand" name="PodmanRemoveContainerCommand">
-<area shape="rect" id="node1" title="Command to remove a Podman container and clean up database state." alt="" coords="5,145,300,252"/>
+<area shape="rect" id="node1" title="Command to remove a Podman container." alt="" coords="5,145,300,252"/>
 <area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for all commands." alt="" coords="90,5,215,97"/>
 </map>

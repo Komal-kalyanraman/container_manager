@@ -113,3 +113,27 @@ inline std::string FormatCommand(std::string_view tmpl, const std::unordered_map
     }
     return result;
 }
+
+namespace ApiEndpoint {
+    inline constexpr std::string_view Containers = "containers/";
+    inline constexpr std::string_view Create     = "containers/create?name=";
+    inline constexpr std::string_view Start      = "/start";
+    inline constexpr std::string_view Stop       = "/stop";
+    inline constexpr std::string_view Restart    = "/restart";
+    inline constexpr std::string_view Remove     = "?force=true";
+    inline constexpr std::string_view Ping       = "_ping";
+}
+
+/// @brief Compose a container API endpoint for Docker or Podman API.
+/// @param baseUrl The API base URL (e.g., kDockerApiBaseUrl or kPodmanApiBaseUrl).
+/// @param containerName The container name.
+/// @param action The action endpoint (e.g., ApiEndpoint::Start, ApiEndpoint::Stop).
+/// @return The full endpoint URL as a std::string.
+inline std::string ComposeContainerApiEndpoint(
+    std::string_view baseUrl,
+    std::string_view containerName,
+    std::string_view action)
+{
+    return std::string(baseUrl) + std::string(ApiEndpoint::Containers) +
+           std::string(containerName) + std::string(action);
+}

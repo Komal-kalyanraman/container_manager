@@ -1,4 +1,5 @@
 <map id="DockerApiRestartContainerCommand::Execute" name="DockerApiRestartContainerCommand::Execute">
-<area shape="rect" id="node1" title="Execute the command." alt="" coords="5,5,204,47"/>
-<area shape="rect" id="node2" href="$classCurlHandler.html#a35359e5d7f3412aef304d81dbe02a7bc" title="Perform a HTTP POST request over a Unix domain socket." alt="" coords="252,13,417,39"/>
+<area shape="rect" id="node1" title="Executes the command to restart a Docker container via the API." alt="" coords="5,23,204,65"/>
+<area shape="rect" id="node2" href="$common_8hpp.html#a6ef961c11398422cd4dd9b4f66a57d03" title="Compose a container API endpoint for Docker or Podman API." alt="" coords="252,5,476,32"/>
+<area shape="rect" id="node3" href="$classCurlHandler.html#a35359e5d7f3412aef304d81dbe02a7bc" title="Perform a HTTP POST request over a Unix domain socket." alt="" coords="281,56,447,83"/>
 </map>

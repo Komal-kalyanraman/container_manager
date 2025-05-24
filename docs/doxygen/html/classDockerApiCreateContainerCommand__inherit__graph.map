@@ -1,4 +1,4 @@
 <map id="DockerApiCreateContainerCommand" name="DockerApiCreateContainerCommand">
-<area shape="rect" id="node1" title="Command to create a new Docker container using the specified image and name." alt="" coords="5,145,225,296"/>
+<area shape="rect" id="node1" title="Command to create a Docker container via the Docker API." alt="" coords="5,145,225,296"/>
 <area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for all commands." alt="" coords="53,5,178,97"/>
 </map>

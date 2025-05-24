@@ -90,26 +90,28 @@ $(document).ready(function(){initNavTree('classPodmanCreateContainerCommand.html
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to create a Podman container with specified parameters.  
+<p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to create a Podman container with user-defined parameters.  
  <a href="classPodmanCreateContainerCommand.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="podman__commands_8hpp_source.html">podman_commands.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for PodmanCreateContainerCommand:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPodmanCreateContainerCommand__inherit__graph.svg" width="295" height="258"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPodmanCreateContainerCommand__inherit__graph.svg" width="295" height="258"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div class="dynheader">
 Collaboration diagram for PodmanCreateContainerCommand:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classPodmanCreateContainerCommand__coll__graph.svg" width="295" height="258"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classPodmanCreateContainerCommand__coll__graph.svg" width="295" height="258"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a52a9598af1752932727af3f812416e2b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPodmanCreateContainerCommand.html#a52a9598af1752932727af3f812416e2b">PodmanCreateContainerCommand</a> (const std::string &amp;container_name, const std::string &amp;image_name)</td></tr>
-<tr class="memdesc:a52a9598af1752932727af3f812416e2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classPodmanCreateContainerCommand.html" title="Command to create a Podman container with specified parameters.">PodmanCreateContainerCommand</a>.  <a href="classPodmanCreateContainerCommand.html#a52a9598af1752932727af3f812416e2b">More...</a><br /></td></tr>
-<tr class="separator:a52a9598af1752932727af3f812416e2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a642729062320fc87f3f660df0f69bc09"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPodmanCreateContainerCommand.html#a642729062320fc87f3f660df0f69bc09">PodmanCreateContainerCommand</a> (const <a class="el" href="structContainerRequest.html">ContainerRequest</a> &amp;req)</td></tr>
+<tr class="memdesc:a642729062320fc87f3f660df0f69bc09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classPodmanCreateContainerCommand.html" title="Command to create a Podman container with user-defined parameters.">PodmanCreateContainerCommand</a>.  <a href="classPodmanCreateContainerCommand.html#a642729062320fc87f3f660df0f69bc09">More...</a><br /></td></tr>
+<tr class="separator:a642729062320fc87f3f660df0f69bc09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7128aa9742885f7a836ca5cde396256e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPodmanCreateContainerCommand.html#a7128aa9742885f7a836ca5cde396256e">~PodmanCreateContainerCommand</a> ()=default</td></tr>
 <tr class="memdesc:a7128aa9742885f7a836ca5cde396256e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="classPodmanCreateContainerCommand.html#a7128aa9742885f7a836ca5cde396256e">More...</a><br /></td></tr>
 <tr class="separator:a7128aa9742885f7a836ca5cde396256e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,47 +124,50 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to create a Podman container with specified parameters. </p>
-
-<p class="definition">Definition at line <a class="el" href="podman__commands_8hpp_source.html#l00038">38</a> of file <a class="el" href="podman__commands_8hpp_source.html">podman_commands.hpp</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a52a9598af1752932727af3f812416e2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a52a9598af1752932727af3f812416e2b">&#9670;&nbsp;</a></span>PodmanCreateContainerCommand()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">PodmanCreateContainerCommand::PodmanCreateContainerCommand </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>container_name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>image_name</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Constructs a <a class="el" href="classPodmanCreateContainerCommand.html" title="Command to create a Podman container with specified parameters.">PodmanCreateContainerCommand</a>. </p>
+<div class="textblock"><p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to create a Podman container with user-defined parameters. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">container_name</td><td>Name of the container to create. </td></tr>
-    <tr><td class="paramname">image_name</td><td>Name of the image to use for the container. </td></tr>
+    <tr><td class="paramname">req</td><td>The container request containing all parameters for creation. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="podman__commands_8cpp_source.html#l00040">40</a> of file <a class="el" href="podman__commands_8cpp_source.html">podman_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    : container_name_(container_name), image_name_(image_name) {}</div>
+<p class="definition">Definition at line <a class="el" href="podman__commands_8hpp_source.html#l00043">43</a> of file <a class="el" href="podman__commands_8hpp_source.html">podman_commands.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a642729062320fc87f3f660df0f69bc09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a642729062320fc87f3f660df0f69bc09">&#9670;&nbsp;</a></span>PodmanCreateContainerCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">PodmanCreateContainerCommand::PodmanCreateContainerCommand </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structContainerRequest.html">ContainerRequest</a> &amp;&#160;</td>
+          <td class="paramname"><em>req</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="classPodmanCreateContainerCommand.html" title="Command to create a Podman container with user-defined parameters.">PodmanCreateContainerCommand</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">req</td><td>The container request containing all parameters for creation. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="podman__commands_8cpp_source.html#l00041">41</a> of file <a class="el" href="podman__commands_8cpp_source.html">podman_commands.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;: req_(req) {}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -218,27 +223,36 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Executes the command to create a Podman container. </p>
-<dl class="section return"><dt>Returns</dt><dd>True if the container was created successfully, false otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the container was created successfully, false otherwise.</dd></dl>
+<p>Executes the command to create a Podman container. </p><dl class="section return"><dt>Returns</dt><dd>True if the container was created successfully, false otherwise. </dd></dl>
 
 <p>Implements <a class="el" href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">Command</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="podman__commands_8cpp_source.html#l00047">47</a> of file <a class="el" href="podman__commands_8cpp_source.html">podman_commands.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                                                 {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    std::string command = <a class="code" href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a>(</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="namespaceCommandTemplate.html#a641acb6b2c850ccb8dbce6f3a08315df">CommandTemplate::Create</a>,</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        {{<span class="stringliteral">&quot;runtime&quot;</span>, <span class="stringliteral">&quot;podman&quot;</span>}, {<span class="stringliteral">&quot;name&quot;</span>, container_name_}, {<span class="stringliteral">&quot;image&quot;</span>, image_name_}}</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    );</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">int</span> status = std::system(command.c_str());</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">if</span> (status == 0) {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <a class="code" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a> &lt;&lt; <span class="stringliteral">&quot;Podman container created successfully&quot;</span>;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a> &lt;&lt; <span class="stringliteral">&quot;Failed to create Podman container&quot;</span>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="podman__commands_8cpp_source.html#l00045">45</a> of file <a class="el" href="podman__commands_8cpp_source.html">podman_commands.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                                                 {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    std::string command = <a class="code" href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a>(</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="namespaceCommandTemplate.html#a641acb6b2c850ccb8dbce6f3a08315df">CommandTemplate::Create</a>,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            {<span class="stringliteral">&quot;runtime&quot;</span>, <span class="stringliteral">&quot;podman&quot;</span>},</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            {<span class="stringliteral">&quot;name&quot;</span>, req_.<a class="code" href="structContainerRequest.html#a167e6c521808ed6ed9ec6c07583591a0">container_name</a>},</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            {<span class="stringliteral">&quot;image&quot;</span>, req_.<a class="code" href="structContainerRequest.html#a4d7ceae61aa44c8a72cf299244d1fb84">image_name</a>},</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            {<span class="stringliteral">&quot;cpus&quot;</span>, req_.<a class="code" href="structContainerRequest.html#abf70c210e0c24a931924af261a5ccba3">cpus</a>},</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            {<span class="stringliteral">&quot;memory&quot;</span>, req_.<a class="code" href="structContainerRequest.html#a1ad4578490b2bfedb180b2259e9d1202">memory</a>},</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            {<span class="stringliteral">&quot;pids&quot;</span>, req_.<a class="code" href="structContainerRequest.html#a8dcfb854964b8d1ee03acbacf6212017">pids</a>},</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            {<span class="stringliteral">&quot;restart_policy&quot;</span>, req_.<a class="code" href="structContainerRequest.html#af488a918c33fb3395d372c1c681b8453">restart_policy</a>}</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    );</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">int</span> status = std::system(command.c_str());</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">if</span> (status == 0) {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a> &lt;&lt; <span class="stringliteral">&quot;Podman container created successfully&quot;</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a> &lt;&lt; <span class="stringliteral">&quot;Failed to create Podman container&quot;</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="logging_8hpp_source.html#l00026">CM_LOG_ERROR</a>, <a class="el" href="logging_8hpp_source.html#l00020">CM_LOG_INFO</a>, <a class="el" href="common_8hpp_source.html#l00090">CommandTemplate::Create</a>, and <a class="el" href="common_8hpp_source.html#l00101">FormatCommand()</a>.</p>
+<p class="reference">References <a class="el" href="logging_8hpp_source.html#l00026">CM_LOG_ERROR</a>, <a class="el" href="logging_8hpp_source.html#l00020">CM_LOG_INFO</a>, <a class="el" href="container__request_8hpp_source.html#l00015">ContainerRequest::container_name</a>, <a class="el" href="container__request_8hpp_source.html#l00017">ContainerRequest::cpus</a>, <a class="el" href="common_8hpp_source.html#l00090">CommandTemplate::Create</a>, <a class="el" href="common_8hpp_source.html#l00104">FormatCommand()</a>, <a class="el" href="container__request_8hpp_source.html#l00016">ContainerRequest::image_name</a>, <a class="el" href="container__request_8hpp_source.html#l00018">ContainerRequest::memory</a>, <a class="el" href="container__request_8hpp_source.html#l00019">ContainerRequest::pids</a>, and <a class="el" href="container__request_8hpp_source.html#l00020">ContainerRequest::restart_policy</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -254,9 +268,15 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="anamespaceCommandTemplate_html_a641acb6b2c850ccb8dbce6f3a08315df"><div class="ttname"><a href="namespaceCommandTemplate.html#a641acb6b2c850ccb8dbce6f3a08315df">CommandTemplate::Create</a></div><div class="ttdeci">constexpr std::string_view Create</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00090">common.hpp:90</a></div></div>
+<div class="ttc" id="astructContainerRequest_html_a167e6c521808ed6ed9ec6c07583591a0"><div class="ttname"><a href="structContainerRequest.html#a167e6c521808ed6ed9ec6c07583591a0">ContainerRequest::container_name</a></div><div class="ttdeci">std::string container_name</div><div class="ttdoc">Name of the container to operate on.</div><div class="ttdef"><b>Definition:</b> <a href="container__request_8hpp_source.html#l00015">container_request.hpp:15</a></div></div>
+<div class="ttc" id="astructContainerRequest_html_a4d7ceae61aa44c8a72cf299244d1fb84"><div class="ttname"><a href="structContainerRequest.html#a4d7ceae61aa44c8a72cf299244d1fb84">ContainerRequest::image_name</a></div><div class="ttdeci">std::string image_name</div><div class="ttdoc">Image name (used for create).</div><div class="ttdef"><b>Definition:</b> <a href="container__request_8hpp_source.html#l00016">container_request.hpp:16</a></div></div>
 <div class="ttc" id="alogging_8hpp_html_a3251db9e68b527ad826d18502cbcbe7a"><div class="ttname"><a href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a></div><div class="ttdeci">#define CM_LOG_ERROR</div><div class="ttdoc">Macro for logging error messages using glog.</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00026">logging.hpp:26</a></div></div>
+<div class="ttc" id="astructContainerRequest_html_a1ad4578490b2bfedb180b2259e9d1202"><div class="ttname"><a href="structContainerRequest.html#a1ad4578490b2bfedb180b2259e9d1202">ContainerRequest::memory</a></div><div class="ttdeci">std::string memory</div><div class="ttdoc">Memory limit (e.g., &quot;64&quot;).</div><div class="ttdef"><b>Definition:</b> <a href="container__request_8hpp_source.html#l00018">container_request.hpp:18</a></div></div>
 <div class="ttc" id="alogging_8hpp_html_a13620e8436f16badd4e01d4fd57467e2"><div class="ttname"><a href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a></div><div class="ttdeci">#define CM_LOG_INFO</div><div class="ttdoc">Macro for logging informational messages using glog.</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00020">logging.hpp:20</a></div></div>
-<div class="ttc" id="acommon_8hpp_html_a2f80aeff93aed5c1cc3d4c356d458b99"><div class="ttname"><a href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a></div><div class="ttdeci">std::string FormatCommand(std::string_view tmpl, const std::unordered_map&lt; std::string, std::string &gt; &amp;values)</div><div class="ttdoc">Utility function to format command templates by replacing placeholders with actual values.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00101">common.hpp:101</a></div></div>
+<div class="ttc" id="astructContainerRequest_html_abf70c210e0c24a931924af261a5ccba3"><div class="ttname"><a href="structContainerRequest.html#abf70c210e0c24a931924af261a5ccba3">ContainerRequest::cpus</a></div><div class="ttdeci">std::string cpus</div><div class="ttdoc">CPU limit (e.g., &quot;0.5&quot;).</div><div class="ttdef"><b>Definition:</b> <a href="container__request_8hpp_source.html#l00017">container_request.hpp:17</a></div></div>
+<div class="ttc" id="astructContainerRequest_html_af488a918c33fb3395d372c1c681b8453"><div class="ttname"><a href="structContainerRequest.html#af488a918c33fb3395d372c1c681b8453">ContainerRequest::restart_policy</a></div><div class="ttdeci">std::string restart_policy</div><div class="ttdoc">Restart policy (e.g., &quot;unless-stopped&quot;)</div><div class="ttdef"><b>Definition:</b> <a href="container__request_8hpp_source.html#l00020">container_request.hpp:20</a></div></div>
+<div class="ttc" id="astructContainerRequest_html_a8dcfb854964b8d1ee03acbacf6212017"><div class="ttname"><a href="structContainerRequest.html#a8dcfb854964b8d1ee03acbacf6212017">ContainerRequest::pids</a></div><div class="ttdeci">std::string pids</div><div class="ttdoc">PIDs limit (e.g., &quot;10&quot;).</div><div class="ttdef"><b>Definition:</b> <a href="container__request_8hpp_source.html#l00019">container_request.hpp:19</a></div></div>
+<div class="ttc" id="acommon_8hpp_html_a2f80aeff93aed5c1cc3d4c356d458b99"><div class="ttname"><a href="common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99">FormatCommand</a></div><div class="ttdeci">std::string FormatCommand(std::string_view tmpl, const std::unordered_map&lt; std::string, std::string &gt; &amp;values)</div><div class="ttdoc">Utility function to format command templates by replacing placeholders with actual values.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00104">common.hpp:104</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

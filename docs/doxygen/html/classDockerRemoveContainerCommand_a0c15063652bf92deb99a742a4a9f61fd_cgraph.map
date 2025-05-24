@@ -1,4 +1,4 @@
 <map id="DockerRemoveContainerCommand::Execute" name="DockerRemoveContainerCommand::Execute">
-<area shape="rect" id="node1" title="Executes the command to remove a Docker container and clean up database state." alt="" coords="5,5,256,47"/>
+<area shape="rect" id="node1" title="Executes the command to remove a Docker container." alt="" coords="5,5,256,47"/>
 <area shape="rect" id="node2" href="$common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99" title="Utility function to format command templates by replacing placeholders with actual values." alt="" coords="304,13,439,39"/>
 </map>

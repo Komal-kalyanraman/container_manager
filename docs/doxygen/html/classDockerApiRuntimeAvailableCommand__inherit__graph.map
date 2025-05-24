@@ -1,4 +1,4 @@
 <map id="DockerApiRuntimeAvailableCommand" name="DockerApiRuntimeAvailableCommand">
-<area shape="rect" id="node1" title="Command to check if the Docker daemon is available via the /_ping endpoint." alt="" coords="5,145,235,296"/>
+<area shape="rect" id="node1" title="Command to check if Docker daemon is available via the API." alt="" coords="5,145,235,296"/>
 <area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for all commands." alt="" coords="57,5,183,97"/>
 </map>

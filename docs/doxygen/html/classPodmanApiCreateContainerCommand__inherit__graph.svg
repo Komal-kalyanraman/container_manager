@@ -12,7 +12,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title="Command to create a new Podman container using the specified image and name.">
+<g id="a_node1"><a xlink:title="Command to create a Podman container via the Podman API.">
 <polygon fill="#bfbfbf" stroke="black" points="0,-0.5 0,-112.5 171,-112.5 171,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-100.5" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanApiCreateContainer</text>
 <text text-anchor="middle" x="85.5" y="-89.5" font-family="Helvetica,sans-Serif" font-size="10.00">Command</text>

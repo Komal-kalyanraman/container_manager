@@ -6,8 +6,11 @@ var common_8hpp =
     [ "DbusConfig", "structDbusConfig.html", "structDbusConfig" ],
     [ "RuntimeName", "structRuntimeName.html", null ],
     [ "CommandName", "structCommandName.html", null ],
+    [ "ComposeContainerApiEndpoint", "common_8hpp.html#a6ef961c11398422cd4dd9b4f66a57d03", null ],
     [ "FormatCommand", "common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99", null ],
+    [ "Containers", "common_8hpp.html#af8b24ed130d0b7ea7e91b1e06e006382", null ],
     [ "Create", "common_8hpp.html#a641acb6b2c850ccb8dbce6f3a08315df", null ],
+    [ "Create", "common_8hpp.html#a74aea95b300e7e356c74baf66adf8fb9", null ],
     [ "kContainerManagerLogName", "common_8hpp.html#af0a5c19c0d441fb37ef118d1714dc2aa", null ],
     [ "kDockerApiBaseUrl", "common_8hpp.html#a44f20b581877e93f5270fbe6281553c6", null ],
     [ "kDockerUnixSocketPath", "common_8hpp.html#a0ce8df3b35a0ea16a014b05672323070", null ],
@@ -15,8 +18,13 @@ var common_8hpp =
     [ "kMainShutdownPollMs", "common_8hpp.html#a219640b5cfb7d108d5a1f48ef0190e67", null ],
     [ "kPodmanApiBaseUrl", "common_8hpp.html#aba0e68025bb1b2ec135a028ffff2da75", null ],
     [ "kPodmanUnixSocketPath", "common_8hpp.html#a398feb4b796d77c01c195cfd698c933c", null ],
+    [ "Ping", "common_8hpp.html#a16a27a883973049590f48b7a016dfdf8", null ],
     [ "Remove", "common_8hpp.html#a763bd52213a9dfc193f395e308b6fa4d", null ],
+    [ "Remove", "common_8hpp.html#a6bbbab058f7bf283aa1c2b03446b64d1", null ],
     [ "Restart", "common_8hpp.html#af11de9f3bc8eaf1f345141ea51514578", null ],
+    [ "Restart", "common_8hpp.html#afee529396d86f36d5c0479f70b8033dc", null ],
     [ "Start", "common_8hpp.html#a0e1ab1f9a49c7fe35aa817e9ce451129", null ],
-    [ "Stop", "common_8hpp.html#a360167789598bf328488e90755b12035", null ]
+    [ "Start", "common_8hpp.html#ad47064942c62e6733cb092d7294e2b9e", null ],
+    [ "Stop", "common_8hpp.html#a360167789598bf328488e90755b12035", null ],
+    [ "Stop", "common_8hpp.html#a826403867abad9a6333789c4e9993200", null ]
 ];

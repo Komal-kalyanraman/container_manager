@@ -1,4 +1,4 @@
 <map id="DockerApiRestartContainerCommand" name="DockerApiRestartContainerCommand">
-<area shape="rect" id="node1" title="Command to restart a Docker container by name." alt="" coords="5,145,229,296"/>
+<area shape="rect" id="node1" title="Command to restart a Docker container via the Docker API." alt="" coords="5,145,229,296"/>
 <area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for all commands." alt="" coords="55,5,180,97"/>
 </map>

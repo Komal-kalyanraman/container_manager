@@ -1,4 +1,4 @@
 <map id="DockerApiStopContainerCommand" name="DockerApiStopContainerCommand">
-<area shape="rect" id="node1" title="Command to stop a Docker container by name." alt="" coords="5,145,288,252"/>
+<area shape="rect" id="node1" title="Command to stop a Docker container via the Docker API." alt="" coords="5,145,288,252"/>
 <area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for all commands." alt="" coords="84,5,209,97"/>
 </map>

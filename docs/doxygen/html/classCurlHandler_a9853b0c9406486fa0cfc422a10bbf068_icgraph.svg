@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="classDockerApiRuntimeAvailableCommand.html#a26f5ae3b7b9d8da730865a6b4f057fca" target="_top" xlink:title="Execute the command.">
+<g id="a_node2"><a xlink:href="classDockerApiRuntimeAvailableCommand.html#a26f5ae3b7b9d8da730865a6b4f057fca" target="_top" xlink:title="Executes the command to check Docker API runtime availability.">
 <polygon fill="white" stroke="black" points="3,-49.5 3,-79.5 155,-79.5 155,-49.5 3,-49.5"/>
 <text text-anchor="start" x="11" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">DockerApiRuntimeAvailable</text>
 <text text-anchor="middle" x="79" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">Command::Execute</text>
@@ -37,7 +37,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="classPodmanApiRuntimeAvailableCommand.html#a3cee9a8e7da55eb4f1fc67a12dcab68f" target="_top" xlink:title="Execute the command.">
+<g id="a_node3"><a xlink:href="classPodmanApiRuntimeAvailableCommand.html#a3cee9a8e7da55eb4f1fc67a12dcab68f" target="_top" xlink:title="Executes the command to check Podman API runtime availability.">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-30.5 158,-30.5 158,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">PodmanApiRuntimeAvailable</text>
 <text text-anchor="middle" x="79" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Command::Execute</text>

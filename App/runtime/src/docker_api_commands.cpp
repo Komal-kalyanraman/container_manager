@@ -26,7 +26,7 @@ DockerApiRuntimeAvailableCommand::DockerApiRuntimeAvailableCommand() {}
 bool DockerApiRuntimeAvailableCommand::Execute() const {
     CurlHandler curl;
     std::string response;
-    std::string url = std::string(kDockerApiBaseUrl) + "_ping";
+    std::string url = std::string(kDockerApiBaseUrl) + std::string(ApiEndpoint::Ping);
     bool success = curl.GetUnix(url, kDockerUnixSocketPath, response);
     if (success && response == "OK") {
         std::cout << "[Docker API] Docker daemon is running (/_ping returned OK)." << std::endl;
@@ -52,7 +52,9 @@ DockerApiCreateContainerCommand::DockerApiCreateContainerCommand(const Container
 bool DockerApiCreateContainerCommand::Execute() const {
     CurlHandler curl;
     std::string response;
-    std::string url = std::string(kDockerApiBaseUrl) + "containers/create?name=" + req_.container_name;
+    std::string url = std::string(kDockerApiBaseUrl) +
+                      std::string(ApiEndpoint::Create) +
+                      req_.container_name;
 
     // Build JSON body with all relevant fields
     std::string body = "{";
@@ -105,7 +107,9 @@ DockerApiStartContainerCommand::DockerApiStartContainerCommand(const ContainerRe
 bool DockerApiStartContainerCommand::Execute() const {
     CurlHandler curl;
     std::string response;
-    std::string url = std::string(kDockerApiBaseUrl) + "containers/" + req_.container_name + "/start";
+    std::string url = ComposeContainerApiEndpoint(
+        kDockerApiBaseUrl, req_.container_name, ApiEndpoint::Start
+    );
     bool success = curl.PostUnix(url, kDockerUnixSocketPath, "", response, "application/json");
     if (success) {
         std::cout << "[Docker API] Start container response: " << response << std::endl;
@@ -128,7 +132,9 @@ DockerApiStopContainerCommand::DockerApiStopContainerCommand(const ContainerRequ
 bool DockerApiStopContainerCommand::Execute() const {
     CurlHandler curl;
     std::string response;
-    std::string url = std::string(kDockerApiBaseUrl) + "containers/" + req_.container_name + "/stop";
+    std::string url = ComposeContainerApiEndpoint(
+        kDockerApiBaseUrl, req_.container_name, ApiEndpoint::Stop
+    );
     bool success = curl.PostUnix(url, kDockerUnixSocketPath, "", response, "application/json");
     if (success) {
         std::cout << "[Docker API] Stop container response: " << response << std::endl;
@@ -151,7 +157,9 @@ DockerApiRestartContainerCommand::DockerApiRestartContainerCommand(const Contain
 bool DockerApiRestartContainerCommand::Execute() const {
     CurlHandler curl;
     std::string response;
-    std::string url = std::string(kDockerApiBaseUrl) + "containers/" + req_.container_name + "/restart";
+    std::string url = ComposeContainerApiEndpoint(
+        kDockerApiBaseUrl, req_.container_name, ApiEndpoint::Restart
+    );
     bool success = curl.PostUnix(url, kDockerUnixSocketPath, "", response, "application/json");
     if (success) {
         std::cout << "[Docker API] Restart container response: " << response << std::endl;
@@ -174,7 +182,9 @@ DockerApiRemoveContainerCommand::DockerApiRemoveContainerCommand(const Container
 bool DockerApiRemoveContainerCommand::Execute() const {
     CurlHandler curl;
     std::string response;
-    std::string url = std::string(kDockerApiBaseUrl) + "containers/" + req_.container_name + "?force=true";
+    std::string url = ComposeContainerApiEndpoint(
+        kDockerApiBaseUrl, req_.container_name, ApiEndpoint::Remove
+    );
     bool success = curl.DeleteUnix(url, kDockerUnixSocketPath, response);
     if (success) {
         std::cout << "[Docker API] Remove container response: " << response << std::endl;

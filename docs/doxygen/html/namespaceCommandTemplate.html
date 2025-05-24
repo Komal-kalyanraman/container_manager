@@ -94,7 +94,7 @@ $(document).ready(function(){initNavTree('namespaceCommandTemplate.html',''); in
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a641acb6b2c850ccb8dbce6f3a08315df"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommandTemplate.html#a641acb6b2c850ccb8dbce6f3a08315df">Create</a> = &quot;{runtime} create --name {name} {image}&quot;</td></tr>
+<tr class="memitem:a641acb6b2c850ccb8dbce6f3a08315df"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommandTemplate.html#a641acb6b2c850ccb8dbce6f3a08315df">Create</a></td></tr>
 <tr class="separator:a641acb6b2c850ccb8dbce6f3a08315df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e1ab1f9a49c7fe35aa817e9ce451129"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommandTemplate.html#a0e1ab1f9a49c7fe35aa817e9ce451129">Start</a> = &quot;{runtime} start {name}&quot;</td></tr>
 <tr class="separator:a0e1ab1f9a49c7fe35aa817e9ce451129"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,7 +118,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr std::string_view CommandTemplate::Create = &quot;{runtime} create --name {name} {image}&quot;</td>
+          <td class="memname">constexpr std::string_view CommandTemplate::Create</td>
         </tr>
       </table>
   </td>
@@ -127,10 +127,14 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">        <span class="stringliteral">&quot;{runtime} create --name {name} &quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;--cpus {cpus} --memory {memory} --pids-limit {pids} &quot;</span></div>
+<div class="line">        <span class="stringliteral">&quot;--restart {restart_policy} {image}&quot;</span></div>
+</div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00090">90</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00045">DockerCreateContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00047">PodmanCreateContainerCommand::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00045">DockerCreateContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00045">PodmanCreateContainerCommand::Execute()</a>.</p>
 
 </div>
 </div>
@@ -154,9 +158,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00093">93</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00096">96</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00120">DockerRemoveContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00128">PodmanRemoveContainerCommand::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00125">DockerRemoveContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00125">PodmanRemoveContainerCommand::Execute()</a>.</p>
 
 </div>
 </div>
@@ -180,9 +184,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00094">94</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00097">97</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00145">DockerRestartContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00155">PodmanRestartContainerCommand::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00149">DockerRestartContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00149">PodmanRestartContainerCommand::Execute()</a>.</p>
 
 </div>
 </div>
@@ -206,9 +210,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00091">91</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00094">94</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00070">DockerStartContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00074">PodmanStartContainerCommand::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00077">DockerStartContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00077">PodmanStartContainerCommand::Execute()</a>.</p>
 
 </div>
 </div>
@@ -232,9 +236,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00092">92</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00095">95</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00095">DockerStopContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00101">PodmanStopContainerCommand::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00101">DockerStopContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00101">PodmanStopContainerCommand::Execute()</a>.</p>
 
 </div>
 </div>

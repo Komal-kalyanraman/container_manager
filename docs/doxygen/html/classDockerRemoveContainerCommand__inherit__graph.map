@@ -1,4 +1,4 @@
 <map id="DockerRemoveContainerCommand" name="DockerRemoveContainerCommand">
-<area shape="rect" id="node1" title="Command to remove a Docker container and clean up database state." alt="" coords="5,145,292,252"/>
+<area shape="rect" id="node1" title="Command to remove a Docker container." alt="" coords="5,145,292,252"/>
 <area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for all commands." alt="" coords="86,5,211,97"/>
 </map>

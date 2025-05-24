@@ -1,5 +1,5 @@
 <map id="ContainerRequest" name="ContainerRequest">
-<area shape="rect" id="node1" title="Represents a request to perform an operation on a container." alt="" coords="5,331,144,408"/>
+<area shape="rect" id="node1" title="Represents a request to perform an operation on a container." alt="" coords="5,389,144,467"/>
 <area shape="rect" id="node2" title="STL class." alt="" coords="31,147,118,224"/>
 <area shape="rect" id="node3" title="STL class." alt="" coords="5,5,144,97"/>
 </map>

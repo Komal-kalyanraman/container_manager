@@ -94,10 +94,12 @@ $(document).ready(function(){initNavTree('docker__api__commands_8hpp.html',''); 
 <div class="textblock"><code>#include &lt;string&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &quot;<a class="el" href="commands_8hpp_source.html">inc/commands.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="container__request_8hpp_source.html">inc/container_request.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for docker_api_commands.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="docker__api__commands_8hpp__incl.svg" width="190" height="202"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="docker__api__commands_8hpp__incl.svg" width="411" height="202"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -110,31 +112,27 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerApiRuntimeAvailableCommand.html">DockerApiRuntimeAvailableCommand</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to check if the Docker daemon is available via the /_ping endpoint.  <a href="classDockerApiRuntimeAvailableCommand.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to check if Docker daemon is available via the API.  <a href="classDockerApiRuntimeAvailableCommand.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerApiCreateContainerCommand.html">DockerApiCreateContainerCommand</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to create a new Docker container using the specified image and name.  <a href="classDockerApiCreateContainerCommand.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to create a Docker container via the Docker API.  <a href="classDockerApiCreateContainerCommand.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerApiStartContainerCommand.html">DockerApiStartContainerCommand</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to start a Docker container by name.  <a href="classDockerApiStartContainerCommand.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to start a Docker container via the Docker API.  <a href="classDockerApiStartContainerCommand.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerApiStopContainerCommand.html">DockerApiStopContainerCommand</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to stop a Docker container by name.  <a href="classDockerApiStopContainerCommand.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to stop a Docker container via the Docker API.  <a href="classDockerApiStopContainerCommand.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerApiRestartContainerCommand.html">DockerApiRestartContainerCommand</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to restart a Docker container by name.  <a href="classDockerApiRestartContainerCommand.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to restart a Docker container via the Docker API.  <a href="classDockerApiRestartContainerCommand.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDockerApiRemoveContainerCommand.html">DockerApiRemoveContainerCommand</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to remove a Docker container by name, using force removal.  <a href="classDockerApiRemoveContainerCommand.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to remove a Docker container via the Docker API.  <a href="classDockerApiRemoveContainerCommand.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Declares command classes for managing containers via the Docker HTTP API over a Unix socket. </p>
-<p>Each command class encapsulates a specific Docker API operation (e.g., check runtime, create, start, stop, restart, remove container). These classes use <a class="el" href="classCurlHandler.html" title="CurlHandler provides simple HTTP methods over Unix domain sockets using libcurl.">CurlHandler</a> to send HTTP requests to the Docker REST API.</p>
-<p>Usage:</p><ul>
-<li>Instantiate the desired command class with required parameters.</li>
-<li>Call Execute() to perform the operation via the Docker API. </li>
-</ul>
+<p>Each command class encapsulates a specific Docker API operation (e.g., check runtime, create, start, stop, restart, remove container). These classes use <a class="el" href="classCurlHandler.html" title="CurlHandler provides simple HTTP methods over Unix domain sockets using libcurl.">CurlHandler</a> to send HTTP requests to the Docker REST API, using parameters from the <a class="el" href="structContainerRequest.html" title="Represents a request to perform an operation on a container.">ContainerRequest</a> structure. </p>
 
 <p class="definition">Definition in file <a class="el" href="docker__api__commands_8hpp_source.html">docker_api_commands.hpp</a>.</p>
 </div></div><!-- contents -->
