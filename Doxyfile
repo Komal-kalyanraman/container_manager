@@ -1,6 +1,6 @@
 # Project settings
 PROJECT_NAME           = "Container Manager"
-PROJECT_BRIEF          = "Container Manager is a C++ library for managing containers in Podman, Docker, etc."
+PROJECT_BRIEF          = "Container Manager is a production ready C++ service for managing containers in Podman, Docker."
 OUTPUT_DIRECTORY       = docs/doxygen
 
 # Input files

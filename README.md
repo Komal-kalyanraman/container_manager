@@ -1,6 +1,6 @@
 # Container Manager
 
-**Container Manager** is an open-source C++ library and service for managing containers across multiple runtimes such as Docker and Podman. It provides a unified API and extensible architecture for creating, starting, stopping, restarting, and removing containers, with support for CLI command, HTTP-based control, and multiple IPC protocols. The project is modular, production-ready, and designed for extensibility.
+**Container Manager** is a modular, production-ready C++ service for unified container management across Docker, Podman, more (planned). It supports REST, MQTT, MQ, D-Bus, gRPC (planned), Docker/Podman CLI, HTTP-API with incoming JSON & Protobuf data. Features: extensible architecture, replaceable database (Redis default), robust logging, thread pool for all protocols. The project is modular, production-ready, and designed for extensibility.
 
 ## Features
 
