@@ -84,7 +84,7 @@
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
-<g id="a_node10"><a xlink:href="json__request__executor_8hpp.html" target="_top" xlink:title="Defines the JsonRequestExecutorHandler class for executing JSON&#45;based requests.">
+<g id="a_node10"><a xlink:href="json__request__executor_8hpp.html" target="_top" xlink:title="Declares the JsonRequestExecutorHandler class for executing JSON&#45;based requests.">
 <polygon fill="white" stroke="black" points="607.5,-67.5 607.5,-97.5 749.5,-97.5 749.5,-67.5 607.5,-67.5"/>
 <text text-anchor="start" x="615.5" y="-85.5" font-family="Helvetica,sans-Serif" font-size="10.00">executor/inc/json_request</text>
 <text text-anchor="middle" x="678.5" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">_executor.hpp</text>
@@ -100,7 +100,7 @@
 <!-- Node13 -->
 <g id="node13" class="node">
 <title>Node13</title>
-<g id="a_node13"><a xlink:href="protobuf__request__executor_8hpp.html" target="_top" xlink:title="Defines the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests.">
+<g id="a_node13"><a xlink:href="protobuf__request__executor_8hpp.html" target="_top" xlink:title="Declares the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests.">
 <polygon fill="white" stroke="black" points="807.5,-67.5 807.5,-97.5 935.5,-97.5 935.5,-67.5 807.5,-67.5"/>
 <text text-anchor="start" x="815.5" y="-85.5" font-family="Helvetica,sans-Serif" font-size="10.00">executor/inc/protobuf</text>
 <text text-anchor="middle" x="871.5" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">_request_executor.hpp</text>

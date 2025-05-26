@@ -1,0 +1,4 @@
+<map id="InitDatabase" name="InitDatabase">
+<area shape="rect" id="node1" title="Initializes and clears the database." alt="" coords="5,5,111,32"/>
+<area shape="rect" id="node2" href="$classIDatabaseHandler.html#a79f638c8332acdfb054d1f915f77c760" title="Clears all data from the database." alt="" coords="159,5,401,32"/>
+</map>

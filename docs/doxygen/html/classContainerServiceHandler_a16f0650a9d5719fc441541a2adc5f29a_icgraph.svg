@@ -12,7 +12,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title="Handles a container request by dispatching to the appropriate operation.">
+<g id="a_node1"><a xlink:title="Handles a container request by dispatching to the appropriate operation. Updates the container status...">
 <polygon fill="#bfbfbf" stroke="black" points="199,-24.5 199,-54.5 337,-54.5 337,-24.5 199,-24.5"/>
 <text text-anchor="start" x="207" y="-42.5" font-family="Helvetica,sans-Serif" font-size="10.00">ContainerServiceHandler</text>
 <text text-anchor="middle" x="268" y="-31.5" font-family="Helvetica,sans-Serif" font-size="10.00">::HandleRequest</text>

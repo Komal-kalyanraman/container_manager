@@ -2,11 +2,12 @@
  * @file main.cpp
  * @brief Entry point for the Container Manager application.
  *
- * Initializes logging, database, and starts all enabled protocol consumers:
- * - HTTP server (REST API)
- * - MQTT subscriber
- * - POSIX Message Queue consumer
- * - D-Bus consumer (session bus)
+ * This file initializes all core subsystems (logging, database, message queue, MQTT, etc.)
+ * and starts all enabled protocol consumers:
+ *   - HTTP server (REST API)
+ *   - MQTT subscriber
+ *   - POSIX Message Queue consumer
+ *   - D-Bus consumer (session bus)
  *
  * Protocols and data formats are enabled/disabled via CMake flags.
  */
@@ -17,11 +18,12 @@
 #include <atomic>
 #include <csignal>
 #include <iostream>
-
 #include <glog/logging.h>
 
 #include "inc/common.hpp"
 #include "inc/init_handler.hpp"
+#include "inc/redis_database.hpp"
+#include "inc/container_service.hpp"
 #include "inc/json_request_executor.hpp"
 #if ENABLE_PROTOBUF
 #include "inc/protobuf_request_executor.hpp"
@@ -57,16 +59,22 @@ void SignalHandler(int) {
 
 /**
  * @brief Main entry point for the Container Manager application.
+ *        Initializes all subsystems, starts protocol consumers, and handles graceful shutdown.
  * @return Exit code.
  */
 int main() {
-    // Initialize all subsystems (logging, database, message queue, MQTT, etc.)
-    InitProject();
+    // Instantiate the database and service handler using dependency injection
+    RedisDatabaseHandler db;
+    ContainerServiceHandler service(db);
 
+    // Initialize all subsystems (logging, database, message queue, MQTT, etc.)
+    InitProject(db);
+
+    // Create the request executor (Protobuf or JSON) with injected dependencies
 #if ENABLE_PROTOBUF
-    auto executor = std::make_shared<ProtoRequestExecutorHandler>();
+    auto executor = std::make_shared<ProtoRequestExecutorHandler>(db, service);
 #else
-    auto executor = std::make_shared<JsonRequestExecutorHandler>();
+    auto executor = std::make_shared<JsonRequestExecutorHandler>(db, service);
 #endif
 
     // Register signal handler for graceful shutdown
@@ -76,6 +84,7 @@ int main() {
     std::vector<std::thread> protocol_threads;
 
 #if ENABLE_REST
+    // Start HTTP server in a separate thread
     ServerConfig server_cfg;
     HttpServerHandler server(executor, server_cfg.ThreadPoolSize);
     protocol_threads.emplace_back([&server, &server_cfg]() {
@@ -84,6 +93,7 @@ int main() {
 #endif
 
 #if ENABLE_MQTT
+    // Start MQTT subscriber in a separate thread
     MqttConfig mqtt_cfg;
     auto mqtt_consumer = std::make_shared<MosquittoMqttSubscriber>(
         mqtt_cfg.BrokerAddress, mqtt_cfg.BrokerPort, mqtt_cfg.Topic, executor);
@@ -93,6 +103,7 @@ int main() {
 #endif
 
 #if ENABLE_MSGQUEUE
+    // Start POSIX message queue consumer in a separate thread
     MessageQueueConfig mq_cfg;
     auto mq_consumer = std::make_shared<MessageQueueConsumer>(mq_cfg, executor);
     protocol_threads.emplace_back([mq_consumer]() {
@@ -101,6 +112,7 @@ int main() {
 #endif
 
 #if ENABLE_DBUS
+    // Start D-Bus consumer in a separate thread
     DbusConfig dbus_cfg;
     auto dbus_consumer = std::make_shared<DBusConsumer>(dbus_cfg, executor);
     protocol_threads.emplace_back([dbus_consumer]() {
@@ -135,6 +147,7 @@ int main() {
         if (t.joinable()) t.join();
     }
 
+    // Shutdown logging and exit
     google::ShutdownGoogleLogging();
     return 0;
 }

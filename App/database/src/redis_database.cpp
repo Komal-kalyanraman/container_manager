@@ -1,6 +1,10 @@
 /**
  * @file redis_database.cpp
  * @brief Implements RedisDatabaseHandler for Redis-based database operations.
+ *
+ * This file provides the implementation for connecting to a Redis server and performing
+ * CRUD operations on JSON objects, including saving, retrieving, updating fields, and removing keys.
+ * The class is designed for direct instantiation and dependency injection.
  */
 
 #include "inc/redis_database.hpp"
@@ -19,15 +23,6 @@ RedisDatabaseHandler::RedisDatabaseHandler() {
  */
 RedisDatabaseHandler::~RedisDatabaseHandler() {
     redis_.disconnect();
-}
-
-/**
- * @brief Retrieves the singleton instance of the RedisDatabaseHandler.
- * @return Reference to the singleton RedisDatabaseHandler.
- */
-RedisDatabaseHandler& RedisDatabaseHandler::GetInstance() {
-    static RedisDatabaseHandler instance;
-    return instance;
 }
 
 /**

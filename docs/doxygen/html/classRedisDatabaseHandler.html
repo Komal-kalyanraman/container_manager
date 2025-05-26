@@ -84,30 +84,35 @@ $(document).ready(function(){initNavTree('classRedisDatabaseHandler.html',''); i
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classRedisDatabaseHandler-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">RedisDatabaseHandler Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Singleton class for interacting with a Redis database backend.  
+<p>Class for interacting with a Redis database backend.  
  <a href="classRedisDatabaseHandler.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="redis__database_8hpp_source.html">redis_database.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for RedisDatabaseHandler:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classRedisDatabaseHandler__inherit__graph.svg" width="186" height="360"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classRedisDatabaseHandler__inherit__graph.svg" width="218" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Collaboration diagram for RedisDatabaseHandler:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classRedisDatabaseHandler__coll__graph.svg" width="186" height="360"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classRedisDatabaseHandler__coll__graph.svg" width="218" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ad6d33fa8101941f750c09e7db20714da"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRedisDatabaseHandler.html#ad6d33fa8101941f750c09e7db20714da">RedisDatabaseHandler</a> ()</td></tr>
+<tr class="memdesc:ad6d33fa8101941f750c09e7db20714da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classRedisDatabaseHandler.html" title="Class for interacting with a Redis database backend.">RedisDatabaseHandler</a> and connects to the Redis server.  <a href="classRedisDatabaseHandler.html#ad6d33fa8101941f750c09e7db20714da">More...</a><br /></td></tr>
+<tr class="separator:ad6d33fa8101941f750c09e7db20714da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36c5e661b857e578bee215fa3b066b54"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRedisDatabaseHandler.html#a36c5e661b857e578bee215fa3b066b54">~RedisDatabaseHandler</a> ()</td></tr>
+<tr class="memdesc:a36c5e661b857e578bee215fa3b066b54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for <a class="el" href="classRedisDatabaseHandler.html" title="Class for interacting with a Redis database backend.">RedisDatabaseHandler</a>. Disconnects from the Redis server.  <a href="classRedisDatabaseHandler.html#a36c5e661b857e578bee215fa3b066b54">More...</a><br /></td></tr>
+<tr class="separator:a36c5e661b857e578bee215fa3b066b54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e9777d57e661687d5d451db33bdd639"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRedisDatabaseHandler.html#a1e9777d57e661687d5d451db33bdd639">SaveJson</a> (const std::string &amp;key, const <a class="el" href="json__request__executor_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d">nlohmann::json</a> &amp;value) override</td></tr>
 <tr class="memdesc:a1e9777d57e661687d5d451db33bdd639"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a JSON object to Redis with the specified key.  <a href="classRedisDatabaseHandler.html#a1e9777d57e661687d5d451db33bdd639">More...</a><br /></td></tr>
 <tr class="separator:a1e9777d57e661687d5d451db33bdd639"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,23 +128,101 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad40640ab903b785660be83437ef06354"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRedisDatabaseHandler.html#ad40640ab903b785660be83437ef06354">RemoveKey</a> (const std::string &amp;key) override</td></tr>
 <tr class="memdesc:ad40640ab903b785660be83437ef06354"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the JSON object associated with the specified key from Redis.  <a href="classRedisDatabaseHandler.html#ad40640ab903b785660be83437ef06354">More...</a><br /></td></tr>
 <tr class="separator:ad40640ab903b785660be83437ef06354"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2455b44a5dcb2605a55d0256e6f1e3eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRedisDatabaseHandler.html#a2455b44a5dcb2605a55d0256e6f1e3eb">RedisDatabaseHandler</a> (const <a class="el" href="classRedisDatabaseHandler.html">RedisDatabaseHandler</a> &amp;)=delete</td></tr>
+<tr class="memdesc:a2455b44a5dcb2605a55d0256e6f1e3eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deleted copy constructor to prevent copying.  <a href="classRedisDatabaseHandler.html#a2455b44a5dcb2605a55d0256e6f1e3eb">More...</a><br /></td></tr>
+<tr class="separator:a2455b44a5dcb2605a55d0256e6f1e3eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9f94982077062ce00fd8cd8467685dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRedisDatabaseHandler.html">RedisDatabaseHandler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRedisDatabaseHandler.html#af9f94982077062ce00fd8cd8467685dc">operator=</a> (const <a class="el" href="classRedisDatabaseHandler.html">RedisDatabaseHandler</a> &amp;)=delete</td></tr>
+<tr class="memdesc:af9f94982077062ce00fd8cd8467685dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deleted copy assignment operator to prevent assignment.  <a href="classRedisDatabaseHandler.html#af9f94982077062ce00fd8cd8467685dc">More...</a><br /></td></tr>
+<tr class="separator:af9f94982077062ce00fd8cd8467685dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classIDatabaseHandler"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classIDatabaseHandler')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classIDatabaseHandler.html">IDatabaseHandler</a></td></tr>
 <tr class="memitem:a258097f4c8085b47f5222059d193e875 inherit pub_methods_classIDatabaseHandler"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDatabaseHandler.html#a258097f4c8085b47f5222059d193e875">~IDatabaseHandler</a> ()=default</td></tr>
 <tr class="memdesc:a258097f4c8085b47f5222059d193e875 inherit pub_methods_classIDatabaseHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor for safe polymorphic destruction.  <a href="classIDatabaseHandler.html#a258097f4c8085b47f5222059d193e875">More...</a><br /></td></tr>
 <tr class="separator:a258097f4c8085b47f5222059d193e875 inherit pub_methods_classIDatabaseHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a07c65b208d5997ec20ed239dca4081ce"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classRedisDatabaseHandler.html">RedisDatabaseHandler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce">GetInstance</a> ()</td></tr>
-<tr class="memdesc:a07c65b208d5997ec20ed239dca4081ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the singleton instance of the <a class="el" href="classRedisDatabaseHandler.html" title="Singleton class for interacting with a Redis database backend.">RedisDatabaseHandler</a>.  <a href="classRedisDatabaseHandler.html#a07c65b208d5997ec20ed239dca4081ce">More...</a><br /></td></tr>
-<tr class="separator:a07c65b208d5997ec20ed239dca4081ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Singleton class for interacting with a Redis database backend. </p>
-<p>Provides methods to save, retrieve, update, and remove JSON objects in Redis. Implements the <a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a> interface for backend-agnostic database operations. </p>
+<div class="textblock"><p>Class for interacting with a Redis database backend. </p>
+<p>Implements the <a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a> interface for backend-agnostic database operations. Provides methods to save, retrieve, update, and remove JSON objects in Redis. Designed for direct instantiation and dependency injection. </p>
 
-<p class="definition">Definition at line <a class="el" href="redis__database_8hpp_source.html#l00018">18</a> of file <a class="el" href="redis__database_8hpp_source.html">redis_database.hpp</a>.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+<p class="definition">Definition at line <a class="el" href="redis__database_8hpp_source.html#l00023">23</a> of file <a class="el" href="redis__database_8hpp_source.html">redis_database.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ad6d33fa8101941f750c09e7db20714da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6d33fa8101941f750c09e7db20714da">&#9670;&nbsp;</a></span>RedisDatabaseHandler() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RedisDatabaseHandler::RedisDatabaseHandler </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="classRedisDatabaseHandler.html" title="Class for interacting with a Redis database backend.">RedisDatabaseHandler</a> and connects to the Redis server. </p>
+
+<p class="definition">Definition at line <a class="el" href="redis__database_8cpp_source.html#l00016">16</a> of file <a class="el" href="redis__database_8cpp_source.html">redis_database.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                                           {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="comment">// Connect to Redis server (adjust host/port as needed)</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    redis_.connect();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a36c5e661b857e578bee215fa3b066b54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36c5e661b857e578bee215fa3b066b54">&#9670;&nbsp;</a></span>~RedisDatabaseHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RedisDatabaseHandler::~RedisDatabaseHandler </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destructor for <a class="el" href="classRedisDatabaseHandler.html" title="Class for interacting with a Redis database backend.">RedisDatabaseHandler</a>. Disconnects from the Redis server. </p>
+
+<p class="definition">Definition at line <a class="el" href="redis__database_8cpp_source.html#l00024">24</a> of file <a class="el" href="redis__database_8cpp_source.html">redis_database.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                                            {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    redis_.disconnect();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a2455b44a5dcb2605a55d0256e6f1e3eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2455b44a5dcb2605a55d0256e6f1e3eb">&#9670;&nbsp;</a></span>RedisDatabaseHandler() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RedisDatabaseHandler::RedisDatabaseHandler </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classRedisDatabaseHandler.html">RedisDatabaseHandler</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deleted copy constructor to prevent copying. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a6afaf7f4141c676d6b68eb8efd5ed96a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6afaf7f4141c676d6b68eb8efd5ed96a">&#9670;&nbsp;</a></span>ClearDatabase()</h2>
 
@@ -167,53 +250,12 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classIDatabaseHandler.html#a79f638c8332acdfb054d1f915f77c760">IDatabaseHandler</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="redis__database_8cpp_source.html#l00069">69</a> of file <a class="el" href="redis__database_8cpp_source.html">redis_database.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                                         {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    redis_.flushdb();</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    redis_.sync_commit();</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="redis__database_8cpp_source.html#l00064">64</a> of file <a class="el" href="redis__database_8cpp_source.html">redis_database.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                                         {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    redis_.flushdb();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    redis_.sync_commit();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
 </div><!-- fragment -->
-</div>
-</div>
-<a id="a07c65b208d5997ec20ed239dca4081ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07c65b208d5997ec20ed239dca4081ce">&#9670;&nbsp;</a></span>GetInstance()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classRedisDatabaseHandler.html">RedisDatabaseHandler</a> &amp; RedisDatabaseHandler::GetInstance </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Retrieves the singleton instance of the <a class="el" href="classRedisDatabaseHandler.html" title="Singleton class for interacting with a Redis database backend.">RedisDatabaseHandler</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>Reference to the singleton <a class="el" href="classRedisDatabaseHandler.html" title="Singleton class for interacting with a Redis database backend.">RedisDatabaseHandler</a>. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="redis__database_8cpp_source.html#l00028">28</a> of file <a class="el" href="redis__database_8cpp_source.html">redis_database.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                                                        {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">static</span> <a class="code" href="classRedisDatabaseHandler.html">RedisDatabaseHandler</a> instance;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">return</span> instance;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
-</div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="json__request__executor_8cpp_source.html#l00023">JsonRequestExecutorHandler::Execute()</a>, <a class="el" href="protobuf__request__executor_8cpp_source.html#l00031">ProtoRequestExecutorHandler::Execute()</a>, <a class="el" href="container__service_8cpp_source.html#l00021">ContainerServiceHandler::HandleRequest()</a>, and <a class="el" href="init__handler_8cpp_source.html#l00027">InitDatabase()</a>.</p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classRedisDatabaseHandler_a07c65b208d5997ec20ed239dca4081ce_icgraph.svg" width="100%" height="451"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
-</div>
-
 </div>
 </div>
 <a id="a73f9d6bbd76abef36dbdcb4facd2095d"></a>
@@ -251,29 +293,57 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="classIDatabaseHandler.html#a40a9b925225f1a8694d8a58907248678">IDatabaseHandler</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="redis__database_8cpp_source.html#l00050">50</a> of file <a class="el" href="redis__database_8cpp_source.html">redis_database.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                                                               {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keyword">auto</span> reply = redis_.get(key);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        redis_.sync_commit();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keyword">auto</span> result = reply.get().as_string();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">if</span> (result.empty()) {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            std::cerr &lt;&lt; <span class="stringliteral">&quot;[RedisDatabaseHandler] Key not found: &quot;</span> &lt;&lt; key &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="json__request__executor_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d">nlohmann::json</a>{}; <span class="comment">// Return empty JSON object</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">return</span> nlohmann::json::parse(result);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        std::cerr &lt;&lt; <span class="stringliteral">&quot;[RedisDatabaseHandler] Error reading key &quot;</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; e.what() &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="json__request__executor_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d">nlohmann::json</a>{};</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="redis__database_8cpp_source.html#l00045">45</a> of file <a class="el" href="redis__database_8cpp_source.html">redis_database.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                                                               {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keyword">auto</span> reply = redis_.get(key);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        redis_.sync_commit();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keyword">auto</span> result = reply.get().as_string();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">if</span> (result.empty()) {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            std::cerr &lt;&lt; <span class="stringliteral">&quot;[RedisDatabaseHandler] Key not found: &quot;</span> &lt;&lt; key &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="json__request__executor_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d">nlohmann::json</a>{}; <span class="comment">// Return empty JSON object</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">return</span> nlohmann::json::parse(result);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        std::cerr &lt;&lt; <span class="stringliteral">&quot;[RedisDatabaseHandler] Error reading key &quot;</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">&quot;: &quot;</span> &lt;&lt; e.what() &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="json__request__executor_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d">nlohmann::json</a>{};</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="redis__database_8cpp_source.html#l00080">UpdateField()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="redis__database_8cpp_source.html#l00075">UpdateField()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classRedisDatabaseHandler_a73f9d6bbd76abef36dbdcb4facd2095d_icgraph.svg" width="400" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+
+</div>
+</div>
+<a id="af9f94982077062ce00fd8cd8467685dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9f94982077062ce00fd8cd8467685dc">&#9670;&nbsp;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classRedisDatabaseHandler.html">RedisDatabaseHandler</a>&amp; RedisDatabaseHandler::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classRedisDatabaseHandler.html">RedisDatabaseHandler</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deleted copy assignment operator to prevent assignment. </p>
 
 </div>
 </div>
@@ -311,11 +381,11 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="classIDatabaseHandler.html#a32aef1bd17b79529d93fadc2d72441e5">IDatabaseHandler</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="redis__database_8cpp_source.html#l00094">94</a> of file <a class="el" href="redis__database_8cpp_source.html">redis_database.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                                                         {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    redis_.del({key});</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    redis_.sync_commit();</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="redis__database_8cpp_source.html#l00089">89</a> of file <a class="el" href="redis__database_8cpp_source.html">redis_database.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                                                         {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    redis_.del({key});</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    redis_.sync_commit();</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -364,15 +434,15 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="classIDatabaseHandler.html#ae77b65ff51207a07704ae8efebac2125">IDatabaseHandler</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="redis__database_8cpp_source.html#l00038">38</a> of file <a class="el" href="redis__database_8cpp_source.html">redis_database.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                                                                                   {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">// Save JSON as string</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    std::string json_str = value.dump();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    redis_.set(key, json_str);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    redis_.sync_commit();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="redis__database_8cpp_source.html#l00033">33</a> of file <a class="el" href="redis__database_8cpp_source.html">redis_database.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                                                                                   {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">// Save JSON as string</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    std::string json_str = value.dump();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    redis_.set(key, json_str);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    redis_.sync_commit();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="redis__database_8cpp_source.html#l00080">UpdateField()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="redis__database_8cpp_source.html#l00075">UpdateField()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -433,18 +503,18 @@ Here is the caller graph for this function:</div>
 
 <p>Implements <a class="el" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">IDatabaseHandler</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="redis__database_8cpp_source.html#l00080">80</a> of file <a class="el" href="redis__database_8cpp_source.html">redis_database.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                                                                                                           {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="json__request__executor_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d">nlohmann::json</a> obj = <a class="code" href="classRedisDatabaseHandler.html#a73f9d6bbd76abef36dbdcb4facd2095d">GetJson</a>(key);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">if</span> (obj.is_null()) {</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        std::cerr &lt;&lt; <span class="stringliteral">&quot;[RedisDatabaseHandler] Cannot update field, key not found: &quot;</span> &lt;&lt; key &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    obj[field] = value;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="classRedisDatabaseHandler.html#a1e9777d57e661687d5d451db33bdd639">SaveJson</a>(key, obj);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="redis__database_8cpp_source.html#l00075">75</a> of file <a class="el" href="redis__database_8cpp_source.html">redis_database.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                                                                                                           {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="json__request__executor_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d">nlohmann::json</a> obj = <a class="code" href="classRedisDatabaseHandler.html#a73f9d6bbd76abef36dbdcb4facd2095d">GetJson</a>(key);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">if</span> (obj.is_null()) {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        std::cerr &lt;&lt; <span class="stringliteral">&quot;[RedisDatabaseHandler] Cannot update field, key not found: &quot;</span> &lt;&lt; key &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    obj[field] = value;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="classRedisDatabaseHandler.html#a1e9777d57e661687d5d451db33bdd639">SaveJson</a>(key, obj);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="redis__database_8cpp_source.html#l00050">GetJson()</a>, and <a class="el" href="redis__database_8cpp_source.html#l00038">SaveJson()</a>.</p>
+<p class="reference">References <a class="el" href="redis__database_8cpp_source.html#l00045">GetJson()</a>, and <a class="el" href="redis__database_8cpp_source.html#l00033">SaveJson()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -459,10 +529,9 @@ Here is the call graph for this function:</div>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="ajson__request__executor_8cpp_html_ab701e3ac61a85b337ec5c1abaad6742d"><div class="ttname"><a href="json__request__executor_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d">json</a></div><div class="ttdeci">nlohmann::json json</div><div class="ttdef"><b>Definition:</b> <a href="json__request__executor_8cpp_source.html#l00014">json_request_executor.cpp:14</a></div></div>
-<div class="ttc" id="aclassRedisDatabaseHandler_html"><div class="ttname"><a href="classRedisDatabaseHandler.html">RedisDatabaseHandler</a></div><div class="ttdoc">Singleton class for interacting with a Redis database backend.</div><div class="ttdef"><b>Definition:</b> <a href="redis__database_8hpp_source.html#l00018">redis_database.hpp:18</a></div></div>
-<div class="ttc" id="aclassRedisDatabaseHandler_html_a73f9d6bbd76abef36dbdcb4facd2095d"><div class="ttname"><a href="classRedisDatabaseHandler.html#a73f9d6bbd76abef36dbdcb4facd2095d">RedisDatabaseHandler::GetJson</a></div><div class="ttdeci">nlohmann::json GetJson(const std::string &amp;key) override</div><div class="ttdoc">Retrieves a JSON object from Redis by key.</div><div class="ttdef"><b>Definition:</b> <a href="redis__database_8cpp_source.html#l00050">redis_database.cpp:50</a></div></div>
-<div class="ttc" id="aclassRedisDatabaseHandler_html_a1e9777d57e661687d5d451db33bdd639"><div class="ttname"><a href="classRedisDatabaseHandler.html#a1e9777d57e661687d5d451db33bdd639">RedisDatabaseHandler::SaveJson</a></div><div class="ttdeci">void SaveJson(const std::string &amp;key, const nlohmann::json &amp;value) override</div><div class="ttdoc">Saves a JSON object to Redis with the specified key.</div><div class="ttdef"><b>Definition:</b> <a href="redis__database_8cpp_source.html#l00038">redis_database.cpp:38</a></div></div>
+<div class="ttc" id="ajson__request__executor_8cpp_html_ab701e3ac61a85b337ec5c1abaad6742d"><div class="ttname"><a href="json__request__executor_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d">json</a></div><div class="ttdeci">nlohmann::json json</div><div class="ttdef"><b>Definition:</b> <a href="json__request__executor_8cpp_source.html#l00020">json_request_executor.cpp:20</a></div></div>
+<div class="ttc" id="aclassRedisDatabaseHandler_html_a73f9d6bbd76abef36dbdcb4facd2095d"><div class="ttname"><a href="classRedisDatabaseHandler.html#a73f9d6bbd76abef36dbdcb4facd2095d">RedisDatabaseHandler::GetJson</a></div><div class="ttdeci">nlohmann::json GetJson(const std::string &amp;key) override</div><div class="ttdoc">Retrieves a JSON object from Redis by key.</div><div class="ttdef"><b>Definition:</b> <a href="redis__database_8cpp_source.html#l00045">redis_database.cpp:45</a></div></div>
+<div class="ttc" id="aclassRedisDatabaseHandler_html_a1e9777d57e661687d5d451db33bdd639"><div class="ttname"><a href="classRedisDatabaseHandler.html#a1e9777d57e661687d5d451db33bdd639">RedisDatabaseHandler::SaveJson</a></div><div class="ttdeci">void SaveJson(const std::string &amp;key, const nlohmann::json &amp;value) override</div><div class="ttdoc">Saves a JSON object to Redis with the specified key.</div><div class="ttdef"><b>Definition:</b> <a href="redis__database_8cpp_source.html#l00033">redis_database.cpp:33</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

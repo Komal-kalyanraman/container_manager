@@ -1,17 +1,11 @@
 ## **App Refactoring & Improvement To-Do List**
 
-### **1. Dependency Injection**
-
-- Remove all singleton usage for `RedisDatabaseHandler`.
-- Pass `IDatabaseHandler&` (or smart pointer) to `ContainerServiceHandler` and other consumers.
-- Ensure all service/database usages are via injected instances, not static/global access.
-
-### **2. Error Handling & Logging**
+### **1. Error Handling & Logging**
 
 - Standardize error handling and logging across all commands and service layers.
 - Consider a common error/status enum or structure for responses.
 
-### **3. Unit Testing**
+### **2. Unit Testing**
 
 - Write or update unit tests for `ContainerServiceHandler` and `CommandFactory`.
 - Use mock implementations of `IDatabaseHandler` for testing.

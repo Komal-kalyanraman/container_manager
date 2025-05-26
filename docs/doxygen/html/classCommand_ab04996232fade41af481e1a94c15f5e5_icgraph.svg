@@ -82,7 +82,7 @@ var sectionId = 'dynsection-2';
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="classContainerServiceHandler.html#ae4a38bbbb711ab34dbd3fc50ea0814f7" target="_top" xlink:title="Performs the specified container operation using the request structure.">
+<g id="a_node3"><a xlink:href="classContainerServiceHandler.html#ae4a38bbbb711ab34dbd3fc50ea0814f7" target="_top" xlink:title="Performs the specified container operation using the request structure. Invokes the appropriate comma...">
 <polygon fill="white" stroke="black" points="373,-24.5 373,-54.5 511,-54.5 511,-24.5 373,-24.5"/>
 <text text-anchor="start" x="381" y="-42.5" font-family="Helvetica,sans-Serif" font-size="10.00">ContainerServiceHandler</text>
 <text text-anchor="middle" x="442" y="-31.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ContainerOperations</text>
@@ -98,7 +98,7 @@ var sectionId = 'dynsection-2';
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="classContainerServiceHandler.html#a16f0650a9d5719fc441541a2adc5f29a" target="_top" xlink:title="Handles a container request by dispatching to the appropriate operation.">
+<g id="a_node4"><a xlink:href="classContainerServiceHandler.html#a16f0650a9d5719fc441541a2adc5f29a" target="_top" xlink:title="Handles a container request by dispatching to the appropriate operation. Updates the container status...">
 <polygon fill="white" stroke="black" points="199,-24.5 199,-54.5 337,-54.5 337,-24.5 199,-24.5"/>
 <text text-anchor="start" x="207" y="-42.5" font-family="Helvetica,sans-Serif" font-size="10.00">ContainerServiceHandler</text>
 <text text-anchor="middle" x="268" y="-31.5" font-family="Helvetica,sans-Serif" font-size="10.00">::HandleRequest</text>

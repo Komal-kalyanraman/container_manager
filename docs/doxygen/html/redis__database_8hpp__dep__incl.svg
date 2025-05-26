@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 696;
+var viewWidth = 630;
 var viewHeight = 106;
 var sectionId = 'dynsection-1';
 </script>
@@ -54,7 +54,7 @@ var sectionId = 'dynsection-1';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>database/inc/redis_database.hpp</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-102 692,-102 692,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-102 626,-102 626,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
@@ -116,33 +116,32 @@ var sectionId = 'dynsection-1';
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="protobuf__request__executor_8cpp.html" target="_top" xlink:title="Implements the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests.">
-<polygon fill="white" stroke="black" points="406.5,-0.5 406.5,-30.5 533.5,-30.5 533.5,-0.5 406.5,-0.5"/>
-<text text-anchor="start" x="414.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">executor/src/protobuf</text>
-<text text-anchor="middle" x="470" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_request_executor.cpp</text>
+<g id="a_node5"><a xlink:href="main_8cpp.html" target="_top" xlink:title="Entry point for the Container Manager application.">
+<polygon fill="white" stroke="black" points="406,-6 406,-25 468,-25 468,-6 406,-6"/>
+<text text-anchor="middle" x="437" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">main.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
 <title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M359.59,-63.41C384.02,-53.03 414.22,-40.2 436.87,-30.58"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="358.03,-60.26 350.2,-67.4 360.77,-66.71 358.03,-60.26"/>
+<path fill="none" stroke="midnightblue" d="M352.13,-62.47C375.04,-50.06 403.82,-34.47 421.29,-25.01"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="350.16,-59.56 343.04,-67.4 353.5,-65.71 350.16,-59.56"/>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="init__handler_8cpp.html" target="_top" xlink:title="Implements project&#45;wide initialization functions.">
-<polygon fill="white" stroke="black" points="552,-6 552,-25 688,-25 688,-6 552,-6"/>
-<text text-anchor="middle" x="620" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">utils/src/init_handler.cpp</text>
+<g id="a_node6"><a xlink:href="init__handler_8cpp.html" target="_top" xlink:title="Implements project&#45;wide initialization functions for the Container Manager application.">
+<polygon fill="white" stroke="black" points="486,-6 486,-25 622,-25 622,-6 486,-6"/>
+<text text-anchor="middle" x="554" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">utils/src/init_handler.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node6 -->
 <g id="edge5" class="edge">
 <title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M380.27,-67.93C440.42,-55.02 529.06,-36.01 580.01,-25.08"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="379.17,-64.58 370.13,-70.1 380.64,-71.43 379.17,-64.58"/>
+<path fill="none" stroke="midnightblue" d="M377.78,-64.83C424.16,-52.11 486.16,-35.11 522.9,-25.03"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="376.85,-61.46 368.13,-67.48 378.7,-68.21 376.85,-61.46"/>
 </g>
 </g>
 </svg>

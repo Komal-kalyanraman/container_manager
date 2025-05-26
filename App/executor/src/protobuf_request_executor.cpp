@@ -13,20 +13,30 @@
 #include "container_manager.pb.h"
 #include "inc/database_interface.hpp"
 #include "inc/container_service.hpp"
-#include "inc/redis_database.hpp"
 #include "inc/common.hpp"
 #include <nlohmann/json.hpp>
 
 /**
- * @brief Default constructor for ProtoRequestExecutorHandler.
+ * @brief Constructs a ProtoRequestExecutorHandler with a database handler and service handler.
+ * @param db Reference to an IDatabaseHandler implementation.
+ * @param service Reference to a ContainerServiceHandler.
  */
-ProtoRequestExecutorHandler::ProtoRequestExecutorHandler() = default;
+ProtoRequestExecutorHandler::ProtoRequestExecutorHandler(IDatabaseHandler& db, ContainerServiceHandler& service)
+    : db_(db), service_(service) {}
 
 /**
  * @brief Executes a request represented as a serialized Protobuf string.
  *        Deserializes the input, transforms and saves it to the database, and dispatches to the service handler.
  * @param proto_data The input data as a serialized Protobuf string.
  * @return A JSON object containing the result of the execution.
+ *
+ * Steps:
+ * 1. Parse the protobuf string into a ContainerRequest proto object.
+ * 2. Convert the proto parameters to a JSON object for database storage.
+ * 3. Remove "container_name" from the first parameter for DB consistency.
+ * 4. Save the transformed JSON to the database using the container name as the key.
+ * 5. Fill an internal ContainerRequest struct for business logic.
+ * 6. Call the service handler and return its result as JSON.
  */
 nlohmann::json ProtoRequestExecutorHandler::Execute(const std::string& proto_data) {
     containermanager::ContainerRequest proto_req;
@@ -41,6 +51,7 @@ nlohmann::json ProtoRequestExecutorHandler::Execute(const std::string& proto_dat
     transformed["status"] = kEmptyString;
     transformed["parameters"] = nlohmann::json::array();
 
+    // Convert each parameter from proto to JSON
     for (const auto& param : proto_req.parameters()) {
         nlohmann::json param_json;
         param_json["container_name"] = param.container_name();
@@ -59,10 +70,9 @@ nlohmann::json ProtoRequestExecutorHandler::Execute(const std::string& proto_dat
         // Remove "container_name" from parameters[0] for DB storage, as in JSON executor
         transformed["parameters"][0].erase("container_name");
     }
-    IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
-    db.SaveJson(key, transformed);
+    db_.SaveJson(key, transformed);
 
-    // Fill internal ContainerRequest struct
+    // Fill internal ContainerRequest struct for business logic
     ContainerRequest req;
     req.runtime = proto_req.runtime();
     req.operation = proto_req.operation();
@@ -78,5 +88,5 @@ nlohmann::json ProtoRequestExecutorHandler::Execute(const std::string& proto_dat
     }
 
     // Call business logic and return result
-    return ContainerServiceHandler::HandleRequest(req);
+    return service_.HandleRequest(req);
 }

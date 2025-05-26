@@ -1,26 +1,37 @@
 /**
  * @file protobuf_request_executor.hpp
- * @brief Defines the ProtoRequestExecutorHandler class for handling Protobuf-based requests.
+ * @brief Declares the ProtoRequestExecutorHandler class for handling Protobuf-based requests.
  *
  * This executor receives serialized Protobuf data as a string, deserializes it into a ContainerRequest,
  * saves the request to the database, and returns the result as a JSON object.
+ * The class uses dependency injection for both the database handler and the service handler.
  * It implements the RequestExecutor interface and is used by all protocol consumers
  * (HTTP, MQTT, Message Queue, D-Bus) when Protobuf is selected as the data format.
  */
+
 #pragma once
 
-#include "inc/request_executor.hpp"
 #include <string>
 #include <nlohmann/json.hpp>
+#include "inc/request_executor.hpp"
+#include "inc/database_interface.hpp"
+#include "inc/container_service.hpp" 
 
 /**
  * @class ProtoRequestExecutorHandler
- * @brief Executes requests received as serialized Protobuf data.
+ * @brief Parses and executes Protobuf requests, invoking business logic and database operations.
+ *
+ * Receives a serialized Protobuf string, deserializes it, transforms and saves it to the database,
+ * and dispatches the request to the container service handler. Returns the result as a JSON object.
  */
 class ProtoRequestExecutorHandler : public RequestExecutor {
 public:
-    ProtoRequestExecutorHandler();
-    ~ProtoRequestExecutorHandler() override = default;
+    /**
+     * @brief Constructs a ProtoRequestExecutorHandler with injected dependencies.
+     * @param db Reference to an IDatabaseHandler implementation.
+     * @param service Reference to a ContainerServiceHandler.
+     */
+    ProtoRequestExecutorHandler(IDatabaseHandler& db, ContainerServiceHandler& service);
 
     /**
      * @brief Receives a serialized protobuf string, deserializes, saves to DB, and returns result as JSON.
@@ -28,4 +39,8 @@ public:
      * @return A JSON object containing the result of the execution.
      */
     nlohmann::json Execute(const std::string& proto_data) override;
+
+private:
+    IDatabaseHandler& db_;               ///< Reference to the injected database handler.
+    ContainerServiceHandler& service_;   ///< Reference to the injected service handler.
 };

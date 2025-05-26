@@ -7,7 +7,7 @@ var annotated_dup =
     [ "CommandFactory", "classCommandFactory.html", null ],
     [ "CommandName", "structCommandName.html", null ],
     [ "ContainerRequest", "structContainerRequest.html", "structContainerRequest" ],
-    [ "ContainerServiceHandler", "classContainerServiceHandler.html", null ],
+    [ "ContainerServiceHandler", "classContainerServiceHandler.html", "classContainerServiceHandler" ],
     [ "CurlHandler", "classCurlHandler.html", "classCurlHandler" ],
     [ "DbusConfig", "structDbusConfig.html", "structDbusConfig" ],
     [ "DBusConsumer", "classDBusConsumer.html", "classDBusConsumer" ],

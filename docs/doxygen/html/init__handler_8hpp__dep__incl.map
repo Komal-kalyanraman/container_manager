@@ -1,5 +1,5 @@
 <map id="utils/inc/init_handler.hpp" name="utils/inc/init_handler.hpp">
-<area shape="rect" id="node1" title="Declares project&#45;wide initialization functions." alt="" coords="33,5,215,32"/>
+<area shape="rect" id="node1" title="Declares project&#45;wide initialization functions for the Container Manager application." alt="" coords="33,5,215,32"/>
 <area shape="rect" id="node2" href="$main_8cpp.html" title="Entry point for the Container Manager application." alt="" coords="5,80,88,107"/>
-<area shape="rect" id="node3" href="$init__handler_8cpp.html" title="Implements project&#45;wide initialization functions." alt="" coords="112,80,293,107"/>
+<area shape="rect" id="node3" href="$init__handler_8cpp.html" title="Implements project&#45;wide initialization functions for the Container Manager application." alt="" coords="112,80,293,107"/>
 </map>

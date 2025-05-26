@@ -14,7 +14,7 @@
 <area shape="rect" id="node15" href="$docker__commands_8cpp.html" title="Implements Docker command classes for container operations." alt="" coords="1653,80,1796,121"/>
 <area shape="rect" id="node16" href="$podman__api__commands_8cpp.html" title="Implements Podman API command classes for managing containers via the Podman HTTP API over a Unix soc..." alt="" coords="1821,80,1975,121"/>
 <area shape="rect" id="node17" href="$podman__commands_8cpp.html" title="Implements Podman command classes for container operations." alt="" coords="2000,80,2153,121"/>
-<area shape="rect" id="node18" href="$init__handler_8cpp.html" title="Implements project&#45;wide initialization functions." alt="" coords="2178,87,2359,114"/>
+<area shape="rect" id="node18" href="$init__handler_8cpp.html" title="Implements project&#45;wide initialization functions for the Container Manager application." alt="" coords="2178,87,2359,114"/>
 <area shape="rect" id="node3" href="$dbus__consumer_8cpp.html" title="Implements the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus." alt="" coords="5,177,204,203"/>
 <area shape="rect" id="node5" href="$http__server_8cpp.html" title="Implements the HttpServerHandler class for handling HTTP requests." alt="" coords="229,177,399,203"/>
 </map>

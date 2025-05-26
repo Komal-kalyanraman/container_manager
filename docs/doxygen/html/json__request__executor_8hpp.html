@@ -89,13 +89,15 @@ $(document).ready(function(){initNavTree('json__request__executor_8hpp.html','')
 </div><!--header-->
 <div class="contents">
 
-<p>Defines the <a class="el" href="classJsonRequestExecutorHandler.html" title="Parses and executes JSON requests, invoking business logic and database operations.">JsonRequestExecutorHandler</a> class for executing JSON-based requests.  
+<p>Declares the <a class="el" href="classJsonRequestExecutorHandler.html" title="Parses and executes JSON requests, invoking business logic and database operations.">JsonRequestExecutorHandler</a> class for executing JSON-based requests.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="request__executor_8hpp_source.html">inc/request_executor.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="database__interface_8hpp_source.html">inc/database_interface.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="container__service_8hpp_source.html">inc/container_service.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for json_request_executor.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="json__request__executor_8hpp__incl.svg" width="395" height="276"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="json__request__executor_8hpp__incl.svg" width="579" height="276"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -112,7 +114,9 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Defines the <a class="el" href="classJsonRequestExecutorHandler.html" title="Parses and executes JSON requests, invoking business logic and database operations.">JsonRequestExecutorHandler</a> class for executing JSON-based requests. </p>
+<div class="textblock"><p>Declares the <a class="el" href="classJsonRequestExecutorHandler.html" title="Parses and executes JSON requests, invoking business logic and database operations.">JsonRequestExecutorHandler</a> class for executing JSON-based requests. </p>
+<p>This executor receives JSON data as a string, parses it, transforms the request, saves it to the database, and invokes the container service handler to perform the requested operation. The result is returned as a JSON object.</p>
+<p>The class uses dependency injection for both the database handler and the service handler. It implements the <a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g....">RequestExecutor</a> interface and is used by all protocol consumers (HTTP, MQTT, Message Queue, D-Bus) when JSON is selected as the data format. </p>
 
 <p class="definition">Definition in file <a class="el" href="json__request__executor_8hpp_source.html">json_request_executor.hpp</a>.</p>
 </div></div><!-- contents -->

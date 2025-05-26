@@ -1,4 +1,4 @@
 <map id="ProtoRequestExecutorHandler" name="ProtoRequestExecutorHandler">
-<area shape="rect" id="node1" title="Executes requests received as serialized Protobuf data." alt="" coords="5,145,259,252"/>
-<area shape="rect" id="node2" href="$classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g...." alt="" coords="48,5,216,97"/>
+<area shape="rect" id="node1" title="Parses and executes Protobuf requests, invoking business logic and database operations." alt="" coords="5,145,248,237"/>
+<area shape="rect" id="node2" href="$classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g...." alt="" coords="43,5,211,97"/>
 </map>

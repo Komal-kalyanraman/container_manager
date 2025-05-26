@@ -139,7 +139,7 @@ Architecture Overview</h1>
 <li><b><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> Pattern:</b> <br  />
  All container operations are encapsulated as command objects, making it easy to extend and maintain.</li>
 <li><b>Service Layer:</b> <br  />
- The <code><a class="el" href="classContainerServiceHandler.html" title="Provides static methods for handling container operations and runtime checks.">ContainerServiceHandler</a></code> coordinates requests, runtime checks, and command execution.</li>
+ The <code><a class="el" href="classContainerServiceHandler.html" title="Handles container operations and updates status in the database.">ContainerServiceHandler</a></code> coordinates requests, runtime checks, and command execution.</li>
 <li><b>API Layer:</b> <br  />
  The <code>HttpServer</code> exposes a RESTful API for remote management (now supports both JSON and Protobuf). <br  />
  The <code><a class="el" href="classMosquittoMqttSubscriber.html" title="Subscribes to an MQTT topic and dispatches received messages to a RequestExecutor.">MosquittoMqttSubscriber</a></code> subscribes to MQTT topics for remote management. <br  />
@@ -432,7 +432,7 @@ Code Structure</h1>
  <em>Pluggable backend: Implement this interface to use a different database.</em></li>
 <li><b><a class="el" href="redis__database_8hpp.html" title="Declares the RedisDatabaseHandler class for Redis-based database operations.">database/inc/redis_database.hpp</a>:</b> <br  />
  Redis-based implementation of the database interface.</li>
-<li><b><a class="el" href="json__request__executor_8hpp.html" title="Defines the JsonRequestExecutorHandler class for executing JSON-based requests.">executor/inc/json_request_executor.hpp</a>:</b> <br  />
+<li><b><a class="el" href="json__request__executor_8hpp.html" title="Declares the JsonRequestExecutorHandler class for executing JSON-based requests.">executor/inc/json_request_executor.hpp</a>:</b> <br  />
  Handles JSON requests.</li>
 <li><b>executor/inc/proto_request_executor.hpp:</b> <br  />
  Handles Protobuf requests.</li>

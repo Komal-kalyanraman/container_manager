@@ -1,6 +1,10 @@
 /**
  * @file redis_database.hpp
  * @brief Declares the RedisDatabaseHandler class for Redis-based database operations.
+ *
+ * This class implements the IDatabaseHandler interface and provides methods to save,
+ * retrieve, update, and remove JSON objects in a Redis database. It is designed for
+ * dependency injection—create and inject instances as needed.
  */
 
 #pragma once
@@ -11,17 +15,22 @@
 
 /**
  * @class RedisDatabaseHandler
- * @brief Singleton class for interacting with a Redis database backend.
- * @details Provides methods to save, retrieve, update, and remove JSON objects in Redis.
- * Implements the IDatabaseHandler interface for backend-agnostic database operations.
+ * @brief Class for interacting with a Redis database backend.
+ * @details Implements the IDatabaseHandler interface for backend-agnostic database operations.
+ *          Provides methods to save, retrieve, update, and remove JSON objects in Redis.
+ *          Designed for direct instantiation and dependency injection.
  */
 class RedisDatabaseHandler : public IDatabaseHandler {
 public:
     /**
-     * @brief Retrieves the singleton instance of the RedisDatabaseHandler.
-     * @return Reference to the singleton RedisDatabaseHandler.
+     * @brief Constructs a RedisDatabaseHandler and connects to the Redis server.
      */
-    static RedisDatabaseHandler& GetInstance();
+    RedisDatabaseHandler();
+
+    /**
+     * @brief Destructor for RedisDatabaseHandler. Disconnects from the Redis server.
+     */
+    ~RedisDatabaseHandler();
 
     /**
      * @brief Saves a JSON object to Redis with the specified key.
@@ -56,17 +65,6 @@ public:
      */
     void RemoveKey(const std::string& key) override;
 
-private:
-    /**
-     * @brief Constructs a RedisDatabaseHandler and connects to the Redis server.
-     */
-    RedisDatabaseHandler();
-
-    /**
-     * @brief Destructor for RedisDatabaseHandler. Disconnects from the Redis server.
-     */
-    ~RedisDatabaseHandler();
-
     /**
      * @brief Deleted copy constructor to prevent copying.
      */
@@ -77,6 +75,7 @@ private:
      */
     RedisDatabaseHandler& operator=(const RedisDatabaseHandler&) = delete;
 
+private:
     /**
      * @brief Redis client instance for database operations.
      */

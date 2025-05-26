@@ -242,7 +242,7 @@
 <!-- Node18 -->
 <g id="node18" class="node">
 <title>Node18</title>
-<g id="a_node18"><a xlink:href="init__handler_8cpp.html" target="_top" xlink:title="Implements project&#45;wide initialization functions.">
+<g id="a_node18"><a xlink:href="init__handler_8cpp.html" target="_top" xlink:title="Implements project&#45;wide initialization functions for the Container Manager application.">
 <polygon fill="white" stroke="black" points="1629.5,-73 1629.5,-92 1765.5,-92 1765.5,-73 1629.5,-73"/>
 <text text-anchor="middle" x="1697.5" y="-80" font-family="Helvetica,sans-Serif" font-size="10.00">utils/src/init_handler.cpp</text>
 </a>

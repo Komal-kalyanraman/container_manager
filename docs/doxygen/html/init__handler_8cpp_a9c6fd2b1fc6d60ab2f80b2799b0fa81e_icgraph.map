@@ -1,5 +1,5 @@
 <map id="InitLogging" name="InitLogging">
 <area shape="rect" id="node1" title="Initializes logging using Google glog." alt="" coords="244,5,339,32"/>
-<area shape="rect" id="node2" href="$init__handler_8cpp.html#ad98029164064eb3e856369697d9cc015" title="Initializes all enabled project subsystems." alt="" coords="108,5,196,32"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Main entry point for the Container Manager application." alt="" coords="5,5,60,32"/>
+<area shape="rect" id="node2" href="$init__handler_8cpp.html#af70f1338444e9e483e773f38c96da761" title="Initializes all enabled project subsystems." alt="" coords="108,5,196,32"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Main entry point for the Container Manager application. Initializes all subsystems,..." alt="" coords="5,5,60,32"/>
 </map>

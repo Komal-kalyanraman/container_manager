@@ -1,6 +1,11 @@
 /**
  * @file init_handler.cpp
- * @brief Implements project-wide initialization functions.
+ * @brief Implements project-wide initialization functions for the Container Manager application.
+ *
+ * This file provides the implementation for initializing logging, database, message queue,
+ * and MQTT subsystems. These routines are intended to be called at application startup
+ * to ensure all subsystems are in a clean and ready state. The database initialization
+ * uses dependency injection for flexibility and testability.
  */
 
 #include "inc/init_handler.hpp"
@@ -23,14 +28,15 @@ void InitLogging() {
 
 /**
  * @brief Initializes and clears the database.
+ * @param db Reference to an IDatabaseHandler implementation.
  */
-void InitDatabase() {
-    IDatabaseHandler& db = RedisDatabaseHandler::GetInstance();
+void InitDatabase(IDatabaseHandler& db) {
     db.ClearDatabase();
 }
 
 /**
  * @brief Clears the POSIX message queue at startup.
+ * @details Unlinks the message queue to remove all pending messages.
  */
 void InitMessageQueue() {
     MessageQueueConfig mq_cfg;
@@ -40,6 +46,7 @@ void InitMessageQueue() {
 #if ENABLE_MQTT
 /**
  * @brief Clears retained MQTT messages at startup.
+ * @details Connects to the MQTT broker and publishes a retained message with zero length to clear retained state.
  */
 void InitMqttRetainedMessages() {
     MqttConfig mqtt_cfg;
@@ -62,10 +69,12 @@ void InitMqttRetainedMessages() {}
 
 /**
  * @brief Initializes all enabled project subsystems.
+ * @details Calls all necessary initialization routines for logging, database, message queue, and MQTT.
+ * @param db Reference to an IDatabaseHandler implementation.
  */
-void InitProject() {
+void InitProject(IDatabaseHandler& db) {
     InitLogging();
-    InitDatabase();
+    InitDatabase(db);
     InitMessageQueue();
     InitMqttRetainedMessages();
 }

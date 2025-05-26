@@ -1,0 +1,8 @@
+<map id="InitProject" name="InitProject">
+<area shape="rect" id="node1" title="Initializes all enabled project subsystems." alt="" coords="5,81,93,108"/>
+<area shape="rect" id="node2" href="$init__handler_8cpp.html#a813fccd2b19c7f0072bb3c8deb3c9730" title="Initializes and clears the database." alt="" coords="187,5,292,32"/>
+<area shape="rect" id="node4" href="$init__handler_8cpp.html#a9c6fd2b1fc6d60ab2f80b2799b0fa81e" title="Initializes logging using Google glog." alt="" coords="192,56,287,83"/>
+<area shape="rect" id="node5" href="$init__handler_8cpp.html#ac622dccafc9db8b54a3d5ef6d98eed8e" title="Clears the POSIX message queue at startup." alt="" coords="168,107,311,133"/>
+<area shape="rect" id="node6" href="$init__handler_8cpp.html#a57b18ca1632517db21aa1491c585762a" title="Stub for clearing retained MQTT messages when MQTT is disabled." alt="" coords="141,157,337,184"/>
+<area shape="rect" id="node3" href="$classIDatabaseHandler.html#a79f638c8332acdfb054d1f915f77c760" title="Clears all data from the database." alt="" coords="385,5,628,32"/>
+</map>
