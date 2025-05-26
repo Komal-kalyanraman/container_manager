@@ -1,5 +1,4 @@
 <map id="executor/proto/generated/container_manager.grpc.pb.h" name="executor/proto/generated/container_manager.grpc.pb.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,221,47"/>
-<area shape="rect" id="node2" href="$grpc__server_8hpp.html" title="Defines the GrpcServerHandler class for handling gRPC requests." alt="" coords="27,95,200,121"/>
-<area shape="rect" id="node3" href="$grpc__server_8cpp.html" title="Implements the GrpcServerHandler class for handling gRPC requests." alt="" coords="27,169,199,196"/>
+<area shape="rect" id="node1" title=" " alt="" coords="9,5,225,47"/>
+<area shape="rect" id="node2" href="$container__manager_8grpc_8pb_8cc.html" title=" " alt="" coords="5,95,228,136"/>
 </map>
