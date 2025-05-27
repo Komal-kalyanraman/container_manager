@@ -69,20 +69,20 @@ void SignalHandler(int) {
 int main() {
     // Instantiate the database and service handler using dependency injection
 #if ENABLE_REDIS
-    RedisDatabaseHandler db;
+    auto db = std::make_unique<RedisDatabaseHandler>();
 #else
-    EmbeddedDatabaseHandler db;
+    auto db = std::make_unique<EmbeddedDatabaseHandler>();
 #endif
-    ContainerServiceHandler service(db);
+    auto service = std::make_unique<ContainerServiceHandler>(*db);
 
     // Initialize all subsystems (logging, database, message queue, MQTT, etc.)
-    InitProject(db);
+    InitProject(*db);
 
     // Create the request executor (Protobuf or JSON) with injected dependencies
 #if ENABLE_PROTOBUF
-    auto executor = std::make_shared<ProtoRequestExecutorHandler>(db, service);
+    auto executor = std::make_shared<ProtoRequestExecutorHandler>(*db, *service);
 #else
-    auto executor = std::make_shared<JsonRequestExecutorHandler>(db, service);
+    auto executor = std::make_shared<JsonRequestExecutorHandler>(*db, *service);
 #endif
 
     // Register signal handler for graceful shutdown
@@ -93,18 +93,18 @@ int main() {
 
 #if ENABLE_REST
     // Start HTTP server in a separate thread
-    ServerConfig server_cfg;
-    HttpServerHandler server(executor, server_cfg.ThreadPoolSize);
+    auto server_cfg = std::make_unique<ServerConfig>();
+    auto server = std::make_unique<HttpServerHandler>(executor, server_cfg->ThreadPoolSize);
     protocol_threads.emplace_back([&server, &server_cfg]() {
-        server.Start(server_cfg.Host, server_cfg.Port);
+        server->Start(server_cfg->Host, server_cfg->Port);
     });
 #endif
 
 #if ENABLE_MQTT
     // Start MQTT subscriber in a separate thread
-    MqttConfig mqtt_cfg;
+    auto mqtt_cfg = std::make_unique<MqttConfig>();
     auto mqtt_consumer = std::make_shared<MosquittoMqttSubscriber>(
-        mqtt_cfg.BrokerAddress, mqtt_cfg.BrokerPort, mqtt_cfg.Topic, executor);
+        mqtt_cfg->BrokerAddress, mqtt_cfg->BrokerPort, mqtt_cfg->Topic, executor);
     protocol_threads.emplace_back([mqtt_consumer]() {
         mqtt_consumer->Start();
     });
@@ -112,8 +112,8 @@ int main() {
 
 #if ENABLE_MSGQUEUE
     // Start POSIX message queue consumer in a separate thread
-    MessageQueueConfig mq_cfg;
-    auto mq_consumer = std::make_shared<MessageQueueConsumer>(mq_cfg, executor);
+    auto mq_cfg = std::make_unique<MessageQueueConfig>();
+    auto mq_consumer = std::make_shared<MessageQueueConsumer>(*mq_cfg, executor);
     protocol_threads.emplace_back([mq_consumer]() {
         mq_consumer->Start();
     });
@@ -121,8 +121,8 @@ int main() {
 
 #if ENABLE_DBUS
     // Start D-Bus consumer in a separate thread
-    DbusConfig dbus_cfg;
-    auto dbus_consumer = std::make_shared<DBusConsumer>(dbus_cfg, executor);
+    auto dbus_cfg = std::make_unique<DbusConfig>();
+    auto dbus_consumer = std::make_shared<DBusConsumer>(*dbus_cfg, executor);
     protocol_threads.emplace_back([dbus_consumer]() {
         dbus_consumer->Start();
     });
@@ -138,7 +138,7 @@ int main() {
 
     // Stop protocol consumers gracefully
 #if ENABLE_REST
-    server.Stop();
+    server->Stop();
 #endif
 #if ENABLE_MQTT
     mqtt_consumer->Stop();

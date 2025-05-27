@@ -8,6 +8,7 @@
 #include <ctime>
 #include <cstring>
 #include <iostream>
+#include <memory>
 #include <unistd.h>
 #include <nlohmann/json.hpp>
 #include <mqueue.h>
@@ -75,7 +76,8 @@ void MessageQueueConsumer::ConsumeLoop() {
         return;
     }
 
-    char* buffer = new char[config_.MaxMsgSize];        // Buffer for incoming messages
+    // Use a smart pointer for the buffer to ensure automatic cleanup
+    std::unique_ptr<char[]> buffer(new char[config_.MaxMsgSize]);
 
     // Main loop: receive and process messages while running_
     while (running_) {
@@ -83,10 +85,10 @@ void MessageQueueConsumer::ConsumeLoop() {
         clock_gettime(CLOCK_REALTIME, &ts);
         ts.tv_sec += config_.ReceiveTimeoutSec; // Use the configured timeout
 
-        ssize_t bytes_read = mq_timedreceive(mqd, buffer, config_.MaxMsgSize, nullptr, &ts);
+        ssize_t bytes_read = mq_timedreceive(mqd, buffer.get(), config_.MaxMsgSize, nullptr, &ts);
         if (bytes_read > 0) {
             // Message received successfully
-            std::string payload(buffer, bytes_read);
+            std::string payload(buffer.get(), bytes_read);
             std::cout << "[MQ] Received message: " << payload << std::endl;
             try {
                 executor_->Execute(payload);
@@ -104,6 +106,5 @@ void MessageQueueConsumer::ConsumeLoop() {
             break;
         }
     }
-    delete[] buffer;
     mq_close(mqd); // Clean up
 }
