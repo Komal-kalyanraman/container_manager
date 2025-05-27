@@ -22,9 +22,13 @@
 
 #include "inc/common.hpp"
 #include "inc/init_handler.hpp"
-#include "inc/redis_database.hpp"
 #include "inc/container_service.hpp"
 #include "inc/json_request_executor.hpp"
+#if ENABLE_REDIS
+#include "inc/redis_database.hpp"
+#else
+#include "inc/embedded_database.hpp"
+#endif
 #if ENABLE_PROTOBUF
 #include "inc/protobuf_request_executor.hpp"
 #endif
@@ -64,7 +68,11 @@ void SignalHandler(int) {
  */
 int main() {
     // Instantiate the database and service handler using dependency injection
+#if ENABLE_REDIS
     RedisDatabaseHandler db;
+#else
+    EmbeddedDatabaseHandler db;
+#endif
     ContainerServiceHandler service(db);
 
     // Initialize all subsystems (logging, database, message queue, MQTT, etc.)

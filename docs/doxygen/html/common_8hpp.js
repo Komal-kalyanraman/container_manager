@@ -16,6 +16,8 @@ var common_8hpp =
     [ "kDockerUnixSocketPath", "common_8hpp.html#a0ce8df3b35a0ea16a014b05672323070", null ],
     [ "kEmptyString", "common_8hpp.html#a48f593827063b6c569fbcdbf440f564e", null ],
     [ "kMainShutdownPollMs", "common_8hpp.html#a219640b5cfb7d108d5a1f48ef0190e67", null ],
+    [ "kMaxEntries", "common_8hpp.html#ab6e02d9d99067c1a6c6f6dc20dfe941a", null ],
+    [ "kMaxKeyLen", "common_8hpp.html#a2f4c21e9474b25522f250b43303d8157", null ],
     [ "kPodmanApiBaseUrl", "common_8hpp.html#aba0e68025bb1b2ec135a028ffff2da75", null ],
     [ "kPodmanUnixSocketPath", "common_8hpp.html#a398feb4b796d77c01c195cfd698c933c", null ],
     [ "Ping", "common_8hpp.html#a16a27a883973049590f48b7a016dfdf8", null ],

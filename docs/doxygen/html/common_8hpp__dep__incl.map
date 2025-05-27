@@ -3,18 +3,20 @@
 <area shape="rect" id="node2" href="$dbus__consumer_8hpp.html" title="Defines the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus." alt="" coords="5,87,204,114"/>
 <area shape="rect" id="node4" href="$http__server_8hpp.html" title="Defines the HttpServerHandler class for handling HTTP requests." alt="" coords="229,87,399,114"/>
 <area shape="rect" id="node6" href="$posix__message__queue__consumer_8hpp.html" title="Declares the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="423,80,594,121"/>
-<area shape="rect" id="node7" href="$posix__message__queue__consumer_8cpp.html" title="Implements the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="485,169,655,211"/>
-<area shape="rect" id="node8" href="$container__service_8cpp.html" title="Implements the ContainerServiceHandler class for business logic related to containers." alt="" coords="935,169,1074,211"/>
-<area shape="rect" id="node9" href="$json__request__executor_8cpp.html" title="Implements the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="719,80,909,121"/>
-<area shape="rect" id="node10" href="$protobuf__request__executor_8cpp.html" title="Implements the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests." alt="" coords="933,80,1103,121"/>
-<area shape="rect" id="node11" href="$main_8cpp.html" title="Entry point for the Container Manager application." alt="" coords="1127,87,1210,114"/>
-<area shape="rect" id="node12" href="$command__factory_8hpp.html" title="Declares the CommandFactory class for creating command objects based on container requests." alt="" coords="1234,80,1399,121"/>
-<area shape="rect" id="node13" href="$command__factory_8cpp.html" title="Implements the CommandFactory class for creating command objects based on container requests." alt="" coords="1294,169,1459,211"/>
-<area shape="rect" id="node14" href="$docker__api__commands_8cpp.html" title="Implements Docker API command classes for managing containers via the Docker HTTP API over a Unix soc..." alt="" coords="1474,80,1629,121"/>
-<area shape="rect" id="node15" href="$docker__commands_8cpp.html" title="Implements Docker command classes for container operations." alt="" coords="1653,80,1796,121"/>
-<area shape="rect" id="node16" href="$podman__api__commands_8cpp.html" title="Implements Podman API command classes for managing containers via the Podman HTTP API over a Unix soc..." alt="" coords="1821,80,1975,121"/>
-<area shape="rect" id="node17" href="$podman__commands_8cpp.html" title="Implements Podman command classes for container operations." alt="" coords="2000,80,2153,121"/>
-<area shape="rect" id="node18" href="$init__handler_8cpp.html" title="Implements project&#45;wide initialization functions for the Container Manager application." alt="" coords="2178,87,2359,114"/>
+<area shape="rect" id="node7" href="$posix__message__queue__consumer_8cpp.html" title="Implements the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="435,169,606,211"/>
+<area shape="rect" id="node8" href="$container__service_8cpp.html" title="Implements the ContainerServiceHandler class for business logic related to containers." alt="" coords="1145,169,1283,211"/>
+<area shape="rect" id="node9" href="$embedded__database_8hpp.html" title="Declares the EmbeddedDatabaseHandler class for a lightweight, fixed&#45;size in&#45;memory database." alt="" coords="669,80,847,121"/>
+<area shape="rect" id="node11" href="$main_8cpp.html" title="Entry point for the Container Manager application." alt="" coords="843,177,926,203"/>
+<area shape="rect" id="node12" href="$json__request__executor_8cpp.html" title="Implements the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="973,80,1162,121"/>
+<area shape="rect" id="node13" href="$protobuf__request__executor_8cpp.html" title="Implements the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests." alt="" coords="1187,80,1356,121"/>
+<area shape="rect" id="node14" href="$command__factory_8hpp.html" title="Declares the CommandFactory class for creating command objects based on container requests." alt="" coords="1381,80,1546,121"/>
+<area shape="rect" id="node15" href="$command__factory_8cpp.html" title="Implements the CommandFactory class for creating command objects based on container requests." alt="" coords="1441,169,1606,211"/>
+<area shape="rect" id="node16" href="$docker__api__commands_8cpp.html" title="Implements Docker API command classes for managing containers via the Docker HTTP API over a Unix soc..." alt="" coords="1621,80,1775,121"/>
+<area shape="rect" id="node17" href="$docker__commands_8cpp.html" title="Implements Docker command classes for container operations." alt="" coords="1800,80,1943,121"/>
+<area shape="rect" id="node18" href="$podman__api__commands_8cpp.html" title="Implements Podman API command classes for managing containers via the Podman HTTP API over a Unix soc..." alt="" coords="1967,80,2122,121"/>
+<area shape="rect" id="node19" href="$podman__commands_8cpp.html" title="Implements Podman command classes for container operations." alt="" coords="2147,80,2300,121"/>
+<area shape="rect" id="node20" href="$init__handler_8cpp.html" title="Implements project&#45;wide initialization functions for the Container Manager application." alt="" coords="2325,87,2506,114"/>
 <area shape="rect" id="node3" href="$dbus__consumer_8cpp.html" title="Implements the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus." alt="" coords="5,177,204,203"/>
 <area shape="rect" id="node5" href="$http__server_8cpp.html" title="Implements the HttpServerHandler class for handling HTTP requests." alt="" coords="229,177,399,203"/>
+<area shape="rect" id="node10" href="$embedded__database_8cpp.html" title="Implements the EmbeddedDatabaseHandler class for a lightweight, fixed&#45;size in&#45;memory database." alt="" coords="641,169,819,211"/>
 </map>

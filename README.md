@@ -1,6 +1,6 @@
 # Container Manager
 
-**Container Manager** is a modular, production-ready C++ service for unified container management across Docker, Podman, more (planned). It supports REST, MQTT, MQ, D-Bus, gRPC (planned), Docker/Podman CLI, HTTP-API with incoming JSON & Protobuf data. Features: extensible architecture, replaceable database (Redis default), robust logging, thread pool for all protocols. The project is modular, production-ready, and designed for extensibility.
+**Container Manager** is a modular, production-ready C++ service for unified container management across Docker, Podman, and more (planned). It supports REST, MQTT, MQ, D-Bus, gRPC (planned), Docker/Podman CLI, HTTP-API with incoming JSON & Protobuf data. Features: extensible architecture, pluggable database backend (embedded by default, Redis optional), robust logging, thread pool for all protocols. The project is modular, production-ready, and designed for extensibility.
 
 ## Features
 
@@ -38,8 +38,9 @@
   Efficient request handling using a configurable thread pool.
 
 - **Database Integration:**  
-  Uses Redis for storing container metadata and state.  
-  **Pluggable database backend:** Swap Redis for any other database by implementing the `IDatabaseHandler` interface.
+  **Embedded database backend is used by default** for storing container metadata and state, making the project suitable for embedded and resource-constrained environments.  
+  **Redis database backend is optional** and can be enabled via a CMake flag for scalable, production deployments.  
+  **Pluggable database backend:** Swap between embedded and Redis or any other database if needed by implementing the `IDatabaseHandler` interface.
 
 - **Logging:**  
   Integrated with Google glog for robust logging.
@@ -50,15 +51,59 @@
 - **Open Source:**  
   Licensed under the MIT License.
 
+## Database Backend Selection
+
+Container Manager supports two database backends:
+
+- **Embedded Database (default):**  
+  A lightweight, fixed-size, in-memory key-value store suitable for embedded and resource-constrained systems.  
+  No external dependencies required.
+
+- **Redis Database (optional):**  
+  Use Redis for scalable, persistent, and distributed deployments.  
+  Requires [cpp_redis](https://github.com/Cylix/cpp_redis) and a running Redis server.
+
+### How to Select the Database Backend
+
+Database backend selection is controlled via the `ENABLE_REDIS` CMake flag:
+
+- **Embedded database (default):**  
+  No flag needed; just build as usual:
+
+  ```sh
+  cmake ..
+  make
+  ```
+
+- **Redis database (optional):**  
+  Enable Redis by setting the flag:
+
+  ```sh
+  cmake .. -DENABLE_REDIS=ON
+  make
+  ```
+
+  > **Note:** When `ENABLE_REDIS=ON`, you must have `cpp_redis` and a Redis server available.
+
+### Example: Enabling Redis Database
+
+```sh
+cmake .. -DENABLE_REDIS=ON
+make
+```
+
+This will build the project with Redis as the database backend.  
+If you do **not** set this flag, the embedded database will be used automatically.
+
 ## Architecture Overview
 
-See the [Architecture Documentation](docs/architecture/architecture.md) for detailed diagrams and explanations.
+See the Architecture Documentation for detailed diagrams and explanations.
 
 ```
 App/
 ├── api/        # HTTP server, MQTT subscriber, Message Queue and D-Bus consumer (and future protocol handlers)
 ├── core/       # Business logic (service layer)
-├── database/   # Database interface and Redis implementation (pluggable)
+├── database/   # Database interface, embedded and Redis implementations (pluggable)
 ├── executor/   # Request executors (JSON, Protobuf, etc.)
 ├── runtime/    # Command pattern implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.
 ├── utils/      # Common utilities (thread pool, logging, etc.)
@@ -83,7 +128,7 @@ App/
   The `RequestExecutor` abstraction allows for different data formats (JSON, Protobuf, etc.).
 
 - **Database Layer:**  
-  The `IDatabaseHandler` interface allows you to swap Redis for any other backend (SQL, NoSQL, in-memory, etc.) with minimal code changes.
+  The `IDatabaseHandler` interface allows you to swap between the embedded and Redis backends (or any other backend) with minimal code changes.
 
 - **Docker API & Podman API Layer:**  
   The `docker-api` and `podman-api` runtimes enable direct management of containers via their respective REST APIs over Unix sockets.  
@@ -127,8 +172,9 @@ You can enable or disable each protocol and data format using CMake flags:
 - `ENABLE_DBUS` (D-Bus consumer)
 - `ENABLE_GRPC` (gRPC, planned)
 - `ENABLE_PROTOBUF` (Protobuf support; if OFF, only JSON is used)
+- `ENABLE_REDIS` (Redis database backend; If OFF then embedded database is used)
 
-**All options are ON by default.**  
+**All options except Redis are ON by default.**  
 To build only what you need, set the flags before running CMake.
 
 ## Build Instructions
@@ -143,25 +189,23 @@ mkdir build && cd build
 
 ### 2. Install Only What You Need
 
-#### If you want only JSON over D-Bus:
+#### If you want only JSON over D-Bus (embedded database):
 
 - Install only:
   - [sdbus-c++](https://github.com/Kistler-Group/sdbus-cpp)
   - [nlohmann/json](https://github.com/nlohmann/json)
   - [glog](https://github.com/google/glog)
-  - [cpp_redis](https://github.com/Cylix/cpp_redis)
 - CMake:
   ```sh
   cmake .. -DENABLE_REST=OFF -DENABLE_MQTT=OFF -DENABLE_MSGQUEUE=OFF -DENABLE_DBUS=ON -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=OFF
   make
   ```
 
-#### If you want only Protobuf over Message Queue:
+#### If you want only Protobuf over Message Queue (embedded database):
 
 - Install only:
   - [nlohmann/json](https://github.com/nlohmann/json) (for config)
   - [glog](https://github.com/google/glog)
-  - [cpp_redis](https://github.com/Cylix/cpp_redis)
   - Protobuf (`libprotobuf-dev`, `protobuf-compiler`)
 - CMake:
   ```sh
@@ -169,12 +213,11 @@ mkdir build && cd build
   make
   ```
 
-#### If you want REST and MQTT with JSON only:
+#### If you want REST and MQTT with JSON only (embedded database):
 
 - Install:
   - [nlohmann/json](https://github.com/nlohmann/json)
   - [glog](https://github.com/google/glog)
-  - [cpp_redis](https://github.com/Cylix/cpp_redis)
   - [mosquitto](https://github.com/eclipse-mosquitto/mosquitto)
   - [httplib (included as third_party)](https://github.com/yhirose/cpp-httplib)
 - CMake:
@@ -183,7 +226,7 @@ mkdir build && cd build
   make
   ```
 
-#### If you want all protocols with JSON format (full build):
+#### If you want all protocols with JSON format (embedded database):
 
 - Install all dependencies listed in the prerequisites.
 - CMake (default):
@@ -192,28 +235,34 @@ mkdir build && cd build
   make
   ```
 
-#### If you want all protocols with Protobuf only (no JSON):
+#### If you want Redis as the database backend:
 
-- Install all protocol dependencies plus Protobuf.
+- Install:
+  - [cpp_redis](https://github.com/Cylix/cpp_redis)
+  - [Redis server](https://redis.io/)
+  - All other protocol/data format dependencies as needed
 - CMake:
   ```sh
-  cmake .. -DENABLE_REST=ON -DENABLE_MQTT=ON -DENABLE_MSGQUEUE=ON -DENABLE_DBUS=ON -DENABLE_GRPC=ON -DENABLE_PROTOBUF=ON
+  cmake .. -DENABLE_REDIS=ON
   make
   ```
 
 ### 3. Summary Table
 
-| Protocol/Data Format | CMake Flag         | Required Packages                                |
-| -------------------- | ------------------ | ------------------------------------------------ |
-| REST (HTTP/JSON)     | ENABLE_REST=ON     | nlohmann_json, glog, cpp_redis, httplib          |
-| MQTT                 | ENABLE_MQTT=ON     | mosquitto, nlohmann_json, glog, cpp_redis        |
-| Message Queue        | ENABLE_MSGQUEUE=ON | nlohmann_json, glog, cpp_redis                   |
-| D-Bus                | ENABLE_DBUS=ON     | sdbus-c++, nlohmann_json, glog, cpp_redis        |
-| gRPC (planned)       | ENABLE_GRPC=ON     | grpc++, protobuf, nlohmann_json, glog, cpp_redis |
-| Protobuf             | ENABLE_PROTOBUF=ON | protobuf                                         |
+| Protocol/Data Format | CMake Flag         | Required Packages                     |
+| -------------------- | ------------------ | ------------------------------------- |
+| REST (HTTP/JSON)     | ENABLE_REST=ON     | nlohmann_json, glog, httplib          |
+| MQTT                 | ENABLE_MQTT=ON     | mosquitto, nlohmann_json, glog        |
+| Message Queue        | ENABLE_MSGQUEUE=ON | nlohmann_json, glog                   |
+| D-Bus                | ENABLE_DBUS=ON     | sdbus-c++, nlohmann_json, glog        |
+| gRPC (planned)       | ENABLE_GRPC=ON     | grpc++, protobuf, nlohmann_json, glog |
+| Protobuf             | ENABLE_PROTOBUF=ON | protobuf                              |
+| Redis DB             | ENABLE_REDIS=ON    | cpp_redis, redis-server               |
+| Embedded DB          | (default)          | (no extra dependencies)               |
 
 - **JSON** is always available (unless you only enable Protobuf).
 - **Protobuf** is optional and only needed if you want binary serialization.
+- **Embedded database** is used unless you explicitly enable Redis.
 
 ### 4. General Build Steps
 
@@ -224,22 +273,27 @@ make -j$(nproc)
 
 ### 5. Examples
 
-- **Enable only D-Bus with JSON:**
+- **Enable only D-Bus with JSON (embedded DB):**
   ```sh
   cmake .. -DENABLE_REST=OFF -DENABLE_MQTT=OFF -DENABLE_MSGQUEUE=OFF -DENABLE_DBUS=ON -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=OFF
   make
   ```
-- **Enable REST, MQTT, and Protobuf:**
+- **Enable REST, MQTT, and Protobuf (embedded DB):**
   ```sh
   cmake .. -DENABLE_REST=ON -DENABLE_MQTT=ON -DENABLE_MSGQUEUE=OFF -DENABLE_DBUS=OFF -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=ON
   make
   ```
-- **Enable all protocols with Protobuf only:**
+- **Enable all protocols with Protobuf only (embedded DB):**
   ```sh
   cmake .. -DENABLE_REST=ON -DENABLE_MQTT=ON -DENABLE_MSGQUEUE=ON -DENABLE_DBUS=ON -DENABLE_GRPC=ON -DENABLE_PROTOBUF=ON
   make
   ```
-- **Full build (all protocols with JSON format):**
+- **Enable Redis database backend:**
+  ```sh
+  cmake .. -DENABLE_REDIS=ON
+  make
+  ```
+- **Full build (all protocols with JSON format, embedded DB):**
   ```sh
   cmake ..
   make

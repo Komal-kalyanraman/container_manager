@@ -86,27 +86,27 @@ $(document).ready(function(){initNavTree('md__home_komal_workspace_personal_cont
 <div class="title">Container Manager Architecture </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md37"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md40"></a>
 Overview</h1>
 <p><b>Container Manager</b> is a modular, extensible, and production-ready C++ service for unified container management across Docker, Podman, and other runtimes. <br  />
  It is designed to support multiple communication protocols (REST, MQTT, POSIX Message Queue, D-Bus, gRPC) and data formats (JSON, Protobuf), making it suitable for diverse deployment scenarios and integration needs.</p>
-<h2><a class="anchor" id="autotoc_md38"></a>
+<h2><a class="anchor" id="autotoc_md41"></a>
 System Architecture</h2>
 <p><img src="system_architecture.png" alt="System Architecture" width="850" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md39"></a>
+<h1><a class="anchor" id="autotoc_md42"></a>
 Folder Structure</h1>
 <div class="fragment"><div class="line">App/</div>
 <div class="line">├── api/        # Protocol handlers (REST, MQTT, MQ, D-Bus, gRPC)</div>
 <div class="line">├── core/       # Business logic (service layer, command pattern)</div>
-<div class="line">├── database/   # Database interface and Redis implementation</div>
+<div class="line">├── database/   # Database interface and implementations (embedded, Redis)</div>
 <div class="line">├── executor/   # Request executors (JSON, Protobuf)</div>
 <div class="line">├── runtime/    # Command implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.</div>
 <div class="line">├── utils/      # Utilities (thread pool, logging, config)</div>
 <div class="line">├── main.cpp    # Application entry point</div>
 <div class="line">└── third_party/# External dependencies</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md40"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md43"></a>
 Component Descriptions</h1>
-<h2><a class="anchor" id="autotoc_md41"></a>
+<h2><a class="anchor" id="autotoc_md44"></a>
 1. API Layer (Protocol Handlers)</h2>
 <ul>
 <li><b>REST API Server:</b> <br  />
@@ -121,7 +121,7 @@ Component Descriptions</h1>
  Will provide a strongly-typed, high-performance RPC interface using Protobuf.</li>
 </ul>
 <p><b>All protocol handlers are modular and can be enabled/disabled at build time via CMake flags.</b></p>
-<h2><a class="anchor" id="autotoc_md42"></a>
+<h2><a class="anchor" id="autotoc_md45"></a>
 2. Executor Layer (Request Executors)</h2>
 <ul>
 <li><b>JSON Request Executor:</b> <br  />
@@ -130,7 +130,7 @@ Component Descriptions</h1>
  Validates and parses incoming Protobuf requests, converting them to internal command objects.</li>
 </ul>
 <p><b>The executor layer abstracts data format handling, allowing protocol handlers to remain agnostic of the underlying serialization.</b></p>
-<h2><a class="anchor" id="autotoc_md43"></a>
+<h2><a class="anchor" id="autotoc_md46"></a>
 3. Core Layer (Service &amp; Command Pattern)</h2>
 <ul>
 <li><b>Container Service Handler:</b> <br  />
@@ -139,7 +139,7 @@ Component Descriptions</h1>
  Each container operation (create, start, stop, etc.) is encapsulated as a command object. <br  />
  Supports multiple runtimes (Docker CLI, Podman CLI, Docker API, Podman API, etc.) and is easily extensible.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md44"></a>
+<h2><a class="anchor" id="autotoc_md47"></a>
 4. Runtime Layer</h2>
 <ul>
 <li><b>Docker Commands:</b> <br  />
@@ -156,16 +156,21 @@ Component Descriptions</h1>
  The <code>podman-api</code> runtime is not extensively tested. Use with caution and report any issues you encounter. </p>
 </blockquote>
 <p><b>The runtime layer can be extended to support additional container engines and APIs.</b></p>
-<h2><a class="anchor" id="autotoc_md45"></a>
+<h2><a class="anchor" id="autotoc_md48"></a>
 5. Database Layer</h2>
 <ul>
 <li><b><a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a>:</b> <br  />
  Abstract interface for database operations (CRUD, state, metadata).</li>
+<li><b><a class="el" href="classEmbeddedDatabaseHandler.html" title="Lightweight, fixed-size in-memory key-value store for embedded systems.">EmbeddedDatabaseHandler</a>:</b> <br  />
+ <b>Default:</b> Lightweight, fixed-size, in-memory key-value store for embedded and resource-constrained systems. <br  />
+ No external dependencies required.</li>
 <li><b><a class="el" href="classRedisDatabaseHandler.html" title="Class for interacting with a Redis database backend.">RedisDatabaseHandler</a>:</b> <br  />
- Production-ready Redis implementation of the database interface.</li>
+ Optional production-ready Redis implementation of the database interface. <br  />
+ Requires <a href="https://github.com/Cylix/cpp_redis">cpp_redis</a> and a running Redis server.</li>
 </ul>
-<p><b>The database layer is pluggable—swap Redis for any other backend by implementing the interface.</b></p>
-<h2><a class="anchor" id="autotoc_md46"></a>
+<p><b>The database layer is pluggable—swap between embedded and Redis (or any other backend) by implementing the interface. <br  />
+ Database selection is controlled via the <code>ENABLE_REDIS</code> CMake flag. If not set, the embedded database is used by default.</b></p>
+<h2><a class="anchor" id="autotoc_md49"></a>
 6. Utilities</h2>
 <ul>
 <li><b>Thread Pool:</b> <br  />
@@ -175,7 +180,7 @@ Component Descriptions</h1>
 <li><b>Config:</b> <br  />
  Centralized configuration structs for all protocols and system settings.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md47"></a>
+<h1><a class="anchor" id="autotoc_md50"></a>
 Data Flow</h1>
 <ol type="1">
 <li><b>Request Reception:</b> <br  />
@@ -189,11 +194,12 @@ Data Flow</h1>
 <li><b><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> Execution:</b> <br  />
  The command object performs the requested operation (e.g., create/start/stop container) using the appropriate runtime (Docker CLI, Podman CLI, Docker API, Podman API).</li>
 <li><b>Database Interaction:</b> <br  />
- State and metadata are persisted/retrieved via the database interface.</li>
+ State and metadata are persisted/retrieved via the database interface. <br  />
+ The actual backend (embedded or Redis) is selected at build time.</li>
 <li><b>Response:</b> <br  />
  The result is sent back via the originating protocol (if applicable).</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md48"></a>
+<h1><a class="anchor" id="autotoc_md51"></a>
 Extensibility</h1>
 <ul>
 <li><b>Add a Protocol:</b> <br  />
@@ -203,9 +209,10 @@ Extensibility</h1>
 <li><b>Add a Runtime:</b> <br  />
  Implement new command classes in <code>runtime/</code>, register them in the command factory.</li>
 <li><b>Change Database:</b> <br  />
- Implement <code><a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a></code> for your preferred backend.</li>
+ Implement <code><a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a></code> for your preferred backend. <br  />
+ Select the backend at build time using the appropriate CMake flag.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md49"></a>
+<h1><a class="anchor" id="autotoc_md52"></a>
 Production-Readiness</h1>
 <ul>
 <li><b>Graceful Shutdown:</b> <br  />
@@ -219,13 +226,13 @@ Production-Readiness</h1>
 <li><b>Testing:</b> <br  />
  Unit and integration tests are present; expand coverage as needed.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md50"></a>
+<h1><a class="anchor" id="autotoc_md53"></a>
 Example Sequence Diagram</h1>
 <p><img src="architecture_example_sequence_diagram.png" alt="Example Sequence Diagram" width="900" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md51"></a>
+<h1><a class="anchor" id="autotoc_md54"></a>
 Deployment Diagram</h1>
 <p><img src="architecture_deployment_diagram.png" alt="Deployment Diagram" width="700" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md52"></a>
+<h1><a class="anchor" id="autotoc_md55"></a>
 Recommendations for Contributors</h1>
 <ul>
 <li><b>Follow the modular architecture:</b> <br  />
@@ -234,7 +241,7 @@ Recommendations for Contributors</h1>
 <li><b>Write tests for new features and bug fixes.</b></li>
 <li><b>Update diagrams and documentation as the architecture evolves.</b></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md53"></a>
+<h1><a class="anchor" id="autotoc_md56"></a>
 References</h1>
 <ul>
 <li><a href="../docs/doxygen/html/index.html">Doxygen Documentation</a></li>

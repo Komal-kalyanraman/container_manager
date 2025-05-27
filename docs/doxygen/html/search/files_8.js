@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['main_2ecpp_420',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['mosquitto_5fmqtt_5fsubscriber_2ecpp_421',['mosquitto_mqtt_subscriber.cpp',['../mosquitto__mqtt__subscriber_8cpp.html',1,'']]],
-  ['mosquitto_5fmqtt_5fsubscriber_2ehpp_422',['mosquitto_mqtt_subscriber.hpp',['../mosquitto__mqtt__subscriber_8hpp.html',1,'']]]
+  ['logging_2ehpp_427',['logging.hpp',['../logging_8hpp.html',1,'']]]
 ];

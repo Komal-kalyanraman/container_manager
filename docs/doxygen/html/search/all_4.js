@@ -10,7 +10,7 @@ var searchData=
   ['clear_5fpids_27',['clear_pids',['../classcontainermanager_1_1ContainerParameters.html#ac87a39f6729dcb75d648fcc465fbd750',1,'containermanager::ContainerParameters']]],
   ['clear_5frestart_5fpolicy_28',['clear_restart_policy',['../classcontainermanager_1_1ContainerParameters.html#aa928ea667b7c2e5ae321025ebf96ad78',1,'containermanager::ContainerParameters']]],
   ['clear_5fruntime_29',['clear_runtime',['../classcontainermanager_1_1ContainerRequest.html#a27d1b162a42dabcbf33904ae9072a0b8',1,'containermanager::ContainerRequest']]],
-  ['cleardatabase_30',['ClearDatabase',['../classIDatabaseHandler.html#a79f638c8332acdfb054d1f915f77c760',1,'IDatabaseHandler::ClearDatabase()'],['../classRedisDatabaseHandler.html#a6afaf7f4141c676d6b68eb8efd5ed96a',1,'RedisDatabaseHandler::ClearDatabase()']]],
+  ['cleardatabase_30',['ClearDatabase',['../classIDatabaseHandler.html#a79f638c8332acdfb054d1f915f77c760',1,'IDatabaseHandler::ClearDatabase()'],['../classEmbeddedDatabaseHandler.html#a0ce950f0f1afbf00c831de7afd8aa2dd',1,'EmbeddedDatabaseHandler::ClearDatabase()'],['../classRedisDatabaseHandler.html#a6afaf7f4141c676d6b68eb8efd5ed96a',1,'RedisDatabaseHandler::ClearDatabase()']]],
   ['clearretainedclientid_31',['ClearRetainedClientId',['../structMqttConfig.html#a64b686fe1c07a4284511e22088f0cdcf',1,'MqttConfig']]],
   ['clientid_32',['ClientId',['../structMqttConfig.html#a9ccb02d7d7545449b57fd9bc59cb5da7',1,'MqttConfig']]],
   ['cm_5flog_5ferror_33',['CM_LOG_ERROR',['../logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a',1,'logging.hpp']]],

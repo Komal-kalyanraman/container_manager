@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['jsonrequestexecutorhandler_359',['JsonRequestExecutorHandler',['../classJsonRequestExecutorHandler.html',1,'']]]
+  ['idatabasehandler_363',['IDatabaseHandler',['../classIDatabaseHandler.html',1,'']]],
+  ['invoker_364',['Invoker',['../classInvoker.html',1,'']]]
 ];

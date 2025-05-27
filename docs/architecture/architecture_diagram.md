@@ -31,6 +31,7 @@ flowchart TD
     %% Database Layer
     DBIF[IDatabaseHandler]
     REDIS[RedisDatabaseHandler]
+    EMBEDDED[EmbeddedDatabaseHandler]
 
     %% Infrastructure
     MQTTB[MQTT Broker]
@@ -72,7 +73,10 @@ flowchart TD
     PODMAN -- DB Access --> DBIF
     DOCKERAPI -- DB Access --> DBIF
     PODMANAPI -- DB Access --> DBIF
+
+    %% Database Implementations
     DBIF -- Redis API --> REDIS
+    DBIF -- Embedded API --> EMBEDDED
 
     %% Runtime to Daemon
     DOCKER -- Docker CLI --> DockerD
@@ -99,7 +103,6 @@ PROTO[Protobuf Request Executor]
 end
 
 REST -- JSON --> JSON
-
 REST -- Proto --> PROTO
 MQTT -- JSON --> JSON
 MQTT -- Proto --> PROTO
@@ -108,7 +111,6 @@ MQ -- Proto --> PROTO
 DBUS -- JSON --> JSON
 DBUS -- Proto --> PROTO
 GRPC -- Proto --> PROTO
-
 ```
 
 ### Executor, Core, and Runtime Layers
@@ -149,11 +151,13 @@ end
 subgraph DatabaseLayer
 DBIF[IDatabaseHandler]
 REDIS[RedisDatabaseHandler]
+EMBEDDED[EmbeddedDatabaseHandler]
 end
 
 DOCKER -- DB Access --> DBIF
 PODMAN -- DB Access --> DBIF
 DBIF -- Redis API --> REDIS
+DBIF -- Embedded API --> EMBEDDED
 ```
 
 ## Example Sequence Diagram
@@ -165,13 +169,22 @@ sequenceDiagram
     participant JSONExec
     participant Service
     participant DockerCmd
+    participant DBIF
     participant Redis
+    participant Embedded
 
     Client->>REST: POST /execute (JSON)
     REST->>JSONExec: Forward payload
     JSONExec->>Service: Validated request
     Service->>DockerCmd: Dispatch create command
-    DockerCmd->>Redis: Store metadata
+    DockerCmd->>DBIF: Store metadata
+    alt Redis backend enabled
+        DBIF->>Redis: Store data
+        Redis-->>DBIF: Ack
+    else Embedded backend (default)
+        DBIF->>Embedded: Store data
+        Embedded-->>DBIF: Ack
+    end
     DockerCmd-->>Service: Result
     Service-->>JSONExec: Result
     JSONExec-->>REST: Response
@@ -184,6 +197,7 @@ sequenceDiagram
 graph TD
     CM[Container Manager Service]
     Redis[(Redis DB)]
+    Embedded[(Embedded DB)]
     Docker[(Docker Daemon)]
     Podman[(Podman Daemon)]
     MQTTB[(MQTT Broker)]
@@ -200,7 +214,9 @@ graph TD
     Client2-->|MQTT|MQTTB-->|MQTT|CM
     Client3-->|D-Bus|CM
     Client4-->|POSIX MQ|CM
+
     CM-->|Redis API|Redis
+    CM-->|Embedded API|Embedded
 
     %% Docker connections
     CM-->|Docker API|DockerAPI

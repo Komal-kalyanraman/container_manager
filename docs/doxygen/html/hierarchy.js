@@ -35,6 +35,7 @@ var hierarchy =
     [ "DBusConsumer", "classDBusConsumer.html", null ],
     [ "HttpServerHandler", "classHttpServerHandler.html", null ],
     [ "IDatabaseHandler", "classIDatabaseHandler.html", [
+      [ "EmbeddedDatabaseHandler", "classEmbeddedDatabaseHandler.html", null ],
       [ "RedisDatabaseHandler", "classRedisDatabaseHandler.html", null ]
     ] ],
     [ "Invoker", "classInvoker.html", null ],

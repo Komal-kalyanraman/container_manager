@@ -1,6 +1,10 @@
 /**
  * @file common.hpp
  * @brief Defines common constants, string views, and utility structures for the application.
+ *
+ * This header centralizes configuration constants, runtime and command names, command templates,
+ * and utility functions used throughout the container manager application. It is designed to
+ * promote consistency and reduce duplication across modules.
  */
 
 #pragma once
@@ -17,6 +21,12 @@ const std::string kContainerManagerLogName = "cm_log";
 
 /// @brief Sleep interval (in milliseconds) for main thread shutdown polling.
 constexpr int kMainShutdownPollMs = 200;
+
+/// @brief Maximum number of entries for embedded database.
+constexpr size_t kMaxEntries = 32;
+
+/// @brief Maximum key length for embedded database entries.
+constexpr size_t kMaxKeyLen = 32;
 
 /// @brief Docker Unix socket path and API base URL for HTTP API communication.
 inline constexpr char kDockerUnixSocketPath[] = "/var/run/docker.sock";
@@ -114,6 +124,8 @@ inline std::string FormatCommand(std::string_view tmpl, const std::unordered_map
     return result;
 }
 
+/// @namespace ApiEndpoint
+/// @brief Contains API endpoint templates for container operations.
 namespace ApiEndpoint {
     inline constexpr std::string_view Containers = "containers/";
     inline constexpr std::string_view Create     = "containers/create?name=";

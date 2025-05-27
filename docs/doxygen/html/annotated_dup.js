@@ -23,6 +23,7 @@ var annotated_dup =
     [ "DockerRuntimeAvailableCommand", "classDockerRuntimeAvailableCommand.html", "classDockerRuntimeAvailableCommand" ],
     [ "DockerStartContainerCommand", "classDockerStartContainerCommand.html", "classDockerStartContainerCommand" ],
     [ "DockerStopContainerCommand", "classDockerStopContainerCommand.html", "classDockerStopContainerCommand" ],
+    [ "EmbeddedDatabaseHandler", "classEmbeddedDatabaseHandler.html", "classEmbeddedDatabaseHandler" ],
     [ "HttpServerHandler", "classHttpServerHandler.html", "classHttpServerHandler" ],
     [ "IDatabaseHandler", "classIDatabaseHandler.html", "classIDatabaseHandler" ],
     [ "Invoker", "classInvoker.html", "classInvoker" ],

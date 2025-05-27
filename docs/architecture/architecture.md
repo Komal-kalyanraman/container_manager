@@ -15,7 +15,7 @@ It is designed to support multiple communication protocols (REST, MQTT, POSIX Me
 App/
 ├── api/        # Protocol handlers (REST, MQTT, MQ, D-Bus, gRPC)
 ├── core/       # Business logic (service layer, command pattern)
-├── database/   # Database interface and Redis implementation
+├── database/   # Database interface and implementations (embedded, Redis)
 ├── executor/   # Request executors (JSON, Protobuf)
 ├── runtime/    # Command implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.
 ├── utils/      # Utilities (thread pool, logging, config)
@@ -87,10 +87,16 @@ App/
 - **IDatabaseHandler:**  
   Abstract interface for database operations (CRUD, state, metadata).
 
-- **RedisDatabaseHandler:**  
-  Production-ready Redis implementation of the database interface.
+- **EmbeddedDatabaseHandler:**  
+  **Default:** Lightweight, fixed-size, in-memory key-value store for embedded and resource-constrained systems.  
+  No external dependencies required.
 
-**The database layer is pluggable—swap Redis for any other backend by implementing the interface.**
+- **RedisDatabaseHandler:**  
+  Optional production-ready Redis implementation of the database interface.  
+  Requires [cpp_redis](https://github.com/Cylix/cpp_redis) and a running Redis server.
+
+**The database layer is pluggable—swap between embedded and Redis (or any other backend) by implementing the interface.  
+Database selection is controlled via the `ENABLE_REDIS` CMake flag. If not set, the embedded database is used by default.**
 
 ### 6. Utilities
 
@@ -121,7 +127,8 @@ App/
    The command object performs the requested operation (e.g., create/start/stop container) using the appropriate runtime (Docker CLI, Podman CLI, Docker API, Podman API).
 
 6. **Database Interaction:**  
-   State and metadata are persisted/retrieved via the database interface.
+   State and metadata are persisted/retrieved via the database interface.  
+   The actual backend (embedded or Redis) is selected at build time.
 
 7. **Response:**  
    The result is sent back via the originating protocol (if applicable).
@@ -138,7 +145,8 @@ App/
   Implement new command classes in `runtime/`, register them in the command factory.
 
 - **Change Database:**  
-  Implement `IDatabaseHandler` for your preferred backend.
+  Implement `IDatabaseHandler` for your preferred backend.  
+  Select the backend at build time using the appropriate CMake flag.
 
 ## Production-Readiness
 

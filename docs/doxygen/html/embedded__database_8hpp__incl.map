@@ -1,0 +1,10 @@
+<map id="database/inc/embedded_database.hpp" name="database/inc/embedded_database.hpp">
+<area shape="rect" id="node1" title="Declares the EmbeddedDatabaseHandler class for a lightweight, fixed&#45;size in&#45;memory database." alt="" coords="77,5,256,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,61,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="52,169,199,196"/>
+<area shape="rect" id="node4" href="$common_8hpp.html" title="Defines common constants, string views, and utility structures for the application." alt="" coords="357,95,488,121"/>
+<area shape="rect" id="node8" href="$database__interface_8hpp.html" title="Abstract interface for database operations." alt="" coords="135,95,334,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="227,169,285,196"/>
+<area shape="rect" id="node6" title=" " alt="" coords="353,169,450,196"/>
+<area shape="rect" id="node7" title=" " alt="" coords="474,169,598,196"/>
+</map>

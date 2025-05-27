@@ -196,7 +196,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    google::InitGoogleLogging(<a class="code" href="common_8hpp.html#af0a5c19c0d441fb37ef118d1714dc2aa">kContainerManagerLogName</a>.c_str());</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="common_8hpp_source.html#l00016">kContainerManagerLogName</a>.</p>
+<p class="reference">References <a class="el" href="common_8hpp_source.html#l00020">kContainerManagerLogName</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="init__handler_8cpp_source.html#l00075">InitProject()</a>.</p>
 <div class="dynheader">
@@ -232,7 +232,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    mq_unlink(mq_cfg.<a class="code" href="structMessageQueueConfig.html#ab94fdd723674c4745fb021342e0e9e02">QueueName</a>.c_str());</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="common_8hpp_source.html#l00050">MessageQueueConfig::QueueName</a>.</p>
+<p class="reference">References <a class="el" href="common_8hpp_source.html#l00060">MessageQueueConfig::QueueName</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="init__handler_8cpp_source.html#l00075">InitProject()</a>.</p>
 <div class="dynheader">
@@ -307,7 +307,7 @@ Here is the caller graph for this function:</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="init__handler_8cpp_source.html#l00033">InitDatabase()</a>, <a class="el" href="init__handler_8cpp_source.html#l00025">InitLogging()</a>, <a class="el" href="init__handler_8cpp_source.html#l00041">InitMessageQueue()</a>, and <a class="el" href="init__handler_8cpp_source.html#l00067">InitMqttRetainedMessages()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00065">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00069">main()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -326,11 +326,11 @@ Here is the caller graph for this function:</div>
 <div class="ttc" id="aclassIDatabaseHandler_html_a79f638c8332acdfb054d1f915f77c760"><div class="ttname"><a href="classIDatabaseHandler.html#a79f638c8332acdfb054d1f915f77c760">IDatabaseHandler::ClearDatabase</a></div><div class="ttdeci">virtual void ClearDatabase()=0</div><div class="ttdoc">Clears all data from the database.</div></div>
 <div class="ttc" id="ainit__handler_8cpp_html_a9c6fd2b1fc6d60ab2f80b2799b0fa81e"><div class="ttname"><a href="init__handler_8cpp.html#a9c6fd2b1fc6d60ab2f80b2799b0fa81e">InitLogging</a></div><div class="ttdeci">void InitLogging()</div><div class="ttdoc">Initializes logging using Google glog.</div><div class="ttdef"><b>Definition:</b> <a href="init__handler_8cpp_source.html#l00025">init_handler.cpp:25</a></div></div>
 <div class="ttc" id="ainit__handler_8cpp_html_a57b18ca1632517db21aa1491c585762a"><div class="ttname"><a href="init__handler_8cpp.html#a57b18ca1632517db21aa1491c585762a">InitMqttRetainedMessages</a></div><div class="ttdeci">void InitMqttRetainedMessages()</div><div class="ttdoc">Stub for clearing retained MQTT messages when MQTT is disabled.</div><div class="ttdef"><b>Definition:</b> <a href="init__handler_8cpp_source.html#l00067">init_handler.cpp:67</a></div></div>
-<div class="ttc" id="acommon_8hpp_html_af0a5c19c0d441fb37ef118d1714dc2aa"><div class="ttname"><a href="common_8hpp.html#af0a5c19c0d441fb37ef118d1714dc2aa">kContainerManagerLogName</a></div><div class="ttdeci">const std::string kContainerManagerLogName</div><div class="ttdoc">Name used for container manager in google logging.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00016">common.hpp:16</a></div></div>
-<div class="ttc" id="astructMessageQueueConfig_html"><div class="ttname"><a href="structMessageQueueConfig.html">MessageQueueConfig</a></div><div class="ttdoc">Holds constant configuration for the POSIX message queue consumer.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00049">common.hpp:49</a></div></div>
+<div class="ttc" id="acommon_8hpp_html_af0a5c19c0d441fb37ef118d1714dc2aa"><div class="ttname"><a href="common_8hpp.html#af0a5c19c0d441fb37ef118d1714dc2aa">kContainerManagerLogName</a></div><div class="ttdeci">const std::string kContainerManagerLogName</div><div class="ttdoc">Name used for container manager in google logging.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00020">common.hpp:20</a></div></div>
+<div class="ttc" id="astructMessageQueueConfig_html"><div class="ttname"><a href="structMessageQueueConfig.html">MessageQueueConfig</a></div><div class="ttdoc">Holds constant configuration for the POSIX message queue consumer.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00059">common.hpp:59</a></div></div>
 <div class="ttc" id="ainit__handler_8cpp_html_ac622dccafc9db8b54a3d5ef6d98eed8e"><div class="ttname"><a href="init__handler_8cpp.html#ac622dccafc9db8b54a3d5ef6d98eed8e">InitMessageQueue</a></div><div class="ttdeci">void InitMessageQueue()</div><div class="ttdoc">Clears the POSIX message queue at startup.</div><div class="ttdef"><b>Definition:</b> <a href="init__handler_8cpp_source.html#l00041">init_handler.cpp:41</a></div></div>
 <div class="ttc" id="ainit__handler_8cpp_html_a813fccd2b19c7f0072bb3c8deb3c9730"><div class="ttname"><a href="init__handler_8cpp.html#a813fccd2b19c7f0072bb3c8deb3c9730">InitDatabase</a></div><div class="ttdeci">void InitDatabase(IDatabaseHandler &amp;db)</div><div class="ttdoc">Initializes and clears the database.</div><div class="ttdef"><b>Definition:</b> <a href="init__handler_8cpp_source.html#l00033">init_handler.cpp:33</a></div></div>
-<div class="ttc" id="astructMessageQueueConfig_html_ab94fdd723674c4745fb021342e0e9e02"><div class="ttname"><a href="structMessageQueueConfig.html#ab94fdd723674c4745fb021342e0e9e02">MessageQueueConfig::QueueName</a></div><div class="ttdeci">const std::string QueueName</div><div class="ttdoc">Name of the POSIX message queue.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00050">common.hpp:50</a></div></div>
+<div class="ttc" id="astructMessageQueueConfig_html_ab94fdd723674c4745fb021342e0e9e02"><div class="ttname"><a href="structMessageQueueConfig.html#ab94fdd723674c4745fb021342e0e9e02">MessageQueueConfig::QueueName</a></div><div class="ttdeci">const std::string QueueName</div><div class="ttdoc">Name of the POSIX message queue.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00060">common.hpp:60</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
