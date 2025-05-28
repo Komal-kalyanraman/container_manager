@@ -1,0 +1,7 @@
+<map id="DockerApiRemoveContainerCommand::Execute" name="DockerApiRemoveContainerCommand::Execute">
+<area shape="rect" id="node1" title="Executes the command to remove a Docker container via the API." alt="" coords="5,74,211,115"/>
+<area shape="rect" id="node2" href="$common_8hpp.html#a6ef961c11398422cd4dd9b4f66a57d03" title="Compose a container API endpoint for Docker or Podman API." alt="" coords="259,5,483,32"/>
+<area shape="rect" id="node3" href="$classCurlHandler.html#a576e7a125e092c05b15eba5050b0409e" title="Perform a HTTP DELETE request over a Unix domain socket." alt="" coords="281,56,461,83"/>
+<area shape="rect" id="node4" href="$structStatus.html#ace3b560f6a5f4a2d62a02b6e03700538" title="Returns an error Status with the given code and message." alt="" coords="319,107,422,133"/>
+<area shape="rect" id="node5" href="$structStatus.html#ab516c5b687e7e334a1865fe28fd39122" title="Returns a success Status." alt="" coords="326,157,415,184"/>
+</map>

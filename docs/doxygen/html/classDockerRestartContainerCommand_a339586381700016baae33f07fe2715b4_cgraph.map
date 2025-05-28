@@ -1,0 +1,6 @@
+<map id="DockerRestartContainerCommand::Execute" name="DockerRestartContainerCommand::Execute">
+<area shape="rect" id="node1" title="Executes the command to restart a Docker container." alt="" coords="5,49,249,90"/>
+<area shape="rect" id="node2" href="$structStatus.html#ace3b560f6a5f4a2d62a02b6e03700538" title="Returns an error Status with the given code and message." alt="" coords="313,5,416,32"/>
+<area shape="rect" id="node3" href="$common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99" title="Utility function to format command templates by replacing placeholders with actual values." alt="" coords="297,56,432,83"/>
+<area shape="rect" id="node4" href="$structStatus.html#ab516c5b687e7e334a1865fe28fd39122" title="Returns a success Status." alt="" coords="320,107,409,133"/>
+</map>

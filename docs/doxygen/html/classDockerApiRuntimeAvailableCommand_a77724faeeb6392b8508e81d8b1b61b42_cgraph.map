@@ -1,0 +1,6 @@
+<map id="DockerApiRuntimeAvailableCommand::Execute" name="DockerApiRuntimeAvailableCommand::Execute">
+<area shape="rect" id="node1" title="Executes the command to check Docker API runtime availability." alt="" coords="5,49,208,90"/>
+<area shape="rect" id="node2" href="$structStatus.html#ace3b560f6a5f4a2d62a02b6e03700538" title="Returns an error Status with the given code and message." alt="" coords="285,5,387,32"/>
+<area shape="rect" id="node3" href="$classCurlHandler.html#a9853b0c9406486fa0cfc422a10bbf068" title="Perform a HTTP GET request over a Unix domain socket." alt="" coords="256,56,416,83"/>
+<area shape="rect" id="node4" href="$structStatus.html#ab516c5b687e7e334a1865fe28fd39122" title="Returns a success Status." alt="" coords="291,107,381,133"/>
+</map>

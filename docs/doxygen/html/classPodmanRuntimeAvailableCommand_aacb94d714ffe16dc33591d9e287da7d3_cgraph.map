@@ -1,0 +1,5 @@
+<map id="PodmanRuntimeAvailableCommand::Execute" name="PodmanRuntimeAvailableCommand::Execute">
+<area shape="rect" id="node1" title="Executes the command to check Podman runtime availability." alt="" coords="5,23,263,65"/>
+<area shape="rect" id="node2" href="$structStatus.html#ace3b560f6a5f4a2d62a02b6e03700538" title="Returns an error Status with the given code and message." alt="" coords="311,5,413,32"/>
+<area shape="rect" id="node3" href="$structStatus.html#ab516c5b687e7e334a1865fe28fd39122" title="Returns a success Status." alt="" coords="317,56,407,83"/>
+</map>

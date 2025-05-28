@@ -107,19 +107,18 @@ Collaboration diagram for Command:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab04996232fade41af481e1a94c15f5e5"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">Execute</a> () const =0</td></tr>
-<tr class="memdesc:ab04996232fade41af481e1a94c15f5e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the command.  <a href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">More...</a><br /></td></tr>
-<tr class="separator:ab04996232fade41af481e1a94c15f5e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d6fcd1baa8fd96ce9b423b66765ab4a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structStatus.html">Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommand.html#a8d6fcd1baa8fd96ce9b423b66765ab4a">Execute</a> () const =0</td></tr>
+<tr class="memdesc:a8d6fcd1baa8fd96ce9b423b66765ab4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the command.  <a href="classCommand.html#a8d6fcd1baa8fd96ce9b423b66765ab4a">More...</a><br /></td></tr>
+<tr class="separator:a8d6fcd1baa8fd96ce9b423b66765ab4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
 <tr class="memdesc:aa545a53d35818f9efb936daf3fa16c61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor.  <a href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">More...</a><br /></td></tr>
 <tr class="separator:aa545a53d35818f9efb936daf3fa16c61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract base class for all commands. </p>
-<p>This class defines the interface for command objects. </p><dl class="section note"><dt>Note</dt><dd>All command classes should inherit from this class and implement the Execute method. </dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>Do not instantiate this class directly. </dd></dl>
+<p>This class defines the interface for command objects. All command classes should inherit from this class and implement the Execute method. </p><dl class="section warning"><dt>Warning</dt><dd>Do not instantiate this class directly. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="commands_8hpp_source.html#l00013">13</a> of file <a class="el" href="commands_8hpp_source.html">commands.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="commands_8hpp_source.html#l00023">23</a> of file <a class="el" href="commands_8hpp_source.html">commands.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa545a53d35818f9efb936daf3fa16c61"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa545a53d35818f9efb936daf3fa16c61">&#9670;&nbsp;</a></span>~Command()</h2>
@@ -149,8 +148,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab04996232fade41af481e1a94c15f5e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab04996232fade41af481e1a94c15f5e5">&#9670;&nbsp;</a></span>Execute()</h2>
+<a id="a8d6fcd1baa8fd96ce9b423b66765ab4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d6fcd1baa8fd96ce9b423b66765ab4a">&#9670;&nbsp;</a></span>Execute()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,7 +158,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Command::Execute </td>
+          <td class="memname">virtual <a class="el" href="structStatus.html">Status</a> Command::Execute </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -173,15 +172,16 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Execute the command. </p>
-<dl class="section return"><dt>Returns</dt><dd>true if the command was executed successfully, false otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structStatus.html" title="Represents the result of an operation, including a code and message.">Status</a> indicating the result of the command execution. </dd></dl>
 
-<p>Implemented in <a class="el" href="classDockerApiRemoveContainerCommand.html#a497522673b2525f7255991281696a191">DockerApiRemoveContainerCommand</a>, <a class="el" href="classDockerRestartContainerCommand.html#a3852a9870150e02cde5e3f3cabf4d5d9">DockerRestartContainerCommand</a>, <a class="el" href="classPodmanRestartContainerCommand.html#ae4a585c345eafa6a97a1f38e4cb485ea">PodmanRestartContainerCommand</a>, <a class="el" href="classDockerApiRestartContainerCommand.html#a6b2b59422ef0abd5f6962ddd50397aad">DockerApiRestartContainerCommand</a>, <a class="el" href="classDockerRemoveContainerCommand.html#a0c15063652bf92deb99a742a4a9f61fd">DockerRemoveContainerCommand</a>, <a class="el" href="classPodmanRemoveContainerCommand.html#a3bb0bf30e7f91e87c407980e1adcc398">PodmanRemoveContainerCommand</a>, <a class="el" href="classDockerApiStopContainerCommand.html#af3d839065c84ea86c419907624afd37c">DockerApiStopContainerCommand</a>, <a class="el" href="classDockerStopContainerCommand.html#a4d6a495edca166958eee65ca601bc5bd">DockerStopContainerCommand</a>, <a class="el" href="classPodmanApiStopContainerCommand.html#a708264d45ab7ab07c44b47229f645693">PodmanApiStopContainerCommand</a>, <a class="el" href="classPodmanStopContainerCommand.html#a42d7bf3c2ae604172ae1e1ae29bdc0c6">PodmanStopContainerCommand</a>, <a class="el" href="classDockerApiStartContainerCommand.html#a801f848aeb274329771b4945b81ebf92">DockerApiStartContainerCommand</a>, <a class="el" href="classDockerStartContainerCommand.html#ad208f99e4185a7606a0a9903d1346fcc">DockerStartContainerCommand</a>, <a class="el" href="classPodmanApiStartContainerCommand.html#ac6d8ad00378d60769a41bd7bceb87666">PodmanApiStartContainerCommand</a>, <a class="el" href="classPodmanStartContainerCommand.html#aaf7627e6faf5974ffcd95e8a5f58852f">PodmanStartContainerCommand</a>, <a class="el" href="classDockerApiCreateContainerCommand.html#ac45b2bf53a52657537c46de70cdd489b">DockerApiCreateContainerCommand</a>, <a class="el" href="classDockerCreateContainerCommand.html#a8967ee094698e00a212c67f71870de06">DockerCreateContainerCommand</a>, <a class="el" href="classPodmanApiCreateContainerCommand.html#a593df3aa310c4035ee99ed8ce303995c">PodmanApiCreateContainerCommand</a>, <a class="el" href="classPodmanCreateContainerCommand.html#aca31055904b1fb20736ed5807e215ae6">PodmanCreateContainerCommand</a>, <a class="el" href="classDockerApiRuntimeAvailableCommand.html#a26f5ae3b7b9d8da730865a6b4f057fca">DockerApiRuntimeAvailableCommand</a>, <a class="el" href="classDockerRuntimeAvailableCommand.html#a1c218d90b878f6a87bf81f0e764aba2a">DockerRuntimeAvailableCommand</a>, <a class="el" href="classPodmanApiRuntimeAvailableCommand.html#a3cee9a8e7da55eb4f1fc67a12dcab68f">PodmanApiRuntimeAvailableCommand</a>, and <a class="el" href="classPodmanRuntimeAvailableCommand.html#a182b581ea3d09b1ac3712694eccfcd7a">PodmanRuntimeAvailableCommand</a>.</p>
+<p>Implemented in <a class="el" href="classDockerApiRemoveContainerCommand.html#a56eefcf10fdf0689a2b6ba54e9970c13">DockerApiRemoveContainerCommand</a>, <a class="el" href="classPodmanRestartContainerCommand.html#a6b54741ba54cdaa95d63bdbd89005bb6">PodmanRestartContainerCommand</a>, <a class="el" href="classDockerRestartContainerCommand.html#a339586381700016baae33f07fe2715b4">DockerRestartContainerCommand</a>, <a class="el" href="classDockerApiRestartContainerCommand.html#a93f11d262f9a76765a4a606cd39eba44">DockerApiRestartContainerCommand</a>, <a class="el" href="classPodmanRemoveContainerCommand.html#a21932aba8fb96cf6214f74b9609acd52">PodmanRemoveContainerCommand</a>, <a class="el" href="classDockerRemoveContainerCommand.html#a70ccb6707d41b644b22f13a6c520bc15">DockerRemoveContainerCommand</a>, <a class="el" href="classDockerApiStopContainerCommand.html#a069c3c95925d8595762d40ca76f0ff95">DockerApiStopContainerCommand</a>, <a class="el" href="classPodmanApiStopContainerCommand.html#a85bea8f24f66f9ac514ef09ea6dd1c1a">PodmanApiStopContainerCommand</a>, <a class="el" href="classPodmanStopContainerCommand.html#a1843b23a5c04cac1958338a47edeac1c">PodmanStopContainerCommand</a>, <a class="el" href="classDockerStopContainerCommand.html#a2821bbcaa9c8e3e4797160f9c128ff6d">DockerStopContainerCommand</a>, <a class="el" href="classDockerApiStartContainerCommand.html#a9e1d44df3c9fed542ccf6aef9e383860">DockerApiStartContainerCommand</a>, <a class="el" href="classPodmanApiStartContainerCommand.html#a8b359ed21f9b14a581da61246eb6bd09">PodmanApiStartContainerCommand</a>, <a class="el" href="classPodmanStartContainerCommand.html#a8b50901fb02b033f51cf996e6b78ac08">PodmanStartContainerCommand</a>, <a class="el" href="classDockerStartContainerCommand.html#a6e499ebb03f933dea994126430b47fa2">DockerStartContainerCommand</a>, <a class="el" href="classDockerApiCreateContainerCommand.html#aa6fe70f5b10327368b93f0c2a8ecf45a">DockerApiCreateContainerCommand</a>, <a class="el" href="classPodmanApiCreateContainerCommand.html#aa4f4f0eac46ff0428f4d7ea6a6e94f08">PodmanApiCreateContainerCommand</a>, <a class="el" href="classPodmanCreateContainerCommand.html#ac20efe97c1a0812cc615ed592de35ba4">PodmanCreateContainerCommand</a>, <a class="el" href="classDockerCreateContainerCommand.html#a808e47cfa3f850e5d6fec1e4e264db07">DockerCreateContainerCommand</a>, <a class="el" href="classDockerApiRuntimeAvailableCommand.html#a77724faeeb6392b8508e81d8b1b61b42">DockerApiRuntimeAvailableCommand</a>, <a class="el" href="classPodmanApiRuntimeAvailableCommand.html#aff85761ab4422c43b802fa285074e28d">PodmanApiRuntimeAvailableCommand</a>, <a class="el" href="classPodmanRuntimeAvailableCommand.html#aacb94d714ffe16dc33591d9e287da7d3">PodmanRuntimeAvailableCommand</a>, and <a class="el" href="classDockerRuntimeAvailableCommand.html#a433b87ede31bd16ced081ab1e74658f7">DockerRuntimeAvailableCommand</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="commands_8hpp_source.html#l00048">Invoker::Invoke()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="commands_8hpp_source.html#l00058">Invoker::Invoke()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classCommand_ab04996232fade41af481e1a94c15f5e5_icgraph.svg" width="100%" height="388"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classCommand_a8d6fcd1baa8fd96ce9b423b66765ab4a_icgraph.svg" width="100%" height="388"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 
 </div>

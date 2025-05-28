@@ -114,6 +114,7 @@ var NAVTREE =
         [ "Functions", "globals_func.html", null ],
         [ "Variables", "globals_vars.html", null ],
         [ "Typedefs", "globals_type.html", null ],
+        [ "Enumerations", "globals_enum.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -124,7 +125,7 @@ var NAVTREEINDEX =
 [
 "CMakeCXXCompilerId_8cpp.html",
 "classcontainermanager_1_1ContainerParametersDefaultTypeInternal.html",
-"index.html#autotoc_md32"
+"index.html#autotoc_md31"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

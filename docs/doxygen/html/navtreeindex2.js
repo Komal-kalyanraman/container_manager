@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"index.html#autotoc_md31":[8,0],
 "index.html#autotoc_md32":[8,1],
 "index.html#autotoc_md33":[8,2],
 "index.html#autotoc_md34":[9],
@@ -103,6 +104,17 @@ var NAVTREEINDEX2 =
 "redis__database_8hpp_source.html":[17,0,3,0,2],
 "request__executor_8hpp.html":[17,0,5,0,3],
 "request__executor_8hpp_source.html":[17,0,5,0,3],
+"status_8hpp.html":[17,0,7,0,4],
+"status_8hpp.html#ae98a46f4ea1a43ca48acaf15d2eb7113":[17,0,7,0,4,1],
+"status_8hpp.html#ae98a46f4ea1a43ca48acaf15d2eb7113a253ca7dd096ee0956cccee4d376cab8b":[17,0,7,0,4,1,2],
+"status_8hpp.html#ae98a46f4ea1a43ca48acaf15d2eb7113a38c300f4fc9ce8a77aad4a30de05cad8":[17,0,7,0,4,1,1],
+"status_8hpp.html#ae98a46f4ea1a43ca48acaf15d2eb7113a453e6aa38d87b28ccae545967c53004f":[17,0,7,0,4,1,7],
+"status_8hpp.html#ae98a46f4ea1a43ca48acaf15d2eb7113a4b33a686be73bb172407d73b26356275":[17,0,7,0,4,1,5],
+"status_8hpp.html#ae98a46f4ea1a43ca48acaf15d2eb7113a505a83f220c02df2f85c3810cd9ceb38":[17,0,7,0,4,1,0],
+"status_8hpp.html#ae98a46f4ea1a43ca48acaf15d2eb7113a8462b58246e70e5c83e5b939a9332cb5":[17,0,7,0,4,1,3],
+"status_8hpp.html#ae98a46f4ea1a43ca48acaf15d2eb7113a89b69484680b18e9179e826c6e023805":[17,0,7,0,4,1,6],
+"status_8hpp.html#ae98a46f4ea1a43ca48acaf15d2eb7113ac85a251cc457840f1e032f1b733e9398":[17,0,7,0,4,1,4],
+"status_8hpp_source.html":[17,0,7,0,4],
 "structCommandName.html":[16,0,5],
 "structContainerRequest.html":[16,0,6],
 "structContainerRequest.html#a167e6c521808ed6ed9ec6c07583591a0":[16,0,6,0],
@@ -135,11 +147,16 @@ var NAVTREEINDEX2 =
 "structServerConfig.html#a376b7b7e0a8804598877088423ce89fb":[16,0,46,0],
 "structServerConfig.html#a60845536be40fb85b24d98018a0d4ee0":[16,0,46,2],
 "structServerConfig.html#a982c0819ea7ae8e51e549fe71f5b273d":[16,0,46,1],
+"structStatus.html":[16,0,47],
+"structStatus.html#a011acb32f8fe25364b459bd4a77f20ea":[16,0,47,2],
+"structStatus.html#a19a4e02345758bf3685dcb14a9678de1":[16,0,47,1],
+"structStatus.html#a8566548713268c2247949f426496e60d":[16,0,47,3],
+"structStatus.html#aee75ce6cf952bd4ce85e7d7b6e091e7e":[16,0,47,0],
 "structprotobuf__container__5fmanager__2eproto_1_1StaticDescriptorInitializer.html":[16,0,2,0],
 "structprotobuf__container__5fmanager__2eproto_1_1StaticDescriptorInitializer.html#af07c031db7d4f3e7017db34e2bd48ee4":[16,0,2,0,0],
 "structprotobuf__container__5fmanager__2eproto_1_1TableStruct.html":[16,0,2,1],
 "threadpool_8cpp.html":[17,0,7,1,2],
 "threadpool_8cpp_source.html":[17,0,7,1,2],
-"threadpool_8hpp.html":[17,0,7,0,4],
-"threadpool_8hpp_source.html":[17,0,7,0,4]
+"threadpool_8hpp.html":[17,0,7,0,5],
+"threadpool_8hpp_source.html":[17,0,7,0,5]
 };

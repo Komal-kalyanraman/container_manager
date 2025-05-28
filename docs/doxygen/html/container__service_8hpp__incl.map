@@ -1,7 +1,8 @@
 <map id="core/inc/container_service.hpp" name="core/inc/container_service.hpp">
-<area shape="rect" id="node1" title="Declares the ContainerServiceHandler class for business logic related to containers." alt="" coords="141,5,280,47"/>
+<area shape="rect" id="node1" title="Declares the ContainerServiceHandler class for business logic related to containers." alt="" coords="167,5,305,47"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,169,152,196"/>
-<area shape="rect" id="node3" href="$database__interface_8hpp.html" title="Abstract interface for database operations." alt="" coords="111,95,310,121"/>
-<area shape="rect" id="node5" href="$container__request_8hpp.html" title="Data structure for representing a container operation request." alt="" coords="334,95,525,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="291,169,349,196"/>
+<area shape="rect" id="node3" href="$status_8hpp.html" title="Defines status codes and a Status struct for standardized error handling." alt="" coords="270,95,383,121"/>
+<area shape="rect" id="node5" href="$database__interface_8hpp.html" title="Abstract interface for database operations." alt="" coords="47,95,246,121"/>
+<area shape="rect" id="node6" href="$container__request_8hpp.html" title="Data structure for representing a container operation request." alt="" coords="407,95,598,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="297,169,356,196"/>
 </map>

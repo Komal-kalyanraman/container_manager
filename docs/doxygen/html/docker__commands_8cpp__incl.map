@@ -1,15 +1,16 @@
 <map id="runtime/src/docker_commands.cpp" name="runtime/src/docker_commands.cpp">
-<area shape="rect" id="node1" title="Implements Docker command classes for container operations." alt="" coords="625,5,767,47"/>
-<area shape="rect" id="node2" href="$docker__commands_8hpp.html" title="Declares Docker command classes for container operations." alt="" coords="193,95,388,121"/>
-<area shape="rect" id="node7" title=" " alt="" coords="663,95,729,121"/>
-<area shape="rect" id="node8" title=" " alt="" coords="753,95,900,121"/>
-<area shape="rect" id="node9" href="$common_8hpp.html" title="Defines common constants, string views, and utility structures for the application." alt="" coords="508,95,639,121"/>
-<area shape="rect" id="node12" href="$logging_8hpp.html" title="Logging macros and configuration for the Container Manager." alt="" coords="925,95,1046,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="328,244,387,271"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,244,83,271"/>
-<area shape="rect" id="node5" href="$commands_8hpp.html" title=" " alt="" coords="26,169,171,196"/>
-<area shape="rect" id="node6" href="$container__request_8hpp.html" title="Data structure for representing a container operation request." alt="" coords="195,169,386,196"/>
-<area shape="rect" id="node10" title=" " alt="" coords="662,169,759,196"/>
-<area shape="rect" id="node11" title=" " alt="" coords="462,169,586,196"/>
-<area shape="rect" id="node13" title=" " alt="" coords="928,169,1043,196"/>
+<area shape="rect" id="node1" title="Implements Docker command classes for container operations." alt="" coords="400,5,543,47"/>
+<area shape="rect" id="node2" href="$docker__commands_8hpp.html" title="Declares Docker command classes for container operations." alt="" coords="81,95,275,121"/>
+<area shape="rect" id="node8" title=" " alt="" coords="308,95,373,121"/>
+<area shape="rect" id="node9" title=" " alt="" coords="398,95,545,121"/>
+<area shape="rect" id="node10" href="$common_8hpp.html" title="Defines common constants, string views, and utility structures for the application." alt="" coords="569,95,699,121"/>
+<area shape="rect" id="node13" href="$logging_8hpp.html" title="Logging macros and configuration for the Container Manager." alt="" coords="788,95,909,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="209,319,267,345"/>
+<area shape="rect" id="node4" title=" " alt="" coords="29,244,106,271"/>
+<area shape="rect" id="node5" href="$commands_8hpp.html" title="Declares the Command interface and Invoker class for the command pattern." alt="" coords="105,169,251,196"/>
+<area shape="rect" id="node7" href="$container__request_8hpp.html" title="Data structure for representing a container operation request." alt="" coords="319,244,509,271"/>
+<area shape="rect" id="node6" href="$status_8hpp.html" title="Defines status codes and a Status struct for standardized error handling." alt="" coords="181,244,295,271"/>
+<area shape="rect" id="node11" title=" " alt="" coords="585,169,683,196"/>
+<area shape="rect" id="node12" title=" " alt="" coords="707,169,831,196"/>
+<area shape="rect" id="node14" title=" " alt="" coords="855,169,970,196"/>
 </map>

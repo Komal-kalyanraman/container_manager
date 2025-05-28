@@ -1,0 +1,7 @@
+<map id="ContainerServiceHandler::ContainerOperations" name="ContainerServiceHandler::ContainerOperations">
+<area shape="rect" id="node1" title="Performs the specified container operation using the request structure. Invokes the appropriate comma..." alt="" coords="5,49,189,90"/>
+<area shape="rect" id="node2" href="$classCommandFactory.html#adf4da2f0dbcf9e4018f9afe8bd4a38e9" title="Factory method to create a command based on the container request structure." alt="" coords="237,5,492,32"/>
+<area shape="rect" id="node3" href="$classInvoker.html#ac01c8216ff7b95532f2970a49198d840" title="Execute the command." alt="" coords="304,56,425,83"/>
+<area shape="rect" id="node5" href="$classInvoker.html#ae9f10a2487afd153bf0da69ae410a0e9" title="Set the command to be executed." alt="" coords="281,107,448,133"/>
+<area shape="rect" id="node4" href="$classCommand.html#a8d6fcd1baa8fd96ce9b423b66765ab4a" title="Execute the command." alt="" coords="540,56,689,83"/>
+</map>

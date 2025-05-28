@@ -1,0 +1,25 @@
+<map id="Status::Ok" name="Status::Ok">
+<area shape="rect" id="node1" title="Returns a success Status." alt="" coords="312,699,401,726"/>
+<area shape="rect" id="node2" href="$classDockerRuntimeAvailableCommand.html#a433b87ede31bd16ced081ab1e74658f7" title="Executes the command to check Docker runtime availability." alt="" coords="10,5,259,47"/>
+<area shape="rect" id="node3" href="$classPodmanRuntimeAvailableCommand.html#aacb94d714ffe16dc33591d9e287da7d3" title="Executes the command to check Podman runtime availability." alt="" coords="6,71,263,112"/>
+<area shape="rect" id="node4" href="$classPodmanApiRuntimeAvailableCommand.html#aff85761ab4422c43b802fa285074e28d" title="Executes the command to check Podman API runtime availability." alt="" coords="29,136,240,177"/>
+<area shape="rect" id="node5" href="$classDockerApiRuntimeAvailableCommand.html#a77724faeeb6392b8508e81d8b1b61b42" title="Executes the command to check Docker API runtime availability." alt="" coords="33,201,236,243"/>
+<area shape="rect" id="node6" href="$classDockerCreateContainerCommand.html#a808e47cfa3f850e5d6fec1e4e264db07" title="Executes the command to create a Docker container." alt="" coords="15,267,255,308"/>
+<area shape="rect" id="node7" href="$classPodmanApiCreateContainerCommand.html#aa4f4f0eac46ff0428f4d7ea6a6e94f08" title="Executes the command to create a Podman container via the API." alt="" coords="33,332,236,373"/>
+<area shape="rect" id="node8" href="$classDockerApiCreateContainerCommand.html#aa6fe70f5b10327368b93f0c2a8ecf45a" title="Executes the command to create a Docker container via the API." alt="" coords="37,397,232,439"/>
+<area shape="rect" id="node9" href="$classPodmanCreateContainerCommand.html#ac20efe97c1a0812cc615ed592de35ba4" title="Executes the command to create a Podman container." alt="" coords="11,463,259,504"/>
+<area shape="rect" id="node10" href="$classDockerStartContainerCommand.html#a6e499ebb03f933dea994126430b47fa2" title="Executes the command to start a Docker container." alt="" coords="21,528,249,569"/>
+<area shape="rect" id="node11" href="$classPodmanStartContainerCommand.html#a8b50901fb02b033f51cf996e6b78ac08" title="Executes the command to start a Podman container." alt="" coords="17,593,253,635"/>
+<area shape="rect" id="node12" href="$classDockerApiStartContainerCommand.html#a9e1d44df3c9fed542ccf6aef9e383860" title="Executes the command to start a Docker container via the API." alt="" coords="10,659,259,700"/>
+<area shape="rect" id="node13" href="$classPodmanApiStartContainerCommand.html#a8b359ed21f9b14a581da61246eb6bd09" title="Executes the command to start a Podman container via the API." alt="" coords="6,724,263,765"/>
+<area shape="rect" id="node14" href="$classDockerStopContainerCommand.html#a2821bbcaa9c8e3e4797160f9c128ff6d" title="Executes the command to stop a Docker container." alt="" coords="21,789,248,831"/>
+<area shape="rect" id="node15" href="$classPodmanStopContainerCommand.html#a1843b23a5c04cac1958338a47edeac1c" title="Executes the command to stop a Podman container." alt="" coords="17,855,252,896"/>
+<area shape="rect" id="node16" href="$classDockerApiStopContainerCommand.html#a069c3c95925d8595762d40ca76f0ff95" title="Executes the command to stop a Docker container via the API." alt="" coords="11,920,258,961"/>
+<area shape="rect" id="node17" href="$classPodmanApiStopContainerCommand.html#a85bea8f24f66f9ac514ef09ea6dd1c1a" title="Executes the command to stop a Podman container via the API." alt="" coords="7,985,262,1027"/>
+<area shape="rect" id="node18" href="$classDockerRemoveContainerCommand.html#a70ccb6707d41b644b22f13a6c520bc15" title="Executes the command to remove a Docker container." alt="" coords="9,1051,260,1092"/>
+<area shape="rect" id="node19" href="$classPodmanRemoveContainerCommand.html#a21932aba8fb96cf6214f74b9609acd52" title="Executes the command to remove a Podman container." alt="" coords="5,1116,264,1157"/>
+<area shape="rect" id="node20" href="$classDockerApiRestartContainerCommand.html#a93f11d262f9a76765a4a606cd39eba44" title="Executes the command to restart a Docker container via the API." alt="" coords="35,1181,234,1223"/>
+<area shape="rect" id="node21" href="$classDockerRestartContainerCommand.html#a339586381700016baae33f07fe2715b4" title="Executes the command to restart a Docker container." alt="" coords="13,1247,257,1288"/>
+<area shape="rect" id="node22" href="$classDockerApiRemoveContainerCommand.html#a56eefcf10fdf0689a2b6ba54e9970c13" title="Executes the command to remove a Docker container via the API." alt="" coords="32,1312,237,1353"/>
+<area shape="rect" id="node23" href="$classPodmanRestartContainerCommand.html#a6b54741ba54cdaa95d63bdbd89005bb6" title="Executes the command to restart a Podman container." alt="" coords="9,1377,261,1419"/>
+</map>

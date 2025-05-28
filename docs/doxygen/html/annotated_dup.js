@@ -47,5 +47,6 @@ var annotated_dup =
     [ "RequestExecutor", "classRequestExecutor.html", "classRequestExecutor" ],
     [ "RuntimeName", "structRuntimeName.html", null ],
     [ "ServerConfig", "structServerConfig.html", "structServerConfig" ],
+    [ "Status", "structStatus.html", "structStatus" ],
     [ "ThreadPool", "classThreadPool.html", "classThreadPool" ]
 ];
