@@ -74,7 +74,7 @@ std::unique_ptr<Command> CommandFactory::CreateCommand(const ContainerRequest& r
         }
         // Add Remove/Restart if implemented for PodmanApi
     } else {
-        CM_LOG_FATAL << "Invalid runtime type: " << req.runtime;
+        CM_LOG_FATAL << "Invalid runtime type: " << req.runtime << std::endl;
     }
     return nullptr;
 }

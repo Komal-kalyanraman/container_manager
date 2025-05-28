@@ -6,6 +6,7 @@
 #include "inc/mosquitto_mqtt_subscriber.hpp"
 #include <iostream>
 #include <nlohmann/json.hpp>
+#include "inc/logging.hpp"
 
 /**
  * @brief Constructs a MosquittoMqttSubscriber, initializes the Mosquitto library, and connects to the broker.
@@ -78,15 +79,27 @@ void MosquittoMqttSubscriber::on_connect(int rc) {
  * @param message The received MQTT message.
  *
  * Forwards the received message payload to the RequestExecutor for processing.
+ * Logs status and errors using the application's logging macros.
  */
 void MosquittoMqttSubscriber::on_message(const struct mosquitto_message* message) {
     if (message && message->payload && message->payloadlen > 0 && running_) {
         std::string payload(static_cast<char*>(message->payload), message->payloadlen);
-        std::cout << "[MQTT] Received message on topic " << message->topic << ": " << payload << std::endl;
+        CM_LOG_INFO << "[MQTT] Received message on topic " << message->topic << ": " << payload << std::endl;
         try {
-            executor_->Execute(payload);
+            auto result = executor_->Execute(payload);
+            // Log the result status
+            if (result.contains("status")) {
+                if (result["status"] == "error") {
+                    CM_LOG_ERROR << "[MQTT] Execution error: "
+                                 << result.value("message", "Unknown error") << std::endl;
+                } else {
+                    CM_LOG_INFO << "[MQTT] Execution success." << std::endl;
+                }
+            } else {
+                CM_LOG_WARN << "[MQTT] No status field in execution result." << std::endl;
+            }
         } catch (const std::exception& e) {
-            std::cerr << "[MQTT] Error executing request: " << e.what() << std::endl;
+            CM_LOG_ERROR << "[MQTT] Error executing request: " << e.what() << std::endl;
         }
     }
 }

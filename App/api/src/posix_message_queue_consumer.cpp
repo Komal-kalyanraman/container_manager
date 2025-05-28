@@ -13,6 +13,7 @@
 #include <nlohmann/json.hpp>
 #include <mqueue.h>
 #include "inc/common.hpp"
+#include "inc/logging.hpp"
 
 /**
  * @brief Constructs a MessageQueueConsumer with the given configuration and executor.
@@ -72,7 +73,7 @@ void MessageQueueConsumer::ConsumeLoop() {
     // Open or create the message queue with the specified attributes
     mqd_t mqd = mq_open(config_.QueueName.c_str(), O_RDONLY | O_CREAT, 0644, &attr);
     if (mqd == (mqd_t)-1) {
-        std::cerr << "[MQ] Failed to open message queue: " << strerror(errno) << std::endl;
+        CM_LOG_ERROR << "[MQ] Failed to open message queue: " << strerror(errno) << std::endl;
         return;
     }
 
@@ -89,20 +90,31 @@ void MessageQueueConsumer::ConsumeLoop() {
         if (bytes_read > 0) {
             // Message received successfully
             std::string payload(buffer.get(), bytes_read);
-            std::cout << "[MQ] Received message: " << payload << std::endl;
+            CM_LOG_INFO << "[MQ] Received message: " << payload << std::endl;
             try {
-                executor_->Execute(payload);
+                auto result = executor_->Execute(payload);
+                // Log the result status
+                if (result.contains("status")) {
+                    if (result["status"] == "error") {
+                        CM_LOG_ERROR << "[MQ] Execution error: "
+                                     << result.value("message", "Unknown error") << std::endl;
+                    } else {
+                        CM_LOG_INFO << "[MQ] Execution success." << std::endl;
+                    }
+                } else {
+                    CM_LOG_WARN << "[MQ] No status field in execution result." << std::endl;
+                }
             } catch (const std::exception& e) {
-                std::cerr << "[MQ] Error executing request: " << e.what() << std::endl;
+                CM_LOG_ERROR << "[MQ] Error executing request: " << e.what() << std::endl;
             }
         } else if (bytes_read == -1 && errno == ETIMEDOUT) {
             // Timeout: just loop again and check running_
             continue;
         } else if (bytes_read == -1 && errno == EMSGSIZE) {
-            std::cerr << "[MQ] mq_receive error: Message too long for buffer (" << config_.MaxMsgSize << " bytes)" << std::endl;
+            CM_LOG_ERROR << "[MQ] mq_receive error: Message too long for buffer (" << config_.MaxMsgSize << " bytes)" << std::endl;
             break;
         } else if (bytes_read == -1) {
-            std::cerr << "[MQ] mq_timedreceive error: " << strerror(errno) << std::endl;
+            CM_LOG_ERROR << "[MQ] mq_timedreceive error: " << strerror(errno) << std::endl;
             break;
         }
     }

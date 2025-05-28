@@ -5,6 +5,7 @@
 
 #include "inc/dbus_consumer.hpp"
 #include <iostream>
+#include "inc/logging.hpp"
 
 DBusConsumer::DBusConsumer(const DbusConfig& config, std::shared_ptr<RequestExecutor> executor)
     : config_(config),
@@ -40,11 +41,22 @@ void DBusConsumer::ListenLoop() {
     object_->registerMethod(config_.Method)
         .onInterface(config_.Interface)
         .implementedAs([this](const std::string& jsonPayload) {
-            std::cout << "[DBus] Received: " << jsonPayload << std::endl;
+            CM_LOG_INFO << "[DBus] Received: " << jsonPayload << std::endl;
             try {
-                executor_->Execute(jsonPayload);
+                auto result = executor_->Execute(jsonPayload);
+                // Log the result status
+                if (result.contains("status")) {
+                    if (result["status"] == "error") {
+                        CM_LOG_ERROR << "[DBus] Execution error: "
+                                     << result.value("message", "Unknown error") << std::endl;
+                    } else {
+                        CM_LOG_INFO << "[DBus] Execution success." << std::endl;
+                    }
+                } else {
+                    CM_LOG_WARN << "[DBus] No status field in execution result." << std::endl;
+                }
             } catch (const std::exception& e) {
-                std::cerr << "[DBus] Error executing request: " << e.what() << std::endl;
+                CM_LOG_ERROR << "[DBus] Error executing request: " << e.what() << std::endl;
             }
         });
 

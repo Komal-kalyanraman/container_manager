@@ -12,7 +12,7 @@
 #pragma once
 
 // Uncomment below line to enable glog logging
-#define ENABLE_GLOG_LOGGING
+// #define ENABLE_GLOG_LOGGING
 
 #ifdef ENABLE_GLOG_LOGGING
 #include <glog/logging.h>
@@ -27,11 +27,11 @@
 #else
 #include <iostream>
 /// @brief Macro for logging informational messages (no-op if glog is not enabled).
-#define CM_LOG_INFO if (false) std::cout
+#define CM_LOG_INFO std::cout
 /// @brief Macro for logging warning messages (no-op if glog is not enabled).
-#define CM_LOG_WARN if (false) std::cerr
+#define CM_LOG_WARN std::cerr
 /// @brief Macro for logging fatal error messages (no-op if glog is not enabled).
-#define CM_LOG_FATAL if (false) std::cerr
+#define CM_LOG_FATAL std::cerr
 /// @brief Macro for logging error messages (no-op if glog is not enabled).
-#define CM_LOG_ERROR if (false) std::cerr
+#define CM_LOG_ERROR std::cerr
 #endif

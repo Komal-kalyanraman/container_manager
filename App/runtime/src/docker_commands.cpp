@@ -25,11 +25,11 @@ DockerRuntimeAvailableCommand::DockerRuntimeAvailableCommand() {}
 Status DockerRuntimeAvailableCommand::Execute() const {
     int status = std::system("docker info > /dev/null 2>&1");
     if (status == 0) {
-        CM_LOG_INFO << "Docker is running ";
+        CM_LOG_INFO << "Docker is running " << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "Docker runtime is not running, exit code: " + std::to_string(status);
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }
@@ -58,11 +58,11 @@ Status DockerCreateContainerCommand::Execute() const {
     );
     int status = std::system(command.c_str());
     if (status == 0) {
-        CM_LOG_INFO << "Docker container created successfully";
+        CM_LOG_INFO << "Docker container created successfully" << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "Failed to create Docker container, exit code: " + std::to_string(status);
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }
@@ -83,11 +83,11 @@ Status DockerStartContainerCommand::Execute() const {
     );
     int status = std::system(command.c_str());
     if (status == 0) {
-        CM_LOG_INFO << "Docker container started successfully";
+        CM_LOG_INFO << "Docker container started successfully" << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "Failed to start Docker container, exit code: " + std::to_string(status);
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }
@@ -108,11 +108,11 @@ Status DockerStopContainerCommand::Execute() const {
     );
     int status = std::system(command.c_str());
     if (status == 0) {
-        CM_LOG_INFO << "Docker container stopped successfully";
+        CM_LOG_INFO << "Docker container stopped successfully" << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "Failed to stop Docker container, exit code: " + std::to_string(status);
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }
@@ -133,11 +133,11 @@ Status DockerRemoveContainerCommand::Execute() const {
     );
     int status = std::system(command.c_str());
     if (status == 0) {
-        CM_LOG_INFO << "Docker container removed successfully";
+        CM_LOG_INFO << "Docker container removed successfully" << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "Failed to remove Docker container, exit code: " + std::to_string(status);
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }
@@ -158,11 +158,11 @@ Status DockerRestartContainerCommand::Execute() const {
     );
     int status = std::system(command.c_str());
     if (status == 0) {
-        CM_LOG_INFO << "Docker container restarted successfully";
+        CM_LOG_INFO << "Docker container restarted successfully" << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "Failed to restart Docker container, exit code: " + std::to_string(status);
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }

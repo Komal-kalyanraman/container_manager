@@ -29,15 +29,15 @@ Status PodmanApiRuntimeAvailableCommand::Execute() const {
     std::string url = std::string(kPodmanApiBaseUrl) + std::string(ApiEndpoint::Ping);
     bool success = curl.GetUnix(url, kPodmanUnixSocketPath, response);
     if (success && response == "OK") {
-        CM_LOG_INFO << "[Podman API] Podman daemon is running (/_ping returned OK).";
+        CM_LOG_INFO << "[Podman API] Podman daemon is running (/_ping returned OK)." << std::endl;
         return Status::Ok();
     } else if (success) {
         std::string msg = "[Podman API] Podman daemon responded, but not OK: " + response;
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::Unavailable, msg);
     } else {
         std::string msg = "[Podman API] Failed to contact Podman daemon.";
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::Unavailable, msg);
     }
 }
@@ -99,11 +99,11 @@ Status PodmanApiCreateContainerCommand::Execute() const {
 
     bool success = curl.PostUnix(url, kPodmanUnixSocketPath, body, response);
     if (success) {
-        CM_LOG_INFO << "[Podman API] Create container response: " << response;
+        CM_LOG_INFO << "[Podman API] Create container response: " << response << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "[Podman API] Failed to create container. Response: " + response;
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }
@@ -125,11 +125,11 @@ Status PodmanApiStartContainerCommand::Execute() const {
     );
     bool success = curl.PostUnix(url, kPodmanUnixSocketPath, "", response, "application/json");
     if (success) {
-        CM_LOG_INFO << "[Podman API] Start container response: " << response;
+        CM_LOG_INFO << "[Podman API] Start container response: " << response << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "[Podman API] Failed to start container. Response: " + response;
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }
@@ -151,11 +151,11 @@ Status PodmanApiStopContainerCommand::Execute() const {
     );
     bool success = curl.PostUnix(url, kPodmanUnixSocketPath, "", response, "application/json");
     if (success) {
-        CM_LOG_INFO << "[Podman API] Stop container response: " << response;
+        CM_LOG_INFO << "[Podman API] Stop container response: " << response << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "[Podman API] Failed to stop container. Response: " + response;
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }

@@ -25,11 +25,11 @@ PodmanRuntimeAvailableCommand::PodmanRuntimeAvailableCommand() {}
 Status PodmanRuntimeAvailableCommand::Execute() const {
     int status = std::system("podman info > /dev/null 2>&1");
     if (status == 0) {
-        CM_LOG_INFO << "Podman is running ";
+        CM_LOG_INFO << "Podman is running " << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "Podman runtime is not running, exit code: " + std::to_string(status);
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }
@@ -58,11 +58,11 @@ Status PodmanCreateContainerCommand::Execute() const {
     );
     int status = std::system(command.c_str());
     if (status == 0) {
-        CM_LOG_INFO << "Podman container created successfully";
+        CM_LOG_INFO << "Podman container created successfully" << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "Failed to create Podman container, exit code: " + std::to_string(status);
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }
@@ -83,11 +83,11 @@ Status PodmanStartContainerCommand::Execute() const {
     );
     int status = std::system(command.c_str());
     if (status == 0) {
-        CM_LOG_INFO << "Podman container started successfully";
+        CM_LOG_INFO << "Podman container started successfully" << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "Failed to start Podman container, exit code: " + std::to_string(status);
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }
@@ -108,11 +108,11 @@ Status PodmanStopContainerCommand::Execute() const {
     );
     int status = std::system(command.c_str());
     if (status == 0) {
-        CM_LOG_INFO << "Podman container stopped successfully";
+        CM_LOG_INFO << "Podman container stopped successfully" << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "Failed to stop Podman container, exit code: " + std::to_string(status);
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }
@@ -133,11 +133,11 @@ Status PodmanRemoveContainerCommand::Execute() const {
     );
     int status = std::system(command.c_str());
     if (status == 0) {
-        CM_LOG_INFO << "Podman container removed successfully";
+        CM_LOG_INFO << "Podman container removed successfully" << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "Failed to remove Podman container, exit code: " + std::to_string(status);
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }
@@ -158,11 +158,11 @@ Status PodmanRestartContainerCommand::Execute() const {
     );
     int status = std::system(command.c_str());
     if (status == 0) {
-        CM_LOG_INFO << "Podman container restarted successfully";
+        CM_LOG_INFO << "Podman container restarted successfully" << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "Failed to restart Podman container, exit code: " + std::to_string(status);
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }

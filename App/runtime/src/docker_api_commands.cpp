@@ -30,15 +30,15 @@ Status DockerApiRuntimeAvailableCommand::Execute() const {
     std::string url = std::string(kDockerApiBaseUrl) + std::string(ApiEndpoint::Ping);
     bool success = curl.GetUnix(url, kDockerUnixSocketPath, response);
     if (success && response == "OK") {
-        CM_LOG_INFO << "[Docker API] Docker daemon is running (/_ping returned OK).";
+        CM_LOG_INFO << "[Docker API] Docker daemon is running (/_ping returned OK)." << std::endl;
         return Status::Ok();
     } else if (success) {
         std::string msg = "[Docker API] Docker daemon responded, but not OK: " + response;
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::Unavailable, msg);
     } else {
         std::string msg = "[Docker API] Failed to contact Docker daemon.";
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::Unavailable, msg);
     }
 }
@@ -100,11 +100,11 @@ Status DockerApiCreateContainerCommand::Execute() const {
 
     bool success = curl.PostUnix(url, kDockerUnixSocketPath, body, response);
     if (success) {
-        CM_LOG_INFO << "[Docker API] Create container response: " << response;
+        CM_LOG_INFO << "[Docker API] Create container response: " << response << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "[Docker API] Failed to create container. Response: " + response;
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }
@@ -126,11 +126,11 @@ Status DockerApiStartContainerCommand::Execute() const {
     );
     bool success = curl.PostUnix(url, kDockerUnixSocketPath, "", response, "application/json");
     if (success) {
-        CM_LOG_INFO << "[Docker API] Start container response: " << response;
+        CM_LOG_INFO << "[Docker API] Start container response: " << response << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "[Docker API] Failed to start container. Response: " + response;
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }
@@ -152,11 +152,11 @@ Status DockerApiStopContainerCommand::Execute() const {
     );
     bool success = curl.PostUnix(url, kDockerUnixSocketPath, "", response, "application/json");
     if (success) {
-        CM_LOG_INFO << "[Docker API] Stop container response: " << response;
+        CM_LOG_INFO << "[Docker API] Stop container response: " << response << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "[Docker API] Failed to stop container. Response: " + response;
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }
@@ -178,11 +178,11 @@ Status DockerApiRestartContainerCommand::Execute() const {
     );
     bool success = curl.PostUnix(url, kDockerUnixSocketPath, "", response, "application/json");
     if (success) {
-        CM_LOG_INFO << "[Docker API] Restart container response: " << response;
+        CM_LOG_INFO << "[Docker API] Restart container response: " << response << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "[Docker API] Failed to restart container. Response: " + response;
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }
@@ -204,11 +204,11 @@ Status DockerApiRemoveContainerCommand::Execute() const {
     );
     bool success = curl.DeleteUnix(url, kDockerUnixSocketPath, response);
     if (success) {
-        CM_LOG_INFO << "[Docker API] Remove container response: " << response;
+        CM_LOG_INFO << "[Docker API] Remove container response: " << response << std::endl;
         return Status::Ok();
     } else {
         std::string msg = "[Docker API] Failed to remove container. Response: " + response;
-        CM_LOG_ERROR << msg;
+        CM_LOG_ERROR << msg << std::endl;
         return Status::Error(StatusCode::InternalError, msg);
     }
 }
