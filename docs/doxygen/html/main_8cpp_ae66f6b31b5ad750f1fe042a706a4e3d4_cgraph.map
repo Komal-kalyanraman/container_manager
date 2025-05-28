@@ -1,12 +1,10 @@
 <map id="main" name="main">
-<area shape="rect" id="node1" title="Main entry point for the Container Manager application. Initializes all subsystems,..." alt="" coords="5,161,60,188"/>
-<area shape="rect" id="node2" href="$init__handler_8hpp.html#af70f1338444e9e483e773f38c96da761" title="Initializes all enabled project subsystems." alt="" coords="154,81,242,108"/>
-<area shape="rect" id="node8" href="$main_8cpp.html#a7972e8125628180f0e4d04a8f805ced6" title="Signal handler for graceful shutdown." alt="" coords="141,132,255,159"/>
-<area shape="rect" id="node9" href="$classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506" title="Starts the HTTP server on the specified host and port." alt="" coords="123,183,273,225"/>
-<area shape="rect" id="node10" href="$classHttpServerHandler.html#af722b87666008983f00f817bbb367f26" title="Stops the HTTP server if it is running." alt="" coords="108,249,288,276"/>
-<area shape="rect" id="node3" href="$init__handler_8cpp.html#a813fccd2b19c7f0072bb3c8deb3c9730" title="Initializes and clears the database." alt="" coords="381,5,487,32"/>
-<area shape="rect" id="node5" href="$init__handler_8cpp.html#a9c6fd2b1fc6d60ab2f80b2799b0fa81e" title="Initializes logging using Google glog." alt="" coords="387,56,481,83"/>
-<area shape="rect" id="node6" href="$init__handler_8cpp.html#ac622dccafc9db8b54a3d5ef6d98eed8e" title="Clears the POSIX message queue at startup." alt="" coords="363,107,505,133"/>
-<area shape="rect" id="node7" href="$init__handler_8cpp.html#a57b18ca1632517db21aa1491c585762a" title="Stub for clearing retained MQTT messages when MQTT is disabled." alt="" coords="336,157,532,184"/>
-<area shape="rect" id="node4" href="$classIDatabaseHandler.html#a79f638c8332acdfb054d1f915f77c760" title="Clears all data from the database." alt="" coords="580,5,823,32"/>
+<area shape="rect" id="node1" title="Main entry point for the Container Manager application. Initializes all subsystems,..." alt="" coords="5,107,60,133"/>
+<area shape="rect" id="node2" href="$init__handler_8hpp.html#af70f1338444e9e483e773f38c96da761" title="Initializes all enabled project subsystems." alt="" coords="121,81,209,108"/>
+<area shape="rect" id="node8" href="$main_8cpp.html#a7972e8125628180f0e4d04a8f805ced6" title="Signal handler for graceful shutdown." alt="" coords="108,132,221,159"/>
+<area shape="rect" id="node3" href="$init__handler_8cpp.html#a813fccd2b19c7f0072bb3c8deb3c9730" title="Initializes and clears the database." alt="" coords="315,5,420,32"/>
+<area shape="rect" id="node5" href="$init__handler_8cpp.html#a9c6fd2b1fc6d60ab2f80b2799b0fa81e" title="Initializes logging using Google glog." alt="" coords="320,56,415,83"/>
+<area shape="rect" id="node6" href="$init__handler_8cpp.html#ac622dccafc9db8b54a3d5ef6d98eed8e" title="Clears the POSIX message queue at startup." alt="" coords="296,107,439,133"/>
+<area shape="rect" id="node7" href="$init__handler_8cpp.html#a57b18ca1632517db21aa1491c585762a" title="Stub for clearing retained MQTT messages when MQTT is disabled." alt="" coords="269,157,465,184"/>
+<area shape="rect" id="node4" href="$classIDatabaseHandler.html#a79f638c8332acdfb054d1f915f77c760" title="Clears all data from the database." alt="" coords="513,5,756,32"/>
 </map>

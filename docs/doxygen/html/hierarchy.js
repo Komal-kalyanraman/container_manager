@@ -56,6 +56,7 @@ var hierarchy =
     [ "RuntimeName", "structRuntimeName.html", null ],
     [ "ServerConfig", "structServerConfig.html", null ],
     [ "protobuf_container_5fmanager_2eproto::StaticDescriptorInitializer", "structprotobuf__container__5fmanager__2eproto_1_1StaticDescriptorInitializer.html", null ],
+    [ "Status", "structStatus.html", null ],
     [ "protobuf_container_5fmanager_2eproto::TableStruct", "structprotobuf__container__5fmanager__2eproto_1_1TableStruct.html", null ],
     [ "ThreadPool", "classThreadPool.html", null ]
 ];

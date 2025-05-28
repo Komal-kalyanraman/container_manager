@@ -29,9 +29,9 @@
 /// @brief Macro for logging informational messages (no-op if glog is not enabled).
 #define CM_LOG_INFO if (false) std::cout
 /// @brief Macro for logging warning messages (no-op if glog is not enabled).
-#define CM_LOG_WARN if (false) std::cout
+#define CM_LOG_WARN if (false) std::cerr
 /// @brief Macro for logging fatal error messages (no-op if glog is not enabled).
-#define CM_LOG_FATAL if (false) std::cout
+#define CM_LOG_FATAL if (false) std::cerr
 /// @brief Macro for logging error messages (no-op if glog is not enabled).
-#define CM_LOG_ERROR if (false) std::cout
+#define CM_LOG_ERROR if (false) std::cerr
 #endif

@@ -105,18 +105,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae9f10a2487afd153bf0da69ae410a0e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInvoker.html#ae9f10a2487afd153bf0da69ae410a0e9">SetCommand</a> (std::unique_ptr&lt; <a class="el" href="classCommand.html">Command</a> &gt; cmd)</td></tr>
 <tr class="memdesc:ae9f10a2487afd153bf0da69ae410a0e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the command to be executed.  <a href="classInvoker.html#ae9f10a2487afd153bf0da69ae410a0e9">More...</a><br /></td></tr>
 <tr class="separator:ae9f10a2487afd153bf0da69ae410a0e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1459c66263ad54b3568e6b3d33d9256f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInvoker.html#a1459c66263ad54b3568e6b3d33d9256f">Invoke</a> ()</td></tr>
-<tr class="memdesc:a1459c66263ad54b3568e6b3d33d9256f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the command.  <a href="classInvoker.html#a1459c66263ad54b3568e6b3d33d9256f">More...</a><br /></td></tr>
-<tr class="separator:a1459c66263ad54b3568e6b3d33d9256f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac01c8216ff7b95532f2970a49198d840"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structStatus.html">Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInvoker.html#ac01c8216ff7b95532f2970a49198d840">Invoke</a> ()</td></tr>
+<tr class="memdesc:ac01c8216ff7b95532f2970a49198d840"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the command.  <a href="classInvoker.html#ac01c8216ff7b95532f2970a49198d840">More...</a><br /></td></tr>
+<tr class="separator:ac01c8216ff7b95532f2970a49198d840"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classInvoker.html" title="Invoker class to invoke the command.">Invoker</a> class to invoke the command. </p>
-<p>This class holds a command and invokes it. </p>
+<p>This class holds a command and invokes it. It manages the command's lifetime using a unique pointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="commands_8hpp_source.html#l00032">32</a> of file <a class="el" href="commands_8hpp_source.html">commands.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="commands_8hpp_source.html#l00042">42</a> of file <a class="el" href="commands_8hpp_source.html">commands.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a1459c66263ad54b3568e6b3d33d9256f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1459c66263ad54b3568e6b3d33d9256f">&#9670;&nbsp;</a></span>Invoke()</h2>
+<a id="ac01c8216ff7b95532f2970a49198d840"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac01c8216ff7b95532f2970a49198d840">&#9670;&nbsp;</a></span>Invoke()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -125,7 +125,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Invoker::Invoke </td>
+          <td class="memname"><a class="el" href="structStatus.html">Status</a> Invoker::Invoke </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -139,28 +139,30 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Execute the command. </p>
-<dl class="section return"><dt>Returns</dt><dd>true if the command was executed successfully, false otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structStatus.html" title="Represents the result of an operation, including a code and message.">Status</a> indicating the result of the command execution. Returns an error status if no command is set. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="commands_8hpp_source.html#l00048">48</a> of file <a class="el" href="commands_8hpp_source.html">commands.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                  {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">if</span> (command_) {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="keywordflow">return</span> command_-&gt;Execute();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        }</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="commands_8hpp_source.html#l00058">58</a> of file <a class="el" href="commands_8hpp_source.html">commands.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                    {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">if</span> (command_) {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="keywordflow">return</span> command_-&gt;Execute();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structStatus.html">Status</a>(<a class="code" href="status_8hpp.html#ae98a46f4ea1a43ca48acaf15d2eb7113a253ca7dd096ee0956cccee4d376cab8b">StatusCode::InvalidArgument</a>, <span class="stringliteral">&quot;No command set&quot;</span>);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="classCommand.html#ab04996232fade41af481e1a94c15f5e5">Command::Execute()</a>.</p>
+<p class="reference">References <a class="el" href="classCommand.html#a8d6fcd1baa8fd96ce9b423b66765ab4a">Command::Execute()</a>, and <a class="el" href="status_8hpp.html#ae98a46f4ea1a43ca48acaf15d2eb7113a253ca7dd096ee0956cccee4d376cab8b">InvalidArgument</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="container__service_8cpp_source.html#l00064">ContainerServiceHandler::ContainerOperations()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="container__service_8cpp_source.html#l00069">ContainerServiceHandler::ContainerOperations()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classInvoker_a1459c66263ad54b3568e6b3d33d9256f_cgraph.svg" width="330" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classInvoker_ac01c8216ff7b95532f2970a49198d840_cgraph.svg" width="330" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classInvoker_a1459c66263ad54b3568e6b3d33d9256f_icgraph.svg" width="100%" height="388"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classInvoker_ac01c8216ff7b95532f2970a49198d840_icgraph.svg" width="100%" height="388"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 
 </div>
@@ -197,16 +199,17 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="commands_8hpp_source.html#l00040">40</a> of file <a class="el" href="commands_8hpp_source.html">commands.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                                                {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        command_ = std::move(cmd);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="commands_8hpp_source.html#l00050">50</a> of file <a class="el" href="commands_8hpp_source.html">commands.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                                                {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        command_ = std::move(cmd);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="container__service_8cpp_source.html#l00064">ContainerServiceHandler::ContainerOperations()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="container__service_8cpp_source.html#l00069">ContainerServiceHandler::ContainerOperations()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classInvoker_ae9f10a2487afd153bf0da69ae410a0e9_icgraph.svg" width="100%" height="388"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classInvoker_ae9f10a2487afd153bf0da69ae410a0e9_icgraph.svg" width="100%" height="388"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 
 </div>
@@ -216,6 +219,8 @@ Here is the caller graph for this function:</div>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="astructStatus_html"><div class="ttname"><a href="structStatus.html">Status</a></div><div class="ttdoc">Represents the result of an operation, including a code and message.</div><div class="ttdef"><b>Definition:</b> <a href="status_8hpp_source.html#l00032">status.hpp:32</a></div></div>
+<div class="ttc" id="astatus_8hpp_html_ae98a46f4ea1a43ca48acaf15d2eb7113a253ca7dd096ee0956cccee4d376cab8b"><div class="ttname"><a href="status_8hpp.html#ae98a46f4ea1a43ca48acaf15d2eb7113a253ca7dd096ee0956cccee4d376cab8b">StatusCode::InvalidArgument</a></div><div class="ttdeci">@ InvalidArgument</div><div class="ttdoc">An invalid argument was provided.</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

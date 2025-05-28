@@ -92,12 +92,14 @@ $(document).ready(function(){initNavTree('container__service_8hpp.html',''); ini
 <p>Declares the <a class="el" href="classContainerServiceHandler.html" title="Handles container operations and updates status in the database.">ContainerServiceHandler</a> class for business logic related to containers.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;nlohmann/json.hpp&gt;</code><br />
+<code>#include &quot;<a class="el" href="status_8hpp_source.html">inc/status.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="database__interface_8hpp_source.html">inc/database_interface.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="container__request_8hpp_source.html">inc/container_request.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for container_service.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="container__service_8hpp__incl.svg" width="531" height="202"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="container__service_8hpp__incl.svg" width="604" height="202"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -115,7 +117,7 @@ Classes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Declares the <a class="el" href="classContainerServiceHandler.html" title="Handles container operations and updates status in the database.">ContainerServiceHandler</a> class for business logic related to containers. </p>
-<p>This class acts as the service layer for container management, coordinating container lifecycle operations (create, start, stop, restart, remove) and updating the database with container status. It uses dependency injection for database access. </p>
+<p>This class acts as the service layer for container management, coordinating container lifecycle operations (create, start, stop, restart, remove) and updating the database with container status. It uses dependency injection for database access and provides standardized error handling using the <a class="el" href="structStatus.html" title="Represents the result of an operation, including a code and message.">Status</a> structure. </p>
 
 <p class="definition">Definition in file <a class="el" href="container__service_8hpp_source.html">container_service.hpp</a>.</p>
 </div></div><!-- contents -->

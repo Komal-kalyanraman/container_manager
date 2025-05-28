@@ -1,9 +1,10 @@
 <map id="executor/inc/protobuf_request_executor.hpp" name="executor/inc/protobuf_request_executor.hpp">
-<area shape="rect" id="node1" title="Declares the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests." alt="" coords="261,5,432,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="92,244,150,271"/>
-<area shape="rect" id="node3" title=" " alt="" coords="341,244,488,271"/>
-<area shape="rect" id="node4" href="$request__executor_8hpp.html" title="Declares the abstract RequestExecutor interface for executing requests." alt="" coords="29,95,216,121"/>
-<area shape="rect" id="node6" href="$database__interface_8hpp.html" title="Abstract interface for database operations." alt="" coords="383,169,582,196"/>
-<area shape="rect" id="node7" href="$container__service_8hpp.html" title="Declares the ContainerServiceHandler class for business logic related to containers." alt="" coords="252,95,440,121"/>
-<area shape="rect" id="node5" href="$container__request_8hpp.html" title="Data structure for representing a container operation request." alt="" coords="118,169,308,196"/>
+<area shape="rect" id="node1" title="Declares the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests." alt="" coords="291,5,462,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="107,244,166,271"/>
+<area shape="rect" id="node3" title=" " alt="" coords="539,244,686,271"/>
+<area shape="rect" id="node4" href="$request__executor_8hpp.html" title="Declares the abstract RequestExecutor interface for executing requests." alt="" coords="51,95,238,121"/>
+<area shape="rect" id="node6" href="$database__interface_8hpp.html" title="Abstract interface for database operations." alt="" coords="445,169,644,196"/>
+<area shape="rect" id="node7" href="$container__service_8hpp.html" title="Declares the ContainerServiceHandler class for business logic related to containers." alt="" coords="282,95,470,121"/>
+<area shape="rect" id="node5" href="$container__request_8hpp.html" title="Data structure for representing a container operation request." alt="" coords="41,169,232,196"/>
+<area shape="rect" id="node8" href="$status_8hpp.html" title="Defines status codes and a Status struct for standardized error handling." alt="" coords="308,169,421,196"/>
 </map>

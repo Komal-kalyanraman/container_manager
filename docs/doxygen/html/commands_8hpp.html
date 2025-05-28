@@ -88,17 +88,23 @@ $(document).ready(function(){initNavTree('commands_8hpp.html',''); initResizable
 <div class="title">commands.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Declares the <a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> interface and <a class="el" href="classInvoker.html" title="Invoker class to invoke the command.">Invoker</a> class for the command pattern.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;string&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
+<code>#include &quot;<a class="el" href="status_8hpp_source.html">inc/status.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for commands.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="commands_8hpp__incl.svg" width="211" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="commands_8hpp__incl.svg" width="288" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="commands_8hpp__dep__incl.svg" width="100%" height="462"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="commands_8hpp__dep__incl.svg" width="100%" height="462"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 </div>
 <p><a href="commands_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -112,7 +118,12 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classInvoker.html" title="Invoker class to invoke the command.">Invoker</a> class to invoke the command.  <a href="classInvoker.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Declares the <a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> interface and <a class="el" href="classInvoker.html" title="Invoker class to invoke the command.">Invoker</a> class for the command pattern. </p>
+<p>This file defines the abstract <a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> base class, which all concrete command classes must inherit from, and the <a class="el" href="classInvoker.html" title="Invoker class to invoke the command.">Invoker</a> class, which is responsible for holding and executing commands. The command pattern enables encapsulation of request parameters and standardized error handling using the <a class="el" href="structStatus.html" title="Represents the result of an operation, including a code and message.">Status</a> structure. </p>
+
+<p class="definition">Definition in file <a class="el" href="commands_8hpp_source.html">commands.hpp</a>.</p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

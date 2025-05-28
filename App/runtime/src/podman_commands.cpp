@@ -21,15 +21,16 @@
 PodmanRuntimeAvailableCommand::PodmanRuntimeAvailableCommand() {}
 
 /// Executes the command to check Podman runtime availability.
-/// @return True if Podman is running, false otherwise.
-bool PodmanRuntimeAvailableCommand::Execute() const {
+/// @return Status indicating if Podman is running.
+Status PodmanRuntimeAvailableCommand::Execute() const {
     int status = std::system("podman info > /dev/null 2>&1");
     if (status == 0) {
         CM_LOG_INFO << "Podman is running ";
-        return true;
+        return Status::Ok();
     } else {
-        CM_LOG_ERROR << "Podman is not running";
-        return false;
+        std::string msg = "Podman runtime is not running, exit code: " + std::to_string(status);
+        CM_LOG_ERROR << msg;
+        return Status::Error(StatusCode::InternalError, msg);
     }
 }
 
@@ -41,8 +42,8 @@ bool PodmanRuntimeAvailableCommand::Execute() const {
 PodmanCreateContainerCommand::PodmanCreateContainerCommand(const ContainerRequest& req) : req_(req) {}
 
 /// Executes the command to create a Podman container.
-/// @return True if the container was created successfully, false otherwise.
-bool PodmanCreateContainerCommand::Execute() const {
+/// @return Status indicating if the container was created successfully.
+Status PodmanCreateContainerCommand::Execute() const {
     std::string command = FormatCommand(
         CommandTemplate::Create,
         {
@@ -58,10 +59,11 @@ bool PodmanCreateContainerCommand::Execute() const {
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Podman container created successfully";
-        return true;
+        return Status::Ok();
     } else {
-        CM_LOG_ERROR << "Failed to create Podman container";
-        return false;
+        std::string msg = "Failed to create Podman container, exit code: " + std::to_string(status);
+        CM_LOG_ERROR << msg;
+        return Status::Error(StatusCode::InternalError, msg);
     }
 }
 
@@ -73,8 +75,8 @@ bool PodmanCreateContainerCommand::Execute() const {
 PodmanStartContainerCommand::PodmanStartContainerCommand(const ContainerRequest& req) : req_(req) {}
 
 /// Executes the command to start a Podman container.
-/// @return True if the container was started successfully, false otherwise.
-bool PodmanStartContainerCommand::Execute() const {
+/// @return Status indicating if the container was started successfully.
+Status PodmanStartContainerCommand::Execute() const {
     std::string command = FormatCommand(
         CommandTemplate::Start,
         {{"runtime", "podman"}, {"name", req_.container_name}}
@@ -82,10 +84,11 @@ bool PodmanStartContainerCommand::Execute() const {
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Podman container started successfully";
-        return true;
+        return Status::Ok();
     } else {
-        CM_LOG_ERROR << "Failed to start Podman container";
-        return false;
+        std::string msg = "Failed to start Podman container, exit code: " + std::to_string(status);
+        CM_LOG_ERROR << msg;
+        return Status::Error(StatusCode::InternalError, msg);
     }
 }
 
@@ -97,8 +100,8 @@ bool PodmanStartContainerCommand::Execute() const {
 PodmanStopContainerCommand::PodmanStopContainerCommand(const ContainerRequest& req) : req_(req) {}
 
 /// Executes the command to stop a Podman container.
-/// @return True if the container was stopped successfully, false otherwise.
-bool PodmanStopContainerCommand::Execute() const {
+/// @return Status indicating if the container was stopped successfully.
+Status PodmanStopContainerCommand::Execute() const {
     std::string command = FormatCommand(
         CommandTemplate::Stop,
         {{"runtime", "podman"}, {"name", req_.container_name}}
@@ -106,10 +109,11 @@ bool PodmanStopContainerCommand::Execute() const {
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Podman container stopped successfully";
-        return true;
+        return Status::Ok();
     } else {
-        CM_LOG_ERROR << "Failed to stop Podman container";
-        return false;
+        std::string msg = "Failed to stop Podman container, exit code: " + std::to_string(status);
+        CM_LOG_ERROR << msg;
+        return Status::Error(StatusCode::InternalError, msg);
     }
 }
 
@@ -121,8 +125,8 @@ bool PodmanStopContainerCommand::Execute() const {
 PodmanRemoveContainerCommand::PodmanRemoveContainerCommand(const ContainerRequest& req) : req_(req) {}
 
 /// Executes the command to remove a Podman container.
-/// @return True if the container was removed successfully, false otherwise.
-bool PodmanRemoveContainerCommand::Execute() const {
+/// @return Status indicating if the container was removed successfully.
+Status PodmanRemoveContainerCommand::Execute() const {
     std::string command = FormatCommand(
         CommandTemplate::Remove,
         {{"runtime", "podman"}, {"name", req_.container_name}}
@@ -130,10 +134,11 @@ bool PodmanRemoveContainerCommand::Execute() const {
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Podman container removed successfully";
-        return true;
+        return Status::Ok();
     } else {
-        CM_LOG_ERROR << "Failed to remove Podman container";
-        return false;
+        std::string msg = "Failed to remove Podman container, exit code: " + std::to_string(status);
+        CM_LOG_ERROR << msg;
+        return Status::Error(StatusCode::InternalError, msg);
     }
 }
 
@@ -145,8 +150,8 @@ bool PodmanRemoveContainerCommand::Execute() const {
 PodmanRestartContainerCommand::PodmanRestartContainerCommand(const ContainerRequest& req) : req_(req) {}
 
 /// Executes the command to restart a Podman container.
-/// @return True if the container was restarted successfully, false otherwise.
-bool PodmanRestartContainerCommand::Execute() const {
+/// @return Status indicating if the container was restarted successfully.
+Status PodmanRestartContainerCommand::Execute() const {
     std::string command = FormatCommand(
         CommandTemplate::Restart,
         {{"runtime", "podman"}, {"name", req_.container_name}}
@@ -154,9 +159,10 @@ bool PodmanRestartContainerCommand::Execute() const {
     int status = std::system(command.c_str());
     if (status == 0) {
         CM_LOG_INFO << "Podman container restarted successfully";
-        return true;
+        return Status::Ok();
     } else {
-        CM_LOG_ERROR << "Failed to restart Podman container";
-        return false;
+        std::string msg = "Failed to restart Podman container, exit code: " + std::to_string(status);
+        CM_LOG_ERROR << msg;
+        return Status::Error(StatusCode::InternalError, msg);
     }
 }

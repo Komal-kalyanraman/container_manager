@@ -1,9 +1,10 @@
 <map id="executor/inc/json_request_executor.hpp" name="executor/inc/json_request_executor.hpp">
-<area shape="rect" id="node1" title="Declares the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="243,5,432,47"/>
-<area shape="rect" id="node2" href="$request__executor_8hpp.html" title="Declares the abstract RequestExecutor interface for executing requests." alt="" coords="5,95,192,121"/>
-<area shape="rect" id="node6" href="$database__interface_8hpp.html" title="Abstract interface for database operations." alt="" coords="374,169,573,196"/>
-<area shape="rect" id="node7" href="$container__service_8hpp.html" title="Declares the ContainerServiceHandler class for business logic related to containers." alt="" coords="243,95,431,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="175,244,233,271"/>
-<area shape="rect" id="node4" title=" " alt="" coords="264,244,411,271"/>
-<area shape="rect" id="node5" href="$container__request_8hpp.html" title="Data structure for representing a container operation request." alt="" coords="109,169,299,196"/>
+<area shape="rect" id="node1" title="Declares the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="266,5,455,47"/>
+<area shape="rect" id="node2" href="$request__executor_8hpp.html" title="Declares the abstract RequestExecutor interface for executing requests." alt="" coords="47,95,234,121"/>
+<area shape="rect" id="node6" href="$database__interface_8hpp.html" title="Abstract interface for database operations." alt="" coords="429,169,628,196"/>
+<area shape="rect" id="node7" href="$container__service_8hpp.html" title="Declares the ContainerServiceHandler class for business logic related to containers." alt="" coords="266,95,454,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="206,244,264,271"/>
+<area shape="rect" id="node4" title=" " alt="" coords="455,244,602,271"/>
+<area shape="rect" id="node5" href="$container__request_8hpp.html" title="Data structure for representing a container operation request." alt="" coords="25,169,216,196"/>
+<area shape="rect" id="node8" href="$status_8hpp.html" title="Defines status codes and a Status struct for standardized error handling." alt="" coords="292,169,405,196"/>
 </map>

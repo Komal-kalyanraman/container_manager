@@ -3,7 +3,8 @@
  * @brief Declares Docker command classes for container operations.
  *
  * These classes encapsulate Docker CLI operations such as create, start, stop, remove, and restart,
- * using parameters provided in the ContainerRequest structure.
+ * using parameters provided in the ContainerRequest structure. Each command provides standardized
+ * error handling and logging, and returns a Status object indicating the result of the operation.
  */
 
 #pragma once
@@ -31,9 +32,9 @@ public:
 
     /**
      * @brief Executes the command to check Docker runtime availability.
-     * @return True if Docker is running, false otherwise.
+     * @return Status indicating if Docker is running.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -57,9 +58,9 @@ public:
 
     /**
      * @brief Executes the command to create a Docker container.
-     * @return True if the container was created successfully, false otherwise.
+     * @return Status indicating if the container was created successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -83,9 +84,9 @@ public:
 
     /**
      * @brief Executes the command to start a Docker container.
-     * @return True if the container was started successfully, false otherwise.
+     * @return Status indicating if the container was started successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -109,9 +110,9 @@ public:
 
     /**
      * @brief Executes the command to stop a Docker container.
-     * @return True if the container was stopped successfully, false otherwise.
+     * @return Status indicating if the container was stopped successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -135,9 +136,9 @@ public:
 
     /**
      * @brief Executes the command to remove a Docker container.
-     * @return True if the container was removed successfully, false otherwise.
+     * @return Status indicating if the container was removed successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -161,7 +162,7 @@ public:
 
     /**
      * @brief Executes the command to restart a Docker container.
-     * @return True if the container was restarted successfully, false otherwise.
+     * @return Status indicating if the container was restarted successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };

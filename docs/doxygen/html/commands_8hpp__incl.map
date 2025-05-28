@@ -1,5 +1,6 @@
 <map id="runtime/inc/commands.hpp" name="runtime/inc/commands.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,205,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="31,80,89,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="113,80,191,107"/>
+<area shape="rect" id="node1" title="Declares the Command interface and Invoker class for the command pattern." alt="" coords="5,5,205,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="97,155,156,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="67,80,144,107"/>
+<area shape="rect" id="node4" href="$status_8hpp.html" title="Defines status codes and a Status struct for standardized error handling." alt="" coords="169,80,282,107"/>
 </map>

@@ -4,12 +4,14 @@
  *
  * Each command class encapsulates a specific Docker API operation (e.g., check runtime, create, start, stop, restart, remove container).
  * These classes use CurlHandler to send HTTP requests to the Docker REST API, using parameters from the ContainerRequest structure.
+ * All commands return a Status object for standardized error handling.
  */
 
 #pragma once
 
 #include <string>
 #include <memory>
+#include "inc/status.hpp"
 #include "inc/commands.hpp"
 #include "inc/container_request.hpp"
 
@@ -31,9 +33,9 @@ public:
 
     /**
      * @brief Executes the command to check Docker API runtime availability.
-     * @return True if Docker is running, false otherwise.
+     * @return Status indicating if Docker is running.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -57,9 +59,9 @@ public:
 
     /**
      * @brief Executes the command to create a Docker container via the API.
-     * @return True if the container was created successfully, false otherwise.
+     * @return Status indicating if the container was created successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -83,9 +85,9 @@ public:
 
     /**
      * @brief Executes the command to start a Docker container via the API.
-     * @return True if the container was started successfully, false otherwise.
+     * @return Status indicating if the container was started successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -109,9 +111,9 @@ public:
 
     /**
      * @brief Executes the command to stop a Docker container via the API.
-     * @return True if the container was stopped successfully, false otherwise.
+     * @return Status indicating if the container was stopped successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -135,9 +137,9 @@ public:
 
     /**
      * @brief Executes the command to restart a Docker container via the API.
-     * @return True if the container was restarted successfully, false otherwise.
+     * @return Status indicating if the container was restarted successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -161,7 +163,7 @@ public:
 
     /**
      * @brief Executes the command to remove a Docker container via the API.
-     * @return True if the container was removed successfully, false otherwise.
+     * @return Status indicating if the container was removed successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };

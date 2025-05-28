@@ -3,13 +3,15 @@
  * @brief Declares Podman command classes for container operations.
  *
  * These classes encapsulate Podman CLI operations such as create, start, stop, remove, and restart,
- * using parameters provided in the ContainerRequest structure.
+ * using parameters provided in the ContainerRequest structure. Each command provides standardized
+ * error handling and logging, and returns a Status object indicating the result of the operation.
  */
 
 #pragma once
 
 #include <string>
 #include <memory>
+#include "inc/status.hpp"
 #include "inc/commands.hpp"
 #include "inc/container_request.hpp"
 
@@ -31,9 +33,9 @@ public:
 
     /**
      * @brief Executes the command to check Podman runtime availability.
-     * @return True if Podman is running, false otherwise.
+     * @return Status indicating if Podman is running.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -57,9 +59,9 @@ public:
 
     /**
      * @brief Executes the command to create a Podman container.
-     * @return True if the container was created successfully, false otherwise.
+     * @return Status indicating if the container was created successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -83,9 +85,9 @@ public:
 
     /**
      * @brief Executes the command to start a Podman container.
-     * @return True if the container was started successfully, false otherwise.
+     * @return Status indicating if the container was started successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -109,9 +111,9 @@ public:
 
     /**
      * @brief Executes the command to stop a Podman container.
-     * @return True if the container was stopped successfully, false otherwise.
+     * @return Status indicating if the container was stopped successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -135,9 +137,9 @@ public:
 
     /**
      * @brief Executes the command to remove a Podman container.
-     * @return True if the container was removed successfully, false otherwise.
+     * @return Status indicating if the container was removed successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -161,7 +163,7 @@ public:
 
     /**
      * @brief Executes the command to restart a Podman container.
-     * @return True if the container was restarted successfully, false otherwise.
+     * @return Status indicating if the container was restarted successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };

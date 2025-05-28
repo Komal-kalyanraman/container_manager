@@ -1,5 +1,5 @@
 <map id="CurlHandler::GetUnix" name="CurlHandler::GetUnix">
 <area shape="rect" id="node1" title="Perform a HTTP GET request over a Unix domain socket." alt="" coords="264,46,424,73"/>
-<area shape="rect" id="node2" href="$classDockerApiRuntimeAvailableCommand.html#a26f5ae3b7b9d8da730865a6b4f057fca" title="Executes the command to check Docker API runtime availability." alt="" coords="9,5,212,47"/>
-<area shape="rect" id="node3" href="$classPodmanApiRuntimeAvailableCommand.html#a3cee9a8e7da55eb4f1fc67a12dcab68f" title="Executes the command to check Podman API runtime availability." alt="" coords="5,71,216,112"/>
+<area shape="rect" id="node2" href="$classDockerApiRuntimeAvailableCommand.html#a77724faeeb6392b8508e81d8b1b61b42" title="Executes the command to check Docker API runtime availability." alt="" coords="9,5,212,47"/>
+<area shape="rect" id="node3" href="$classPodmanApiRuntimeAvailableCommand.html#aff85761ab4422c43b802fa285074e28d" title="Executes the command to check Podman API runtime availability." alt="" coords="5,71,216,112"/>
 </map>
