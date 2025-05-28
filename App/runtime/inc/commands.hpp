@@ -2,21 +2,31 @@
 
 #include <string>
 #include <memory>
+#include "inc/status.hpp"
+
+/**
+ * @file commands.hpp
+ * @brief Declares the Command interface and Invoker class for the command pattern.
+ *
+ * This file defines the abstract Command base class, which all concrete command classes must inherit from,
+ * and the Invoker class, which is responsible for holding and executing commands. The command pattern
+ * enables encapsulation of request parameters and standardized error handling using the Status structure.
+ */
 
 /**
  * @class Command
  * @brief Abstract base class for all commands.
  * @details This class defines the interface for command objects.
- * @note All command classes should inherit from this class and implement the Execute method.
+ *          All command classes should inherit from this class and implement the Execute method.
  * @warning Do not instantiate this class directly.
  */
 class Command {
 public:
     /**
      * @brief Execute the command.
-     * @return true if the command was executed successfully, false otherwise.
+     * @return Status indicating the result of the command execution.
      */
-    virtual bool Execute() const = 0;
+    virtual Status Execute() const = 0;
 
     /**
      * @brief Virtual destructor.
@@ -27,7 +37,7 @@ public:
 /**
  * @class Invoker
  * @brief Invoker class to invoke the command.
- * @details This class holds a command and invokes it.
+ * @details This class holds a command and invokes it. It manages the command's lifetime using a unique pointer.
  */
 class Invoker {
 private:
@@ -43,12 +53,12 @@ public:
 
     /**
      * @brief Execute the command.
-     * @return true if the command was executed successfully, false otherwise.
+     * @return Status indicating the result of the command execution. Returns an error status if no command is set.
      */
-    bool Invoke() {
+    Status Invoke() {
         if (command_) {
             return command_->Execute();
         }
-        return false;
+        return Status(StatusCode::InvalidArgument, "No command set");
     }
 };
