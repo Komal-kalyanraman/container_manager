@@ -2,6 +2,7 @@
 
 #include <string>
 #include <memory>
+#include "inc/status.hpp"
 #include "inc/commands.hpp"
 #include "inc/container_request.hpp"
 
@@ -11,6 +12,7 @@
  *
  * Each command class encapsulates a specific Podman API operation (e.g., check runtime, create, start, stop container).
  * These classes use CurlHandler to send HTTP requests to the Podman REST API, using parameters from the ContainerRequest structure.
+ * All commands return a Status object for standardized error handling.
  */
 
 /**
@@ -31,9 +33,9 @@ public:
 
     /**
      * @brief Executes the command to check Podman API runtime availability.
-     * @return True if Podman is running, false otherwise.
+     * @return Status indicating if Podman is running.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -57,9 +59,9 @@ public:
 
     /**
      * @brief Executes the command to create a Podman container via the API.
-     * @return True if the container was created successfully, false otherwise.
+     * @return Status indicating if the container was created successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -83,9 +85,9 @@ public:
 
     /**
      * @brief Executes the command to start a Podman container via the API.
-     * @return True if the container was started successfully, false otherwise.
+     * @return Status indicating if the container was started successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };
 
 /**
@@ -109,7 +111,7 @@ public:
 
     /**
      * @brief Executes the command to stop a Podman container via the API.
-     * @return True if the container was stopped successfully, false otherwise.
+     * @return Status indicating if the container was stopped successfully.
      */
-    bool Execute() const override;
+    Status Execute() const override;
 };

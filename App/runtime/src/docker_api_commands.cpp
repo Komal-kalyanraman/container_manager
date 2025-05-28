@@ -6,6 +6,7 @@
  * DockerApiStartContainerCommand, DockerApiStopContainerCommand, DockerApiRestartContainerCommand,
  * and DockerApiRemoveContainerCommand. Each command executes the corresponding Docker REST API operation
  * using parameters from the ContainerRequest structure and CurlHandler for HTTP communication.
+ * All commands return a Status object for standardized error handling.
  */
 
 #include "inc/docker_api_commands.hpp"
@@ -22,21 +23,23 @@
 DockerApiRuntimeAvailableCommand::DockerApiRuntimeAvailableCommand() {}
 
 /// Executes the command to check Docker API runtime availability.
-/// @return True if Docker is running, false otherwise.
-bool DockerApiRuntimeAvailableCommand::Execute() const {
+/// @return Status indicating if Docker is running.
+Status DockerApiRuntimeAvailableCommand::Execute() const {
     CurlHandler curl;
     std::string response;
     std::string url = std::string(kDockerApiBaseUrl) + std::string(ApiEndpoint::Ping);
     bool success = curl.GetUnix(url, kDockerUnixSocketPath, response);
     if (success && response == "OK") {
-        std::cout << "[Docker API] Docker daemon is running (/_ping returned OK)." << std::endl;
-        return true;
+        CM_LOG_INFO << "[Docker API] Docker daemon is running (/_ping returned OK).";
+        return Status::Ok();
     } else if (success) {
-        std::cerr << "[Docker API] Docker daemon responded, but not OK: " << response << std::endl;
-        return false;
+        std::string msg = "[Docker API] Docker daemon responded, but not OK: " + response;
+        CM_LOG_ERROR << msg;
+        return Status::Error(StatusCode::Unavailable, msg);
     } else {
-        std::cerr << "[Docker API] Failed to contact Docker daemon." << std::endl;
-        return false;
+        std::string msg = "[Docker API] Failed to contact Docker daemon.";
+        CM_LOG_ERROR << msg;
+        return Status::Error(StatusCode::Unavailable, msg);
     }
 }
 
@@ -48,8 +51,8 @@ bool DockerApiRuntimeAvailableCommand::Execute() const {
 DockerApiCreateContainerCommand::DockerApiCreateContainerCommand(const ContainerRequest& req) : req_(req) {}
 
 /// Executes the command to create a Docker container via the API.
-/// @return True if the container was created successfully, false otherwise.
-bool DockerApiCreateContainerCommand::Execute() const {
+/// @return Status indicating if the container was created successfully.
+Status DockerApiCreateContainerCommand::Execute() const {
     CurlHandler curl;
     std::string response;
     std::string url = std::string(kDockerApiBaseUrl) +
@@ -59,39 +62,50 @@ bool DockerApiCreateContainerCommand::Execute() const {
     // Build JSON body with all relevant fields
     std::string body = "{";
     body += "\"Image\": \"" + req_.image_name + "\"";
-    if (!req_.cpus.empty()) body += ", \"HostConfig\": {\"NanoCpus\": " + std::to_string(static_cast<long long>(std::stod(req_.cpus) * 1e9));
+    bool hasHostConfig = false;
+    if (!req_.cpus.empty()) {
+        body += ", \"HostConfig\": {\"NanoCpus\": " + std::to_string(static_cast<long long>(std::stod(req_.cpus) * 1e9));
+        hasHostConfig = true;
+    }
     if (!req_.memory.empty()) {
-        if (body.find("HostConfig") == std::string::npos)
+        if (!hasHostConfig) {
             body += ", \"HostConfig\": {";
-        else
+            hasHostConfig = true;
+        } else {
             body += ", ";
+        }
         body += "\"Memory\": " + std::to_string(std::stoll(req_.memory) * 1024 * 1024);
     }
     if (!req_.pids.empty()) {
-        if (body.find("HostConfig") == std::string::npos)
+        if (!hasHostConfig) {
             body += ", \"HostConfig\": {";
-        else
+            hasHostConfig = true;
+        } else {
             body += ", ";
+        }
         body += "\"PidsLimit\": " + req_.pids;
     }
     if (!req_.restart_policy.empty()) {
-        if (body.find("HostConfig") == std::string::npos)
+        if (!hasHostConfig) {
             body += ", \"HostConfig\": {";
-        else
+            hasHostConfig = true;
+        } else {
             body += ", ";
+        }
         body += "\"RestartPolicy\": {\"Name\": \"" + req_.restart_policy + "\"}";
     }
-    if (body.find("HostConfig") != std::string::npos)
+    if (hasHostConfig)
         body += "}";
     body += "}";
 
     bool success = curl.PostUnix(url, kDockerUnixSocketPath, body, response);
     if (success) {
-        std::cout << "[Docker API] Create container response: " << response << std::endl;
-        return true;
+        CM_LOG_INFO << "[Docker API] Create container response: " << response;
+        return Status::Ok();
     } else {
-        std::cerr << "[Docker API] Failed to create container. Response: " << response << std::endl;
-        return false;
+        std::string msg = "[Docker API] Failed to create container. Response: " + response;
+        CM_LOG_ERROR << msg;
+        return Status::Error(StatusCode::InternalError, msg);
     }
 }
 
@@ -103,8 +117,8 @@ bool DockerApiCreateContainerCommand::Execute() const {
 DockerApiStartContainerCommand::DockerApiStartContainerCommand(const ContainerRequest& req) : req_(req) {}
 
 /// Executes the command to start a Docker container via the API.
-/// @return True if the container was started successfully, false otherwise.
-bool DockerApiStartContainerCommand::Execute() const {
+/// @return Status indicating if the container was started successfully.
+Status DockerApiStartContainerCommand::Execute() const {
     CurlHandler curl;
     std::string response;
     std::string url = ComposeContainerApiEndpoint(
@@ -112,11 +126,12 @@ bool DockerApiStartContainerCommand::Execute() const {
     );
     bool success = curl.PostUnix(url, kDockerUnixSocketPath, "", response, "application/json");
     if (success) {
-        std::cout << "[Docker API] Start container response: " << response << std::endl;
-        return true;
+        CM_LOG_INFO << "[Docker API] Start container response: " << response;
+        return Status::Ok();
     } else {
-        std::cerr << "[Docker API] Failed to start container. Response: " << response << std::endl;
-        return false;
+        std::string msg = "[Docker API] Failed to start container. Response: " + response;
+        CM_LOG_ERROR << msg;
+        return Status::Error(StatusCode::InternalError, msg);
     }
 }
 
@@ -128,8 +143,8 @@ bool DockerApiStartContainerCommand::Execute() const {
 DockerApiStopContainerCommand::DockerApiStopContainerCommand(const ContainerRequest& req) : req_(req) {}
 
 /// Executes the command to stop a Docker container via the API.
-/// @return True if the container was stopped successfully, false otherwise.
-bool DockerApiStopContainerCommand::Execute() const {
+/// @return Status indicating if the container was stopped successfully.
+Status DockerApiStopContainerCommand::Execute() const {
     CurlHandler curl;
     std::string response;
     std::string url = ComposeContainerApiEndpoint(
@@ -137,11 +152,12 @@ bool DockerApiStopContainerCommand::Execute() const {
     );
     bool success = curl.PostUnix(url, kDockerUnixSocketPath, "", response, "application/json");
     if (success) {
-        std::cout << "[Docker API] Stop container response: " << response << std::endl;
-        return true;
+        CM_LOG_INFO << "[Docker API] Stop container response: " << response;
+        return Status::Ok();
     } else {
-        std::cerr << "[Docker API] Failed to stop container. Response: " << response << std::endl;
-        return false;
+        std::string msg = "[Docker API] Failed to stop container. Response: " + response;
+        CM_LOG_ERROR << msg;
+        return Status::Error(StatusCode::InternalError, msg);
     }
 }
 
@@ -153,8 +169,8 @@ bool DockerApiStopContainerCommand::Execute() const {
 DockerApiRestartContainerCommand::DockerApiRestartContainerCommand(const ContainerRequest& req) : req_(req) {}
 
 /// Executes the command to restart a Docker container via the API.
-/// @return True if the container was restarted successfully, false otherwise.
-bool DockerApiRestartContainerCommand::Execute() const {
+/// @return Status indicating if the container was restarted successfully.
+Status DockerApiRestartContainerCommand::Execute() const {
     CurlHandler curl;
     std::string response;
     std::string url = ComposeContainerApiEndpoint(
@@ -162,11 +178,12 @@ bool DockerApiRestartContainerCommand::Execute() const {
     );
     bool success = curl.PostUnix(url, kDockerUnixSocketPath, "", response, "application/json");
     if (success) {
-        std::cout << "[Docker API] Restart container response: " << response << std::endl;
-        return true;
+        CM_LOG_INFO << "[Docker API] Restart container response: " << response;
+        return Status::Ok();
     } else {
-        std::cerr << "[Docker API] Failed to restart container. Response: " << response << std::endl;
-        return false;
+        std::string msg = "[Docker API] Failed to restart container. Response: " + response;
+        CM_LOG_ERROR << msg;
+        return Status::Error(StatusCode::InternalError, msg);
     }
 }
 
@@ -178,8 +195,8 @@ bool DockerApiRestartContainerCommand::Execute() const {
 DockerApiRemoveContainerCommand::DockerApiRemoveContainerCommand(const ContainerRequest& req) : req_(req) {}
 
 /// Executes the command to remove a Docker container via the API.
-/// @return True if the container was removed successfully, false otherwise.
-bool DockerApiRemoveContainerCommand::Execute() const {
+/// @return Status indicating if the container was removed successfully.
+Status DockerApiRemoveContainerCommand::Execute() const {
     CurlHandler curl;
     std::string response;
     std::string url = ComposeContainerApiEndpoint(
@@ -187,10 +204,11 @@ bool DockerApiRemoveContainerCommand::Execute() const {
     );
     bool success = curl.DeleteUnix(url, kDockerUnixSocketPath, response);
     if (success) {
-        std::cout << "[Docker API] Remove container response: " << response << std::endl;
-        return true;
+        CM_LOG_INFO << "[Docker API] Remove container response: " << response;
+        return Status::Ok();
     } else {
-        std::cerr << "[Docker API] Failed to remove container. Response: " << response << std::endl;
-        return false;
+        std::string msg = "[Docker API] Failed to remove container. Response: " + response;
+        CM_LOG_ERROR << msg;
+        return Status::Error(StatusCode::InternalError, msg);
     }
 }
