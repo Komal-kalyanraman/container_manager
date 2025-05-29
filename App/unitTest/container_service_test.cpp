@@ -7,8 +7,8 @@
 #include "inc/container_service.hpp"
 #include "inc/database_interface.hpp"
 #include "inc/container_request.hpp"
+#include "inc/common.hpp"
 
-// Mock implementation of IDatabaseHandler matching the interface
 class MockDatabaseHandler : public IDatabaseHandler {
 public:
     MOCK_METHOD(void, SaveJson, (const std::string&, const nlohmann::json&), (override));
@@ -22,11 +22,8 @@ class ContainerServiceHandlerTest : public ::testing::Test {
 protected:
     void SetUp() override {
         db_handler = std::make_shared<MockDatabaseHandler>();
-        service = std::make_unique<ContainerServiceHandler>(*db_handler);
     }
-
     std::shared_ptr<MockDatabaseHandler> db_handler;
-    std::unique_ptr<ContainerServiceHandler> service;
 };
 
 using ::testing::_;
@@ -34,6 +31,12 @@ using ::testing::Return;
 using ::testing::StrEq;
 
 TEST_F(ContainerServiceHandlerTest, HandleRequest_CreateContainer_Success) {
+    class TestService : public ContainerServiceHandler {
+    public:
+        using ContainerServiceHandler::ContainerServiceHandler;
+        Status ContainerOperations(const ContainerRequest&) override { return Status::Ok(); }
+    };
+
     ContainerRequest req;
     req.operation = CommandName::CreateContainer;
     req.container_name = "test_container";
@@ -41,20 +44,19 @@ TEST_F(ContainerServiceHandlerTest, HandleRequest_CreateContainer_Success) {
     // Expect status update to "created"
     EXPECT_CALL(*db_handler, UpdateField(StrEq("test_container"), StrEq("status"), StrEq("created")));
 
-    // Mock ContainerOperations to return success
-    class TestService : public ContainerServiceHandler {
-    public:
-        using ContainerServiceHandler::ContainerServiceHandler;
-        Status ContainerOperations(const ContainerRequest&) { return Status::Ok(); }
-    };
     TestService test_service(*db_handler);
-
     auto result = test_service.HandleRequest(req);
     EXPECT_EQ(result["status"], "success");
     EXPECT_EQ(result["container"], "test_container");
 }
 
 TEST_F(ContainerServiceHandlerTest, HandleRequest_CreateContainer_Failure) {
+    class FailingService : public ContainerServiceHandler {
+    public:
+        using ContainerServiceHandler::ContainerServiceHandler;
+        Status ContainerOperations(const ContainerRequest&) override { return Status::Error(StatusCode::NotFound, "fail"); }
+    };
+
     ContainerRequest req;
     req.operation = CommandName::CreateContainer;
     req.container_name = "test_container";
@@ -62,20 +64,139 @@ TEST_F(ContainerServiceHandlerTest, HandleRequest_CreateContainer_Failure) {
     // Expect status update to "Error creating container"
     EXPECT_CALL(*db_handler, UpdateField(StrEq("test_container"), StrEq("status"), StrEq("Error creating container")));
 
-    // Mock ContainerOperations to return error
+    FailingService test_service(*db_handler);
+    auto result = test_service.HandleRequest(req);
+    EXPECT_EQ(result["status"], "error");
+    EXPECT_EQ(result["container"], "test_container");
+}
+
+TEST_F(ContainerServiceHandlerTest, HandleRequest_StartContainer_Success) {
     class TestService : public ContainerServiceHandler {
     public:
         using ContainerServiceHandler::ContainerServiceHandler;
-        Status ContainerOperations(const ContainerRequest&) { return Status::Error(StatusCode::InternalError, "fail"); }
+        Status ContainerOperations(const ContainerRequest&) override { return Status::Ok(); }
     };
-    TestService test_service(*db_handler);
 
+    ContainerRequest req;
+    req.operation = CommandName::StartContainer;
+    req.container_name = "test_container";
+
+    // Expect status update to "created"
+    EXPECT_CALL(*db_handler, UpdateField(StrEq("test_container"), StrEq("status"), StrEq("running")));
+
+    TestService test_service(*db_handler);
+    auto result = test_service.HandleRequest(req);
+    EXPECT_EQ(result["status"], "success");
+    EXPECT_EQ(result["container"], "test_container");
+}
+
+TEST_F(ContainerServiceHandlerTest, HandleRequest_StartContainer_Failure) {
+    class FailingService : public ContainerServiceHandler {
+    public:
+        using ContainerServiceHandler::ContainerServiceHandler;
+        Status ContainerOperations(const ContainerRequest&) override { return Status::Error(StatusCode::InvalidArgument, "fail"); }
+    };
+
+    ContainerRequest req;
+    req.operation = CommandName::StartContainer;
+    req.container_name = "test_container";
+
+    // Expect status update to "Error creating container"
+    EXPECT_CALL(*db_handler, UpdateField(StrEq("test_container"), StrEq("status"), StrEq("Error running container")));
+
+    FailingService test_service(*db_handler);
+    auto result = test_service.HandleRequest(req);
+    EXPECT_EQ(result["status"], "error");
+    EXPECT_EQ(result["container"], "test_container");
+}
+
+TEST_F(ContainerServiceHandlerTest, HandleRequest_StopContainer_Success) {
+    class TestService : public ContainerServiceHandler {
+    public:
+        using ContainerServiceHandler::ContainerServiceHandler;
+        Status ContainerOperations(const ContainerRequest&) override { return Status::Ok(); }
+    };
+
+    ContainerRequest req;
+    req.operation = CommandName::StopContainer;
+    req.container_name = "test_container";
+
+    // Expect status update to "created"
+    EXPECT_CALL(*db_handler, UpdateField(StrEq("test_container"), StrEq("status"), StrEq("stopped")));
+
+    TestService test_service(*db_handler);
+    auto result = test_service.HandleRequest(req);
+    EXPECT_EQ(result["status"], "success");
+    EXPECT_EQ(result["container"], "test_container");
+}
+
+TEST_F(ContainerServiceHandlerTest, HandleRequest_StopContainer_Failure) {
+    class FailingService : public ContainerServiceHandler {
+    public:
+        using ContainerServiceHandler::ContainerServiceHandler;
+        Status ContainerOperations(const ContainerRequest&) override { return Status::Error(StatusCode::InternalError, "fail"); }
+    };
+
+    ContainerRequest req;
+    req.operation = CommandName::StopContainer;
+    req.container_name = "test_container";
+
+    // Expect status update to "Error creating container"
+    EXPECT_CALL(*db_handler, UpdateField(StrEq("test_container"), StrEq("status"), StrEq("Error stopping container")));
+
+    FailingService test_service(*db_handler);
+    auto result = test_service.HandleRequest(req);
+    EXPECT_EQ(result["status"], "error");
+    EXPECT_EQ(result["container"], "test_container");
+}
+
+TEST_F(ContainerServiceHandlerTest, HandleRequest_RestartContainer_Success) {
+    class TestService : public ContainerServiceHandler {
+    public:
+        using ContainerServiceHandler::ContainerServiceHandler;
+        Status ContainerOperations(const ContainerRequest&) override { return Status::Ok(); }
+    };
+
+    ContainerRequest req;
+    req.operation = CommandName::RestartContainer;
+    req.container_name = "test_container";
+
+    // Expect status update to "created"
+    EXPECT_CALL(*db_handler, UpdateField(StrEq("test_container"), StrEq("status"), StrEq("running")));
+
+    TestService test_service(*db_handler);
+    auto result = test_service.HandleRequest(req);
+    EXPECT_EQ(result["status"], "success");
+    EXPECT_EQ(result["container"], "test_container");
+}
+
+TEST_F(ContainerServiceHandlerTest, HandleRequest_RestartContainer_Failure) {
+    class FailingService : public ContainerServiceHandler {
+    public:
+        using ContainerServiceHandler::ContainerServiceHandler;
+        Status ContainerOperations(const ContainerRequest&) override { return Status::Error(StatusCode::Timeout, "fail"); }
+    };
+
+    ContainerRequest req;
+    req.operation = CommandName::RestartContainer;
+    req.container_name = "test_container";
+
+    // Expect status update to "Error creating container"
+    EXPECT_CALL(*db_handler, UpdateField(StrEq("test_container"), StrEq("status"), StrEq("Error restarting container")));
+
+    FailingService test_service(*db_handler);
     auto result = test_service.HandleRequest(req);
     EXPECT_EQ(result["status"], "error");
     EXPECT_EQ(result["container"], "test_container");
 }
 
 TEST_F(ContainerServiceHandlerTest, HandleRequest_RemoveContainer_Success) {
+    class RemoveService : public ContainerServiceHandler {
+    public:
+        using ContainerServiceHandler::ContainerServiceHandler;
+        Status ContainerOperations(const ContainerRequest&) override { return Status::Ok(); }
+    };
+
     ContainerRequest req;
     req.operation = CommandName::RemoveContainer;
     req.container_name = "test_container";
@@ -83,14 +204,28 @@ TEST_F(ContainerServiceHandlerTest, HandleRequest_RemoveContainer_Success) {
     // Expect RemoveKey to be called
     EXPECT_CALL(*db_handler, RemoveKey(StrEq("test_container")));
 
-    class TestService : public ContainerServiceHandler {
-    public:
-        using ContainerServiceHandler::ContainerServiceHandler;
-        Status ContainerOperations(const ContainerRequest&) { return Status::Ok(); }
-    };
-    TestService test_service(*db_handler);
-
+    RemoveService test_service(*db_handler);
     auto result = test_service.HandleRequest(req);
     EXPECT_EQ(result["status"], "success");
+    EXPECT_EQ(result["container"], "test_container");
+}
+
+TEST_F(ContainerServiceHandlerTest, HandleRequest_RemoveContainer_Failure) {
+    class FailingRemoveService : public ContainerServiceHandler {
+    public:
+        using ContainerServiceHandler::ContainerServiceHandler;
+        Status ContainerOperations(const ContainerRequest&) override { return Status::Error(StatusCode::PermissionDenied, "fail"); }
+    };
+
+    ContainerRequest req;
+    req.operation = CommandName::RemoveContainer;
+    req.container_name = "test_container";
+
+    // Expect RemoveKey to be called
+    EXPECT_CALL(*db_handler, UpdateField(StrEq("test_container"), StrEq("status"), StrEq("Error removing container")));
+
+    FailingRemoveService test_service(*db_handler);
+    auto result = test_service.HandleRequest(req);
+    EXPECT_EQ(result["status"], "error");
     EXPECT_EQ(result["container"], "test_container");
 }

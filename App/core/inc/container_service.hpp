@@ -50,7 +50,7 @@ public:
      * @param req The container request containing all necessary details.
      * @return Status indicating the result of the operation.
      */
-    Status ContainerOperations(const ContainerRequest& req);
+    virtual Status ContainerOperations(const ContainerRequest& req);
 
 private:
     IDatabaseHandler& db_; ///< Reference to the injected database handler.
