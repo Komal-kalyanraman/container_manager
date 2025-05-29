@@ -149,7 +149,7 @@ if(ENABLE_PROTOBUF OR ENABLE_GRPC)
 endif()
 
 ####### GTests ########
-SET(GTEST OFF)     # Set ON for building the tests, OFF for not
+SET(GTEST ON)     # Set ON for building the tests, OFF for not
 if(GTEST)
   add_subdirectory(unitTest)
 endif()
