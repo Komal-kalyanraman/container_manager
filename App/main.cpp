@@ -1,17 +1,3 @@
-/**
- * @file main.cpp
- * @brief Entry point for the Container Manager application.
- *
- * This file initializes all core subsystems (logging, database, message queue, MQTT, etc.)
- * and starts all enabled protocol consumers:
- *   - HTTP server (REST API)
- *   - MQTT subscriber
- *   - POSIX Message Queue consumer
- *   - D-Bus consumer (session bus)
- *
- * Protocols and data formats are enabled/disabled via CMake flags.
- */
-
 #include <memory>
 #include <thread>
 #include <vector>
@@ -48,51 +34,103 @@
 #include "inc/dbus_consumer.hpp"
 #endif
 
+/**
+ * @file main.cpp
+ * @brief Entry point for the Container Manager service.
+ *
+ * This file contains the main function for the Container Manager project.
+ * It initializes the selected database backend, sets up the service and protocol handlers,
+ * and starts protocol consumers (REST, MQTT, Message Queue, D-Bus) in separate threads.
+ * The application supports modular protocol and data format selection, pluggable database backends,
+ * and optional AES-GCM encryption. Graceful shutdown is handled via signal handlers.
+ */
+
+/**
+ * @var shutdown_requested
+ * @brief Atomic flag to signal shutdown to all protocol consumers.
+ */
 std::atomic<bool> shutdown_requested{false};
 
 /**
- * @brief Signal handler for graceful shutdown.
- *
- * Sets the shutdown flag and prints a shutdown message.
- * Called when SIGINT or SIGTERM is received.
+ * @brief Signal handler for graceful shutdown (SIGINT/SIGTERM).
+ * @param signum Signal number.
  */
-void SignalHandler(int) {
+void SignalHandler(int signum) {
     shutdown_requested = true;
     std::cout << "Shutdown signal received. Stopping protocol consumers..." << std::endl;
 }
 
 /**
- * @brief Main entry point for the Container Manager application.
- *        Initializes all subsystems, starts protocol consumers, and handles graceful shutdown.
- * @return Exit code.
+ * @brief Main entry point for the Container Manager service.
+ *
+ * Initializes logging, selects the database backend (Redis or Embedded), sets up the service handler,
+ * and starts protocol consumers for REST, MQTT, POSIX Message Queue, and D-Bus (if enabled).
+ * Handles graceful shutdown and joins all protocol threads before exiting.
+ *
+ * @return int Exit code.
  */
 int main() {
-    // Instantiate the database and service handler using dependency injection
+    // Print enabled features at startup
+    std::cout << "==== Container Manager v0.7.0 ====" << std::endl;
+    std::cout << "Features enabled:" << std::endl;
+#if ENABLE_REST
+    std::cout << "  ✓ REST/HTTP Server" << std::endl;
+#endif
+#if ENABLE_MQTT
+    std::cout << "  ✓ MQTT Subscriber" << std::endl;
+#endif
+#if ENABLE_MSGQUEUE
+    std::cout << "  ✓ POSIX Message Queue" << std::endl;
+#endif
+#if ENABLE_DBUS
+    std::cout << "  ✓ D-Bus Consumer" << std::endl;
+#endif
+#if ENABLE_PROTOBUF
+    std::cout << "  ✓ Protobuf Support" << std::endl;
+#else
+    std::cout << "  ✓ JSON Support" << std::endl;
+#endif
+#if ENABLE_REDIS
+    std::cout << "  ✓ Redis Database" << std::endl;
+#else
+    std::cout << "  ✓ Embedded Database" << std::endl;
+#endif
+#if ENABLE_ENCRYPTION
+    std::cout << "  🔒 AES-GCM Encryption: ENABLED" << std::endl;
+#else
+    std::cout << "  🔓 Encryption: DISABLED" << std::endl;
+#endif
+    std::cout << "===================================" << std::endl;
+
+    // Select database backend (Redis or Embedded)
 #if ENABLE_REDIS
     auto db = std::make_unique<RedisDatabaseHandler>();
 #else
     auto db = std::make_unique<EmbeddedDatabaseHandler>();
 #endif
+    
+    // Create the service handler for container operations
     auto service = std::make_unique<ContainerServiceHandler>(*db);
 
-    // Initialize all subsystems (logging, database, message queue, MQTT, etc.)
+    // Initialize project (logging, DB, etc.)
     InitProject(*db);
 
-    // Create the request executor (Protobuf or JSON) with injected dependencies
+    // Select request executor (Protobuf or JSON)
 #if ENABLE_PROTOBUF
     auto executor = std::make_shared<ProtoRequestExecutorHandler>(*db, *service);
 #else
     auto executor = std::make_shared<JsonRequestExecutorHandler>(*db, *service);
 #endif
 
-    // Register signal handler for graceful shutdown
+    // Register signal handlers for graceful shutdown
     std::signal(SIGINT, SignalHandler);
     std::signal(SIGTERM, SignalHandler);
 
+    // Vector to hold protocol consumer threads
     std::vector<std::thread> protocol_threads;
 
+    // Start REST/HTTP server in a separate thread if enabled
 #if ENABLE_REST
-    // Start HTTP server in a separate thread
     auto server_cfg = std::make_unique<ServerConfig>();
     auto server = std::make_unique<HttpServerHandler>(executor, server_cfg->ThreadPoolSize);
     protocol_threads.emplace_back([&server, &server_cfg]() {
@@ -100,8 +138,8 @@ int main() {
     });
 #endif
 
+    // Start MQTT subscriber in a separate thread if enabled
 #if ENABLE_MQTT
-    // Start MQTT subscriber in a separate thread
     auto mqtt_cfg = std::make_unique<MqttConfig>();
     auto mqtt_consumer = std::make_shared<MosquittoMqttSubscriber>(
         mqtt_cfg->BrokerAddress, mqtt_cfg->BrokerPort, mqtt_cfg->Topic, executor);
@@ -110,8 +148,8 @@ int main() {
     });
 #endif
 
+    // Start POSIX Message Queue consumer in a separate thread if enabled
 #if ENABLE_MSGQUEUE
-    // Start POSIX message queue consumer in a separate thread
     auto mq_cfg = std::make_unique<MessageQueueConfig>();
     auto mq_consumer = std::make_shared<MessageQueueConsumer>(*mq_cfg, executor);
     protocol_threads.emplace_back([mq_consumer]() {
@@ -119,8 +157,8 @@ int main() {
     });
 #endif
 
+    // Start D-Bus consumer in a separate thread if enabled
 #if ENABLE_DBUS
-    // Start D-Bus consumer in a separate thread
     auto dbus_cfg = std::make_unique<DbusConfig>();
     auto dbus_consumer = std::make_shared<DBusConsumer>(*dbus_cfg, executor);
     protocol_threads.emplace_back([dbus_consumer]() {
@@ -128,15 +166,12 @@ int main() {
     });
 #endif
 
-    /**
-     * Main thread waits for shutdown signal.
-     * When shutdown is requested, Stop() is called on all protocol consumers.
-     */
+    // Main loop: wait for shutdown signal
     while (!shutdown_requested) {
         std::this_thread::sleep_for(std::chrono::milliseconds(kMainShutdownPollMs));
     }
 
-    // Stop protocol consumers gracefully
+    // Stop all protocol consumers gracefully
 #if ENABLE_REST
     server->Stop();
 #endif
@@ -150,9 +185,11 @@ int main() {
     dbus_consumer->Stop();
 #endif
 
-    // Wait for all protocol threads to finish
+    // Join all protocol threads to ensure clean shutdown
     for (auto& t : protocol_threads) {
-        if (t.joinable()) t.join();
+        if (t.joinable()) {
+            t.join();
+        }
     }
 
     // Shutdown logging and exit

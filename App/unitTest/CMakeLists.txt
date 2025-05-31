@@ -20,6 +20,7 @@ option(ENABLE_DBUS      "Enable D-Bus consumer support" ON)
 option(ENABLE_GRPC      "Enable gRPC protocol support" ON)
 option(ENABLE_PROTOBUF  "Enable Protobuf data format support" ON)
 option(ENABLE_REDIS     "Enable Redis database backend (OFF = use embedded DB)" OFF)
+option(ENABLE_ENCRYPTION "Enable AES-GCM encryption/decryption for OTA payloads" ON)
 
 add_compile_definitions(
     ENABLE_REST=$<BOOL:${ENABLE_REST}>
@@ -60,9 +61,15 @@ if(ENABLE_REDIS)
   include_directories("${HOME_DIR}/cpp_redis/includes")
   link_directories("${HOME_DIR}/cpp_redis/build")
 endif()
+if(ENABLE_ENCRYPTION)
+  find_package(OpenSSL REQUIRED)
+  add_compile_definitions(ENABLE_ENCRYPTION=1)
+endif()
 
 # ---------------- Test Sources ----------------
-file(GLOB TEST_SOURCES "*.cpp")
+set(TEST_SOURCES
+    container_service_test.cpp
+)
 
 add_executable(runUnitTests ${TEST_SOURCES})
 

@@ -14,6 +14,10 @@ flowchart TD
     MQ[POSIX Message Queue Consumer]
     DBUS[D-Bus Consumer]
 
+    %% Security Layer
+    ENCRYPT[🔒 AES-256-GCM<br/>Encryption/Decryption]
+    B64[📝 Base64 Encoding/Decoding]
+
     %% Executor Layer
     JSON[JSON Request Executor]
     PROTO[Protobuf Request Executor]
@@ -45,15 +49,24 @@ flowchart TD
     ClientDBus -- D-Bus --> DBUS
     ClientMQ -- POSIX MQ --> MQ
 
-    %% API to Executor
-    REST -- JSON --> JSON
-    REST -- Proto --> PROTO
-    MQTT -- JSON --> JSON
-    MQTT -- Proto --> PROTO
-    MQ -- JSON --> JSON
-    MQ -- Proto --> PROTO
-    DBUS -- JSON --> JSON
-    DBUS -- Proto --> PROTO
+    %% API to Security
+    REST -- "Encrypted/Binary Payload" --> ENCRYPT
+    MQTT -- "Encrypted/Binary Payload" --> ENCRYPT
+    MQ -- "Encrypted/Binary Payload" --> ENCRYPT
+    DBUS -- "Base64/Encrypted Payload" --> B64
+    B64 -- "Decoded Payload" --> ENCRYPT
+
+    %% Security to Executor
+    ENCRYPT -- "Decrypted Data" --> JSON
+    ENCRYPT -- "Decrypted Data" --> PROTO
+    REST -- "Plain JSON" --> JSON
+    REST -- "Plain Proto" --> PROTO
+    MQTT -- "Plain JSON" --> JSON
+    MQTT -- "Plain Proto" --> PROTO
+    MQ -- "Plain JSON" --> JSON
+    MQ -- "Plain Proto" --> PROTO
+    DBUS -- "Plain JSON" --> JSON
+    DBUS -- "Plain Proto" --> PROTO
 
     %% Executor to Core
     JSON -- Validated Request --> SERVICE
@@ -97,20 +110,34 @@ DBUS[D-Bus Consumer]
 GRPC[GRPC Server planned]
 end
 
+subgraph SecurityLayer
+ENCRYPT[🔒 AES-256-GCM Encryption/Decryption]
+B64[📝 Base64 Encoding/Decoding]
+end
+
 subgraph ExecutorLayer
 JSON[JSON Request Executor]
 PROTO[Protobuf Request Executor]
 end
 
-REST -- JSON --> JSON
-REST -- Proto --> PROTO
-MQTT -- JSON --> JSON
-MQTT -- Proto --> PROTO
-MQ -- JSON --> JSON
-MQ -- Proto --> PROTO
-DBUS -- JSON --> JSON
-DBUS -- Proto --> PROTO
-GRPC -- Proto --> PROTO
+REST -- "Encrypted/Binary" --> ENCRYPT
+MQTT -- "Encrypted/Binary" --> ENCRYPT
+MQ -- "Encrypted/Binary" --> ENCRYPT
+DBUS -- "Base64/Encrypted" --> B64
+B64 -- "Decoded" --> ENCRYPT
+
+ENCRYPT -- "Decrypted JSON" --> JSON
+ENCRYPT -- "Decrypted Proto" --> PROTO
+
+REST -- "Plain JSON" --> JSON
+REST -- "Plain Proto" --> PROTO
+MQTT -- "Plain JSON" --> JSON
+MQTT -- "Plain Proto" --> PROTO
+MQ -- "Plain JSON" --> JSON
+MQ -- "Plain Proto" --> PROTO
+DBUS -- "Plain JSON" --> JSON
+DBUS -- "Plain Proto" --> PROTO
+GRPC -- "Proto" --> PROTO
 ```
 
 ### Executor, Core, and Runtime Layers
@@ -166,6 +193,7 @@ DBIF -- Embedded API --> EMBEDDED
 sequenceDiagram
     participant Client
     participant REST
+    participant ENCRYPT as 🔒 AES-GCM
     participant JSONExec
     participant Service
     participant DockerCmd
@@ -173,8 +201,9 @@ sequenceDiagram
     participant Redis
     participant Embedded
 
-    Client->>REST: POST /execute (JSON)
-    REST->>JSONExec: Forward payload
+    Client->>REST: POST /execute (Encrypted JSON)
+    REST->>ENCRYPT: Decrypt payload (AES-256-GCM)
+    ENCRYPT->>JSONExec: Decrypted JSON
     JSONExec->>Service: Validated request
     Service->>DockerCmd: Dispatch create command
     DockerCmd->>DBIF: Store metadata
@@ -195,38 +224,56 @@ sequenceDiagram
 
 ```mermaid
 graph TD
-    CM[Container Manager Service]
-    Redis[(Redis DB)]
-    Embedded[(Embedded DB)]
-    Docker[(Docker Daemon)]
-    Podman[(Podman Daemon)]
-    MQTTB[(MQTT Broker)]
+    %% Clients and Brokers
     Client1[REST Client]
     Client2[MQTT Client]
     Client3[DBus Client]
     Client4[POSIX MQ Client]
+    MQTTB[(MQTT Broker)]
+
+    %% Security/Decoding Modules
+    B64[📝 Base64 Decoding]
+    ENCRYPT[🔒 AES-256-GCM Decryption]
+
+    %% Main Service
+    CM[Container Manager Service]
+
+    %% Databases
+    Redis[(Redis DB)]
+    Embedded[(Embedded DB)]
+
+    %% Docker/Podman Daemons and APIs
+    Docker[(Docker Daemon)]
+    Podman[(Podman Daemon)]
     DockerAPI[Docker API]
     DockerCLI[Docker CLI]
     PodmanAPI[Podman API]
     PodmanCLI[Podman CLI]
 
-    Client1-->|HTTP|CM
-    Client2-->|MQTT|MQTTB-->|MQTT|CM
-    Client3-->|D-Bus|CM
-    Client4-->|POSIX MQ|CM
+    %% Client to Service (with security modules)
+    Client1 -->|HTTP| ENCRYPT
+    Client2 -->|MQTT| MQTTB
+    MQTTB -->|MQTT| ENCRYPT
+    Client3 -->|D-Bus| B64
+    B64 -->|Decoded| ENCRYPT
+    Client4 -->|POSIX MQ| ENCRYPT
 
-    CM-->|Redis API|Redis
-    CM-->|Embedded API|Embedded
+    %% Decryption to Main Service
+    ENCRYPT -->|Decrypted Payload| CM
+
+    %% Database connections
+    CM -->|Redis API| Redis
+    CM -->|Embedded API| Embedded
 
     %% Docker connections
-    CM-->|Docker API|DockerAPI
-    CM-->|Docker CLI|DockerCLI
-    DockerAPI-->|Unix Socket/API|Docker
-    DockerCLI-->|CLI|Docker
+    CM -->|Docker API| DockerAPI
+    CM -->|Docker CLI| DockerCLI
+    DockerAPI -->|Unix Socket/API| Docker
+    DockerCLI -->|CLI| Docker
 
     %% Podman connections
-    CM-->|Podman API|PodmanAPI
-    CM-->|Podman CLI|PodmanCLI
-    PodmanAPI-->|Unix Socket/API|Podman
-    PodmanCLI-->|CLI|Podman
+    CM -->|Podman API| PodmanAPI
+    CM -->|Podman CLI| PodmanCLI
+    PodmanAPI -->|Unix Socket/API| Podman
+    PodmanCLI -->|CLI| Podman
 ```

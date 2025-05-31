@@ -1,35 +1,27 @@
-"""
-container_creator_ui.py
-
-A Tkinter-based GUI for generating and sending container management requests to the Container Manager C++ backend.
-Users can select between REST, MQTT, Message Queue, and D-Bus protocols, fill in container parameters, and send requests directly to the backend.
-Supports sending data as JSON or Protobuf.
-
-Features:
-- Select protocol (REST, MQTT, MessageQueue, DBus)
-- Select data format (JSON, Proto)
-- Fill in container parameters (runtime, operation, resources, etc.)
-- Send requests via REST, MQTT, POSIX Message Queue, or D-Bus
-
-Usage:
-    This class is instantiated and run from container_creator_app.py.
-"""
-
 import os
 import tkinter as tk
 from tkinter import ttk, messagebox
-from container_creator_logic import build_json, build_proto
+from container_creator_logic import build_json, build_proto, encrypt_payload
 import requests
 import json
 import paho.mqtt.publish as publish
 import posix_ipc
 import dbus
+import base64
 
 class ContainerCreatorUI:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Container Creator")
+    """
+    Main UI class for the Container Creator application.
+    Provides fields for protocol, data format, runtime, operation, and container parameters.
+    Handles sending requests to the backend using the selected protocol and format.
+    """
 
+    def __init__(self, root):
+        """
+        Initialize the UI components and layout.
+        """
+        self.root = root
+        self.root.title("Container Creator - Container Manager v0.7.0")
         # Protocol selection
         ttk.Label(root, text="Protocol:").grid(row=0, column=0, sticky="w")
         protocol_options = ["REST", "MQTT", "MessageQueue", "DBus"]
@@ -44,10 +36,10 @@ class ContainerCreatorUI:
         self.format_menu = ttk.Combobox(root, textvariable=self.format_var, values=format_options, state="readonly")
         self.format_menu.grid(row=0, column=3, sticky="ew")
 
-        # Runtime selection
+        # Container runtime selection
         ttk.Label(root, text="Container Runtime:").grid(row=1, column=0, sticky="w")
         self.runtime_var = tk.StringVar(value="docker")
-        runtime_options = ["docker", "podman", "docker-api", "podman-api", "bluechi"]
+        runtime_options = ["docker", "podman", "docker-api", "podman-api"]
         self.runtime_menu = ttk.Combobox(root, textvariable=self.runtime_var, values=runtime_options, state="readonly")
         self.runtime_menu.grid(row=1, column=1, sticky="ew")
 
@@ -58,7 +50,7 @@ class ContainerCreatorUI:
         self.operation_menu = ttk.Combobox(root, textvariable=self.operation_var, values=operation_options, state="readonly")
         self.operation_menu.grid(row=1, column=3, sticky="ew")
 
-        # Resource limits
+        # Container parameters
         ttk.Label(root, text="CPUs:").grid(row=2, column=0, sticky="w")
         self.cpus_entry = ttk.Entry(root)
         self.cpus_entry.insert(0, "0.5")
@@ -92,13 +84,13 @@ class ContainerCreatorUI:
         self.name_entry.insert(0, "my_nginx")
         self.name_entry.grid(row=7, column=1, sticky="ew")
 
-        # Server port field (for REST)
+        # REST/HTTP server port
         ttk.Label(root, text="Server Port:").grid(row=8, column=0, sticky="w")
         self.port_entry = ttk.Entry(root)
         self.port_entry.insert(0, "5000")
         self.port_entry.grid(row=8, column=1, sticky="ew")
 
-        # MQTT broker and topic fields (for MQTT)
+        # MQTT broker settings
         ttk.Label(root, text="MQTT Broker:").grid(row=9, column=0, sticky="w")
         self.mqtt_broker_entry = ttk.Entry(root)
         self.mqtt_broker_entry.insert(0, "localhost")
@@ -114,13 +106,13 @@ class ContainerCreatorUI:
         self.mqtt_topic_entry.insert(0, "container/execute")
         self.mqtt_topic_entry.grid(row=11, column=1, sticky="ew")
 
-        # Message Queue name field (for MessageQueue)
+        # Message Queue settings
         ttk.Label(root, text="Message Queue Name:").grid(row=12, column=0, sticky="w")
         self.mq_name_entry = ttk.Entry(root)
         self.mq_name_entry.insert(0, "/container_manager_queue")
         self.mq_name_entry.grid(row=12, column=1, sticky="ew")
 
-        # D-Bus info fields
+        # D-Bus settings
         ttk.Label(root, text="D-Bus Bus Name:").grid(row=13, column=0, sticky="w")
         self.dbus_bus_name_entry = ttk.Entry(root)
         self.dbus_bus_name_entry.insert(0, "org.container.manager")
@@ -135,14 +127,21 @@ class ContainerCreatorUI:
         self.dbus_interface_entry = ttk.Entry(root)
         self.dbus_interface_entry.insert(0, "org.container.manager")
         self.dbus_interface_entry.grid(row=15, column=1, sticky="ew")
-
+        # Encryption option
+        self.encrypt_var = tk.BooleanVar(value=False)
+        encrypt_checkbox = tk.Checkbutton(root, text="Encrypt Payload (AES-GCM)", variable=self.encrypt_var)
+        encrypt_checkbox.grid(row=16, column=1, sticky="w")
         # Send button
-        self.send_btn = ttk.Button(root, text="Send", command=self.send_request)
-        self.send_btn.grid(row=16, column=0, pady=10, sticky="w")
-
+        self.send_btn = ttk.Button(root, text="Send Request", command=self.send_request)
+        self.send_btn.grid(row=17, column=0, pady=10, sticky="w")
+        
         root.columnconfigure(1, weight=1)
 
     def build_payload(self):
+        """
+        Build the payload (JSON dict or Protobuf bytes) based on user input and selected format.
+        Handles runtime-specific memory formatting.
+        """
         runtime = self.runtime_var.get()
         memory = self.memory_entry.get().strip()
 
@@ -172,10 +171,20 @@ class ContainerCreatorUI:
             return build_json(**args)
 
     def send_request(self):
+        """
+        Send the built payload to the backend using the selected protocol.
+        Handles encryption, encoding, and error reporting for each protocol.
+        """
         protocol = self.protocol_var.get()
         data_format = self.format_var.get()
         payload = self.build_payload()
-
+        encrypt = self.encrypt_var.get()
+        if data_format == "Proto":
+            payload_bytes = payload
+        else:
+            payload_bytes = json.dumps(payload).encode("utf-8")
+        if encrypt:
+            payload_bytes = encrypt_payload(payload_bytes)
         if protocol == "REST":
             port = self.port_entry.get().strip()
             if not port.isdigit():
@@ -183,18 +192,17 @@ class ContainerCreatorUI:
                 return
             port = int(port)
             try:
-                if data_format == "Proto":
+                if data_format == "Proto" or encrypt:
                     headers = {"Content-Type": "application/octet-stream"}
-                    response = requests.post(f"http://localhost:{port}/execute", data=payload, headers=headers)
+                    response = requests.post(f"http://localhost:{port}/execute", data=payload_bytes, headers=headers)
                 else:
                     response = requests.post(f"http://localhost:{port}/execute", json=payload)
                 if response.status_code == 200:
-                    messagebox.showinfo("Sent", f"{data_format} sent to server on port {port}")
+                    messagebox.showinfo("Success", f"{data_format} request sent successfully to port {port}")
                 else:
                     messagebox.showerror("Error", f"Server error: {response.text}")
             except Exception as e:
-                messagebox.showerror("Error", f"Failed to send: {e}")
-
+                messagebox.showerror("Error", f"Failed to send REST request: {e}")
         elif protocol == "MQTT":
             broker = self.mqtt_broker_entry.get().strip()
             mqtt_port = self.mqtt_port_entry.get().strip()
@@ -204,24 +212,13 @@ class ContainerCreatorUI:
                 return
             mqtt_port = int(mqtt_port)
             try:
-                if data_format == "Proto":
-                    publish.single(
-                        topic,
-                        payload=payload,
-                        hostname=broker,
-                        port=mqtt_port
-                    )
+                if data_format == "Proto" or encrypt:
+                    publish.single(topic, payload=payload_bytes, hostname=broker, port=mqtt_port)
                 else:
-                    publish.single(
-                        topic,
-                        payload=json.dumps(payload),
-                        hostname=broker,
-                        port=mqtt_port
-                    )
-                messagebox.showinfo("Sent", f"{data_format} sent to MQTT broker {broker}:{mqtt_port} on topic '{topic}'")
+                    publish.single(topic, payload=json.dumps(payload), hostname=broker, port=mqtt_port)
+                messagebox.showinfo("Success", f"{data_format} message published to {broker}:{mqtt_port} on topic '{topic}'")
             except Exception as e:
                 messagebox.showerror("Error", f"Failed to send MQTT message: {e}")
-
         elif protocol == "MessageQueue":
             mq_name = self.mq_name_entry.get().strip()
             if not mq_name:
@@ -229,14 +226,13 @@ class ContainerCreatorUI:
                 return
             try:
                 mq = posix_ipc.MessageQueue(mq_name, posix_ipc.O_CREAT)
-                if data_format == "Proto":
-                    mq.send(payload)
+                if data_format == "Proto" or encrypt:
+                    mq.send(payload_bytes)
                 else:
                     mq.send(json.dumps(payload))
-                messagebox.showinfo("Sent", f"{data_format} sent to message queue '{mq_name}'")
+                messagebox.showinfo("Success", f"{data_format} message sent to queue '{mq_name}'")
             except Exception as e:
                 messagebox.showerror("Error", f"Failed to send message to queue: {e}")
-
         elif protocol == "DBus":
             bus_name = self.dbus_bus_name_entry.get().strip()
             object_path = self.dbus_object_path_entry.get().strip()
@@ -245,10 +241,12 @@ class ContainerCreatorUI:
                 bus = dbus.SessionBus()
                 proxy = bus.get_object(bus_name, object_path)
                 iface = dbus.Interface(proxy, dbus_interface=interface)
-                if data_format == "Proto":
-                    iface.Execute(payload)
+                if data_format == "Proto" or encrypt:
+                    # D-Bus requires base64-encoded string for binary/encrypted payloads
+                    payload_b64 = base64.b64encode(payload_bytes).decode('utf-8')
+                    iface.Execute(payload_b64)
                 else:
                     iface.Execute(json.dumps(payload))
-                messagebox.showinfo("Sent", f"{data_format} sent via D-Bus to {bus_name}")
+                messagebox.showinfo("Success", f"{data_format} message sent via D-Bus to {bus_name}")
             except Exception as e:
                 messagebox.showerror("Error", f"Failed to send D-Bus message: {e}")
