@@ -1,4 +1,5 @@
 <map id="decrypt_ota_payload" name="decrypt_ota_payload">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,164,32"/>
-<area shape="rect" id="node2" href="$aes__gcm__decrypt_8cpp.html#adac74448236ae767b76ec9f551cee9e2" title=" " alt="" coords="212,5,348,32"/>
+<area shape="rect" id="node1" title="Decrypts an OTA (over&#45;the&#45;air) payload formatted as [IV|TAG|CIPHERTEXT]. Loads the AES key from file ..." alt="" coords="5,31,164,57"/>
+<area shape="rect" id="node2" href="$aes__gcm__decrypt_8cpp.html#adac74448236ae767b76ec9f551cee9e2" title="Decrypts AES&#45;256&#45;GCM encrypted ciphertext." alt="" coords="212,5,348,32"/>
+<area shape="rect" id="node3" href="$aes__gcm__decrypt_8cpp.html#ac3bd08c44501a45d3a1e0129b7b3b046" title="Loads the AES&#45;256 key from a file at runtime. The key file should contain a 64&#45;character hex string (..." alt="" coords="229,56,331,83"/>
 </map>

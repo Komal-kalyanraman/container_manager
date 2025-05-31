@@ -3,22 +3,22 @@
 ## Overview
 
 **Container Manager** is a modular, extensible, and production-ready C++ service for unified container management across Docker, Podman, and other runtimes.  
-It is designed to support multiple communication protocols (REST, MQTT, POSIX Message Queue, D-Bus, gRPC) and data formats (JSON, Protobuf), making it suitable for diverse deployment scenarios and integration needs. The application supports optional end-to-end AES-256-GCM encryption for all incoming protocol payloads, providing confidentiality and integrity for over-the-air (OTA) requests. **The application only decrypts incoming data; it does not encrypt outgoing responses.**
+It is designed to support multiple communication protocols (REST, MQTT, POSIX Message Queue, D-Bus, gRPC (planned)) and data formats (JSON, Protobuf), making it suitable for diverse deployment scenarios and integration needs. The application supports optional end-to-end AES-256-GCM encryption for all incoming protocol payloads, providing confidentiality and integrity for over-the-air (OTA) requests. **The application only decrypts incoming data; it does not encrypt outgoing responses.**
 
 ### System Architecture
 
-<img src="system_architecture.png" alt="System Architecture" width="850"/>
+<img src="system_architecture.png" alt="System Architecture" width="950"/>
 
 ## Folder Structure
 
 ```
 App/
-├── api/        # Protocol handlers (REST, MQTT, MQ, D-Bus, gRPC)
+├── api/        # Protocol handlers (REST, MQTT, MQ, D-Bus)
 ├── core/       # Business logic (service layer, command pattern)
 ├── database/   # Database interface and implementations (embedded, Redis)
 ├── executor/   # Request executors (JSON, Protobuf)
 ├── runtime/    # Command implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.
-├── utils/      # Utilities (thread pool, logging, config, encryption)
+├── utils/      # Utilities (thread pool, logging, config, decryption)
 ├── main.cpp    # Application entry point
 └── third_party/# External dependencies
 ```
@@ -145,7 +145,7 @@ Database selection is controlled via the `ENABLE_REDIS` CMake flag. If not set, 
 ## Data Flow
 
 1. **Request Reception:**  
-   A request arrives via one of the enabled protocols (REST, MQTT, MQ, D-Bus, gRPC).  
+   A request arrives via one of the enabled protocols (REST, MQTT, MQ, D-Bus, gRPC (planned)).  
    If encryption is enabled, the payload may be encrypted.
 
 2. **Deserialization & Decryption:**  

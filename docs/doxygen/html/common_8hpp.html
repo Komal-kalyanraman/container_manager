@@ -105,8 +105,7 @@ Include dependency graph for common.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="common_8hpp__dep__incl.svg" width="100%" height="462"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="common_8hpp__dep__incl.svg" width="100%" height="462"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 </div>
 <p><a href="common_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -201,13 +200,17 @@ Variables</h2></td></tr>
 <tr class="separator:a6bbbab058f7bf283aa1c2b03446b64d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16a27a883973049590f48b7a016dfdf8"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceApiEndpoint.html#a16a27a883973049590f48b7a016dfdf8">ApiEndpoint::Ping</a> = &quot;_ping&quot;</td></tr>
 <tr class="separator:a16a27a883973049590f48b7a016dfdf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbbc8b295949955683c06852a75d017e"><td class="memItemLeft" align="right" valign="top">constexpr unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#afbbc8b295949955683c06852a75d017e">kAesKey</a> [32]</td></tr>
-<tr class="separator:afbbc8b295949955683c06852a75d017e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acee365ec4f7c573a0247925a2254ec87"><td class="memItemLeft" align="right" valign="top">constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#acee365ec4f7c573a0247925a2254ec87">kAesKeyFilePath</a> [] = &quot;../../storage/security/aes_key.txt&quot;</td></tr>
+<tr class="memdesc:acee365ec4f7c573a0247925a2254ec87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default path to the AES-256 key file (hex-encoded, 64 characters).  <a href="common_8hpp.html#acee365ec4f7c573a0247925a2254ec87">More...</a><br /></td></tr>
+<tr class="separator:acee365ec4f7c573a0247925a2254ec87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cff9b75cb0fa5c836c0ce4fca436361"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a2cff9b75cb0fa5c836c0ce4fca436361">kAesKeyLen</a> = 32</td></tr>
+<tr class="memdesc:a2cff9b75cb0fa5c836c0ce4fca436361"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES-256 key length in bytes (32 bytes for AES-256).  <a href="common_8hpp.html#a2cff9b75cb0fa5c836c0ce4fca436361">More...</a><br /></td></tr>
 <tr class="separator:a2cff9b75cb0fa5c836c0ce4fca436361"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a663bc07796580bf3392cc4b722911e96"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a663bc07796580bf3392cc4b722911e96">kAesIvLen</a> = 12</td></tr>
+<tr class="memdesc:a663bc07796580bf3392cc4b722911e96"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES-GCM initialization vector (IV) length in bytes (12 bytes recommended for GCM).  <a href="common_8hpp.html#a663bc07796580bf3392cc4b722911e96">More...</a><br /></td></tr>
 <tr class="separator:a663bc07796580bf3392cc4b722911e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a022b7958f635cfd9b1e07b4a76801510"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a022b7958f635cfd9b1e07b4a76801510">kAesTagLen</a> = 16</td></tr>
+<tr class="memdesc:a022b7958f635cfd9b1e07b4a76801510"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES-GCM authentication tag length in bytes (16 bytes recommended for GCM).  <a href="common_8hpp.html#a022b7958f635cfd9b1e07b4a76801510">More...</a><br /></td></tr>
 <tr class="separator:a022b7958f635cfd9b1e07b4a76801510"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -372,14 +375,16 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>AES-GCM initialization vector (IV) length in bytes (12 bytes recommended for GCM). </p>
+
 <p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00160">160</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="aes__gcm__decrypt_8cpp_source.html#l00048">decrypt_ota_payload()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="aes__gcm__decrypt_8cpp_source.html#l00082">decrypt_ota_payload()</a>.</p>
 
 </div>
 </div>
-<a id="afbbc8b295949955683c06852a75d017e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afbbc8b295949955683c06852a75d017e">&#9670;&nbsp;</a></span>kAesKey</h2>
+<a id="acee365ec4f7c573a0247925a2254ec87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acee365ec4f7c573a0247925a2254ec87">&#9670;&nbsp;</a></span>kAesKeyFilePath</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -388,7 +393,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr unsigned char kAesKey[32]</td>
+          <td class="memname">constexpr char kAesKeyFilePath[] = &quot;../../storage/security/aes_key.txt&quot;</td>
         </tr>
       </table>
   </td>
@@ -397,14 +402,10 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    0x60,0x3d,0xeb,0x10,0x15,0xca,0x71,0xbe,0x2b,0x73,0xae,0xf0,0x85,0x7d,0x77,0x81,</div>
-<div class="line">    0x1f,0x35,0x2c,0x07,0x3b,0x61,0x08,0xd7,0x2d,0x98,0x10,0xa3,0x09,0x14,0xdf,0xf4</div>
-<div class="line">}</div>
-</div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00155">155</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="aes__gcm__decrypt_8cpp_source.html#l00048">decrypt_ota_payload()</a>.</p>
+<p>Default path to the AES-256 key file (hex-encoded, 64 characters). </p>
+
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00154">154</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
 </div>
 </div>
@@ -428,7 +429,9 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00159">159</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p>AES-256 key length in bytes (32 bytes for AES-256). </p>
+
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00157">157</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
 </div>
 </div>
@@ -452,9 +455,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00161">161</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p>AES-GCM authentication tag length in bytes (16 bytes recommended for GCM). </p>
 
-<p class="reference">Referenced by <a class="el" href="aes__gcm__decrypt_8cpp_source.html#l00048">decrypt_ota_payload()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00163">163</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="aes__gcm__decrypt_8cpp_source.html#l00082">decrypt_ota_payload()</a>.</p>
 
 </div>
 </div>

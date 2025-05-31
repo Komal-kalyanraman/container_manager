@@ -12,7 +12,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title=" ">
+<g id="a_node1"><a xlink:title="Decrypts AES&#45;256&#45;GCM encrypted ciphertext.">
 <polygon fill="#bfbfbf" stroke="black" points="354,-30 354,-49 456,-49 456,-30 354,-30"/>
 <text text-anchor="middle" x="405" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00">aes_gcm_decrypt</text>
 </a>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="aes__gcm__decrypt_8cpp.html#aafa6ad411734eeb8c3783999c926ac2b" target="_top" xlink:title=" ">
+<g id="a_node2"><a xlink:href="aes__gcm__decrypt_8cpp.html#aafa6ad411734eeb8c3783999c926ac2b" target="_top" xlink:title="Decrypts an OTA (over&#45;the&#45;air) payload formatted as [IV|TAG|CIPHERTEXT]. Loads the AES key from file ...">
 <polygon fill="white" stroke="black" points="199,-30 199,-49 318,-49 318,-30 199,-30"/>
 <text text-anchor="middle" x="258.5" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00">decrypt_ota_payload</text>
 </a>

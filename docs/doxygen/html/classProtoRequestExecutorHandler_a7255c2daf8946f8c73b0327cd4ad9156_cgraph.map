@@ -1,20 +1,21 @@
 <map id="ProtoRequestExecutorHandler::Execute" name="ProtoRequestExecutorHandler::Execute">
-<area shape="rect" id="node1" title="Receives a serialized protobuf string, deserializes, saves to DB, and returns result as JSON." alt="" coords="5,207,223,248"/>
+<area shape="rect" id="node1" title="Receives a serialized protobuf string, deserializes, saves to DB, and returns result as JSON." alt="" coords="5,211,223,252"/>
 <area shape="rect" id="node2" href="$classcontainermanager_1_1ContainerParameters.html#a1fa02ce02859ee70a41e1b4fe203e412" title=" " alt="" coords="271,5,483,47"/>
-<area shape="rect" id="node3" href="$aes__gcm__decrypt_8hpp.html#aafa6ad411734eeb8c3783999c926ac2b" title=" " alt="" coords="297,71,456,98"/>
-<area shape="rect" id="node5" href="$structStatus.html#ace3b560f6a5f4a2d62a02b6e03700538" title="Returns an error Status with the given code and message." alt="" coords="325,122,428,149"/>
-<area shape="rect" id="node6" href="$classContainerServiceHandler.html#a16f0650a9d5719fc441541a2adc5f29a" title="Handles a container request by dispatching to the appropriate operation. Updates the container status..." alt="" coords="285,173,469,215"/>
-<area shape="rect" id="node15" href="$classcontainermanager_1_1ContainerRequest.html#a28ace998fd1164adc2da2f87d4f45ab0" title=" " alt="" coords="271,239,483,280"/>
-<area shape="rect" id="node16" href="$classcontainermanager_1_1ContainerRequest.html#aa9ca92cdaef7d9ae3358c34fa8a024dd" title=" " alt="" coords="271,304,483,345"/>
-<area shape="rect" id="node17" href="$classcontainermanager_1_1ContainerRequest.html#a83c720592fa42a002f8a88c190cecfa5" title=" " alt="" coords="271,369,483,411"/>
-<area shape="rect" id="node18" href="$classIDatabaseHandler.html#ae77b65ff51207a07704ae8efebac2125" title="Saves a JSON object to the database with the specified key." alt="" coords="273,435,480,462"/>
-<area shape="rect" id="node4" href="$aes__gcm__decrypt_8cpp.html#adac74448236ae767b76ec9f551cee9e2" title=" " alt="" coords="575,63,711,90"/>
-<area shape="rect" id="node7" href="$classContainerServiceHandler.html#a9c527464b3d91168a747a33361994000" title="Performs the specified container operation using the request structure. Invokes the appropriate comma..." alt="" coords="551,115,735,156"/>
-<area shape="rect" id="node12" href="$structStatus.html#a19a4e02345758bf3685dcb14a9678de1" title="Checks if the status represents success." alt="" coords="600,181,687,207"/>
-<area shape="rect" id="node13" href="$classIDatabaseHandler.html#a32aef1bd17b79529d93fadc2d72441e5" title="Removes the JSON object associated with the specified key from the database." alt="" coords="531,231,756,258"/>
-<area shape="rect" id="node14" href="$classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6" title="Updates a specific field in the JSON object stored under the given key." alt="" coords="546,283,741,324"/>
-<area shape="rect" id="node8" href="$classCommandFactory.html#adf4da2f0dbcf9e4018f9afe8bd4a38e9" title="Factory method to create a command based on the container request structure." alt="" coords="804,71,1059,98"/>
-<area shape="rect" id="node9" href="$classInvoker.html#ac01c8216ff7b95532f2970a49198d840" title="Execute the command." alt="" coords="871,122,992,149"/>
-<area shape="rect" id="node11" href="$classInvoker.html#ae9f10a2487afd153bf0da69ae410a0e9" title="Set the command to be executed." alt="" coords="848,173,1015,199"/>
-<area shape="rect" id="node10" href="$classCommand.html#a8d6fcd1baa8fd96ce9b423b66765ab4a" title="Execute the command." alt="" coords="1107,122,1256,149"/>
+<area shape="rect" id="node3" href="$aes__gcm__decrypt_8hpp.html#aafa6ad411734eeb8c3783999c926ac2b" title="Decrypts an OTA (over&#45;the&#45;air) payload formatted as [IV|TAG|CIPHERTEXT]. Loads the AES key from file ..." alt="" coords="297,71,456,98"/>
+<area shape="rect" id="node6" href="$structStatus.html#ace3b560f6a5f4a2d62a02b6e03700538" title="Returns an error Status with the given code and message." alt="" coords="325,126,428,153"/>
+<area shape="rect" id="node7" href="$classContainerServiceHandler.html#a16f0650a9d5719fc441541a2adc5f29a" title="Handles a container request by dispatching to the appropriate operation. Updates the container status..." alt="" coords="285,177,469,219"/>
+<area shape="rect" id="node16" href="$classcontainermanager_1_1ContainerRequest.html#a28ace998fd1164adc2da2f87d4f45ab0" title=" " alt="" coords="271,243,483,284"/>
+<area shape="rect" id="node17" href="$classcontainermanager_1_1ContainerRequest.html#aa9ca92cdaef7d9ae3358c34fa8a024dd" title=" " alt="" coords="271,308,483,349"/>
+<area shape="rect" id="node18" href="$classcontainermanager_1_1ContainerRequest.html#a83c720592fa42a002f8a88c190cecfa5" title=" " alt="" coords="271,373,483,415"/>
+<area shape="rect" id="node19" href="$classIDatabaseHandler.html#ae77b65ff51207a07704ae8efebac2125" title="Saves a JSON object to the database with the specified key." alt="" coords="273,439,480,466"/>
+<area shape="rect" id="node4" href="$aes__gcm__decrypt_8cpp.html#adac74448236ae767b76ec9f551cee9e2" title="Decrypts AES&#45;256&#45;GCM encrypted ciphertext." alt="" coords="575,19,711,46"/>
+<area shape="rect" id="node5" href="$aes__gcm__decrypt_8cpp.html#ac3bd08c44501a45d3a1e0129b7b3b046" title="Loads the AES&#45;256 key from a file at runtime. The key file should contain a 64&#45;character hex string (..." alt="" coords="593,70,694,97"/>
+<area shape="rect" id="node8" href="$classContainerServiceHandler.html#a9c527464b3d91168a747a33361994000" title="Performs the specified container operation using the request structure. Invokes the appropriate comma..." alt="" coords="551,121,735,163"/>
+<area shape="rect" id="node13" href="$structStatus.html#a19a4e02345758bf3685dcb14a9678de1" title="Checks if the status represents success." alt="" coords="600,187,687,214"/>
+<area shape="rect" id="node14" href="$classIDatabaseHandler.html#a32aef1bd17b79529d93fadc2d72441e5" title="Removes the JSON object associated with the specified key from the database." alt="" coords="531,238,756,265"/>
+<area shape="rect" id="node15" href="$classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6" title="Updates a specific field in the JSON object stored under the given key." alt="" coords="546,289,741,331"/>
+<area shape="rect" id="node9" href="$classCommandFactory.html#adf4da2f0dbcf9e4018f9afe8bd4a38e9" title="Factory method to create a command based on the container request structure." alt="" coords="804,78,1059,105"/>
+<area shape="rect" id="node10" href="$classInvoker.html#ac01c8216ff7b95532f2970a49198d840" title="Execute the command." alt="" coords="871,129,992,155"/>
+<area shape="rect" id="node12" href="$classInvoker.html#ae9f10a2487afd153bf0da69ae410a0e9" title="Set the command to be executed." alt="" coords="848,179,1015,206"/>
+<area shape="rect" id="node11" href="$classCommand.html#a8d6fcd1baa8fd96ce9b423b66765ab4a" title="Execute the command." alt="" coords="1107,129,1256,155"/>
 </map>

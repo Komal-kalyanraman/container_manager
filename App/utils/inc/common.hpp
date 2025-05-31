@@ -150,12 +150,14 @@ inline std::string ComposeContainerApiEndpoint(
            std::string(containerName) + std::string(action);
 }
 
-// ...existing code...
-// AES-256-GCM key (32 bytes) and IV (12 bytes) for demo only. DO NOT use hardcoded keys in production!
-inline constexpr unsigned char kAesKey[32] = {
-    0x60,0x3d,0xeb,0x10,0x15,0xca,0x71,0xbe,0x2b,0x73,0xae,0xf0,0x85,0x7d,0x77,0x81,
-    0x1f,0x35,0x2c,0x07,0x3b,0x61,0x08,0xd7,0x2d,0x98,0x10,0xa3,0x09,0x14,0xdf,0xf4
-};
+/// @brief Default path to the AES-256 key file (hex-encoded, 64 characters).
+inline constexpr char kAesKeyFilePath[] = "../../storage/security/aes_key.txt";
+
+/// @brief AES-256 key length in bytes (32 bytes for AES-256).
 inline constexpr size_t kAesKeyLen = 32;
+
+/// @brief AES-GCM initialization vector (IV) length in bytes (12 bytes recommended for GCM).
 inline constexpr size_t kAesIvLen = 12;
+
+/// @brief AES-GCM authentication tag length in bytes (16 bytes recommended for GCM).
 inline constexpr size_t kAesTagLen = 16;

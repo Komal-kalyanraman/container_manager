@@ -60,6 +60,10 @@
 - **Open Source:**  
   Licensed under the MIT License.
 
+## Architecture Documentation
+
+For a comprehensive overview of the system design, security, and extensibility, please see the [Architecture Documentation](docs/architecture/architecture.md).
+
 ## Security Architecture
 
 **Container Manager v0.7.0** introduces a robust security layer:
@@ -69,8 +73,9 @@
   - D-Bus and MQTT clients use Base64 encoding for binary/encrypted payloads.
   - The backend auto-detects and decrypts encrypted payloads, regardless of protocol.
 - **Key management:**
-  - The AES key is defined in `utils/inc/common.hpp` for development.
-  - For production, use environment variables or a secure key vault.
+  - The AES key is stored in `storage/security/aes_key.txt` as a 64-character hex string (32 bytes).
+  - The backend loads the key at runtime from this file.
+  - For production, you may use environment variables or a secure key vault for even better security.
 
 **Example: Encrypted JSON Request (Python)**
 
@@ -80,10 +85,12 @@ from Crypto.Random import get_random_bytes
 import requests
 import json
 
-AES_KEY = bytes([
-    0x60,0x3d,0xeb,0x10,0x15,0xca,0x71,0xbe,0x2b,0x73,0xae,0xf0,0x85,0x7d,0x77,0x81,
-    0x1f,0x35,0x2c,0x07,0x3b,0x61,0x08,0xd7,0x2d,0x98,0x10,0xa3,0x09,0x14,0xdf,0xf4
-])
+def load_aes_key(path="../storage/security/aes_key.txt"):
+    with open(path, "r") as f:
+        key_hex = f.read().strip()
+    return bytes.fromhex(key_hex)
+
+AES_KEY = load_aes_key()
 
 def encrypt_payload(data_bytes):
     iv = get_random_bytes(12)
