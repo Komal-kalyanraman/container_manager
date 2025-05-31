@@ -36,6 +36,7 @@ var hierarchy =
     [ "HttpServerHandler", "classHttpServerHandler.html", null ],
     [ "IDatabaseHandler", "classIDatabaseHandler.html", [
       [ "EmbeddedDatabaseHandler", "classEmbeddedDatabaseHandler.html", null ],
+      [ "MockDatabaseHandler", "classMockDatabaseHandler.html", null ],
       [ "RedisDatabaseHandler", "classRedisDatabaseHandler.html", null ]
     ] ],
     [ "Invoker", "classInvoker.html", null ],
@@ -58,5 +59,8 @@ var hierarchy =
     [ "protobuf_container_5fmanager_2eproto::StaticDescriptorInitializer", "structprotobuf__container__5fmanager__2eproto_1_1StaticDescriptorInitializer.html", null ],
     [ "Status", "structStatus.html", null ],
     [ "protobuf_container_5fmanager_2eproto::TableStruct", "structprotobuf__container__5fmanager__2eproto_1_1TableStruct.html", null ],
+    [ "Test", null, [
+      [ "ContainerServiceHandlerTest", "classContainerServiceHandlerTest.html", null ]
+    ] ],
     [ "ThreadPool", "classThreadPool.html", null ]
 ];

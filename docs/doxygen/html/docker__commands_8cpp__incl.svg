@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 732;
+var viewWidth = 706;
 var viewHeight = 263;
 var sectionId = 'dynsection-0';
 </script>
@@ -54,7 +54,7 @@ var sectionId = 'dynsection-0';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>runtime/src/docker_commands.cpp</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-259 727.58,-259 727.58,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-259 701.58,-259 701.58,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
@@ -129,16 +129,16 @@ var sectionId = 'dynsection-0';
 <g id="node13" class="node">
 <title>Node13</title>
 <g id="a_node13"><a xlink:href="logging_8hpp.html" target="_top" xlink:title="Logging macros and configuration for the Container Manager.">
-<polygon fill="white" stroke="black" points="587.08,-168.5 587.08,-187.5 678.08,-187.5 678.08,-168.5 587.08,-168.5"/>
-<text text-anchor="middle" x="632.58" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">inc/logging.hpp</text>
+<polygon fill="white" stroke="black" points="580.08,-168.5 580.08,-187.5 671.08,-187.5 671.08,-168.5 580.08,-168.5"/>
+<text text-anchor="middle" x="625.58" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">inc/logging.hpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node13 -->
 <g id="edge17" class="edge">
 <title>Node1&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M403.15,-227.24C454.57,-216.43 531.66,-200.22 582.04,-189.63"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="582.99,-193 592.06,-187.52 581.55,-186.15 582.99,-193"/>
+<path fill="none" stroke="midnightblue" d="M403.13,-226.96C453.18,-216.17 527.32,-200.18 576.04,-189.68"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="576.99,-193.06 586.03,-187.53 575.51,-186.21 576.99,-193.06"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
@@ -279,16 +279,16 @@ var sectionId = 'dynsection-0';
 <g id="node14" class="node">
 <title>Node14</title>
 <g id="a_node14"><a xlink:title=" ">
-<polygon fill="white" stroke="#bfbfbf" points="637.58,-112.5 637.58,-131.5 723.58,-131.5 723.58,-112.5 637.58,-112.5"/>
-<text text-anchor="middle" x="680.58" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">glog/logging.h</text>
+<polygon fill="white" stroke="#bfbfbf" points="637.58,-112.5 637.58,-131.5 697.58,-131.5 697.58,-112.5 637.58,-112.5"/>
+<text text-anchor="middle" x="667.58" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">iostream</text>
 </a>
 </g>
 </g>
 <!-- Node13&#45;&gt;Node14 -->
 <g id="edge18" class="edge">
 <title>Node13&#45;&gt;Node14</title>
-<path fill="none" stroke="midnightblue" d="M640.51,-168.08C647.43,-160.3 657.65,-148.8 666.04,-139.37"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="668.78,-141.55 672.81,-131.75 663.55,-136.9 668.78,-141.55"/>
+<path fill="none" stroke="midnightblue" d="M632.52,-168.08C638.51,-160.38 647.34,-149.03 654.63,-139.65"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="657.4,-141.79 660.78,-131.75 651.88,-137.5 657.4,-141.79"/>
 </g>
 </g>
 </svg>

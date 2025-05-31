@@ -10,7 +10,7 @@ var indexSectionsWithContent =
   7: "s",
   8: "ainpstu",
   9: ":s",
-  10: "_acdehps",
+  10: "_acdhps",
   11: "c"
 };
 

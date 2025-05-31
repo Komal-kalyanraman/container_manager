@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="main_8cpp.html" target="_top" xlink:title="Entry point for the Container Manager application.">
+<g id="a_node3"><a xlink:href="main_8cpp.html" target="_top" xlink:title="Entry point for the Container Manager service.">
 <polygon fill="white" stroke="black" points="152,-6 152,-25 214,-25 214,-6 152,-6"/>
 <text text-anchor="middle" x="183" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">main.cpp</text>
 </a>

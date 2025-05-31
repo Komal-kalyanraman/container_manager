@@ -1,29 +1,30 @@
 <map id="executor/inc/container_request.hpp" name="executor/inc/container_request.hpp">
-<area shape="rect" id="node1" title="Data structure for representing a container operation request." alt="" coords="522,5,689,47"/>
-<area shape="rect" id="node2" href="$container__service_8hpp.html" title="Declares the ContainerServiceHandler class for business logic related to containers." alt="" coords="1059,95,1197,136"/>
+<area shape="rect" id="node1" title="Data structure for representing a container operation request." alt="" coords="1298,5,1465,47"/>
+<area shape="rect" id="node2" href="$container__service_8hpp.html" title="Declares the ContainerServiceHandler class for business logic related to containers." alt="" coords="527,95,665,136"/>
 <area shape="rect" id="node3" href="$container__service_8cpp.html" title="Implements the ContainerServiceHandler class for business logic related to containers." alt="" coords="5,184,144,225"/>
-<area shape="rect" id="node9" href="$request__executor_8hpp.html" title="Declares the abstract RequestExecutor interface for executing requests." alt="" coords="1631,95,1785,136"/>
-<area shape="rect" id="node18" href="$command__factory_8hpp.html" title="Declares the CommandFactory class for creating command objects based on container requests." alt="" coords="112,95,277,136"/>
-<area shape="rect" id="node19" href="$command__factory_8cpp.html" title="Implements the CommandFactory class for creating command objects based on container requests." alt="" coords="347,184,512,225"/>
-<area shape="rect" id="node20" href="$docker__api__commands_8hpp.html" title="Declares command classes for managing containers via the Docker HTTP API over a Unix socket." alt="" coords="302,95,458,136"/>
-<area shape="rect" id="node22" href="$docker__commands_8hpp.html" title="Declares Docker command classes for container operations." alt="" coords="534,95,677,136"/>
-<area shape="rect" id="node24" href="$podman__api__commands_8hpp.html" title="Declares command classes for managing containers via the Podman HTTP API over a Unix socket." alt="" coords="701,95,857,136"/>
-<area shape="rect" id="node26" href="$podman__commands_8hpp.html" title="Declares Podman command classes for container operations." alt="" coords="881,95,1034,136"/>
-<area shape="rect" id="node4" href="$json__request__executor_8hpp.html" title="Declares the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="1163,184,1352,225"/>
-<area shape="rect" id="node5" href="$json__request__executor_8cpp.html" title="Implements the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="1152,273,1341,315"/>
-<area shape="rect" id="node6" href="$main_8cpp.html" title="Entry point for the Container Manager application." alt="" coords="1040,281,1123,307"/>
-<area shape="rect" id="node7" href="$protobuf__request__executor_8hpp.html" title="Declares the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests." alt="" coords="1427,184,1597,225"/>
-<area shape="rect" id="node8" href="$protobuf__request__executor_8cpp.html" title="Implements the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests." alt="" coords="1397,273,1566,315"/>
-<area shape="rect" id="node10" href="$dbus__consumer_8hpp.html" title="Defines the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus." alt="" coords="2014,191,2213,218"/>
-<area shape="rect" id="node12" href="$http__server_8hpp.html" title="Defines the HttpServerHandler class for handling HTTP requests." alt="" coords="2237,191,2408,218"/>
-<area shape="rect" id="node14" href="$mosquitto__mqtt__subscriber_8hpp.html" title="Declares the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto." alt="" coords="1621,184,1795,225"/>
-<area shape="rect" id="node16" href="$posix__message__queue__consumer_8hpp.html" title="Declares the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="1819,184,1989,225"/>
-<area shape="rect" id="node11" href="$dbus__consumer_8cpp.html" title="Implements the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus." alt="" coords="2014,281,2213,307"/>
-<area shape="rect" id="node13" href="$http__server_8cpp.html" title="Implements the HttpServerHandler class for handling HTTP requests." alt="" coords="2237,281,2408,307"/>
-<area shape="rect" id="node15" href="$mosquitto__mqtt__subscriber_8cpp.html" title="Implements the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto." alt="" coords="1621,273,1795,315"/>
-<area shape="rect" id="node17" href="$posix__message__queue__consumer_8cpp.html" title="Implements the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="1819,273,1989,315"/>
-<area shape="rect" id="node21" href="$docker__api__commands_8cpp.html" title="Implements Docker API command classes for managing containers via the Docker HTTP API over a Unix soc..." alt="" coords="168,184,323,225"/>
-<area shape="rect" id="node23" href="$docker__commands_8cpp.html" title="Implements Docker command classes for container operations." alt="" coords="537,184,679,225"/>
-<area shape="rect" id="node25" href="$podman__api__commands_8cpp.html" title="Implements Podman API command classes for managing containers via the Podman HTTP API over a Unix soc..." alt="" coords="704,184,859,225"/>
-<area shape="rect" id="node27" href="$podman__commands_8cpp.html" title="Implements Podman command classes for container operations." alt="" coords="883,184,1037,225"/>
+<area shape="rect" id="node9" href="$container__service__test_8cpp.html" title=" " alt="" coords="168,184,307,225"/>
+<area shape="rect" id="node10" href="$request__executor_8hpp.html" title="Declares the abstract RequestExecutor interface for executing requests." alt="" coords="1123,95,1277,136"/>
+<area shape="rect" id="node19" href="$command__factory_8hpp.html" title="Declares the CommandFactory class for creating command objects based on container requests." alt="" coords="217,95,383,136"/>
+<area shape="rect" id="node20" href="$command__factory_8cpp.html" title="Implements the CommandFactory class for creating command objects based on container requests." alt="" coords="1880,184,2045,225"/>
+<area shape="rect" id="node21" href="$docker__api__commands_8hpp.html" title="Declares command classes for managing containers via the Docker HTTP API over a Unix socket." alt="" coords="1573,95,1729,136"/>
+<area shape="rect" id="node23" href="$docker__commands_8hpp.html" title="Declares Docker command classes for container operations." alt="" coords="1805,95,1947,136"/>
+<area shape="rect" id="node25" href="$podman__api__commands_8hpp.html" title="Declares command classes for managing containers via the Podman HTTP API over a Unix socket." alt="" coords="1971,95,2127,136"/>
+<area shape="rect" id="node27" href="$podman__commands_8hpp.html" title="Declares Podman command classes for container operations." alt="" coords="2151,95,2305,136"/>
+<area shape="rect" id="node4" href="$json__request__executor_8hpp.html" title="Declares the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="381,184,571,225"/>
+<area shape="rect" id="node5" href="$json__request__executor_8cpp.html" title="JSON request executor for Container Manager." alt="" coords="301,273,491,315"/>
+<area shape="rect" id="node6" href="$main_8cpp.html" title="Entry point for the Container Manager service." alt="" coords="516,281,599,307"/>
+<area shape="rect" id="node7" href="$protobuf__request__executor_8hpp.html" title="Declares the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests." alt="" coords="696,184,867,225"/>
+<area shape="rect" id="node8" href="$protobuf__request__executor_8cpp.html" title="Protocol Buffers request executor for Container Manager." alt="" coords="625,273,794,315"/>
+<area shape="rect" id="node11" href="$dbus__consumer_8hpp.html" title="Defines the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus." alt="" coords="891,191,1090,218"/>
+<area shape="rect" id="node13" href="$http__server_8hpp.html" title="Defines the HttpServerHandler class for handling HTTP requests." alt="" coords="1115,191,1285,218"/>
+<area shape="rect" id="node15" href="$mosquitto__mqtt__subscriber_8hpp.html" title="Declares the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto." alt="" coords="1309,184,1483,225"/>
+<area shape="rect" id="node17" href="$posix__message__queue__consumer_8hpp.html" title="Declares the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="1507,184,1677,225"/>
+<area shape="rect" id="node12" href="$dbus__consumer_8cpp.html" title="D&#45;Bus message consumer implementation for Container Manager." alt="" coords="891,281,1090,307"/>
+<area shape="rect" id="node14" href="$http__server_8cpp.html" title="Implements the HttpServerHandler class for handling HTTP requests." alt="" coords="1115,281,1285,307"/>
+<area shape="rect" id="node16" href="$mosquitto__mqtt__subscriber_8cpp.html" title="Implements the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto." alt="" coords="1309,273,1483,315"/>
+<area shape="rect" id="node18" href="$posix__message__queue__consumer_8cpp.html" title="Implements the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="1507,273,1677,315"/>
+<area shape="rect" id="node22" href="$docker__api__commands_8cpp.html" title="Implements Docker API command classes for managing containers via the Docker HTTP API over a Unix soc..." alt="" coords="1701,184,1856,225"/>
+<area shape="rect" id="node24" href="$docker__commands_8cpp.html" title="Implements Docker command classes for container operations." alt="" coords="2070,184,2213,225"/>
+<area shape="rect" id="node26" href="$podman__api__commands_8cpp.html" title="Implements Podman API command classes for managing containers via the Podman HTTP API over a Unix soc..." alt="" coords="2237,184,2392,225"/>
+<area shape="rect" id="node28" href="$podman__commands_8cpp.html" title="Implements Podman command classes for container operations." alt="" coords="2417,184,2570,225"/>
 </map>

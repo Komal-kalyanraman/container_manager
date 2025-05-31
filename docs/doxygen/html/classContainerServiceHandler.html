@@ -108,7 +108,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a16f0650a9d5719fc441541a2adc5f29a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="json__request__executor_8cpp.html#ab701e3ac61a85b337ec5c1abaad6742d">nlohmann::json</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainerServiceHandler.html#a16f0650a9d5719fc441541a2adc5f29a">HandleRequest</a> (const <a class="el" href="structContainerRequest.html">ContainerRequest</a> &amp;req)</td></tr>
 <tr class="memdesc:a16f0650a9d5719fc441541a2adc5f29a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles a container request by dispatching to the appropriate operation. Updates the container status in the database based on the operation result.  <a href="classContainerServiceHandler.html#a16f0650a9d5719fc441541a2adc5f29a">More...</a><br /></td></tr>
 <tr class="separator:a16f0650a9d5719fc441541a2adc5f29a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c527464b3d91168a747a33361994000"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structStatus.html">Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainerServiceHandler.html#a9c527464b3d91168a747a33361994000">ContainerOperations</a> (const <a class="el" href="structContainerRequest.html">ContainerRequest</a> &amp;req)</td></tr>
+<tr class="memitem:a9c527464b3d91168a747a33361994000"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structStatus.html">Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContainerServiceHandler.html#a9c527464b3d91168a747a33361994000">ContainerOperations</a> (const <a class="el" href="structContainerRequest.html">ContainerRequest</a> &amp;req)</td></tr>
 <tr class="memdesc:a9c527464b3d91168a747a33361994000"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the specified container operation using the request structure. Invokes the appropriate command via the command factory.  <a href="classContainerServiceHandler.html#a9c527464b3d91168a747a33361994000">More...</a><br /></td></tr>
 <tr class="separator:a9c527464b3d91168a747a33361994000"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -153,6 +153,14 @@ Public Member Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="container__service_8cpp_source.html#l00024">24</a> of file <a class="el" href="container__service_8cpp_source.html">container_service.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;: db_(db) {}</div>
 </div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="container__service__test_8cpp_source.html#l00039">TEST_F()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classContainerServiceHandler_a5f8961271d86605d86d072a51efbe332_icgraph.svg" width="320" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -161,6 +169,9 @@ Public Member Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structStatus.html">Status</a> ContainerServiceHandler::ContainerOperations </td>
@@ -170,6 +181,11 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Performs the specified container operation using the request structure. Invokes the appropriate command via the command factory. </p>
@@ -197,17 +213,16 @@ Public Member Functions</h2></td></tr>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="command__factory_8cpp_source.html#l00022">CommandFactory::CreateCommand()</a>, <a class="el" href="commands_8hpp_source.html#l00058">Invoker::Invoke()</a>, and <a class="el" href="commands_8hpp_source.html#l00050">Invoker::SetCommand()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="container__service_8cpp_source.html#l00037">HandleRequest()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="container__service_8cpp_source.html#l00037">HandleRequest()</a>, and <a class="el" href="container__service__test_8cpp_source.html#l00039">TEST_F()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classContainerServiceHandler_a9c527464b3d91168a747a33361994000_cgraph.svg" width="100%" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classContainerServiceHandler_a9c527464b3d91168a747a33361994000_cgraph.svg" width="100%" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classContainerServiceHandler_a9c527464b3d91168a747a33361994000_icgraph.svg" width="100%" height="388"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classContainerServiceHandler_a9c527464b3d91168a747a33361994000_icgraph.svg" width="100%" height="403"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -273,12 +288,11 @@ Here is the caller graph for this function:</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="container__request_8hpp_source.html#l00015">ContainerRequest::container_name</a>, <a class="el" href="container__service_8cpp_source.html#l00069">ContainerOperations()</a>, <a class="el" href="common_8hpp_source.html#l00089">CommandName::CreateContainer</a>, <a class="el" href="status_8hpp_source.html#l00062">Status::ok()</a>, <a class="el" href="container__request_8hpp_source.html#l00013">ContainerRequest::operation</a>, <a class="el" href="common_8hpp_source.html#l00093">CommandName::RemoveContainer</a>, <a class="el" href="classIDatabaseHandler.html#a32aef1bd17b79529d93fadc2d72441e5">IDatabaseHandler::RemoveKey()</a>, <a class="el" href="common_8hpp_source.html#l00092">CommandName::RestartContainer</a>, <a class="el" href="common_8hpp_source.html#l00090">CommandName::StartContainer</a>, <a class="el" href="common_8hpp_source.html#l00091">CommandName::StopContainer</a>, and <a class="el" href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">IDatabaseHandler::UpdateField()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="json__request__executor_8cpp_source.html#l00047">JsonRequestExecutorHandler::Execute()</a>, and <a class="el" href="protobuf__request__executor_8cpp_source.html#l00044">ProtoRequestExecutorHandler::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="json__request__executor_8cpp_source.html#l00026">JsonRequestExecutorHandler::Execute()</a>, and <a class="el" href="protobuf__request__executor_8cpp_source.html#l00030">ProtoRequestExecutorHandler::Execute()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classContainerServiceHandler_a16f0650a9d5719fc441541a2adc5f29a_cgraph.svg" width="100%" height="498"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classContainerServiceHandler_a16f0650a9d5719fc441541a2adc5f29a_cgraph.svg" width="100%" height="498"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -305,7 +319,7 @@ Here is the caller graph for this function:</div>
 <div class="ttc" id="astructStatus_html"><div class="ttname"><a href="structStatus.html">Status</a></div><div class="ttdoc">Represents the result of an operation, including a code and message.</div><div class="ttdef"><b>Definition:</b> <a href="status_8hpp_source.html#l00032">status.hpp:32</a></div></div>
 <div class="ttc" id="astructStatus_html_a19a4e02345758bf3685dcb14a9678de1"><div class="ttname"><a href="structStatus.html#a19a4e02345758bf3685dcb14a9678de1">Status::ok</a></div><div class="ttdeci">bool ok() const</div><div class="ttdoc">Checks if the status represents success.</div><div class="ttdef"><b>Definition:</b> <a href="status_8hpp_source.html#l00062">status.hpp:62</a></div></div>
 <div class="ttc" id="astructCommandName_html_a8c81e73e470a5ba3b297f12598e96e33"><div class="ttname"><a href="structCommandName.html#a8c81e73e470a5ba3b297f12598e96e33">CommandName::StartContainer</a></div><div class="ttdeci">static constexpr std::string_view StartContainer</div><div class="ttdoc">Command to start a container.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00090">common.hpp:90</a></div></div>
-<div class="ttc" id="aclassContainerServiceHandler_html_a9c527464b3d91168a747a33361994000"><div class="ttname"><a href="classContainerServiceHandler.html#a9c527464b3d91168a747a33361994000">ContainerServiceHandler::ContainerOperations</a></div><div class="ttdeci">Status ContainerOperations(const ContainerRequest &amp;req)</div><div class="ttdoc">Performs the specified container operation using the request structure. Invokes the appropriate comma...</div><div class="ttdef"><b>Definition:</b> <a href="container__service_8cpp_source.html#l00069">container_service.cpp:69</a></div></div>
+<div class="ttc" id="aclassContainerServiceHandler_html_a9c527464b3d91168a747a33361994000"><div class="ttname"><a href="classContainerServiceHandler.html#a9c527464b3d91168a747a33361994000">ContainerServiceHandler::ContainerOperations</a></div><div class="ttdeci">virtual Status ContainerOperations(const ContainerRequest &amp;req)</div><div class="ttdoc">Performs the specified container operation using the request structure. Invokes the appropriate comma...</div><div class="ttdef"><b>Definition:</b> <a href="container__service_8cpp_source.html#l00069">container_service.cpp:69</a></div></div>
 <div class="ttc" id="astructCommandName_html_ab72f034c18de7cacd0b0c3cab82aa7a0"><div class="ttname"><a href="structCommandName.html#ab72f034c18de7cacd0b0c3cab82aa7a0">CommandName::StopContainer</a></div><div class="ttdeci">static constexpr std::string_view StopContainer</div><div class="ttdoc">Command to stop a container.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00091">common.hpp:91</a></div></div>
 <div class="ttc" id="aclassIDatabaseHandler_html_a10972030d1577974e9f86820e251c7d6"><div class="ttname"><a href="classIDatabaseHandler.html#a10972030d1577974e9f86820e251c7d6">IDatabaseHandler::UpdateField</a></div><div class="ttdeci">virtual void UpdateField(const std::string &amp;key, const std::string &amp;field, const std::string &amp;value)=0</div><div class="ttdoc">Updates a specific field in the JSON object stored under the given key.</div></div>
 <div class="ttc" id="astructCommandName_html_af7b4fb1459ecda43c530ed62cf89186b"><div class="ttname"><a href="structCommandName.html#af7b4fb1459ecda43c530ed62cf89186b">CommandName::RestartContainer</a></div><div class="ttdeci">static constexpr std::string_view RestartContainer</div><div class="ttdoc">Command to restart a container.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00092">common.hpp:92</a></div></div>

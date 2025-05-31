@@ -116,7 +116,7 @@ var sectionId = 'dynsection-1';
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="protobuf__request__executor_8cpp.html" target="_top" xlink:title="Implements the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests.">
+<g id="a_node5"><a xlink:href="protobuf__request__executor_8cpp.html" target="_top" xlink:title="Protocol Buffers request executor for Container Manager.">
 <polygon fill="white" stroke="black" points="399,-67.5 399,-97.5 526,-97.5 526,-67.5 399,-67.5"/>
 <text text-anchor="start" x="407" y="-85.5" font-family="Helvetica,sans-Serif" font-size="10.00">executor/src/protobuf</text>
 <text text-anchor="middle" x="462.5" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">_request_executor.cpp</text>

@@ -12,7 +12,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title="Entry point for the Container Manager application.">
+<g id="a_node1"><a xlink:title="Entry point for the Container Manager service.">
 <polygon fill="#bfbfbf" stroke="black" points="390,-224.5 390,-243.5 452,-243.5 452,-224.5 390,-224.5"/>
 <text text-anchor="middle" x="421" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">main.cpp</text>
 </a>

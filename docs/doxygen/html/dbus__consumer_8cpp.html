@@ -82,27 +82,77 @@ $(document).ready(function(){initNavTree('dbus__consumer_8cpp.html',''); initRes
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">dbus_consumer.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Implements the <a class="el" href="classDBusConsumer.html" title="Handles receiving and processing JSON/Protobuf requests over D-Bus.">DBusConsumer</a> class for receiving and processing JSON/Protobuf requests over D-Bus.  
+<p>D-Bus message consumer implementation for Container Manager.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="dbus__consumer_8hpp_source.html">inc/dbus_consumer.hpp</a>&quot;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
+<code>#include &quot;<a class="el" href="logging_8hpp_source.html">inc/logging.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for dbus_consumer.cpp:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="dbus__consumer_8cpp__incl.svg" width="100%" height="552"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="dbus__consumer_8cpp__incl.svg" width="100%" height="552"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 </div>
 <p><a href="dbus__consumer_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a8530dcedf56b58396d09a05089d28362"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dbus__consumer_8cpp.html#a8530dcedf56b58396d09a05089d28362">simple_base64_decode</a> (const std::string &amp;encoded)</td></tr>
+<tr class="memdesc:a8530dcedf56b58396d09a05089d28362"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple Base64 decoder for Protobuf data when encryption is disabled.  <a href="dbus__consumer_8cpp.html#a8530dcedf56b58396d09a05089d28362">More...</a><br /></td></tr>
+<tr class="separator:a8530dcedf56b58396d09a05089d28362"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implements the <a class="el" href="classDBusConsumer.html" title="Handles receiving and processing JSON/Protobuf requests over D-Bus.">DBusConsumer</a> class for receiving and processing JSON/Protobuf requests over D-Bus. </p>
+<div class="textblock"><p>D-Bus message consumer implementation for Container Manager. </p>
+<p>Implements the <a class="el" href="classDBusConsumer.html" title="Handles receiving and processing JSON/Protobuf requests over D-Bus.">DBusConsumer</a> class for handling container management requests over the D-Bus session bus. Supports encrypted and unencrypted payloads, automatic Base64 decoding for binary data, and both JSON and Protobuf formats. </p>
 
 <p class="definition">Definition in file <a class="el" href="dbus__consumer_8cpp_source.html">dbus_consumer.cpp</a>.</p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a8530dcedf56b58396d09a05089d28362"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8530dcedf56b58396d09a05089d28362">&#9670;&nbsp;</a></span>simple_base64_decode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string simple_base64_decode </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>encoded</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Simple Base64 decoder for Protobuf data when encryption is disabled. </p>
+
+<p class="definition">Definition at line <a class="el" href="dbus__consumer_8cpp_source.html#l00074">74</a> of file <a class="el" href="dbus__consumer_8cpp_source.html">dbus_consumer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                                                         {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> std::string chars = <span class="stringliteral">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    std::string decoded;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">int</span> val = 0, valb = -8;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> c : encoded) {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">if</span> (chars.find(c) == std::string::npos) <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        val = (val &lt;&lt; 6) + chars.find(c);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        valb += 6;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">if</span> (valb &gt;= 0) {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            decoded.push_back(<span class="keywordtype">char</span>((val &gt;&gt; valb) &amp; 0xFF));</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            valb -= 8;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">return</span> decoded;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

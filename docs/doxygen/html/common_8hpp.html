@@ -105,7 +105,8 @@ Include dependency graph for common.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="common_8hpp__dep__incl.svg" width="100%" height="462"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="common_8hpp__dep__incl.svg" width="100%" height="462"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 </div>
 <p><a href="common_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -200,6 +201,14 @@ Variables</h2></td></tr>
 <tr class="separator:a6bbbab058f7bf283aa1c2b03446b64d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16a27a883973049590f48b7a016dfdf8"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceApiEndpoint.html#a16a27a883973049590f48b7a016dfdf8">ApiEndpoint::Ping</a> = &quot;_ping&quot;</td></tr>
 <tr class="separator:a16a27a883973049590f48b7a016dfdf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbbc8b295949955683c06852a75d017e"><td class="memItemLeft" align="right" valign="top">constexpr unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#afbbc8b295949955683c06852a75d017e">kAesKey</a> [32]</td></tr>
+<tr class="separator:afbbc8b295949955683c06852a75d017e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cff9b75cb0fa5c836c0ce4fca436361"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a2cff9b75cb0fa5c836c0ce4fca436361">kAesKeyLen</a> = 32</td></tr>
+<tr class="separator:a2cff9b75cb0fa5c836c0ce4fca436361"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a663bc07796580bf3392cc4b722911e96"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a663bc07796580bf3392cc4b722911e96">kAesIvLen</a> = 12</td></tr>
+<tr class="separator:a663bc07796580bf3392cc4b722911e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a022b7958f635cfd9b1e07b4a76801510"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a022b7958f635cfd9b1e07b4a76801510">kAesTagLen</a> = 16</td></tr>
+<tr class="separator:a022b7958f635cfd9b1e07b4a76801510"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines common constants, string views, and utility structures for the application. </p>
@@ -270,8 +279,7 @@ Variables</h2></td></tr>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="common_8hpp_a6ef961c11398422cd4dd9b4f66a57d03_icgraph.svg" width="540" height="379"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="common_8hpp_a6ef961c11398422cd4dd9b4f66a57d03_icgraph.svg" width="540" height="379"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -338,13 +346,118 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="common_8hpp_a2f80aeff93aed5c1cc3d4c356d458b99_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="common_8hpp_a2f80aeff93aed5c1cc3d4c356d458b99_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="a663bc07796580bf3392cc4b722911e96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a663bc07796580bf3392cc4b722911e96">&#9670;&nbsp;</a></span>kAesIvLen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr size_t kAesIvLen = 12</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00160">160</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="aes__gcm__decrypt_8cpp_source.html#l00048">decrypt_ota_payload()</a>.</p>
+
+</div>
+</div>
+<a id="afbbc8b295949955683c06852a75d017e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbbc8b295949955683c06852a75d017e">&#9670;&nbsp;</a></span>kAesKey</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr unsigned char kAesKey[32]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    0x60,0x3d,0xeb,0x10,0x15,0xca,0x71,0xbe,0x2b,0x73,0xae,0xf0,0x85,0x7d,0x77,0x81,</div>
+<div class="line">    0x1f,0x35,0x2c,0x07,0x3b,0x61,0x08,0xd7,0x2d,0x98,0x10,0xa3,0x09,0x14,0xdf,0xf4</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00155">155</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="aes__gcm__decrypt_8cpp_source.html#l00048">decrypt_ota_payload()</a>.</p>
+
+</div>
+</div>
+<a id="a2cff9b75cb0fa5c836c0ce4fca436361"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cff9b75cb0fa5c836c0ce4fca436361">&#9670;&nbsp;</a></span>kAesKeyLen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr size_t kAesKeyLen = 32</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00159">159</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a022b7958f635cfd9b1e07b4a76801510"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a022b7958f635cfd9b1e07b4a76801510">&#9670;&nbsp;</a></span>kAesTagLen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr size_t kAesTagLen = 16</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00161">161</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="aes__gcm__decrypt_8cpp_source.html#l00048">decrypt_ota_payload()</a>.</p>
+
+</div>
+</div>
 <a id="af0a5c19c0d441fb37ef118d1714dc2aa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af0a5c19c0d441fb37ef118d1714dc2aa">&#9670;&nbsp;</a></span>kContainerManagerLogName</h2>
 
@@ -435,7 +548,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00017">17</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="json__request__executor_8cpp_source.html#l00047">JsonRequestExecutorHandler::Execute()</a>, and <a class="el" href="protobuf__request__executor_8cpp_source.html#l00044">ProtoRequestExecutorHandler::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="json__request__executor_8cpp_source.html#l00026">JsonRequestExecutorHandler::Execute()</a>, and <a class="el" href="protobuf__request__executor_8cpp_source.html#l00030">ProtoRequestExecutorHandler::Execute()</a>.</p>
 
 </div>
 </div>
@@ -463,7 +576,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00023">23</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00069">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00072">main()</a>.</p>
 
 </div>
 </div>

@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 561;
+var viewWidth = 630;
 var viewHeight = 274;
 var sectionId = 'dynsection-0';
 </script>
@@ -54,14 +54,14 @@ var sectionId = 'dynsection-0';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>api/src/mosquitto_mqtt_subscriber.cpp</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-270 556.5,-270 556.5,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-270 626,-270 626,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Implements the MosquittoMqttSubscriber class for handling MQTT messages using Mosquitto.">
-<polygon fill="#bfbfbf" stroke="black" points="399.5,-235.5 399.5,-265.5 529.5,-265.5 529.5,-235.5 399.5,-235.5"/>
-<text text-anchor="start" x="407.5" y="-253.5" font-family="Helvetica,sans-Serif" font-size="10.00">api/src/mosquitto_mqtt</text>
-<text text-anchor="middle" x="464.5" y="-242.5" font-family="Helvetica,sans-Serif" font-size="10.00">_subscriber.cpp</text>
+<polygon fill="#bfbfbf" stroke="black" points="418.5,-235.5 418.5,-265.5 548.5,-265.5 548.5,-235.5 418.5,-235.5"/>
+<text text-anchor="start" x="426.5" y="-253.5" font-family="Helvetica,sans-Serif" font-size="10.00">api/src/mosquitto_mqtt</text>
+<text text-anchor="middle" x="483.5" y="-242.5" font-family="Helvetica,sans-Serif" font-size="10.00">_subscriber.cpp</text>
 </a>
 </g>
 </g>
@@ -78,8 +78,8 @@ var sectionId = 'dynsection-0';
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M411.42,-235.48C373.32,-225.41 321.82,-211.8 281.61,-201.17"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="282.47,-197.78 271.9,-198.61 280.68,-204.55 282.47,-197.78"/>
+<path fill="none" stroke="midnightblue" d="M426.33,-235.48C384.68,-225.26 328.18,-211.4 284.6,-200.71"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="285.21,-197.26 274.66,-198.28 283.54,-204.06 285.21,-197.26"/>
 </g>
 <!-- Node8 -->
 <g id="node8" class="node">
@@ -93,23 +93,38 @@ var sectionId = 'dynsection-0';
 <!-- Node1&#45;&gt;Node8 -->
 <g id="edge12" class="edge">
 <title>Node1&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M465.27,-235.48C467.04,-203.1 471.43,-123.04 473.45,-86.16"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="476.96,-86 474.02,-75.82 469.97,-85.61 476.96,-86"/>
+<path fill="none" stroke="midnightblue" d="M482.81,-235.48C481.21,-203.1 477.26,-123.04 475.44,-86.16"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="478.92,-85.63 474.93,-75.82 471.93,-85.98 478.92,-85.63"/>
 </g>
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
 <g id="a_node10"><a xlink:title=" ">
-<polygon fill="white" stroke="#bfbfbf" points="492.5,-174 492.5,-193 552.5,-193 552.5,-174 492.5,-174"/>
-<text text-anchor="middle" x="522.5" y="-181" font-family="Helvetica,sans-Serif" font-size="10.00">iostream</text>
+<polygon fill="white" stroke="#bfbfbf" points="519.5,-112.5 519.5,-131.5 579.5,-131.5 579.5,-112.5 519.5,-112.5"/>
+<text text-anchor="middle" x="549.5" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">iostream</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node10 -->
 <g id="edge11" class="edge">
 <title>Node1&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M477.09,-235.4C486.13,-225.26 498.35,-211.57 507.83,-200.94"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="510.7,-202.99 514.74,-193.19 505.47,-198.33 510.7,-202.99"/>
+<path fill="none" stroke="midnightblue" d="M489.73,-235.46C497.12,-219.06 510.02,-191.21 522.5,-168 527.46,-158.77 533.41,-148.75 538.47,-140.52"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="541.56,-142.16 543.87,-131.82 535.62,-138.47 541.56,-142.16"/>
+</g>
+<!-- Node11 -->
+<g id="node11" class="node">
+<title>Node11</title>
+<g id="a_node11"><a xlink:href="logging_8hpp.html" target="_top" xlink:title="Logging macros and configuration for the Container Manager.">
+<polygon fill="white" stroke="black" points="531,-174 531,-193 622,-193 622,-174 531,-174"/>
+<text text-anchor="middle" x="576.5" y="-181" font-family="Helvetica,sans-Serif" font-size="10.00">inc/logging.hpp</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node11 -->
+<g id="edge13" class="edge">
+<title>Node1&#45;&gt;Node11</title>
+<path fill="none" stroke="midnightblue" d="M503.68,-235.4C519.13,-224.6 540.36,-209.76 555.92,-198.89"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="558.14,-201.6 564.33,-193.01 554.13,-195.87 558.14,-201.6"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
@@ -218,6 +233,12 @@ var sectionId = 'dynsection-0';
 <title>Node9&#45;&gt;Node5</title>
 <path fill="none" stroke="midnightblue" d="M313.43,-56.32C297.54,-47.74 272.99,-34.49 254.54,-24.52"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="255.99,-21.33 245.53,-19.65 252.66,-27.49 255.99,-21.33"/>
+</g>
+<!-- Node11&#45;&gt;Node10 -->
+<g id="edge14" class="edge">
+<title>Node11&#45;&gt;Node10</title>
+<path fill="none" stroke="midnightblue" d="M572.63,-173.98C568.7,-165.32 562.5,-151.65 557.51,-140.65"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="560.68,-139.17 553.36,-131.51 554.31,-142.06 560.68,-139.17"/>
 </g>
 </g>
 </svg>

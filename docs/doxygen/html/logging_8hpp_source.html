@@ -90,20 +90,20 @@ $(document).ready(function(){initNavTree('logging_8hpp_source.html',''); initRes
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// Uncomment below line to enable glog logging</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="logging_8hpp.html#a8793ad9b04ae96b2ad54608d1b70e07c">   15</a></span>&#160;<span class="preprocessor">#define ENABLE_GLOG_LOGGING</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">// #define ENABLE_GLOG_LOGGING</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#ifdef ENABLE_GLOG_LOGGING</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;glog/logging.h&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">   20</a></span>&#160;<span class="preprocessor">#define CM_LOG_INFO LOG(INFO)</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define CM_LOG_INFO LOG(INFO)</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define CM_LOG_WARN LOG(WARNING)</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define CM_LOG_FATAL LOG(FATAL)</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#define CM_LOG_ERROR LOG(ERROR)</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#else</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#define CM_LOG_INFO if (false) std::cout</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#define CM_LOG_WARN if (false) std::cerr</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#define CM_LOG_FATAL if (false) std::cerr</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#define CM_LOG_ERROR if (false) std::cerr</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">   30</a></span>&#160;<span class="preprocessor">#define CM_LOG_INFO std::cout</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#define CM_LOG_WARN std::cerr</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#define CM_LOG_FATAL std::cerr</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#define CM_LOG_ERROR std::cerr</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

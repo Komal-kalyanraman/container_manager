@@ -217,21 +217,20 @@ Public Member Functions</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                                                    {</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">int</span> status = std::system(<span class="stringliteral">&quot;docker info &gt; /dev/null 2&gt;&amp;1&quot;</span>);</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">if</span> (status == 0) {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <a class="code" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a> &lt;&lt; <span class="stringliteral">&quot;Docker is running &quot;</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <a class="code" href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a> &lt;&lt; <span class="stringliteral">&quot;Docker is running &quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structStatus.html#ab516c5b687e7e334a1865fe28fd39122">Status::Ok</a>();</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        std::string msg = <span class="stringliteral">&quot;Docker runtime is not running, exit code: &quot;</span> + std::to_string(status);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a> &lt;&lt; msg;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a> &lt;&lt; msg &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structStatus.html#ace3b560f6a5f4a2d62a02b6e03700538">Status::Error</a>(<a class="code" href="status_8hpp.html#ae98a46f4ea1a43ca48acaf15d2eb7113a8462b58246e70e5c83e5b939a9332cb5">StatusCode::InternalError</a>, msg);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    }</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="logging_8hpp_source.html#l00026">CM_LOG_ERROR</a>, <a class="el" href="logging_8hpp_source.html#l00020">CM_LOG_INFO</a>, <a class="el" href="status_8hpp_source.html#l00056">Status::Error()</a>, <a class="el" href="status_8hpp.html#ae98a46f4ea1a43ca48acaf15d2eb7113a8462b58246e70e5c83e5b939a9332cb5">InternalError</a>, and <a class="el" href="status_8hpp_source.html#l00048">Status::Ok()</a>.</p>
+<p class="reference">References <a class="el" href="logging_8hpp_source.html#l00036">CM_LOG_ERROR</a>, <a class="el" href="logging_8hpp_source.html#l00030">CM_LOG_INFO</a>, <a class="el" href="status_8hpp_source.html#l00056">Status::Error()</a>, <a class="el" href="status_8hpp.html#ae98a46f4ea1a43ca48acaf15d2eb7113a8462b58246e70e5c83e5b939a9332cb5">InternalError</a>, and <a class="el" href="status_8hpp_source.html#l00048">Status::Ok()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classDockerRuntimeAvailableCommand_a433b87ede31bd16ced081ab1e74658f7_cgraph.svg" width="411" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classDockerRuntimeAvailableCommand_a433b87ede31bd16ced081ab1e74658f7_cgraph.svg" width="411" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -242,10 +241,10 @@ Here is the call graph for this function:</div>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="alogging_8hpp_html_a3251db9e68b527ad826d18502cbcbe7a"><div class="ttname"><a href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a></div><div class="ttdeci">#define CM_LOG_ERROR</div><div class="ttdoc">Macro for logging error messages using glog.</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00026">logging.hpp:26</a></div></div>
+<div class="ttc" id="alogging_8hpp_html_a3251db9e68b527ad826d18502cbcbe7a"><div class="ttname"><a href="logging_8hpp.html#a3251db9e68b527ad826d18502cbcbe7a">CM_LOG_ERROR</a></div><div class="ttdeci">#define CM_LOG_ERROR</div><div class="ttdoc">Macro for logging error messages (no-op if glog is not enabled).</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00036">logging.hpp:36</a></div></div>
 <div class="ttc" id="astatus_8hpp_html_ae98a46f4ea1a43ca48acaf15d2eb7113a8462b58246e70e5c83e5b939a9332cb5"><div class="ttname"><a href="status_8hpp.html#ae98a46f4ea1a43ca48acaf15d2eb7113a8462b58246e70e5c83e5b939a9332cb5">StatusCode::InternalError</a></div><div class="ttdeci">@ InternalError</div><div class="ttdoc">An internal error occurred.</div></div>
 <div class="ttc" id="astructStatus_html_ab516c5b687e7e334a1865fe28fd39122"><div class="ttname"><a href="structStatus.html#ab516c5b687e7e334a1865fe28fd39122">Status::Ok</a></div><div class="ttdeci">static Status Ok()</div><div class="ttdoc">Returns a success Status.</div><div class="ttdef"><b>Definition:</b> <a href="status_8hpp_source.html#l00048">status.hpp:48</a></div></div>
-<div class="ttc" id="alogging_8hpp_html_a13620e8436f16badd4e01d4fd57467e2"><div class="ttname"><a href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a></div><div class="ttdeci">#define CM_LOG_INFO</div><div class="ttdoc">Macro for logging informational messages using glog.</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00020">logging.hpp:20</a></div></div>
+<div class="ttc" id="alogging_8hpp_html_a13620e8436f16badd4e01d4fd57467e2"><div class="ttname"><a href="logging_8hpp.html#a13620e8436f16badd4e01d4fd57467e2">CM_LOG_INFO</a></div><div class="ttdeci">#define CM_LOG_INFO</div><div class="ttdoc">Macro for logging informational messages (no-op if glog is not enabled).</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00030">logging.hpp:30</a></div></div>
 <div class="ttc" id="astructStatus_html_ace3b560f6a5f4a2d62a02b6e03700538"><div class="ttname"><a href="structStatus.html#ace3b560f6a5f4a2d62a02b6e03700538">Status::Error</a></div><div class="ttdeci">static Status Error(StatusCode code, const std::string &amp;msg)</div><div class="ttdoc">Returns an error Status with the given code and message.</div><div class="ttdef"><b>Definition:</b> <a href="status_8hpp_source.html#l00056">status.hpp:56</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

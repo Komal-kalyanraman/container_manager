@@ -89,13 +89,14 @@ $(document).ready(function(){initNavTree('json__request__executor_8cpp.html','')
 </div><!--header-->
 <div class="contents">
 
-<p>Implements the <a class="el" href="classJsonRequestExecutorHandler.html" title="Parses and executes JSON requests, invoking business logic and database operations.">JsonRequestExecutorHandler</a> class for executing JSON-based requests.  
+<p>JSON request executor for Container Manager.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="json__request__executor_8hpp_source.html">inc/json_request_executor.hpp</a>&quot;</code><br />
 <code>#include &lt;nlohmann/json.hpp&gt;</code><br />
 <code>#include &quot;<a class="el" href="database__interface_8hpp_source.html">inc/database_interface.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="container__service_8hpp_source.html">inc/container_service.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="redis__database_8hpp_source.html">inc/redis_database.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="aes__gcm__decrypt_8hpp_source.html">inc/aes_gcm_decrypt.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="common_8hpp_source.html">inc/common.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="status_8hpp_source.html">inc/status.hpp</a>&quot;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
@@ -114,9 +115,7 @@ Typedefs</h2></td></tr>
 <tr class="separator:ab701e3ac61a85b337ec5c1abaad6742d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implements the <a class="el" href="classJsonRequestExecutorHandler.html" title="Parses and executes JSON requests, invoking business logic and database operations.">JsonRequestExecutorHandler</a> class for executing JSON-based requests. </p>
-<p>This file defines the logic for receiving JSON data, transforming it for database storage, saving it to the database, and invoking the container service handler for business logic. The result is returned as a JSON object.</p>
-<p>Used by all protocol consumers (HTTP, MQTT, Message Queue, D-Bus) when JSON is selected as the data format. Provides standardized error handling and logging using the <a class="el" href="structStatus.html" title="Represents the result of an operation, including a code and message.">Status</a> structure. </p>
+<div class="textblock"><p>JSON request executor for Container Manager. </p>
 
 <p class="definition">Definition in file <a class="el" href="json__request__executor_8cpp_source.html">json_request_executor.cpp</a>.</p>
 </div><h2 class="groupheader">Typedef Documentation</h2>
@@ -132,7 +131,7 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json__request__executor_8cpp_source.html#l00022">22</a> of file <a class="el" href="json__request__executor_8cpp_source.html">json_request_executor.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json__request__executor_8cpp_source.html#l00016">16</a> of file <a class="el" href="json__request__executor_8cpp_source.html">json_request_executor.cpp</a>.</p>
 
 </div>
 </div>

@@ -1,5 +1,6 @@
 <map id="IDatabaseHandler" name="IDatabaseHandler">
-<area shape="rect" id="node1" title="Interface for database handlers supporting JSON storage and retrieval." alt="" coords="154,5,329,156"/>
+<area shape="rect" id="node1" title="Interface for database handlers supporting JSON storage and retrieval." alt="" coords="257,5,431,156"/>
 <area shape="rect" id="node2" href="$classEmbeddedDatabaseHandler.html" title="Lightweight, fixed&#45;size in&#45;memory key&#45;value store for embedded systems." alt="" coords="5,226,235,377"/>
-<area shape="rect" id="node3" href="$classRedisDatabaseHandler.html" title="Class for interacting with a Redis database backend." alt="" coords="259,204,466,399"/>
+<area shape="rect" id="node3" href="$classMockDatabaseHandler.html" title=" " alt="" coords="259,233,429,369"/>
+<area shape="rect" id="node4" href="$classRedisDatabaseHandler.html" title="Class for interacting with a Redis database backend." alt="" coords="454,204,661,399"/>
 </map>

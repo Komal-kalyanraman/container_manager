@@ -58,7 +58,7 @@ var sectionId = 'dynsection-1';
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title="Main entry point for the Container Manager application. Initializes all subsystems,...">
+<g id="a_node1"><a xlink:title="Main entry point for the Container Manager service.">
 <polygon fill="#bfbfbf" stroke="black" points="0,-38.5 0,-57.5 41,-57.5 41,-38.5 0,-38.5"/>
 <text text-anchor="middle" x="20.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">main</text>
 </a>
@@ -82,7 +82,7 @@ var sectionId = 'dynsection-1';
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="main_8cpp.html#a7972e8125628180f0e4d04a8f805ced6" target="_top" xlink:title="Signal handler for graceful shutdown.">
+<g id="a_node8"><a xlink:href="main_8cpp.html#ada74d681ddd967a0ce403f099ebde2ff" target="_top" xlink:title="Signal handler for graceful shutdown (SIGINT/SIGTERM).">
 <polygon fill="white" stroke="black" points="77,-19.5 77,-38.5 162,-38.5 162,-19.5 77,-19.5"/>
 <text text-anchor="middle" x="119.5" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">SignalHandler</text>
 </a>
