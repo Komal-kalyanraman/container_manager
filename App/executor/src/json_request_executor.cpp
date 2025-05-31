@@ -8,29 +8,29 @@
 #include "inc/database_interface.hpp"
 #include "inc/container_service.hpp"
 #include "inc/redis_database.hpp"
-#include "inc/aes_gcm_decrypt.hpp"
 #include "inc/common.hpp"
 #include "inc/status.hpp"
+#include "inc/security_provider.hpp"
 #include <iostream>
 
 using json = nlohmann::json;
 
-JsonRequestExecutorHandler::JsonRequestExecutorHandler(IDatabaseHandler& db, ContainerServiceHandler& service)
-    : db_(db), service_(service) {}
+JsonRequestExecutorHandler::JsonRequestExecutorHandler(
+    IDatabaseHandler& db, 
+    ContainerServiceHandler& service,
+    ISecurityProvider& security_provider
+)
+    : db_(db), service_(service), security_provider_(security_provider) {}
 
-/**
- * @brief Execute container management request from JSON string or encrypted payload.
- * @param data JSON string data or encrypted payload.
- * @return JSON object containing operation result or error information.
- */
 nlohmann::json JsonRequestExecutorHandler::Execute(const std::string& data) {
     try {
         std::string json_str;
 
 #if defined(ENABLE_ENCRYPTION) && ENABLE_ENCRYPTION
+        // Check if data looks encrypted (not JSON)
         bool is_encrypted = !data.empty() && data[0] != '{' && data[0] != '[';
         if (is_encrypted) {
-            if (!decrypt_ota_payload(data, json_str)) {
+            if (!security_provider_.Decrypt(data, json_str)) {
                 Status error_status = Status::Error(StatusCode::InvalidArgument, "Decryption failed");
                 return {
                     {"status", "error"},

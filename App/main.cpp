@@ -10,6 +10,8 @@
 #include "inc/init_handler.hpp"
 #include "inc/container_service.hpp"
 #include "inc/json_request_executor.hpp"
+#include "inc/null_security_provider.hpp"
+#include "inc/aes_gcm_security_provider.hpp"
 #if ENABLE_REDIS
 #include "inc/redis_database.hpp"
 #else
@@ -115,11 +117,21 @@ int main() {
     // Initialize project (logging, DB, etc.)
     InitProject(*db);
 
-    // Select request executor (Protobuf or JSON)
-#if ENABLE_PROTOBUF
-    auto executor = std::make_shared<ProtoRequestExecutorHandler>(*db, *service);
+    // Create security provider (always non-null, using make_unique)
+    std::unique_ptr<ISecurityProvider> security_provider;
+#if defined(ENABLE_ENCRYPTION) && ENABLE_ENCRYPTION
+    security_provider = std::make_unique<AesGcmSecurityProvider>();
+    std::cout << "🔑 AES-GCM Security Provider initialized" << std::endl;
 #else
-    auto executor = std::make_shared<JsonRequestExecutorHandler>(*db, *service);
+    security_provider = std::make_unique<NullSecurityProvider>();
+    std::cout << "🔓 Null Security Provider initialized (encryption disabled)" << std::endl;
+#endif
+
+    // Create request executor with security provider reference
+#if ENABLE_PROTOBUF
+    auto executor = std::make_shared<ProtoRequestExecutorHandler>(*db, *service, *security_provider);
+#else
+    auto executor = std::make_shared<JsonRequestExecutorHandler>(*db, *service, *security_provider);
 #endif
 
     // Register signal handlers for graceful shutdown

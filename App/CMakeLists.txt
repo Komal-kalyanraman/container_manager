@@ -12,10 +12,10 @@ add_compile_options(-Wno-deprecated-declarations)
 option(ENABLE_REST      "Enable REST/HTTP server support" ON)
 option(ENABLE_MQTT      "Enable MQTT subscriber support" ON)
 option(ENABLE_MSGQUEUE  "Enable POSIX Message Queue support" ON)
-option(ENABLE_DBUS      "Enable D-Bus consumer support" ON)
-option(ENABLE_GRPC      "Enable gRPC protocol support" ON)
-option(ENABLE_PROTOBUF  "Enable Protocol Buffers for efficient binary serialization" ON)
-option(ENABLE_REDIS     "Enable Redis database backend (OFF = use embedded DB)" OFF)
+option(ENABLE_DBUS      "Enable D-Bus consumer support" OFF)
+option(ENABLE_GRPC      "Enable gRPC protocol support" OFF)
+option(ENABLE_PROTOBUF  "Enable Protocol Buffers for efficient binary serialization" OFF)
+option(ENABLE_REDIS     "Enable Redis database backend (OFF = use embedded DB)" ON)
 option(ENABLE_ENCRYPTION "Enable AES-256-GCM encryption for secure OTA payloads" ON)
 
 # Pass feature flags as compile definitions
@@ -78,6 +78,7 @@ include_directories("${PROJECT_SOURCE_DIR}/api")
 include_directories("${PROJECT_SOURCE_DIR}/core")
 include_directories("${PROJECT_SOURCE_DIR}/utils")
 include_directories("${PROJECT_SOURCE_DIR}/runtime")
+include_directories("${PROJECT_SOURCE_DIR}/security")
 include_directories("${PROJECT_SOURCE_DIR}/executor")
 include_directories("${PROJECT_SOURCE_DIR}/database")
 include_directories(/usr/local/include)
@@ -97,6 +98,7 @@ add_subdirectory(api)
 add_subdirectory(core)
 add_subdirectory(utils)
 add_subdirectory(runtime)
+add_subdirectory(security)
 add_subdirectory(executor)
 add_subdirectory(database)
 
@@ -146,6 +148,7 @@ target_link_libraries(CM
   cm_runtime
   cm_api
   cm_executor
+  cm_security
   librt.so
   pthread
   CURL::libcurl

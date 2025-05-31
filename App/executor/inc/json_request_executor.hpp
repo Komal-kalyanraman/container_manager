@@ -17,12 +17,14 @@
 #include "inc/database_interface.hpp"
 #include "inc/container_service.hpp" 
 
+// Forward declarations
+class IDatabaseHandler;
+class ContainerServiceHandler;
+class ISecurityProvider;
+
 /**
  * @class JsonRequestExecutorHandler
- * @brief Parses and executes JSON requests, invoking business logic and database operations.
- *
- * Receives a JSON string, transforms and saves it to the database, and dispatches
- * the request to the container service handler. Returns the result as a JSON object.
+ * @brief Parses and executes JSON requests with optional encryption support
  */
 class JsonRequestExecutorHandler : public RequestExecutor {
 public:
@@ -30,17 +32,23 @@ public:
      * @brief Constructs a JsonRequestExecutorHandler with injected dependencies.
      * @param db Reference to an IDatabaseHandler implementation.
      * @param service Reference to a ContainerServiceHandler.
+     * @param security_provider Optional security provider for decryption.
      */
-    JsonRequestExecutorHandler(IDatabaseHandler& db, ContainerServiceHandler& service);
+    JsonRequestExecutorHandler(
+        IDatabaseHandler& db, 
+        ContainerServiceHandler& service,
+        ISecurityProvider& security_provider
+    );
 
     /**
      * @brief Executes a request represented as a JSON string.
-     * @param data The input data as a JSON string.
+     * @param data The input data as a JSON string (or encrypted data).
      * @return A JSON object containing the result of the execution.
      */
     nlohmann::json Execute(const std::string& data) override;
 
 private:
-    IDatabaseHandler& db_;               ///< Reference to the injected database handler.
-    ContainerServiceHandler& service_;   ///< Reference to the injected service handler.
+    IDatabaseHandler& db_;                   ///< Reference to the injected database handler.
+    ContainerServiceHandler& service_;       ///< Reference to the injected service handler.
+    ISecurityProvider& security_provider_;   ///< Reference to security provider.
 };

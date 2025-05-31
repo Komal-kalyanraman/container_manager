@@ -2,8 +2,7 @@
 
 ## Overview
 
-**Container Manager** is a modular, extensible, and production-ready C++ service for unified container management across Docker, Podman, and other runtimes.  
-It is designed to support multiple communication protocols (REST, MQTT, POSIX Message Queue, D-Bus, gRPC (planned)) and data formats (JSON, Protobuf), making it suitable for diverse deployment scenarios and integration needs. The application supports optional end-to-end AES-256-GCM encryption for all incoming protocol payloads, providing confidentiality and integrity for over-the-air (OTA) requests. **The application only decrypts incoming data; it does not encrypt outgoing responses.**
+**Container Manager** is a modular, extensible, and production-ready C++ service for unified container management across Docker, Podman, and other runtimes. It is designed to support multiple communication protocols (REST, MQTT, POSIX Message Queue, D-Bus, gRPC (planned)) and data formats (JSON, Protobuf), making it suitable for diverse deployment scenarios and integration needs. The application supports optional end-to-end AES-256-GCM encryption for all incoming protocol payloads, providing confidentiality and integrity for over-the-air (OTA) requests. The application only decrypts incoming data; it does not encrypt outgoing responses.
 
 ### System Architecture
 
