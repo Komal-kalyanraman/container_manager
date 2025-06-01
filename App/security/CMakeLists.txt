@@ -7,7 +7,6 @@ set(SRC_LIST)
 if(ENABLE_ENCRYPTION)
     if(SECURITY_ALGORITHM STREQUAL "AES_GCM")
         list(APPEND SRC_LIST 
-            src/aes_gcm_decrypt.cpp
             src/aes_gcm_security_provider.cpp
         )
         message(STATUS "Security: Building with AES-256-GCM support")
