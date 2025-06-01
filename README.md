@@ -1,14 +1,14 @@
 # Container Manager
 
-**Container Manager** is a modular, production-ready C++ service for unified container management across Docker, Podman, and more (planned). It supports REST, MQTT, MQ, D-Bus, gRPC (planned), Docker/Podman CLI, HTTP-API with incoming JSON & Protobuf data. Features: extensible architecture, pluggable database backend (embedded by default, Redis optional), robust logging, thread pool for all protocols, and enterprise-grade security with AES-256-GCM encryption. The project is modular, production-ready, and designed for extensibility.
+**Container Manager** is a modular, production-ready C++ service for unified container management across Docker, Podman, and more (planned). It supports REST, MQTT, MQ, D-Bus, gRPC (planned), Docker/Podman CLI, HTTP-API with incoming JSON & Protobuf data. Features: extensible architecture, pluggable database backend (embedded by default, Redis optional), robust logging, thread pool for all protocols, and enterprise-grade security with AES-256-GCM or ChaCha20-Poly1305 encryption.
 
 > **This is a reference architecture and template project** designed to demonstrate production-grade C++ patterns for container management systems. Clone, modify, and extend as needed for your specific requirements.
 
-## Use Cases for this Template
+## Use Cases
 
-- **Need D-Bus + Podman REST API + Protobuf + AES encryption?** Clone and modify
-- **Want MQTT + Docker CLI + JSON + embedded database?** Clone and configure
-- **Building a container orchestrator with custom runtime?** Extend the runtime layer
+- **Need D-Bus + Podman REST API + Protobuf + AES encryption?** Clone and modify.
+- **Want MQTT + Docker CLI + JSON + embedded database?** Clone and configure.
+- **Building a container orchestrator with custom runtime?** Extend the runtime layer.
 
 ## Features
 
@@ -19,48 +19,28 @@
   Easily add support for new runtimes or operations using the command pattern.
 
 - **Docker API & Podman API Support:**  
-  Manage containers not only via CLI but also through the Docker and Podman REST APIs over Unix sockets.  
-  This enables rootless, user-level, and remote container management using HTTP requests, making integration with other tools and languages seamless.
+  Manage containers via CLI or REST APIs over Unix sockets for rootless/user-level/remote management.
 
 - **Multi-Protocol Support:**  
-  Supports REST (HTTP/JSON or Protobuf), MQTT, POSIX Message Queue, and D-Bus (session bus) for remote management.  
+  REST (HTTP/JSON or Protobuf), MQTT, POSIX Message Queue, and D-Bus (session bus).  
   **Pluggable protocol architecture:** Easily extend to support gRPC (planned), or other IPC/RPC mechanisms.
 
 - **Flexible Data Formats:**  
-  Incoming data can be JSON **or Protocol Buffers (protobuf)** for high-performance or strongly-typed APIs.  
-  **gRPC/Protobuf support is planned for the gRPC protocol.**
-
-- **HTTP API Server:**  
-  Built-in HTTP server for remote container management via JSON or Protobuf requests.
-
-- **MQTT Subscriber:**  
-  Built-in MQTT subscriber for receiving and processing container management requests via MQTT topics over mosquitto mqtt broker.
-
-- **POSIX Message Queue Consumer:**  
-  Built-in consumer for POSIX message queues, allowing integration with other IPC systems.
-
-- **D-Bus Consumer (Session Bus):**  
-  Built-in D-Bus consumer using the **session bus** for user applications, allowing desktop or user-level apps to communicate with the backend without root privileges or system-wide D-Bus policies.
+  JSON **or Protocol Buffers (protobuf)** for high-performance or strongly-typed APIs.
 
 - **Thread Pool:**  
   Efficient request handling using a configurable thread pool.
 
 - **Database Integration:**  
-  **Embedded database backend is used by default** for storing container metadata and state, making the project suitable for embedded and resource-constrained environments.  
-  **Redis database backend is optional** and can be enabled via a CMake flag for scalable, production deployments.  
-  **Pluggable database backend:** Swap between embedded and Redis or any other database if needed by implementing the `IDatabaseHandler` interface.
+  **Embedded database backend by default**; **Redis optional** via CMake flag.  
+  **Pluggable backend:** Implement the `IDatabaseHandler` interface for custom databases.
 
 - **Logging:**  
   Integrated with Google glog for robust logging.
 
-- **Security (NEW):**  
-  **AES-256-GCM encryption** for all protocols (REST, MQTT, D-Bus, POSIX MQ).
-
-  - All incoming payloads can be encrypted using a shared AES-256 key.
-  - D-Bus and MQTT support automatic Base64 decoding for binary/encrypted payloads.
-  - Decryption is performed transparently before request processing.
-  - Secure error handling: no sensitive information is leaked in error messages.
-  - Encryption is enabled/disabled at build time via `ENABLE_ENCRYPTION` CMake flag.
+- **Security:**  
+  **AES-256-GCM and ChaCha20-Poly1305 encryption** for all protocols (REST, MQTT, D-Bus, MQ).  
+  See [Security Architecture](#security-architecture).
 
 - **Production-Grade Documentation:**  
   Doxygen-based documentation with diagrams and source browsing.
@@ -68,31 +48,34 @@
 - **Open Source:**  
   Licensed under the MIT License.
 
-## Architecture Documentation
-
-For a comprehensive overview of the system design, security, and extensibility, please see the [Architecture Documentation](docs/architecture/architecture.md).
-
 ## Security Architecture
 
 **Container Manager v0.7.0** introduces a robust security layer:
 
 - **AES-256-GCM and ChaCha20-Poly1305 encryption** are supported for all protocols.
   - Payloads are encrypted on the client side and decrypted transparently by the backend.
-  - D-Bus and MQTT clients use Base64 encoding for binary/encrypted payloads.
   - The backend auto-detects and decrypts encrypted payloads, regardless of protocol or data format (JSON or Protobuf).
-  - **Detection and decryption are handled in the executor layer** (see architecture), so all protocol handlers remain generic and agnostic to encryption.
+  - **Detection and decryption are handled in the executor layer**, so all protocol handlers remain generic and agnostic to encryption.
 - **Key management:**
-  - The AES and ChaCha20 keys are stored in a seperate folder outside App as `storage/security` as hex-encoded files:
+  - The AES and ChaCha20 keys are stored as hex-encoded files in `storage/security/`:
     - `storage/security/aes_key.txt` (64 hex chars, 32 bytes)
     - `storage/security/chacha20_key.txt` (64 hex chars, 32 bytes)
   - The backend loads the key at runtime from these files.
-  - For production, you may use environment variables or a secure key vault for even better security.
-  - The executor layer (see `executor/`) auto-detects whether the incoming payload is encrypted or not:
-  - For JSON: If the payload is not valid JSON, it attempts decryption.
-  - For Protobuf: If the payload cannot be parsed as a valid Protobuf message, it attempts decryption and then parses again.
-- This logic is protocol-agnostic and works for REST, MQTT, MQ, and D-Bus.
+  - For production, use environment variables or a secure key vault for even better security.
+- **Encryption detection:**
+  - The executor layer auto-detects whether the incoming payload is encrypted:
+    - For JSON: If the payload is not valid JSON, it attempts decryption.
+    - For Protobuf: If the payload cannot be parsed as a valid Protobuf message, it attempts decryption and then parses again.
+  - This logic is protocol-agnostic and works for REST, MQTT, MQ, and D-Bus.
 
-**Example: Encrypted JSON or Protobuf Request (Python)**
+### Sending Encrypted Payloads
+
+- **REST:** Send encrypted bytes directly as the request body with `Content-Type: application/octet-stream`.
+- **MQTT and D-Bus:**  
+  Encrypted payloads must be **Base64-encoded** before sending.  
+  The backend will automatically decode and decrypt.
+
+#### Example: Encrypted JSON or Protobuf Request (Python)
 
 ```python
 from Crypto.Cipher import AES
@@ -124,58 +107,37 @@ response = requests.post(
 )
 ```
 
-**D-Bus and MQTT clients:**
+#### Example: D-Bus and MQTT Clients (Python, Encrypted Payload)
 
-- Should Base64-encode the encrypted payload before sending.
-- The backend will automatically decode and decrypt.
+```python
+import base64
+encrypted_payload = ... # bytes from AES-GCM encryption
+# For D-Bus or MQTT, send as Base64-encoded string:
+b64_payload = base64.b64encode(encrypted_payload).decode()
+# Send b64_payload via D-Bus or MQTT
+```
+
+> **Note:**  
+> The backend will automatically decode Base64 and decrypt for D-Bus and MQTT protocols.
 
 ## Database Backend Selection
 
 Container Manager supports two database backends:
 
 - **Embedded Database (default):**  
-  A lightweight, fixed-size, in-memory key-value store suitable for embedded and resource-constrained systems.  
+  Lightweight, fixed-size, in-memory key-value store.  
   No external dependencies required.
 
 - **Redis Database (optional):**  
   Use Redis for scalable, persistent, and distributed deployments.  
   Requires [cpp_redis](https://github.com/Cylix/cpp_redis) and a running Redis server.
-
-### How to Select the Database Backend
-
-Database backend selection is controlled via the `ENABLE_REDIS` CMake flag:
-
-- **Embedded database (default):**  
-  No flag needed; just build as usual:
-
-  ```sh
-  cmake ..
-  make
-  ```
-
-- **Redis database (optional):**  
-  Enable Redis by setting the flag:
-
-  ```sh
-  cmake .. -DENABLE_REDIS=ON
-  make
-  ```
+  Database backend selection is controlled via the `ENABLE_REDIS` CMake flag.
 
   > **Note:** When `ENABLE_REDIS=ON`, you must have `cpp_redis` and a Redis server available.
 
-### Example: Enabling Redis Database
-
-```sh
-cmake .. -DENABLE_REDIS=ON
-make
-```
-
-This will build the project with Redis as the database backend.  
-If you do **not** set this flag, the embedded database will be used automatically.
-
 ## Architecture Overview
 
-See the Architecture Documentation for detailed diagrams and explanations.
+For a comprehensive overview of the system design, security, and extensibility, please see the [Architecture Documentation](docs/architecture/architecture.md).
 
 ```
 App/
@@ -190,34 +152,10 @@ App/
 └── third_party/# External dependencies (excluded from docs/build)
 ```
 
-- **Command Pattern:**  
-  All container operations are encapsulated as command objects, making it easy to extend and maintain.
-
-- **Service Layer:**  
-  The `ContainerServiceHandler` coordinates requests, runtime checks, and command execution.
-
-- **API Layer:**  
-  The `HttpServer` exposes a RESTful API for remote management (now supports both JSON and Protobuf).  
-  The `MosquittoMqttSubscriber` subscribes to MQTT topics for remote management.  
-  The `MessageQueueConsumer` listens for requests on a POSIX message queue.  
-  The `DbusConsumer` listens for requests on the D-Bus **session bus** for user-level IPC.  
-  The architecture is designed to support additional protocols (gRPC, etc.) by adding new API handlers.
-
-- **Executor Layer:**  
-  The `RequestExecutor` abstraction allows for different data formats (JSON, Protobuf, etc.).
-
-- **Database Layer:**  
-  The `IDatabaseHandler` interface allows you to swap between the embedded and Redis backends (or any other backend) with minimal code changes.
-
-- **Docker API & Podman API Layer:**  
-  The `docker-api` and `podman-api` runtimes enable direct management of containers via their respective REST APIs over Unix sockets.  
-  This allows for rootless and remote container operations, and is ideal for environments where CLI access is restricted or HTTP-based integration is preferred.
-
 ## Modularity & Build System
 
 **Container Manager is fully modular.**  
-You only need to install the dependencies for the protocols and data formats you want to use.  
-**You do NOT need to install all protocol and data format libraries unless you want a full-featured build.**
+You only need to install the dependencies for the protocols and data formats you want to use.
 
 ### Protocols and Data Formats
 
@@ -255,6 +193,8 @@ You can enable or disable each protocol, data format, and security feature using
 - `ENABLE_ENCRYPTION` (Enable encryption for all protocols; ON by default)
 - `SECURITY_ALGORITHM` (Select encryption algorithm: `AES_GCM` or `CHACHA20`; default is `AES_GCM`)
 
+## Build Examples
+
 **Examples:**
 
 - **Enable Protobuf, MQTT, Message Queue, REST, Redis, and ChaCha20 encryption:**
@@ -285,133 +225,6 @@ You can enable or disable each protocol, data format, and security feature using
 > **Note:**  
 > The encryption key files must be present in `storage/security/` as described above.  
 > The selected algorithm must match between the backend and any client sending encrypted payloads.
-
-## Build Instructions
-
-### 1. Clone and Prepare
-
-```sh
-git clone https://github.com/yourusername/container_manager.git
-cd container_manager/App
-mkdir build && cd build
-```
-
-### 2. Install Only What You Need
-
-#### If you want only JSON over D-Bus (embedded database):
-
-- Install only:
-  - [sdbus-c++](https://github.com/Kistler-Group/sdbus-cpp)
-  - [nlohmann/json](https://github.com/nlohmann/json)
-  - [glog](https://github.com/google/glog)
-- CMake:
-  ```sh
-  cmake .. -DENABLE_REST=OFF -DENABLE_MQTT=OFF -DENABLE_MSGQUEUE=OFF -DENABLE_DBUS=ON -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=OFF
-  make
-  ```
-
-#### If you want only Protobuf over Message Queue (embedded database):
-
-- Install only:
-  - [nlohmann/json](https://github.com/nlohmann/json) (for config)
-  - [glog](https://github.com/google/glog)
-  - Protobuf (`libprotobuf-dev`, `protobuf-compiler`)
-- CMake:
-  ```sh
-  cmake .. -DENABLE_REST=OFF -DENABLE_MQTT=OFF -DENABLE_MSGQUEUE=ON -DENABLE_DBUS=OFF -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=ON
-  make
-  ```
-
-#### If you want REST and MQTT with JSON only (embedded database):
-
-- Install:
-  - [nlohmann/json](https://github.com/nlohmann/json)
-  - [glog](https://github.com/google/glog)
-  - [mosquitto](https://github.com/eclipse-mosquitto/mosquitto)
-  - [httplib (included as third_party)](https://github.com/yhirose/cpp-httplib)
-- CMake:
-  ```sh
-  cmake .. -DENABLE_REST=ON -DENABLE_MQTT=ON -DENABLE_MSGQUEUE=OFF -DENABLE_DBUS=OFF -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=OFF
-  make
-  ```
-
-#### If you want all protocols with JSON format (embedded database):
-
-- Install all dependencies listed in the prerequisites.
-- CMake (default):
-  ```sh
-  cmake ..
-  make
-  ```
-
-#### If you want Redis as the database backend:
-
-- Install:
-  - [cpp_redis](https://github.com/Cylix/cpp_redis)
-  - [Redis server](https://redis.io/)
-  - All other protocol/data format dependencies as needed
-- CMake:
-  ```sh
-  cmake .. -DENABLE_REDIS=ON
-  make
-  ```
-
-### 3. Summary Table
-
-| Protocol/Data Format | CMake Flag           | Required Packages                     |
-| -------------------- | -------------------- | ------------------------------------- |
-| REST (HTTP/JSON)     | ENABLE_REST=ON       | nlohmann_json, glog, httplib          |
-| MQTT                 | ENABLE_MQTT=ON       | mosquitto, nlohmann_json, glog        |
-| Message Queue        | ENABLE_MSGQUEUE=ON   | nlohmann_json, glog                   |
-| D-Bus                | ENABLE_DBUS=ON       | sdbus-c++, nlohmann_json, glog        |
-| gRPC (planned)       | ENABLE_GRPC=ON       | grpc++, protobuf, nlohmann_json, glog |
-| Protobuf             | ENABLE_PROTOBUF=ON   | protobuf                              |
-| Redis DB             | ENABLE_REDIS=ON      | cpp_redis, redis-server               |
-| Embedded DB          | (default)            | (no extra dependencies)               |
-| Encryption           | ENABLE_ENCRYPTION=ON | libssl-dev (OpenSSL)                  |
-
-- **JSON** is always available (unless you only enable Protobuf).
-- **Protobuf** is optional and only needed if you want binary serialization.
-- **Embedded database** is used unless you explicitly enable Redis.
-- **Encryption** is ON by default and recommended for production.
-
-### 4. General Build Steps
-
-```sh
-cmake .. <your-flags>
-make -j$(nproc)
-```
-
-### 5. Examples
-
-- **Enable only D-Bus with JSON (embedded DB):**
-  ```sh
-  cmake .. -DENABLE_REST=OFF -DENABLE_MQTT=OFF -DENABLE_MSGQUEUE=OFF -DENABLE_DBUS=ON -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=OFF
-  make
-  ```
-- **Enable REST, MQTT, and Protobuf (embedded DB):**
-  ```sh
-  cmake .. -DENABLE_REST=ON -DENABLE_MQTT=ON -DENABLE_MSGQUEUE=OFF -DENABLE_DBUS=OFF -DENABLE_GRPC=OFF -DENABLE_PROTOBUF=ON
-  make
-  ```
-- **Enable all protocols with Protobuf only (embedded DB):**
-  ```sh
-  cmake .. -DENABLE_REST=ON -DENABLE_MQTT=ON -DENABLE_MSGQUEUE=ON -DENABLE_DBUS=ON -DENABLE_GRPC=ON -DENABLE_PROTOBUF=ON
-  make
-  ```
-- **Enable Redis database backend:**
-  ```sh
-  cmake .. -DENABLE_REDIS=ON
-  make
-  ```
-- **Full build (all protocols with JSON format, embedded DB):**
-  ```sh
-  cmake ..
-  make
-  ```
-
-**This modular build system ensures you only install and build what you need for your use case.**  
-**Check the CMake output for any missing dependencies based on your selected flags.**
 
 ## Running the Server
 
@@ -532,49 +345,6 @@ iface.Execute(base64.b64encode(encrypted_payload).decode())
 - No root privileges or system-wide D-Bus policy is required.
 - Encrypted payloads must be Base64-encoded before sending over D-Bus.
 
-## Code Structure
-
-- **main.cpp:**  
-  Initializes logging, clears the database, and starts the HTTP server (in a thread), MQTT subscriber, Message Queue consumer, and D-Bus consumer (session bus).
-
-- **api/inc/http_server.hpp:**  
-  HTTP server for processing incoming requests.  
-  _Pluggable protocol support: Add new handlers for MQ, D-Bus, MQTT, etc._
-
-- **api/inc/mosquitto_mqtt_subscriber.hpp:**  
-  MQTT subscriber for processing incoming MQTT messages.
-
-- **api/inc/posix_message_queue_consumer.hpp:**  
-  POSIX message queue consumer for processing incoming queue messages.
-
-- **api/inc/dbus_consumer.hpp:**  
-  D-Bus consumer for processing incoming requests over the session bus.
-
-- **core/inc/container_service.hpp:**  
-  Service layer for business logic and command dispatch.
-
-- **database/inc/database_interface.hpp:**  
-  Abstract interface for database operations.  
-  _Pluggable backend: Implement this interface to use a different database._
-
-- **database/inc/redis_database.hpp:**  
-  Redis-based implementation of the database interface.
-
-- **executor/inc/json_request_executor.hpp:**  
-  Handles JSON requests.
-
-- **executor/inc/proto_request_executor.hpp:**  
-  Handles Protobuf requests.
-
-- **runtime/inc/docker_commands.hpp, podman_commands.hpp, docker_api_commands.hpp, podman_api_commands.hpp:**  
-  Command classes for Docker CLI, Podman CLI, Docker API, and Podman API operations.
-
-- **utils/inc/threadpool.hpp:**  
-  Thread pool utility for concurrent request handling.
-
-- **utils/inc/logging.hpp:**  
-  Logging macros and configuration.
-
 ## Python UI: Container Creator
 
 A cross-platform Python GUI tool is provided for easily sending container management requests to the Container Manager backend.
@@ -585,7 +355,7 @@ A cross-platform Python GUI tool is provided for easily sending container manage
 - Select data format: JSON or Protobuf
 - Select runtime: Docker, Podman, Docker API, or Podman API
 - Fill in container parameters (runtime, operation, resources, image, etc.)
-- Enable/disable AES-GCM encryption
+- Enable/disable AES-GCM or ChaCha20 encryption
 - Send requests directly to the backend via REST, MQTT, Message Queue, or D-Bus
 
 ### Requirements
@@ -618,14 +388,8 @@ python container_creator_app.py
 4. Fill in the container parameters.
 5. Enable encryption if desired.
 6. Click **Send** to send the request to the backend.
-   - For REST, the backend must be running and listening on the specified port.
-   - For MQTT, the broker must be running and accessible.
-   - For MessageQueue, the backend must be running and listening on the configured POSIX message queue.
-   - For D-Bus, the backend must be running and registered on the session bus.
 
 The UI will show a confirmation or error message after sending the request.
-
-**This tool is ideal for testing, demos, and rapid prototyping with the Container Manager backend.**
 
 ## Documentation
 
@@ -647,9 +411,6 @@ The UI will show a confirmation or error message after sending the request.
 
 - **Add a new protocol:**  
   Implement a new API handler in `App/api/` (e.g., for Message Queue, D-Bus, gRPC, MQTT) and register it in the main application.
-
-  - **gRPC support:** Planned. The CMake setup already supports `.proto` file compilation and linking.
-    Once the gRPC server/client code is implemented, this section will be updated with usage and integration details.
 
 - **Add a new data format:**  
   Implement a new `RequestExecutor` (e.g., for Protobuf) in `App/executor/` and update the API handler to use it.
