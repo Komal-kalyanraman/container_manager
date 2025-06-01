@@ -1,6 +1,10 @@
 /**
  * @file protobuf_request_executor.cpp
- * @brief Protocol Buffers request executor for Container Manager
+ * @brief Protocol Buffers request executor for Container Manager.
+ *
+ * This file implements the logic for handling incoming Protobuf (or encrypted Protobuf) requests,
+ * including decryption, deserialization, validation, transformation, database storage,
+ * and dispatching to the container service handler.
  */
 
 #include "inc/protobuf_request_executor.hpp"
@@ -13,6 +17,12 @@
 #include <nlohmann/json.hpp>
 #include <iostream>
 
+/**
+ * @brief Constructor for ProtoRequestExecutorHandler.
+ * @param db Reference to the database handler.
+ * @param service Reference to the container service handler.
+ * @param security_provider Reference to the security provider for decryption.
+ */
 ProtoRequestExecutorHandler::ProtoRequestExecutorHandler(
     IDatabaseHandler& db, 
     ContainerServiceHandler& service,
@@ -20,6 +30,12 @@ ProtoRequestExecutorHandler::ProtoRequestExecutorHandler(
 )
     : db_(db), service_(service), security_provider_(security_provider) {}
 
+/**
+ * @brief Detects if the input data is encrypted.
+ *        Tries to parse as Protobuf and checks for expected fields.
+ * @param data The input data string.
+ * @return True if the data is likely encrypted, false if it is plain Protobuf.
+ */
 bool ProtoRequestExecutorHandler::IsEncryptedData(const std::string& data) {
     if (data.empty()) return false;
     
@@ -45,6 +61,13 @@ bool ProtoRequestExecutorHandler::IsEncryptedData(const std::string& data) {
     return true;
 }
 
+/**
+ * @brief Executes a request represented as a serialized Protobuf string.
+ *        Handles decryption if the payload is encrypted, deserializes and validates the Protobuf,
+ *        transforms and saves the request to the database, and invokes the container service handler.
+ * @param proto_data The input data as a serialized Protobuf string (or encrypted data).
+ * @return A JSON object containing the result of the execution.
+ */
 nlohmann::json ProtoRequestExecutorHandler::Execute(const std::string& proto_data) {
     try {
         std::string proto_input;

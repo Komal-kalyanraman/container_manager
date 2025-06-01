@@ -17,14 +17,24 @@
 #include "inc/database_interface.hpp"
 #include "inc/container_service.hpp" 
 
-// Forward declarations
+// Forward declarations for dependency injection
 class IDatabaseHandler;
 class ContainerServiceHandler;
 class ISecurityProvider;
 
 /**
  * @class JsonRequestExecutorHandler
- * @brief Parses and executes JSON requests with optional encryption support
+ * @brief Parses and executes JSON requests with optional encryption support.
+ *
+ * This class is responsible for:
+ *   - Receiving JSON (or encrypted JSON) payloads from protocol handlers.
+ *   - Detecting and decrypting encrypted payloads if necessary.
+ *   - Parsing and validating the JSON request.
+ *   - Transforming and saving the request to the database.
+ *   - Invoking the container service handler to perform the requested operation.
+ *   - Returning the result as a JSON object.
+ *
+ * Used by all protocol consumers (REST, MQTT, MQ, D-Bus) for JSON data format.
  */
 class JsonRequestExecutorHandler : public RequestExecutor {
 public:
@@ -32,7 +42,7 @@ public:
      * @brief Constructs a JsonRequestExecutorHandler with injected dependencies.
      * @param db Reference to an IDatabaseHandler implementation.
      * @param service Reference to a ContainerServiceHandler.
-     * @param security_provider Optional security provider for decryption.
+     * @param security_provider Reference to a security provider for decryption.
      */
     JsonRequestExecutorHandler(
         IDatabaseHandler& db, 
@@ -42,6 +52,7 @@ public:
 
     /**
      * @brief Executes a request represented as a JSON string.
+     *        Handles decryption if the payload is encrypted.
      * @param data The input data as a JSON string (or encrypted data).
      * @return A JSON object containing the result of the execution.
      */
@@ -50,8 +61,13 @@ public:
 private:
     IDatabaseHandler& db_;                   ///< Reference to the injected database handler.
     ContainerServiceHandler& service_;       ///< Reference to the injected service handler.
-    ISecurityProvider& security_provider_;   ///< Reference to security provider.
+    ISecurityProvider& security_provider_;   ///< Reference to the injected security provider.
 
-    // Helper method to detect if data is encrypted
+    /**
+     * @brief Helper method to detect if the input data is encrypted.
+     *        Tries to parse as JSON and checks for expected fields.
+     * @param data The input data string.
+     * @return True if the data is likely encrypted, false if it is plain JSON.
+     */
     bool IsEncryptedData(const std::string& data);
 };

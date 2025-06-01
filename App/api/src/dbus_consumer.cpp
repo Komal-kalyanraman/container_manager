@@ -37,6 +37,8 @@ DBusConsumer::~DBusConsumer() {
 #if defined(ENABLE_ENCRYPTION) && ENABLE_ENCRYPTION
 /**
  * @brief Decode Base64 string using OpenSSL BIO interface.
+ * @param encoded The Base64-encoded input string.
+ * @return Decoded binary data as a string.
  */
 std::string base64_decode(const std::string& encoded) {
     BIO *bio, *b64;
@@ -58,6 +60,8 @@ std::string base64_decode(const std::string& encoded) {
 
 /**
  * @brief Check if string contains valid Base64 data.
+ * @param str Input string to check.
+ * @return True if the string is valid Base64, false otherwise.
  */
 bool is_base64(const std::string& str) {
     if (str.empty() || str.length() % 4 != 0) return false;
@@ -74,6 +78,8 @@ bool is_base64(const std::string& str) {
 #else
 /**
  * @brief Simple Base64 decoder when encryption is disabled.
+ * @param encoded The Base64-encoded input string.
+ * @return Decoded binary data as a string.
  */
 std::string simple_base64_decode(const std::string& encoded) {
     static const std::string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -97,6 +103,8 @@ std::string simple_base64_decode(const std::string& encoded) {
 
 /**
  * @brief Check if string looks like Base64 when encryption is disabled.
+ * @param str Input string to check.
+ * @return True if the string looks like Base64, false otherwise.
  */
 bool looks_like_base64(const std::string& str) {
     if (str.empty() || str.length() % 4 != 0) return false;
@@ -124,13 +132,16 @@ void DBusConsumer::Stop() {
 
 /**
  * @brief Main D-Bus event loop for processing incoming method calls.
+ *        Handles Base64 decoding if needed and forwards payload to the executor.
  */
 void DBusConsumer::ListenLoop() {
     try {
+        // Establish D-Bus session connection and register object
         connection_ = sdbus::createSessionBusConnection();
         connection_->requestName(bus_name_);
         object_ = sdbus::createObject(*connection_, object_path_);
 
+        // Register the method handler for incoming requests
         object_->registerMethod(config_.Method)
             .onInterface(config_.Interface)
             .implementedAs([this](const std::string& payload) {
@@ -163,7 +174,7 @@ void DBusConsumer::ListenLoop() {
                     std::cout << "[DBus] Processing payload as plain text" << std::endl;
                 }
                 
-                // Forward to executor
+                // Forward to executor for decryption and processing
                 try {
                     auto result = executor_->Execute(actual_payload);
                     
@@ -183,6 +194,7 @@ void DBusConsumer::ListenLoop() {
         object_->finishRegistration();
         std::cout << "[DBus] Consumer started on " << bus_name_ << object_path_ << std::endl;
 
+        // Main event loop: process incoming D-Bus requests
         while (running_) {
             connection_->processPendingRequest();
             std::this_thread::sleep_for(std::chrono::milliseconds(50));

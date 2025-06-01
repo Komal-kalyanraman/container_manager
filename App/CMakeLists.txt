@@ -1,3 +1,7 @@
+# Top-level CMake build script for the Container Manager application.
+# This script configures feature flags, finds dependencies, sets up include/link directories,
+# and builds all modules and the main executable based on user-selected options.
+
 # Minimum required CMake version and project definition
 cmake_minimum_required(VERSION 3.10)
 project(cm VERSION 0.7.0 LANGUAGES CXX)
@@ -31,7 +35,7 @@ else()
     set(SECURITY_ALGORITHM "NULL")
 endif()
 
-# Pass feature flags as compile definitions
+# Pass feature flags as compile definitions for conditional compilation
 add_compile_definitions(
     ENABLE_REST=$<BOOL:${ENABLE_REST}>
     ENABLE_MQTT=$<BOOL:${ENABLE_MQTT}>
@@ -54,7 +58,7 @@ find_package(Threads REQUIRED)
 find_package(glog 0.4.0 REQUIRED)
 find_package(nlohmann_json REQUIRED)
 
-# Find Protobuf if enabled
+# Find Protobuf if enabled (for Protobuf or gRPC support)
 if(ENABLE_PROTOBUF OR ENABLE_GRPC)
   find_package(Protobuf REQUIRED)
 endif()

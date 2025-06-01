@@ -1,3 +1,14 @@
+/**
+ * @file main.cpp
+ * @brief Entry point for the Container Manager service.
+ *
+ * This file contains the main function for the Container Manager project.
+ * It initializes the selected database backend, sets up the service and protocol handlers,
+ * and starts protocol consumers (REST, MQTT, Message Queue, D-Bus) in separate threads.
+ * The application supports modular protocol and data format selection, pluggable database backends,
+ * and optional encryption (AES-GCM or ChaCha20). Graceful shutdown is handled via signal handlers.
+ */
+
 #include <memory>
 #include <thread>
 #include <vector>
@@ -12,22 +23,26 @@
 #include "inc/json_request_executor.hpp"
 #include "inc/null_security_provider.hpp"
 
+// Conditionally include security providers based on selected algorithm
 #if defined(SECURITY_ALGORITHM_AES_GCM)
 #include "inc/aes_gcm_security_provider.hpp"
 #elif defined(SECURITY_ALGORITHM_CHACHA20)
 #include "inc/chacha20_security_provider.hpp"
 #endif
 
+// Conditionally include database backends
 #if ENABLE_REDIS
 #include "inc/redis_database.hpp"
 #else
 #include "inc/embedded_database.hpp"
 #endif
 
+// Conditionally include protobuf executor
 #if ENABLE_PROTOBUF
 #include "inc/protobuf_request_executor.hpp"
 #endif
 
+// Conditionally include protocol consumers
 #if ENABLE_REST
 #include "inc/http_server.hpp"
 #endif
@@ -46,17 +61,6 @@
 #endif
 #include "inc/dbus_consumer.hpp"
 #endif
-
-/**
- * @file main.cpp
- * @brief Entry point for the Container Manager service.
- *
- * This file contains the main function for the Container Manager project.
- * It initializes the selected database backend, sets up the service and protocol handlers,
- * and starts protocol consumers (REST, MQTT, Message Queue, D-Bus) in separate threads.
- * The application supports modular protocol and data format selection, pluggable database backends,
- * and optional AES-GCM encryption. Graceful shutdown is handled via signal handlers.
- */
 
 /**
  * @var shutdown_requested

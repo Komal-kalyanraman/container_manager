@@ -1,3 +1,12 @@
+/**
+ * @file aes_gcm_security_provider.cpp
+ * @brief Implementation of the AesGcmSecurityProvider class for AES-256-GCM decryption.
+ *
+ * This file provides authenticated decryption using the AES-256-GCM algorithm.
+ * It is used by the executor layer to transparently decrypt incoming encrypted
+ * payloads (JSON or Protobuf) for all protocols.
+ */
+
 #include "inc/aes_gcm_security_provider.hpp"
 #include "inc/common.hpp"
 #include <fstream>
@@ -5,10 +14,23 @@
 #include <openssl/evp.h>
 #include <openssl/rand.h>
 
+/**
+ * @brief Decrypts the input data using AES-256-GCM.
+ * @param input The encrypted input data (IV|TAG|CIPHERTEXT).
+ * @param output The decrypted output string.
+ * @return True if decryption is successful, false otherwise.
+ */
 bool AesGcmSecurityProvider::Decrypt(const std::string& input, std::string& output) {
     return DecryptAesGcm(input, output);
 }
 
+/**
+ * @brief Performs AES-256-GCM decryption.
+ *        Expects input format: [12-byte IV][16-byte tag][ciphertext].
+ * @param encrypted_data The encrypted input data.
+ * @param decrypted_data The decrypted output string.
+ * @return True if decryption is successful, false otherwise.
+ */
 bool AesGcmSecurityProvider::DecryptAesGcm(const std::string& encrypted_data, std::string& decrypted_data) {
     try {
         auto key = LoadAesKey();
@@ -75,6 +97,12 @@ bool AesGcmSecurityProvider::DecryptAesGcm(const std::string& encrypted_data, st
     }
 }
 
+/**
+ * @brief Loads the AES-256 key from a hex-encoded file.
+ * @param path Path to the key file (default: kAesKeyFilePath).
+ * @return The key as a vector of bytes.
+ * @throws std::runtime_error if the file cannot be opened or the key is invalid.
+ */
 std::vector<unsigned char> AesGcmSecurityProvider::LoadAesKey(const std::string& path) {
     std::ifstream file(path);
     if (!file) throw std::runtime_error("Unable to open AES key file");

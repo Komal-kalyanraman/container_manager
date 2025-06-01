@@ -1,6 +1,10 @@
 /**
  * @file json_request_executor.cpp
- * @brief JSON request executor for Container Manager
+ * @brief Implementation of the JSON request executor for Container Manager.
+ *
+ * This file defines the logic for handling incoming JSON (or encrypted JSON) requests,
+ * including decryption, parsing, validation, transformation, database storage,
+ * and dispatching to the container service handler.
  */
 
 #include "inc/json_request_executor.hpp"
@@ -15,6 +19,12 @@
 
 using json = nlohmann::json;
 
+/**
+ * @brief Constructor for JsonRequestExecutorHandler.
+ * @param db Reference to the database handler.
+ * @param service Reference to the container service handler.
+ * @param security_provider Reference to the security provider for decryption.
+ */
 JsonRequestExecutorHandler::JsonRequestExecutorHandler(
     IDatabaseHandler& db, 
     ContainerServiceHandler& service,
@@ -22,6 +32,12 @@ JsonRequestExecutorHandler::JsonRequestExecutorHandler(
 )
     : db_(db), service_(service), security_provider_(security_provider) {}
 
+/**
+ * @brief Detects if the input data is encrypted.
+ *        Tries to parse as JSON and checks for expected fields.
+ * @param data The input data string.
+ * @return True if the data is likely encrypted, false if it is plain JSON.
+ */
 bool JsonRequestExecutorHandler::IsEncryptedData(const std::string& data) {
     if (data.empty()) return false;
 
@@ -42,6 +58,13 @@ bool JsonRequestExecutorHandler::IsEncryptedData(const std::string& data) {
     return true;
 }
 
+/**
+ * @brief Executes a request represented as a JSON string.
+ *        Handles decryption if the payload is encrypted, parses and validates the JSON,
+ *        transforms and saves the request to the database, and invokes the container service handler.
+ * @param data The input data as a JSON string (or encrypted data).
+ * @return A JSON object containing the result of the execution.
+ */
 nlohmann::json JsonRequestExecutorHandler::Execute(const std::string& data) {
     try {
         std::string json_str;
