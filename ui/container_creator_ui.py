@@ -254,11 +254,18 @@ class ContainerCreatorUI:
                 bus = dbus.SessionBus()
                 proxy = bus.get_object(bus_name, object_path)
                 iface = dbus.Interface(proxy, dbus_interface=interface)
+                
                 if needs_binary_handling:
+                    # For binary data (Proto or encrypted), Base64 encode
                     payload_b64 = base64.b64encode(payload_bytes).decode('utf-8')
+                    print(f"[DBus] Sending Base64-encoded {data_format} payload (length: {len(payload_b64)})")
                     iface.Execute(payload_b64)
                 else:
-                    iface.Execute(json.dumps(payload))
+                    # For plain JSON, send as string
+                    json_str = json.dumps(payload)
+                    print(f"[DBus] Sending plain JSON payload (length: {len(json_str)})")
+                    iface.Execute(json_str)
+                    
                 messagebox.showinfo("Success", f"{data_format} message sent via D-Bus to {bus_name}")
             except Exception as e:
                 messagebox.showerror("Error", f"Failed to send D-Bus message: {e}")
