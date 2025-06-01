@@ -1,7 +1,6 @@
 import os
 import tkinter as tk
 from tkinter import ttk, messagebox
-from container_creator_logic import build_json, build_proto, encrypt_payload
 import requests
 import json
 import paho.mqtt.publish as publish
@@ -9,19 +8,23 @@ import posix_ipc
 import dbus
 import base64
 
-class ContainerCreatorUI:
-    """
-    Main UI class for the Container Creator application.
-    Provides fields for protocol, data format, runtime, operation, and container parameters.
-    Handles sending requests to the backend using the selected protocol and format.
-    """
+# Import functions from container_creator_logic
+try:
+    from container_creator_logic import build_json, build_proto, encrypt_payload
+except ImportError as e:
+    print(f"Import error: {e}")
+    def build_json(*args, **kwargs):
+        return {}
+    def build_proto(*args, **kwargs):
+        return b""
+    def encrypt_payload(data, algorithm="None"):
+        return data
 
+class ContainerCreatorUI:
     def __init__(self, root):
-        """
-        Initialize the UI components and layout.
-        """
         self.root = root
         self.root.title("Container Creator - Container Manager v0.7.0")
+        
         # Protocol selection
         ttk.Label(root, text="Protocol:").grid(row=0, column=0, sticky="w")
         protocol_options = ["REST", "MQTT", "MessageQueue", "DBus"]
@@ -35,6 +38,13 @@ class ContainerCreatorUI:
         self.format_var = tk.StringVar(value="JSON")
         self.format_menu = ttk.Combobox(root, textvariable=self.format_var, values=format_options, state="readonly")
         self.format_menu.grid(row=0, column=3, sticky="ew")
+
+        # Encryption algorithm selection
+        ttk.Label(root, text="Encryption:").grid(row=0, column=4, sticky="w")
+        encryption_options = ["None", "AES-256-GCM", "ChaCha20-Poly1305"]
+        self.encryption_var = tk.StringVar(value="None")
+        self.encryption_menu = ttk.Combobox(root, textvariable=self.encryption_var, values=encryption_options, state="readonly")
+        self.encryption_menu.grid(row=0, column=5, sticky="ew")
 
         # Container runtime selection
         ttk.Label(root, text="Container Runtime:").grid(row=1, column=0, sticky="w")
@@ -127,31 +137,24 @@ class ContainerCreatorUI:
         self.dbus_interface_entry = ttk.Entry(root)
         self.dbus_interface_entry.insert(0, "org.container.manager")
         self.dbus_interface_entry.grid(row=15, column=1, sticky="ew")
-        # Encryption option
-        self.encrypt_var = tk.BooleanVar(value=False)
-        encrypt_checkbox = tk.Checkbutton(root, text="Encrypt Payload (AES-GCM)", variable=self.encrypt_var)
-        encrypt_checkbox.grid(row=16, column=1, sticky="w")
+
         # Send button
         self.send_btn = ttk.Button(root, text="Send Request", command=self.send_request)
-        self.send_btn.grid(row=17, column=0, pady=10, sticky="w")
+        self.send_btn.grid(row=16, column=0, pady=10, sticky="w")
         
-        root.columnconfigure(1, weight=1)
+        # Configure column weights for resizing
+        for i in range(6):
+            root.columnconfigure(i, weight=1)
 
     def build_payload(self):
-        """
-        Build the payload (JSON dict or Protobuf bytes) based on user input and selected format.
-        Handles runtime-specific memory formatting.
-        """
         runtime = self.runtime_var.get()
         memory = self.memory_entry.get().strip()
 
         # Handle memory units based on runtime
         if runtime in ("docker", "docker-api"):
-            # Append 'm' if only digits are provided
             if memory.isdigit():
                 memory += "m"
         elif runtime in ("podman", "podman-api"):
-            # Remove 'm' if present
             if memory.lower().endswith("m"):
                 memory = memory[:-1]
 
@@ -171,20 +174,27 @@ class ContainerCreatorUI:
             return build_json(**args)
 
     def send_request(self):
-        """
-        Send the built payload to the backend using the selected protocol.
-        Handles encryption, encoding, and error reporting for each protocol.
-        """
         protocol = self.protocol_var.get()
         data_format = self.format_var.get()
+        encryption_algorithm = self.encryption_var.get()
         payload = self.build_payload()
-        encrypt = self.encrypt_var.get()
+
+        # Convert to bytes
         if data_format == "Proto":
             payload_bytes = payload
         else:
             payload_bytes = json.dumps(payload).encode("utf-8")
-        if encrypt:
-            payload_bytes = encrypt_payload(payload_bytes)
+
+        # Apply encryption
+        try:
+            payload_bytes = encrypt_payload(payload_bytes, encryption_algorithm)
+        except Exception as e:
+            messagebox.showerror("Encryption Error", f"Failed to encrypt payload: {e}")
+            return
+
+        # Determine if we need binary handling
+        needs_binary_handling = (data_format == "Proto") or (encryption_algorithm != "None")
+
         if protocol == "REST":
             port = self.port_entry.get().strip()
             if not port.isdigit():
@@ -192,7 +202,7 @@ class ContainerCreatorUI:
                 return
             port = int(port)
             try:
-                if data_format == "Proto" or encrypt:
+                if needs_binary_handling:
                     headers = {"Content-Type": "application/octet-stream"}
                     response = requests.post(f"http://localhost:{port}/execute", data=payload_bytes, headers=headers)
                 else:
@@ -203,6 +213,7 @@ class ContainerCreatorUI:
                     messagebox.showerror("Error", f"Server error: {response.text}")
             except Exception as e:
                 messagebox.showerror("Error", f"Failed to send REST request: {e}")
+
         elif protocol == "MQTT":
             broker = self.mqtt_broker_entry.get().strip()
             mqtt_port = self.mqtt_port_entry.get().strip()
@@ -212,13 +223,14 @@ class ContainerCreatorUI:
                 return
             mqtt_port = int(mqtt_port)
             try:
-                if data_format == "Proto" or encrypt:
+                if needs_binary_handling:
                     publish.single(topic, payload=payload_bytes, hostname=broker, port=mqtt_port)
                 else:
                     publish.single(topic, payload=json.dumps(payload), hostname=broker, port=mqtt_port)
-                messagebox.showinfo("Success", f"{data_format} message published to {broker}:{mqtt_port} on topic '{topic}'")
+                messagebox.showinfo("Success", f"{data_format} message published to {broker}:{mqtt_port}")
             except Exception as e:
                 messagebox.showerror("Error", f"Failed to send MQTT message: {e}")
+
         elif protocol == "MessageQueue":
             mq_name = self.mq_name_entry.get().strip()
             if not mq_name:
@@ -226,13 +238,14 @@ class ContainerCreatorUI:
                 return
             try:
                 mq = posix_ipc.MessageQueue(mq_name, posix_ipc.O_CREAT)
-                if data_format == "Proto" or encrypt:
+                if needs_binary_handling:
                     mq.send(payload_bytes)
                 else:
                     mq.send(json.dumps(payload))
                 messagebox.showinfo("Success", f"{data_format} message sent to queue '{mq_name}'")
             except Exception as e:
                 messagebox.showerror("Error", f"Failed to send message to queue: {e}")
+
         elif protocol == "DBus":
             bus_name = self.dbus_bus_name_entry.get().strip()
             object_path = self.dbus_object_path_entry.get().strip()
@@ -241,8 +254,7 @@ class ContainerCreatorUI:
                 bus = dbus.SessionBus()
                 proxy = bus.get_object(bus_name, object_path)
                 iface = dbus.Interface(proxy, dbus_interface=interface)
-                if data_format == "Proto" or encrypt:
-                    # D-Bus requires base64-encoded string for binary/encrypted payloads
+                if needs_binary_handling:
                     payload_b64 = base64.b64encode(payload_bytes).decode('utf-8')
                     iface.Execute(payload_b64)
                 else:

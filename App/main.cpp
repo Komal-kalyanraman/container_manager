@@ -11,24 +11,35 @@
 #include "inc/container_service.hpp"
 #include "inc/json_request_executor.hpp"
 #include "inc/null_security_provider.hpp"
+
+#if defined(SECURITY_ALGORITHM_AES_GCM)
 #include "inc/aes_gcm_security_provider.hpp"
+#elif defined(SECURITY_ALGORITHM_CHACHA20)
+#include "inc/chacha20_security_provider.hpp"
+#endif
+
 #if ENABLE_REDIS
 #include "inc/redis_database.hpp"
 #else
 #include "inc/embedded_database.hpp"
 #endif
+
 #if ENABLE_PROTOBUF
 #include "inc/protobuf_request_executor.hpp"
 #endif
+
 #if ENABLE_REST
 #include "inc/http_server.hpp"
 #endif
+
 #if ENABLE_MQTT
 #include "inc/mosquitto_mqtt_subscriber.hpp"
 #endif
+
 #if ENABLE_MSGQUEUE
 #include "inc/posix_message_queue_consumer.hpp"
 #endif
+
 #if ENABLE_DBUS
 #ifdef DEPRECATED
 #undef DEPRECATED
@@ -98,9 +109,13 @@ int main() {
     std::cout << "  ✓ Embedded Database" << std::endl;
 #endif
 #if ENABLE_ENCRYPTION
-    std::cout << "  🔒 AES-GCM Encryption: ENABLED" << std::endl;
+    #if defined(SECURITY_ALGORITHM_AES_GCM)
+        std::cout << "  🔒 Security: AES-256-GCM" << std::endl;
+    #elif defined(SECURITY_ALGORITHM_CHACHA20)
+        std::cout << "  🔒 Security: ChaCha20-Poly1305 (Automotive)" << std::endl;
+    #endif
 #else
-    std::cout << "  🔓 Encryption: DISABLED" << std::endl;
+    std::cout << "  🔓 Security: DISABLED" << std::endl;
 #endif
     std::cout << "===================================" << std::endl;
 
@@ -117,11 +132,14 @@ int main() {
     // Initialize project (logging, DB, etc.)
     InitProject(*db);
 
-    // Create security provider (always non-null, using make_unique)
+    // Create security provider based on CMake configuration
     std::unique_ptr<ISecurityProvider> security_provider;
-#if defined(ENABLE_ENCRYPTION) && ENABLE_ENCRYPTION
+#if defined(SECURITY_ALGORITHM_AES_GCM)
     security_provider = std::make_unique<AesGcmSecurityProvider>();
-    std::cout << "🔑 AES-GCM Security Provider initialized" << std::endl;
+    std::cout << "🔑 AES-256-GCM Security Provider initialized" << std::endl;
+#elif defined(SECURITY_ALGORITHM_CHACHA20)
+    security_provider = std::make_unique<ChaCha20SecurityProvider>();
+    std::cout << "🔑 ChaCha20-Poly1305 Security Provider initialized (Automotive OTA)" << std::endl;
 #else
     security_provider = std::make_unique<NullSecurityProvider>();
     std::cout << "🔓 Null Security Provider initialized (encryption disabled)" << std::endl;

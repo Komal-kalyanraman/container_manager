@@ -17,6 +17,11 @@
 #include "inc/database_interface.hpp"
 #include "inc/container_service.hpp" 
 
+// Forward declarations
+class IDatabaseHandler;
+class ContainerServiceHandler;
+class ISecurityProvider;
+
 /**
  * @class ProtoRequestExecutorHandler
  * @brief Parses and executes Protobuf requests, invoking business logic and database operations.
@@ -26,12 +31,11 @@
  */
 class ProtoRequestExecutorHandler : public RequestExecutor {
 public:
-    /**
-     * @brief Constructs a ProtoRequestExecutorHandler with injected dependencies.
-     * @param db Reference to an IDatabaseHandler implementation.
-     * @param service Reference to a ContainerServiceHandler.
-     */
-    ProtoRequestExecutorHandler(IDatabaseHandler& db, ContainerServiceHandler& service);
+    ProtoRequestExecutorHandler(
+        IDatabaseHandler& db, 
+        ContainerServiceHandler& service,
+        ISecurityProvider& security_provider
+    );
 
     /**
      * @brief Receives a serialized protobuf string, deserializes, saves to DB, and returns result as JSON.
@@ -43,4 +47,9 @@ public:
 private:
     IDatabaseHandler& db_;               ///< Reference to the injected database handler.
     ContainerServiceHandler& service_;   ///< Reference to the injected service handler.
+
+    ISecurityProvider& security_provider_;
+    
+    // Helper method to detect if data is encrypted
+    bool IsEncryptedData(const std::string& data);
 };

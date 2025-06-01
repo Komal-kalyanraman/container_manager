@@ -51,4 +51,7 @@ private:
     IDatabaseHandler& db_;                   ///< Reference to the injected database handler.
     ContainerServiceHandler& service_;       ///< Reference to the injected service handler.
     ISecurityProvider& security_provider_;   ///< Reference to security provider.
+
+    // Helper method to detect if data is encrypted
+    bool IsEncryptedData(const std::string& data);
 };
