@@ -1,4 +1,4 @@
 <map id="JsonRequestExecutorHandler" name="JsonRequestExecutorHandler">
-<area shape="rect" id="node1" title="Parses and executes JSON requests, invoking business logic and database operations." alt="" coords="5,145,240,237"/>
+<area shape="rect" id="node1" title="Parses and executes JSON requests with optional encryption support." alt="" coords="5,145,240,237"/>
 <area shape="rect" id="node2" href="$classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g...." alt="" coords="39,5,207,97"/>
 </map>

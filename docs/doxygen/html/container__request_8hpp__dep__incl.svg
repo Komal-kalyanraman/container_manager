@@ -250,7 +250,7 @@ var sectionId = 'dynsection-1';
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="json__request__executor_8cpp.html" target="_top" xlink:title="JSON request executor for Container Manager.">
+<g id="a_node5"><a xlink:href="json__request__executor_8cpp.html" target="_top" xlink:title="Implementation of the JSON request executor for Container Manager.">
 <polygon fill="white" stroke="black" points="222,-0.5 222,-30.5 364,-30.5 364,-0.5 222,-0.5"/>
 <text text-anchor="start" x="230" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">executor/src/json_request</text>
 <text text-anchor="middle" x="293" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_executor.cpp</text>

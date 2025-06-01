@@ -2,25 +2,25 @@
 
 ## Overview
 
-**Container Manager** is a modular, extensible, and production-ready C++ service for unified container management across Docker, Podman, and other runtimes.  
-It is designed to support multiple communication protocols (REST, MQTT, POSIX Message Queue, D-Bus, gRPC (planned)) and data formats (JSON, Protobuf), making it suitable for diverse deployment scenarios and integration needs. The application supports optional end-to-end AES-256-GCM encryption for all incoming protocol payloads, providing confidentiality and integrity for over-the-air (OTA) requests. **The application only decrypts incoming data; it does not encrypt outgoing responses.**
+**Container Manager** is a modular, extensible, and production-ready C++ service for unified container management across Docker, Podman, and other runtimes. It is designed to support multiple communication protocols (REST, MQTT, POSIX Message Queue, D-Bus, gRPC (planned)) and data formats (JSON, Protobuf), making it suitable for diverse deployment scenarios and integration needs. The application supports optional end-to-end AES-256-GCM encryption for all incoming protocol payloads, providing confidentiality and integrity for over-the-air (OTA) requests. The application only decrypts incoming data; it does not encrypt outgoing responses.
 
 ### System Architecture
 
-<img src="system_architecture.png" alt="System Architecture" width="950"/>
+<img src="system_architecture.png" alt="System Architecture" width="1000"/>
 
 ## Folder Structure
 
 ```
 App/
-├── api/        # Protocol handlers (REST, MQTT, MQ, D-Bus)
-├── core/       # Business logic (service layer, command pattern)
-├── database/   # Database interface and implementations (embedded, Redis)
-├── executor/   # Request executors (JSON, Protobuf)
-├── runtime/    # Command implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.
-├── utils/      # Utilities (thread pool, logging, config, decryption)
-├── main.cpp    # Application entry point
-└── third_party/# External dependencies
+├── api/          # Protocol handlers (REST, MQTT, MQ, D-Bus)
+├── core/         # Business logic (service layer, command pattern)
+├── database/     # Database interface and implementations (embedded, Redis)
+├── executor/     # Request executors (JSON, Protobuf, handle decryption)
+├── runtime/      # Command implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.
+├── utils/        # Utilities (thread pool, logging, config, decryption)
+├── security/     # Security providers (AES-GCM, ChaCha20, Null)
+├── main.cpp      # Application entry point
+└── third_party/  # External dependencies
 ```
 
 ## Component Descriptions
@@ -53,7 +53,12 @@ All protocols support secure payload delivery using AES-256-GCM encryption for i
 - **Protobuf Request Executor:**  
   Validates and parses incoming Protobuf requests (optionally decrypting them), converting them to internal command objects.
 
-**The executor layer abstracts data format and encryption handling, allowing protocol handlers to remain agnostic of the underlying serialization and security.**
+**The executor layer abstracts data format and encryption handling, allowing protocol handlers to remain agnostic of the underlying serialization and security.  
+The executor auto-detects if the payload is encrypted:**
+
+- For JSON: If parsing as JSON fails, it attempts decryption and parses again.
+- For Protobuf: If parsing as Protobuf fails, it attempts decryption and parses again.
+- This ensures that all protocols (REST, MQTT, MQ, D-Bus) can send either encrypted or unencrypted payloads without any protocol-specific logic.
 
 ### 3. Core Layer (Service & Command Pattern)
 
@@ -111,27 +116,30 @@ Database selection is controlled via the `ENABLE_REDIS` CMake flag. If not set, 
   Centralized configuration structs for all protocols and system settings.
 
 - **Encryption:**  
-  AES-256-GCM decryption utilities for secure OTA payloads.  
+  AES-256-GCM and ChaCha20-Poly1305 decryption utilities for secure OTA payloads.  
   Encryption is enabled or disabled at build time via the `ENABLE_ENCRYPTION` CMake flag.  
   When enabled, all protocol handlers and executors transparently support decryption of encrypted payloads.  
   **Note:** The application only decrypts incoming data; it does not encrypt outgoing responses.
+  - **Key storage:**
+    - Keys are stored in `storage/security/` as hex-encoded files:
+      - `aes_key.txt` for AES-256-GCM
+      - `chacha20_key.txt` for ChaCha20-Poly1305
 
 ## Security & Encryption
 
-- **AES-256-GCM Decryption:**  
-  When `ENABLE_ENCRYPTION` is ON, all incoming protocol payloads can be decrypted using AES-256-GCM.
+- **AES-256-GCM and ChaCha20-Poly1305 Decryption:**  
+  When `ENABLE_ENCRYPTION` is ON, all incoming protocol payloads can be decrypted using AES-256-GCM or ChaCha20-Poly1305, as selected at build time.
 
   - The encryption key and IV length are defined in the codebase and must match between client and server.
-  - Encrypted payloads are formatted as `[IV|TAG|CIPHERTEXT]` and may be Base64-encoded for transport (e.g., over D-Bus).
-  - Decryption and authentication are performed in the executor layer before request processing.
+  - Encrypted payloads are formatted as `[IV|TAG|CIPHERTEXT]` (AES) or `[NONCE|TAG|CIPHERTEXT]` (ChaCha20) and may be Base64-encoded for transport (e.g., over D-Bus).
+  - **Decryption and authentication are performed in the executor layer before request processing.**
+  - The executor auto-detects if the payload is encrypted (see above).
   - Encryption is optional and can be toggled at build time for compatibility with legacy or low-resource deployments.
-
-- **Integrity & Confidentiality:**  
-  AES-GCM provides both confidentiality and message authentication, ensuring that only authorized parties can read and modify requests.
+  - **Key files are stored in `storage/security/` and loaded at runtime.**
 
 - **Protocol Agnostic:**  
   Decryption is supported for all protocols (REST, MQTT, MQ, D-Bus).  
-  Protocol handlers and executors automatically detect and decrypt encrypted payloads.
+  Protocol handlers and executors automatically detect and decrypt encrypted payloads, regardless of data format.
 
 - **Configuration:**
 
@@ -150,7 +158,10 @@ Database selection is controlled via the `ENABLE_REDIS` CMake flag. If not set, 
 
 2. **Deserialization & Decryption:**  
    The protocol handler forwards the raw payload to the appropriate executor (JSON or Protobuf).  
-   The executor detects if the payload is encrypted and, if so, decrypts it using AES-256-GCM before parsing.
+   **The executor detects if the payload is encrypted and, if so, decrypts it using the configured algorithm before parsing.**
+
+   - For JSON: If parsing fails, decryption is attempted.
+   - For Protobuf: If parsing fails, decryption is attempted.
 
 3. **Validation & Parsing:**  
    The executor validates the request and converts it to an internal command object.
@@ -211,11 +222,11 @@ Database selection is controlled via the `ENABLE_REDIS` CMake flag. If not set, 
 
 ## Example Sequence Diagram
 
-<img src="architecture_example_sequence_diagram.png" alt="Example Sequence Diagram" width="900"/>
+<img src="architecture_example_sequence_diagram.png" alt="Example Sequence Diagram" width="1000"/>
 
 ## Deployment Diagram
 
-<img src="architecture_deployment_diagram.png" alt="Deployment Diagram" width="700"/>
+<img src="architecture_deployment_diagram.png" alt="Deployment Diagram" width="800"/>
 
 ## Recommendations for Contributors
 

@@ -1,0 +1,12 @@
+<map id="security/inc/security_provider.hpp" name="security/inc/security_provider.hpp">
+<area shape="rect" id="node1" title="Declares the ISecurityProvider abstract interface for encryption/decryption." alt="" coords="422,5,575,47"/>
+<area shape="rect" id="node2" href="$json__request__executor_8cpp.html" title="Implementation of the JSON request executor for Container Manager." alt="" coords="5,95,195,136"/>
+<area shape="rect" id="node3" href="$protobuf__request__executor_8cpp.html" title="Protocol Buffers request executor for Container Manager." alt="" coords="219,95,389,136"/>
+<area shape="rect" id="node4" href="$aes__gcm__security__provider_8hpp.html" title="Declares the AesGcmSecurityProvider class for AES&#45;256&#45;GCM decryption." alt="" coords="413,95,584,136"/>
+<area shape="rect" id="node6" href="$chacha20__security__provider_8hpp.html" title="Declares the ChaCha20SecurityProvider class for ChaCha20&#45;Poly1305 decryption." alt="" coords="608,95,779,136"/>
+<area shape="rect" id="node8" href="$null__security__provider_8hpp.html" title="Declares the NullSecurityProvider class for the &quot;no encryption&quot; case." alt="" coords="803,95,987,136"/>
+<area shape="rect" id="node5" href="$aes__gcm__security__provider_8cpp.html" title="Implementation of the AesGcmSecurityProvider class for AES&#45;256&#45;GCM decryption." alt="" coords="414,184,583,225"/>
+<area shape="rect" id="node7" href="$chacha20__security__provider_8cpp.html" title="Implementation of the ChaCha20SecurityProvider class for ChaCha20&#45;Poly1305 decryption." alt="" coords="609,184,778,225"/>
+<area shape="rect" id="node9" href="$main_8cpp.html" title="Entry point for the Container Manager service." alt="" coords="828,191,911,218"/>
+<area shape="rect" id="node10" href="$null__security__provider_8cpp.html" title="Implementation of the NullSecurityProvider class for the &quot;no encryption&quot; case." alt="" coords="935,184,1119,225"/>
+</map>

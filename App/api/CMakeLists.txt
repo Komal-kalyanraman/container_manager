@@ -34,3 +34,6 @@ if(ENABLE_ENCRYPTION)
     find_package(OpenSSL REQUIRED)
     target_link_libraries(${APP_NAME} PUBLIC OpenSSL::Crypto)
 endif()
+
+# Link security module for encryption support
+target_link_libraries(${APP_NAME} PUBLIC cm_security)

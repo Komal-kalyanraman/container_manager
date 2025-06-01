@@ -2,6 +2,6 @@
 <area shape="rect" id="node1" title="Declares the RedisDatabaseHandler class for Redis&#45;based database operations." alt="" coords="263,5,404,47"/>
 <area shape="rect" id="node2" href="$container__service_8cpp.html" title="Implements the ContainerServiceHandler class for business logic related to containers." alt="" coords="5,95,144,136"/>
 <area shape="rect" id="node3" href="$redis__database_8cpp.html" title="Implements RedisDatabaseHandler for Redis&#45;based database operations." alt="" coords="168,95,309,136"/>
-<area shape="rect" id="node4" href="$json__request__executor_8cpp.html" title="JSON request executor for Container Manager." alt="" coords="333,95,523,136"/>
+<area shape="rect" id="node4" href="$json__request__executor_8cpp.html" title="Implementation of the JSON request executor for Container Manager." alt="" coords="333,95,523,136"/>
 <area shape="rect" id="node5" href="$init__handler_8cpp.html" title="Implements project&#45;wide initialization functions for the Container Manager application." alt="" coords="547,102,728,129"/>
 </map>

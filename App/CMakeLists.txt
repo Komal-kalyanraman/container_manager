@@ -1,3 +1,7 @@
+# Top-level CMake build script for the Container Manager application.
+# This script configures feature flags, finds dependencies, sets up include/link directories,
+# and builds all modules and the main executable based on user-selected options.
+
 # Minimum required CMake version and project definition
 cmake_minimum_required(VERSION 3.10)
 project(cm VERSION 0.7.0 LANGUAGES CXX)
@@ -9,16 +13,29 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_compile_options(-Wno-deprecated-declarations)
 
 # Feature flags for protocols, data formats, database, and encryption
-option(ENABLE_REST      "Enable REST/HTTP server support" ON)
-option(ENABLE_MQTT      "Enable MQTT subscriber support" ON)
-option(ENABLE_MSGQUEUE  "Enable POSIX Message Queue support" ON)
-option(ENABLE_DBUS      "Enable D-Bus consumer support" ON)
-option(ENABLE_GRPC      "Enable gRPC protocol support" ON)
-option(ENABLE_PROTOBUF  "Enable Protocol Buffers for efficient binary serialization" ON)
+option(ENABLE_REST      "Enable REST/HTTP server support" OFF)
+option(ENABLE_MQTT      "Enable MQTT subscriber support" OFF)
+option(ENABLE_MSGQUEUE  "Enable POSIX Message Queue support" OFF)
+option(ENABLE_DBUS      "Enable D-Bus consumer support" OFF)
+option(ENABLE_GRPC      "Enable gRPC protocol support" OFF)
+option(ENABLE_PROTOBUF  "Enable Protocol Buffers for efficient binary serialization" OFF)
 option(ENABLE_REDIS     "Enable Redis database backend (OFF = use embedded DB)" OFF)
-option(ENABLE_ENCRYPTION "Enable AES-256-GCM encryption for secure OTA payloads" ON)
+option(ENABLE_ENCRYPTION "Enable AES-256-GCM encryption for secure OTA payloads" OFF)
 
-# Pass feature flags as compile definitions
+# Security algorithm selection (only used when ENABLE_ENCRYPTION=ON)
+set(SECURITY_ALGORITHM "AES_GCM" CACHE STRING "Security algorithm: AES_GCM, CHACHA20, or NULL")
+set_property(CACHE SECURITY_ALGORITHM PROPERTY STRINGS "AES_GCM" "CHACHA20" "NULL")
+
+# Validate security algorithm choice
+if(ENABLE_ENCRYPTION)
+    if(NOT SECURITY_ALGORITHM MATCHES "^(AES_GCM|CHACHA20)$")
+        message(FATAL_ERROR "Invalid SECURITY_ALGORITHM: ${SECURITY_ALGORITHM}. Must be AES_GCM or CHACHA20 when encryption is enabled.")
+    endif()
+else()
+    set(SECURITY_ALGORITHM "NULL")
+endif()
+
+# Pass feature flags as compile definitions for conditional compilation
 add_compile_definitions(
     ENABLE_REST=$<BOOL:${ENABLE_REST}>
     ENABLE_MQTT=$<BOOL:${ENABLE_MQTT}>
@@ -28,6 +45,7 @@ add_compile_definitions(
     ENABLE_PROTOBUF=$<BOOL:${ENABLE_PROTOBUF}>
     ENABLE_REDIS=$<BOOL:${ENABLE_REDIS}>
     ENABLE_ENCRYPTION=$<BOOL:${ENABLE_ENCRYPTION}>
+    SECURITY_ALGORITHM_${SECURITY_ALGORITHM}=1
 )
 
 # Set home directory and print status
@@ -40,7 +58,7 @@ find_package(Threads REQUIRED)
 find_package(glog 0.4.0 REQUIRED)
 find_package(nlohmann_json REQUIRED)
 
-# Find Protobuf if enabled
+# Find Protobuf if enabled (for Protobuf or gRPC support)
 if(ENABLE_PROTOBUF OR ENABLE_GRPC)
   find_package(Protobuf REQUIRED)
 endif()
@@ -78,6 +96,7 @@ include_directories("${PROJECT_SOURCE_DIR}/api")
 include_directories("${PROJECT_SOURCE_DIR}/core")
 include_directories("${PROJECT_SOURCE_DIR}/utils")
 include_directories("${PROJECT_SOURCE_DIR}/runtime")
+include_directories("${PROJECT_SOURCE_DIR}/security")
 include_directories("${PROJECT_SOURCE_DIR}/executor")
 include_directories("${PROJECT_SOURCE_DIR}/database")
 include_directories(/usr/local/include)
@@ -97,6 +116,7 @@ add_subdirectory(api)
 add_subdirectory(core)
 add_subdirectory(utils)
 add_subdirectory(runtime)
+add_subdirectory(security)
 add_subdirectory(executor)
 add_subdirectory(database)
 
@@ -146,6 +166,7 @@ target_link_libraries(CM
   cm_runtime
   cm_api
   cm_executor
+  cm_security
   librt.so
   pthread
   CURL::libcurl

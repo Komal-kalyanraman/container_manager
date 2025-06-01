@@ -2,6 +2,14 @@
 
 **Container Manager** is a modular, production-ready C++ service for unified container management across Docker, Podman, and more (planned). It supports REST, MQTT, MQ, D-Bus, gRPC (planned), Docker/Podman CLI, HTTP-API with incoming JSON & Protobuf data. Features: extensible architecture, pluggable database backend (embedded by default, Redis optional), robust logging, thread pool for all protocols, and enterprise-grade security with AES-256-GCM encryption. The project is modular, production-ready, and designed for extensibility.
 
+> **This is a reference architecture and template project** designed to demonstrate production-grade C++ patterns for container management systems. Clone, modify, and extend as needed for your specific requirements.
+
+## Use Cases for this Template
+
+- **Need D-Bus + Podman REST API + Protobuf + AES encryption?** Clone and modify
+- **Want MQTT + Docker CLI + JSON + embedded database?** Clone and configure
+- **Building a container orchestrator with custom runtime?** Extend the runtime layer
+
 ## Features
 
 - **Unified Container Management:**  
@@ -68,16 +76,23 @@ For a comprehensive overview of the system design, security, and extensibility, 
 
 **Container Manager v0.7.0** introduces a robust security layer:
 
-- **AES-256-GCM encryption** is supported for all protocols.
+- **AES-256-GCM and ChaCha20-Poly1305 encryption** are supported for all protocols.
   - Payloads are encrypted on the client side and decrypted transparently by the backend.
   - D-Bus and MQTT clients use Base64 encoding for binary/encrypted payloads.
-  - The backend auto-detects and decrypts encrypted payloads, regardless of protocol.
+  - The backend auto-detects and decrypts encrypted payloads, regardless of protocol or data format (JSON or Protobuf).
+  - **Detection and decryption are handled in the executor layer** (see architecture), so all protocol handlers remain generic and agnostic to encryption.
 - **Key management:**
-  - The AES key is stored in `storage/security/aes_key.txt` as a 64-character hex string (32 bytes).
-  - The backend loads the key at runtime from this file.
+  - The AES and ChaCha20 keys are stored in a seperate folder outside App as `storage/security` as hex-encoded files:
+    - `storage/security/aes_key.txt` (64 hex chars, 32 bytes)
+    - `storage/security/chacha20_key.txt` (64 hex chars, 32 bytes)
+  - The backend loads the key at runtime from these files.
   - For production, you may use environment variables or a secure key vault for even better security.
+  - The executor layer (see `executor/`) auto-detects whether the incoming payload is encrypted or not:
+  - For JSON: If the payload is not valid JSON, it attempts decryption.
+  - For Protobuf: If the payload cannot be parsed as a valid Protobuf message, it attempts decryption and then parses again.
+- This logic is protocol-agnostic and works for REST, MQTT, MQ, and D-Bus.
 
-**Example: Encrypted JSON Request (Python)**
+**Example: Encrypted JSON or Protobuf Request (Python)**
 
 ```python
 from Crypto.Cipher import AES
@@ -85,7 +100,7 @@ from Crypto.Random import get_random_bytes
 import requests
 import json
 
-def load_aes_key(path="../storage/security/aes_key.txt"):
+def load_aes_key(path="../key_storage/aes_key.txt"):
     with open(path, "r") as f:
         key_hex = f.read().strip()
     return bytes.fromhex(key_hex)
@@ -167,9 +182,10 @@ App/
 ├── api/        # HTTP server, MQTT subscriber, Message Queue and D-Bus consumer (and future protocol handlers)
 ├── core/       # Business logic (service layer)
 ├── database/   # Database interface, embedded and Redis implementations (pluggable)
-├── executor/   # Request executors (JSON, Protobuf, etc.)
+├── executor/   # Request executors (JSON, Protobuf, handle decryption)
 ├── runtime/    # Command pattern implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.
 ├── utils/      # Common utilities (thread pool, logging, etc.)
+├── security/   # Security providers (AES-GCM, ChaCha20, Null)
 ├── main.cpp    # Application entry point
 └── third_party/# External dependencies (excluded from docs/build)
 ```
@@ -227,7 +243,7 @@ You only need to install the dependencies for the protocols and data formats you
 
 ### CMake Feature Flags
 
-You can enable or disable each protocol and data format using CMake flags:
+You can enable or disable each protocol, data format, and security feature using CMake flags:
 
 - `ENABLE_REST` (REST/HTTP server)
 - `ENABLE_MQTT` (MQTT subscriber)
@@ -235,11 +251,40 @@ You can enable or disable each protocol and data format using CMake flags:
 - `ENABLE_DBUS` (D-Bus consumer)
 - `ENABLE_GRPC` (gRPC, planned)
 - `ENABLE_PROTOBUF` (Protobuf support; if OFF, only JSON is used)
-- `ENABLE_REDIS` (Redis database backend; If OFF then embedded database is used)
-- `ENABLE_ENCRYPTION` (AES-256-GCM encryption for all protocols; ON by default)
+- `ENABLE_REDIS` (Redis database backend; if OFF, embedded database is used)
+- `ENABLE_ENCRYPTION` (Enable encryption for all protocols; ON by default)
+- `SECURITY_ALGORITHM` (Select encryption algorithm: `AES_GCM` or `CHACHA20`; default is `AES_GCM`)
 
-**All options except Redis are ON by default.**  
-To build only what you need, set the flags before running CMake.
+**Examples:**
+
+- **Enable Protobuf, MQTT, Message Queue, REST, Redis, and ChaCha20 encryption:**
+
+  ```sh
+  cmake .. \
+    -DENABLE_PROTOBUF=ON \
+    -DENABLE_MQTT=ON \
+    -DENABLE_MSGQUEUE=ON \
+    -DENABLE_REST=ON \
+    -DENABLE_REDIS=ON \
+    -DENABLE_ENCRYPTION=ON \
+    -DSECURITY_ALGORITHM=CHACHA20
+  make
+  ```
+
+- **Disable Protobuf, Redis, encryption but Enable MQTT, Message Queue, REST:**
+
+  ```sh
+  cmake .. \
+    -DENABLE_MQTT=ON \
+    -DENABLE_MSGQUEUE=ON \
+    -DENABLE_REST=ON \
+    -DENABLE_ENCRYPTION=OFF
+  make
+  ```
+
+> **Note:**  
+> The encryption key files must be present in `storage/security/` as described above.  
+> The selected algorithm must match between the backend and any client sending encrypted payloads.
 
 ## Build Instructions
 

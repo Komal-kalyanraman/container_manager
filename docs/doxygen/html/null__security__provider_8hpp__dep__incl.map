@@ -1,0 +1,5 @@
+<map id="security/inc/null_security_provider.hpp" name="security/inc/null_security_provider.hpp">
+<area shape="rect" id="node1" title="Declares the NullSecurityProvider class for the &quot;no encryption&quot; case." alt="" coords="33,5,217,47"/>
+<area shape="rect" id="node2" href="$main_8cpp.html" title="Entry point for the Container Manager service." alt="" coords="5,102,88,129"/>
+<area shape="rect" id="node3" href="$null__security__provider_8cpp.html" title="Implementation of the NullSecurityProvider class for the &quot;no encryption&quot; case." alt="" coords="112,95,296,136"/>
+</map>

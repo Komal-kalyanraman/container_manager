@@ -1,0 +1,6 @@
+<map id="security/src/null_security_provider.cpp" name="security/src/null_security_provider.cpp">
+<area shape="rect" id="node1" title="Implementation of the NullSecurityProvider class for the &quot;no encryption&quot; case." alt="" coords="22,5,206,47"/>
+<area shape="rect" id="node2" href="$null__security__provider_8hpp.html" title="Declares the NullSecurityProvider class for the &quot;no encryption&quot; case." alt="" coords="5,95,223,121"/>
+<area shape="rect" id="node3" href="$security__provider_8hpp.html" title="Declares the ISecurityProvider abstract interface for encryption/decryption." alt="" coords="21,169,207,196"/>
+<area shape="rect" id="node4" title=" " alt="" coords="85,244,143,271"/>
+</map>

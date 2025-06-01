@@ -1,3 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structMessageQueueConfig.html" title="Holds constant configuration for the POSIX message queue consumer." alt="" coords="5,5,169,32"/>
+<area shape="rect" id="node1" href="$classISecurityProvider.html" title="Abstract interface for security providers (encryption/decryption)." alt="" coords="5,56,139,83"/>
+<area shape="rect" id="node2" href="$classAesGcmSecurityProvider.html" title="AES&#45;256&#45;GCM implementation for secure OTA payloads." alt="" coords="193,5,375,32"/>
+<area shape="rect" id="node3" href="$classChaCha20SecurityProvider.html" title="ChaCha20&#45;Poly1305 implementation for secure OTA payloads." alt="" coords="187,56,381,83"/>
+<area shape="rect" id="node4" href="$classNullSecurityProvider.html" title="Null object pattern implementation &#45; no encryption/decryption." alt="" coords="207,107,361,133"/>
 </map>

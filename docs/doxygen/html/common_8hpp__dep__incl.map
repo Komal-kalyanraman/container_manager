@@ -1,23 +1,26 @@
 <map id="utils/inc/common.hpp" name="utils/inc/common.hpp">
-<area shape="rect" id="node1" title="Defines common constants, string views, and utility structures for the application." alt="" coords="1142,5,1305,32"/>
-<area shape="rect" id="node2" href="$dbus__consumer_8hpp.html" title="Defines the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus." alt="" coords="36,87,235,114"/>
-<area shape="rect" id="node4" href="$http__server_8hpp.html" title="Defines the HttpServerHandler class for handling HTTP requests." alt="" coords="259,87,430,114"/>
-<area shape="rect" id="node6" href="$posix__message__queue__consumer_8hpp.html" title="Declares the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="535,80,706,121"/>
+<area shape="rect" id="node1" title="Defines common constants, string views, and utility structures for the application." alt="" coords="1287,5,1450,32"/>
+<area shape="rect" id="node2" href="$dbus__consumer_8hpp.html" title="Defines the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus." alt="" coords="5,87,204,114"/>
+<area shape="rect" id="node4" href="$http__server_8hpp.html" title="Defines the HttpServerHandler class for handling HTTP requests." alt="" coords="229,87,399,114"/>
+<area shape="rect" id="node6" href="$posix__message__queue__consumer_8hpp.html" title="Declares the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="425,80,595,121"/>
 <area shape="rect" id="node7" href="$posix__message__queue__consumer_8cpp.html" title="Implements the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="423,169,594,211"/>
 <area shape="rect" id="node8" href="$container__service_8cpp.html" title="Implements the ContainerServiceHandler class for business logic related to containers." alt="" coords="618,169,757,211"/>
-<area shape="rect" id="node9" href="$embedded__database_8hpp.html" title="Declares the EmbeddedDatabaseHandler class for a lightweight, fixed&#45;size in&#45;memory database." alt="" coords="1071,80,1250,121"/>
+<area shape="rect" id="node9" href="$embedded__database_8hpp.html" title="Declares the EmbeddedDatabaseHandler class for a lightweight, fixed&#45;size in&#45;memory database." alt="" coords="1021,80,1199,121"/>
 <area shape="rect" id="node11" href="$main_8cpp.html" title="Entry point for the Container Manager service." alt="" coords="1335,177,1418,203"/>
-<area shape="rect" id="node12" href="$json__request__executor_8cpp.html" title="JSON request executor for Container Manager." alt="" coords="1325,80,1514,121"/>
-<area shape="rect" id="node13" href="$protobuf__request__executor_8cpp.html" title="Protocol Buffers request executor for Container Manager." alt="" coords="1539,80,1708,121"/>
+<area shape="rect" id="node12" href="$json__request__executor_8cpp.html" title="Implementation of the JSON request executor for Container Manager." alt="" coords="1274,80,1463,121"/>
+<area shape="rect" id="node13" href="$protobuf__request__executor_8cpp.html" title="Protocol Buffers request executor for Container Manager." alt="" coords="1488,80,1657,121"/>
 <area shape="rect" id="node14" href="$command__factory_8hpp.html" title="Declares the CommandFactory class for creating command objects based on container requests." alt="" coords="781,80,946,121"/>
 <area shape="rect" id="node15" href="$command__factory_8cpp.html" title="Implements the CommandFactory class for creating command objects based on container requests." alt="" coords="781,169,946,211"/>
 <area shape="rect" id="node16" href="$container__service__test_8cpp.html" title=" " alt="" coords="970,169,1109,211"/>
-<area shape="rect" id="node17" href="$docker__api__commands_8cpp.html" title="Implements Docker API command classes for managing containers via the Docker HTTP API over a Unix soc..." alt="" coords="1733,80,1887,121"/>
-<area shape="rect" id="node18" href="$docker__commands_8cpp.html" title="Implements Docker command classes for container operations." alt="" coords="1912,80,2055,121"/>
-<area shape="rect" id="node19" href="$podman__api__commands_8cpp.html" title="Implements Podman API command classes for managing containers via the Podman HTTP API over a Unix soc..." alt="" coords="2079,80,2234,121"/>
-<area shape="rect" id="node20" href="$podman__commands_8cpp.html" title="Implements Podman command classes for container operations." alt="" coords="2259,80,2412,121"/>
-<area shape="rect" id="node21" href="$aes__gcm__decrypt_8cpp.html" title=" " alt="" coords="2437,87,2655,114"/>
-<area shape="rect" id="node22" href="$init__handler_8cpp.html" title="Implements project&#45;wide initialization functions for the Container Manager application." alt="" coords="2679,87,2861,114"/>
+<area shape="rect" id="node17" href="$docker__api__commands_8cpp.html" title="Implements Docker API command classes for managing containers via the Docker HTTP API over a Unix soc..." alt="" coords="1682,80,1837,121"/>
+<area shape="rect" id="node18" href="$docker__commands_8cpp.html" title="Implements Docker command classes for container operations." alt="" coords="1861,80,2004,121"/>
+<area shape="rect" id="node19" href="$podman__api__commands_8cpp.html" title="Implements Podman API command classes for managing containers via the Podman HTTP API over a Unix soc..." alt="" coords="2029,80,2183,121"/>
+<area shape="rect" id="node20" href="$podman__commands_8cpp.html" title="Implements Podman command classes for container operations." alt="" coords="2208,80,2361,121"/>
+<area shape="rect" id="node21" href="$aes__gcm__security__provider_8hpp.html" title="Declares the AesGcmSecurityProvider class for AES&#45;256&#45;GCM decryption." alt="" coords="2386,80,2557,121"/>
+<area shape="rect" id="node22" href="$aes__gcm__security__provider_8cpp.html" title="Implementation of the AesGcmSecurityProvider class for AES&#45;256&#45;GCM decryption." alt="" coords="2412,169,2581,211"/>
+<area shape="rect" id="node23" href="$chacha20__security__provider_8hpp.html" title="Declares the ChaCha20SecurityProvider class for ChaCha20&#45;Poly1305 decryption." alt="" coords="2631,80,2802,121"/>
+<area shape="rect" id="node24" href="$chacha20__security__provider_8cpp.html" title="Implementation of the ChaCha20SecurityProvider class for ChaCha20&#45;Poly1305 decryption." alt="" coords="2693,169,2863,211"/>
+<area shape="rect" id="node25" href="$init__handler_8cpp.html" title="Implements project&#45;wide initialization functions for the Container Manager application." alt="" coords="2877,87,3058,114"/>
 <area shape="rect" id="node3" href="$dbus__consumer_8cpp.html" title="D&#45;Bus message consumer implementation for Container Manager." alt="" coords="5,177,204,203"/>
 <area shape="rect" id="node5" href="$http__server_8cpp.html" title="Implements the HttpServerHandler class for handling HTTP requests." alt="" coords="229,177,399,203"/>
 <area shape="rect" id="node10" href="$embedded__database_8cpp.html" title="Implements the EmbeddedDatabaseHandler class for a lightweight, fixed&#45;size in&#45;memory database." alt="" coords="1133,169,1311,211"/>

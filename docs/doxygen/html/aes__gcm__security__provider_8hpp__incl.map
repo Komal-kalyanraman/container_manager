@@ -1,0 +1,9 @@
+<map id="security/inc/aes_gcm_security_provider.hpp" name="security/inc/aes_gcm_security_provider.hpp">
+<area shape="rect" id="node1" title="Declares the AesGcmSecurityProvider class for AES&#45;256&#45;GCM decryption." alt="" coords="179,5,349,47"/>
+<area shape="rect" id="node2" href="$security__provider_8hpp.html" title="Declares the ISecurityProvider abstract interface for encryption/decryption." alt="" coords="5,95,192,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="200,169,259,196"/>
+<area shape="rect" id="node4" title=" " alt="" coords="267,95,330,121"/>
+<area shape="rect" id="node5" href="$common_8hpp.html" title="Defines common constants, string views, and utility structures for the application." alt="" coords="355,95,485,121"/>
+<area shape="rect" id="node6" title=" " alt="" coords="327,169,425,196"/>
+<area shape="rect" id="node7" title=" " alt="" coords="449,169,573,196"/>
+</map>

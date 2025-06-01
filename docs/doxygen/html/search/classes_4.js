@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['idatabasehandler_395',['IDatabaseHandler',['../classIDatabaseHandler.html',1,'']]],
-  ['invoker_396',['Invoker',['../classInvoker.html',1,'']]]
+  ['httpserverhandler_409',['HttpServerHandler',['../classHttpServerHandler.html',1,'']]]
 ];

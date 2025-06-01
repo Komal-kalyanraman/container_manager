@@ -1,0 +1,4 @@
+<map id="ChaCha20SecurityProvider" name="ChaCha20SecurityProvider">
+<area shape="rect" id="node1" title="ChaCha20&#45;Poly1305 implementation for secure OTA payloads." alt="" coords="5,145,236,252"/>
+<area shape="rect" id="node2" href="$classISecurityProvider.html" title="Abstract interface for security providers (encryption/decryption)." alt="" coords="36,5,205,97"/>
+</map>

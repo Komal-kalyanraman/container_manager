@@ -89,7 +89,7 @@ $(document).ready(function(){initNavTree('json__request__executor_8hpp.html','')
 </div><!--header-->
 <div class="contents">
 
-<p>Declares the <a class="el" href="classJsonRequestExecutorHandler.html" title="Parses and executes JSON requests, invoking business logic and database operations.">JsonRequestExecutorHandler</a> class for executing JSON-based requests.  
+<p>Declares the <a class="el" href="classJsonRequestExecutorHandler.html" title="Parses and executes JSON requests with optional encryption support.">JsonRequestExecutorHandler</a> class for executing JSON-based requests.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="request__executor_8hpp_source.html">inc/request_executor.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="database__interface_8hpp_source.html">inc/database_interface.hpp</a>&quot;</code><br />
@@ -110,11 +110,11 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJsonRequestExecutorHandler.html">JsonRequestExecutorHandler</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses and executes JSON requests, invoking business logic and database operations.  <a href="classJsonRequestExecutorHandler.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses and executes JSON requests with optional encryption support.  <a href="classJsonRequestExecutorHandler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Declares the <a class="el" href="classJsonRequestExecutorHandler.html" title="Parses and executes JSON requests, invoking business logic and database operations.">JsonRequestExecutorHandler</a> class for executing JSON-based requests. </p>
+<div class="textblock"><p>Declares the <a class="el" href="classJsonRequestExecutorHandler.html" title="Parses and executes JSON requests with optional encryption support.">JsonRequestExecutorHandler</a> class for executing JSON-based requests. </p>
 <p>This executor receives JSON data as a string, parses it, transforms the request, saves it to the database, and invokes the container service handler to perform the requested operation. The result is returned as a JSON object.</p>
 <p>The class uses dependency injection for both the database handler and the service handler. It implements the <a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g....">RequestExecutor</a> interface and is used by all protocol consumers (HTTP, MQTT, Message Queue, D-Bus) when JSON is selected as the data format. </p>
 

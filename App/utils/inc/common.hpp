@@ -161,3 +161,6 @@ inline constexpr size_t kAesIvLen = 12;
 
 /// @brief AES-GCM authentication tag length in bytes (16 bytes recommended for GCM).
 inline constexpr size_t kAesTagLen = 16;
+
+/// @brief Default path to the ChaCha20-Poly1305 key file.
+inline constexpr char kChaCha20FilePath[] = "../../storage/security/chacha20_key.txt";

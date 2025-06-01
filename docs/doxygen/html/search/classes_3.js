@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['httpserverhandler_394',['HttpServerHandler',['../classHttpServerHandler.html',1,'']]]
+  ['embeddeddatabasehandler_408',['EmbeddedDatabaseHandler',['../classEmbeddedDatabaseHandler.html',1,'']]]
 ];
