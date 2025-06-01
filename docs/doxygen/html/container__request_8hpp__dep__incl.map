@@ -11,7 +11,7 @@
 <area shape="rect" id="node25" href="$podman__api__commands_8hpp.html" title="Declares command classes for managing containers via the Podman HTTP API over a Unix socket." alt="" coords="1971,95,2127,136"/>
 <area shape="rect" id="node27" href="$podman__commands_8hpp.html" title="Declares Podman command classes for container operations." alt="" coords="2151,95,2305,136"/>
 <area shape="rect" id="node4" href="$json__request__executor_8hpp.html" title="Declares the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="381,184,571,225"/>
-<area shape="rect" id="node5" href="$json__request__executor_8cpp.html" title="JSON request executor for Container Manager." alt="" coords="301,273,491,315"/>
+<area shape="rect" id="node5" href="$json__request__executor_8cpp.html" title="Implementation of the JSON request executor for Container Manager." alt="" coords="301,273,491,315"/>
 <area shape="rect" id="node6" href="$main_8cpp.html" title="Entry point for the Container Manager service." alt="" coords="516,281,599,307"/>
 <area shape="rect" id="node7" href="$protobuf__request__executor_8hpp.html" title="Declares the ProtoRequestExecutorHandler class for handling Protobuf&#45;based requests." alt="" coords="696,184,867,225"/>
 <area shape="rect" id="node8" href="$protobuf__request__executor_8cpp.html" title="Protocol Buffers request executor for Container Manager." alt="" coords="625,273,794,315"/>

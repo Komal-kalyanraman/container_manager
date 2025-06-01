@@ -157,12 +157,12 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="dbus__consumer_8cpp_source.html#l00031">31</a> of file <a class="el" href="dbus__consumer_8cpp_source.html">dbus_consumer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    : config_(config),</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;      bus_name_(config.<a class="code" href="structDbusConfig.html#a33e8572bce182377210defa058ae74cb">BusName</a>),</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;      object_path_(config.<a class="code" href="structDbusConfig.html#a8a662a7768b1eb753b65a68e57a77b28">ObjectPath</a>),</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;      executor_(std::move(executor)),</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;      running_(<span class="keyword">false</span>) {}</div>
+<p class="definition">Definition at line <a class="el" href="dbus__consumer_8cpp_source.html#l00023">23</a> of file <a class="el" href="dbus__consumer_8cpp_source.html">dbus_consumer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    : config_(config),</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;      bus_name_(config.<a class="code" href="structDbusConfig.html#a33e8572bce182377210defa058ae74cb">BusName</a>),</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;      object_path_(config.<a class="code" href="structDbusConfig.html#a8a662a7768b1eb753b65a68e57a77b28">ObjectPath</a>),</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;      executor_(std::move(executor)),</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;      running_(<span class="keyword">false</span>) {}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -184,12 +184,12 @@ Public Member Functions</h2></td></tr>
 <p>Destructor. Stops the consumer if running. </p>
 <p>Destructor ensures clean shutdown of D-Bus consumer. </p>
 
-<p class="definition">Definition at line <a class="el" href="dbus__consumer_8cpp_source.html#l00041">41</a> of file <a class="el" href="dbus__consumer_8cpp_source.html">dbus_consumer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                            {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="classDBusConsumer.html#a0dbd21d40cbdcd311c5e4b9aaf8b07ec">Stop</a>();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="dbus__consumer_8cpp_source.html#l00033">33</a> of file <a class="el" href="dbus__consumer_8cpp_source.html">dbus_consumer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                            {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classDBusConsumer.html#a0dbd21d40cbdcd311c5e4b9aaf8b07ec">Stop</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="dbus__consumer_8cpp_source.html#l00102">Stop()</a>.</p>
+<p class="reference">References <a class="el" href="dbus__consumer_8cpp_source.html#l00127">Stop()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -217,11 +217,11 @@ Here is the call graph for this function:</div>
 <p>Start listening for D-Bus method calls in a background thread. </p>
 <p>Start the D-Bus consumer in a separate thread. </p>
 
-<p class="definition">Definition at line <a class="el" href="dbus__consumer_8cpp_source.html#l00094">94</a> of file <a class="el" href="dbus__consumer_8cpp_source.html">dbus_consumer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                         {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    running_ = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    listen_thread_ = std::thread(&amp;DBusConsumer::ListenLoop, <span class="keyword">this</span>);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="dbus__consumer_8cpp_source.html#l00119">119</a> of file <a class="el" href="dbus__consumer_8cpp_source.html">dbus_consumer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                         {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    running_ = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    listen_thread_ = std::thread(&amp;DBusConsumer::ListenLoop, <span class="keyword">this</span>);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -243,14 +243,14 @@ Here is the call graph for this function:</div>
 <p>Stop listening and join the background thread. </p>
 <p>Stop the D-Bus consumer and wait for thread completion. </p>
 
-<p class="definition">Definition at line <a class="el" href="dbus__consumer_8cpp_source.html#l00102">102</a> of file <a class="el" href="dbus__consumer_8cpp_source.html">dbus_consumer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                        {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    running_ = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">if</span> (listen_thread_.joinable())</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        listen_thread_.join();</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="dbus__consumer_8cpp_source.html#l00127">127</a> of file <a class="el" href="dbus__consumer_8cpp_source.html">dbus_consumer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                        {</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    running_ = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordflow">if</span> (listen_thread_.joinable())</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        listen_thread_.join();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="dbus__consumer_8cpp_source.html#l00041">~DBusConsumer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="dbus__consumer_8cpp_source.html#l00033">~DBusConsumer()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -265,7 +265,7 @@ Here is the caller graph for this function:</div>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassDBusConsumer_html_a0dbd21d40cbdcd311c5e4b9aaf8b07ec"><div class="ttname"><a href="classDBusConsumer.html#a0dbd21d40cbdcd311c5e4b9aaf8b07ec">DBusConsumer::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">Stop listening and join the background thread.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8cpp_source.html#l00102">dbus_consumer.cpp:102</a></div></div>
+<div class="ttc" id="aclassDBusConsumer_html_a0dbd21d40cbdcd311c5e4b9aaf8b07ec"><div class="ttname"><a href="classDBusConsumer.html#a0dbd21d40cbdcd311c5e4b9aaf8b07ec">DBusConsumer::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">Stop listening and join the background thread.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8cpp_source.html#l00127">dbus_consumer.cpp:127</a></div></div>
 <div class="ttc" id="astructDbusConfig_html_a33e8572bce182377210defa058ae74cb"><div class="ttname"><a href="structDbusConfig.html#a33e8572bce182377210defa058ae74cb">DbusConfig::BusName</a></div><div class="ttdeci">const std::string BusName</div><div class="ttdoc">D-Bus service name.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00070">common.hpp:70</a></div></div>
 <div class="ttc" id="astructDbusConfig_html_a8a662a7768b1eb753b65a68e57a77b28"><div class="ttname"><a href="structDbusConfig.html#a8a662a7768b1eb753b65a68e57a77b28">DbusConfig::ObjectPath</a></div><div class="ttdeci">const std::string ObjectPath</div><div class="ttdoc">D-Bus object path.</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00071">common.hpp:71</a></div></div>
 <!-- start footer part -->

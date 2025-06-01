@@ -2,6 +2,6 @@
 <area shape="rect" id="node1" title="Performs the specified container operation using the request structure. Invokes the appropriate comma..." alt="" coords="503,68,687,109"/>
 <area shape="rect" id="node2" href="$classContainerServiceHandler.html#a16f0650a9d5719fc441541a2adc5f29a" title="Handles a container request by dispatching to the appropriate operation. Updates the container status..." alt="" coords="271,39,455,80"/>
 <area shape="rect" id="node5" href="$container__service__test_8cpp.html#ae36f59fcca1a5dc866857de22ca9740a" title=" " alt="" coords="328,105,397,131"/>
-<area shape="rect" id="node3" href="$classJsonRequestExecutorHandler.html#aaf7c1c7c14971ccfda4076e0a4681f43" title="Executes a request represented as a JSON string." alt="" coords="9,5,219,47"/>
-<area shape="rect" id="node4" href="$classProtoRequestExecutorHandler.html#a7255c2daf8946f8c73b0327cd4ad9156" title="Receives a serialized protobuf string, deserializes, saves to DB, and returns result as JSON." alt="" coords="5,71,223,112"/>
+<area shape="rect" id="node3" href="$classJsonRequestExecutorHandler.html#aaf7c1c7c14971ccfda4076e0a4681f43" title="Executes a request represented as a JSON string. Handles decryption if the payload is encrypted." alt="" coords="9,5,219,47"/>
+<area shape="rect" id="node4" href="$classProtoRequestExecutorHandler.html#a7255c2daf8946f8c73b0327cd4ad9156" title="Receives a serialized protobuf string, deserializes, saves to DB, and returns result as JSON...." alt="" coords="5,71,223,112"/>
 </map>

@@ -1,0 +1,6 @@
+<map id="ISecurityProvider" name="ISecurityProvider">
+<area shape="rect" id="node1" title="Abstract interface for security providers (encryption/decryption)." alt="" coords="279,5,449,97"/>
+<area shape="rect" id="node2" href="$classAesGcmSecurityProvider.html" title="AES&#45;256&#45;GCM implementation for secure OTA payloads." alt="" coords="5,145,224,252"/>
+<area shape="rect" id="node3" href="$classChaCha20SecurityProvider.html" title="ChaCha20&#45;Poly1305 implementation for secure OTA payloads." alt="" coords="249,145,479,252"/>
+<area shape="rect" id="node4" href="$classNullSecurityProvider.html" title="Null object pattern implementation &#45; no encryption/decryption." alt="" coords="503,145,694,252"/>
+</map>

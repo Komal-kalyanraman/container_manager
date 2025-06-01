@@ -86,27 +86,27 @@ $(document).ready(function(){initNavTree('md__home_komal_workspace_personal_cont
 <div class="title">Container Manager Architecture </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md42"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md43"></a>
 Overview</h1>
-<p><b>Container Manager</b> is a modular, extensible, and production-ready C++ service for unified container management across Docker, Podman, and other runtimes. <br  />
- It is designed to support multiple communication protocols (REST, MQTT, POSIX Message Queue, D-Bus, gRPC (planned)) and data formats (JSON, Protobuf), making it suitable for diverse deployment scenarios and integration needs. The application supports optional end-to-end AES-256-GCM encryption for all incoming protocol payloads, providing confidentiality and integrity for over-the-air (OTA) requests. <b>The application only decrypts incoming data; it does not encrypt outgoing responses.</b></p>
-<h2><a class="anchor" id="autotoc_md43"></a>
+<p><b>Container Manager</b> is a modular, extensible, and production-ready C++ service for unified container management across Docker, Podman, and other runtimes. It is designed to support multiple communication protocols (REST, MQTT, POSIX Message Queue, D-Bus, gRPC (planned)) and data formats (JSON, Protobuf), making it suitable for diverse deployment scenarios and integration needs. The application supports optional end-to-end AES-256-GCM encryption for all incoming protocol payloads, providing confidentiality and integrity for over-the-air (OTA) requests. The application only decrypts incoming data; it does not encrypt outgoing responses.</p>
+<h2><a class="anchor" id="autotoc_md44"></a>
 System Architecture</h2>
-<p><img src="system_architecture.png" alt="System Architecture" width="950" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md44"></a>
+<p><img src="system_architecture.png" alt="System Architecture" width="1000" class="inline"/></p>
+<h1><a class="anchor" id="autotoc_md45"></a>
 Folder Structure</h1>
 <div class="fragment"><div class="line">App/</div>
-<div class="line">├── api/        # Protocol handlers (REST, MQTT, MQ, D-Bus)</div>
-<div class="line">├── core/       # Business logic (service layer, command pattern)</div>
-<div class="line">├── database/   # Database interface and implementations (embedded, Redis)</div>
-<div class="line">├── executor/   # Request executors (JSON, Protobuf)</div>
-<div class="line">├── runtime/    # Command implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.</div>
-<div class="line">├── utils/      # Utilities (thread pool, logging, config, decryption)</div>
-<div class="line">├── main.cpp    # Application entry point</div>
-<div class="line">└── third_party/# External dependencies</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md45"></a>
+<div class="line">├── api/          # Protocol handlers (REST, MQTT, MQ, D-Bus)</div>
+<div class="line">├── core/         # Business logic (service layer, command pattern)</div>
+<div class="line">├── database/     # Database interface and implementations (embedded, Redis)</div>
+<div class="line">├── executor/     # Request executors (JSON, Protobuf, handle decryption)</div>
+<div class="line">├── runtime/      # Command implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.</div>
+<div class="line">├── utils/        # Utilities (thread pool, logging, config, decryption)</div>
+<div class="line">├── security/     # Security providers (AES-GCM, ChaCha20, Null)</div>
+<div class="line">├── main.cpp      # Application entry point</div>
+<div class="line">└── third_party/  # External dependencies</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md46"></a>
 Component Descriptions</h1>
-<h2><a class="anchor" id="autotoc_md46"></a>
+<h2><a class="anchor" id="autotoc_md47"></a>
 1. API Layer (Protocol Handlers)</h2>
 <ul>
 <li><b>REST API Server:</b> <br  />
@@ -122,7 +122,7 @@ Component Descriptions</h1>
 </ul>
 <p><b>All protocol handlers are modular and can be enabled/disabled at build time via CMake flags. <br  />
  All protocols support secure payload delivery using AES-256-GCM encryption for incoming data when enabled.</b></p>
-<h2><a class="anchor" id="autotoc_md47"></a>
+<h2><a class="anchor" id="autotoc_md48"></a>
 2. Executor Layer (Request Executors)</h2>
 <ul>
 <li><b>JSON Request Executor:</b> <br  />
@@ -130,8 +130,14 @@ Component Descriptions</h1>
 <li><b>Protobuf Request Executor:</b> <br  />
  Validates and parses incoming Protobuf requests (optionally decrypting them), converting them to internal command objects.</li>
 </ul>
-<p><b>The executor layer abstracts data format and encryption handling, allowing protocol handlers to remain agnostic of the underlying serialization and security.</b></p>
-<h2><a class="anchor" id="autotoc_md48"></a>
+<p><b>The executor layer abstracts data format and encryption handling, allowing protocol handlers to remain agnostic of the underlying serialization and security. <br  />
+ The executor auto-detects if the payload is encrypted:</b></p>
+<ul>
+<li>For JSON: If parsing as JSON fails, it attempts decryption and parses again.</li>
+<li>For Protobuf: If parsing as Protobuf fails, it attempts decryption and parses again.</li>
+<li>This ensures that all protocols (REST, MQTT, MQ, D-Bus) can send either encrypted or unencrypted payloads without any protocol-specific logic.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md49"></a>
 3. Core Layer (Service &amp; Command Pattern)</h2>
 <ul>
 <li><b>Container Service Handler:</b> <br  />
@@ -140,7 +146,7 @@ Component Descriptions</h1>
  Each container operation (create, start, stop, etc.) is encapsulated as a command object. <br  />
  Supports multiple runtimes (Docker CLI, Podman CLI, Docker API, Podman API, etc.) and is easily extensible.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md49"></a>
+<h2><a class="anchor" id="autotoc_md50"></a>
 4. Runtime Layer</h2>
 <ul>
 <li><b>Docker Commands:</b> <br  />
@@ -157,7 +163,7 @@ Component Descriptions</h1>
  The <code>podman-api</code> runtime is not extensively tested. Use with caution and report any issues you encounter. </p>
 </blockquote>
 <p><b>The runtime layer can be extended to support additional container engines and APIs.</b></p>
-<h2><a class="anchor" id="autotoc_md50"></a>
+<h2><a class="anchor" id="autotoc_md51"></a>
 5. Database Layer</h2>
 <ul>
 <li><b><a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a>:</b> <br  />
@@ -171,7 +177,7 @@ Component Descriptions</h1>
 </ul>
 <p><b>The database layer is pluggable—swap between embedded and Redis (or any other backend) by implementing the interface. <br  />
  Database selection is controlled via the <code>ENABLE_REDIS</code> CMake flag. If not set, the embedded database is used by default.</b></p>
-<h2><a class="anchor" id="autotoc_md51"></a>
+<h2><a class="anchor" id="autotoc_md52"></a>
 6. Utilities</h2>
 <ul>
 <li><b>Thread Pool:</b> <br  />
@@ -181,27 +187,37 @@ Component Descriptions</h1>
 <li><b>Config:</b> <br  />
  Centralized configuration structs for all protocols and system settings.</li>
 <li><b>Encryption:</b> <br  />
- AES-256-GCM decryption utilities for secure OTA payloads. <br  />
+ AES-256-GCM and ChaCha20-Poly1305 decryption utilities for secure OTA payloads. <br  />
  Encryption is enabled or disabled at build time via the <code>ENABLE_ENCRYPTION</code> CMake flag. <br  />
  When enabled, all protocol handlers and executors transparently support decryption of encrypted payloads. <br  />
- <b>Note:</b> The application only decrypts incoming data; it does not encrypt outgoing responses.</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md52"></a>
-Security &amp; Encryption</h1>
-<ul>
-<li><b>AES-256-GCM Decryption:</b> <br  />
- When <code>ENABLE_ENCRYPTION</code> is ON, all incoming protocol payloads can be decrypted using AES-256-GCM.<ul>
-<li>The encryption key and IV length are defined in the codebase and must match between client and server.</li>
-<li>Encrypted payloads are formatted as <code>[IV|TAG|CIPHERTEXT]</code> and may be Base64-encoded for transport (e.g., over D-Bus).</li>
-<li>Decryption and authentication are performed in the executor layer before request processing.</li>
-<li>Encryption is optional and can be toggled at build time for compatibility with legacy or low-resource deployments.</li>
+ <b>Note:</b> The application only decrypts incoming data; it does not encrypt outgoing responses.<ul>
+<li><b>Key storage:</b><ul>
+<li>Keys are stored in <code>storage/security/</code> as hex-encoded files:<ul>
+<li><code>aes_key.txt</code> for AES-256-GCM</li>
+<li><code>chacha20_key.txt</code> for ChaCha20-Poly1305</li>
 </ul>
 </li>
-<li><b>Integrity &amp; Confidentiality:</b> <br  />
- AES-GCM provides both confidentiality and message authentication, ensuring that only authorized parties can read and modify requests.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md53"></a>
+Security &amp; Encryption</h1>
+<ul>
+<li><b>AES-256-GCM and ChaCha20-Poly1305 Decryption:</b> <br  />
+ When <code>ENABLE_ENCRYPTION</code> is ON, all incoming protocol payloads can be decrypted using AES-256-GCM or ChaCha20-Poly1305, as selected at build time.<ul>
+<li>The encryption key and IV length are defined in the codebase and must match between client and server.</li>
+<li>Encrypted payloads are formatted as <code>[IV|TAG|CIPHERTEXT]</code> (AES) or <code>[NONCE|TAG|CIPHERTEXT]</code> (ChaCha20) and may be Base64-encoded for transport (e.g., over D-Bus).</li>
+<li><b>Decryption and authentication are performed in the executor layer before request processing.</b></li>
+<li>The executor auto-detects if the payload is encrypted (see above).</li>
+<li>Encryption is optional and can be toggled at build time for compatibility with legacy or low-resource deployments.</li>
+<li><b>Key files are stored in <code>storage/security/</code> and loaded at runtime.</b></li>
+</ul>
+</li>
 <li><b>Protocol Agnostic:</b> <br  />
  Decryption is supported for all protocols (REST, MQTT, MQ, D-Bus). <br  />
- Protocol handlers and executors automatically detect and decrypt encrypted payloads.</li>
+ Protocol handlers and executors automatically detect and decrypt encrypted payloads, regardless of data format.</li>
 <li><b>Configuration:</b><ul>
 <li>Enable or disable decryption support at build time using the <code>ENABLE_ENCRYPTION</code> CMake flag.</li>
 <li>Update the encryption key and IV as needed for your deployment.</li>
@@ -211,7 +227,7 @@ Security &amp; Encryption</h1>
  <b>This application only decrypts incoming encrypted data. It does not encrypt any outgoing responses. <br  />
  If you require encrypted responses, you must implement this functionality separately.</b></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md53"></a>
+<h1><a class="anchor" id="autotoc_md54"></a>
 Data Flow</h1>
 <ol type="1">
 <li><b>Request Reception:</b> <br  />
@@ -219,7 +235,11 @@ Data Flow</h1>
  If encryption is enabled, the payload may be encrypted.</li>
 <li><b>Deserialization &amp; Decryption:</b> <br  />
  The protocol handler forwards the raw payload to the appropriate executor (JSON or Protobuf). <br  />
- The executor detects if the payload is encrypted and, if so, decrypts it using AES-256-GCM before parsing.</li>
+ <b>The executor detects if the payload is encrypted and, if so, decrypts it using the configured algorithm before parsing.</b><ul>
+<li>For JSON: If parsing fails, decryption is attempted.</li>
+<li>For Protobuf: If parsing fails, decryption is attempted.</li>
+</ul>
+</li>
 <li><b>Validation &amp; Parsing:</b> <br  />
  The executor validates the request and converts it to an internal command object.</li>
 <li><b>Business Logic:</b> <br  />
@@ -233,7 +253,7 @@ Data Flow</h1>
  The result is sent back via the originating protocol (if applicable). <br  />
  <b>Note:</b> Outgoing responses are not encrypted by this application.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md54"></a>
+<h1><a class="anchor" id="autotoc_md55"></a>
 Extensibility</h1>
 <ul>
 <li><b>Add a Protocol:</b> <br  />
@@ -249,7 +269,7 @@ Extensibility</h1>
  Update the encryption key, IV, or algorithm as needed. <br  />
  Toggle decryption support at build time with <code>ENABLE_ENCRYPTION</code>.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md55"></a>
+<h1><a class="anchor" id="autotoc_md56"></a>
 Production-Readiness</h1>
 <ul>
 <li><b>Graceful Shutdown:</b> <br  />
@@ -266,13 +286,13 @@ Production-Readiness</h1>
  AES-256-GCM decryption is available for all protocols and data formats, providing strong security guarantees for production deployments. <br  />
  <b>Encryption of outgoing responses is not implemented.</b></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md56"></a>
-Example Sequence Diagram</h1>
-<p><img src="architecture_example_sequence_diagram.png" alt="Example Sequence Diagram" width="900" class="inline"/></p>
 <h1><a class="anchor" id="autotoc_md57"></a>
-Deployment Diagram</h1>
-<p><img src="architecture_deployment_diagram.png" alt="Deployment Diagram" width="700" class="inline"/></p>
+Example Sequence Diagram</h1>
+<p><img src="architecture_example_sequence_diagram.png" alt="Example Sequence Diagram" width="1000" class="inline"/></p>
 <h1><a class="anchor" id="autotoc_md58"></a>
+Deployment Diagram</h1>
+<p><img src="architecture_deployment_diagram.png" alt="Deployment Diagram" width="800" class="inline"/></p>
+<h1><a class="anchor" id="autotoc_md59"></a>
 Recommendations for Contributors</h1>
 <ul>
 <li><b>Follow the modular architecture:</b> <br  />
@@ -282,7 +302,7 @@ Recommendations for Contributors</h1>
 <li><b>Update diagrams and documentation as the architecture evolves.</b></li>
 <li><b>If you add or change encryption/decryption, update this document and the security section.</b></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md59"></a>
+<h1><a class="anchor" id="autotoc_md60"></a>
 References</h1>
 <ul>
 <li><a href="../docs/doxygen/html/index.html">Doxygen Documentation</a></li>

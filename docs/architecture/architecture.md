@@ -6,7 +6,7 @@
 
 ### System Architecture
 
-<img src="system_architecture.png" alt="System Architecture" width="950"/>
+<img src="system_architecture.png" alt="System Architecture" width="1000"/>
 
 ## Folder Structure
 
@@ -222,11 +222,11 @@ Database selection is controlled via the `ENABLE_REDIS` CMake flag. If not set, 
 
 ## Example Sequence Diagram
 
-<img src="architecture_example_sequence_diagram.png" alt="Example Sequence Diagram" width="900"/>
+<img src="architecture_example_sequence_diagram.png" alt="Example Sequence Diagram" width="1000"/>
 
 ## Deployment Diagram
 
-<img src="architecture_deployment_diagram.png" alt="Deployment Diagram" width="700"/>
+<img src="architecture_deployment_diagram.png" alt="Deployment Diagram" width="800"/>
 
 ## Recommendations for Contributors
 

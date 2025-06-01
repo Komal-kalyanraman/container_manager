@@ -1,0 +1,4 @@
+<map id="NullSecurityProvider" name="NullSecurityProvider">
+<area shape="rect" id="node1" title="Null object pattern implementation &#45; no encryption/decryption." alt="" coords="5,145,196,252"/>
+<area shape="rect" id="node2" href="$classISecurityProvider.html" title="Abstract interface for security providers (encryption/decryption)." alt="" coords="16,5,185,97"/>
+</map>

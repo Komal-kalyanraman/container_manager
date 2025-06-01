@@ -1,5 +1,5 @@
 <map id="executor/inc/json_request_executor.hpp" name="executor/inc/json_request_executor.hpp">
 <area shape="rect" id="node1" title="Declares the JsonRequestExecutorHandler class for executing JSON&#45;based requests." alt="" coords="85,5,275,47"/>
-<area shape="rect" id="node2" href="$json__request__executor_8cpp.html" title="JSON request executor for Container Manager." alt="" coords="5,95,195,136"/>
+<area shape="rect" id="node2" href="$json__request__executor_8cpp.html" title="Implementation of the JSON request executor for Container Manager." alt="" coords="5,95,195,136"/>
 <area shape="rect" id="node3" href="$main_8cpp.html" title="Entry point for the Container Manager service." alt="" coords="219,102,301,129"/>
 </map>

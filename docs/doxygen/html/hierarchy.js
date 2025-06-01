@@ -40,6 +40,11 @@ var hierarchy =
       [ "RedisDatabaseHandler", "classRedisDatabaseHandler.html", null ]
     ] ],
     [ "Invoker", "classInvoker.html", null ],
+    [ "ISecurityProvider", "classISecurityProvider.html", [
+      [ "AesGcmSecurityProvider", "classAesGcmSecurityProvider.html", null ],
+      [ "ChaCha20SecurityProvider", "classChaCha20SecurityProvider.html", null ],
+      [ "NullSecurityProvider", "classNullSecurityProvider.html", null ]
+    ] ],
     [ "Message", null, [
       [ "containermanager::ContainerParameters", "classcontainermanager_1_1ContainerParameters.html", null ],
       [ "containermanager::ContainerRequest", "classcontainermanager_1_1ContainerRequest.html", null ]

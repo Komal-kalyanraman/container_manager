@@ -39,13 +39,6 @@ class ContainerCreatorUI:
         self.format_menu = ttk.Combobox(root, textvariable=self.format_var, values=format_options, state="readonly")
         self.format_menu.grid(row=0, column=3, sticky="ew")
 
-        # Encryption algorithm selection
-        ttk.Label(root, text="Encryption:").grid(row=0, column=4, sticky="w")
-        encryption_options = ["None", "AES-256-GCM", "ChaCha20-Poly1305"]
-        self.encryption_var = tk.StringVar(value="None")
-        self.encryption_menu = ttk.Combobox(root, textvariable=self.encryption_var, values=encryption_options, state="readonly")
-        self.encryption_menu.grid(row=0, column=5, sticky="ew")
-
         # Container runtime selection
         ttk.Label(root, text="Container Runtime:").grid(row=1, column=0, sticky="w")
         self.runtime_var = tk.StringVar(value="docker")
@@ -59,6 +52,13 @@ class ContainerCreatorUI:
         operation_options = ["create", "start", "stop", "restart", "remove", "available"]
         self.operation_menu = ttk.Combobox(root, textvariable=self.operation_var, values=operation_options, state="readonly")
         self.operation_menu.grid(row=1, column=3, sticky="ew")
+
+        # Encryption algorithm selection (now in the same row as runtime and operation)
+        ttk.Label(root, text="Encryption:").grid(row=2, column=2, sticky="w")
+        encryption_options = ["None", "AES-256-GCM", "ChaCha20-Poly1305"]
+        self.encryption_var = tk.StringVar(value="None")
+        self.encryption_menu = ttk.Combobox(root, textvariable=self.encryption_var, values=encryption_options, state="readonly")
+        self.encryption_menu.grid(row=2, column=3, sticky="ew")
 
         # Container parameters
         ttk.Label(root, text="CPUs:").grid(row=2, column=0, sticky="w")

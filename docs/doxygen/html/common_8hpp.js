@@ -15,6 +15,7 @@ var common_8hpp =
     [ "kAesKeyFilePath", "common_8hpp.html#acee365ec4f7c573a0247925a2254ec87", null ],
     [ "kAesKeyLen", "common_8hpp.html#a2cff9b75cb0fa5c836c0ce4fca436361", null ],
     [ "kAesTagLen", "common_8hpp.html#a022b7958f635cfd9b1e07b4a76801510", null ],
+    [ "kChaCha20FilePath", "common_8hpp.html#a5e704f788af8b0bb5b6a17de13228df2", null ],
     [ "kContainerManagerLogName", "common_8hpp.html#af0a5c19c0d441fb37ef118d1714dc2aa", null ],
     [ "kDockerApiBaseUrl", "common_8hpp.html#a44f20b581877e93f5270fbe6281553c6", null ],
     [ "kDockerUnixSocketPath", "common_8hpp.html#a0ce8df3b35a0ea16a014b05672323070", null ],
