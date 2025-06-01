@@ -24,28 +24,22 @@ JsonRequestExecutorHandler::JsonRequestExecutorHandler(
 
 bool JsonRequestExecutorHandler::IsEncryptedData(const std::string& data) {
     if (data.empty()) return false;
-    
-    // First check: If it starts with JSON characters, it's likely plain JSON
-    char first_char = data[0];
-    if (first_char == '{' || first_char == '[') {
-        return false;
-    }
-    
-    // Second check: Count non-printable characters
-    int non_printable = 0;
-    int sample_size = std::min(static_cast<int>(data.length()), 50); // Check first 50 chars
-    
-    for (int i = 0; i < sample_size; ++i) {
-        unsigned char c = static_cast<unsigned char>(data[i]);
-        // Consider characters outside printable ASCII range as non-printable
-        if (c < 32 || c > 126) {
-            non_printable++;
+
+    // Try to parse as JSON first
+    try {
+        auto test_json = nlohmann::json::parse(data);
+        // If parsing succeeds and we have expected fields, it's unencrypted JSON
+        if (test_json.contains("runtime") || test_json.contains("operation")) {
+            std::cout << "[JSON Executor] Detected valid unencrypted JSON data" << std::endl;
+            return false;
         }
+    } catch (const nlohmann::json::parse_error&) {
+        // Parsing failed, likely encrypted
     }
-    
-    // If more than 40% are non-printable, consider it encrypted
-    double non_printable_ratio = static_cast<double>(non_printable) / sample_size;
-    return non_printable_ratio > 0.4;
+
+    // If parsing fails or JSON is missing expected fields, assume encrypted
+    std::cout << "[JSON Executor] Data doesn't parse as valid JSON - assuming encrypted" << std::endl;
+    return true;
 }
 
 nlohmann::json JsonRequestExecutorHandler::Execute(const std::string& data) {

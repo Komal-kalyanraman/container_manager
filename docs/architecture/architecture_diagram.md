@@ -14,13 +14,9 @@ flowchart TD
     MQ[POSIX Message Queue Consumer]
     DBUS[D-Bus Consumer]
 
-    %% Security Layer
-    ENCRYPT[🔒 AES-256-GCM<br/>Encryption/Decryption]
-    B64[📝 Base64 Encoding/Decoding]
-
-    %% Executor Layer
-    JSON[JSON Request Executor]
-    PROTO[Protobuf Request Executor]
+    %% Executor Layer with Integrated Security
+    JSON[JSON Request Executor<br/>🔒 Auto-detects & decrypts<br/>AES-256-GCM/ChaCha20]
+    PROTO[Protobuf Request Executor<br/>🔒 Auto-detects & decrypts<br/>AES-256-GCM/ChaCha20]
 
     %% Core Layer
     SERVICE[Container Service Handler]
@@ -49,53 +45,44 @@ flowchart TD
     ClientDBus -- D-Bus --> DBUS
     ClientMQ -- POSIX MQ --> MQ
 
-    %% API to Security
-    REST -- "Encrypted/Binary Payload" --> ENCRYPT
-    MQTT -- "Encrypted/Binary Payload" --> ENCRYPT
-    MQ -- "Encrypted/Binary Payload" --> ENCRYPT
-    DBUS -- "Base64/Encrypted Payload" --> B64
-    B64 -- "Decoded Payload" --> ENCRYPT
-
-    %% Security to Executor
-    ENCRYPT -- "Decrypted Data" --> JSON
-    ENCRYPT -- "Decrypted Data" --> PROTO
-    REST -- "Plain JSON" --> JSON
-    REST -- "Plain Proto" --> PROTO
-    MQTT -- "Plain JSON" --> JSON
-    MQTT -- "Plain Proto" --> PROTO
-    MQ -- "Plain JSON" --> JSON
-    MQ -- "Plain Proto" --> PROTO
-    DBUS -- "Plain JSON" --> JSON
-    DBUS -- "Plain Proto" --> PROTO
+    %% API directly to Executor (no separate security layer)
+    REST -- "JSON/Proto<br/>(Plain or Encrypted)" --> JSON
+    REST -- "JSON/Proto<br/>(Plain or Encrypted)" --> PROTO
+    MQTT -- "JSON/Proto<br/>(Plain or Encrypted)" --> JSON
+    MQTT -- "JSON/Proto<br/>(Plain or Encrypted)" --> PROTO
+    MQ -- "JSON/Proto<br/>(Plain or Encrypted)" --> JSON
+    MQ -- "JSON/Proto<br/>(Plain or Encrypted)" --> PROTO
+    DBUS -- "JSON/Proto<br/>(Plain or Base64-Encrypted)" --> JSON
+    DBUS -- "JSON/Proto<br/>(Plain or Base64-Encrypted)" --> PROTO
 
     %% Executor to Core
-    JSON -- Validated Request --> SERVICE
-    PROTO -- Validated Request --> SERVICE
+    JSON -- "Validated Request" --> SERVICE
+    PROTO -- "Validated Request" --> SERVICE
 
     %% Core to Command
-    SERVICE -- Command Dispatch --> COMMANDS
+    SERVICE -- "Command Dispatch" --> COMMANDS
 
     %% Command to Runtime
-    COMMANDS -- Docker Ops --> DOCKER
-    COMMANDS -- Podman Ops --> PODMAN
-    COMMANDS -- Docker API Ops --> DOCKERAPI
-    COMMANDS -- Podman API Ops --> PODMANAPI
+    COMMANDS -- "Docker Ops" --> DOCKER
+    COMMANDS -- "Podman Ops" --> PODMAN
+    COMMANDS -- "Docker API Ops" --> DOCKERAPI
+    COMMANDS -- "Podman API Ops" --> PODMANAPI
 
     %% Runtime to Database
-    DOCKER -- DB Access --> DBIF
-    PODMAN -- DB Access --> DBIF
-    DOCKERAPI -- DB Access --> DBIF
-    PODMANAPI -- DB Access --> DBIF
+    DOCKER -- "DB Access" --> DBIF
+    PODMAN -- "DB Access" --> DBIF
+    DOCKERAPI -- "DB Access" --> DBIF
+    PODMANAPI -- "DB Access" --> DBIF
 
     %% Database Implementations
-    DBIF -- Redis API --> REDIS
-    DBIF -- Embedded API --> EMBEDDED
+    DBIF -- "Redis API" --> REDIS
+    DBIF -- "Embedded API" --> EMBEDDED
 
     %% Runtime to Daemon
-    DOCKER -- Docker CLI --> DockerD
-    PODMAN -- Podman CLI --> PodmanD
-    DOCKERAPI -- Docker REST API --> DockerD
-    PODMANAPI -- Podman REST API --> PodmanD
+    DOCKER -- "Docker CLI" --> DockerD
+    PODMAN -- "Podman CLI" --> PodmanD
+    DOCKERAPI -- "Docker REST API" --> DockerD
+    PODMANAPI -- "Podman REST API" --> PodmanD
 ```
 
 ### API & Executor Layers
@@ -110,43 +97,29 @@ DBUS[D-Bus Consumer]
 GRPC[GRPC Server planned]
 end
 
-subgraph SecurityLayer
-ENCRYPT[🔒 AES-256-GCM Encryption/Decryption]
-B64[📝 Base64 Encoding/Decoding]
+subgraph ExecutorLayer["Executor Layer (with Integrated Security)"]
+JSON[JSON Request Executor<br/>🔒 Auto-detects encryption<br/>📝 Decrypts AES/ChaCha20]
+PROTO[Protobuf Request Executor<br/>🔒 Auto-detects encryption<br/>📝 Decrypts AES/ChaCha20]
 end
 
-subgraph ExecutorLayer
-JSON[JSON Request Executor]
-PROTO[Protobuf Request Executor]
-end
-
-REST -- "Encrypted/Binary" --> ENCRYPT
-MQTT -- "Encrypted/Binary" --> ENCRYPT
-MQ -- "Encrypted/Binary" --> ENCRYPT
-DBUS -- "Base64/Encrypted" --> B64
-B64 -- "Decoded" --> ENCRYPT
-
-ENCRYPT -- "Decrypted JSON" --> JSON
-ENCRYPT -- "Decrypted Proto" --> PROTO
-
-REST -- "Plain JSON" --> JSON
-REST -- "Plain Proto" --> PROTO
-MQTT -- "Plain JSON" --> JSON
-MQTT -- "Plain Proto" --> PROTO
-MQ -- "Plain JSON" --> JSON
-MQ -- "Plain Proto" --> PROTO
-DBUS -- "Plain JSON" --> JSON
-DBUS -- "Plain Proto" --> PROTO
-GRPC -- "Proto" --> PROTO
+REST -- "JSON/Proto<br/>(Plain or Encrypted)" --> JSON
+REST -- "JSON/Proto<br/>(Plain or Encrypted)" --> PROTO
+MQTT -- "JSON/Proto<br/>(Plain or Encrypted)" --> JSON
+MQTT -- "JSON/Proto<br/>(Plain or Encrypted)" --> PROTO
+MQ -- "JSON/Proto<br/>(Plain or Encrypted)" --> JSON
+MQ -- "JSON/Proto<br/>(Plain or Encrypted)" --> PROTO
+DBUS -- "JSON/Proto<br/>(Plain or Base64-Encrypted)" --> JSON
+DBUS -- "JSON/Proto<br/>(Plain or Base64-Encrypted)" --> PROTO
+GRPC -- "Proto<br/>(Plain or Encrypted)" --> PROTO
 ```
 
 ### Executor, Core, and Runtime Layers
 
 ```mermaid
 flowchart TD
-subgraph ExecutorLayer
-JSON[JSON Request Executor]
-PROTO[Protobuf Request Executor]
+subgraph ExecutorLayer["Executor Layer (with Security)"]
+JSON[JSON Request Executor<br/>🔒 Handles encryption/decryption]
+PROTO[Protobuf Request Executor<br/>🔒 Handles encryption/decryption]
 end
 
 subgraph CoreLayer
@@ -157,13 +130,17 @@ end
 subgraph RuntimeLayer
 DOCKER[Docker Commands]
 PODMAN[Podman Commands]
+DOCKERAPI[Docker API Commands]
+PODMANAPI[Podman API Commands]
 end
 
-JSON -- Validated Request --> SERVICE
-PROTO -- Validated Request --> SERVICE
-SERVICE -- Command Dispatch --> COMMANDS
-COMMANDS -- Docker Ops --> DOCKER
-COMMANDS -- Podman Ops --> PODMAN
+JSON -- "Validated Request" --> SERVICE
+PROTO -- "Validated Request" --> SERVICE
+SERVICE -- "Command Dispatch" --> COMMANDS
+COMMANDS -- "Docker Ops" --> DOCKER
+COMMANDS -- "Podman Ops" --> PODMAN
+COMMANDS -- "Docker API Ops" --> DOCKERAPI
+COMMANDS -- "Podman API Ops" --> PODMANAPI
 ```
 
 ### Runtime & Database Layers
@@ -173,6 +150,8 @@ flowchart TD
 subgraph RuntimeLayer
 DOCKER[Docker Commands]
 PODMAN[Podman Commands]
+DOCKERAPI[Docker API Commands]
+PODMANAPI[Podman API Commands]
 end
 
 subgraph DatabaseLayer
@@ -181,10 +160,12 @@ REDIS[RedisDatabaseHandler]
 EMBEDDED[EmbeddedDatabaseHandler]
 end
 
-DOCKER -- DB Access --> DBIF
-PODMAN -- DB Access --> DBIF
-DBIF -- Redis API --> REDIS
-DBIF -- Embedded API --> EMBEDDED
+DOCKER -- "DB Access" --> DBIF
+PODMAN -- "DB Access" --> DBIF
+DOCKERAPI -- "DB Access" --> DBIF
+PODMANAPI -- "DB Access" --> DBIF
+DBIF -- "Redis API" --> REDIS
+DBIF -- "Embedded API" --> EMBEDDED
 ```
 
 ## Example Sequence Diagram
@@ -193,8 +174,7 @@ DBIF -- Embedded API --> EMBEDDED
 sequenceDiagram
     participant Client
     participant REST
-    participant ENCRYPT as 🔒 AES-GCM
-    participant JSONExec
+    participant JSONExec as JSON Executor<br/>🔒 Security
     participant Service
     participant DockerCmd
     participant DBIF
@@ -202,8 +182,10 @@ sequenceDiagram
     participant Embedded
 
     Client->>REST: POST /execute (Encrypted JSON)
-    REST->>ENCRYPT: Decrypt payload (AES-256-GCM)
-    ENCRYPT->>JSONExec: Decrypted JSON
+    REST->>JSONExec: Raw payload (encrypted)
+    JSONExec->>JSONExec: Auto-detect encryption
+    JSONExec->>JSONExec: Decrypt using AES/ChaCha20
+    JSONExec->>JSONExec: Parse decrypted JSON
     JSONExec->>Service: Validated request
     Service->>DockerCmd: Dispatch create command
     DockerCmd->>DBIF: Store metadata
@@ -231,12 +213,8 @@ graph TD
     Client4[POSIX MQ Client]
     MQTTB[(MQTT Broker)]
 
-    %% Security/Decoding Modules
-    B64[📝 Base64 Decoding]
-    ENCRYPT[🔒 AES-256-GCM Decryption]
-
-    %% Main Service
-    CM[Container Manager Service]
+    %% Main Service with Integrated Security
+    CM[Container Manager Service<br/>🔒 Integrated AES/ChaCha20<br/>Auto-detection & decryption]
 
     %% Databases
     Redis[(Redis DB)]
@@ -250,16 +228,12 @@ graph TD
     PodmanAPI[Podman API]
     PodmanCLI[Podman CLI]
 
-    %% Client to Service (with security modules)
-    Client1 -->|HTTP| ENCRYPT
-    Client2 -->|MQTT| MQTTB
-    MQTTB -->|MQTT| ENCRYPT
-    Client3 -->|D-Bus| B64
-    B64 -->|Decoded| ENCRYPT
-    Client4 -->|POSIX MQ| ENCRYPT
-
-    %% Decryption to Main Service
-    ENCRYPT -->|Decrypted Payload| CM
+    %% Client to Service (protocols handle both plain and encrypted)
+    Client1 -->|HTTP<br/>Plain/Encrypted JSON/Proto| CM
+    Client2 -->|MQTT<br/>Plain/Encrypted JSON/Proto| MQTTB
+    MQTTB -->|MQTT| CM
+    Client3 -->|D-Bus<br/>Plain/Base64-Encrypted| CM
+    Client4 -->|POSIX MQ<br/>Plain/Encrypted JSON/Proto| CM
 
     %% Database connections
     CM -->|Redis API| Redis
