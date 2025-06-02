@@ -2,9 +2,40 @@
 
 ## Overview
 
-**Container Manager** is a modular, extensible, and production-ready C++ service for unified container management across Docker, Podman, and other runtimes. It is designed to support multiple communication protocols (REST, MQTT, POSIX Message Queue, D-Bus, and gRPC (planned)) and data formats (JSON, Protobuf), making it suitable for a wide range of deployment scenarios and integration needs. The application features robust, configurable security with support for AES-256-GCM and ChaCha20-Poly1305 encryption for all incoming protocol payloads, ensuring confidentiality and integrity for over-the-air (OTA) requests. Only incoming data is decrypted; outgoing responses are sent unencrypted.
+**Container Manager** is a modular, extensible, and production-ready C++ service designed to provide unified container management across multiple runtimes, including Docker and Podman, with support for additional engines planned. The system is architected for flexibility, security, and ease of integration in automotive environment deployments.
 
-### System Architecture
+Container Manager abstracts the complexity of managing containers by exposing a unified API over multiple communication protocols—REST, MQTT, POSIX Message Queue, D-Bus, and (planned) gRPC. It supports both JSON and Protocol Buffers (Protobuf) as data formats, allowing seamless integration with a wide range of clients and systems.
+
+**Key architectural highlights:**
+
+- **Protocol-Agnostic Core:**  
+  The business logic and command execution are completely decoupled from protocol handling, enabling easy addition of new communication methods without impacting core functionality.
+- **Extensible Command Pattern:**  
+  All container operations (create, start, stop, etc.) are encapsulated as command objects, making it straightforward to add new operations or support new container runtimes.
+- **Pluggable Data Formats:**  
+  Both JSON and Protobuf are supported for all protocols, with the ability to add more serialization formats as needed.
+- **Pluggable Database Backend:**  
+  The system supports both an embedded in-memory database (default) and Redis for scalable, production deployments. The database interface is abstracted, allowing further extension.
+- **Enterprise-Grade Security:**  
+  All incoming protocol payloads can be encrypted using AES-256-GCM or ChaCha20-Poly1305. The security layer is protocol-agnostic and auto-detects encrypted payloads, ensuring confidentiality and integrity for over-the-air (OTA) requests. Key management is handled via secure, hex-encoded files.
+- **Thread Pool and Robust Logging:**  
+  All protocol handlers leverage a shared thread pool for efficient, concurrent request processing. Logging is handled via Google glog for production-grade diagnostics.
+- **Production-Ready and Configurable:**  
+  All features (protocols, data formats, security, database backend) are enabled or disabled at build time via CMake flags, making the system highly configurable for different deployment scenarios.
+
+**Intended Audience:**  
+This architecture is aimed at developers, system integrators, and architects who require a secure, extensible, and maintainable foundation for building unified container orchestration solutions—especially in environments where protocol diversity, security, and modularity are critical.
+
+**Design Philosophy:**
+
+- **Separation of Concerns:** Each layer (API, executor, core, runtime, database, security) is isolated and replaceable.
+- **Extensibility:** New protocols, runtimes, data formats, and security algorithms can be added with minimal changes to existing code.
+- **Security by Design:** Encryption is integrated at the protocol boundary, with a focus on OTA request confidentiality and integrity.
+- **Production Focus:** Features like graceful shutdown, centralized configuration, and robust logging are built-in.
+
+This document provides a deep dive into the system architecture, component responsibilities, data flow, extensibility points, and the design patterns that make Container Manager a robust foundation for modern container management needs.
+
+## System Architecture
 
 <img src="system_architecture.png" alt="System Architecture" width="1000"/>
 
@@ -12,20 +43,52 @@
 
 ```
 App/
-├── api/          # Protocol handlers (REST, MQTT, MQ, D-Bus)
-├── core/         # Business logic (service layer, command pattern)
-├── database/     # Database interface and implementations (embedded, Redis)
+├── api/          # Protocol handlers (REST, MQTT, MQ, D-Bus and future protocols)
+├── core/         # Business logic (service layer)
+├── database/     # Database interface, embedded and Redis implementations (pluggable)
 ├── executor/     # Request executors (JSON, Protobuf, handle decryption)
-├── runtime/      # Command implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.
-├── utils/        # Utilities (thread pool, logging, config, decryption)
+├── runtime/      # Command pattern implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.
+├── utils/        # Common utilities (thread pool, logging, etc.)
 ├── security/     # Security providers (AES-GCM, ChaCha20, Null)
 ├── main.cpp      # Application entry point
-└── third_party/  # External dependencies
+└── third_party/  # External dependencies (nlohmann_json, httplib)
 ```
+
+## Design Patterns Used
+
+This project leverages several classic software design patterns to ensure modularity, extensibility, and maintainability:
+
+- **Command Pattern:**  
+  Encapsulates each container operation (create, start, stop, etc.) as a command object.  
+  _Location:_ `runtime/`, `core/`
+
+- **Factory Pattern:**  
+  Used to instantiate the correct command or handler based on runtime/operation.  
+  _Location:_ `runtime/` (CommandFactory), `api/`
+
+- **Service Pattern:**  
+  Encapsulates business logic and coordinates operations between components.  
+  _Location:_ `core/` (e.g., `ContainerServiceHandler`)
+
+- **Strategy Pattern:**  
+  Allows pluggable encryption algorithms (AES-GCM, ChaCha20, etc.) via interchangeable security providers.  
+  _Location:_ `security/`
+
+- **Abstract Factory / Interface Pattern:**  
+  Provides contracts for interchangeable components such as database backends and security providers.  
+  _Location:_ `database/` (`IDatabaseHandler`), `security/` (`ISecurityProvider`)
+
+- **Observer/Subscriber Pattern:**  
+  Protocol handlers (MQTT, Message Queue, D-Bus) listen for and react to incoming messages/events.  
+  _Location:_ `api/`
+
+These patterns make the codebase easy to extend (e.g., adding new runtimes, protocols, or security algorithms) and maintain over time.
 
 ## Component Descriptions
 
-### 1. API Layer (Protocol Handlers)
+The following components are organized to match the folder structure of the project:
+
+### 1. API Layer ( api/ )
 
 - **REST API Server:**  
   Handles HTTP requests, parses JSON/Protobuf payloads (optionally encrypted), and forwards them to the executor layer.
@@ -42,10 +105,34 @@ App/
 - **gRPC Server (planned):**  
   Will provide a strongly-typed, high-performance RPC interface using Protobuf.
 
-**All protocol handlers are modular and can be enabled/disabled at build time via CMake flags.  
-All protocols support secure payload delivery using AES-256-GCM encryption for incoming data when enabled.**
+> All protocol handlers are modular and can be enabled/disabled at build time via CMake flags.  
+> All protocols support secure payload delivery using AES-256-GCM or ChaCha20-Poly1305 encryption for incoming data when enabled.
 
-### 2. Executor Layer (Request Executors)
+### 2. Core Layer ( core/ )
+
+- **Container Service Handler:**  
+  Central business logic. Receives validated requests from executors, performs runtime checks, and dispatches commands.
+
+- **Service Pattern:**  
+  Encapsulates business logic and coordinates operations between components. Each container operation (create, start, stop, etc.) is encapsulated as a command object. Supports multiple runtimes (Docker CLI, Podman CLI, Docker API, Podman API, etc.) and is easily extensible.
+
+### 3. Database Layer ( database/ )
+
+- **IDatabaseHandler:**  
+  Abstract interface for database operations (CRUD, state, metadata).
+
+- **EmbeddedDatabaseHandler:**  
+  **Default:** Lightweight, fixed-size, in-memory key-value store for embedded and resource-constrained systems.  
+  No external dependencies required.
+
+- **RedisDatabaseHandler:**  
+  Optional production-ready Redis implementation of the database interface.  
+  Requires [cpp_redis](https://github.com/Cylix/cpp_redis) and a running Redis server.
+
+> The database layer is pluggable—swap between embedded and Redis (or any other backend) by implementing the interface.  
+> Database selection is controlled via the `ENABLE_REDIS` CMake flag. If not set, the embedded database is used by default.
+
+### 4. Executor Layer ( executor/ )
 
 - **JSON Request Executor:**  
   Validates and parses incoming JSON requests (optionally decrypting them), converting them to internal command objects.
@@ -53,23 +140,14 @@ All protocols support secure payload delivery using AES-256-GCM encryption for i
 - **Protobuf Request Executor:**  
   Validates and parses incoming Protobuf requests (optionally decrypting them), converting them to internal command objects.
 
-**The executor layer abstracts data format and encryption handling, allowing protocol handlers to remain agnostic of the underlying serialization and security.  
-The executor auto-detects if the payload is encrypted:**
+> The executor layer abstracts data format and encryption handling, allowing protocol handlers to remain agnostic of the underlying serialization and security.  
+> The executor auto-detects if the payload is encrypted:
+>
+> - For JSON: If parsing as JSON fails, it attempts decryption and parses again.
+> - For Protobuf: If parsing as Protobuf fails, it attempts decryption and parses again.
+> - This ensures that all protocols (REST, MQTT, MQ, D-Bus) can send either encrypted or unencrypted payloads without any protocol-specific logic.
 
-- For JSON: If parsing as JSON fails, it attempts decryption and parses again.
-- For Protobuf: If parsing as Protobuf fails, it attempts decryption and parses again.
-- This ensures that all protocols (REST, MQTT, MQ, D-Bus) can send either encrypted or unencrypted payloads without any protocol-specific logic.
-
-### 3. Core Layer (Service & Command Pattern)
-
-- **Container Service Handler:**  
-  Central business logic. Receives validated requests from executors, performs runtime checks, and dispatches commands.
-
-- **Command Pattern:**  
-  Each container operation (create, start, stop, etc.) is encapsulated as a command object.  
-  Supports multiple runtimes (Docker CLI, Podman CLI, Docker API, Podman API, etc.) and is easily extensible.
-
-### 4. Runtime Layer
+### 5. Runtime Layer ( runtime/ )
 
 - **Docker Commands:**  
   Implements container operations for Docker using the Docker CLI.
@@ -86,25 +164,9 @@ The executor auto-detects if the payload is encrypted:**
 > **Disclaimer:**  
 > The `podman-api` runtime is not extensively tested. Use with caution and report any issues you encounter.
 
-**The runtime layer can be extended to support additional container engines and APIs.**
+> The runtime layer can be extended to support additional container engines and APIs.
 
-### 5. Database Layer
-
-- **IDatabaseHandler:**  
-  Abstract interface for database operations (CRUD, state, metadata).
-
-- **EmbeddedDatabaseHandler:**  
-  **Default:** Lightweight, fixed-size, in-memory key-value store for embedded and resource-constrained systems.  
-  No external dependencies required.
-
-- **RedisDatabaseHandler:**  
-  Optional production-ready Redis implementation of the database interface.  
-  Requires [cpp_redis](https://github.com/Cylix/cpp_redis) and a running Redis server.
-
-**The database layer is pluggable—swap between embedded and Redis (or any other backend) by implementing the interface.  
-Database selection is controlled via the `ENABLE_REDIS` CMake flag. If not set, the embedded database is used by default.**
-
-### 6. Utilities
+### 6. Utilities ( utils/ )
 
 - **Thread Pool:**  
   Efficiently handles concurrent requests.
@@ -115,40 +177,33 @@ Database selection is controlled via the `ENABLE_REDIS` CMake flag. If not set, 
 - **Config:**  
   Centralized configuration structs for all protocols and system settings.
 
-- **Encryption:**  
-  AES-256-GCM and ChaCha20-Poly1305 decryption utilities for secure OTA payloads.  
-  Encryption is enabled or disabled at build time via the `ENABLE_ENCRYPTION` CMake flag.  
-  When enabled, all protocol handlers and executors transparently support decryption of encrypted payloads.  
-  **Note:** The application only decrypts incoming data; it does not encrypt outgoing responses.
-  - **Key storage:**
-    - Keys are stored in `storage/security/` as hex-encoded files:
-      - `aes_key.txt` for AES-256-GCM
-      - `chacha20_key.txt` for ChaCha20-Poly1305
+- **curl:**  
+  Utility for HTTP(S) and Unix socket requests, used for interacting with Docker/Podman APIs and other endpoints.
 
-## Security & Encryption
+- **init:**  
+  Initialization helpers for setting up application state, configuration, and environment before starting protocol handlers.
 
-- **AES-256-GCM and ChaCha20-Poly1305 Decryption:**  
-  When `ENABLE_ENCRYPTION` is ON, all incoming protocol payloads can be decrypted using AES-256-GCM or ChaCha20-Poly1305, as selected at build time.
+### 7. Security & Encryption ( security/ )
 
-  - The encryption key and IV length are defined in the codebase and must match between client and server.
-  - Encrypted payloads are formatted as `[IV|TAG|CIPHERTEXT]` (AES) or `[NONCE|TAG|CIPHERTEXT]` (ChaCha20) and may be Base64-encoded for transport (e.g., over D-Bus).
-  - **Decryption and authentication are performed in the executor layer before request processing.**
-  - The executor auto-detects if the payload is encrypted (see above).
-  - Encryption is optional and can be toggled at build time for compatibility with legacy or low-resource deployments.
-  - **Key files are stored in `storage/security/` and loaded at runtime.**
+- **Security Providers:**  
+  Pluggable encryption/decryption providers implementing AES-256-GCM and ChaCha20-Poly1305 algorithms.
+
+- **Key Management:**  
+  Keys are stored as hex-encoded files in `storage/security/` (`aes_key.txt`, `chacha20_key.txt`) and loaded at runtime.
+
+- **Decryption Workflow:**  
+  When `ENABLE_ENCRYPTION` is ON, all incoming protocol payloads can be decrypted using the selected algorithm.  
+  The executor layer auto-detects and decrypts encrypted payloads before parsing, regardless of protocol or data format.
 
 - **Protocol Agnostic:**  
-  Decryption is supported for all protocols (REST, MQTT, MQ, D-Bus).  
-  Protocol handlers and executors automatically detect and decrypt encrypted payloads, regardless of data format.
+  All protocol handlers (REST, MQTT, MQ, D-Bus) support secure payload delivery and decryption.
 
-- **Configuration:**
-
-  - Enable or disable decryption support at build time using the `ENABLE_ENCRYPTION` CMake flag.
-  - Update the encryption key and IV as needed for your deployment.
+- **Configuration:**  
+  Encryption can be enabled/disabled at build time (`ENABLE_ENCRYPTION` CMake flag).  
+  The algorithm is selected via `SECURITY_ALGORITHM`.
 
 - **Limitation:**  
-  **This application only decrypts incoming encrypted data. It does not encrypt any outgoing responses.  
-  If you require encrypted responses, you must implement this functionality separately.**
+  Only incoming data is decrypted; outgoing responses are not encrypted.
 
 ## Data Flow
 
@@ -196,8 +251,9 @@ Database selection is controlled via the `ENABLE_REDIS` CMake flag. If not set, 
   Select the backend at build time using the appropriate CMake flag.
 
 - **Change Security:**  
-  Update the encryption key, IV, or algorithm as needed.  
-  Toggle decryption support at build time with `ENABLE_ENCRYPTION`.
+  Update the encryption key, IV/nonce, or algorithm as needed.  
+  Toggle decryption support at build time with `ENABLE_ENCRYPTION`.  
+  Add new security algorithms by implementing a new provider in `security/` and updating the executor logic.
 
 ## Production-Readiness
 
@@ -217,7 +273,7 @@ Database selection is controlled via the `ENABLE_REDIS` CMake flag. If not set, 
   Unit and integration tests are present; expand coverage as needed.
 
 - **Security:**  
-  AES-256-GCM decryption is available for all protocols and data formats, providing strong security guarantees for production deployments.  
+  AES-256-GCM and ChaCha20-Poly1305 decryption is available for all protocols and data formats, providing strong security guarantees for production deployments.  
   **Encryption of outgoing responses is not implemented.**
 
 ## Example Sequence Diagram
@@ -239,8 +295,8 @@ Database selection is controlled via the `ENABLE_REDIS` CMake flag. If not set, 
 
 ## References
 
-- [Doxygen Documentation](../docs/doxygen/html/index.html)
-- [README.md](../README.md)
+- [Doxygen Documentation](../doxygen/html/index.html)
+- [README.md](../../README.md)
 
 ---
 

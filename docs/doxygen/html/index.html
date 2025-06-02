@@ -86,186 +86,82 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="title">Container Manager </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><b>Container Manager</b> is a modular, production-ready C++ service for unified container management across Docker, Podman, and more (planned). It supports REST, MQTT, MQ, D-Bus, gRPC (planned), Docker/Podman CLI, HTTP-API with incoming JSON &amp; Protobuf data. Features: extensible architecture, pluggable database backend (embedded by default, Redis optional), robust logging, thread pool for all protocols, and enterprise-grade security with AES-256-GCM or ChaCha20-Poly1305 encryption.</p>
+<div class="textblock"><p><b>Container Manager</b> is a modular, production-ready C++ service for unified container management across Docker, Podman, and more (planned). It supports REST, MQTT, POSIX Message Queue, D-Bus, gRPC (planned), Docker/Podman CLI, HTTP-API with incoming plain/encrypted JSON &amp; Protobuf data.</p>
+<p>Features include extensible architecture, pluggable database backend (embedded by default, Redis optional), robust logging, thread pool for all protocols, and enterprise-grade security with AES-256-GCM or ChaCha20-Poly1305 encryption.</p>
+<p>It is designed for developers and system integrators who need a flexible, secure, and modular foundation for building container orchestration for automotive usecase.</p>
 <blockquote class="doxtable">
 <p><b>This is a reference architecture and template project</b> designed to demonstrate production-grade C++ patterns for container management systems. Clone, modify, and extend as needed for your specific requirements. </p>
 </blockquote>
-<h1><a class="anchor" id="autotoc_md1"></a>
-Use Cases</h1>
+<p><b>Example</b></p>
 <ul>
-<li><b>Need D-Bus + Podman REST API + Protobuf + AES encryption?</b> Clone and modify.</li>
-<li><b>Want MQTT + Docker CLI + JSON + embedded database?</b> Clone and configure.</li>
-<li><b>Building a container orchestrator with custom runtime?</b> Extend the runtime layer.</li>
+<li><b>Need D-Bus + Podman REST API + Protobuf + AES encryption?</b> ✅ Clone and configure.</li>
+<li><b>Want MQTT + Docker CLI + JSON + Redis database + No encryption?</b> ✅ Clone and configure.</li>
+<li><b>Building a container orchestrator with custom runtime?</b> ✅ Extend the runtime layer.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<h1><a class="anchor" id="autotoc_md1"></a>
 Features</h1>
 <ul>
 <li><b>Unified Container Management:</b> <br  />
  Manage Docker and Podman containers through a single interface.</li>
 <li><b>Extensible <a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> Pattern:</b> <br  />
- Easily add support for new runtimes or operations using the command pattern.</li>
-<li><b>Docker API &amp; Podman API Support:</b> <br  />
- Manage containers via CLI or REST APIs over Unix sockets for rootless/user-level/remote management.</li>
+ Easily add support for new runtimes or operations.</li>
 <li><b>Multi-Protocol Support:</b> <br  />
- REST (HTTP/JSON or Protobuf), MQTT, POSIX Message Queue, and D-Bus (session bus). <br  />
- <b>Pluggable protocol architecture:</b> Easily extend to support gRPC (planned), or other IPC/RPC mechanisms.</li>
+ REST (HTTP/JSON or Protobuf), MQTT, POSIX Message Queue, D-Bus (session bus), and gRPC (planned).</li>
 <li><b>Flexible Data Formats:</b> <br  />
- JSON <b>or Protocol Buffers (protobuf)</b> for high-performance or strongly-typed APIs.</li>
+ JSON or Protocol Buffers (protobuf) for high-performance or strongly-typed APIs.</li>
 <li><b>Thread Pool:</b> <br  />
  Efficient request handling using a configurable thread pool.</li>
-<li><b>Database Integration:</b> <br  />
- <b>Embedded database backend by default</b>; <b>Redis optional</b> via CMake flag. <br  />
- <b>Pluggable backend:</b> Implement the <code><a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a></code> interface for custom databases.</li>
-<li><b>Logging:</b> <br  />
- Integrated with Google glog for robust logging.</li>
-<li><b>Security:</b> <br  />
- <b>AES-256-GCM and ChaCha20-Poly1305 encryption</b> for all protocols (REST, MQTT, D-Bus, MQ). <br  />
- See <a href="#security-architecture">Security Architecture</a>.</li>
-<li><b>Production-Grade Documentation:</b> <br  />
- Doxygen-based documentation with diagrams and source browsing.</li>
-<li><b>Open Source:</b> <br  />
- Licensed under the MIT License.</li>
+<li><b>Pluggable Database Backend:</b> <br  />
+ Embedded database by default; Redis optional via CMake flag.</li>
+<li><b>Robust Logging:</b> <br  />
+ Integrated with Google glog.</li>
+<li><b>Configurable Security:</b> <br  />
+ AES-256-GCM and ChaCha20-Poly1305 encryption for all protocols.</li>
+<li><b>Python UI:</b> <br  />
+ Cross-platform GUI for sending requests to the backend (see below).</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md3"></a>
-Security Architecture</h1>
-<p><b>Container Manager v0.7.0</b> introduces a robust security layer:</p>
-<ul>
-<li><b>AES-256-GCM and ChaCha20-Poly1305 encryption</b> are supported for all protocols.<ul>
-<li>Payloads are encrypted on the client side and decrypted transparently by the backend.</li>
-<li>The backend auto-detects and decrypts encrypted payloads, regardless of protocol or data format (JSON or Protobuf).</li>
-<li><b>Detection and decryption are handled in the executor layer</b>, so all protocol handlers remain generic and agnostic to encryption.</li>
-</ul>
-</li>
-<li><b>Key management:</b><ul>
-<li>The AES and ChaCha20 keys are stored as hex-encoded files in <code>storage/security/</code>:<ul>
-<li><code>storage/security/aes_key.txt</code> (64 hex chars, 32 bytes)</li>
-<li><code>storage/security/chacha20_key.txt</code> (64 hex chars, 32 bytes)</li>
-</ul>
-</li>
-<li>The backend loads the key at runtime from these files.</li>
-<li>For production, use environment variables or a secure key vault for even better security.</li>
-</ul>
-</li>
-<li><b>Encryption detection:</b><ul>
-<li>The executor layer auto-detects whether the incoming payload is encrypted:<ul>
-<li>For JSON: If the payload is not valid JSON, it attempts decryption.</li>
-<li>For Protobuf: If the payload cannot be parsed as a valid Protobuf message, it attempts decryption and then parses again.</li>
-</ul>
-</li>
-<li>This logic is protocol-agnostic and works for REST, MQTT, MQ, and D-Bus.</li>
-</ul>
-</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md4"></a>
-Sending Encrypted Payloads</h2>
-<ul>
-<li><b>REST:</b> Send encrypted bytes directly as the request body with <code>Content-Type: application/octet-stream</code>.</li>
-<li><b>MQTT and D-Bus:</b> <br  />
- Encrypted payloads must be <b>Base64-encoded</b> before sending. <br  />
- The backend will automatically decode and decrypt.</li>
-</ul>
-<h3><a class="anchor" id="autotoc_md5"></a>
-Example: Encrypted JSON or Protobuf Request (Python)</h3>
-<div class="fragment"><div class="line">from Crypto.Cipher import AES</div>
-<div class="line">from Crypto.Random import get_random_bytes</div>
-<div class="line">import requests</div>
-<div class="line">import json</div>
-<div class="line"> </div>
-<div class="line">def load_aes_key(path=&quot;../key_storage/aes_key.txt&quot;):</div>
-<div class="line">    with open(path, &quot;r&quot;) as f:</div>
-<div class="line">        key_hex = f.read().strip()</div>
-<div class="line">    return bytes.fromhex(key_hex)</div>
-<div class="line"> </div>
-<div class="line">AES_KEY = load_aes_key()</div>
-<div class="line"> </div>
-<div class="line">def encrypt_payload(data_bytes):</div>
-<div class="line">    iv = get_random_bytes(12)</div>
-<div class="line">    cipher = AES.new(AES_KEY, AES.MODE_GCM, nonce=iv)</div>
-<div class="line">    ciphertext, tag = cipher.encrypt_and_digest(data_bytes)</div>
-<div class="line">    return iv + tag + ciphertext</div>
-<div class="line"> </div>
-<div class="line">payload = {&quot;runtime&quot;: &quot;docker&quot;, &quot;operation&quot;: &quot;available&quot;, &quot;parameters&quot;: []}</div>
-<div class="line">payload_bytes = json.dumps(payload).encode(&#39;utf-8&#39;)</div>
-<div class="line">encrypted_payload = encrypt_payload(payload_bytes)</div>
-<div class="line"> </div>
-<div class="line">response = requests.post(</div>
-<div class="line">    &#39;http://localhost:5000/execute&#39;,</div>
-<div class="line">    data=encrypted_payload,</div>
-<div class="line">    headers={&#39;Content-Type&#39;: &#39;application/octet-stream&#39;}</div>
-<div class="line">)</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md6"></a>
-Example: D-Bus and MQTT Clients (Python, Encrypted Payload)</h3>
-<div class="fragment"><div class="line">import base64</div>
-<div class="line">encrypted_payload = ... # bytes from AES-GCM encryption</div>
-<div class="line"># For D-Bus or MQTT, send as Base64-encoded string:</div>
-<div class="line">b64_payload = base64.b64encode(encrypted_payload).decode()</div>
-<div class="line"># Send b64_payload via D-Bus or MQTT</div>
-</div><!-- fragment --><blockquote class="doxtable">
-<p><b>Note:</b> <br  />
- The backend will automatically decode Base64 and decrypt for D-Bus and MQTT protocols. </p>
-</blockquote>
-<h1><a class="anchor" id="autotoc_md7"></a>
-Database Backend Selection</h1>
-<p>Container Manager supports two database backends:</p>
-<ul>
-<li><b>Embedded Database (default):</b> <br  />
- Lightweight, fixed-size, in-memory key-value store. <br  />
- No external dependencies required.</li>
-<li><b>Redis Database (optional):</b> <br  />
- Use Redis for scalable, persistent, and distributed deployments. <br  />
- Requires <a href="https://github.com/Cylix/cpp_redis">cpp_redis</a> and a running Redis server. Database backend selection is controlled via the <code>ENABLE_REDIS</code> CMake flag.</li>
-</ul>
-<blockquote class="doxtable">
-<p><b>Note:</b> When <code>ENABLE_REDIS=ON</code>, you must have <code>cpp_redis</code> and a Redis server available. </p>
-</blockquote>
-<h1><a class="anchor" id="autotoc_md8"></a>
-Architecture Overview</h1>
-<p>For a comprehensive overview of the system design, security, and extensibility, please see the <a class="el" href="md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html">Architecture Documentation</a>.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Folder Structure</h1>
 <div class="fragment"><div class="line">App/</div>
-<div class="line">├── api/        # HTTP server, MQTT subscriber, Message Queue and D-Bus consumer (and future protocol handlers)</div>
-<div class="line">├── core/       # Business logic (service layer)</div>
-<div class="line">├── database/   # Database interface, embedded and Redis implementations (pluggable)</div>
-<div class="line">├── executor/   # Request executors (JSON, Protobuf, handle decryption)</div>
-<div class="line">├── runtime/    # Command pattern implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.</div>
-<div class="line">├── utils/      # Common utilities (thread pool, logging, etc.)</div>
-<div class="line">├── security/   # Security providers (AES-GCM, ChaCha20, Null)</div>
-<div class="line">├── main.cpp    # Application entry point</div>
-<div class="line">└── third_party/# External dependencies (excluded from docs/build)</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md9"></a>
-Modularity &amp; Build System</h1>
-<p><b>Container Manager is fully modular.</b> <br  />
- You only need to install the dependencies for the protocols and data formats you want to use.</p>
-<h2><a class="anchor" id="autotoc_md10"></a>
-Protocols and Data Formats</h2>
-<ul>
-<li><b>Protocols:</b><ul>
-<li>REST (HTTP/JSON or Protobuf)</li>
-<li>MQTT</li>
-<li>POSIX Message Queue</li>
-<li>D-Bus (session bus)</li>
-<li>gRPC (planned)</li>
+<div class="line">├── api/          # Protocol handlers (REST, MQTT, MQ, D-Bus and future protocols)</div>
+<div class="line">├── core/         # Business logic (service layer)</div>
+<div class="line">├── database/     # Database interface, embedded and Redis implementations (pluggable)</div>
+<div class="line">├── executor/     # Request executors (JSON, Protobuf, handle decryption)</div>
+<div class="line">├── runtime/      # Command pattern implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.</div>
+<div class="line">├── utils/        # Common utilities (thread pool, logging, etc.)</div>
+<div class="line">├── security/     # Security providers (AES-GCM, ChaCha20, Null)</div>
+<div class="line">├── main.cpp      # Application entry point</div>
+<div class="line">└── third_party/  # External dependencies (nlohmann_json, httplib)</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
+Quick Start</h1>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Build</h2>
+<div class="fragment"><div class="line">cmake .. -DENABLE_REST=ON -DENABLE_MQTT=ON -DENABLE_MSGQUEUE=ON -DENABLE_DBUS=ON -DENABLE_PROTOBUF=ON -DENABLE_ENCRYPTION=ON -DSECURITY_ALGORITHM=CHACHA20</div>
+<div class="line">make</div>
+</div><!-- fragment --><ul>
+<li>See CMake flags in the next section for more options.</li>
 </ul>
-</li>
-<li><b>Data Formats:</b><ul>
-<li>JSON (default)</li>
-<li>Protobuf (optional, for binary serialization)</li>
-</ul>
-</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md11"></a>
-Supported Runtimes</h2>
-<ul>
-<li><b>docker:</b> Manage containers using the Docker CLI.</li>
-<li><b>podman:</b> Manage containers using the Podman CLI.</li>
-<li><b>docker-api:</b> Manage containers using the Docker REST API over Unix socket.</li>
-<li><b>podman-api:</b> Manage containers using the Podman REST API over Unix socket.</li>
-</ul>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Run</h2>
+<div class="fragment"><div class="line">./CM</div>
+</div><!-- fragment --><p>The server will start and listen on the enabled protocols and data formats as per your build configuration.</p>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Video Tutorials</h1>
+<h2><a class="anchor" id="autotoc_md7"></a>
+1. Project Overview &amp; Motivation</h2>
+<p><a href="https://www.youtube.com/watch?v=VIDEO_ID_1"><img src="https://img.youtube.com/vi/VIDEO_ID_1/0.jpg" alt="Project Overview & Motivation" class="inline"/></a></p>
 <blockquote class="doxtable">
-<p><b>Disclaimer:</b> <br  />
- The <code>podman-api</code> runtime is not extensively tested. Use with caution and report any issues you encounter. </p>
+<p><em>In this video, we explain why Container Manager was created, the problems it solves, and the advantages it brings to container orchestration and automation.</em> </p>
 </blockquote>
-<h2><a class="anchor" id="autotoc_md12"></a>
-CMake Feature Flags</h2>
+<hr  />
+<h2><a class="anchor" id="autotoc_md9"></a>
+2. Build, UI Usage &amp; Live Demo</h2>
+<p><a href="https://www.youtube.com/watch?v=VIDEO_ID_2"><img src="https://img.youtube.com/vi/VIDEO_ID_2/0.jpg" alt="Build, UI Usage & Live Demo" class="inline"/></a></p>
+<blockquote class="doxtable">
+<p><em>This video demonstrates how to build the project, use the Python UI, and deploy containers using different protocols and runtimes.</em> </p>
+</blockquote>
+<h1><a class="anchor" id="autotoc_md10"></a>
+Configuration</h1>
 <p>You can enable or disable each protocol, data format, and security feature using CMake flags:</p>
 <ul>
 <li><code>ENABLE_REST</code> (REST/HTTP server)</li>
@@ -275,45 +171,75 @@ CMake Feature Flags</h2>
 <li><code>ENABLE_GRPC</code> (gRPC, planned)</li>
 <li><code>ENABLE_PROTOBUF</code> (Protobuf support; if OFF, only JSON is used)</li>
 <li><code>ENABLE_REDIS</code> (Redis database backend; if OFF, embedded database is used)</li>
-<li><code>ENABLE_ENCRYPTION</code> (Enable encryption for all protocols; ON by default)</li>
-<li><code>SECURITY_ALGORITHM</code> (Select encryption algorithm: <code>AES_GCM</code> or <code>CHACHA20</code>; default is <code>AES_GCM</code>)</li>
+<li><code>ENABLE_ENCRYPTION</code> (Enable encryption for all protocols)</li>
+<li><code>SECURITY_ALGORITHM</code> (Select encryption algorithm: <code>AES_GCM</code> or <code>CHACHA20</code>)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md13"></a>
-Build Examples</h1>
-<p><b>Examples:</b></p>
-<ul>
-<li><b>Enable Protobuf, MQTT, Message Queue, REST, Redis, and ChaCha20 encryption:</b></li>
-</ul>
-<div class="fragment"><div class="line">cmake .. \</div>
-<div class="line">  -DENABLE_PROTOBUF=ON \</div>
-<div class="line">  -DENABLE_MQTT=ON \</div>
-<div class="line">  -DENABLE_MSGQUEUE=ON \</div>
-<div class="line">  -DENABLE_REST=ON \</div>
-<div class="line">  -DENABLE_REDIS=ON \</div>
-<div class="line">  -DENABLE_ENCRYPTION=ON \</div>
-<div class="line">  -DSECURITY_ALGORITHM=CHACHA20</div>
-<div class="line">make</div>
-</div><!-- fragment --><ul>
-<li><b>Disable Protobuf, Redis, encryption but Enable MQTT, Message Queue, REST:</b></li>
-</ul>
-<div class="fragment"><div class="line">cmake .. \</div>
-<div class="line">  -DENABLE_MQTT=ON \</div>
-<div class="line">  -DENABLE_MSGQUEUE=ON \</div>
-<div class="line">  -DENABLE_REST=ON \</div>
-<div class="line">  -DENABLE_ENCRYPTION=OFF</div>
-<div class="line">make</div>
-</div><!-- fragment --><blockquote class="doxtable">
+<blockquote class="doxtable">
 <p><b>Note:</b> <br  />
- The encryption key files must be present in <code>storage/security/</code> as described above. <br  />
+ Encryption key files must be present in <code>storage/security/</code> as described in the architecture documentation. <br  />
  The selected algorithm must match between the backend and any client sending encrypted payloads. </p>
 </blockquote>
-<h1><a class="anchor" id="autotoc_md14"></a>
-Running the Server</h1>
-<div class="fragment"><div class="line">./CM</div>
-</div><!-- fragment --><p>The server will start and listen on the enabled protocols and data formats as per your build configuration.</p>
-<h1><a class="anchor" id="autotoc_md15"></a>
-API Usage</h1>
-<h2><a class="anchor" id="autotoc_md16"></a>
+<h1><a class="anchor" id="autotoc_md11"></a>
+Dependencies by Feature</h1>
+<p>The following table summarizes which C++ libraries/packages are required for each protocol, data format, and feature. <br  />
+ Install only what you need based on your chosen CMake flags.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Protocol / Data Format </th><th class="markdownTableHeadNone">CMake Flag </th><th class="markdownTableHeadNone">Required Packages  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">REST (HTTP/JSON) </td><td class="markdownTableBodyNone">ENABLE_REST=ON </td><td class="markdownTableBodyNone">nlohmann_json, glog, httplib  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">MQTT </td><td class="markdownTableBodyNone">ENABLE_MQTT=ON </td><td class="markdownTableBodyNone">mosquitto, nlohmann_json, glog  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Message Queue </td><td class="markdownTableBodyNone">ENABLE_MSGQUEUE=ON </td><td class="markdownTableBodyNone">nlohmann_json, glog  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">D-Bus </td><td class="markdownTableBodyNone">ENABLE_DBUS=ON </td><td class="markdownTableBodyNone">sdbus-c++, nlohmann_json, glog  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">gRPC (planned) </td><td class="markdownTableBodyNone">ENABLE_GRPC=ON </td><td class="markdownTableBodyNone">grpc++, protobuf, nlohmann_json, glog  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Protobuf </td><td class="markdownTableBodyNone">ENABLE_PROTOBUF=ON </td><td class="markdownTableBodyNone">protobuf  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Redis DB </td><td class="markdownTableBodyNone">ENABLE_REDIS=ON </td><td class="markdownTableBodyNone">cpp_redis, redis-server  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Embedded DB (default) </td><td class="markdownTableBodyNone">(default) </td><td class="markdownTableBodyNone">(no extra dependencies)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Encryption </td><td class="markdownTableBodyNone">ENABLE_ENCRYPTION=ON </td><td class="markdownTableBodyNone">libssl-dev (OpenSSL)  </td></tr>
+</table>
+<p><b>Notes:</b></p>
+<ul>
+<li><b>JSON</b> is always available (unless you only enable Protobuf).</li>
+<li><b>Protobuf</b> is optional and only needed if you want binary serialization.</li>
+<li><b>Embedded database</b> is used unless you explicitly enable Redis.</li>
+<li><b>Encryption</b> is ON by default and recommended for production.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md12"></a>
+API Reference</h1>
+<p>Container Manager exposes a unified API for container operations over multiple protocols and data formats:</p>
+<ul>
+<li><b>REST:</b><ul>
+<li><code>POST /execute</code> — Accepts JSON or Protobuf payloads.</li>
+</ul>
+</li>
+<li><b>MQTT:</b><ul>
+<li><b>Topic:</b> <code>container/execute</code> — Publish JSON, Protobuf, or encrypted (Base64) payloads.</li>
+</ul>
+</li>
+<li><b>POSIX Message Queue:</b><ul>
+<li><b>Queue Name:</b> <code>/container_manager_queue</code> — Send JSON, Protobuf, or encrypted (Base64) payloads.</li>
+</ul>
+</li>
+<li><b>D-Bus:</b><ul>
+<li><b>Bus Name:</b> <code>org.container.manager</code></li>
+<li><b>Object Path:</b> <code>/org/container/manager</code></li>
+<li><b>Interface:</b> <code>org.container.manager</code></li>
+<li><b>Method:</b> <code>Execute</code> — Accepts JSON string or Base64-encoded Protobuf/encrypted payload.</li>
+</ul>
+</li>
+</ul>
+<p>See <a href="#usage-examples">Usage Examples</a> below for request formats and protocol-specific details.</p>
+<h1><a class="anchor" id="autotoc_md13"></a>
+Usage Examples</h1>
+<h2><a class="anchor" id="autotoc_md14"></a>
 Example JSON Request</h2>
 <div class="fragment"><div class="line">{</div>
 <div class="line">  &quot;runtime&quot;: &quot;docker-api&quot;,</div>
@@ -333,7 +259,7 @@ Example JSON Request</h2>
 <li>Use <code>"runtime": "docker"</code> or <code>"podman"</code> for CLI-based management.</li>
 <li>Use <code>"runtime": "docker-api"</code> or <code>"podman-api"</code> for REST API-based management.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md17"></a>
+<h2><a class="anchor" id="autotoc_md15"></a>
 Example Protobuf Request</h2>
 <ul>
 <li>See <code>executor/proto/container_manager.proto</code> for the schema.</li>
@@ -357,7 +283,7 @@ Example Protobuf Request</h2>
 <div class="line">payload = req.SerializeToString()</div>
 <div class="line">mq = posix_ipc.MessageQueue(&#39;/container_manager_queue&#39;, posix_ipc.O_CREAT)</div>
 <div class="line">mq.send(payload)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md18"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md16"></a>
 HTTP Endpoint</h2>
 <ul>
 <li><b>POST</b> <code>/execute</code><ul>
@@ -367,7 +293,7 @@ HTTP Endpoint</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md19"></a>
+<h2><a class="anchor" id="autotoc_md17"></a>
 MQTT Usage</h2>
 <ul>
 <li><b>Topic:</b> <code>container/execute</code></li>
@@ -376,7 +302,7 @@ MQTT Usage</h2>
 <li><b>Publish Example (Protobuf or Encrypted):</b> Use the generated Protobuf class to serialize and send the message as binary. <br  />
  If encryption is enabled, Base64-encode the encrypted payload before publishing.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md20"></a>
+<h2><a class="anchor" id="autotoc_md18"></a>
 POSIX Message Queue Usage</h2>
 <ul>
 <li><b>Queue Name:</b> <code>/container_manager_queue</code></li>
@@ -386,7 +312,7 @@ POSIX Message Queue Usage</h2>
 </div><!-- fragment --></li>
 <li><b>Send Example (Python, Protobuf or Encrypted):</b> See the Protobuf and encryption examples above.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md21"></a>
+<h2><a class="anchor" id="autotoc_md19"></a>
 D-Bus (Session Bus) Usage</h2>
 <ul>
 <li><b>Bus Name:</b> <code>org.container.manager</code></li>
@@ -404,26 +330,37 @@ D-Bus (Session Bus) Usage</h2>
 <div class="fragment"><div class="line">import base64</div>
 <div class="line">encrypted_payload = ... # bytes from AES-GCM encryption</div>
 <div class="line">iface.Execute(base64.b64encode(encrypted_payload).decode())</div>
-</div><!-- fragment --><p><b>Note:</b></p>
-<ul>
-<li>The D-Bus consumer uses the <b>session bus</b> for user applications.</li>
-<li>No root privileges or system-wide D-Bus policy is required.</li>
-<li>Encrypted payloads must be Base64-encoded before sending over D-Bus.</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md22"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md20"></a>
 Python UI: Container Creator</h1>
-<p>A cross-platform Python GUI tool is provided for easily sending container management requests to the Container Manager backend.</p>
-<h2><a class="anchor" id="autotoc_md23"></a>
+<p>A cross-platform Python GUI tool is provided for easily sending container management requests to the backend.</p>
+<div class="image">
+<img src="python_ui.png" alt=""/>
+<div class="caption">
+Python UI Screenshot</div></div>
+   <h2><a class="anchor" id="autotoc_md21"></a>
 Features</h2>
 <ul>
 <li>Select protocol: REST (HTTP), MQTT, POSIX Message Queue, or D-Bus (session bus)</li>
 <li>Select data format: JSON or Protobuf</li>
 <li>Select runtime: Docker, Podman, Docker API, or Podman API</li>
+<li>Select operation: create, start, stop, restart, remove, available, etc.</li>
 <li>Fill in container parameters (runtime, operation, resources, image, etc.)</li>
 <li>Enable/disable AES-GCM or ChaCha20 encryption</li>
 <li>Send requests directly to the backend via REST, MQTT, Message Queue, or D-Bus</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md24"></a>
+<h2><a class="anchor" id="autotoc_md22"></a>
+How the UI Works</h2>
+<ol type="1">
+<li><b>Select the protocol</b> (REST, MQTT, MessageQueue, or DBus) from the dropdown.</li>
+<li><b>Select the data format</b> (JSON or Proto).</li>
+<li><b>Select the runtime</b> (docker, podman, docker-api, podman-api) and operation (create, start, stop, restart, remove, available, etc.).</li>
+<li><b>Fill in the container parameters</b> (CPUs, memory, image, etc.).</li>
+<li><b>Choose the encryption algorithm</b> (None, AES-256-GCM, or ChaCha20-Poly1305).</li>
+<li><b>Click "Send Request"</b> to send the request to the backend.</li>
+<li>The UI will show a confirmation or error message after sending the request.</li>
+</ol>
+<p>The UI automatically handles serialization, encryption, and protocol-specific details (such as Base64 encoding for D-Bus and MQTT).</p>
+<h2><a class="anchor" id="autotoc_md23"></a>
 Requirements</h2>
 <ul>
 <li>Python 3.7+</li>
@@ -437,28 +374,11 @@ Requirements</h2>
 </ul>
 <p>Install dependencies:</p>
 <div class="fragment"><div class="line">pip install requests paho-mqtt posix_ipc dbus-python protobuf pycryptodome</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md25"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md24"></a>
 Usage</h2>
 <div class="fragment"><div class="line">cd ui</div>
 <div class="line">python container_creator_app.py</div>
-</div><!-- fragment --><ol type="1">
-<li>Select the protocol (REST, MQTT, MessageQueue, or DBus).</li>
-<li>Select the data format (JSON or Proto).</li>
-<li>Select the runtime (docker, podman, docker-api, podman-api).</li>
-<li>Fill in the container parameters.</li>
-<li>Enable encryption if desired.</li>
-<li>Click <b>Send</b> to send the request to the backend.</li>
-</ol>
-<p>The UI will show a confirmation or error message after sending the request.</p>
-<h1><a class="anchor" id="autotoc_md26"></a>
-Documentation</h1>
-<ul>
-<li><b>Doxygen HTML Docs:</b> <br  />
- After building, open <code>docs/doxygen/html/index.html</code> in your browser.</li>
-<li><b>Generating Docs:</b> <div class="fragment"><div class="line">doxygen Doxyfile</div>
-</div><!-- fragment --></li>
-</ul>
-<h1><a class="anchor" id="autotoc_md27"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md25"></a>
 Extending the Project</h1>
 <ul>
 <li><b>Add a new runtime:</b> <br  />
@@ -471,23 +391,37 @@ Extending the Project</h1>
  Implement a new <code><a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g....">RequestExecutor</a></code> (e.g., for Protobuf) in <code>App/executor/</code> and update the API handler to use it.</li>
 <li><b>Change database backend:</b> <br  />
  Implement the <code><a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a></code> interface for your preferred database (SQL, NoSQL, etc.) and update the service to use it.</li>
+<li><b>Add a new security algorithm:</b> <br  />
+ Implement a new security provider in <code>App/security/</code> by extending the <code><a class="el" href="classISecurityProvider.html" title="Abstract interface for security providers (encryption/decryption).">ISecurityProvider</a></code> interface, and update the CMake configuration and executor logic to support it.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md28"></a>
+<h1><a class="anchor" id="autotoc_md26"></a>
+Documentation &amp; Architecture</h1>
+<ul>
+<li>For a comprehensive overview of the system design, security, and extensibility, see <a class="el" href="md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html">Architecture Documentation</a>.</li>
+<li>Doxygen HTML docs: After building, open <code>docs/doxygen/html/index.html</code> in your browser.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md27"></a>
 Contributing</h1>
 <p>Contributions are welcome! Please open issues or pull requests for bug fixes, new features, or documentation improvements.</p>
-<h1><a class="anchor" id="autotoc_md29"></a>
+<h1><a class="anchor" id="autotoc_md28"></a>
 License</h1>
 <p>This project is licensed under the [MIT License](LICENSE).</p>
-<h1><a class="anchor" id="autotoc_md30"></a>
+<h1><a class="anchor" id="autotoc_md29"></a>
 Acknowledgements</h1>
 <ul>
 <li><a href="https://github.com/google/glog">glog</a></li>
 <li><a href="https://github.com/Cylix/cpp_redis">cpp_redis</a></li>
 <li><a href="https://github.com/nlohmann/json">nlohmann/json</a></li>
+<li><a href="https://github.com/yhirose/cpp-httplib">httplib</a></li>
 <li><a href="https://mosquitto.org/">mosquitto</a></li>
 <li><a href="https://github.com/Kistler-Group/sdbus-cpp">sdbus-c++</a></li>
+<li><a href="https://www.openssl.org/">OpenSSL</a></li>
+<li><a href="https://developers.google.com/protocol-buffers">protobuf</a></li>
 <li><a href="https://www.doxygen.nl/">Doxygen</a></li>
-<li><a href="https://developers.google.com/protocol-buffers">protobuf</a> </li>
+<li><a href="https://github.com/Legrandin/pycryptodome">pycryptodome</a> (Python UI)</li>
+<li><a href="https://github.com/eclipse/paho.mqtt.python">paho-mqtt</a> (Python UI)</li>
+<li><a href="https://github.com/osvenskan/posix_ipc">posix_ipc</a> (Python UI)</li>
+<li><a href="https://gitlab.freedesktop.org/dbus/dbus-python">dbus-python</a> (Python UI) </li>
 </ul>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
