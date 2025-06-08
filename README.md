@@ -81,7 +81,11 @@ The server will start and listen on the enabled protocols and data formats as pe
 
 ### 1. Project Overview & Motivation
 
-[![Project Overview & Motivation](https://img.youtube.com/vi/VIDEO_ID_1/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID_1)
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=GQ7MG5r8-uQ&ab_channel=komalkalyanraman">
+    <img src="docs/architecture/container_manager.png" alt="Project Overview & Motivation" width="500">
+  </a>
+</div>
 
 > _In this video, we explain why Container Manager was created, the problems it solves, and the advantages it brings to container orchestration and automation._
 
@@ -89,7 +93,11 @@ The server will start and listen on the enabled protocols and data formats as pe
 
 ### 2. Build, UI Usage & Live Demo
 
-[![Build, UI Usage & Live Demo](https://img.youtube.com/vi/VIDEO_ID_2/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID_2)
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=GQ7MG5r8-uQ&ab_channel=komalkalyanraman">
+    <img src="docs/architecture/container_manager_demo.png" alt="Project Overview & Motivation" width="500">
+  </a>
+</div>
 
 > _This video demonstrates how to build the project, use the Python UI, and deploy containers using different protocols and runtimes._
 
