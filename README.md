@@ -94,7 +94,7 @@ The server will start and listen on the enabled protocols and data formats as pe
 ### 2. Build, UI Usage & Live Demo
 
 <div align="center">
-  <a href="https://www.youtube.com/watch?v=GQ7MG5r8-uQ&ab_channel=komalkalyanraman">
+  <a href="https://www.youtube.com/watch?v=6wBSkqxmbTM&ab_channel=komalkalyanraman">
     <img src="docs/architecture/container_manager_demo.png" alt="Project Overview & Motivation" width="500">
   </a>
 </div>
