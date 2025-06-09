@@ -165,9 +165,9 @@ int main() {
 
     // Start REST/HTTP server in a separate thread if enabled
 #if ENABLE_REST
-    auto server_cfg = std::make_unique<ServerConfig>();
-    auto server = std::make_unique<HttpServerHandler>(executor, server_cfg->ThreadPoolSize);
-    protocol_threads.emplace_back([&server, &server_cfg]() {
+    auto server_cfg = std::make_shared<ServerConfig>();
+    auto server = std::make_shared<HttpServerHandler>(executor, server_cfg->ThreadPoolSize);
+    protocol_threads.emplace_back([server, server_cfg]() {
         server->Start(server_cfg->Host, server_cfg->Port);
     });
 #endif

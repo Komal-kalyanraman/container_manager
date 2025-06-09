@@ -226,9 +226,9 @@ $(document).ready(function(){initNavTree('main_8cpp_source.html',''); initResiza
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="comment">// Start REST/HTTP server in a separate thread if enabled</span></div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="preprocessor">#if ENABLE_REST</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keyword">auto</span> server_cfg = std::make_unique&lt;ServerConfig&gt;();</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keyword">auto</span> server = std::make_unique&lt;HttpServerHandler&gt;(executor, server_cfg-&gt;ThreadPoolSize);</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    protocol_threads.emplace_back([&amp;server, &amp;server_cfg]() {</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keyword">auto</span> server_cfg = std::make_shared&lt;ServerConfig&gt;();</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keyword">auto</span> server = std::make_shared&lt;HttpServerHandler&gt;(executor, server_cfg-&gt;ThreadPoolSize);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    protocol_threads.emplace_back([server, server_cfg]() {</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        server-&gt;Start(server_cfg-&gt;Host, server_cfg-&gt;Port);</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    });</div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="preprocessor">#endif</span></div>
