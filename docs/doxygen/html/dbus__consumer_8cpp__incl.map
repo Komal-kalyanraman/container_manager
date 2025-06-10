@@ -1,6 +1,6 @@
 <map id="api/src/dbus_consumer.cpp" name="api/src/dbus_consumer.cpp">
 <area shape="rect" id="node1" title="D&#45;Bus message consumer implementation for Container Manager." alt="" coords="751,5,950,32"/>
-<area shape="rect" id="node2" href="$dbus__consumer_8hpp.html" title="Defines the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus." alt="" coords="254,80,429,107"/>
+<area shape="rect" id="node2" href="$dbus__consumer_8hpp.html" title="Defines the DBusConsumer class for receiving and processing requests over D&#45;Bus." alt="" coords="254,80,429,107"/>
 <area shape="rect" id="node14" title=" " alt="" coords="909,155,989,181"/>
 <area shape="rect" id="node15" href="$logging_8hpp.html" title="Logging macros and configuration for the Container Manager." alt="" coords="889,80,1010,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,155,72,181"/>

@@ -1,5 +1,5 @@
 <map id="api/inc/dbus_consumer.hpp" name="api/inc/dbus_consumer.hpp">
-<area shape="rect" id="node1" title="Defines the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus." alt="" coords="181,5,379,32"/>
+<area shape="rect" id="node1" title="Defines the DBusConsumer class for receiving and processing requests over D&#45;Bus." alt="" coords="181,5,379,32"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,80,72,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="96,80,173,107"/>
 <area shape="rect" id="node4" title=" " alt="" coords="445,229,504,256"/>

@@ -3,19 +3,13 @@
  * @brief D-Bus message consumer implementation for Container Manager
  *
  * Implements the DBusConsumer class for handling container management requests
- * over the D-Bus session bus. Supports encrypted and unencrypted payloads,
- * automatic Base64 decoding for binary data, and both JSON and Protobuf formats.
+ * over the D-Bus session bus. Automatically detects and decodes Base64 data
+ * before forwarding to the executor.
  */
 
 #include "inc/dbus_consumer.hpp"
 #include <iostream>
 #include "inc/logging.hpp"
-
-#if defined(ENABLE_ENCRYPTION) && ENABLE_ENCRYPTION
-#include <openssl/bio.h>
-#include <openssl/evp.h>
-#include <openssl/buffer.h>
-#endif
 
 /**
  * @brief Constructs D-Bus consumer with configuration and request executor.
@@ -34,54 +28,12 @@ DBusConsumer::~DBusConsumer() {
     Stop();
 }
 
-#if defined(ENABLE_ENCRYPTION) && ENABLE_ENCRYPTION
 /**
- * @brief Decode Base64 string using OpenSSL BIO interface.
+ * @brief Simple Base64 decoder for all Base64 data.
  * @param encoded The Base64-encoded input string.
  * @return Decoded binary data as a string.
  */
-std::string base64_decode(const std::string& encoded) {
-    BIO *bio, *b64;
-    int decode_len = ((encoded.length() * 3) / 4);
-    char *buffer = new char[decode_len + 1];
-    
-    b64 = BIO_new(BIO_f_base64());
-    bio = BIO_new_mem_buf(encoded.c_str(), encoded.length());
-    bio = BIO_push(b64, bio);
-    BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL);
-    
-    int length = BIO_read(bio, buffer, encoded.length());
-    BIO_free_all(bio);
-    
-    std::string result(buffer, length > 0 ? length : 0);
-    delete[] buffer;
-    return result;
-}
-
-/**
- * @brief Check if string contains valid Base64 data.
- * @param str Input string to check.
- * @return True if the string is valid Base64, false otherwise.
- */
-bool is_base64(const std::string& str) {
-    if (str.empty() || str.length() % 4 != 0) return false;
-    
-    // Check for valid Base64 characters
-    for (char c : str) {
-        if (!((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || 
-              (c >= '0' && c <= '9') || c == '+' || c == '/' || c == '=')) {
-            return false;
-        }
-    }
-    return true;
-}
-#else
-/**
- * @brief Simple Base64 decoder when encryption is disabled.
- * @param encoded The Base64-encoded input string.
- * @return Decoded binary data as a string.
- */
-std::string simple_base64_decode(const std::string& encoded) {
+std::string DBusConsumer::DecodeBase64(const std::string& encoded) {
     static const std::string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     std::string decoded;
     int val = 0, valb = -8;
@@ -102,16 +54,15 @@ std::string simple_base64_decode(const std::string& encoded) {
 }
 
 /**
- * @brief Check if string looks like Base64 when encryption is disabled.
+ * @brief Check if string looks like Base64 data.
  * @param str Input string to check.
  * @return True if the string looks like Base64, false otherwise.
  */
-bool looks_like_base64(const std::string& str) {
+bool DBusConsumer::IsBase64(const std::string& str) {
     if (str.empty() || str.length() % 4 != 0) return false;
     
     return str.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=") == std::string::npos;
 }
-#endif
 
 /**
  * @brief Start the D-Bus consumer in a separate thread.
@@ -132,7 +83,7 @@ void DBusConsumer::Stop() {
 
 /**
  * @brief Main D-Bus event loop for processing incoming method calls.
- *        Handles Base64 decoding if needed and forwards payload to the executor.
+ *        Handles Base64 decoding and forwards clean data to the executor.
  */
 void DBusConsumer::ListenLoop() {
     try {
@@ -145,38 +96,28 @@ void DBusConsumer::ListenLoop() {
         object_->registerMethod(config_.Method)
             .onInterface(config_.Interface)
             .implementedAs([this](const std::string& payload) {
-                std::string actual_payload = payload;
-                
                 std::cout << "[DBus] Received payload of length: " << payload.length() << std::endl;
                 
-                // Detect and handle Base64-encoded data
-                bool is_base64_data = false;
-#if defined(ENABLE_ENCRYPTION) && ENABLE_ENCRYPTION
-                is_base64_data = is_base64(payload);
-#else
-                is_base64_data = looks_like_base64(payload);
-#endif
-
-                if (is_base64_data) {
+                std::string clean_payload = payload;
+                
+                // Detect and decode Base64 if present
+                if (IsBase64(payload)) {
                     try {
-#if defined(ENABLE_ENCRYPTION) && ENABLE_ENCRYPTION
-                        actual_payload = base64_decode(payload);
-                        std::cout << "[DBus] Successfully decoded Base64 payload using OpenSSL" << std::endl;
-#else
-                        actual_payload = simple_base64_decode(payload);
-                        std::cout << "[DBus] Successfully decoded Base64 payload" << std::endl;
-#endif
+                        clean_payload = DecodeBase64(payload);
+                        std::cout << "[DBus] Decoded Base64 payload (original: " << payload.length() 
+                                 << " bytes, decoded: " << clean_payload.length() << " bytes)" << std::endl;
                     } catch (const std::exception& e) {
-                        std::cerr << "[DBus] Base64 decode failed: " << e.what() << std::endl;
-                        actual_payload = payload; // Fall back to original
+                        std::cerr << "[DBus] Base64 decode failed: " << e.what() 
+                                 << ", using original payload" << std::endl;
+                        clean_payload = payload; // Fallback to original
                     }
                 } else {
-                    std::cout << "[DBus] Processing payload as plain text" << std::endl;
+                    std::cout << "[DBus] Payload is plain text, forwarding as-is" << std::endl;
                 }
                 
-                // Forward to executor for decryption and processing
+                // Forward clean data to executor
                 try {
-                    auto result = executor_->Execute(actual_payload);
+                    auto result = executor_->Execute(clean_payload);
                     
                     if (result.contains("status")) {
                         if (result["status"] == "error") {

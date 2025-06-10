@@ -1,6 +1,6 @@
 <map id="utils/inc/common.hpp" name="utils/inc/common.hpp">
 <area shape="rect" id="node1" title="Defines common constants, string views, and utility structures for the application." alt="" coords="1287,5,1450,32"/>
-<area shape="rect" id="node2" href="$dbus__consumer_8hpp.html" title="Defines the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus." alt="" coords="5,87,204,114"/>
+<area shape="rect" id="node2" href="$dbus__consumer_8hpp.html" title="Defines the DBusConsumer class for receiving and processing requests over D&#45;Bus." alt="" coords="5,87,204,114"/>
 <area shape="rect" id="node4" href="$http__server_8hpp.html" title="Defines the HttpServerHandler class for handling HTTP requests." alt="" coords="229,87,399,114"/>
 <area shape="rect" id="node6" href="$posix__message__queue__consumer_8hpp.html" title="Declares the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="425,80,595,121"/>
 <area shape="rect" id="node7" href="$posix__message__queue__consumer_8cpp.html" title="Implements the MessageQueueConsumer class for handling messages from a POSIX message queue." alt="" coords="423,169,594,211"/>

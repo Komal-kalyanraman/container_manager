@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="dbus__consumer_8hpp.html" target="_top" xlink:title="Defines the DBusConsumer class for receiving and processing JSON/Protobuf requests over D&#45;Bus.">
+<g id="a_node2"><a xlink:href="dbus__consumer_8hpp.html" target="_top" xlink:title="Defines the DBusConsumer class for receiving and processing requests over D&#45;Bus.">
 <polygon fill="white" stroke="black" points="186.5,-168.5 186.5,-187.5 317.5,-187.5 317.5,-168.5 186.5,-168.5"/>
 <text text-anchor="middle" x="252" y="-175.5" font-family="Helvetica,sans-Serif" font-size="10.00">inc/dbus_consumer.hpp</text>
 </a>

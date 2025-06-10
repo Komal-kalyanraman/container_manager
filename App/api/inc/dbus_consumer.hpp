@@ -1,6 +1,6 @@
 /**
  * @file dbus_consumer.hpp
- * @brief Defines the DBusConsumer class for receiving and processing JSON/Protobuf requests over D-Bus.
+ * @brief Defines the DBusConsumer class for receiving and processing requests over D-Bus.
  */
 
 #pragma once
@@ -16,11 +16,11 @@
 
 /**
  * @class DBusConsumer
- * @brief Handles receiving and processing JSON/Protobuf requests over D-Bus.
+ * @brief Handles receiving and processing requests over D-Bus.
  *
  * This class connects to the D-Bus session bus, registers an object and interface,
- * and listens for incoming method calls (e.g., "Execute") from other applications.
- * Incoming JSON/Protobuf payloads are forwarded to the shared RequestExecutor for processing.
+ * and listens for incoming method calls. Automatically handles Base64 decoding
+ * for binary data and forwards clean payloads to the RequestExecutor.
  */
 class DBusConsumer {
 public:
@@ -51,6 +51,20 @@ private:
      * @brief Main loop for processing incoming D-Bus requests.
      */
     void ListenLoop();
+
+    /**
+     * @brief Check if string looks like Base64 data.
+     * @param str Input string to check.
+     * @return True if the string looks like Base64, false otherwise.
+     */
+    bool IsBase64(const std::string& str);
+
+    /**
+     * @brief Decode Base64 string to binary data.
+     * @param encoded The Base64-encoded input string.
+     * @return Decoded binary data as a string.
+     */
+    std::string DecodeBase64(const std::string& encoded);
 
     DbusConfig config_;                                  ///< D-Bus configuration struct.
     std::string bus_name_;                               ///< The D-Bus service name to acquire.
