@@ -9,11 +9,11 @@
 
 /**
  * @brief Constructs an HttpServerHandler with the given executor and thread pool size.
- * @param executor Shared pointer to a RequestExecutor for processing requests.
  * @param thread_pool_size Number of threads in the thread pool for handling requests.
+ * @param executor Shared pointer to a RequestExecutor for processing requests.
  */
-HttpServerHandler::HttpServerHandler(std::shared_ptr<RequestExecutor> executor, int thread_pool_size)
-    : executor_(std::move(executor)), pool_(std::make_unique<ThreadPool>(thread_pool_size)) {}
+HttpServerHandler::HttpServerHandler(int thread_pool_size, std::shared_ptr<RequestExecutor> executor)
+    : pool_(std::make_unique<ThreadPool>(thread_pool_size)), executor_(std::move(executor)) {}
 
 /**
  * @brief Starts the HTTP server on the specified host and port.

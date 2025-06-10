@@ -102,9 +102,9 @@ Collaboration diagram for HttpServerHandler:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a44366b46b30352163ed6ef49516dd404"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpServerHandler.html#a44366b46b30352163ed6ef49516dd404">HttpServerHandler</a> (std::shared_ptr&lt; <a class="el" href="classRequestExecutor.html">RequestExecutor</a> &gt; executor, int thread_pool_size)</td></tr>
-<tr class="memdesc:a44366b46b30352163ed6ef49516dd404"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an HTTP server handler.  <a href="classHttpServerHandler.html#a44366b46b30352163ed6ef49516dd404">More...</a><br /></td></tr>
-<tr class="separator:a44366b46b30352163ed6ef49516dd404"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad50f296b3f8664736b70c84fb91f0ab1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpServerHandler.html#ad50f296b3f8664736b70c84fb91f0ab1">HttpServerHandler</a> (int thread_pool_size, std::shared_ptr&lt; <a class="el" href="classRequestExecutor.html">RequestExecutor</a> &gt; executor)</td></tr>
+<tr class="memdesc:ad50f296b3f8664736b70c84fb91f0ab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an HTTP server handler.  <a href="classHttpServerHandler.html#ad50f296b3f8664736b70c84fb91f0ab1">More...</a><br /></td></tr>
+<tr class="separator:ad50f296b3f8664736b70c84fb91f0ab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6719e2ab219e695c6762836bc9b9506"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506">Start</a> (const std::string &amp;host, int port)</td></tr>
 <tr class="memdesc:aa6719e2ab219e695c6762836bc9b9506"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the HTTP server on the specified host and port.  <a href="classHttpServerHandler.html#aa6719e2ab219e695c6762836bc9b9506">More...</a><br /></td></tr>
 <tr class="separator:aa6719e2ab219e695c6762836bc9b9506"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,8 +118,8 @@ Public Member Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="http__server_8hpp_source.html#l00023">23</a> of file <a class="el" href="http__server_8hpp_source.html">http_server.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a44366b46b30352163ed6ef49516dd404"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a44366b46b30352163ed6ef49516dd404">&#9670;&nbsp;</a></span>HttpServerHandler()</h2>
+<a id="ad50f296b3f8664736b70c84fb91f0ab1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad50f296b3f8664736b70c84fb91f0ab1">&#9670;&nbsp;</a></span>HttpServerHandler()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -130,14 +130,14 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">HttpServerHandler::HttpServerHandler </td>
           <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classRequestExecutor.html">RequestExecutor</a> &gt;&#160;</td>
-          <td class="paramname"><em>executor</em>, </td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>thread_pool_size</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>thread_pool_size</em>&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classRequestExecutor.html">RequestExecutor</a> &gt;&#160;</td>
+          <td class="paramname"><em>executor</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -156,14 +156,14 @@ Public Member Functions</h2></td></tr>
 <p>Constructs an <a class="el" href="classHttpServerHandler.html" title="Handles incoming HTTP requests and dispatches them to the appropriate JSON/Protobuf executor.">HttpServerHandler</a> with the given executor and thread pool size.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">executor</td><td>Shared pointer to a <a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g....">RequestExecutor</a> for processing requests. </td></tr>
     <tr><td class="paramname">thread_pool_size</td><td>Number of threads in the thread pool for handling requests. </td></tr>
+    <tr><td class="paramname">executor</td><td>Shared pointer to a <a class="el" href="classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g....">RequestExecutor</a> for processing requests. </td></tr>
   </table>
   </dd>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="http__server_8cpp_source.html#l00015">15</a> of file <a class="el" href="http__server_8cpp_source.html">http_server.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    : executor_(std::move(executor)), pool_(std::make_unique&lt;ThreadPool&gt;(thread_pool_size)) {}</div>
+<div class="fragment"><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    : pool_(std::make_unique&lt;ThreadPool&gt;(thread_pool_size)), executor_(std::move(executor)) {}</div>
 </div><!-- fragment -->
 </div>
 </div>

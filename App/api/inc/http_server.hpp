@@ -24,10 +24,10 @@ class HttpServerHandler {
 public:
     /**
      * @brief Constructs an HTTP server handler.
-     * @param executor Shared pointer to a RequestExecutor for processing requests.
      * @param thread_pool_size Number of threads in the thread pool for handling requests.
+     * @param executor Shared pointer to a RequestExecutor for processing requests.
      */
-    explicit HttpServerHandler(std::shared_ptr<RequestExecutor> executor, int thread_pool_size);
+    explicit HttpServerHandler(int thread_pool_size, std::shared_ptr<RequestExecutor> executor);
 
     /**
      * @brief Starts the HTTP server on the specified host and port.
