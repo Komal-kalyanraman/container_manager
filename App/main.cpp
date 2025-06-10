@@ -165,18 +165,21 @@ int main() {
 
     // Start REST/HTTP server in a separate thread if enabled
 #if ENABLE_REST
-    auto server_cfg = std::make_shared<ServerConfig>();
-    auto server = std::make_shared<HttpServerHandler>(server_cfg->ThreadPoolSize, executor);
-    protocol_threads.emplace_back([server, server_cfg]() {
-        server->Start(server_cfg->Host, server_cfg->Port);
+    ServerConfig server_cfg;
+    auto server = std::make_shared<HttpServerHandler>(server_cfg.ThreadPoolSize, executor);
+    // Exact host and port values for lambda function capture
+    std::string host = server_cfg.Host;
+    int port = server_cfg.Port;
+    protocol_threads.emplace_back([server, host, port]() {
+        server->Start(host, port);
     });
 #endif
 
     // Start MQTT subscriber in a separate thread if enabled
 #if ENABLE_MQTT
-    auto mqtt_cfg = std::make_unique<MqttConfig>();
+    MqttConfig mqtt_cfg;
     auto mqtt_consumer = std::make_shared<MosquittoMqttSubscriber>(
-        mqtt_cfg->BrokerAddress, mqtt_cfg->BrokerPort, mqtt_cfg->Topic, executor);
+        mqtt_cfg.BrokerAddress, mqtt_cfg.BrokerPort, mqtt_cfg.Topic, executor);
     protocol_threads.emplace_back([mqtt_consumer]() {
         mqtt_consumer->Start();
     });
@@ -184,8 +187,8 @@ int main() {
 
     // Start POSIX Message Queue consumer in a separate thread if enabled
 #if ENABLE_MSGQUEUE
-    auto mq_cfg = std::make_unique<MessageQueueConfig>();
-    auto mq_consumer = std::make_shared<MessageQueueConsumer>(*mq_cfg, executor);
+    MessageQueueConfig mq_cfg;
+    auto mq_consumer = std::make_shared<MessageQueueConsumer>(mq_cfg, executor);
     protocol_threads.emplace_back([mq_consumer]() {
         mq_consumer->Start();
     });
@@ -193,8 +196,8 @@ int main() {
 
     // Start D-Bus consumer in a separate thread if enabled
 #if ENABLE_DBUS
-    auto dbus_cfg = std::make_unique<DbusConfig>();
-    auto dbus_consumer = std::make_shared<DBusConsumer>(*dbus_cfg, executor);
+    DbusConfig dbus_cfg;
+    auto dbus_consumer = std::make_shared<DBusConsumer>(dbus_cfg, executor);
     protocol_threads.emplace_back([dbus_consumer]() {
         dbus_consumer->Start();
     });

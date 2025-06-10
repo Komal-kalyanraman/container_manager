@@ -16,7 +16,7 @@
  * @param executor Shared pointer to a RequestExecutor for processing messages.
  */
 MosquittoMqttSubscriber::MosquittoMqttSubscriber(const std::string& broker_address,
-                                                 int broker_port,
+                                                 const int& broker_port,
                                                  const std::string& topic,
                                                  std::shared_ptr<RequestExecutor> executor)
     : mosqpp::mosquittopp("container_manager_mqtt_subscriber"),
