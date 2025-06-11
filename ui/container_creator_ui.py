@@ -23,7 +23,7 @@ except ImportError as e:
 class ContainerCreatorUI:
     def __init__(self, root):
         self.root = root
-        self.root.title("Container Creator - Container Manager v0.7.0")
+        self.root.title("Container Creator - Container Manager v0.7.1")
         
         # Protocol selection
         ttk.Label(root, text="Protocol:").grid(row=0, column=0, sticky="w")

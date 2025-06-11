@@ -4,7 +4,7 @@
 
 # Minimum required CMake version and project definition
 cmake_minimum_required(VERSION 3.10)
-project(cm VERSION 0.7.0 LANGUAGES CXX)
+project(cm VERSION 0.7.1 LANGUAGES CXX)
 
 # Set C++ standard and compiler options
 set(CMAKE_CXX_STANDARD 17)
@@ -50,7 +50,7 @@ add_compile_definitions(
 
 # Set home directory and print status
 set(HOME_DIR $ENV{HOME})
-message(STATUS "Container Manager v0.7.0 - Home Directory: ${HOME_DIR}")
+message(STATUS "Container Manager v0.7.1 - Home Directory: ${HOME_DIR}")
 
 # Find required packages and libraries
 find_package(CURL REQUIRED)
