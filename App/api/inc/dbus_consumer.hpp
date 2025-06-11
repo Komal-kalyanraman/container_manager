@@ -19,8 +19,9 @@
  * @brief Handles receiving and processing requests over D-Bus.
  *
  * This class connects to the D-Bus session bus, registers an object and interface,
- * and listens for incoming method calls. Automatically handles Base64 decoding
- * for binary data and forwards clean payloads to the RequestExecutor.
+ * and listens for incoming method calls. All D-Bus payloads are expected to be
+ * Base64-encoded and are automatically decoded before forwarding to the RequestExecutor.
+ * This ensures consistent data handling regardless of payload type (JSON, Protobuf, encrypted).
  */
 class DBusConsumer {
 public:
@@ -53,16 +54,10 @@ private:
     void ListenLoop();
 
     /**
-     * @brief Check if string looks like Base64 data.
-     * @param str Input string to check.
-     * @return True if the string looks like Base64, false otherwise.
-     */
-    bool IsBase64(const std::string& str);
-
-    /**
      * @brief Decode Base64 string to binary data.
      * @param encoded The Base64-encoded input string.
      * @return Decoded binary data as a string.
+     * @throws std::runtime_error if Base64 decoding fails.
      */
     std::string DecodeBase64(const std::string& encoded);
 

@@ -52,8 +52,8 @@ flowchart TD
     MQTT -- "JSON/Proto<br/>(Plain or Encrypted)" --> PROTO
     MQ -- "JSON/Proto<br/>(Plain or Encrypted)" --> JSON
     MQ -- "JSON/Proto<br/>(Plain or Encrypted)" --> PROTO
-    DBUS -- "JSON/Proto<br/>(Plain or Base64-Encrypted)" --> JSON
-    DBUS -- "JSON/Proto<br/>(Plain or Base64-Encrypted)" --> PROTO
+    DBUS -- "JSON/Proto<br/>(Base64-Encrypted)" --> JSON
+    DBUS -- "JSON/Proto<br/>(Base64-Encrypted)" --> PROTO
 
     %% Executor to Core
     JSON -- "Validated Request" --> SERVICE
@@ -108,8 +108,8 @@ MQTT -- "JSON/Proto<br/>(Plain or Encrypted)" --> JSON
 MQTT -- "JSON/Proto<br/>(Plain or Encrypted)" --> PROTO
 MQ -- "JSON/Proto<br/>(Plain or Encrypted)" --> JSON
 MQ -- "JSON/Proto<br/>(Plain or Encrypted)" --> PROTO
-DBUS -- "JSON/Proto<br/>(Plain or Base64-Encrypted)" --> JSON
-DBUS -- "JSON/Proto<br/>(Plain or Base64-Encrypted)" --> PROTO
+DBUS -- "JSON/Proto<br/>(Base64 Encrypted)" --> JSON
+DBUS -- "JSON/Proto<br/>(Base64 Encrypted)" --> PROTO
 GRPC -- "Proto<br/>(Plain or Encrypted)" --> PROTO
 ```
 
@@ -232,7 +232,7 @@ graph TD
     Client1 -->|HTTP<br/>Plain/Encrypted JSON/Proto| CM
     Client2 -->|MQTT<br/>Plain/Encrypted JSON/Proto| MQTTB
     MQTTB -->|MQTT| CM
-    Client3 -->|D-Bus<br/>Plain/Base64-Encrypted| CM
+    Client3 -->|D-Bus<br/>Base64-Encrypted| CM
     Client4 -->|POSIX MQ<br/>Plain/Encrypted JSON/Proto| CM
 
     %% Database connections

@@ -98,41 +98,39 @@ $(document).ready(function(){initNavTree('dbus__consumer_8hpp_source.html',''); 
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;sdbus-c++/sdbus-c++.h&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="request__executor_8hpp.html">inc/request_executor.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classDBusConsumer.html">   25</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDBusConsumer.html">DBusConsumer</a> {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classDBusConsumer.html#a220599920a77e2f6e54025fcbfb6bc47">DBusConsumer</a>(<span class="keyword">const</span> <a class="code" href="structDbusConfig.html">DbusConfig</a>&amp; config, std::shared_ptr&lt;RequestExecutor&gt; executor);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="classDBusConsumer.html#a0b314f4446d980bce84cacd6bb06de75">~DBusConsumer</a>();</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDBusConsumer.html#aa56dc7eaa77a121cff20dbbeb9069bbe">Start</a>();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDBusConsumer.html#a0dbd21d40cbdcd311c5e4b9aaf8b07ec">Stop</a>();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> ListenLoop();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">bool</span> IsBase64(<span class="keyword">const</span> std::string&amp; str);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    std::string DecodeBase64(<span class="keyword">const</span> std::string&amp; encoded);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="structDbusConfig.html">DbusConfig</a> config_;                                  </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    std::string bus_name_;                               </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    std::string object_path_;                            </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    std::shared_ptr&lt;RequestExecutor&gt; executor_;          </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    std::unique_ptr&lt;sdbus::IConnection&gt; connection_;     </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    std::unique_ptr&lt;sdbus::IObject&gt; object_;             </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    std::atomic&lt;bool&gt; running_{<span class="keyword">false</span>};                   </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    std::thread listen_thread_;                          </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;};</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classDBusConsumer.html">   26</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDBusConsumer.html">DBusConsumer</a> {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="classDBusConsumer.html#a220599920a77e2f6e54025fcbfb6bc47">DBusConsumer</a>(<span class="keyword">const</span> <a class="code" href="structDbusConfig.html">DbusConfig</a>&amp; config, std::shared_ptr&lt;RequestExecutor&gt; executor);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="classDBusConsumer.html#a0b314f4446d980bce84cacd6bb06de75">~DBusConsumer</a>();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDBusConsumer.html#aa56dc7eaa77a121cff20dbbeb9069bbe">Start</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDBusConsumer.html#a0dbd21d40cbdcd311c5e4b9aaf8b07ec">Stop</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> ListenLoop();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    std::string DecodeBase64(<span class="keyword">const</span> std::string&amp; encoded);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="structDbusConfig.html">DbusConfig</a> config_;                                  </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    std::string bus_name_;                               </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    std::string object_path_;                            </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    std::shared_ptr&lt;RequestExecutor&gt; executor_;          </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    std::unique_ptr&lt;sdbus::IConnection&gt; connection_;     </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    std::unique_ptr&lt;sdbus::IObject&gt; object_;             </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    std::atomic&lt;bool&gt; running_{<span class="keyword">false</span>};                   </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    std::thread listen_thread_;                          </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="astructDbusConfig_html"><div class="ttname"><a href="structDbusConfig.html">DbusConfig</a></div><div class="ttdoc">Holds constant configuration for the D-Bus consumer (session bus).</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00069">common.hpp:69</a></div></div>
 <div class="ttc" id="acommon_8hpp_html"><div class="ttname"><a href="common_8hpp.html">common.hpp</a></div><div class="ttdoc">Defines common constants, string views, and utility structures for the application.</div></div>
-<div class="ttc" id="aclassDBusConsumer_html_aa56dc7eaa77a121cff20dbbeb9069bbe"><div class="ttname"><a href="classDBusConsumer.html#aa56dc7eaa77a121cff20dbbeb9069bbe">DBusConsumer::Start</a></div><div class="ttdeci">void Start()</div><div class="ttdoc">Start listening for D-Bus method calls in a background thread.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8cpp_source.html#l00070">dbus_consumer.cpp:70</a></div></div>
-<div class="ttc" id="aclassDBusConsumer_html_a0dbd21d40cbdcd311c5e4b9aaf8b07ec"><div class="ttname"><a href="classDBusConsumer.html#a0dbd21d40cbdcd311c5e4b9aaf8b07ec">DBusConsumer::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">Stop listening and join the background thread.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8cpp_source.html#l00078">dbus_consumer.cpp:78</a></div></div>
+<div class="ttc" id="aclassDBusConsumer_html_aa56dc7eaa77a121cff20dbbeb9069bbe"><div class="ttname"><a href="classDBusConsumer.html#aa56dc7eaa77a121cff20dbbeb9069bbe">DBusConsumer::Start</a></div><div class="ttdeci">void Start()</div><div class="ttdoc">Start listening for D-Bus method calls in a background thread.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8cpp_source.html#l00062">dbus_consumer.cpp:62</a></div></div>
+<div class="ttc" id="aclassDBusConsumer_html_a0dbd21d40cbdcd311c5e4b9aaf8b07ec"><div class="ttname"><a href="classDBusConsumer.html#a0dbd21d40cbdcd311c5e4b9aaf8b07ec">DBusConsumer::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">Stop listening and join the background thread.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8cpp_source.html#l00070">dbus_consumer.cpp:70</a></div></div>
 <div class="ttc" id="arequest__executor_8hpp_html"><div class="ttname"><a href="request__executor_8hpp.html">request_executor.hpp</a></div><div class="ttdoc">Declares the abstract RequestExecutor interface for executing requests.</div></div>
 <div class="ttc" id="aclassDBusConsumer_html_a220599920a77e2f6e54025fcbfb6bc47"><div class="ttname"><a href="classDBusConsumer.html#a220599920a77e2f6e54025fcbfb6bc47">DBusConsumer::DBusConsumer</a></div><div class="ttdeci">DBusConsumer(const DbusConfig &amp;config, std::shared_ptr&lt; RequestExecutor &gt; executor)</div><div class="ttdoc">Construct a DBusConsumer.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8cpp_source.html#l00017">dbus_consumer.cpp:17</a></div></div>
-<div class="ttc" id="aclassDBusConsumer_html"><div class="ttname"><a href="classDBusConsumer.html">DBusConsumer</a></div><div class="ttdoc">Handles receiving and processing requests over D-Bus.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8hpp_source.html#l00025">dbus_consumer.hpp:25</a></div></div>
+<div class="ttc" id="aclassDBusConsumer_html"><div class="ttname"><a href="classDBusConsumer.html">DBusConsumer</a></div><div class="ttdoc">Handles receiving and processing requests over D-Bus.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8hpp_source.html#l00026">dbus_consumer.hpp:26</a></div></div>
 <div class="ttc" id="aclassDBusConsumer_html_a0b314f4446d980bce84cacd6bb06de75"><div class="ttname"><a href="classDBusConsumer.html#a0b314f4446d980bce84cacd6bb06de75">DBusConsumer::~DBusConsumer</a></div><div class="ttdeci">~DBusConsumer()</div><div class="ttdoc">Destructor. Stops the consumer if running.</div><div class="ttdef"><b>Definition:</b> <a href="dbus__consumer_8cpp_source.html#l00027">dbus_consumer.cpp:27</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

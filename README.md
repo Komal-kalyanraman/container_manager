@@ -157,7 +157,7 @@ Container Manager exposes a unified API for container operations over multiple p
   - **Bus Name:** `org.container.manager`
   - **Object Path:** `/org/container/manager`
   - **Interface:** `org.container.manager`
-  - **Method:** `Execute` — Accepts JSON string or Base64-encoded Protobuf/encrypted payload.
+  - **Method:** `Execute` — Accepts Base64-encoded JSON/Protobuf which can be plain/encrypted payload.
 
 See [Usage Examples](#usage-examples) below for request formats and protocol-specific details.
 
