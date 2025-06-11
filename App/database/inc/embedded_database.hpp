@@ -6,6 +6,7 @@
  * It uses a fixed-size array to store key-value pairs, where keys are fixed-length character arrays
  * and values are nlohmann::json objects. This design avoids dynamic memory allocation for keys and
  * limits the number of entries, making it suitable for resource-constrained embedded systems.
+ * All configuration constants are defined in EmbeddedDbConfig struct.
  */
 
 #pragma once
@@ -21,6 +22,7 @@
  *
  * Implements the IDatabaseHandler interface using a fixed-size array of entries.
  * Each entry consists of a fixed-length key, a JSON value, and a usage flag.
+ * Database limits are defined by EmbeddedDbConfig constants.
  */
 class EmbeddedDatabaseHandler : public IDatabaseHandler {
 public:
@@ -71,10 +73,10 @@ private:
      * @brief Represents a single key-value pair in the embedded database.
      */
     struct Entry {
-        char key[kMaxKeyLen];      ///< Fixed-length key.
-        nlohmann::json value;      ///< JSON value associated with the key.
-        bool used;                 ///< Indicates if this entry is in use.
+        char key[EmbeddedDbConfig::kMaxKeyLen];    ///< Fixed-length key using config constant.
+        nlohmann::json value;                     ///< JSON value associated with the key.
+        bool used;                                ///< Indicates if this entry is in use.
     };
 
-    std::array<Entry, kMaxEntries> entries_; ///< Fixed-size array of database entries.
+    std::array<Entry, EmbeddedDbConfig::kMaxEntries> entries_; ///< Fixed-size array using config constant.
 };

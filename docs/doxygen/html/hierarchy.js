@@ -1,5 +1,7 @@
 var hierarchy =
 [
+    [ "AesGcmConfig", "structAesGcmConfig.html", null ],
+    [ "ChaCha20Config", "structChaCha20Config.html", null ],
     [ "Command", "classCommand.html", [
       [ "DockerApiCreateContainerCommand", "classDockerApiCreateContainerCommand.html", null ],
       [ "DockerApiRemoveContainerCommand", "classDockerApiRemoveContainerCommand.html", null ],
@@ -33,6 +35,7 @@ var hierarchy =
     [ "CurlHandler", "classCurlHandler.html", null ],
     [ "DbusConfig", "structDbusConfig.html", null ],
     [ "DBusConsumer", "classDBusConsumer.html", null ],
+    [ "EmbeddedDbConfig", "structEmbeddedDbConfig.html", null ],
     [ "HttpServerHandler", "classHttpServerHandler.html", null ],
     [ "IDatabaseHandler", "classIDatabaseHandler.html", [
       [ "EmbeddedDatabaseHandler", "classEmbeddedDatabaseHandler.html", null ],

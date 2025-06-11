@@ -130,6 +130,15 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCommandName.html">CommandName</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains string constants for supported container operations.  <a href="structCommandName.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAesGcmConfig.html">AesGcmConfig</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration parameters for AES-256-GCM encryption/decryption.  <a href="structAesGcmConfig.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structChaCha20Config.html">ChaCha20Config</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration parameters for ChaCha20-Poly1305 encryption/decryption.  <a href="structChaCha20Config.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structEmbeddedDbConfig.html">EmbeddedDbConfig</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration parameters for the embedded database.  <a href="structEmbeddedDbConfig.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -160,12 +169,6 @@ Variables</h2></td></tr>
 <tr class="memitem:a219640b5cfb7d108d5a1f48ef0190e67"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a219640b5cfb7d108d5a1f48ef0190e67">kMainShutdownPollMs</a> = 200</td></tr>
 <tr class="memdesc:a219640b5cfb7d108d5a1f48ef0190e67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sleep interval (in milliseconds) for main thread shutdown polling.  <a href="common_8hpp.html#a219640b5cfb7d108d5a1f48ef0190e67">More...</a><br /></td></tr>
 <tr class="separator:a219640b5cfb7d108d5a1f48ef0190e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6e02d9d99067c1a6c6f6dc20dfe941a"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#ab6e02d9d99067c1a6c6f6dc20dfe941a">kMaxEntries</a> = 32</td></tr>
-<tr class="memdesc:ab6e02d9d99067c1a6c6f6dc20dfe941a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of entries for embedded database.  <a href="common_8hpp.html#ab6e02d9d99067c1a6c6f6dc20dfe941a">More...</a><br /></td></tr>
-<tr class="separator:ab6e02d9d99067c1a6c6f6dc20dfe941a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f4c21e9474b25522f250b43303d8157"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a2f4c21e9474b25522f250b43303d8157">kMaxKeyLen</a> = 32</td></tr>
-<tr class="memdesc:a2f4c21e9474b25522f250b43303d8157"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum key length for embedded database entries.  <a href="common_8hpp.html#a2f4c21e9474b25522f250b43303d8157">More...</a><br /></td></tr>
-<tr class="separator:a2f4c21e9474b25522f250b43303d8157"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ce8df3b35a0ea16a014b05672323070"><td class="memItemLeft" align="right" valign="top">constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a0ce8df3b35a0ea16a014b05672323070">kDockerUnixSocketPath</a> [] = &quot;/var/run/docker.sock&quot;</td></tr>
 <tr class="memdesc:a0ce8df3b35a0ea16a014b05672323070"><td class="mdescLeft">&#160;</td><td class="mdescRight">Docker Unix socket path and API base URL for HTTP API communication.  <a href="common_8hpp.html#a0ce8df3b35a0ea16a014b05672323070">More...</a><br /></td></tr>
 <tr class="separator:a0ce8df3b35a0ea16a014b05672323070"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -200,21 +203,6 @@ Variables</h2></td></tr>
 <tr class="separator:a6bbbab058f7bf283aa1c2b03446b64d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16a27a883973049590f48b7a016dfdf8"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceApiEndpoint.html#a16a27a883973049590f48b7a016dfdf8">ApiEndpoint::Ping</a> = &quot;_ping&quot;</td></tr>
 <tr class="separator:a16a27a883973049590f48b7a016dfdf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acee365ec4f7c573a0247925a2254ec87"><td class="memItemLeft" align="right" valign="top">constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#acee365ec4f7c573a0247925a2254ec87">kAesKeyFilePath</a> [] = &quot;../../storage/security/aes_key.txt&quot;</td></tr>
-<tr class="memdesc:acee365ec4f7c573a0247925a2254ec87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default path to the AES-256 key file (hex-encoded, 64 characters).  <a href="common_8hpp.html#acee365ec4f7c573a0247925a2254ec87">More...</a><br /></td></tr>
-<tr class="separator:acee365ec4f7c573a0247925a2254ec87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2cff9b75cb0fa5c836c0ce4fca436361"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a2cff9b75cb0fa5c836c0ce4fca436361">kAesKeyLen</a> = 32</td></tr>
-<tr class="memdesc:a2cff9b75cb0fa5c836c0ce4fca436361"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES-256 key length in bytes (32 bytes for AES-256).  <a href="common_8hpp.html#a2cff9b75cb0fa5c836c0ce4fca436361">More...</a><br /></td></tr>
-<tr class="separator:a2cff9b75cb0fa5c836c0ce4fca436361"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a663bc07796580bf3392cc4b722911e96"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a663bc07796580bf3392cc4b722911e96">kAesIvLen</a> = 12</td></tr>
-<tr class="memdesc:a663bc07796580bf3392cc4b722911e96"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES-GCM initialization vector (IV) length in bytes (12 bytes recommended for GCM).  <a href="common_8hpp.html#a663bc07796580bf3392cc4b722911e96">More...</a><br /></td></tr>
-<tr class="separator:a663bc07796580bf3392cc4b722911e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a022b7958f635cfd9b1e07b4a76801510"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a022b7958f635cfd9b1e07b4a76801510">kAesTagLen</a> = 16</td></tr>
-<tr class="memdesc:a022b7958f635cfd9b1e07b4a76801510"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES-GCM authentication tag length in bytes (16 bytes recommended for GCM).  <a href="common_8hpp.html#a022b7958f635cfd9b1e07b4a76801510">More...</a><br /></td></tr>
-<tr class="separator:a022b7958f635cfd9b1e07b4a76801510"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e704f788af8b0bb5b6a17de13228df2"><td class="memItemLeft" align="right" valign="top">constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a5e704f788af8b0bb5b6a17de13228df2">kChaCha20FilePath</a> [] = &quot;../../storage/security/chacha20_key.txt&quot;</td></tr>
-<tr class="memdesc:a5e704f788af8b0bb5b6a17de13228df2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default path to the ChaCha20-Poly1305 key file.  <a href="common_8hpp.html#a5e704f788af8b0bb5b6a17de13228df2">More...</a><br /></td></tr>
-<tr class="separator:a5e704f788af8b0bb5b6a17de13228df2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines common constants, string views, and utility structures for the application. </p>
@@ -273,13 +261,13 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The full endpoint URL as a std::string. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00144">144</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;{</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordflow">return</span> std::string(baseUrl) + std::string(<a class="code" href="namespaceApiEndpoint.html#af8b24ed130d0b7ea7e91b1e06e006382">ApiEndpoint::Containers</a>) +</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;           std::string(containerName) + std::string(action);</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00138">138</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;{</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordflow">return</span> std::string(baseUrl) + std::string(<a class="code" href="namespaceApiEndpoint.html#af8b24ed130d0b7ea7e91b1e06e006382">ApiEndpoint::Containers</a>) +</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;           std::string(containerName) + std::string(action);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="common_8hpp_source.html#l00130">ApiEndpoint::Containers</a>.</p>
+<p class="reference">References <a class="el" href="common_8hpp_source.html#l00124">ApiEndpoint::Containers</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="docker__api__commands_8cpp_source.html#l00121">DockerApiStartContainerCommand::Execute()</a>, <a class="el" href="podman__api__commands_8cpp_source.html#l00120">PodmanApiStartContainerCommand::Execute()</a>, <a class="el" href="docker__api__commands_8cpp_source.html#l00147">DockerApiStopContainerCommand::Execute()</a>, <a class="el" href="podman__api__commands_8cpp_source.html#l00146">PodmanApiStopContainerCommand::Execute()</a>, <a class="el" href="docker__api__commands_8cpp_source.html#l00173">DockerApiRestartContainerCommand::Execute()</a>, and <a class="el" href="docker__api__commands_8cpp_source.html#l00199">DockerApiRemoveContainerCommand::Execute()</a>.</p>
 <div class="dynheader">
@@ -334,19 +322,19 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The formatted command string. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00114">114</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                                                                                                          {</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    std::string result(tmpl);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, val] : values) {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        std::string placeholder = <span class="stringliteral">&quot;{&quot;</span> + key + <span class="stringliteral">&quot;}&quot;</span>;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordtype">size_t</span> pos = 0;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordflow">while</span> ((pos = result.find(placeholder, pos)) != std::string::npos) {</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            result.replace(pos, placeholder.length(), val);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            pos += val.length();</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        }</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00108">108</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                                                                                                          {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    std::string result(tmpl);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [key, val] : values) {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        std::string placeholder = <span class="stringliteral">&quot;{&quot;</span> + key + <span class="stringliteral">&quot;}&quot;</span>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordtype">size_t</span> pos = 0;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">while</span> ((pos = result.find(placeholder, pos)) != std::string::npos) {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            result.replace(pos, placeholder.length(), val);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            pos += val.length();</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00046">DockerCreateContainerCommand::Execute()</a>, <a class="el" href="podman__commands_8cpp_source.html#l00046">PodmanCreateContainerCommand::Execute()</a>, <a class="el" href="docker__commands_8cpp_source.html#l00079">DockerStartContainerCommand::Execute()</a>, <a class="el" href="podman__commands_8cpp_source.html#l00079">PodmanStartContainerCommand::Execute()</a>, <a class="el" href="docker__commands_8cpp_source.html#l00104">DockerStopContainerCommand::Execute()</a>, <a class="el" href="podman__commands_8cpp_source.html#l00104">PodmanStopContainerCommand::Execute()</a>, <a class="el" href="docker__commands_8cpp_source.html#l00129">DockerRemoveContainerCommand::Execute()</a>, <a class="el" href="podman__commands_8cpp_source.html#l00129">PodmanRemoveContainerCommand::Execute()</a>, <a class="el" href="docker__commands_8cpp_source.html#l00154">DockerRestartContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00154">PodmanRestartContainerCommand::Execute()</a>.</p>
 <div class="dynheader">
@@ -358,136 +346,6 @@ Here is the caller graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="a663bc07796580bf3392cc4b722911e96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a663bc07796580bf3392cc4b722911e96">&#9670;&nbsp;</a></span>kAesIvLen</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr size_t kAesIvLen = 12</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>AES-GCM initialization vector (IV) length in bytes (12 bytes recommended for GCM). </p>
-
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00160">160</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
-
-</div>
-</div>
-<a id="acee365ec4f7c573a0247925a2254ec87"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acee365ec4f7c573a0247925a2254ec87">&#9670;&nbsp;</a></span>kAesKeyFilePath</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr char kAesKeyFilePath[] = &quot;../../storage/security/aes_key.txt&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Default path to the AES-256 key file (hex-encoded, 64 characters). </p>
-
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00154">154</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a2cff9b75cb0fa5c836c0ce4fca436361"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2cff9b75cb0fa5c836c0ce4fca436361">&#9670;&nbsp;</a></span>kAesKeyLen</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr size_t kAesKeyLen = 32</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>AES-256 key length in bytes (32 bytes for AES-256). </p>
-
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00157">157</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a022b7958f635cfd9b1e07b4a76801510"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a022b7958f635cfd9b1e07b4a76801510">&#9670;&nbsp;</a></span>kAesTagLen</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr size_t kAesTagLen = 16</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>AES-GCM authentication tag length in bytes (16 bytes recommended for GCM). </p>
-
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00163">163</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a5e704f788af8b0bb5b6a17de13228df2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5e704f788af8b0bb5b6a17de13228df2">&#9670;&nbsp;</a></span>kChaCha20FilePath</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr char kChaCha20FilePath[] = &quot;../../storage/security/chacha20_key.txt&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Default path to the ChaCha20-Poly1305 key file. </p>
-
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00166">166</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
-
-</div>
-</div>
 <a id="af0a5c19c0d441fb37ef118d1714dc2aa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af0a5c19c0d441fb37ef118d1714dc2aa">&#9670;&nbsp;</a></span>kContainerManagerLogName</h2>
 
@@ -528,7 +386,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00033">33</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00027">27</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="docker__api__commands_8cpp_source.html#l00027">DockerApiRuntimeAvailableCommand::Execute()</a>, <a class="el" href="docker__api__commands_8cpp_source.html#l00055">DockerApiCreateContainerCommand::Execute()</a>, <a class="el" href="docker__api__commands_8cpp_source.html#l00121">DockerApiStartContainerCommand::Execute()</a>, <a class="el" href="docker__api__commands_8cpp_source.html#l00147">DockerApiStopContainerCommand::Execute()</a>, <a class="el" href="docker__api__commands_8cpp_source.html#l00173">DockerApiRestartContainerCommand::Execute()</a>, and <a class="el" href="docker__api__commands_8cpp_source.html#l00199">DockerApiRemoveContainerCommand::Execute()</a>.</p>
 
@@ -556,7 +414,7 @@ Here is the caller graph for this function:</div>
 
 <p>Docker Unix socket path and API base URL for HTTP API communication. </p>
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00032">32</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00026">26</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="docker__api__commands_8cpp_source.html#l00027">DockerApiRuntimeAvailableCommand::Execute()</a>, <a class="el" href="docker__api__commands_8cpp_source.html#l00055">DockerApiCreateContainerCommand::Execute()</a>, <a class="el" href="docker__api__commands_8cpp_source.html#l00121">DockerApiStartContainerCommand::Execute()</a>, <a class="el" href="docker__api__commands_8cpp_source.html#l00147">DockerApiStopContainerCommand::Execute()</a>, <a class="el" href="docker__api__commands_8cpp_source.html#l00173">DockerApiRestartContainerCommand::Execute()</a>, and <a class="el" href="docker__api__commands_8cpp_source.html#l00199">DockerApiRemoveContainerCommand::Execute()</a>.</p>
 
@@ -610,60 +468,6 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="ab6e02d9d99067c1a6c6f6dc20dfe941a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6e02d9d99067c1a6c6f6dc20dfe941a">&#9670;&nbsp;</a></span>kMaxEntries</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr size_t kMaxEntries = 32</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Maximum number of entries for embedded database. </p>
-
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00026">26</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a2f4c21e9474b25522f250b43303d8157"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f4c21e9474b25522f250b43303d8157">&#9670;&nbsp;</a></span>kMaxKeyLen</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr size_t kMaxKeyLen = 32</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Maximum key length for embedded database entries. </p>
-
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00029">29</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="embedded__database_8cpp_source.html#l00054">EmbeddedDatabaseHandler::GetJson()</a>, <a class="el" href="embedded__database_8cpp_source.html#l00091">EmbeddedDatabaseHandler::RemoveKey()</a>, <a class="el" href="embedded__database_8cpp_source.html#l00028">EmbeddedDatabaseHandler::SaveJson()</a>, and <a class="el" href="embedded__database_8cpp_source.html#l00077">EmbeddedDatabaseHandler::UpdateField()</a>.</p>
-
-</div>
-</div>
 <a id="aba0e68025bb1b2ec135a028ffff2da75"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aba0e68025bb1b2ec135a028ffff2da75">&#9670;&nbsp;</a></span>kPodmanApiBaseUrl</h2>
 
@@ -684,7 +488,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00037">37</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00031">31</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="podman__api__commands_8cpp_source.html#l00026">PodmanApiRuntimeAvailableCommand::Execute()</a>, <a class="el" href="podman__api__commands_8cpp_source.html#l00054">PodmanApiCreateContainerCommand::Execute()</a>, <a class="el" href="podman__api__commands_8cpp_source.html#l00120">PodmanApiStartContainerCommand::Execute()</a>, and <a class="el" href="podman__api__commands_8cpp_source.html#l00146">PodmanApiStopContainerCommand::Execute()</a>.</p>
 
@@ -712,7 +516,7 @@ Here is the caller graph for this function:</div>
 
 <p>Podman Unix socket path and API base URL for HTTP API communication. </p>
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00036">36</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00030">30</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="podman__api__commands_8cpp_source.html#l00026">PodmanApiRuntimeAvailableCommand::Execute()</a>, <a class="el" href="podman__api__commands_8cpp_source.html#l00054">PodmanApiCreateContainerCommand::Execute()</a>, <a class="el" href="podman__api__commands_8cpp_source.html#l00120">PodmanApiStartContainerCommand::Execute()</a>, and <a class="el" href="podman__api__commands_8cpp_source.html#l00146">PodmanApiStopContainerCommand::Execute()</a>.</p>
 
@@ -720,7 +524,7 @@ Here is the caller graph for this function:</div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="anamespaceApiEndpoint_html_af8b24ed130d0b7ea7e91b1e06e006382"><div class="ttname"><a href="namespaceApiEndpoint.html#af8b24ed130d0b7ea7e91b1e06e006382">ApiEndpoint::Containers</a></div><div class="ttdeci">constexpr std::string_view Containers</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00130">common.hpp:130</a></div></div>
+<div class="ttc" id="anamespaceApiEndpoint_html_af8b24ed130d0b7ea7e91b1e06e006382"><div class="ttname"><a href="namespaceApiEndpoint.html#af8b24ed130d0b7ea7e91b1e06e006382">ApiEndpoint::Containers</a></div><div class="ttdeci">constexpr std::string_view Containers</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00124">common.hpp:124</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

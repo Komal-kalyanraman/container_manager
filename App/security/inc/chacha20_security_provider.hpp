@@ -22,7 +22,7 @@
  * @brief ChaCha20-Poly1305 implementation for secure OTA payloads.
  *
  * Provides authenticated decryption using ChaCha20-Poly1305.
- * Loads the key from a hex-encoded file at runtime.
+ * Loads the key from a hex-encoded file at runtime using ChaCha20Config constants.
  */
 class ChaCha20SecurityProvider : public ISecurityProvider {
 public:
@@ -47,10 +47,10 @@ public:
 private:
     /**
      * @brief Loads the ChaCha20 key from a hex-encoded file.
-     * @param path Path to the key file (default: kChaCha20FilePath).
+     * @param path Path to the key file (default: ChaCha20Config::kKeyFilePath).
      * @return The key as a vector of bytes.
      */
-    std::vector<unsigned char> LoadChaChaKey(const std::string& path = kChaCha20FilePath);
+    std::vector<unsigned char> LoadChaChaKey(const std::string& path = ChaCha20Config::kKeyFilePath);
 
     /**
      * @brief Performs ChaCha20-Poly1305 decryption.

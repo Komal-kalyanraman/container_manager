@@ -22,12 +22,6 @@ const std::string kContainerManagerLogName = "cm_log";
 /// @brief Sleep interval (in milliseconds) for main thread shutdown polling.
 constexpr int kMainShutdownPollMs = 200;
 
-/// @brief Maximum number of entries for embedded database.
-constexpr size_t kMaxEntries = 32;
-
-/// @brief Maximum key length for embedded database entries.
-constexpr size_t kMaxKeyLen = 32;
-
 /// @brief Docker Unix socket path and API base URL for HTTP API communication.
 inline constexpr char kDockerUnixSocketPath[] = "/var/run/docker.sock";
 inline constexpr char kDockerApiBaseUrl[] = "http://localhost/v1.49/";
@@ -150,17 +144,31 @@ inline std::string ComposeContainerApiEndpoint(
            std::string(containerName) + std::string(action);
 }
 
-/// @brief Default path to the AES-256 key file (hex-encoded, 64 characters).
-inline constexpr char kAesKeyFilePath[] = "../../storage/security/aes_key.txt";
+/// @struct AesGcmConfig
+/// @brief Configuration parameters for AES-256-GCM encryption/decryption.
+struct AesGcmConfig {
+    static constexpr size_t kKeyLen = 32;                       ///< AES-256 key length in bytes (32 bytes)
+    static constexpr size_t kIvLen = 12;                        ///< GCM IV length in bytes (12 bytes recommended)
+    static constexpr size_t kTagLen = 16;                       ///< GCM authentication tag length in bytes (16 bytes)
+    static constexpr size_t kMinDataLen = kIvLen + kTagLen;     ///< Minimum encrypted data length (28 bytes)
+    static constexpr const char* kKeyFilePath = "../../storage/security/aes_key.txt";
+    static constexpr size_t kKeyFileHexLen = 64;                ///< Expected hex characters in key file (32 bytes * 2)
+};
 
-/// @brief AES-256 key length in bytes (32 bytes for AES-256).
-inline constexpr size_t kAesKeyLen = 32;
+/// @struct ChaCha20Config  
+/// @brief Configuration parameters for ChaCha20-Poly1305 encryption/decryption.
+struct ChaCha20Config {
+    static constexpr size_t kKeyLen = 32;                       ///< ChaCha20 key length in bytes (32 bytes)
+    static constexpr size_t kIvLen = 12;                        ///< ChaCha20 nonce length in bytes (12 bytes)
+    static constexpr size_t kTagLen = 16;                       ///< Poly1305 authentication tag length in bytes (16 bytes)
+    static constexpr size_t kMinDataLen = kIvLen + kTagLen;     ///< Minimum encrypted data length (28 bytes)
+    static constexpr const char* kKeyFilePath = "../../storage/security/chacha20_key.txt";
+    static constexpr size_t kKeyFileHexLen = 64;                ///< Expected hex characters in key file (32 bytes * 2)
+};
 
-/// @brief AES-GCM initialization vector (IV) length in bytes (12 bytes recommended for GCM).
-inline constexpr size_t kAesIvLen = 12;
-
-/// @brief AES-GCM authentication tag length in bytes (16 bytes recommended for GCM).
-inline constexpr size_t kAesTagLen = 16;
-
-/// @brief Default path to the ChaCha20-Poly1305 key file.
-inline constexpr char kChaCha20FilePath[] = "../../storage/security/chacha20_key.txt";
+/// @struct EmbeddedDbConfig
+/// @brief Configuration parameters for the embedded database.
+struct EmbeddedDbConfig {
+    static constexpr size_t kMaxEntries = 32;    ///< Maximum number of entries for embedded database
+    static constexpr size_t kMaxKeyLen = 32;     ///< Maximum key length for embedded database entries
+};

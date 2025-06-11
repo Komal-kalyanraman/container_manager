@@ -102,72 +102,86 @@ $(document).ready(function(){initNavTree('chacha20__security__provider_8cpp_sour
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">try</span> {</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">auto</span> key = LoadChaChaKey();</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="comment">// ChaCha20-Poly1305 format: [12-byte nonce][16-byte tag][encrypted_payload]</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">if</span> (encrypted_data.size() &lt; 28) { <span class="comment">// 12 + 16 = 28 minimum</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        }</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* nonce = <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(encrypted_data.data());</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* tag = nonce + 12;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* ciphertext = tag + 16;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordtype">int</span> ciphertext_len = encrypted_data.size() - 28;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">if</span> (!ctx) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">// Initialize ChaCha20-Poly1305 decryption</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">if</span> (EVP_DecryptInit_ex(ctx, EVP_chacha20_poly1305(), <span class="keyword">nullptr</span>, key.data(), nonce) != 1) {</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            EVP_CIPHER_CTX_free(ctx);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        std::vector&lt;unsigned char&gt; plaintext(ciphertext_len);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordtype">int</span> len;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="comment">// Decrypt the data</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">if</span> (EVP_DecryptUpdate(ctx, plaintext.data(), &amp;len, ciphertext, ciphertext_len) != 1) {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            EVP_CIPHER_CTX_free(ctx);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="comment">// Set the authentication tag</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">if</span> (EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_AEAD_SET_TAG, 16, <span class="keyword">const_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(tag)) != 1) {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            EVP_CIPHER_CTX_free(ctx);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        }</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment">// Finalize decryption and verify authentication</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordtype">int</span> final_len;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">if</span> (EVP_DecryptFinal_ex(ctx, plaintext.data() + len, &amp;final_len) != 1) {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            EVP_CIPHER_CTX_free(ctx);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">// Authentication failed</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        EVP_CIPHER_CTX_free(ctx);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        decrypted_data = std::string(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(plaintext.data()), len + final_len);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;std::vector&lt;unsigned char&gt; ChaCha20SecurityProvider::LoadChaChaKey(<span class="keyword">const</span> std::string&amp; path) {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    std::ifstream file(path);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">if</span> (!file) <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Unable to open ChaCha20 key file&quot;</span>);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    std::string hex;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    file &gt;&gt; hex;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">if</span> (hex.size() != 64) <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;ChaCha20 key must be 32 bytes (64 hex chars)&quot;</span>);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    std::vector&lt;unsigned char&gt; key(32);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; 32; ++i) {</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        key[i] = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span><span class="keyword">&gt;</span>(std::stoi(hex.substr(i*2, 2), <span class="keyword">nullptr</span>, 16));</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">return</span> key;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="comment">// ChaCha20-Poly1305 format: [nonce][tag][encrypted_payload]</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="comment">// Using ChaCha20Config constants for validation</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">if</span> (encrypted_data.size() &lt; <a class="code" href="structChaCha20Config.html#ab4512749c0a1b0d4697909c2a662d874">ChaCha20Config::kMinDataLen</a>) {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* nonce = <span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(encrypted_data.data());</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* tag = nonce + <a class="code" href="structChaCha20Config.html#a732df5d96a5f4f1c18fd084bb4df9ae2">ChaCha20Config::kIvLen</a>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* ciphertext = tag + <a class="code" href="structChaCha20Config.html#a3c654609a2f3d22f1da8fd52653f0ba4">ChaCha20Config::kTagLen</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">int</span> ciphertext_len = encrypted_data.size() - <a class="code" href="structChaCha20Config.html#ab4512749c0a1b0d4697909c2a662d874">ChaCha20Config::kMinDataLen</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">if</span> (!ctx) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="comment">// Initialize ChaCha20-Poly1305 decryption</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">if</span> (EVP_DecryptInit_ex(ctx, EVP_chacha20_poly1305(), <span class="keyword">nullptr</span>, key.data(), nonce) != 1) {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            EVP_CIPHER_CTX_free(ctx);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        std::vector&lt;unsigned char&gt; plaintext(ciphertext_len);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordtype">int</span> len;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="comment">// Decrypt the data</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">if</span> (EVP_DecryptUpdate(ctx, plaintext.data(), &amp;len, ciphertext, ciphertext_len) != 1) {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            EVP_CIPHER_CTX_free(ctx);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="comment">// Set the authentication tag</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">if</span> (EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_AEAD_SET_TAG, <a class="code" href="structChaCha20Config.html#a3c654609a2f3d22f1da8fd52653f0ba4">ChaCha20Config::kTagLen</a>, </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                               <span class="keyword">const_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(tag)) != 1) {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            EVP_CIPHER_CTX_free(ctx);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="comment">// Finalize decryption and verify authentication</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">int</span> final_len;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">if</span> (EVP_DecryptFinal_ex(ctx, plaintext.data() + len, &amp;final_len) != 1) {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            EVP_CIPHER_CTX_free(ctx);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">// Authentication failed</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        EVP_CIPHER_CTX_free(ctx);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        decrypted_data = std::string(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(plaintext.data()), len + final_len);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception&amp; e) {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;std::vector&lt;unsigned char&gt; ChaCha20SecurityProvider::LoadChaChaKey(<span class="keyword">const</span> std::string&amp; path) {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    std::ifstream file(path);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">if</span> (!file) <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Unable to open ChaCha20 key file&quot;</span>);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    std::string hex;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    file &gt;&gt; hex;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="comment">// Use ChaCha20Config constants for validation</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">if</span> (hex.size() != <a class="code" href="structChaCha20Config.html#a62475578b235819d14bfc1a50b7d6bd4">ChaCha20Config::kKeyFileHexLen</a>) {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;ChaCha20 key must be &quot;</span> + std::to_string(<a class="code" href="structChaCha20Config.html#a7f2d4afaadbffdd8be671123bddd3fe2">ChaCha20Config::kKeyLen</a>) + </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                                <span class="stringliteral">&quot; bytes (&quot;</span> + std::to_string(<a class="code" href="structChaCha20Config.html#a62475578b235819d14bfc1a50b7d6bd4">ChaCha20Config::kKeyFileHexLen</a>) + <span class="stringliteral">&quot; hex chars)&quot;</span>);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    std::vector&lt;unsigned char&gt; key(<a class="code" href="structChaCha20Config.html#a7f2d4afaadbffdd8be671123bddd3fe2">ChaCha20Config::kKeyLen</a>);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; <a class="code" href="structChaCha20Config.html#a7f2d4afaadbffdd8be671123bddd3fe2">ChaCha20Config::kKeyLen</a>; ++i) {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        key[i] = <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span><span class="keyword">&gt;</span>(std::stoi(hex.substr(i*2, 2), <span class="keyword">nullptr</span>, 16));</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">return</span> key;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="astructChaCha20Config_html_a7f2d4afaadbffdd8be671123bddd3fe2"><div class="ttname"><a href="structChaCha20Config.html#a7f2d4afaadbffdd8be671123bddd3fe2">ChaCha20Config::kKeyLen</a></div><div class="ttdeci">static constexpr size_t kKeyLen</div><div class="ttdoc">ChaCha20 key length in bytes (32 bytes)</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00161">common.hpp:161</a></div></div>
+<div class="ttc" id="astructChaCha20Config_html_ab4512749c0a1b0d4697909c2a662d874"><div class="ttname"><a href="structChaCha20Config.html#ab4512749c0a1b0d4697909c2a662d874">ChaCha20Config::kMinDataLen</a></div><div class="ttdeci">static constexpr size_t kMinDataLen</div><div class="ttdoc">Minimum encrypted data length (28 bytes)</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00164">common.hpp:164</a></div></div>
 <div class="ttc" id="acommon_8hpp_html"><div class="ttname"><a href="common_8hpp.html">common.hpp</a></div><div class="ttdoc">Defines common constants, string views, and utility structures for the application.</div></div>
+<div class="ttc" id="astructChaCha20Config_html_a732df5d96a5f4f1c18fd084bb4df9ae2"><div class="ttname"><a href="structChaCha20Config.html#a732df5d96a5f4f1c18fd084bb4df9ae2">ChaCha20Config::kIvLen</a></div><div class="ttdeci">static constexpr size_t kIvLen</div><div class="ttdoc">ChaCha20 nonce length in bytes (12 bytes)</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00162">common.hpp:162</a></div></div>
+<div class="ttc" id="astructChaCha20Config_html_a62475578b235819d14bfc1a50b7d6bd4"><div class="ttname"><a href="structChaCha20Config.html#a62475578b235819d14bfc1a50b7d6bd4">ChaCha20Config::kKeyFileHexLen</a></div><div class="ttdeci">static constexpr size_t kKeyFileHexLen</div><div class="ttdoc">Expected hex characters in key file (32 bytes * 2)</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00166">common.hpp:166</a></div></div>
 <div class="ttc" id="aclassChaCha20SecurityProvider_html_a668de0b7d7cf04f891ffdba6952b5597"><div class="ttname"><a href="classChaCha20SecurityProvider.html#a668de0b7d7cf04f891ffdba6952b5597">ChaCha20SecurityProvider::Decrypt</a></div><div class="ttdeci">bool Decrypt(const std::string &amp;input, std::string &amp;output) override</div><div class="ttdoc">Decrypts the input data using ChaCha20-Poly1305.</div><div class="ttdef"><b>Definition:</b> <a href="chacha20__security__provider_8cpp_source.html#l00023">chacha20_security_provider.cpp:23</a></div></div>
+<div class="ttc" id="astructChaCha20Config_html_a3c654609a2f3d22f1da8fd52653f0ba4"><div class="ttname"><a href="structChaCha20Config.html#a3c654609a2f3d22f1da8fd52653f0ba4">ChaCha20Config::kTagLen</a></div><div class="ttdeci">static constexpr size_t kTagLen</div><div class="ttdoc">Poly1305 authentication tag length in bytes (16 bytes)</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00163">common.hpp:163</a></div></div>
 <div class="ttc" id="achacha20__security__provider_8hpp_html"><div class="ttname"><a href="chacha20__security__provider_8hpp.html">chacha20_security_provider.hpp</a></div><div class="ttdoc">Declares the ChaCha20SecurityProvider class for ChaCha20-Poly1305 decryption.</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

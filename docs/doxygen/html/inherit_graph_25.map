@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structStatus.html" title="Represents the result of an operation, including a code and message." alt="" coords="5,5,68,32"/>
+<area shape="rect" id="node1" href="$classRequestExecutor.html" title="Abstract base class for request executors supporting different input formats (e.g...." alt="" coords="5,31,137,57"/>
+<area shape="rect" id="node2" href="$classJsonRequestExecutorHandler.html" title="Parses and executes JSON requests with optional encryption support." alt="" coords="189,5,399,32"/>
+<area shape="rect" id="node3" href="$classProtoRequestExecutorHandler.html" title="Parses and executes Protobuf requests, invoking business logic and database operations." alt="" coords="185,56,403,83"/>
 </map>

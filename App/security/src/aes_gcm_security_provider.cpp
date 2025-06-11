@@ -5,6 +5,7 @@
  * This file provides authenticated decryption using the AES-256-GCM algorithm.
  * It is used by the executor layer to transparently decrypt incoming encrypted
  * payloads (JSON or Protobuf) for all protocols.
+ * All configuration constants are sourced from AesGcmConfig struct.
  */
 
 #include "inc/aes_gcm_security_provider.hpp"
@@ -35,15 +36,16 @@ bool AesGcmSecurityProvider::DecryptAesGcm(const std::string& encrypted_data, st
     try {
         auto key = LoadAesKey();
         
-        // AES-256-GCM format: [12-byte IV][16-byte tag][encrypted_payload]
-        if (encrypted_data.size() < 28) { // 12 + 16 = 28 minimum
+        // AES-256-GCM format: [IV][tag][encrypted_payload]
+        // Using AesGcmConfig constants for validation
+        if (encrypted_data.size() < AesGcmConfig::kMinDataLen) {
             return false;
         }
         
         const unsigned char* iv = reinterpret_cast<const unsigned char*>(encrypted_data.data());
-        const unsigned char* tag = iv + 12;
-        const unsigned char* ciphertext = tag + 16;
-        int ciphertext_len = encrypted_data.size() - 28;
+        const unsigned char* tag = iv + AesGcmConfig::kIvLen;
+        const unsigned char* ciphertext = tag + AesGcmConfig::kTagLen;
+        int ciphertext_len = encrypted_data.size() - AesGcmConfig::kMinDataLen;
         
         EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
         if (!ctx) return false;
@@ -54,8 +56,8 @@ bool AesGcmSecurityProvider::DecryptAesGcm(const std::string& encrypted_data, st
             return false;
         }
         
-        // Set IV length
-        if (EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_IVLEN, 12, nullptr) != 1) {
+        // Set IV length using config constant
+        if (EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_IVLEN, AesGcmConfig::kIvLen, nullptr) != 1) {
             EVP_CIPHER_CTX_free(ctx);
             return false;
         }
@@ -75,8 +77,9 @@ bool AesGcmSecurityProvider::DecryptAesGcm(const std::string& encrypted_data, st
             return false;
         }
         
-        // Set the authentication tag
-        if (EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_TAG, 16, const_cast<unsigned char*>(tag)) != 1) {
+        // Set the authentication tag using config constant
+        if (EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_TAG, AesGcmConfig::kTagLen, 
+                               const_cast<unsigned char*>(tag)) != 1) {
             EVP_CIPHER_CTX_free(ctx);
             return false;
         }
@@ -99,18 +102,25 @@ bool AesGcmSecurityProvider::DecryptAesGcm(const std::string& encrypted_data, st
 
 /**
  * @brief Loads the AES-256 key from a hex-encoded file.
- * @param path Path to the key file (default: kAesKeyFilePath).
+ * @param path Path to the key file (default: AesGcmConfig::kKeyFilePath).
  * @return The key as a vector of bytes.
  * @throws std::runtime_error if the file cannot be opened or the key is invalid.
  */
 std::vector<unsigned char> AesGcmSecurityProvider::LoadAesKey(const std::string& path) {
     std::ifstream file(path);
     if (!file) throw std::runtime_error("Unable to open AES key file");
+    
     std::string hex;
     file >> hex;
-    if (hex.size() != 64) throw std::runtime_error("AES key must be 32 bytes (64 hex chars)");
-    std::vector<unsigned char> key(32);
-    for (size_t i = 0; i < 32; ++i) {
+    
+    // Use AesGcmConfig constants for validation
+    if (hex.size() != AesGcmConfig::kKeyFileHexLen) {
+        throw std::runtime_error("AES key must be " + std::to_string(AesGcmConfig::kKeyLen) + 
+                                " bytes (" + std::to_string(AesGcmConfig::kKeyFileHexLen) + " hex chars)");
+    }
+    
+    std::vector<unsigned char> key(AesGcmConfig::kKeyLen);
+    for (size_t i = 0; i < AesGcmConfig::kKeyLen; ++i) {
         key[i] = static_cast<unsigned char>(std::stoi(hex.substr(i*2, 2), nullptr, 16));
     }
     return key;

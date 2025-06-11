@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['aesgcmsecurityprovider_380',['AesGcmSecurityProvider',['../classAesGcmSecurityProvider.html',1,'']]]
+  ['aesgcmconfig_384',['AesGcmConfig',['../structAesGcmConfig.html',1,'']]],
+  ['aesgcmsecurityprovider_385',['AesGcmSecurityProvider',['../classAesGcmSecurityProvider.html',1,'']]]
 ];

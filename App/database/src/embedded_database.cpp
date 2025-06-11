@@ -6,6 +6,7 @@
  * It uses a fixed-size array to store key-value pairs, where keys are fixed-length character arrays
  * and values are nlohmann::json objects. This avoids dynamic memory allocation for keys and limits
  * the number of entries, making it suitable for resource-constrained embedded systems.
+ * All configuration constants are sourced from EmbeddedDbConfig struct.
  */
 
 #include "inc/embedded_database.hpp"
@@ -28,7 +29,7 @@ EmbeddedDatabaseHandler::EmbeddedDatabaseHandler() {
 void EmbeddedDatabaseHandler::SaveJson(const std::string& key, const nlohmann::json& value) {
     // Update existing entry if key exists
     for (auto& e : entries_) {
-        if (e.used && std::strncmp(e.key, key.c_str(), kMaxKeyLen) == 0) {
+        if (e.used && std::strncmp(e.key, key.c_str(), EmbeddedDbConfig::kMaxKeyLen) == 0) {
             e.value = value;
             return;
         }
@@ -36,8 +37,8 @@ void EmbeddedDatabaseHandler::SaveJson(const std::string& key, const nlohmann::j
     // Add new entry if space is available
     for (auto& e : entries_) {
         if (!e.used) {
-            std::strncpy(e.key, key.c_str(), kMaxKeyLen);
-            e.key[kMaxKeyLen-1] = '\0';
+            std::strncpy(e.key, key.c_str(), EmbeddedDbConfig::kMaxKeyLen);
+            e.key[EmbeddedDbConfig::kMaxKeyLen - 1] = '\0';  // Ensure null termination
             e.value = value;
             e.used = true;
             return;
@@ -53,7 +54,7 @@ void EmbeddedDatabaseHandler::SaveJson(const std::string& key, const nlohmann::j
  */
 nlohmann::json EmbeddedDatabaseHandler::GetJson(const std::string& key) {
     for (const auto& e : entries_) {
-        if (e.used && std::strncmp(e.key, key.c_str(), kMaxKeyLen) == 0) {
+        if (e.used && std::strncmp(e.key, key.c_str(), EmbeddedDbConfig::kMaxKeyLen) == 0) {
             return e.value;
         }
     }
@@ -76,7 +77,7 @@ void EmbeddedDatabaseHandler::ClearDatabase() {
  */
 void EmbeddedDatabaseHandler::UpdateField(const std::string& key, const std::string& field, const std::string& value) {
     for (auto& e : entries_) {
-        if (e.used && std::strncmp(e.key, key.c_str(), kMaxKeyLen) == 0) {
+        if (e.used && std::strncmp(e.key, key.c_str(), EmbeddedDbConfig::kMaxKeyLen) == 0) {
             e.value[field] = value;
             return;
         }
@@ -90,7 +91,7 @@ void EmbeddedDatabaseHandler::UpdateField(const std::string& key, const std::str
  */
 void EmbeddedDatabaseHandler::RemoveKey(const std::string& key) {
     for (auto& e : entries_) {
-        if (e.used && std::strncmp(e.key, key.c_str(), kMaxKeyLen) == 0) {
+        if (e.used && std::strncmp(e.key, key.c_str(), EmbeddedDbConfig::kMaxKeyLen) == 0) {
             e.used = false;
             return;
         }

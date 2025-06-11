@@ -6,6 +6,7 @@
  * authenticated decryption using the AES-256-GCM algorithm.
  * It is used by the executor layer to transparently decrypt incoming
  * encrypted payloads (JSON or Protobuf) for all protocols.
+ * Configuration constants are defined in AesGcmConfig struct.
  */
 
 #pragma once
@@ -20,7 +21,8 @@
  * @brief AES-256-GCM implementation for secure OTA payloads.
  *
  * Provides authenticated decryption using AES-256-GCM.
- * Loads the key from a hex-encoded file at runtime.
+ * Loads the key from a hex-encoded file at runtime using AesGcmConfig constants.
+ * Expected input format: [12-byte IV][16-byte tag][ciphertext]
  */
 class AesGcmSecurityProvider : public ISecurityProvider {
 public:
@@ -45,10 +47,11 @@ public:
 private:
     /**
      * @brief Loads the AES-256 key from a hex-encoded file.
-     * @param path Path to the key file (default: kAesKeyFilePath).
+     * @param path Path to the key file (default: AesGcmConfig::kKeyFilePath).
      * @return The key as a vector of bytes.
+     * @throws std::runtime_error if the file cannot be opened or the key is invalid.
      */
-    std::vector<unsigned char> LoadAesKey(const std::string& path = kAesKeyFilePath);
+    std::vector<unsigned char> LoadAesKey(const std::string& path = AesGcmConfig::kKeyFilePath);
 
     /**
      * @brief Performs AES-256-GCM decryption.

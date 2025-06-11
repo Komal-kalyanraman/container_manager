@@ -87,35 +87,35 @@ $(document).ready(function(){initNavTree('aes__gcm__security__provider_8hpp_sour
 </div><!--header-->
 <div class="contents">
 <a href="aes__gcm__security__provider_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="security__provider_8hpp.html">inc/security_provider.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="common_8hpp.html">inc/common.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classAesGcmSecurityProvider.html">   25</a></span>&#160;<span class="keyword">class </span><a class="code" href="classAesGcmSecurityProvider.html">AesGcmSecurityProvider</a> : <span class="keyword">public</span> <a class="code" href="classISecurityProvider.html">ISecurityProvider</a> {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="classAesGcmSecurityProvider.html#ace1afbc3309560ab0025dcb9f58604b4">AesGcmSecurityProvider</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classAesGcmSecurityProvider.html#aa432c27c596d2a1f88c7a3ffb7e07dcb">~AesGcmSecurityProvider</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classAesGcmSecurityProvider.html#abc05f6f5f78555912983440ad4024d99">Decrypt</a>(<span class="keyword">const</span> std::string&amp; input, std::string&amp; output) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::vector&lt;unsigned char&gt; LoadAesKey(<span class="keyword">const</span> std::string&amp; path = <a class="code" href="common_8hpp.html#acee365ec4f7c573a0247925a2254ec87">kAesKeyFilePath</a>);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">bool</span> DecryptAesGcm(<span class="keyword">const</span> std::string&amp; encrypted_data, std::string&amp; decrypted_data);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;};</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="security__provider_8hpp.html">inc/security_provider.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="common_8hpp.html">inc/common.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classAesGcmSecurityProvider.html">   27</a></span>&#160;<span class="keyword">class </span><a class="code" href="classAesGcmSecurityProvider.html">AesGcmSecurityProvider</a> : <span class="keyword">public</span> <a class="code" href="classISecurityProvider.html">ISecurityProvider</a> {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classAesGcmSecurityProvider.html#ace1afbc3309560ab0025dcb9f58604b4">AesGcmSecurityProvider</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="classAesGcmSecurityProvider.html#aa432c27c596d2a1f88c7a3ffb7e07dcb">~AesGcmSecurityProvider</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classAesGcmSecurityProvider.html#abc05f6f5f78555912983440ad4024d99">Decrypt</a>(<span class="keyword">const</span> std::string&amp; input, std::string&amp; output) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    std::vector&lt;unsigned char&gt; LoadAesKey(<span class="keyword">const</span> std::string&amp; path = <a class="code" href="structAesGcmConfig.html#a528c91f754cf2ecba0ad9acae57adaf9">AesGcmConfig::kKeyFilePath</a>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">bool</span> DecryptAesGcm(<span class="keyword">const</span> std::string&amp; encrypted_data, std::string&amp; decrypted_data);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="astructAesGcmConfig_html_a528c91f754cf2ecba0ad9acae57adaf9"><div class="ttname"><a href="structAesGcmConfig.html#a528c91f754cf2ecba0ad9acae57adaf9">AesGcmConfig::kKeyFilePath</a></div><div class="ttdeci">static constexpr const char * kKeyFilePath</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00154">common.hpp:154</a></div></div>
 <div class="ttc" id="acommon_8hpp_html"><div class="ttname"><a href="common_8hpp.html">common.hpp</a></div><div class="ttdoc">Defines common constants, string views, and utility structures for the application.</div></div>
 <div class="ttc" id="aclassISecurityProvider_html"><div class="ttname"><a href="classISecurityProvider.html">ISecurityProvider</a></div><div class="ttdoc">Abstract interface for security providers (encryption/decryption).</div><div class="ttdef"><b>Definition:</b> <a href="security__provider_8hpp_source.html#l00022">security_provider.hpp:22</a></div></div>
-<div class="ttc" id="aclassAesGcmSecurityProvider_html_abc05f6f5f78555912983440ad4024d99"><div class="ttname"><a href="classAesGcmSecurityProvider.html#abc05f6f5f78555912983440ad4024d99">AesGcmSecurityProvider::Decrypt</a></div><div class="ttdeci">bool Decrypt(const std::string &amp;input, std::string &amp;output) override</div><div class="ttdoc">Decrypts the input data using AES-256-GCM.</div><div class="ttdef"><b>Definition:</b> <a href="aes__gcm__security__provider_8cpp_source.html#l00023">aes_gcm_security_provider.cpp:23</a></div></div>
+<div class="ttc" id="aclassAesGcmSecurityProvider_html_abc05f6f5f78555912983440ad4024d99"><div class="ttname"><a href="classAesGcmSecurityProvider.html#abc05f6f5f78555912983440ad4024d99">AesGcmSecurityProvider::Decrypt</a></div><div class="ttdeci">bool Decrypt(const std::string &amp;input, std::string &amp;output) override</div><div class="ttdoc">Decrypts the input data using AES-256-GCM.</div><div class="ttdef"><b>Definition:</b> <a href="aes__gcm__security__provider_8cpp_source.html#l00024">aes_gcm_security_provider.cpp:24</a></div></div>
 <div class="ttc" id="asecurity__provider_8hpp_html"><div class="ttname"><a href="security__provider_8hpp.html">security_provider.hpp</a></div><div class="ttdoc">Declares the ISecurityProvider abstract interface for encryption/decryption.</div></div>
 <div class="ttc" id="aclassAesGcmSecurityProvider_html_ace1afbc3309560ab0025dcb9f58604b4"><div class="ttname"><a href="classAesGcmSecurityProvider.html#ace1afbc3309560ab0025dcb9f58604b4">AesGcmSecurityProvider::AesGcmSecurityProvider</a></div><div class="ttdeci">AesGcmSecurityProvider()=default</div><div class="ttdoc">Default constructor.</div></div>
-<div class="ttc" id="aclassAesGcmSecurityProvider_html"><div class="ttname"><a href="classAesGcmSecurityProvider.html">AesGcmSecurityProvider</a></div><div class="ttdoc">AES-256-GCM implementation for secure OTA payloads.</div><div class="ttdef"><b>Definition:</b> <a href="aes__gcm__security__provider_8hpp_source.html#l00025">aes_gcm_security_provider.hpp:25</a></div></div>
-<div class="ttc" id="acommon_8hpp_html_acee365ec4f7c573a0247925a2254ec87"><div class="ttname"><a href="common_8hpp.html#acee365ec4f7c573a0247925a2254ec87">kAesKeyFilePath</a></div><div class="ttdeci">constexpr char kAesKeyFilePath[]</div><div class="ttdoc">Default path to the AES-256 key file (hex-encoded, 64 characters).</div><div class="ttdef"><b>Definition:</b> <a href="common_8hpp_source.html#l00154">common.hpp:154</a></div></div>
+<div class="ttc" id="aclassAesGcmSecurityProvider_html"><div class="ttname"><a href="classAesGcmSecurityProvider.html">AesGcmSecurityProvider</a></div><div class="ttdoc">AES-256-GCM implementation for secure OTA payloads.</div><div class="ttdef"><b>Definition:</b> <a href="aes__gcm__security__provider_8hpp_source.html#l00027">aes_gcm_security_provider.hpp:27</a></div></div>
 <div class="ttc" id="aclassAesGcmSecurityProvider_html_aa432c27c596d2a1f88c7a3ffb7e07dcb"><div class="ttname"><a href="classAesGcmSecurityProvider.html#aa432c27c596d2a1f88c7a3ffb7e07dcb">AesGcmSecurityProvider::~AesGcmSecurityProvider</a></div><div class="ttdeci">~AesGcmSecurityProvider() override=default</div><div class="ttdoc">Default destructor.</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

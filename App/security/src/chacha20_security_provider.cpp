@@ -35,15 +35,16 @@ bool ChaCha20SecurityProvider::DecryptChaCha20Poly1305(const std::string& encryp
     try {
         auto key = LoadChaChaKey();
         
-        // ChaCha20-Poly1305 format: [12-byte nonce][16-byte tag][encrypted_payload]
-        if (encrypted_data.size() < 28) { // 12 + 16 = 28 minimum
+        // ChaCha20-Poly1305 format: [nonce][tag][encrypted_payload]
+        // Using ChaCha20Config constants for validation
+        if (encrypted_data.size() < ChaCha20Config::kMinDataLen) {
             return false;
         }
         
         const unsigned char* nonce = reinterpret_cast<const unsigned char*>(encrypted_data.data());
-        const unsigned char* tag = nonce + 12;
-        const unsigned char* ciphertext = tag + 16;
-        int ciphertext_len = encrypted_data.size() - 28;
+        const unsigned char* tag = nonce + ChaCha20Config::kIvLen;
+        const unsigned char* ciphertext = tag + ChaCha20Config::kTagLen;
+        int ciphertext_len = encrypted_data.size() - ChaCha20Config::kMinDataLen;
         
         EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
         if (!ctx) return false;
@@ -64,7 +65,8 @@ bool ChaCha20SecurityProvider::DecryptChaCha20Poly1305(const std::string& encryp
         }
         
         // Set the authentication tag
-        if (EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_AEAD_SET_TAG, 16, const_cast<unsigned char*>(tag)) != 1) {
+        if (EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_AEAD_SET_TAG, ChaCha20Config::kTagLen, 
+                               const_cast<unsigned char*>(tag)) != 1) {
             EVP_CIPHER_CTX_free(ctx);
             return false;
         }
@@ -87,18 +89,25 @@ bool ChaCha20SecurityProvider::DecryptChaCha20Poly1305(const std::string& encryp
 
 /**
  * @brief Loads the ChaCha20 key from a hex-encoded file.
- * @param path Path to the key file (default: kChaCha20FilePath).
+ * @param path Path to the key file (default: ChaCha20Config::kKeyFilePath).
  * @return The key as a vector of bytes.
  * @throws std::runtime_error if the file cannot be opened or the key is invalid.
  */
 std::vector<unsigned char> ChaCha20SecurityProvider::LoadChaChaKey(const std::string& path) {
     std::ifstream file(path);
     if (!file) throw std::runtime_error("Unable to open ChaCha20 key file");
+    
     std::string hex;
     file >> hex;
-    if (hex.size() != 64) throw std::runtime_error("ChaCha20 key must be 32 bytes (64 hex chars)");
-    std::vector<unsigned char> key(32);
-    for (size_t i = 0; i < 32; ++i) {
+    
+    // Use ChaCha20Config constants for validation
+    if (hex.size() != ChaCha20Config::kKeyFileHexLen) {
+        throw std::runtime_error("ChaCha20 key must be " + std::to_string(ChaCha20Config::kKeyLen) + 
+                                " bytes (" + std::to_string(ChaCha20Config::kKeyFileHexLen) + " hex chars)");
+    }
+    
+    std::vector<unsigned char> key(ChaCha20Config::kKeyLen);
+    for (size_t i = 0; i < ChaCha20Config::kKeyLen; ++i) {
         key[i] = static_cast<unsigned char>(std::stoi(hex.substr(i*2, 2), nullptr, 16));
     }
     return key;
