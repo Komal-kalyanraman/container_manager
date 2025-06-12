@@ -1,6 +1,6 @@
 # Container Manager
 
-**Container Manager** is a modular, production-ready C++ service for unified container management across Docker, Podman, and more (planned). It supports REST, MQTT, POSIX Message Queue, D-Bus, gRPC (planned), Docker/Podman CLI, HTTP-API with incoming JSON/ Protobuf data with optional decryption of secure data.
+**Container Manager** is a modular, production-ready C++ 17 service for unified container management across Docker, Podman, and more (planned). It supports REST, MQTT, POSIX Message Queue, D-Bus, gRPC (planned), Docker/Podman CLI, HTTP-API with incoming JSON/ Protobuf data with optional decryption of secure data.
 
 Features include extensible architecture, pluggable database backend (embedded by default, Redis optional), robust logging, thread pool for all protocols, and enterprise-grade security with AES-256-GCM or ChaCha20-Poly1305 encryption.
 

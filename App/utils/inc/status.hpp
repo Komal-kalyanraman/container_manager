@@ -14,14 +14,14 @@
  * @brief Enumerates possible status codes for operation results.
  */
 enum class StatusCode {
-    Success,           ///< Operation completed successfully.
-    NotFound,          ///< Requested item was not found.
-    InvalidArgument,   ///< An invalid argument was provided.
-    InternalError,     ///< An internal error occurred.
-    Timeout,           ///< Operation timed out.
-    PermissionDenied,  ///< Operation not permitted.
-    AlreadyExists,     ///< Item already exists.
-    Unavailable,       ///< Resource or service is unavailable.
+    Success,           ///< 0 Operation completed successfully.
+    NotFound,          ///< 1 Requested item was not found.
+    InvalidArgument,   ///< 2 An invalid argument was provided.
+    InternalError,     ///< 3 An internal error occurred.
+    Timeout,           ///< 4 Operation timed out.
+    PermissionDenied,  ///< 5 Operation not permitted.
+    AlreadyExists,     ///< 6 Item already exists.
+    Unavailable,       ///< 7 Resource or service is unavailable.
     // ...add more as needed
 };
 
