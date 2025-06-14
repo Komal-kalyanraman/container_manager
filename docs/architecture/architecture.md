@@ -65,14 +65,12 @@ This project leverages several classic software design patterns to ensure modula
 - **Factory Pattern:**  
   Used to instantiate the correct command or handler based on runtime/operation.  
   _Location:_ `runtime/` (CommandFactory), `api/`
+  Allows pluggable encryption algorithms (AES-GCM, ChaCha20, etc.) via interchangeable security providers during build compilation.
+  _Location:_ `security/`
 
 - **Service Pattern:**  
   Encapsulates business logic and coordinates operations between components.  
   _Location:_ `core/` (e.g., `ContainerServiceHandler`)
-
-- **Strategy Pattern:**  
-  Allows pluggable encryption algorithms (AES-GCM, ChaCha20, etc.) via interchangeable security providers.  
-  _Location:_ `security/`
 
 - **Abstract Factory / Interface Pattern:**  
   Provides contracts for interchangeable components such as database backends and security providers.  

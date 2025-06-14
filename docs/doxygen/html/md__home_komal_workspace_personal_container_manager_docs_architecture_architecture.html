@@ -141,13 +141,10 @@ Design Patterns Used</h1>
  <em>Location:</em> <code>runtime/</code>, <code>core/</code></li>
 <li><b>Factory Pattern:</b> <br  />
  Used to instantiate the correct command or handler based on runtime/operation. <br  />
- <em>Location:</em> <code>runtime/</code> (<a class="el" href="classCommandFactory.html" title="Factory class to create command objects based on the request structure.">CommandFactory</a>), <code>api/</code></li>
+ <em>Location:</em> <code>runtime/</code> (<a class="el" href="classCommandFactory.html" title="Factory class to create command objects based on the request structure.">CommandFactory</a>), <code>api/</code> Allows pluggable encryption algorithms (AES-GCM, ChaCha20, etc.) via interchangeable security providers during build compilation. <em>Location:</em> <code>security/</code></li>
 <li><b>Service Pattern:</b> <br  />
  Encapsulates business logic and coordinates operations between components. <br  />
  <em>Location:</em> <code>core/</code> (e.g., <code><a class="el" href="classContainerServiceHandler.html" title="Handles container operations and updates status in the database.">ContainerServiceHandler</a></code>)</li>
-<li><b>Strategy Pattern:</b> <br  />
- Allows pluggable encryption algorithms (AES-GCM, ChaCha20, etc.) via interchangeable security providers. <br  />
- <em>Location:</em> <code>security/</code></li>
 <li><b>Abstract Factory / Interface Pattern:</b> <br  />
  Provides contracts for interchangeable components such as database backends and security providers. <br  />
  <em>Location:</em> <code>database/</code> (<code><a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a></code>), <code>security/</code> (<code><a class="el" href="classISecurityProvider.html" title="Abstract interface for security providers (encryption/decryption).">ISecurityProvider</a></code>)</li>
