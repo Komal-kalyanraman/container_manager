@@ -93,7 +93,7 @@ $(document).ready(function(){initNavTree('classPodmanRuntimeAvailableCommand.htm
 <p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to check if Podman runtime is available.  
  <a href="classPodmanRuntimeAvailableCommand.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="podman__commands_8hpp_source.html">podman_commands.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="podman__cli__commands_8hpp_source.html">podman_cli_commands.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for PodmanRuntimeAvailableCommand:</div>
 <div class="dyncontent">
@@ -124,7 +124,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> to check if Podman runtime is available. </p>
 
-<p class="definition">Definition at line <a class="el" href="podman__commands_8hpp_source.html#l00022">22</a> of file <a class="el" href="podman__commands_8hpp_source.html">podman_commands.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="podman__cli__commands_8hpp_source.html#l00022">22</a> of file <a class="el" href="podman__cli__commands_8hpp_source.html">podman_cli_commands.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a36672542fff43968d047e92a5484c5e4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a36672542fff43968d047e92a5484c5e4">&#9670;&nbsp;</a></span>PodmanRuntimeAvailableCommand()</h2>
@@ -151,7 +151,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Constructs a <a class="el" href="classPodmanRuntimeAvailableCommand.html" title="Command to check if Podman runtime is available.">PodmanRuntimeAvailableCommand</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="podman__commands_8cpp_source.html#l00021">21</a> of file <a class="el" href="podman__commands_8cpp_source.html">podman_commands.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="podman__cli__commands_8cpp_source.html#l00021">21</a> of file <a class="el" href="podman__cli__commands_8cpp_source.html">podman_cli_commands.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{}</div>
 </div><!-- fragment -->
 </div>
@@ -213,7 +213,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classCommand.html#a8d6fcd1baa8fd96ce9b423b66765ab4a">Command</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="podman__commands_8cpp_source.html#l00025">25</a> of file <a class="el" href="podman__commands_8cpp_source.html">podman_commands.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="podman__cli__commands_8cpp_source.html#l00025">25</a> of file <a class="el" href="podman__cli__commands_8cpp_source.html">podman_cli_commands.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                                                    {</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">int</span> status = std::system(<span class="stringliteral">&quot;podman info &gt; /dev/null 2&gt;&amp;1&quot;</span>);</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">if</span> (status == 0) {</div>
@@ -236,8 +236,8 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>runtime/inc/<a class="el" href="podman__commands_8hpp_source.html">podman_commands.hpp</a></li>
-<li>runtime/src/<a class="el" href="podman__commands_8cpp_source.html">podman_commands.cpp</a></li>
+<li>runtime/inc/<a class="el" href="podman__cli__commands_8hpp_source.html">podman_cli_commands.hpp</a></li>
+<li>runtime/src/<a class="el" href="podman__cli__commands_8cpp_source.html">podman_cli_commands.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

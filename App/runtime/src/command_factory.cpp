@@ -8,8 +8,8 @@
 #include <iostream>
 #include "inc/common.hpp"
 #include "inc/logging.hpp"
-#include "inc/podman_commands.hpp"
-#include "inc/docker_commands.hpp"
+#include "inc/podman_cli_commands.hpp"
+#include "inc/docker_cli_commands.hpp"
 #include "inc/podman_api_commands.hpp"
 #include "inc/docker_api_commands.hpp"
 #include "inc/container_request.hpp"
