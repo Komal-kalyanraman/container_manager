@@ -1,0 +1,11 @@
+<map id="runtime/src/podman_yaml_commands.cpp" name="runtime/src/podman_yaml_commands.cpp">
+<area shape="rect" id="node1" title=" " alt="" coords="224,5,392,47"/>
+<area shape="rect" id="node2" href="$podman__yaml__commands_8hpp.html" title=" " alt="" coords="5,95,251,121"/>
+<area shape="rect" id="node7" title=" " alt="" coords="275,95,341,121"/>
+<area shape="rect" id="node8" href="$logging_8hpp.html" title="Logging macros and configuration for the Container Manager." alt="" coords="365,95,486,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="115,319,173,345"/>
+<area shape="rect" id="node4" href="$status_8hpp.html" title="Defines status codes and a Status struct for standardized error handling." alt="" coords="87,244,201,271"/>
+<area shape="rect" id="node5" href="$commands_8hpp.html" title="Declares the Command interface and Invoker class for the command pattern." alt="" coords="166,169,311,196"/>
+<area shape="rect" id="node6" title=" " alt="" coords="276,244,353,271"/>
+<area shape="rect" id="node9" title=" " alt="" coords="385,169,465,196"/>
+</map>

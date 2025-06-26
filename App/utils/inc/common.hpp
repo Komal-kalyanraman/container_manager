@@ -74,6 +74,7 @@ struct RuntimeName {
     static constexpr std::string_view Podman      = "podman";       ///< Podman runtime identifier.
     static constexpr std::string_view DockerApi   = "docker-api";   ///< Docker API runtime identifier.
     static constexpr std::string_view PodmanApi   = "podman-api";   ///< Podman API runtime identifier.
+    static constexpr std::string_view PodmanYaml  = "podman-yaml";  ///< Podman YAML runtime identifier.
 };
 
 /// @struct CommandName
