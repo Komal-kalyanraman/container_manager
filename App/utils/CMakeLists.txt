@@ -6,6 +6,7 @@ add_library(${APP_NAME} STATIC
     src/threadpool.cpp
     src/init_handler.cpp
     src/curl_handler.cpp
+    src/yaml_generator.cpp
 )
 
 # Find and link the CURL library

@@ -29,12 +29,6 @@ public:
      * @return Status indicating if the operation was successful.
      */
     Status Execute() const override;
-
-    /**
-     * @brief Generates a YAML file based on the container request.
-     * @return Path to the generated YAML file.
-     */
-    std::string GenerateYamlFile() const;
 };
 
 /**
@@ -61,10 +55,4 @@ public:
      * @return Status indicating if the operation was successful.
      */
     Status Execute() const override;
-
-    /**
-     * @brief Generates a YAML file based on the container request.
-     * @return Path to the generated YAML file.
-     */
-    std::string GenerateYamlFile() const;
 };
