@@ -33,10 +33,23 @@ inline constexpr char kPodmanApiBaseUrl[] = "http://d/v3.0.0/";
 /// @brief Storage paths for generated files.
 inline constexpr char kStoragePath[] = "../../storage/";
 inline constexpr char kPodmanYamlStoragePath[] = "../../storage/podman_yaml/";
+inline constexpr char kK3sYamlStoragePath[] = "../../storage/k3s_yaml/";
 
 /// @brief YAML file generation constants.
 inline constexpr char kPodFileSuffix[] = "_pod.yaml";
 inline constexpr char kPodNameSuffix[] = "_pod";
+inline constexpr char kMasterTemplateFile[] = "master.yaml";
+
+/// @brief YAML template placeholders.
+namespace YamlPlaceholder {
+    inline constexpr char kPodName[] = "{{POD_NAME}}";
+    inline constexpr char kContainerName[] = "{{CONTAINER_NAME}}";
+    inline constexpr char kImageName[] = "{{IMAGE_NAME}}";
+    inline constexpr char kCpuLimit[] = "{{CPU_LIMIT}}";
+    inline constexpr char kMemoryLimit[] = "{{MEMORY_LIMIT}}";
+    inline constexpr char kPidsLimit[] = "{{PIDS_LIMIT}}";
+    inline constexpr char kRestartPolicy[] = "{{RESTART_POLICY}}";
+}
 
 /// @struct ServerConfig
 /// @brief Holds constant configuration for the HTTP server.
