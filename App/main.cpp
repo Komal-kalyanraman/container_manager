@@ -88,7 +88,7 @@ void SignalHandler(int signum) {
  */
 int main() {
     // Print enabled features at startup
-    std::cout << "==== Container Manager v0.7.1 ====" << std::endl;
+    std::cout << "==== Container Manager v0.7.2 ====" << std::endl;
     std::cout << "Features enabled:" << std::endl;
 #if ENABLE_REST
     std::cout << "  ✓ REST/HTTP Server" << std::endl;
