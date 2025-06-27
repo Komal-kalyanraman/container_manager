@@ -30,6 +30,27 @@ inline constexpr char kDockerApiBaseUrl[] = "http://localhost/v1.49/";
 inline constexpr char kPodmanUnixSocketPath[] = "/run/user/1000/podman/podman.sock";
 inline constexpr char kPodmanApiBaseUrl[] = "http://d/v3.0.0/";
 
+/// @brief Storage paths for generated files.
+inline constexpr char kStoragePath[] = "../../storage/";
+inline constexpr char kPodmanYamlStoragePath[] = "../../storage/podman_yaml/";
+inline constexpr char kK3sYamlStoragePath[] = "../../storage/k3s_yaml/";
+
+/// @brief YAML file generation constants.
+inline constexpr char kPodFileSuffix[] = "_pod.yaml";
+inline constexpr char kPodNameSuffix[] = "_pod";
+inline constexpr char kMasterTemplateFile[] = "master.yaml";
+
+/// @brief YAML template placeholders.
+namespace YamlPlaceholder {
+    inline constexpr char kPodName[] = "{{POD_NAME}}";
+    inline constexpr char kContainerName[] = "{{CONTAINER_NAME}}";
+    inline constexpr char kImageName[] = "{{IMAGE_NAME}}";
+    inline constexpr char kCpuLimit[] = "{{CPU_LIMIT}}";
+    inline constexpr char kMemoryLimit[] = "{{MEMORY_LIMIT}}";
+    inline constexpr char kPidsLimit[] = "{{PIDS_LIMIT}}";
+    inline constexpr char kRestartPolicy[] = "{{RESTART_POLICY}}";
+}
+
 /// @struct ServerConfig
 /// @brief Holds constant configuration for the HTTP server.
 struct ServerConfig {
@@ -74,6 +95,7 @@ struct RuntimeName {
     static constexpr std::string_view Podman      = "podman";       ///< Podman runtime identifier.
     static constexpr std::string_view DockerApi   = "docker-api";   ///< Docker API runtime identifier.
     static constexpr std::string_view PodmanApi   = "podman-api";   ///< Podman API runtime identifier.
+    static constexpr std::string_view PodmanYaml  = "podman-yaml";  ///< Podman YAML runtime identifier.
 };
 
 /// @struct CommandName
@@ -89,7 +111,6 @@ struct CommandName {
 
 /// @namespace CommandTemplate
 /// @brief Contains command templates for supported container operations.
-///        Placeholders (e.g., {runtime}, {name}, {image}) are replaced at runtime.
 namespace CommandTemplate {
     inline constexpr std::string_view Create =
         "{runtime} create --name {name} "
@@ -99,6 +120,10 @@ namespace CommandTemplate {
     inline constexpr std::string_view Stop     = "{runtime} stop {name}";
     inline constexpr std::string_view Remove   = "{runtime} rm -f {name}";
     inline constexpr std::string_view Restart  = "{runtime} restart {name}";
+    
+    // YAML-specific templates
+    inline constexpr std::string_view PlayKube = "podman play kube {yaml_file}";
+    inline constexpr std::string_view DeleteKube = "podman play kube --down {yaml_file}";
 }
 
 /// @brief Utility function to format command templates by replacing placeholders with actual values.

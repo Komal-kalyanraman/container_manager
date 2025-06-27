@@ -1,0 +1,5 @@
+<map id="ValidateYamlContent" name="ValidateYamlContent">
+<area shape="rect" id="node1" title="Validates that all required placeholders are replaced in the YAML content." alt="" coords="5,31,164,57"/>
+<area shape="rect" id="node2" href="$structStatus.html#ace3b560f6a5f4a2d62a02b6e03700538" title="Returns an error Status with the given code and message." alt="" coords="212,5,315,32"/>
+<area shape="rect" id="node3" href="$structStatus.html#ab516c5b687e7e334a1865fe28fd39122" title="Returns a success Status." alt="" coords="219,56,308,83"/>
+</map>

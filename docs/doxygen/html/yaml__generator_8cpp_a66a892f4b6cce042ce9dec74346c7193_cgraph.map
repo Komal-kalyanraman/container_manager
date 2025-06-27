@@ -1,0 +1,7 @@
+<map id="ProcessYamlTemplate" name="ProcessYamlTemplate">
+<area shape="rect" id="node1" title="Reads a template file and replaces placeholders with actual values." alt="" coords="5,56,168,83"/>
+<area shape="rect" id="node2" href="$structStatus.html#ace3b560f6a5f4a2d62a02b6e03700538" title="Returns an error Status with the given code and message." alt="" coords="423,5,525,32"/>
+<area shape="rect" id="node3" href="$structStatus.html#ab516c5b687e7e334a1865fe28fd39122" title="Returns a success Status." alt="" coords="429,81,519,108"/>
+<area shape="rect" id="node4" href="$structStatus.html#a19a4e02345758bf3685dcb14a9678de1" title="Checks if the status represents success." alt="" coords="252,81,339,108"/>
+<area shape="rect" id="node5" href="$yaml__generator_8cpp.html#ae82c62fe5f13b65e4643fbf2a557248e" title="Validates that all required placeholders are replaced in the YAML content." alt="" coords="216,31,375,57"/>
+</map>

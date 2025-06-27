@@ -1,0 +1,4 @@
+<map id="PodmanYamlPlayCommand" name="PodmanYamlPlayCommand">
+<area shape="rect" id="node1" title="Command to play a Podman YAML file (create resources)." alt="" coords="5,145,243,252"/>
+<area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for all commands." alt="" coords="61,5,187,97"/>
+</map>

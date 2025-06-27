@@ -1,0 +1,8 @@
+<map id="GeneratePodYaml" name="GeneratePodYaml">
+<area shape="rect" id="node1" title="Generates a Pod YAML file from a template." alt="" coords="5,65,143,92"/>
+<area shape="rect" id="node2" href="$structStatus.html#ace3b560f6a5f4a2d62a02b6e03700538" title="Returns an error Status with the given code and message." alt="" coords="608,90,711,117"/>
+<area shape="rect" id="node3" href="$structStatus.html#ab516c5b687e7e334a1865fe28fd39122" title="Returns a success Status." alt="" coords="615,192,704,218"/>
+<area shape="rect" id="node4" href="$structStatus.html#a19a4e02345758bf3685dcb14a9678de1" title="Checks if the status represents success." alt="" coords="437,40,524,66"/>
+<area shape="rect" id="node5" href="$yaml__generator_8cpp.html#a66a892f4b6cce042ce9dec74346c7193" title="Reads a template file and replaces placeholders with actual values." alt="" coords="191,90,353,117"/>
+<area shape="rect" id="node6" href="$yaml__generator_8cpp.html#ae82c62fe5f13b65e4643fbf2a557248e" title="Validates that all required placeholders are replaced in the YAML content." alt="" coords="401,141,560,168"/>
+</map>

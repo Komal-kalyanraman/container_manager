@@ -42,15 +42,22 @@ class ContainerCreatorUI:
         # Container runtime selection
         ttk.Label(root, text="Container Runtime:").grid(row=1, column=0, sticky="w")
         self.runtime_var = tk.StringVar(value="docker")
-        runtime_options = ["docker", "podman", "docker-api", "podman-api"]
+        runtime_options = ["docker", "podman", "docker-api", "podman-api", "podman-yaml"]
         self.runtime_menu = ttk.Combobox(root, textvariable=self.runtime_var, values=runtime_options, state="readonly")
         self.runtime_menu.grid(row=1, column=1, sticky="ew")
+        
+        # Bind runtime selection change to update operations
+        self.runtime_menu.bind("<<ComboboxSelected>>", self.on_runtime_change)
 
         # Operation selection
         ttk.Label(root, text="Operation:").grid(row=1, column=2, sticky="w")
         self.operation_var = tk.StringVar(value="create")
-        operation_options = ["create", "start", "stop", "restart", "remove", "available"]
-        self.operation_menu = ttk.Combobox(root, textvariable=self.operation_var, values=operation_options, state="readonly")
+        # Default operations for non-podman-yaml runtimes
+        self.default_operations = ["create", "start", "stop", "restart", "remove", "available"]
+        # Limited operations for podman-yaml runtime
+        self.podman_yaml_operations = ["available", "start", "remove"]
+        
+        self.operation_menu = ttk.Combobox(root, textvariable=self.operation_var, values=self.default_operations, state="readonly")
         self.operation_menu.grid(row=1, column=3, sticky="ew")
 
         # Encryption algorithm selection (now in the same row as runtime and operation)
@@ -146,6 +153,23 @@ class ContainerCreatorUI:
         for i in range(6):
             root.columnconfigure(i, weight=1)
 
+    def on_runtime_change(self, event=None):
+        """Handle runtime selection change to update available operations."""
+        selected_runtime = self.runtime_var.get()
+        
+        if selected_runtime == "podman-yaml":
+            # Update operation dropdown for podman-yaml
+            self.operation_menu['values'] = self.podman_yaml_operations
+            # Set default operation to 'available' for podman-yaml
+            if self.operation_var.get() not in self.podman_yaml_operations:
+                self.operation_var.set("available")
+        else:
+            # Update operation dropdown for other runtimes
+            self.operation_menu['values'] = self.default_operations
+            # Set default operation to 'create' for other runtimes
+            if self.operation_var.get() not in self.default_operations:
+                self.operation_var.set("create")
+
     def build_payload(self):
         runtime = self.runtime_var.get()
         memory = self.memory_entry.get().strip()
@@ -154,7 +178,7 @@ class ContainerCreatorUI:
         if runtime in ("docker", "docker-api"):
             if memory.isdigit():
                 memory += "m"
-        elif runtime in ("podman", "podman-api"):
+        elif runtime in ("podman", "podman-api", "podman-yaml"):
             if memory.lower().endswith("m"):
                 memory = memory[:-1]
 

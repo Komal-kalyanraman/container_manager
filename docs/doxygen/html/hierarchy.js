@@ -24,7 +24,9 @@ var hierarchy =
       [ "PodmanRestartContainerCommand", "classPodmanRestartContainerCommand.html", null ],
       [ "PodmanRuntimeAvailableCommand", "classPodmanRuntimeAvailableCommand.html", null ],
       [ "PodmanStartContainerCommand", "classPodmanStartContainerCommand.html", null ],
-      [ "PodmanStopContainerCommand", "classPodmanStopContainerCommand.html", null ]
+      [ "PodmanStopContainerCommand", "classPodmanStopContainerCommand.html", null ],
+      [ "PodmanYamlDeleteCommand", "classPodmanYamlDeleteCommand.html", null ],
+      [ "PodmanYamlPlayCommand", "classPodmanYamlPlayCommand.html", null ]
     ] ],
     [ "CommandFactory", "classCommandFactory.html", null ],
     [ "CommandName", "structCommandName.html", null ],

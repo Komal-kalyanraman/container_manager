@@ -1,0 +1,4 @@
+<map id="PodmanYamlDeleteCommand" name="PodmanYamlDeleteCommand">
+<area shape="rect" id="node1" title="Command to delete resources defined in a Podman YAML file." alt="" coords="5,145,257,252"/>
+<area shape="rect" id="node2" href="$classCommand.html" title="Abstract base class for all commands." alt="" coords="69,5,194,97"/>
+</map>

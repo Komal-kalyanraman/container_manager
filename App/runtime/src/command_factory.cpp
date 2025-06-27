@@ -8,10 +8,11 @@
 #include <iostream>
 #include "inc/common.hpp"
 #include "inc/logging.hpp"
-#include "inc/podman_cli_commands.hpp"
-#include "inc/docker_cli_commands.hpp"
+#include "inc/podman_commands.hpp"
+#include "inc/docker_commands.hpp"
 #include "inc/podman_api_commands.hpp"
 #include "inc/docker_api_commands.hpp"
+#include "inc/podman_yaml_commands.hpp"
 #include "inc/container_request.hpp"
 
 /**
@@ -73,6 +74,14 @@ std::unique_ptr<Command> CommandFactory::CreateCommand(const ContainerRequest& r
             return std::make_unique<PodmanApiStopContainerCommand>(req);
         }
         // Add Remove/Restart if implemented for PodmanApi
+    } else if (req.runtime == RuntimeName::PodmanYaml) {
+        if (req.operation == CommandName::RuntimeStatus) {
+            return std::make_unique<PodmanApiRuntimeAvailableCommand>();
+        } else if (req.operation == CommandName::StartContainer) {
+            return std::make_unique<PodmanYamlPlayCommand>(req);
+        } else if (req.operation == CommandName::RemoveContainer) {
+            return std::make_unique<PodmanYamlDeleteCommand>(req);
+        }
     } else {
         CM_LOG_FATAL << "Invalid runtime type: " << req.runtime << std::endl;
     }

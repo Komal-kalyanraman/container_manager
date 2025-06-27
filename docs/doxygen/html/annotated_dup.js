@@ -51,6 +51,8 @@ var annotated_dup =
     [ "PodmanRuntimeAvailableCommand", "classPodmanRuntimeAvailableCommand.html", "classPodmanRuntimeAvailableCommand" ],
     [ "PodmanStartContainerCommand", "classPodmanStartContainerCommand.html", "classPodmanStartContainerCommand" ],
     [ "PodmanStopContainerCommand", "classPodmanStopContainerCommand.html", "classPodmanStopContainerCommand" ],
+    [ "PodmanYamlDeleteCommand", "classPodmanYamlDeleteCommand.html", "classPodmanYamlDeleteCommand" ],
+    [ "PodmanYamlPlayCommand", "classPodmanYamlPlayCommand.html", "classPodmanYamlPlayCommand" ],
     [ "ProtoRequestExecutorHandler", "classProtoRequestExecutorHandler.html", "classProtoRequestExecutorHandler" ],
     [ "RedisDatabaseHandler", "classRedisDatabaseHandler.html", "classRedisDatabaseHandler" ],
     [ "RequestExecutor", "classRequestExecutor.html", "classRequestExecutor" ],

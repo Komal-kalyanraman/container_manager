@@ -89,7 +89,7 @@ $(document).ready(function(){initNavTree('namespaceCommandTemplate.html',''); in
 </div><!--header-->
 <div class="contents">
 
-<p>Contains command templates for supported container operations. Placeholders (e.g., {runtime}, {name}, {image}) are replaced at runtime.  
+<p>Contains command templates for supported container operations.  
 <a href="namespaceCommandTemplate.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -104,9 +104,13 @@ Variables</h2></td></tr>
 <tr class="separator:a763bd52213a9dfc193f395e308b6fa4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af11de9f3bc8eaf1f345141ea51514578"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommandTemplate.html#af11de9f3bc8eaf1f345141ea51514578">Restart</a> = &quot;{runtime} restart {name}&quot;</td></tr>
 <tr class="separator:af11de9f3bc8eaf1f345141ea51514578"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa35d8bd0ac7511e3f399f90fc07aaef9"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommandTemplate.html#aa35d8bd0ac7511e3f399f90fc07aaef9">PlayKube</a> = &quot;podman play kube {yaml_file}&quot;</td></tr>
+<tr class="separator:aa35d8bd0ac7511e3f399f90fc07aaef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab80e494e00d022d0ad68b05b334de79a"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommandTemplate.html#ab80e494e00d022d0ad68b05b334de79a">DeleteKube</a> = &quot;podman play kube --down {yaml_file}&quot;</td></tr>
+<tr class="separator:ab80e494e00d022d0ad68b05b334de79a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Contains command templates for supported container operations. Placeholders (e.g., {runtime}, {name}, {image}) are replaced at runtime. </p>
+<div class="textblock"><p>Contains command templates for supported container operations. </p>
 </div><h2 class="groupheader">Variable Documentation</h2>
 <a id="a641acb6b2c850ccb8dbce6f3a08315df"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a641acb6b2c850ccb8dbce6f3a08315df">&#9670;&nbsp;</a></span>Create</h2>
@@ -132,9 +136,61 @@ Variables</h2></td></tr>
 <div class="line">        <span class="stringliteral">&quot;--cpus {cpus} --memory {memory} --pids-limit {pids} &quot;</span></div>
 <div class="line">        <span class="stringliteral">&quot;--restart {restart_policy} {image}&quot;</span></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00094">94</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00115">115</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="docker__cli__commands_8cpp_source.html#l00046">DockerCreateContainerCommand::Execute()</a>, and <a class="el" href="podman__cli__commands_8cpp_source.html#l00046">PodmanCreateContainerCommand::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00046">DockerCreateContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00046">PodmanCreateContainerCommand::Execute()</a>.</p>
+
+</div>
+</div>
+<a id="ab80e494e00d022d0ad68b05b334de79a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab80e494e00d022d0ad68b05b334de79a">&#9670;&nbsp;</a></span>DeleteKube</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::string_view CommandTemplate::DeleteKube = &quot;podman play kube --down {yaml_file}&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00126">126</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="podman__yaml__commands_8cpp_source.html#l00053">PodmanYamlDeleteCommand::Execute()</a>.</p>
+
+</div>
+</div>
+<a id="aa35d8bd0ac7511e3f399f90fc07aaef9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa35d8bd0ac7511e3f399f90fc07aaef9">&#9670;&nbsp;</a></span>PlayKube</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::string_view CommandTemplate::PlayKube = &quot;podman play kube {yaml_file}&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00125">125</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="podman__yaml__commands_8cpp_source.html#l00016">PodmanYamlPlayCommand::Execute()</a>.</p>
 
 </div>
 </div>
@@ -158,9 +214,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00100">100</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00121">121</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="docker__cli__commands_8cpp_source.html#l00129">DockerRemoveContainerCommand::Execute()</a>, and <a class="el" href="podman__cli__commands_8cpp_source.html#l00129">PodmanRemoveContainerCommand::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00129">DockerRemoveContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00129">PodmanRemoveContainerCommand::Execute()</a>.</p>
 
 </div>
 </div>
@@ -184,9 +240,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00101">101</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00122">122</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="docker__cli__commands_8cpp_source.html#l00154">DockerRestartContainerCommand::Execute()</a>, and <a class="el" href="podman__cli__commands_8cpp_source.html#l00154">PodmanRestartContainerCommand::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00154">DockerRestartContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00154">PodmanRestartContainerCommand::Execute()</a>.</p>
 
 </div>
 </div>
@@ -210,9 +266,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00098">98</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00119">119</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="docker__cli__commands_8cpp_source.html#l00079">DockerStartContainerCommand::Execute()</a>, and <a class="el" href="podman__cli__commands_8cpp_source.html#l00079">PodmanStartContainerCommand::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00079">DockerStartContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00079">PodmanStartContainerCommand::Execute()</a>.</p>
 
 </div>
 </div>
@@ -236,9 +292,9 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00099">99</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00120">120</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="docker__cli__commands_8cpp_source.html#l00104">DockerStopContainerCommand::Execute()</a>, and <a class="el" href="podman__cli__commands_8cpp_source.html#l00104">PodmanStopContainerCommand::Execute()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="docker__commands_8cpp_source.html#l00104">DockerStopContainerCommand::Execute()</a>, and <a class="el" href="podman__commands_8cpp_source.html#l00104">PodmanStopContainerCommand::Execute()</a>.</p>
 
 </div>
 </div>

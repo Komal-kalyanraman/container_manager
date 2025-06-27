@@ -1,0 +1,6 @@
+<map id="ProcessYamlTemplate" name="ProcessYamlTemplate">
+<area shape="rect" id="node1" title="Reads a template file and replaces placeholders with actual values." alt="" coords="455,46,617,73"/>
+<area shape="rect" id="node2" href="$yaml__generator_8cpp.html#aa92973ff97dcc57e48b62fb1323d6afd" title="Generates a Pod YAML file from a template." alt="" coords="269,46,407,73"/>
+<area shape="rect" id="node3" href="$classPodmanYamlPlayCommand.html#a2973eb61147a97a9f5f32c5b85652b71" title="Executes the command to play the YAML file." alt="" coords="13,5,214,47"/>
+<area shape="rect" id="node4" href="$classPodmanYamlDeleteCommand.html#a9e23acf6f3f2bd780782e8dd4a2aad0c" title="Executes the command to delete resources defined in the YAML file." alt="" coords="5,71,221,112"/>
+</map>

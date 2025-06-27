@@ -1,5 +1,5 @@
 /**
- * @file podman_cli_commands.cpp
+ * @file podman_commands.cpp
  * @brief Implements Podman command classes for container operations.
  *
  * This file defines the logic for PodmanRuntimeAvailableCommand, PodmanCreateContainerCommand,
@@ -8,7 +8,7 @@
  * using parameters from the ContainerRequest structure.
  */
 
-#include "inc/podman_cli_commands.hpp"
+#include "inc/podman_commands.hpp"
 #include <cstdlib>
 #include <nlohmann/json.hpp>
 #include "inc/common.hpp"
