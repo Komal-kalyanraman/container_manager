@@ -44,38 +44,44 @@ var NAVTREE =
       [ "POSIX Message Queue Usage", "index.html#autotoc_md18", null ],
       [ "D-Bus (Session Bus) Usage", "index.html#autotoc_md19", null ]
     ] ],
-    [ "Python UI: Container Creator", "index.html#autotoc_md20", [
-      [ "Features", "index.html#autotoc_md21", null ],
-      [ "How the UI Works", "index.html#autotoc_md22", null ],
-      [ "Requirements", "index.html#autotoc_md23", null ],
-      [ "Usage", "index.html#autotoc_md24", null ]
+    [ "Podman YAML Support", "index.html#autotoc_md20", [
+      [ "Running Pods via Podman CLI and YAML Files", "index.html#autotoc_md21", [
+        [ "Example Workflow", "index.html#autotoc_md22", null ],
+        [ "Why Not Podman API for YAML?", "index.html#autotoc_md23", null ]
+      ] ]
     ] ],
-    [ "Extending the Project", "index.html#autotoc_md25", null ],
-    [ "Documentation & Architecture", "index.html#autotoc_md26", null ],
-    [ "Contributing", "index.html#autotoc_md27", null ],
-    [ "License", "index.html#autotoc_md28", null ],
-    [ "Acknowledgements", "index.html#autotoc_md29", null ],
+    [ "Python UI: Container Creator", "index.html#autotoc_md24", [
+      [ "Features", "index.html#autotoc_md25", null ],
+      [ "How the UI Works", "index.html#autotoc_md26", null ],
+      [ "Requirements", "index.html#autotoc_md27", null ],
+      [ "Usage", "index.html#autotoc_md28", null ]
+    ] ],
+    [ "Extending the Project", "index.html#autotoc_md29", null ],
+    [ "Documentation & Architecture", "index.html#autotoc_md30", null ],
+    [ "Contributing", "index.html#autotoc_md31", null ],
+    [ "License", "index.html#autotoc_md32", null ],
+    [ "Acknowledgements", "index.html#autotoc_md33", null ],
     [ "Container Manager Architecture", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html", [
-      [ "Overview", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md31", null ],
-      [ "System Architecture", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md32", null ],
-      [ "Folder Structure", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md33", null ],
-      [ "Design Patterns Used", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md34", null ],
-      [ "Component Descriptions", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md35", [
-        [ "1. API Layer ( api/ )", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md36", null ],
-        [ "2. Core Layer ( core/ )", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md37", null ],
-        [ "3. Database Layer ( database/ )", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md38", null ],
-        [ "4. Executor Layer ( executor/ )", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md39", null ],
-        [ "5. Runtime Layer ( runtime/ )", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md40", null ],
-        [ "6. Utilities ( utils/ )", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md41", null ],
-        [ "7. Security & Encryption ( security/ )", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md42", null ]
+      [ "Overview", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md35", null ],
+      [ "System Architecture", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md36", null ],
+      [ "Folder Structure", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md37", null ],
+      [ "Design Patterns Used", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md38", null ],
+      [ "Component Descriptions", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md39", [
+        [ "1. API Layer ( api/ )", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md40", null ],
+        [ "2. Core Layer ( core/ )", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md41", null ],
+        [ "3. Database Layer ( database/ )", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md42", null ],
+        [ "4. Executor Layer ( executor/ )", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md43", null ],
+        [ "5. Runtime Layer ( runtime/ )", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md44", null ],
+        [ "6. Utilities ( utils/ )", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md45", null ],
+        [ "7. Security & Encryption ( security/ )", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md46", null ]
       ] ],
-      [ "Data Flow", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md43", null ],
-      [ "Extensibility", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md44", null ],
-      [ "Production-Readiness", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md45", null ],
-      [ "Example Sequence Diagram", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md46", null ],
-      [ "Deployment Diagram", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md47", null ],
-      [ "Recommendations for Contributors", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md48", null ],
-      [ "References", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md49", null ]
+      [ "Data Flow", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md47", null ],
+      [ "Extensibility", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md48", null ],
+      [ "Production-Readiness", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md49", null ],
+      [ "Example Sequence Diagram", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md50", null ],
+      [ "Deployment Diagram", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md51", null ],
+      [ "Recommendations for Contributors", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md52", null ],
+      [ "References", "md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html#autotoc_md53", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -114,7 +120,7 @@ var NAVTREEINDEX =
 [
 "CMakeCXXCompilerId_8cpp.html",
 "classcontainermanager_1_1ContainerParameters.html#a5da316cd1a504de025b13286bfe358f9",
-"functions_j.html"
+"functions_func_h.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

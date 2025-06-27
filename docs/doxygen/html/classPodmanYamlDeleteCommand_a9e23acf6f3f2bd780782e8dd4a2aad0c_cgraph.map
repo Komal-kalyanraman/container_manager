@@ -1,5 +1,10 @@
 <map id="PodmanYamlDeleteCommand::Execute" name="PodmanYamlDeleteCommand::Execute">
-<area shape="rect" id="node1" title="Executes the command to delete resources defined in the YAML file." alt="" coords="5,23,221,65"/>
-<area shape="rect" id="node2" href="$structStatus.html#ace3b560f6a5f4a2d62a02b6e03700538" title="Returns an error Status with the given code and message." alt="" coords="269,5,372,32"/>
-<area shape="rect" id="node3" href="$structStatus.html#ab516c5b687e7e334a1865fe28fd39122" title="Returns a success Status." alt="" coords="276,56,365,83"/>
+<area shape="rect" id="node1" title="Executes the command to delete resources defined in the YAML file." alt="" coords="5,281,221,323"/>
+<area shape="rect" id="node2" href="$structStatus.html#ace3b560f6a5f4a2d62a02b6e03700538" title="Returns an error Status with the given code and message." alt="" coords="872,10,975,37"/>
+<area shape="rect" id="node3" href="$common_8hpp.html#a2f80aeff93aed5c1cc3d4c356d458b99" title="Utility function to format command templates by replacing placeholders with actual values." alt="" coords="271,390,405,417"/>
+<area shape="rect" id="node4" href="$yaml__generator_8hpp.html#aa92973ff97dcc57e48b62fb1323d6afd" title="Generates a Pod YAML file from a template." alt="" coords="269,187,407,214"/>
+<area shape="rect" id="node5" href="$structStatus.html#ab516c5b687e7e334a1865fe28fd39122" title="Returns a success Status." alt="" coords="879,162,968,189"/>
+<area shape="rect" id="node6" href="$structStatus.html#a19a4e02345758bf3685dcb14a9678de1" title="Checks if the status represents success." alt="" coords="701,238,788,265"/>
+<area shape="rect" id="node7" href="$yaml__generator_8cpp.html#a66a892f4b6cce042ce9dec74346c7193" title="Reads a template file and replaces placeholders with actual values." alt="" coords="455,137,617,163"/>
+<area shape="rect" id="node8" href="$yaml__generator_8cpp.html#ae82c62fe5f13b65e4643fbf2a557248e" title="Validates that all required placeholders are replaced in the YAML content." alt="" coords="665,86,824,113"/>
 </map>

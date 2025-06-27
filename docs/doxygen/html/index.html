@@ -329,24 +329,71 @@ D-Bus (Session Bus) Usage</h2>
 <div class="line">encrypted_payload = ... # bytes from AES-GCM encryption</div>
 <div class="line">iface.Execute(base64.b64encode(encrypted_payload).decode())</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md20"></a>
+Podman YAML Support</h1>
+<h2><a class="anchor" id="autotoc_md21"></a>
+Running Pods via Podman CLI and YAML Files</h2>
+<p>Container Manager supports generating Kubernetes-style YAML files for Podman using a master template. These YAML files can be used to create and manage pods via Podman CLI commands.</p>
+<h3><a class="anchor" id="autotoc_md22"></a>
+Example Workflow</h3>
+<ol type="1">
+<li><b>Generate YAML File</b> <br  />
+ Use the backend or UI with <code>runtime: podman-yaml</code> to generate a YAML file (e.g., <code>storage/podman_yaml/my_nginx_pod.yaml</code>). <br  />
+ The YAML is based on a master template (<code>storage/podman_yaml/master.yaml</code>):</li>
+</ol>
+<div class="fragment"><div class="line">apiVersion: v1</div>
+<div class="line">kind: Pod</div>
+<div class="line">metadata:</div>
+<div class="line">  name: { { POD_NAME } }</div>
+<div class="line">spec:</div>
+<div class="line">  containers:</div>
+<div class="line">    - name: { { CONTAINER_NAME } }</div>
+<div class="line">      image: { { IMAGE_NAME } }</div>
+<div class="line">      resources:</div>
+<div class="line">        limits:</div>
+<div class="line">          cpu: &quot;{{CPU_LIMIT}}&quot;</div>
+<div class="line">          memory: &quot;{{MEMORY_LIMIT}}Mi&quot;</div>
+<div class="line">      securityContext:</div>
+<div class="line">        pidsLimit: { { PIDS_LIMIT } }</div>
+<div class="line">      restartPolicy: &quot;{{RESTART_POLICY}}&quot;</div>
+<div class="line">      ports:</div>
+<div class="line">        - containerPort: 80</div>
+<div class="line">          hostPort: 8080</div>
+</div><!-- fragment --><p>Placeholders are replaced with your container parameters.</p>
+<ol type="1">
+<li><b>Run Pod via Podman CLI</b></li>
+</ol>
+<div class="fragment"><div class="line">podman play kube storage/podman_yaml/my_nginx_pod.yaml</div>
+<div class="line">podman ps</div>
+</div><!-- fragment --><ol type="1">
+<li><b>Delete Pod via Podman CLI</b> <div class="fragment"><div class="line">podman play kube --down storage/podman_yaml/my_nginx_pod.yaml</div>
+</div><!-- fragment --></li>
+</ol>
+<h3><a class="anchor" id="autotoc_md23"></a>
+Why Not Podman API for YAML?</h3>
+<blockquote class="doxtable">
+<p><b>Note:</b> <br  />
+ Podman API support for YAML file operations (<code>play kube</code>) is only available in Podman <b>v4.2.0 and above</b>. <a href="https://docs.podman.io/en/latest/_static/api.html#tag/pods/operation/PlayKubeLibpod">reference link</a> Since the current Podman version is <b>3.4.2</b>, YAML via API is not implemented in this project. <br  />
+ All YAML-based pod operations are performed via the Podman CLI. </p>
+</blockquote>
+<h1><a class="anchor" id="autotoc_md24"></a>
 Python UI: Container Creator</h1>
 <p>A cross-platform Python GUI tool is provided for easily sending container management requests to the backend.</p>
 <div class="image">
 <img src="python_ui.png" alt=""/>
 <div class="caption">
 Python UI Screenshot</div></div>
-   <h2><a class="anchor" id="autotoc_md21"></a>
+   <h2><a class="anchor" id="autotoc_md25"></a>
 Features</h2>
 <ul>
 <li>Select protocol: REST (HTTP), MQTT, POSIX Message Queue, or D-Bus (session bus)</li>
 <li>Select data format: JSON or Protobuf</li>
-<li>Select runtime: Docker, Podman, Docker API, or Podman API</li>
+<li>Select runtime: Docker, Podman, Docker API, Podman API or Podman YAML.</li>
 <li>Select operation: create, start, stop, restart, remove, available, etc.</li>
 <li>Fill in container parameters (runtime, operation, resources, image, etc.)</li>
 <li>Enable/disable AES-GCM or ChaCha20 encryption</li>
 <li>Send requests directly to the backend via REST, MQTT, Message Queue, or D-Bus</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md22"></a>
+<h2><a class="anchor" id="autotoc_md26"></a>
 How the UI Works</h2>
 <ol type="1">
 <li><b>Select the protocol</b> (REST, MQTT, MessageQueue, or DBus) from the dropdown.</li>
@@ -358,7 +405,7 @@ How the UI Works</h2>
 <li>The UI will show a confirmation or error message after sending the request.</li>
 </ol>
 <p>The UI automatically handles serialization, encryption, and protocol-specific details (such as Base64 encoding for D-Bus and MQTT).</p>
-<h2><a class="anchor" id="autotoc_md23"></a>
+<h2><a class="anchor" id="autotoc_md27"></a>
 Requirements</h2>
 <ul>
 <li>Python 3.7+</li>
@@ -372,11 +419,11 @@ Requirements</h2>
 </ul>
 <p>Install dependencies:</p>
 <div class="fragment"><div class="line">pip install requests paho-mqtt posix_ipc dbus-python protobuf pycryptodome</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md24"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md28"></a>
 Usage</h2>
 <div class="fragment"><div class="line">cd ui</div>
 <div class="line">python container_creator_app.py</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md25"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md29"></a>
 Extending the Project</h1>
 <ul>
 <li><b>Add a new runtime:</b> <br  />
@@ -392,19 +439,19 @@ Extending the Project</h1>
 <li><b>Add a new security algorithm:</b> <br  />
  Implement a new security provider in <code>App/security/</code> by extending the <code><a class="el" href="classISecurityProvider.html" title="Abstract interface for security providers (encryption/decryption).">ISecurityProvider</a></code> interface, and update the CMake configuration and executor logic to support it.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md26"></a>
+<h1><a class="anchor" id="autotoc_md30"></a>
 Documentation &amp; Architecture</h1>
 <ul>
 <li>For a comprehensive overview of the system design, security, and extensibility, see <a class="el" href="md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html">Architecture Documentation</a>.</li>
 <li>Doxygen HTML docs: After building, open <code>docs/doxygen/html/index.html</code> in your browser.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md27"></a>
+<h1><a class="anchor" id="autotoc_md31"></a>
 Contributing</h1>
 <p>Contributions are welcome! Please open issues or pull requests for bug fixes, new features, or documentation improvements.</p>
-<h1><a class="anchor" id="autotoc_md28"></a>
+<h1><a class="anchor" id="autotoc_md32"></a>
 License</h1>
 <p>This project is licensed under the [MIT License](LICENSE).</p>
-<h1><a class="anchor" id="autotoc_md29"></a>
+<h1><a class="anchor" id="autotoc_md33"></a>
 Acknowledgements</h1>
 <ul>
 <li><a href="https://github.com/google/glog">glog</a></li>

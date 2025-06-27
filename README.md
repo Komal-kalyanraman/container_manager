@@ -266,6 +266,60 @@ encrypted_payload = ... # bytes from AES-GCM encryption
 iface.Execute(base64.b64encode(encrypted_payload).decode())
 ```
 
+## Podman YAML Support
+
+### Running Pods via Podman CLI and YAML Files
+
+Container Manager supports generating Kubernetes-style YAML files for Podman using a master template. These YAML files can be used to create and manage pods via Podman CLI commands.
+
+#### Example Workflow
+
+1. **Generate YAML File**  
+    Use the backend or UI with `runtime: podman-yaml` to generate a YAML file (e.g., `storage/podman_yaml/my_nginx_pod.yaml`).  
+    The YAML is based on a master template (`storage/podman_yaml/master.yaml`):
+
+   ```yaml
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: { { POD_NAME } }
+   spec:
+     containers:
+       - name: { { CONTAINER_NAME } }
+         image: { { IMAGE_NAME } }
+         resources:
+           limits:
+             cpu: "{{CPU_LIMIT}}"
+             memory: "{{MEMORY_LIMIT}}Mi"
+         securityContext:
+           pidsLimit: { { PIDS_LIMIT } }
+         restartPolicy: "{{RESTART_POLICY}}"
+         ports:
+           - containerPort: 80
+             hostPort: 8080
+   ```
+
+   Placeholders are replaced with your container parameters.
+
+2. **Run Pod via Podman CLI**
+
+   ```sh
+   podman play kube storage/podman_yaml/my_nginx_pod.yaml
+   podman ps
+   ```
+
+3. **Delete Pod via Podman CLI**
+   ```sh
+   podman play kube --down storage/podman_yaml/my_nginx_pod.yaml
+   ```
+
+#### Why Not Podman API for YAML?
+
+> **Note:**  
+> Podman API support for YAML file operations (`play kube`) is only available in Podman **v4.2.0 and above**. [reference link](https://docs.podman.io/en/latest/_static/api.html#tag/pods/operation/PlayKubeLibpod)
+> Since the current Podman version is **3.4.2**, YAML via API is not implemented in this project.  
+> All YAML-based pod operations are performed via the Podman CLI.
+
 ## Python UI: Container Creator
 
 A cross-platform Python GUI tool is provided for easily sending container management requests to the backend.
@@ -276,7 +330,7 @@ A cross-platform Python GUI tool is provided for easily sending container manage
 
 - Select protocol: REST (HTTP), MQTT, POSIX Message Queue, or D-Bus (session bus)
 - Select data format: JSON or Protobuf
-- Select runtime: Docker, Podman, Docker API, or Podman API
+- Select runtime: Docker, Podman, Docker API, Podman API or Podman YAML.
 - Select operation: create, start, stop, restart, remove, available, etc.
 - Fill in container parameters (runtime, operation, resources, image, etc.)
 - Enable/disable AES-GCM or ChaCha20 encryption
