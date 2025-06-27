@@ -3,6 +3,7 @@
 #include <string>
 #include "inc/status.hpp"
 #include "inc/commands.hpp"
+#include "inc/container_request.hpp"
 
 /**
  * @class PodmanYamlPlayCommand
@@ -10,13 +11,13 @@
  */
 class PodmanYamlPlayCommand : public Command {
 private:
-    std::string yaml_file_path_; ///< Path to the YAML file.
+    ContainerRequest req_; ///< Incoming container request.
 public:
     /**
      * @brief Constructs a PodmanYamlPlayCommand.
-     * @param yaml_file_path Path to the YAML file to play.
+     * @param req The container request containing runtime parameters.
      */
-    explicit PodmanYamlPlayCommand(const std::string& yaml_file_path);
+    explicit PodmanYamlPlayCommand(const ContainerRequest& req);
 
     /**
      * @brief Destructor.
@@ -28,6 +29,12 @@ public:
      * @return Status indicating if the operation was successful.
      */
     Status Execute() const override;
+
+    /**
+     * @brief Generates a YAML file based on the container request.
+     * @return Path to the generated YAML file.
+     */
+    std::string GenerateYamlFile() const;
 };
 
 /**
@@ -36,13 +43,13 @@ public:
  */
 class PodmanYamlDeleteCommand : public Command {
 private:
-    std::string yaml_file_path_; ///< Path to the YAML file.
+    ContainerRequest req_; ///< Incoming container request.
 public:
     /**
      * @brief Constructs a PodmanYamlDeleteCommand.
-     * @param yaml_file_path Path to the YAML file to delete resources.
+     * @param req The container request containing runtime parameters.
      */
-    explicit PodmanYamlDeleteCommand(const std::string& yaml_file_path);
+    explicit PodmanYamlDeleteCommand(const ContainerRequest& req);
 
     /**
      * @brief Destructor.
@@ -54,4 +61,10 @@ public:
      * @return Status indicating if the operation was successful.
      */
     Status Execute() const override;
+
+    /**
+     * @brief Generates a YAML file based on the container request.
+     * @return Path to the generated YAML file.
+     */
+    std::string GenerateYamlFile() const;
 };
