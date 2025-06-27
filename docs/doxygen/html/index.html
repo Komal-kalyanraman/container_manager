@@ -127,7 +127,7 @@ Folder Structure</h1>
 <div class="line">├── core/         # Business logic (service layer)</div>
 <div class="line">├── database/     # Database interface, embedded and Redis implementations (pluggable)</div>
 <div class="line">├── executor/     # Request executors (JSON, Protobuf, handle decryption)</div>
-<div class="line">├── runtime/      # Command pattern implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.</div>
+<div class="line">├── runtime/      # Command pattern implementations for Docker CLI, Podman CLI, Docker API, Podman API, Podman YAML etc.</div>
 <div class="line">├── utils/        # Common utilities (thread pool, logging, etc.)</div>
 <div class="line">├── security/     # Security providers (AES-GCM, ChaCha20, Null)</div>
 <div class="line">├── main.cpp      # Application entry point</div>
@@ -254,7 +254,7 @@ Example JSON Request</h2>
 <div class="line">  ]</div>
 <div class="line">}</div>
 </div><!-- fragment --><ul>
-<li>Use <code>"runtime": "docker"</code> or <code>"podman"</code> for CLI-based management.</li>
+<li>Use <code>"runtime": "docker"</code>, <code>"podman"</code> or <code>"podman-yaml"</code> for CLI-based management.</li>
 <li>Use <code>"runtime": "docker-api"</code> or <code>"podman-api"</code> for REST API-based management.</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md15"></a>
@@ -343,17 +343,17 @@ Example Workflow</h3>
 <div class="fragment"><div class="line">apiVersion: v1</div>
 <div class="line">kind: Pod</div>
 <div class="line">metadata:</div>
-<div class="line">  name: { { POD_NAME } }</div>
+<div class="line">  name: {{POD_NAME}}</div>
 <div class="line">spec:</div>
 <div class="line">  containers:</div>
-<div class="line">    - name: { { CONTAINER_NAME } }</div>
-<div class="line">      image: { { IMAGE_NAME } }</div>
+<div class="line">    - name: {{CONTAINER_NAME}}</div>
+<div class="line">      image: {{IMAGE_NAME}}</div>
 <div class="line">      resources:</div>
 <div class="line">        limits:</div>
 <div class="line">          cpu: &quot;{{CPU_LIMIT}}&quot;</div>
 <div class="line">          memory: &quot;{{MEMORY_LIMIT}}Mi&quot;</div>
 <div class="line">      securityContext:</div>
-<div class="line">        pidsLimit: { { PIDS_LIMIT } }</div>
+<div class="line">        pidsLimit: {{PIDS_LIMIT}}</div>
 <div class="line">      restartPolicy: &quot;{{RESTART_POLICY}}&quot;</div>
 <div class="line">      ports:</div>
 <div class="line">        - containerPort: 80</div>
@@ -363,7 +363,7 @@ Example Workflow</h3>
 <li><b>Run Pod via Podman CLI</b></li>
 </ol>
 <div class="fragment"><div class="line">podman play kube storage/podman_yaml/my_nginx_pod.yaml</div>
-<div class="line">podman ps</div>
+<div class="line">podman pod ps</div>
 </div><!-- fragment --><ol type="1">
 <li><b>Delete Pod via Podman CLI</b> <div class="fragment"><div class="line">podman play kube --down storage/podman_yaml/my_nginx_pod.yaml</div>
 </div><!-- fragment --></li>
@@ -372,7 +372,7 @@ Example Workflow</h3>
 Why Not Podman API for YAML?</h3>
 <blockquote class="doxtable">
 <p><b>Note:</b> <br  />
- Podman API support for YAML file operations (<code>play kube</code>) is only available in Podman <b>v4.2.0 and above</b>. <a href="https://docs.podman.io/en/latest/_static/api.html#tag/pods/operation/PlayKubeLibpod">reference link</a> Since the current Podman version is <b>3.4.2</b>, YAML via API is not implemented in this project. <br  />
+ Podman API support for YAML file operations (<code>play kube</code>) is only available in Podman <b>v4.2.0 and above</b>. <a href="https://docs.podman.io/en/latest/_static/api.html#tag/pods/operation/PlayKubeLibpod">reference link</a> Since the current Podman version is <b>v3.4.2</b>, YAML via API is not implemented in this project. <br  />
  All YAML-based pod operations are performed via the Podman CLI. </p>
 </blockquote>
 <h1><a class="anchor" id="autotoc_md24"></a>
@@ -398,7 +398,7 @@ How the UI Works</h2>
 <ol type="1">
 <li><b>Select the protocol</b> (REST, MQTT, MessageQueue, or DBus) from the dropdown.</li>
 <li><b>Select the data format</b> (JSON or Proto).</li>
-<li><b>Select the runtime</b> (docker, podman, docker-api, podman-api) and operation (create, start, stop, restart, remove, available, etc.).</li>
+<li><b>Select the runtime</b> (docker, podman, docker-api, podman-api, podman-yaml) and operation (create, start, stop, restart, remove, available, etc.).</li>
 <li><b>Fill in the container parameters</b> (CPUs, memory, image, etc.).</li>
 <li><b>Choose the encryption algorithm</b> (None, AES-256-GCM, or ChaCha20-Poly1305).</li>
 <li><b>Click "Send Request"</b> to send the request to the backend.</li>

@@ -51,7 +51,7 @@ App/
 ├── core/         # Business logic (service layer)
 ├── database/     # Database interface, embedded and Redis implementations (pluggable)
 ├── executor/     # Request executors (JSON, Protobuf, handle decryption)
-├── runtime/      # Command pattern implementations for Docker CLI, Podman CLI, Docker API, Podman API, etc.
+├── runtime/      # Command pattern implementations for Docker CLI, Podman CLI, Docker API, Podman API, Podman YAML etc.
 ├── utils/        # Common utilities (thread pool, logging, etc.)
 ├── security/     # Security providers (AES-GCM, ChaCha20, Null)
 ├── main.cpp      # Application entry point
@@ -182,7 +182,7 @@ See [Usage Examples](#usage-examples) below for request formats and protocol-spe
 }
 ```
 
-- Use `"runtime": "docker"` or `"podman"` for CLI-based management.
+- Use `"runtime": "docker"`, `"podman"` or `"podman-yaml"` for CLI-based management.
 - Use `"runtime": "docker-api"` or `"podman-api"` for REST API-based management.
 
 ### Example Protobuf Request
@@ -282,17 +282,17 @@ Container Manager supports generating Kubernetes-style YAML files for Podman usi
    apiVersion: v1
    kind: Pod
    metadata:
-     name: { { POD_NAME } }
+     name: {{POD_NAME}}
    spec:
      containers:
-       - name: { { CONTAINER_NAME } }
-         image: { { IMAGE_NAME } }
+       - name: {{CONTAINER_NAME}}
+         image: {{IMAGE_NAME}}
          resources:
            limits:
              cpu: "{{CPU_LIMIT}}"
              memory: "{{MEMORY_LIMIT}}Mi"
          securityContext:
-           pidsLimit: { { PIDS_LIMIT } }
+           pidsLimit: {{PIDS_LIMIT}}
          restartPolicy: "{{RESTART_POLICY}}"
          ports:
            - containerPort: 80
@@ -305,7 +305,7 @@ Container Manager supports generating Kubernetes-style YAML files for Podman usi
 
    ```sh
    podman play kube storage/podman_yaml/my_nginx_pod.yaml
-   podman ps
+   podman pod ps
    ```
 
 3. **Delete Pod via Podman CLI**
@@ -317,7 +317,7 @@ Container Manager supports generating Kubernetes-style YAML files for Podman usi
 
 > **Note:**  
 > Podman API support for YAML file operations (`play kube`) is only available in Podman **v4.2.0 and above**. [reference link](https://docs.podman.io/en/latest/_static/api.html#tag/pods/operation/PlayKubeLibpod)
-> Since the current Podman version is **3.4.2**, YAML via API is not implemented in this project.  
+> Since the current Podman version is **v3.4.2**, YAML via API is not implemented in this project.  
 > All YAML-based pod operations are performed via the Podman CLI.
 
 ## Python UI: Container Creator
@@ -340,7 +340,7 @@ A cross-platform Python GUI tool is provided for easily sending container manage
 
 1. **Select the protocol** (REST, MQTT, MessageQueue, or DBus) from the dropdown.
 2. **Select the data format** (JSON or Proto).
-3. **Select the runtime** (docker, podman, docker-api, podman-api) and operation (create, start, stop, restart, remove, available, etc.).
+3. **Select the runtime** (docker, podman, docker-api, podman-api, podman-yaml) and operation (create, start, stop, restart, remove, available, etc.).
 4. **Fill in the container parameters** (CPUs, memory, image, etc.).
 5. **Choose the encryption algorithm** (None, AES-256-GCM, or ChaCha20-Poly1305).
 6. **Click "Send Request"** to send the request to the backend.
