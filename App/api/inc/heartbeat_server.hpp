@@ -6,6 +6,7 @@
 #include <chrono>
 #include <httplib.h>
 #include <nlohmann/json.hpp>
+#include "inc/status.hpp"
 
 /**
  * @file heartbeat_server.hpp
@@ -19,21 +20,20 @@ public:
     explicit HeartbeatServer(int port = 8090);
     ~HeartbeatServer();
 
-    void Start();
-    void Stop();
+    Status Start();
+    Status Stop();
     bool IsRunning() const;
 
 private:
     void SetupRoutes();
     void ServerLoop();
 
-    void HandlePing(const httplib::Request& req, httplib::Response& res);
-    void HandleHealth(const httplib::Request& req, httplib::Response& res);
+    Status HandlePing(const httplib::Request& req, httplib::Response& res);
+    Status HandleHealth(const httplib::Request& req, httplib::Response& res);
 
-    // Process-specific metrics
     long GetUptimeSeconds() const;
 
-    nlohmann::json GetBasicHealth() const;
+    Status GetBasicHealth(nlohmann::json& out_json) const;
 
     std::unique_ptr<httplib::Server> server_;
     std::thread server_thread_;

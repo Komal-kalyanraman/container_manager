@@ -165,16 +165,10 @@ int main() {
     // Vector to hold protocol consumer threads
     std::vector<std::thread> protocol_threads;
 
-    // ALWAYS start dedicated heartbeat server (independent of protocols)
-    auto heartbeat_server = std::make_unique<HeartbeatServer>(8090);
-    heartbeat_server->Start();
-    
-    // Add heartbeat thread to monitoring
-    protocol_threads.emplace_back([&heartbeat_server]() {
-        // Keep heartbeat server alive
-        while (!shutdown_requested && heartbeat_server->IsRunning()) {
-            std::this_thread::sleep_for(std::chrono::seconds(1));
-        }
+    // ALWAYS start dedicated heartbeat server in a seperate thread (independent of protocols)
+    auto heartbeat_server = std::make_shared<HeartbeatServer>(8090);
+    protocol_threads.emplace_back([heartbeat_server]() {
+        heartbeat_server->Start();
     });
 
     // Start REST/HTTP server in a separate thread if enabled
@@ -235,6 +229,9 @@ int main() {
 #if ENABLE_DBUS
     dbus_consumer->Stop();
 #endif
+
+    // Stop heartbeat server
+    heartbeat_server->Stop();
 
     // Join all protocol threads to ensure clean shutdown
     for (auto& t : protocol_threads) {

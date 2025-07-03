@@ -35,24 +35,26 @@ void HeartbeatServer::SetupRoutes() {
     });
 }
 
-void HeartbeatServer::Start() {
+Status HeartbeatServer::Start() {
     if (running_) {
         CM_LOG_WARN << "Heartbeat server already running on port " << port_ << std::endl;
-        return;
+        return Status(StatusCode::AlreadyExists, "Heartbeat server already running");
     }
     running_ = true;
     server_thread_ = std::thread(&HeartbeatServer::ServerLoop, this);
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     CM_LOG_INFO << "💓 Heartbeat Server started on port " << port_ << std::endl;
+    return Status::Ok();
 }
 
-void HeartbeatServer::Stop() {
-    if (!running_) return;
+Status HeartbeatServer::Stop() {
+    if (!running_) return Status(StatusCode::Unavailable, "Heartbeat server not running");
     CM_LOG_INFO << "Stopping Heartbeat Server..." << std::endl;
     running_ = false;
     if (server_) server_->stop();
     if (server_thread_.joinable()) server_thread_.join();
     CM_LOG_INFO << "💓 Heartbeat Server stopped" << std::endl;
+    return Status::Ok();
 }
 
 void HeartbeatServer::ServerLoop() {
@@ -67,7 +69,7 @@ void HeartbeatServer::ServerLoop() {
     }
 }
 
-void HeartbeatServer::HandlePing(const httplib::Request&, httplib::Response& res) {
+Status HeartbeatServer::HandlePing(const httplib::Request&, httplib::Response& res) {
     nlohmann::json response = {
         {"status", "alive"},
         {"timestamp", std::chrono::duration_cast<std::chrono::seconds>(
@@ -75,22 +77,26 @@ void HeartbeatServer::HandlePing(const httplib::Request&, httplib::Response& res
     };
     res.set_content(response.dump(), "application/json");
     res.status = 200;
+    return Status::Ok();
 }
 
-void HeartbeatServer::HandleHealth(const httplib::Request&, httplib::Response& res) {
-    try {
-        nlohmann::json health = GetBasicHealth();
+Status HeartbeatServer::HandleHealth(const httplib::Request&, httplib::Response& res) {
+    nlohmann::json health;
+    Status st = GetBasicHealth(health);
+    if (st.ok()) {
         res.set_content(health.dump(2), "application/json");
         res.status = 200;
-    } catch (const std::exception& e) {
+        return Status::Ok();
+    } else {
         nlohmann::json error_response = {
             {"status", "error"},
-            {"message", e.what()},
+            {"message", st.message},
             {"timestamp", std::chrono::duration_cast<std::chrono::seconds>(
                 std::chrono::system_clock::now().time_since_epoch()).count()}
         };
         res.set_content(error_response.dump(), "application/json");
         res.status = 500;
+        return st;
     }
 }
 
@@ -100,38 +106,43 @@ long HeartbeatServer::GetUptimeSeconds() const {
     return uptime.count();
 }
 
-nlohmann::json HeartbeatServer::GetBasicHealth() const {
-    return {
-        {"status", "healthy"},
-        {"timestamp", std::chrono::duration_cast<std::chrono::seconds>(
-            std::chrono::system_clock::now().time_since_epoch()).count()},
-        {"uptime_seconds", GetUptimeSeconds()},
-        {"version", "0.7.2"},
-        {"service", "container_manager"},
-        {"heartbeat_port", port_},
-        {"features", {
+Status HeartbeatServer::GetBasicHealth(nlohmann::json& out_json) const {
+    try {
+        out_json = {
+            {"status", "healthy"},
+            {"timestamp", std::chrono::duration_cast<std::chrono::seconds>(
+                std::chrono::system_clock::now().time_since_epoch()).count()},
+            {"uptime_seconds", GetUptimeSeconds()},
+            {"version", "0.7.2"},
+            {"service", "container_manager"},
+            {"heartbeat_port", port_},
+            {"features", {
 #if ENABLE_REST
-            {"rest_enabled", true},
+                {"rest_enabled", true},
 #else
-            {"rest_enabled", false},
+                {"rest_enabled", false},
 #endif
 #if ENABLE_MQTT
-            {"mqtt_enabled", true},
+                {"mqtt_enabled", true},
 #else
-            {"mqtt_enabled", false},
+                {"mqtt_enabled", false},
 #endif
 #if ENABLE_DBUS
-            {"dbus_enabled", true},
+                {"dbus_enabled", true},
 #else
-            {"dbus_enabled", false},
+                {"dbus_enabled", false},
 #endif
 #if ENABLE_ENCRYPTION
-            {"encryption_enabled", true},
+                {"encryption_enabled", true},
 #else
-            {"encryption_enabled", false},
+                {"encryption_enabled", false},
 #endif
-        }}
-    };
+            }}
+        };
+        return Status::Ok();
+    } catch (const std::exception& e) {
+        return Status(StatusCode::InternalError, e.what());
+    }
 }
 
 bool HeartbeatServer::IsRunning() const {

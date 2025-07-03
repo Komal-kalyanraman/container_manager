@@ -281,7 +281,6 @@ class ContainerCreatorUI:
                 
                 # ALWAYS Base64 encode for D-Bus communication
                 payload_b64 = base64.b64encode(payload_bytes).decode('utf-8')
-                print(f"[DBus] Sending Base64-encoded {data_format} payload (length: {len(payload_b64)})")
                 iface.Execute(payload_b64)
                 
                 messagebox.showinfo("Success", f"{data_format} message sent via D-Bus to {bus_name}")
