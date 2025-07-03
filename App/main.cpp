@@ -19,6 +19,7 @@
 
 #include "inc/common.hpp"
 #include "inc/init_handler.hpp"
+#include "inc/heartbeat_server.hpp" 
 #include "inc/container_service.hpp"
 #include "inc/json_request_executor.hpp"
 #include "inc/null_security_provider.hpp"
@@ -90,6 +91,7 @@ int main() {
     // Print enabled features at startup
     std::cout << "==== Container Manager v0.7.2 ====" << std::endl;
     std::cout << "Features enabled:" << std::endl;
+    std::cout << "✓ Heartbeat Server" << std::endl;
 #if ENABLE_REST
     std::cout << "  ✓ REST/HTTP Server" << std::endl;
 #endif
@@ -162,6 +164,18 @@ int main() {
 
     // Vector to hold protocol consumer threads
     std::vector<std::thread> protocol_threads;
+
+    // ALWAYS start dedicated heartbeat server (independent of protocols)
+    auto heartbeat_server = std::make_unique<HeartbeatServer>(8090);
+    heartbeat_server->Start();
+    
+    // Add heartbeat thread to monitoring
+    protocol_threads.emplace_back([&heartbeat_server]() {
+        // Keep heartbeat server alive
+        while (!shutdown_requested && heartbeat_server->IsRunning()) {
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+        }
+    });
 
     // Start REST/HTTP server in a separate thread if enabled
 #if ENABLE_REST

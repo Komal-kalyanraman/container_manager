@@ -4,7 +4,11 @@
 set(APP_NAME cm_api)
 
 # Core source files (always included)
-set(SRC_LIST src/http_server.cpp src/posix_message_queue_consumer.cpp)
+set(SRC_LIST 
+    src/http_server.cpp 
+    src/posix_message_queue_consumer.cpp
+    src/heartbeat_server.cpp
+)
 
 # Add D-Bus consumer if enabled
 if(ENABLE_DBUS)
