@@ -15,7 +15,7 @@
 
 /// @brief Service name and version constants
 inline constexpr std::string_view kServiceName = "container_manager";
-inline constexpr std::string_view kVersion = "0.7.2";
+inline constexpr std::string_view kVersion = "0.7.3";
 
 /// @brief Represents an empty string constant.
 inline constexpr std::string_view kEmptyString = "";

@@ -22,6 +22,8 @@ Container Manager abstracts the complexity of managing containers by exposing a 
   All protocol handlers leverage a shared thread pool for efficient, concurrent request processing. Logging is handled via Google glog for production-grade diagnostics.
 - **Production-Ready and Configurable:**  
   All features (protocols, data formats, security, database backend) are enabled or disabled at build time via CMake flags, making the system highly configurable for different deployment scenarios.
+- **Always-On Heartbeat Server:**  
+  A lightweight HTTP server runs independently of other protocol handlers, providing `/ping` (liveness) and `/health` (detailed status/configuration) endpoints for monitoring, orchestration, and UI integration.
 
 **Intended Audience:**  
 This architecture is aimed at developers, system integrators, and architects who require a secure, extensible, and maintainable foundation for building unified container orchestration solutions—especially in environments where protocol diversity, security, and modularity are critical.
@@ -102,6 +104,9 @@ The following components are organized to match the folder structure of the proj
 
 - **gRPC Server (planned):**  
   Will provide a strongly-typed, high-performance RPC interface using Protobuf.
+
+- **Heartbeat Server:**  
+  A dedicated HTTP server always available on a configurable port (default: 8090), exposing `/ping` and `/health` endpoints for liveness and health checks. This server is independent of the main REST or other protocol servers, enabling robust monitoring and UI status integration.
 
 > All protocol handlers are modular and can be enabled/disabled at build time via CMake flags.  
 > All protocols support secure payload delivery using AES-256-GCM or ChaCha20-Poly1305 encryption for incoming data when enabled.

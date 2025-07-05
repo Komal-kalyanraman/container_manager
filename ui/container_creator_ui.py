@@ -7,6 +7,7 @@ import paho.mqtt.publish as publish
 import posix_ipc
 import dbus
 import base64
+import threading
 
 # Import functions from container_creator_logic
 try:
@@ -23,7 +24,7 @@ except ImportError as e:
 class ContainerCreatorUI:
     def __init__(self, root):
         self.root = root
-        self.root.title("Container Creator - Container Manager v0.7.2")
+        self.root.title("Container Creator - Container Manager v0.7.3")
         
         # Protocol selection
         ttk.Label(root, text="Protocol:").grid(row=0, column=0, sticky="w")
@@ -38,6 +39,13 @@ class ContainerCreatorUI:
         self.format_var = tk.StringVar(value="JSON")
         self.format_menu = ttk.Combobox(root, textvariable=self.format_var, values=format_options, state="readonly")
         self.format_menu.grid(row=0, column=3, sticky="ew")
+
+        # Heartbeat indicator (added)
+        self.heartbeat_canvas = tk.Canvas(root, width=20, height=20, highlightthickness=0)
+        self.heartbeat_canvas.grid(row=3, column=3, padx=10)
+        self.heartbeat_light = self.heartbeat_canvas.create_oval(2, 2, 18, 18, fill="red", outline="black")
+        self.heartbeat_url = "http://localhost:8090/ping"
+        self.check_heartbeat()
 
         # Container runtime selection
         ttk.Label(root, text="Container Runtime:").grid(row=1, column=0, sticky="w")
@@ -148,6 +156,15 @@ class ContainerCreatorUI:
         # Send button
         self.send_btn = ttk.Button(root, text="Send Request", command=self.send_request)
         self.send_btn.grid(row=16, column=0, pady=10, sticky="w")
+
+        # Add Health button in column 3, row 3
+        self.health_btn = ttk.Button(root, text="Health", command=self.show_health)
+        self.health_btn.grid(row=3, column=2, padx=5, pady=2, sticky="ew")
+
+        # Add a Text widget for health output (hidden by default)
+        self.health_text = tk.Text(root, height=12, width=60, wrap="word")
+        self.health_text.grid(row=4, column=2, rowspan=12, columnspan=2, padx=5, pady=5)
+        self.health_text.grid_remove()  # Hide initially
         
         # Configure column weights for resizing
         for i in range(6):
@@ -196,6 +213,47 @@ class ContainerCreatorUI:
             return build_proto(**args)
         else:
             return build_json(**args)
+    
+    def check_heartbeat(self):
+        """Ping the /ping endpoint every second and update the heartbeat indicator."""
+        def ping():
+            try:
+                response = requests.get(self.heartbeat_url, timeout=0.5)
+                if response.status_code == 200:
+                    self.heartbeat_canvas.itemconfig(self.heartbeat_light, fill="green")
+                else:
+                    self.heartbeat_canvas.itemconfig(self.heartbeat_light, fill="red")
+            except Exception:
+                self.heartbeat_canvas.itemconfig(self.heartbeat_light, fill="red")
+            # Schedule next check in 1000 ms (1 second)
+            self.root.after(1000, self.check_heartbeat)
+        threading.Thread(target=ping, daemon=True).start()
+    
+    def show_health(self):
+        """Fetch and display /health endpoint data in the health_text box."""
+        try:
+            response = requests.get("http://localhost:8090/health", timeout=1.5)
+            if response.status_code == 200:
+                self.health_text.config(state="normal")
+                self.health_text.delete(1.0, tk.END)
+                # Pretty print JSON
+                import json
+                health_data = response.json()
+                self.health_text.insert(tk.END, json.dumps(health_data, indent=2))
+                self.health_text.config(state="disabled")
+                self.health_text.grid()  # Show the text box
+            else:
+                self.health_text.config(state="normal")
+                self.health_text.delete(1.0, tk.END)
+                self.health_text.insert(tk.END, f"Error: {response.status_code}\n{response.text}")
+                self.health_text.config(state="disabled")
+                self.health_text.grid()
+        except Exception as e:
+            self.health_text.config(state="normal")
+            self.health_text.delete(1.0, tk.END)
+            self.health_text.insert(tk.END, f"Failed to fetch health: {e}")
+            self.health_text.config(state="disabled")
+            self.health_text.grid()
 
     def send_request(self):
         protocol = self.protocol_var.get()
