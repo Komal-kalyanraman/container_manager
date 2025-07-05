@@ -13,14 +13,18 @@
 #include <string_view>
 #include <unordered_map>
 
+/// @brief Service name and version constants
+inline constexpr std::string_view kServiceName = "container_manager";
+inline constexpr std::string_view kVersion = "0.7.2";
+
 /// @brief Represents an empty string constant.
-const std::string kEmptyString = "";
+inline constexpr std::string_view kEmptyString = "";
 
 /// @brief Name used for container manager in google logging.
-const std::string kContainerManagerLogName = "cm_log";
+inline constexpr std::string_view kContainerManagerLogName = "cm_log";
 
 /// @brief Sleep interval (in milliseconds) for main thread shutdown polling.
-constexpr int kMainShutdownPollMs = 200;
+inline constexpr int kMainShutdownPollMs = 200;
 
 /// @brief Docker Unix socket path and API base URL for HTTP API communication.
 inline constexpr char kDockerUnixSocketPath[] = "/var/run/docker.sock";
@@ -50,6 +54,17 @@ namespace YamlPlaceholder {
     inline constexpr char kPidsLimit[] = "{{PIDS_LIMIT}}";
     inline constexpr char kRestartPolicy[] = "{{RESTART_POLICY}}";
 }
+
+/// @struct HeartbeatConfig
+/// @brief Holds constants for the heartbeat server
+struct HeartbeatConfig {
+    const int Port = 8090;                              ///< Port for the heartbeat server.
+    const std::string Host = "0.0.0.0";                 ///< Host address for the heartbeat server.
+    // Status values
+    const std::string StatusHealthy =   "healthy";      ///< Status indicating the service is healthy.
+    const std::string StatusAlive =     "alive";        ///< Status indicating the service is alive.
+    const std::string StatusUnhealthy = "unhealthy";    ///< Status indicating the service is unhealthy.
+};
 
 /// @struct ServerConfig
 /// @brief Holds constant configuration for the HTTP server.

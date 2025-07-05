@@ -30,6 +30,8 @@ var annotated_dup =
     [ "DockerStopContainerCommand", "classDockerStopContainerCommand.html", "classDockerStopContainerCommand" ],
     [ "EmbeddedDatabaseHandler", "classEmbeddedDatabaseHandler.html", "classEmbeddedDatabaseHandler" ],
     [ "EmbeddedDbConfig", "structEmbeddedDbConfig.html", null ],
+    [ "HeartbeatConfig", "structHeartbeatConfig.html", "structHeartbeatConfig" ],
+    [ "HeartbeatServer", "classHeartbeatServer.html", "classHeartbeatServer" ],
     [ "HttpServerHandler", "classHttpServerHandler.html", "classHttpServerHandler" ],
     [ "IDatabaseHandler", "classIDatabaseHandler.html", "classIDatabaseHandler" ],
     [ "Invoker", "classInvoker.html", "classInvoker" ],

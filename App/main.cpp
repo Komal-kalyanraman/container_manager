@@ -85,11 +85,14 @@ void SignalHandler(int signum) {
  * and starts protocol consumers for REST, MQTT, POSIX Message Queue, and D-Bus (if enabled).
  * Handles graceful shutdown and joins all protocol threads before exiting.
  *
+ * Protocol consumers (including the heartbeat server) are configured using their respective config
+ * structures for consistency and maintainability.
+ *
  * @return int Exit code.
  */
 int main() {
     // Print enabled features at startup
-    std::cout << "==== Container Manager v0.7.2 ====" << std::endl;
+    std::cout << "==== " << kServiceName << " v" << kVersion << " ====" << std::endl;
     std::cout << "Features enabled:" << std::endl;
     std::cout << "✓ Heartbeat Server" << std::endl;
 #if ENABLE_REST
@@ -165,8 +168,9 @@ int main() {
     // Vector to hold protocol consumer threads
     std::vector<std::thread> protocol_threads;
 
-    // ALWAYS start dedicated heartbeat server in a seperate thread (independent of protocols)
-    auto heartbeat_server = std::make_shared<HeartbeatServer>(8090);
+    // Start dedicated heartbeat server in a separate thread (using config struct for uniformity)
+    HeartbeatConfig heartbeat_cfg;
+    auto heartbeat_server = std::make_shared<HeartbeatServer>(heartbeat_cfg);
     protocol_threads.emplace_back([heartbeat_server]() {
         heartbeat_server->Start();
     });
@@ -175,7 +179,6 @@ int main() {
 #if ENABLE_REST
     ServerConfig server_cfg;
     auto server = std::make_shared<HttpServerHandler>(server_cfg.ThreadPoolSize, executor);
-    // Exact host and port values for lambda function capture
     std::string host = server_cfg.Host;
     int port = server_cfg.Port;
     protocol_threads.emplace_back([server, host, port]() {

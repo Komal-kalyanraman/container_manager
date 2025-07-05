@@ -4,8 +4,8 @@
 #include <string>
 #include <iostream>
 
-HeartbeatServer::HeartbeatServer(int port)
-    : port_(port), start_time_(std::chrono::steady_clock::now()) {
+HeartbeatServer::HeartbeatServer(const HeartbeatConfig& cfg)
+    : cfg_(cfg), start_time_(std::chrono::steady_clock::now()) {
     server_ = std::make_unique<httplib::Server>();
     SetupRoutes();
 }
@@ -16,7 +16,7 @@ HeartbeatServer::~HeartbeatServer() {
 
 void HeartbeatServer::SetupRoutes() {
     server_->Get("/ping", [this](const httplib::Request& req, httplib::Response& res) {
-        HandlePing(req, res);
+        HandleLiveness(req, res);
     });
 
     server_->Get("/health", [this](const httplib::Request& req, httplib::Response& res) {
@@ -37,13 +37,13 @@ void HeartbeatServer::SetupRoutes() {
 
 Status HeartbeatServer::Start() {
     if (running_) {
-        CM_LOG_WARN << "Heartbeat server already running on port " << port_ << std::endl;
+        CM_LOG_WARN << "Heartbeat server already running on port " << cfg_.Port << std::endl;
         return Status(StatusCode::AlreadyExists, "Heartbeat server already running");
     }
     running_ = true;
     server_thread_ = std::thread(&HeartbeatServer::ServerLoop, this);
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    CM_LOG_INFO << "💓 Heartbeat Server started on port " << port_ << std::endl;
+    CM_LOG_INFO << "💓 Heartbeat Server started on port " << cfg_.Port << std::endl;
     return Status::Ok();
 }
 
@@ -59,8 +59,8 @@ Status HeartbeatServer::Stop() {
 
 void HeartbeatServer::ServerLoop() {
     try {
-        if (!server_->listen("0.0.0.0", port_)) {
-            CM_LOG_ERROR << "Failed to start Heartbeat Server on port " << port_ << std::endl;
+        if (!server_->listen(cfg_.Host.c_str(), cfg_.Port)) {
+            CM_LOG_ERROR << "Failed to start Heartbeat Server on port " << cfg_.Port << std::endl;
             running_ = false;
         }
     } catch (const std::exception& e) {
@@ -69,9 +69,11 @@ void HeartbeatServer::ServerLoop() {
     }
 }
 
-Status HeartbeatServer::HandlePing(const httplib::Request&, httplib::Response& res) {
+Status HeartbeatServer::HandleLiveness(const httplib::Request&, httplib::Response& res) {
     nlohmann::json response = {
-        {"status", "alive"},
+        {"status", cfg_.StatusAlive},
+        {"service", kServiceName},
+        {"version", kVersion},
         {"timestamp", std::chrono::duration_cast<std::chrono::seconds>(
             std::chrono::system_clock::now().time_since_epoch()).count()}
     };
@@ -82,7 +84,7 @@ Status HeartbeatServer::HandlePing(const httplib::Request&, httplib::Response& r
 
 Status HeartbeatServer::HandleHealth(const httplib::Request&, httplib::Response& res) {
     nlohmann::json health;
-    Status st = GetBasicHealth(health);
+    Status st = BuildHealthReport(health);
     if (st.ok()) {
         res.set_content(health.dump(2), "application/json");
         res.status = 200;
@@ -106,16 +108,16 @@ long HeartbeatServer::GetUptimeSeconds() const {
     return uptime.count();
 }
 
-Status HeartbeatServer::GetBasicHealth(nlohmann::json& out_json) const {
+Status HeartbeatServer::BuildHealthReport(nlohmann::json& out_json) const {
     try {
         out_json = {
-            {"status", "healthy"},
+            {"status", cfg_.StatusHealthy},
+            {"service", kServiceName},
+            {"version", kVersion},
             {"timestamp", std::chrono::duration_cast<std::chrono::seconds>(
                 std::chrono::system_clock::now().time_since_epoch()).count()},
             {"uptime_seconds", GetUptimeSeconds()},
-            {"version", "0.7.2"},
-            {"service", "container_manager"},
-            {"heartbeat_port", port_},
+            {"heartbeat_port", cfg_.Port},
             {"features", {
 #if ENABLE_REST
                 {"rest_enabled", true},
@@ -126,6 +128,11 @@ Status HeartbeatServer::GetBasicHealth(nlohmann::json& out_json) const {
                 {"mqtt_enabled", true},
 #else
                 {"mqtt_enabled", false},
+#endif
+#if ENABLE_MSGQUEUE
+                {"msgqueue_enabled", true},
+#else
+                {"msgqueue_enabled", false},
 #endif
 #if ENABLE_DBUS
                 {"dbus_enabled", true},
