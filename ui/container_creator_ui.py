@@ -42,7 +42,7 @@ class ContainerCreatorUI:
 
         # Heartbeat indicator (added)
         self.heartbeat_canvas = tk.Canvas(root, width=20, height=20, highlightthickness=0)
-        self.heartbeat_canvas.grid(row=3, column=3, padx=10)
+        self.heartbeat_canvas.grid(row=16, column=3, padx=10)
         self.heartbeat_light = self.heartbeat_canvas.create_oval(2, 2, 18, 18, fill="red", outline="black")
         self.heartbeat_url = "http://localhost:8090/ping"
         self.check_heartbeat()
@@ -159,11 +159,11 @@ class ContainerCreatorUI:
 
         # Add Health button in column 3, row 3
         self.health_btn = ttk.Button(root, text="Health", command=self.show_health)
-        self.health_btn.grid(row=3, column=2, padx=5, pady=2, sticky="ew")
+        self.health_btn.grid(row=16, column=2, padx=5, pady=2, sticky="ew")
 
         # Add a Text widget for health output (hidden by default)
         self.health_text = tk.Text(root, height=12, width=60, wrap="word")
-        self.health_text.grid(row=4, column=2, rowspan=12, columnspan=2, padx=5, pady=5)
+        self.health_text.grid(row=3, column=2, rowspan=13, columnspan=2, padx=5, pady=5)
         self.health_text.grid_remove()  # Hide initially
         
         # Configure column weights for resizing

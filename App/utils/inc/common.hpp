@@ -24,7 +24,7 @@ inline constexpr std::string_view kEmptyString = "";
 inline constexpr std::string_view kContainerManagerLogName = "cm_log";
 
 /// @brief Sleep interval (in milliseconds) for main thread shutdown polling.
-inline constexpr int kMainShutdownPollMs = 200;
+inline constexpr int kPollIntervalMs = 200;
 
 /// @brief Docker Unix socket path and API base URL for HTTP API communication.
 inline constexpr char kDockerUnixSocketPath[] = "/var/run/docker.sock";

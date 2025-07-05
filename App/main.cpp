@@ -216,7 +216,7 @@ int main() {
 
     // Main loop: wait for shutdown signal
     while (!shutdown_requested) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(kMainShutdownPollMs));
+        std::this_thread::sleep_for(std::chrono::milliseconds(kPollIntervalMs));
     }
 
     // Stop all protocol consumers gracefully

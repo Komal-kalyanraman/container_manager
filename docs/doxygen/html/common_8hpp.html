@@ -177,9 +177,9 @@ Variables</h2></td></tr>
 <tr class="memitem:a6e6825be6f061740d5bee83cbafa3f03"><td class="memItemLeft" align="right" valign="top">constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a6e6825be6f061740d5bee83cbafa3f03">kContainerManagerLogName</a> = &quot;cm_log&quot;</td></tr>
 <tr class="memdesc:a6e6825be6f061740d5bee83cbafa3f03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name used for container manager in google logging.  <a href="common_8hpp.html#a6e6825be6f061740d5bee83cbafa3f03">More...</a><br /></td></tr>
 <tr class="separator:a6e6825be6f061740d5bee83cbafa3f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a219640b5cfb7d108d5a1f48ef0190e67"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a219640b5cfb7d108d5a1f48ef0190e67">kMainShutdownPollMs</a> = 200</td></tr>
-<tr class="memdesc:a219640b5cfb7d108d5a1f48ef0190e67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sleep interval (in milliseconds) for main thread shutdown polling.  <a href="common_8hpp.html#a219640b5cfb7d108d5a1f48ef0190e67">More...</a><br /></td></tr>
-<tr class="separator:a219640b5cfb7d108d5a1f48ef0190e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac390e81c2c6ffd8d5d0c903e50a6e328"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#ac390e81c2c6ffd8d5d0c903e50a6e328">kPollIntervalMs</a> = 200</td></tr>
+<tr class="memdesc:ac390e81c2c6ffd8d5d0c903e50a6e328"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sleep interval (in milliseconds) for main thread shutdown polling.  <a href="common_8hpp.html#ac390e81c2c6ffd8d5d0c903e50a6e328">More...</a><br /></td></tr>
+<tr class="separator:ac390e81c2c6ffd8d5d0c903e50a6e328"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ce8df3b35a0ea16a014b05672323070"><td class="memItemLeft" align="right" valign="top">constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8hpp.html#a0ce8df3b35a0ea16a014b05672323070">kDockerUnixSocketPath</a> [] = &quot;/var/run/docker.sock&quot;</td></tr>
 <tr class="memdesc:a0ce8df3b35a0ea16a014b05672323070"><td class="mdescLeft">&#160;</td><td class="mdescRight">Docker Unix socket path and API base URL for HTTP API communication.  <a href="common_8hpp.html#a0ce8df3b35a0ea16a014b05672323070">More...</a><br /></td></tr>
 <tr class="separator:a0ce8df3b35a0ea16a014b05672323070"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -525,34 +525,6 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a219640b5cfb7d108d5a1f48ef0190e67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a219640b5cfb7d108d5a1f48ef0190e67">&#9670;&nbsp;</a></span>kMainShutdownPollMs</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr int kMainShutdownPollMs = 200</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sleep interval (in milliseconds) for main thread shutdown polling. </p>
-
-<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00027">27</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00093">main()</a>.</p>
-
-</div>
-</div>
 <a id="a3c97ef1967bd7c8853f961bac6616ef3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3c97ef1967bd7c8853f961bac6616ef3">&#9670;&nbsp;</a></span>kMasterTemplateFile</h2>
 
@@ -710,6 +682,34 @@ Here is the caller graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00044">44</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="yaml__generator_8cpp_source.html#l00012">GeneratePodYaml()</a>.</p>
+
+</div>
+</div>
+<a id="ac390e81c2c6ffd8d5d0c903e50a6e328"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac390e81c2c6ffd8d5d0c903e50a6e328">&#9670;&nbsp;</a></span>kPollIntervalMs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int kPollIntervalMs = 200</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sleep interval (in milliseconds) for main thread shutdown polling. </p>
+
+<p class="definition">Definition at line <a class="el" href="common_8hpp_source.html#l00027">27</a> of file <a class="el" href="common_8hpp_source.html">common.hpp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8cpp_source.html#l00093">main()</a>.</p>
 
 </div>
 </div>
