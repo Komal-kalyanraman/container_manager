@@ -86,7 +86,7 @@ $(document).ready(function(){initNavTree('md__home_komal_workspace_personal_cont
 <div class="title">Container Manager Architecture </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md35"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md37"></a>
 Overview</h1>
 <p><b>Container Manager</b> is a modular, extensible, and production-ready C++ service designed to provide unified container management across multiple runtimes, including Docker and Podman, with support for additional engines planned. The system is architected for flexibility, security, and ease of integration in automotive environment deployments.</p>
 <p>Container Manager abstracts the complexity of managing containers by exposing a unified API over multiple communication protocols—REST, MQTT, POSIX Message Queue, D-Bus, and (planned) gRPC. It supports both JSON and Protocol Buffers (Protobuf) as data formats, allowing seamless integration with a wide range of clients and systems.</p>
@@ -106,6 +106,8 @@ Overview</h1>
  All protocol handlers leverage a shared thread pool for efficient, concurrent request processing. Logging is handled via Google glog for production-grade diagnostics.</li>
 <li><b>Production-Ready and Configurable:</b> <br  />
  All features (protocols, data formats, security, database backend) are enabled or disabled at build time via CMake flags, making the system highly configurable for different deployment scenarios.</li>
+<li><b>Always-On Heartbeat Server:</b> <br  />
+ A lightweight HTTP server runs independently of other protocol handlers, providing <code>/ping</code> (liveness) and <code>/health</code> (detailed status/configuration) endpoints for monitoring, orchestration, and UI integration.</li>
 </ul>
 <p><b>Intended Audience:</b> <br  />
  This architecture is aimed at developers, system integrators, and architects who require a secure, extensible, and maintainable foundation for building unified container orchestration solutions—especially in environments where protocol diversity, security, and modularity are critical.</p>
@@ -117,10 +119,10 @@ Overview</h1>
 <li><b>Production Focus:</b> Features like graceful shutdown, centralized configuration, and robust logging are built-in.</li>
 </ul>
 <p>This document provides a deep dive into the system architecture, component responsibilities, data flow, extensibility points, and the design patterns that make Container Manager a robust foundation for modern container management needs.</p>
-<h1><a class="anchor" id="autotoc_md36"></a>
+<h1><a class="anchor" id="autotoc_md38"></a>
 System Architecture</h1>
 <p><img src="system_architecture.png" alt="System Architecture" width="1000" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md37"></a>
+<h1><a class="anchor" id="autotoc_md39"></a>
 Folder Structure</h1>
 <div class="fragment"><div class="line">App/</div>
 <div class="line">├── api/          # Protocol handlers (REST, MQTT, MQ, D-Bus and future protocols)</div>
@@ -132,7 +134,7 @@ Folder Structure</h1>
 <div class="line">├── security/     # Security providers (AES-GCM, ChaCha20, Null)</div>
 <div class="line">├── main.cpp      # Application entry point</div>
 <div class="line">└── third_party/  # External dependencies (nlohmann_json, httplib)</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md38"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md40"></a>
 Design Patterns Used</h1>
 <p>This project leverages several classic software design patterns to ensure modularity, extensibility, and maintainability:</p>
 <ul>
@@ -153,10 +155,10 @@ Design Patterns Used</h1>
  <em>Location:</em> <code>api/</code></li>
 </ul>
 <p>These patterns make the codebase easy to extend (e.g., adding new runtimes, protocols, or security algorithms) and maintain over time.</p>
-<h1><a class="anchor" id="autotoc_md39"></a>
+<h1><a class="anchor" id="autotoc_md41"></a>
 Component Descriptions</h1>
 <p>The following components are organized to match the folder structure of the project:</p>
-<h2><a class="anchor" id="autotoc_md40"></a>
+<h2><a class="anchor" id="autotoc_md42"></a>
 1. API Layer ( api/ )</h2>
 <ul>
 <li><b>REST API Server:</b> <br  />
@@ -169,12 +171,14 @@ Component Descriptions</h1>
  Listens for method calls on the D-Bus session bus, enabling desktop and user-level IPC. Supports encrypted and unencrypted payloads, with automatic Base64 decoding for binary data.</li>
 <li><b>gRPC Server (planned):</b> <br  />
  Will provide a strongly-typed, high-performance RPC interface using Protobuf.</li>
+<li><b>Heartbeat Server:</b> <br  />
+ A dedicated HTTP server always available on a configurable port (default: 8090), exposing <code>/ping</code> and <code>/health</code> endpoints for liveness and health checks. This server is independent of the main REST or other protocol servers, enabling robust monitoring and UI status integration.</li>
 </ul>
 <blockquote class="doxtable">
 <p>All protocol handlers are modular and can be enabled/disabled at build time via CMake flags. <br  />
  All protocols support secure payload delivery using AES-256-GCM or ChaCha20-Poly1305 encryption for incoming data when enabled. </p>
 </blockquote>
-<h2><a class="anchor" id="autotoc_md41"></a>
+<h2><a class="anchor" id="autotoc_md43"></a>
 2. Core Layer ( core/ )</h2>
 <ul>
 <li><b>Container Service Handler:</b> <br  />
@@ -182,7 +186,7 @@ Component Descriptions</h1>
 <li><b>Service Pattern:</b> <br  />
  Encapsulates business logic and coordinates operations between components. Each container operation (create, start, stop, etc.) is encapsulated as a command object. Supports multiple runtimes (Docker CLI, Podman CLI, Docker API, Podman API, etc.) and is easily extensible.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md42"></a>
+<h2><a class="anchor" id="autotoc_md44"></a>
 3. Database Layer ( database/ )</h2>
 <ul>
 <li><b><a class="el" href="classIDatabaseHandler.html" title="Interface for database handlers supporting JSON storage and retrieval.">IDatabaseHandler</a>:</b> <br  />
@@ -198,7 +202,7 @@ Component Descriptions</h1>
 <p>The database layer is pluggable—swap between embedded and Redis (or any other backend) by implementing the interface. <br  />
  Database selection is controlled via the <code>ENABLE_REDIS</code> CMake flag. If not set, the embedded database is used by default. </p>
 </blockquote>
-<h2><a class="anchor" id="autotoc_md43"></a>
+<h2><a class="anchor" id="autotoc_md45"></a>
 4. Executor Layer ( executor/ )</h2>
 <ul>
 <li><b>JSON Request Executor:</b> <br  />
@@ -215,7 +219,7 @@ Component Descriptions</h1>
 <li>This ensures that all protocols (REST, MQTT, MQ, D-Bus) can send either encrypted or unencrypted payloads without any protocol-specific logic. </li>
 </ul>
 </blockquote>
-<h2><a class="anchor" id="autotoc_md44"></a>
+<h2><a class="anchor" id="autotoc_md46"></a>
 5. Runtime Layer ( runtime/ )</h2>
 <ul>
 <li><b>Docker Commands:</b> <br  />
@@ -234,7 +238,7 @@ Component Descriptions</h1>
 <blockquote class="doxtable">
 <p>The runtime layer can be extended to support additional container engines and APIs. </p>
 </blockquote>
-<h2><a class="anchor" id="autotoc_md45"></a>
+<h2><a class="anchor" id="autotoc_md47"></a>
 6. Utilities ( utils/ )</h2>
 <ul>
 <li><b>Thread Pool:</b> <br  />
@@ -248,7 +252,7 @@ Component Descriptions</h1>
 <li><b>init:</b> <br  />
  Initialization helpers for setting up application state, configuration, and environment before starting protocol handlers.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md46"></a>
+<h2><a class="anchor" id="autotoc_md48"></a>
 7. Security &amp; Encryption ( security/ )</h2>
 <ul>
 <li><b>Security Providers:</b> <br  />
@@ -266,7 +270,7 @@ Component Descriptions</h1>
 <li><b>Limitation:</b> <br  />
  Only incoming data is decrypted; outgoing responses are not encrypted.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md47"></a>
+<h1><a class="anchor" id="autotoc_md49"></a>
 Data Flow</h1>
 <ol type="1">
 <li><b>Request Reception:</b> <br  />
@@ -292,7 +296,7 @@ Data Flow</h1>
  The result is sent back via the originating protocol (if applicable). <br  />
  <b>Note:</b> Outgoing responses are not encrypted by this application.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md48"></a>
+<h1><a class="anchor" id="autotoc_md50"></a>
 Extensibility</h1>
 <ul>
 <li><b>Add a Protocol:</b> <br  />
@@ -309,7 +313,7 @@ Extensibility</h1>
  Toggle decryption support at build time with <code>ENABLE_ENCRYPTION</code>. <br  />
  Add new security algorithms by implementing a new provider in <code>security/</code> and updating the executor logic.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md49"></a>
+<h1><a class="anchor" id="autotoc_md51"></a>
 Production-Readiness</h1>
 <ul>
 <li><b>Graceful Shutdown:</b> <br  />
@@ -326,13 +330,13 @@ Production-Readiness</h1>
  AES-256-GCM and ChaCha20-Poly1305 decryption is available for all protocols and data formats, providing strong security guarantees for production deployments. <br  />
  <b>Encryption of outgoing responses is not implemented.</b></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md50"></a>
+<h1><a class="anchor" id="autotoc_md52"></a>
 Example Sequence Diagram</h1>
 <p><img src="architecture_example_sequence_diagram.png" alt="Example Sequence Diagram" width="1000" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md51"></a>
+<h1><a class="anchor" id="autotoc_md53"></a>
 Deployment Diagram</h1>
 <p><img src="architecture_deployment_diagram.png" alt="Deployment Diagram" width="800" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md52"></a>
+<h1><a class="anchor" id="autotoc_md54"></a>
 Recommendations for Contributors</h1>
 <ul>
 <li><b>Follow the modular architecture:</b> <br  />
@@ -342,7 +346,7 @@ Recommendations for Contributors</h1>
 <li><b>Update diagrams and documentation as the architecture evolves.</b></li>
 <li><b>If you add or change encryption/decryption, update this document and the security section.</b></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md53"></a>
+<h1><a class="anchor" id="autotoc_md55"></a>
 References</h1>
 <ul>
 <li><a href="../doxygen/html/index.html">Doxygen Documentation</a></li>

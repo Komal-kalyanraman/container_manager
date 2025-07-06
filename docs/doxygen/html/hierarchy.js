@@ -38,6 +38,8 @@ var hierarchy =
     [ "DbusConfig", "structDbusConfig.html", null ],
     [ "DBusConsumer", "classDBusConsumer.html", null ],
     [ "EmbeddedDbConfig", "structEmbeddedDbConfig.html", null ],
+    [ "HeartbeatConfig", "structHeartbeatConfig.html", null ],
+    [ "HeartbeatServer", "classHeartbeatServer.html", null ],
     [ "HttpServerHandler", "classHttpServerHandler.html", null ],
     [ "IDatabaseHandler", "classIDatabaseHandler.html", [
       [ "EmbeddedDatabaseHandler", "classEmbeddedDatabaseHandler.html", null ],

@@ -23,7 +23,7 @@
  * @brief Initializes logging using Google glog.
  */
 void InitLogging() {
-    google::InitGoogleLogging(kContainerManagerLogName.c_str());
+    google::InitGoogleLogging(kContainerManagerLogName.data());
 }
 
 /**

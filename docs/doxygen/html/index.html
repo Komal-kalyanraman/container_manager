@@ -87,7 +87,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><b>Container Manager</b> is a modular, production-ready C++ 17 service for unified container management across Docker, Podman, and more (planned). It supports REST, MQTT, POSIX Message Queue, D-Bus, gRPC (planned), Docker/Podman CLI, HTTP-API with incoming JSON/ Protobuf data with optional decryption of secure data.</p>
-<p>Features include extensible architecture, pluggable database backend (embedded by default, Redis optional), robust logging, thread pool for all protocols, and enterprise-grade security with AES-256-GCM or ChaCha20-Poly1305 encryption.</p>
+<p>Features include extensible architecture, pluggable database backend (embedded by default, Redis optional), robust logging, thread pool for all protocols, a dedicated heartbeat server for health/liveness checks, and enterprise-grade security with AES-256-GCM or ChaCha20-Poly1305 encryption.</p>
 <p>It is designed for developers and system integrators who need a flexible, secure, and modular foundation for building container orchestration for automotive usecase.</p>
 <blockquote class="doxtable">
 <p><b>This is a reference architecture and template project</b> designed to demonstrate production-grade C++ patterns for container management systems. Clone, modify, and extend as needed for your specific requirements. </p>
@@ -107,6 +107,9 @@ Features</h1>
  Easily add support for new runtimes or operations.</li>
 <li><b>Multi-Protocol Support:</b> <br  />
  REST (HTTP/JSON or Protobuf), MQTT, POSIX Message Queue, D-Bus (session bus), and gRPC (planned).</li>
+<li><b>Dedicated Heartbeat Server:</b> <br  />
+ Lightweight HTTP server always available on a configurable port (default: 8090) for <code>/ping</code> (liveness) and <code>/health</code> (detailed status) endpoints. <br  />
+ Enables health checks, monitoring, and UI integration independent of main protocol servers.</li>
 <li><b>Flexible Data Formats:</b> <br  />
  JSON or Protocol Buffers (protobuf) for high-performance or strongly-typed APIs.</li>
 <li><b>Thread Pool:</b> <br  />
@@ -123,7 +126,7 @@ Features</h1>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Folder Structure</h1>
 <div class="fragment"><div class="line">App/</div>
-<div class="line">├── api/          # Protocol handlers (REST, MQTT, MQ, D-Bus and future protocols)</div>
+<div class="line">├── api/          # Protocol handlers (REST, MQTT, MQ, D-Bus, Heartbeat, and future protocols)</div>
 <div class="line">├── core/         # Business logic (service layer)</div>
 <div class="line">├── database/     # Database interface, embedded and Redis implementations (pluggable)</div>
 <div class="line">├── executor/     # Request executors (JSON, Protobuf, handle decryption)</div>
@@ -144,21 +147,52 @@ Build</h2>
 <h2><a class="anchor" id="autotoc_md5"></a>
 Run</h2>
 <div class="fragment"><div class="line">./CM</div>
-</div><!-- fragment --><p>The server will start and listen on the enabled protocols and data formats as per your build configuration.</p>
+</div><!-- fragment --><p>The server will start and listen on the enabled protocols and data formats as per your build configuration. <br  />
+ <b>The heartbeat server will always be available on the configured port (default: 8090).</b></p>
 <h1><a class="anchor" id="autotoc_md6"></a>
+Heartbeat Server</h1>
+<p>A dedicated lightweight HTTP server is always running for health and liveness checks, independent of the main REST or other protocol servers.</p>
+<ul>
+<li><b>Liveness endpoint:</b> <br  />
+ <code>GET /ping</code> — Returns a minimal JSON indicating the service is alive.</li>
+<li><b>Health endpoint:</b> <br  />
+ <code>GET /health</code> — Returns a detailed JSON with service status, version, uptime, enabled features, and more.</li>
+</ul>
+<p><b>Example:</b></p>
+<div class="fragment"><div class="line">curl http://localhost:8090/ping</div>
+<div class="line"># {&quot;status&quot;: &quot;alive&quot;, &quot;service&quot;: &quot;container_manager&quot;, &quot;version&quot;: &quot;0.7.3&quot;, &quot;timestamp&quot;: 1751738206}</div>
+<div class="line"> </div>
+<div class="line">curl http://localhost:8090/health</div>
+<div class="line"># {</div>
+<div class="line">#   &quot;status&quot;: &quot;healthy&quot;,</div>
+<div class="line">#   &quot;service&quot;: &quot;container_manager&quot;,</div>
+<div class="line">#   &quot;version&quot;: &quot;0.7.3&quot;,</div>
+<div class="line">#   &quot;timestamp&quot;: 1751738206,</div>
+<div class="line">#   &quot;uptime_seconds&quot;: 71,</div>
+<div class="line">#   &quot;heartbeat_port&quot;: 8090,</div>
+<div class="line">#   &quot;features&quot;: {</div>
+<div class="line">#     &quot;rest_enabled&quot;: true,</div>
+<div class="line">#     &quot;mqtt_enabled&quot;: true,</div>
+<div class="line">#     &quot;msgqueue_enabled&quot;: true,</div>
+<div class="line">#     &quot;dbus_enabled&quot;: true,</div>
+<div class="line">#     &quot;encryption_enabled&quot;: true</div>
+<div class="line">#   }</div>
+<div class="line"># }</div>
+</div><!-- fragment --><p>This enables easy integration with monitoring tools, load balancers, and UI dashboards.</p>
+<h1><a class="anchor" id="autotoc_md7"></a>
 Video Tutorials</h1>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 1. Project Overview &amp; Motivation</h2>
 <div align="center"> <a href="https://www.youtube.com/watch?v=GQ7MG5r8-uQ&amp;ab_channel=komalkalyanraman"><img src="docs/architecture/container_manager.png" alt="Project Overview & Motivation" width="500" class="inline"/> </a> </div><blockquote class="doxtable">
 <p><em>In this video, we explain why Container Manager was created, the problems it solves, and the advantages it brings to container orchestration and automation.</em> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 2. Build, UI Usage &amp; Live Demo</h2>
 <div align="center"> <a href="https://www.youtube.com/watch?v=6wBSkqxmbTM&amp;ab_channel=komalkalyanraman"><img src="docs/architecture/container_manager_demo.png" alt="Project Overview & Motivation" width="500" class="inline"/> </a> </div><blockquote class="doxtable">
 <p><em>This video demonstrates how to build the project, use the Python UI, and deploy containers using different protocols and runtimes.</em> </p>
 </blockquote>
-<h1><a class="anchor" id="autotoc_md10"></a>
+<h1><a class="anchor" id="autotoc_md11"></a>
 Configuration</h1>
 <p>You can enable or disable each protocol, data format, and security feature using CMake flags:</p>
 <ul>
@@ -177,7 +211,7 @@ Configuration</h1>
  Encryption key files must be present in <code>storage/security/</code> as described in the architecture documentation. <br  />
  The selected algorithm must match between the backend and any client sending encrypted payloads. </p>
 </blockquote>
-<h1><a class="anchor" id="autotoc_md11"></a>
+<h1><a class="anchor" id="autotoc_md12"></a>
 Dependencies by Feature</h1>
 <p>The following table summarizes which C++ libraries/packages are required for each protocol, data format, and feature. <br  />
  Install only what you need based on your chosen CMake flags.</p>
@@ -202,6 +236,8 @@ Dependencies by Feature</h1>
 <td class="markdownTableBodyNone">Embedded DB (default) </td><td class="markdownTableBodyNone">(default) </td><td class="markdownTableBodyNone">(no extra dependencies)  </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Encryption </td><td class="markdownTableBodyNone">ENABLE_ENCRYPTION=ON </td><td class="markdownTableBodyNone">libssl-dev (OpenSSL)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Heartbeat Server </td><td class="markdownTableBodyNone">(always enabled) </td><td class="markdownTableBodyNone">nlohmann_json, httplib, glog  </td></tr>
 </table>
 <p><b>Notes:</b></p>
 <ul>
@@ -209,8 +245,9 @@ Dependencies by Feature</h1>
 <li><b>Protobuf</b> is optional and only needed if you want binary serialization.</li>
 <li><b>Embedded database</b> is used unless you explicitly enable Redis.</li>
 <li><b>Encryption</b> is ON by default and recommended for production.</li>
+<li><b>Heartbeat server</b> is always enabled and requires no extra configuration.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md12"></a>
+<h1><a class="anchor" id="autotoc_md13"></a>
 API Reference</h1>
 <p>Container Manager exposes a unified API for container operations over multiple protocols and data formats:</p>
 <ul>
@@ -233,11 +270,15 @@ API Reference</h1>
 <li><b>Method:</b> <code>Execute</code> — Accepts Base64-encoded JSON/Protobuf which can be plain/encrypted payload.</li>
 </ul>
 </li>
+<li><b>Heartbeat:</b><ul>
+<li><code>GET /ping</code> and <code>GET /health</code> on the heartbeat server port (default: 8090).</li>
+</ul>
+</li>
 </ul>
 <p>See <a href="#usage-examples">Usage Examples</a> below for request formats and protocol-specific details.</p>
-<h1><a class="anchor" id="autotoc_md13"></a>
+<h1><a class="anchor" id="autotoc_md14"></a>
 Usage Examples</h1>
-<h2><a class="anchor" id="autotoc_md14"></a>
+<h2><a class="anchor" id="autotoc_md15"></a>
 Example JSON Request</h2>
 <div class="fragment"><div class="line">{</div>
 <div class="line">  &quot;runtime&quot;: &quot;docker-api&quot;,</div>
@@ -257,7 +298,7 @@ Example JSON Request</h2>
 <li>Use <code>"runtime": "docker"</code>, <code>"podman"</code> or <code>"podman-yaml"</code> for CLI-based management.</li>
 <li>Use <code>"runtime": "docker-api"</code> or <code>"podman-api"</code> for REST API-based management.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md15"></a>
+<h2><a class="anchor" id="autotoc_md16"></a>
 Example Protobuf Request</h2>
 <ul>
 <li>See <code>executor/proto/container_manager.proto</code> for the schema.</li>
@@ -281,7 +322,7 @@ Example Protobuf Request</h2>
 <div class="line">payload = req.SerializeToString()</div>
 <div class="line">mq = posix_ipc.MessageQueue(&#39;/container_manager_queue&#39;, posix_ipc.O_CREAT)</div>
 <div class="line">mq.send(payload)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md16"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md17"></a>
 HTTP Endpoint</h2>
 <ul>
 <li><b>POST</b> <code>/execute</code><ul>
@@ -291,7 +332,7 @@ HTTP Endpoint</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md17"></a>
+<h2><a class="anchor" id="autotoc_md18"></a>
 MQTT Usage</h2>
 <ul>
 <li><b>Topic:</b> <code>container/execute</code></li>
@@ -300,17 +341,17 @@ MQTT Usage</h2>
 <li><b>Publish Example (Protobuf or Encrypted):</b> Use the generated Protobuf class to serialize and send the message as binary. <br  />
  If encryption is enabled, Base64-encode the encrypted payload before publishing.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md18"></a>
+<h2><a class="anchor" id="autotoc_md19"></a>
 POSIX Message Queue Usage</h2>
 <ul>
 <li><b>Queue Name:</b> <code>/container_manager_queue</code></li>
 <li><b>Send Example (Python, JSON):</b> <div class="fragment"><div class="line">import posix_ipc</div>
 <div class="line">mq = posix_ipc.MessageQueue(&#39;/container_manager_queue&#39;, posix_ipc.O_CREAT)</div>
-<div class="line">mq.send(&#39;{&quot;runtime&quot;: &quot;podman&quot;, &quot;operation&quot;: &quot;create&quot;, &quot;parameters&quot;: [{&quot;container_name&quot;: &quot;my_nginx&quot;, &quot;cpus&quot;: &quot;0.5&quot;, &quot;memory&quot;: &quot;64&quot;, &quot;pids&quot;: &quot;10&quot;, &quot;restart_policy&quot;: &quot;unless-stopped&quot;, &quot;image_name&quot;: &quot;nginx:latest&quot;}]}&#39;)</div>
+<div class="line">mq.send(&#39;{&quot;runtime&quot;: &quot;podman&quot;, &quot;operation&quot;: &quot;create&quot;, &quot;parameters&quot;: [{&quot;container_name&quot;: &quot;my_nginx&quot;, &quot;cpus&quot;: &quot;0.5&quot;, &quot;memory&quot;: &quot;64&quot;, &quot;pids&quot;: &quot;10&quot;, &quot;restart_policy&quot;: &quot;unless-stopped&quot;, &quot;image_name&quot;:&quot;nginx:latest&quot;}]}&#39;)</div>
 </div><!-- fragment --></li>
 <li><b>Send Example (Python, Protobuf or Encrypted):</b> See the Protobuf and encryption examples above.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md19"></a>
+<h2><a class="anchor" id="autotoc_md20"></a>
 D-Bus (Session Bus) Usage</h2>
 <ul>
 <li><b>Bus Name:</b> <code>org.container.manager</code></li>
@@ -328,12 +369,20 @@ D-Bus (Session Bus) Usage</h2>
 <div class="fragment"><div class="line">import base64</div>
 <div class="line">encrypted_payload = ... # bytes from AES-GCM encryption</div>
 <div class="line">iface.Execute(base64.b64encode(encrypted_payload).decode())</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md20"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md21"></a>
+Heartbeat Server Usage</h2>
+<ul>
+<li><b>Liveness:</b> <div class="fragment"><div class="line">curl http://localhost:8090/ping</div>
+</div><!-- fragment --></li>
+<li><b>Health:</b> <div class="fragment"><div class="line">curl http://localhost:8090/health</div>
+</div><!-- fragment --></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md22"></a>
 Podman YAML Support</h1>
-<h2><a class="anchor" id="autotoc_md21"></a>
+<h2><a class="anchor" id="autotoc_md23"></a>
 Running Pods via Podman CLI and YAML Files</h2>
 <p>Container Manager supports generating Kubernetes-style YAML files for Podman using a master template. These YAML files can be used to create and manage pods via Podman CLI commands.</p>
-<h3><a class="anchor" id="autotoc_md22"></a>
+<h3><a class="anchor" id="autotoc_md24"></a>
 Example Workflow</h3>
 <ol type="1">
 <li><b>Generate YAML File</b> <br  />
@@ -343,17 +392,17 @@ Example Workflow</h3>
 <div class="fragment"><div class="line">apiVersion: v1</div>
 <div class="line">kind: Pod</div>
 <div class="line">metadata:</div>
-<div class="line">  name: {{POD_NAME}}</div>
+<div class="line">  name: { { POD_NAME } }</div>
 <div class="line">spec:</div>
 <div class="line">  containers:</div>
-<div class="line">    - name: {{CONTAINER_NAME}}</div>
-<div class="line">      image: {{IMAGE_NAME}}</div>
+<div class="line">    - name: { { CONTAINER_NAME } }</div>
+<div class="line">      image: { { IMAGE_NAME } }</div>
 <div class="line">      resources:</div>
 <div class="line">        limits:</div>
 <div class="line">          cpu: &quot;{{CPU_LIMIT}}&quot;</div>
 <div class="line">          memory: &quot;{{MEMORY_LIMIT}}Mi&quot;</div>
 <div class="line">      securityContext:</div>
-<div class="line">        pidsLimit: {{PIDS_LIMIT}}</div>
+<div class="line">        pidsLimit: { { PIDS_LIMIT } }</div>
 <div class="line">      restartPolicy: &quot;{{RESTART_POLICY}}&quot;</div>
 <div class="line">      ports:</div>
 <div class="line">        - containerPort: 80</div>
@@ -368,21 +417,22 @@ Example Workflow</h3>
 <li><b>Delete Pod via Podman CLI</b> <div class="fragment"><div class="line">podman play kube --down storage/podman_yaml/my_nginx_pod.yaml</div>
 </div><!-- fragment --></li>
 </ol>
-<h3><a class="anchor" id="autotoc_md23"></a>
+<h3><a class="anchor" id="autotoc_md25"></a>
 Why Not Podman API for YAML?</h3>
 <blockquote class="doxtable">
 <p><b>Note:</b> <br  />
  Podman API support for YAML file operations (<code>play kube</code>) is only available in Podman <b>v4.2.0 and above</b>. <a href="https://docs.podman.io/en/latest/_static/api.html#tag/pods/operation/PlayKubeLibpod">reference link</a> Since the current Podman version is <b>v3.4.2</b>, YAML via API is not implemented in this project. <br  />
  All YAML-based pod operations are performed via the Podman CLI. </p>
 </blockquote>
-<h1><a class="anchor" id="autotoc_md24"></a>
+<h1><a class="anchor" id="autotoc_md26"></a>
 Python UI: Container Creator</h1>
-<p>A cross-platform Python GUI tool is provided for easily sending container management requests to the backend.</p>
+<p>A cross-platform Python GUI tool is provided for easily sending container management requests to the backend. <br  />
+ <b>The UI also uses the heartbeat server to show live backend status.</b></p>
 <div class="image">
 <img src="python_ui.png" alt=""/>
 <div class="caption">
 Python UI Screenshot</div></div>
-   <h2><a class="anchor" id="autotoc_md25"></a>
+   <h2><a class="anchor" id="autotoc_md27"></a>
 Features</h2>
 <ul>
 <li>Select protocol: REST (HTTP), MQTT, POSIX Message Queue, or D-Bus (session bus)</li>
@@ -392,8 +442,12 @@ Features</h2>
 <li>Fill in container parameters (runtime, operation, resources, image, etc.)</li>
 <li>Enable/disable AES-GCM or ChaCha20 encryption</li>
 <li>Send requests directly to the backend via REST, MQTT, Message Queue, or D-Bus</li>
+<li><b>Live heartbeat indicator:</b> <br  />
+ The UI pings the <code>/ping</code> endpoint every second and shows a green/red indicator for backend liveness.</li>
+<li><b>Health details:</b> <br  />
+ Click the "Health" button to view all backend health parameters, configuaration parameters in the UI.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md26"></a>
+<h2><a class="anchor" id="autotoc_md28"></a>
 How the UI Works</h2>
 <ol type="1">
 <li><b>Select the protocol</b> (REST, MQTT, MessageQueue, or DBus) from the dropdown.</li>
@@ -403,9 +457,11 @@ How the UI Works</h2>
 <li><b>Choose the encryption algorithm</b> (None, AES-256-GCM, or ChaCha20-Poly1305).</li>
 <li><b>Click "Send Request"</b> to send the request to the backend.</li>
 <li>The UI will show a confirmation or error message after sending the request.</li>
+<li><b>Monitor backend health:</b> <br  />
+ The UI's heartbeat indicator and Health button use the always-on heartbeat server.</li>
 </ol>
 <p>The UI automatically handles serialization, encryption, and protocol-specific details (such as Base64 encoding for D-Bus and MQTT).</p>
-<h2><a class="anchor" id="autotoc_md27"></a>
+<h2><a class="anchor" id="autotoc_md29"></a>
 Requirements</h2>
 <ul>
 <li>Python 3.7+</li>
@@ -419,11 +475,11 @@ Requirements</h2>
 </ul>
 <p>Install dependencies:</p>
 <div class="fragment"><div class="line">pip install requests paho-mqtt posix_ipc dbus-python protobuf pycryptodome</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md28"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md30"></a>
 Usage</h2>
 <div class="fragment"><div class="line">cd ui</div>
 <div class="line">python container_creator_app.py</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md29"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md31"></a>
 Extending the Project</h1>
 <ul>
 <li><b>Add a new runtime:</b> <br  />
@@ -439,19 +495,19 @@ Extending the Project</h1>
 <li><b>Add a new security algorithm:</b> <br  />
  Implement a new security provider in <code>App/security/</code> by extending the <code><a class="el" href="classISecurityProvider.html" title="Abstract interface for security providers (encryption/decryption).">ISecurityProvider</a></code> interface, and update the CMake configuration and executor logic to support it.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md30"></a>
+<h1><a class="anchor" id="autotoc_md32"></a>
 Documentation &amp; Architecture</h1>
 <ul>
 <li>For a comprehensive overview of the system design, security, and extensibility, see <a class="el" href="md__home_komal_workspace_personal_container_manager_docs_architecture_architecture.html">Architecture Documentation</a>.</li>
 <li>Doxygen HTML docs: After building, open <code>docs/doxygen/html/index.html</code> in your browser.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md31"></a>
+<h1><a class="anchor" id="autotoc_md33"></a>
 Contributing</h1>
 <p>Contributions are welcome! Please open issues or pull requests for bug fixes, new features, or documentation improvements.</p>
-<h1><a class="anchor" id="autotoc_md32"></a>
+<h1><a class="anchor" id="autotoc_md34"></a>
 License</h1>
 <p>This project is licensed under the [MIT License](LICENSE).</p>
-<h1><a class="anchor" id="autotoc_md33"></a>
+<h1><a class="anchor" id="autotoc_md35"></a>
 Acknowledgements</h1>
 <ul>
 <li><a href="https://github.com/google/glog">glog</a></li>
@@ -465,8 +521,7 @@ Acknowledgements</h1>
 <li><a href="https://www.doxygen.nl/">Doxygen</a></li>
 <li><a href="https://github.com/Legrandin/pycryptodome">pycryptodome</a> (Python UI)</li>
 <li><a href="https://github.com/eclipse/paho.mqtt.python">paho-mqtt</a> (Python UI)</li>
-<li><a href="https://github.com/osvenskan/posix_ipc">posix_ipc</a> (Python UI)</li>
-<li><a href="https://gitlab.freedesktop.org/dbus/dbus-python">dbus-python</a> (Python UI) </li>
+<li><a href="https://github.com/osvenskan/posix_ipc">posix_ipc</a> (Python UI) </li>
 </ul>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->

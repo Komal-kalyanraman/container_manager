@@ -19,6 +19,7 @@
 
 #include "inc/common.hpp"
 #include "inc/init_handler.hpp"
+#include "inc/heartbeat_server.hpp" 
 #include "inc/container_service.hpp"
 #include "inc/json_request_executor.hpp"
 #include "inc/null_security_provider.hpp"
@@ -84,12 +85,16 @@ void SignalHandler(int signum) {
  * and starts protocol consumers for REST, MQTT, POSIX Message Queue, and D-Bus (if enabled).
  * Handles graceful shutdown and joins all protocol threads before exiting.
  *
+ * Protocol consumers (including the heartbeat server) are configured using their respective config
+ * structures for consistency and maintainability.
+ *
  * @return int Exit code.
  */
 int main() {
     // Print enabled features at startup
-    std::cout << "==== Container Manager v0.7.2 ====" << std::endl;
+    std::cout << "==== " << kServiceName << " v" << kVersion << " ====" << std::endl;
     std::cout << "Features enabled:" << std::endl;
+    std::cout << "✓ Heartbeat Server" << std::endl;
 #if ENABLE_REST
     std::cout << "  ✓ REST/HTTP Server" << std::endl;
 #endif
@@ -163,11 +168,17 @@ int main() {
     // Vector to hold protocol consumer threads
     std::vector<std::thread> protocol_threads;
 
+    // Start dedicated heartbeat server in a separate thread (using config struct for uniformity)
+    HeartbeatConfig heartbeat_cfg;
+    auto heartbeat_server = std::make_shared<HeartbeatServer>(heartbeat_cfg);
+    protocol_threads.emplace_back([heartbeat_server]() {
+        heartbeat_server->Start();
+    });
+
     // Start REST/HTTP server in a separate thread if enabled
 #if ENABLE_REST
     ServerConfig server_cfg;
     auto server = std::make_shared<HttpServerHandler>(server_cfg.ThreadPoolSize, executor);
-    // Exact host and port values for lambda function capture
     std::string host = server_cfg.Host;
     int port = server_cfg.Port;
     protocol_threads.emplace_back([server, host, port]() {
@@ -205,7 +216,7 @@ int main() {
 
     // Main loop: wait for shutdown signal
     while (!shutdown_requested) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(kMainShutdownPollMs));
+        std::this_thread::sleep_for(std::chrono::milliseconds(kPollIntervalMs));
     }
 
     // Stop all protocol consumers gracefully
@@ -221,6 +232,9 @@ int main() {
 #if ENABLE_DBUS
     dbus_consumer->Stop();
 #endif
+
+    // Stop heartbeat server
+    heartbeat_server->Stop();
 
     // Join all protocol threads to ensure clean shutdown
     for (auto& t : protocol_threads) {

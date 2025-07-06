@@ -4,6 +4,9 @@ var dir_d5e05acfa0d2b58af2a638006d267ba2 =
       [ "DBusConsumer", "classDBusConsumer.html", "classDBusConsumer" ]
     ] ],
     [ "grpc_server.hpp", "grpc__server_8hpp.html", null ],
+    [ "heartbeat_server.hpp", "heartbeat__server_8hpp.html", [
+      [ "HeartbeatServer", "classHeartbeatServer.html", "classHeartbeatServer" ]
+    ] ],
     [ "http_server.hpp", "http__server_8hpp.html", [
       [ "HttpServerHandler", "classHttpServerHandler.html", "classHttpServerHandler" ]
     ] ],

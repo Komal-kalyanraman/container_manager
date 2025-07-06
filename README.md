@@ -2,7 +2,7 @@
 
 **Container Manager** is a modular, production-ready C++ 17 service for unified container management across Docker, Podman, and more (planned). It supports REST, MQTT, POSIX Message Queue, D-Bus, gRPC (planned), Docker/Podman CLI, HTTP-API with incoming JSON/ Protobuf data with optional decryption of secure data.
 
-Features include extensible architecture, pluggable database backend (embedded by default, Redis optional), robust logging, thread pool for all protocols, and enterprise-grade security with AES-256-GCM or ChaCha20-Poly1305 encryption.
+Features include extensible architecture, pluggable database backend (embedded by default, Redis optional), robust logging, thread pool for all protocols, a dedicated heartbeat server for health/liveness checks, and enterprise-grade security with AES-256-GCM or ChaCha20-Poly1305 encryption.
 
 It is designed for developers and system integrators who need a flexible, secure, and modular foundation for building container orchestration for automotive usecase.
 
@@ -24,6 +24,10 @@ It is designed for developers and system integrators who need a flexible, secure
 
 - **Multi-Protocol Support:**  
   REST (HTTP/JSON or Protobuf), MQTT, POSIX Message Queue, D-Bus (session bus), and gRPC (planned).
+
+- **Dedicated Heartbeat Server:**  
+  Lightweight HTTP server always available on a configurable port (default: 8090) for `/ping` (liveness) and `/health` (detailed status) endpoints.  
+  Enables health checks, monitoring, and UI integration independent of main protocol servers.
 
 - **Flexible Data Formats:**  
   JSON or Protocol Buffers (protobuf) for high-performance or strongly-typed APIs.
@@ -47,7 +51,7 @@ It is designed for developers and system integrators who need a flexible, secure
 
 ```
 App/
-├── api/          # Protocol handlers (REST, MQTT, MQ, D-Bus and future protocols)
+├── api/          # Protocol handlers (REST, MQTT, MQ, D-Bus, Heartbeat, and future protocols)
 ├── core/         # Business logic (service layer)
 ├── database/     # Database interface, embedded and Redis implementations (pluggable)
 ├── executor/     # Request executors (JSON, Protobuf, handle decryption)
@@ -75,7 +79,44 @@ make
 ./CM
 ```
 
-The server will start and listen on the enabled protocols and data formats as per your build configuration.
+The server will start and listen on the enabled protocols and data formats as per your build configuration.  
+**The heartbeat server will always be available on the configured port (default: 8090).**
+
+## Heartbeat Server
+
+A dedicated lightweight HTTP server is always running for health and liveness checks, independent of the main REST or other protocol servers.
+
+- **Liveness endpoint:**  
+  `GET /ping` — Returns a minimal JSON indicating the service is alive.
+
+- **Health endpoint:**  
+  `GET /health` — Returns a detailed JSON with service status, version, uptime, enabled features, and more.
+
+**Example:**
+
+```sh
+curl http://localhost:8090/ping
+# {"status": "alive", "service": "container_manager", "version": "0.7.3", "timestamp": 1751738206}
+
+curl http://localhost:8090/health
+# {
+#   "status": "healthy",
+#   "service": "container_manager",
+#   "version": "0.7.3",
+#   "timestamp": 1751738206,
+#   "uptime_seconds": 71,
+#   "heartbeat_port": 8090,
+#   "features": {
+#     "rest_enabled": true,
+#     "mqtt_enabled": true,
+#     "msgqueue_enabled": true,
+#     "dbus_enabled": true,
+#     "encryption_enabled": true
+#   }
+# }
+```
+
+This enables easy integration with monitoring tools, load balancers, and UI dashboards.
 
 ## Video Tutorials
 
@@ -135,6 +176,7 @@ Install only what you need based on your chosen CMake flags.
 | Redis DB               | ENABLE_REDIS=ON      | cpp_redis, redis-server               |
 | Embedded DB (default)  | (default)            | (no extra dependencies)               |
 | Encryption             | ENABLE_ENCRYPTION=ON | libssl-dev (OpenSSL)                  |
+| Heartbeat Server       | (always enabled)     | nlohmann_json, httplib, glog          |
 
 **Notes:**
 
@@ -142,6 +184,7 @@ Install only what you need based on your chosen CMake flags.
 - **Protobuf** is optional and only needed if you want binary serialization.
 - **Embedded database** is used unless you explicitly enable Redis.
 - **Encryption** is ON by default and recommended for production.
+- **Heartbeat server** is always enabled and requires no extra configuration.
 
 ## API Reference
 
@@ -158,6 +201,8 @@ Container Manager exposes a unified API for container operations over multiple p
   - **Object Path:** `/org/container/manager`
   - **Interface:** `org.container.manager`
   - **Method:** `Execute` — Accepts Base64-encoded JSON/Protobuf which can be plain/encrypted payload.
+- **Heartbeat:**
+  - `GET /ping` and `GET /health` on the heartbeat server port (default: 8090).
 
 See [Usage Examples](#usage-examples) below for request formats and protocol-specific details.
 
@@ -236,7 +281,7 @@ mq.send(payload)
   ```python
   import posix_ipc
   mq = posix_ipc.MessageQueue('/container_manager_queue', posix_ipc.O_CREAT)
-  mq.send('{"runtime": "podman", "operation": "create", "parameters": [{"container_name": "my_nginx", "cpus": "0.5", "memory": "64", "pids": "10", "restart_policy": "unless-stopped", "image_name": "nginx:latest"}]}')
+  mq.send('{"runtime": "podman", "operation": "create", "parameters": [{"container_name": "my_nginx", "cpus": "0.5", "memory": "64", "pids": "10", "restart_policy": "unless-stopped", "image_name":"nginx:latest"}]}')
   ```
 - **Send Example (Python, Protobuf or Encrypted):**
   See the Protobuf and encryption examples above.
@@ -266,6 +311,17 @@ encrypted_payload = ... # bytes from AES-GCM encryption
 iface.Execute(base64.b64encode(encrypted_payload).decode())
 ```
 
+### Heartbeat Server Usage
+
+- **Liveness:**
+  ```sh
+  curl http://localhost:8090/ping
+  ```
+- **Health:**
+  ```sh
+  curl http://localhost:8090/health
+  ```
+
 ## Podman YAML Support
 
 ### Running Pods via Podman CLI and YAML Files
@@ -282,17 +338,17 @@ Container Manager supports generating Kubernetes-style YAML files for Podman usi
    apiVersion: v1
    kind: Pod
    metadata:
-     name: {{POD_NAME}}
+     name: { { POD_NAME } }
    spec:
      containers:
-       - name: {{CONTAINER_NAME}}
-         image: {{IMAGE_NAME}}
+       - name: { { CONTAINER_NAME } }
+         image: { { IMAGE_NAME } }
          resources:
            limits:
              cpu: "{{CPU_LIMIT}}"
              memory: "{{MEMORY_LIMIT}}Mi"
          securityContext:
-           pidsLimit: {{PIDS_LIMIT}}
+           pidsLimit: { { PIDS_LIMIT } }
          restartPolicy: "{{RESTART_POLICY}}"
          ports:
            - containerPort: 80
@@ -322,7 +378,8 @@ Container Manager supports generating Kubernetes-style YAML files for Podman usi
 
 ## Python UI: Container Creator
 
-A cross-platform Python GUI tool is provided for easily sending container management requests to the backend.
+A cross-platform Python GUI tool is provided for easily sending container management requests to the backend.  
+**The UI also uses the heartbeat server to show live backend status.**
 
 ![Python UI Screenshot](./docs/architecture/python_ui.png)
 
@@ -335,6 +392,10 @@ A cross-platform Python GUI tool is provided for easily sending container manage
 - Fill in container parameters (runtime, operation, resources, image, etc.)
 - Enable/disable AES-GCM or ChaCha20 encryption
 - Send requests directly to the backend via REST, MQTT, Message Queue, or D-Bus
+- **Live heartbeat indicator:**  
+  The UI pings the `/ping` endpoint every second and shows a green/red indicator for backend liveness.
+- **Health details:**  
+  Click the "Health" button to view all backend health parameters, configuaration parameters in the UI.
 
 ### How the UI Works
 
@@ -345,6 +406,8 @@ A cross-platform Python GUI tool is provided for easily sending container manage
 5. **Choose the encryption algorithm** (None, AES-256-GCM, or ChaCha20-Poly1305).
 6. **Click "Send Request"** to send the request to the backend.
 7. The UI will show a confirmation or error message after sending the request.
+8. **Monitor backend health:**  
+   The UI's heartbeat indicator and Health button use the always-on heartbeat server.
 
 The UI automatically handles serialization, encryption, and protocol-specific details (such as Base64 encoding for D-Bus and MQTT).
 
@@ -419,4 +482,3 @@ This project is licensed under the [MIT License](LICENSE).
 - [pycryptodome](https://github.com/Legrandin/pycryptodome) (Python UI)
 - [paho-mqtt](https://github.com/eclipse/paho.mqtt.python) (Python UI)
 - [posix_ipc](https://github.com/osvenskan/posix_ipc) (Python UI)
-- [dbus-python](https://gitlab.freedesktop.org/dbus/dbus-python) (Python UI)
