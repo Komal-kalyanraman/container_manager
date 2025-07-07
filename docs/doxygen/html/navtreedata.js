@@ -32,7 +32,7 @@ var NAVTREE =
     [ "Heartbeat Server", "index.html#autotoc_md6", null ],
     [ "Video Tutorials", "index.html#autotoc_md7", [
       [ "1. Project Overview & Motivation", "index.html#autotoc_md8", null ],
-      [ "2. Build, UI Usage & Live Demo", "index.html#autotoc_md10", null ]
+      [ "2. Build, UI Usage & Demo", "index.html#autotoc_md10", null ]
     ] ],
     [ "Configuration", "index.html#autotoc_md11", null ],
     [ "Dependencies by Feature", "index.html#autotoc_md12", null ],
