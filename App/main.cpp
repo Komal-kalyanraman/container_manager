@@ -94,7 +94,7 @@ int main() {
     // Print enabled features at startup
     std::cout << "==== " << kServiceName << " v" << kVersion << " ====" << std::endl;
     std::cout << "Features enabled:" << std::endl;
-    std::cout << "✓ Heartbeat Server" << std::endl;
+    std::cout << "  ✓ Heartbeat Server" << std::endl;
 #if ENABLE_REST
     std::cout << "  ✓ REST/HTTP Server" << std::endl;
 #endif

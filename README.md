@@ -123,7 +123,7 @@ This enables easy integration with monitoring tools, load balancers, and UI dash
 ### 1. Project Overview & Motivation
 
 <div align="center">
-  <a href="https://www.youtube.com/watch?v=GQ7MG5r8-uQ&ab_channel=komalkalyanraman">
+  <a href="https://www.youtube.com/watch?v=YSUXZhCB4ao">
     <img src="docs/architecture/container_manager.png" alt="Project Overview & Motivation" width="500">
   </a>
 </div>
@@ -132,10 +132,10 @@ This enables easy integration with monitoring tools, load balancers, and UI dash
 
 ---
 
-### 2. Build, UI Usage & Live Demo
+### 2. Build, UI Usage & Demo
 
 <div align="center">
-  <a href="https://www.youtube.com/watch?v=6wBSkqxmbTM&ab_channel=komalkalyanraman">
+  <a href="https://www.youtube.com/watch?v=uf68tQ-BpWs">
     <img src="docs/architecture/container_manager_demo.png" alt="Project Overview & Motivation" width="500">
   </a>
 </div>
